@@ -93,7 +93,8 @@ if (!csvPath) {
   process.exit(1);
 }
 
-const outputPath = path.join(__dirname, '..', 'core', 'src', 'assets', 'vocab.json');
+// __dirname 대신 path.resolve 사용
+const outputPath = path.resolve('packages/core/src/assets/vocab.json');
 
 try {
   const csvContent = fs.readFileSync(csvPath, 'utf-8');

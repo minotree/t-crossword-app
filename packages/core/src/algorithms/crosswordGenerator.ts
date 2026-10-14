@@ -7,6 +7,7 @@ interface PlacementCandidate {
   col: number;
   orientation: 'across' | 'down';
   matches: boolean;
+  isAdjacentToExistingBlock?: boolean;
 }
 
 export function generateCrossword(
@@ -99,14 +100,9 @@ function placeWord(
   const word = wordItem.word;
   const length = word.length;
 
-  for (let i = 0; i < length; i++) {
-    grid[row + i][col + i] = null; // 초기화
-  }
-
   if (orientation === 'across') {
     for (let i = 0; i < length; i++) {
-      const cell = grid[row][col + i];
-      cell = {
+      grid[row][col + i] = {
         row,
         col: col + i,
         letter: word[i],
@@ -115,7 +111,6 @@ function placeWord(
         acrossNumber: acrossNumber + 1,
         downNumber: undefined,
       };
-      grid[row][col + i] = cell;
     }
     placedWords.push({
       id: wordItem.id,
@@ -131,8 +126,7 @@ function placeWord(
     acrossNumber++;
   } else {
     for (let i = 0; i < length; i++) {
-      const cell = grid[row + i][col];
-      cell = {
+      grid[row + i][col] = {
         row: row + i,
         col,
         letter: word[i],
@@ -141,7 +135,6 @@ function placeWord(
         acrossNumber: undefined,
         downNumber: downNumber + 1,
       };
-      grid[row + i][col] = cell;
     }
     placedWords.push({
       id: wordItem.id,
@@ -204,8 +197,8 @@ function canPlaceAcross(
 ): boolean {
   for (let i = 0; i < word.length; i++) {
     const cell = grid[row][col + i];
-    if (!cell) return false;
-    if (cell.letter !== word[i]) return false;
+    if (cell === null) return false;
+    if (cell.letter !== undefined && cell.letter !== word[i]) return false;
   }
   return true;
 }
@@ -218,8 +211,8 @@ function canPlaceDown(
 ): boolean {
   for (let i = 0; i < word.length; i++) {
     const cell = grid[row + i][col];
-    if (!cell) return false;
-    if (cell.letter !== word[i]) return false;
+    if (cell === null) return false;
+    if (cell.letter !== undefined && cell.letter !== word[i]) return false;
   }
   return true;
 }
