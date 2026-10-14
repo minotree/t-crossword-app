@@ -11,13 +11,27 @@ const CSV_HEADER = [
   '예문해석'
 ];
 
-const LEVEL_MAP: Record<string, string> = {
+const LEVEL_MAP = {
   '초급': 'beginner',
   '중급': 'intermediate',
   '고급': 'advanced'
 };
 
-function parseLine(line: string): string[] {
+// WordItem 타입 정의 (런타임에서 사용 가능하도록)
+const WordItemSchema = {
+  id: String,
+  level: String,
+  word: String,
+  meaning: String,
+  partOfSpeech: String,
+  example: String,
+  exampleMeaning: String,
+  synonym: [String, undefined],
+  isBookmarked: Boolean,
+  isQuizUsed: Boolean
+};
+
+function parseLine(line) {
   // 탭 또는 쉼표 구분자 자동 감지
   const tabs = (line.match(/\t/g) || []).length;
   const commas = (line.match(/,/g) || []).length;
@@ -33,9 +47,9 @@ function parseLine(line: string): string[] {
   }
 }
 
-function convertCSVToJSON(csvContent: string): WordItem[] {
+function convertCSVToJSON(csvContent) {
   const lines = csvContent.trim().split('\n');
-  const words: WordItem[] = [];
+  const words = [];
 
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i];
