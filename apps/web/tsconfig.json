@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "paths": {
+      "@t-crossword/contracts": ["../../packages/contracts/src/index.ts"],
+      "@t-crossword/core": ["../../packages/core/src/index.ts"],
+      "@t-crossword/utils": ["../../packages/utils/src/index.ts"]
+    }
+  },
+  "include": ["src"]
+}

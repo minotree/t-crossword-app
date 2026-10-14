@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@t-crossword/contracts": ["../../packages/contracts/src/index.ts"],
+      "@t-crossword/core": ["../../packages/core/src/index.ts"],
+      "@t-crossword/utils": ["../../packages/utils/src/index.ts"]
+    }
+  },
+  "include": ["src"]
+}

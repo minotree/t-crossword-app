@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const CSV_HEADER = [
   '난이도',
@@ -8,81 +8,107 @@ const CSV_HEADER = [
   '품사',
   '동의어',
   '예문',
-  '예문해석'
+  '예문해석',
 ];
 
 const LEVEL_MAP = {
-  '초급': 'beginner',
-  '중급': 'intermediate',
-  '고급': 'advanced'
+  초급: 'beginner',
+  중급: 'intermediate',
+  고급: 'advanced',
 };
 
-// WordItem 타입 정의 (런타임에서 사용 가능하도록)
-const WordItemSchema = {
-  id: String,
-  level: String,
-  word: String,
-  meaning: String,
-  partOfSpeech: String,
-  example: String,
-  exampleMeaning: String,
-  synonym: [String, undefined],
-  isBookmarked: Boolean,
-  isQuizUsed: Boolean
-};
+function parseCsv(content) {
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
 
-function parseLine(line) {
-  // 탭 또는 쉼표 구분자 자동 감지
-  const tabs = (line.match(/\t/g) || []).length;
-  const commas = (line.match(/,/g) || []).length;
-  
-  if (tabs > commas) {
-    return line.split('\t');
-  } else if (commas > tabs) {
-    // 쉼표가 있지만 공백이 있는 경우 처리
-    return line.split(',').map(s => s.trim());
-  } else {
-    // 탭과 쉼표가 모두 없는 경우 (공백 구분)
-    return line.split(/\s+/);
+  for (let index = 0; index < content.length; index += 1) {
+    const character = content[index];
+
+    if (inQuotes) {
+      if (character === '"') {
+        if (content[index + 1] === '"') {
+          field += '"';
+          index += 1;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += character;
+      }
+      continue;
+    }
+
+    if (character === '"') {
+      if (field.length > 0) {
+        throw new Error(`CSV ${rows.length + 1}번째 레코드에 잘못된 따옴표가 있습니다.`);
+      }
+      inQuotes = true;
+    } else if (character === ',') {
+      row.push(field);
+      field = '';
+    } else if (character === '\n' || character === '\r') {
+      if (character === '\r' && content[index + 1] === '\n') index += 1;
+      row.push(field);
+      if (row.some((value) => value.length > 0)) rows.push(row);
+      row = [];
+      field = '';
+    } else {
+      field += character;
+    }
   }
+
+  if (inQuotes) throw new Error('CSV에 닫히지 않은 따옴표가 있습니다.');
+  if (field.length > 0 || row.length > 0) {
+    row.push(field);
+    rows.push(row);
+  }
+
+  return rows;
 }
 
-function convertCSVToJSON(csvContent) {
-  const lines = csvContent.trim().split('\n');
+function convertCsvToWords(csvContent) {
+  const rows = parseCsv(csvContent.replace(/^\uFEFF/, ''));
+  const [header, ...records] = rows;
+
+  if (!header || header.length !== CSV_HEADER.length ||
+      header.some((value, index) => value.trim() !== CSV_HEADER[index])) {
+    throw new Error(`CSV 헤더가 예상 형식과 다릅니다. 필요한 헤더: ${CSV_HEADER.join(',')}`);
+  }
+
   const words = [];
 
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i];
-    if (!line.trim()) continue;
-
-    const fields = parseLine(line);
-    
-    if (fields.length < CSV_HEADER.length) {
-      console.warn(`경고: ${i + 1} 번째 줄의 헤더가 부족합니다.`);
-      continue;
+  records.forEach((record, index) => {
+    const recordNumber = index + 2;
+    if (record.length !== CSV_HEADER.length) {
+      throw new Error(`${recordNumber}번째 레코드의 열이 ${CSV_HEADER.length}개가 아닙니다 (${record.length}개).`);
     }
 
-    const level = LEVEL_MAP[fields[0].trim()] || 'beginner';
-    const word = fields[1].trim().toUpperCase();
-    
+    const [rawLevel, rawWord, rawMeaning, rawPartOfSpeech, rawSynonym, rawExample, rawExampleMeaning] = record;
+    const level = LEVEL_MAP[rawLevel.trim()];
+    const word = rawWord.trim().toUpperCase();
+
+    if (!level) throw new Error(`${recordNumber}번째 레코드의 난이도를 확인하세요: ${rawLevel}`);
     if (word.length < 3) {
-      console.warn(`경고: ${i + 1} 번째 줄의 단어 "${word}"는 3 글자 미만입니다. 제외됩니다.`);
-      continue;
+      console.warn(`경고: ${recordNumber}번째 레코드의 단어 "${word}"는 3글자 미만이라 제외합니다.`);
+      return;
     }
+    if (!rawMeaning.trim()) throw new Error(`${recordNumber}번째 레코드에 뜻이 없습니다.`);
 
     words.push({
-      id: `word-${i}`,
+      id: `word-${recordNumber}`,
       level,
       word,
-      meaning: fields[2].trim(),
-      partOfSpeech: fields[3].trim(),
-      example: fields[5]?.trim() || '',
-      exampleMeaning: fields[6]?.trim() || '',
-      synonym: fields[4]?.trim() || undefined,
+      meaning: rawMeaning.trim(),
+      partOfSpeech: rawPartOfSpeech.trim(),
+      example: rawExample.trim(),
+      exampleMeaning: rawExampleMeaning.trim(),
+      synonym: rawSynonym.trim() || undefined,
       isBookmarked: false,
       isQuizUsed: false,
     });
-  }
+  });
 
   return words;
 }
@@ -93,16 +119,14 @@ if (!csvPath) {
   process.exit(1);
 }
 
-// __dirname 대신 path.resolve 사용
 const outputPath = path.resolve('packages/core/src/assets/vocab.json');
 
 try {
-  const csvContent = fs.readFileSync(csvPath, 'utf-8');
-  const words = convertCSVToJSON(csvContent);
-  
-  fs.writeFileSync(outputPath, JSON.stringify(words, null, 2), 'utf-8');
-  console.log(`변환 완료: ${words.length} 개의 단어가 vocab.json 에 저장되었습니다.`);
+  const csvContent = fs.readFileSync(csvPath, 'utf8');
+  const words = convertCsvToWords(csvContent);
+  fs.writeFileSync(outputPath, `${JSON.stringify(words, null, 2)}\n`, 'utf8');
+  console.log(`변환 완료: ${words.length}개 단어를 ${outputPath}에 저장했습니다.`);
 } catch (error) {
-  console.error('CSV 변환 중 오류:', error);
+  console.error('CSV 변환 중 오류:', error.message);
   process.exit(1);
 }

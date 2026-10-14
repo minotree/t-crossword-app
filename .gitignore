@@ -1,0 +1,52 @@
+# Aider
+.aider*
+.aider.tags.cache.v4/
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Mobile (Capacitor)
+android/build/
+android/.gradle/
+ios/build/
+ios/DerivedData/
+
+# Tauri
+src-tauri/target/
+
+# Test
+coverage/

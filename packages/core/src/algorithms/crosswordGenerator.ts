@@ -1,13 +1,15 @@
 import { getWordHintLimit } from '../utils/hintLimit.js';
 import type { WordItem, CrosswordCell, CrosswordWord, CrosswordPuzzle, DifficultyLevel, GridSize } from '../types/index.js';
 
+type Direction = CrosswordWord['orientation'];
+const difficultyRank: Record<DifficultyLevel, number> = {
+  beginner: 0, intermediate: 1, advanced: 2,
+};
 interface PlacementCandidate {
-  word: WordItem;
   row: number;
   col: number;
-  orientation: 'across' | 'down';
-  matches: boolean;
-  isAdjacentToExistingBlock?: boolean;
+  orientation: Direction;
+  crossings: number;
 }
 
 export function generateCrossword(
@@ -15,233 +17,160 @@ export function generateCrossword(
   level: DifficultyLevel,
   gridSize: GridSize
 ): CrosswordPuzzle {
-  // 난이도별 단어 필터링 (최소 길이 3 이상)
+  const seenIds = new Set<string>();
+  const seenWords = new Set<string>();
   const filteredWords = vocabList
-    .filter((word) => word.level === level && word.word.length >= 3)
-    .map((word) => ({
-      ...word,
-      word: word.word.toUpperCase(),
-    }));
+    .map((item) => ({ ...item, word: item.word.trim().toUpperCase() }))
+    .filter((item) => {
+      if (!(difficultyRank[item.level] <= difficultyRank[level]) || item.isQuizUsed !== false || !/^[A-Z]{3,}$/.test(item.word) ||
+          item.word.length > gridSize || seenIds.has(item.id) || seenWords.has(item.word)) return false;
+      seenIds.add(item.id);
+      seenWords.add(item.word);
+      return true;
+    });
+  let best = buildPuzzle(filteredWords, level, gridSize);
+  if (filteredWords.length < 3) return best;
 
-  // 빈 그리드 초기화
-  const grid: (CrosswordCell | null)[][] = Array(gridSize)
-    .fill(null)
-    .map(() => Array(gridSize).fill(null));
-
-  const placedWords: CrosswordWord[] = [];
-  let acrossNumber = 0;
-  let downNumber = 0;
-
-  // 첫 번째 단어는 그리드 중앙 부근에 가로 배치
-  if (filteredWords.length > 0) {
-    const centerRow = Math.floor(gridSize / 2);
-    const centerCol = Math.floor((gridSize - filteredWords[0].word.length) / 2);
-
-    placeWord(
-      filteredWords[0],
-      centerRow,
-      centerCol,
-      'across',
-      grid,
-      placedWords,
-      acrossNumber,
-      downNumber
-    );
-  }
-
-  // 나머지 단어들을 탐욕적으로 배치
-  for (const word of filteredWords.slice(1)) {
-    const candidates = findPlacementCandidates(word.word, grid);
-    
-    if (candidates.length > 0) {
-      // 가장 좋은 후보 선택 (교차 가능한 위치 우선)
-      const bestCandidate = candidates.reduce((best, candidate) => {
-        return candidate.matches && !candidate.isAdjacentToExistingBlock 
-          ? candidate 
-          : best;
-      }, candidates[0]);
-
-      if (bestCandidate) {
-        placeWord(
-          word,
-          bestCandidate.row,
-          bestCandidate.col,
-          bestCandidate.orientation,
-          grid,
-          placedWords,
-          acrossNumber,
-          downNumber
-        );
-      }
+  // A short seed and an unlucky greedy order can exhaust all crossings early.
+  // Try bounded alternatives, keeping the puzzle with the most playable words.
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const shuffled = [...filteredWords];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const seedIndex = shuffled.findIndex((item) => item.word.length >= Math.min(5, gridSize));
+    if (seedIndex > 0) {
+      const [seed] = shuffled.splice(seedIndex, 1);
+      shuffled.unshift(seed);
+    }
+    const candidate = buildPuzzle(shuffled, level, gridSize);
+    const filledCells = (puzzle: CrosswordPuzzle) => puzzle.grid.flat().filter(Boolean).length;
+    if (candidate.words.length > best.words.length ||
+        (candidate.words.length === best.words.length && filledCells(candidate) > filledCells(best))) {
+      best = candidate;
     }
   }
+  return best;
+}
 
-  // 그리드 번호 매기기
+function buildPuzzle(
+  filteredWords: WordItem[], level: DifficultyLevel, gridSize: GridSize
+): CrosswordPuzzle {
+  const grid: (CrosswordCell | null)[][] = Array.from(
+    { length: gridSize }, () => Array(gridSize).fill(null)
+  );
+  // Track direction ownership separately so a crossing cannot overwrite a start cell.
+  const ownership: Set<Direction>[][] = Array.from(
+    { length: gridSize }, () => Array.from({ length: gridSize }, () => new Set<Direction>())
+  );
+  const placedWords: CrosswordWord[] = [];
+  const firstWord = filteredWords[0];
+  if (firstWord) {
+    placeWord(firstWord, {
+      row: Math.floor(gridSize / 2),
+      col: Math.floor((gridSize - firstWord.word.length) / 2),
+      orientation: 'across', crossings: 0,
+    }, grid, ownership, placedWords);
+  }
+
+  // Retry words skipped before their matching crossing letters were available.
+  let remaining = filteredWords.slice(1);
+  while (remaining.length > 0) {
+    const skipped: WordItem[] = [];
+    let placed = false;
+    for (const item of remaining) {
+      let best: PlacementCandidate | undefined;
+      for (let row = 0; row < gridSize; row++) {
+        for (let col = 0; col < gridSize; col++) {
+          for (const orientation of ['across', 'down'] as const) {
+            const crossings = countValidCrossings(item.word, row, col, orientation, grid, ownership);
+            if (crossings > 0 && (!best || crossings > best.crossings)) {
+              best = { row, col, orientation, crossings };
+            }
+          }
+        }
+      }
+      if (best) {
+        placeWord(item, best, grid, ownership, placedWords);
+        placed = true;
+      } else {
+        skipped.push(item);
+      }
+    }
+    if (!placed) break;
+    remaining = skipped;
+  }
   assignNumbers(grid, placedWords);
+  return { size: gridSize, level, grid, words: placedWords };
+}
 
-  return {
-    size: gridSize,
-    level,
-    grid,
-    words: placedWords,
-  };
+function countValidCrossings(
+  word: string, row: number, col: number, orientation: Direction,
+  grid: (CrosswordCell | null)[][], ownership: Set<Direction>[][]
+): number {
+  const dr = orientation === 'down' ? 1 : 0;
+  const dc = orientation === 'across' ? 1 : 0;
+  const endRow = row + dr * (word.length - 1);
+  const endCol = col + dc * (word.length - 1);
+  if (endRow >= grid.length || endCol >= grid.length) return 0;
+  // Keep a block before and after each word, including at crossing starts.
+  if (grid[row - dr]?.[col - dc] || grid[endRow + dr]?.[endCol + dc]) return 0;
+  let crossings = 0;
+  for (let i = 0; i < word.length; i++) {
+    const r = row + dr * i;
+    const c = col + dc * i;
+    const cell = grid[r][c];
+    if (cell) {
+      if (cell.letter !== word[i] || ownership[r][c].has(orientation)) return 0;
+      crossings++;
+    } else if (grid[r - dc]?.[c - dr] || grid[r + dc]?.[c + dr]) {
+      // A new letter must not touch a parallel word along its sides.
+      return 0;
+    }
+  }
+  return crossings;
 }
 
 function placeWord(
-  wordItem: WordItem,
-  row: number,
-  col: number,
-  orientation: 'across' | 'down',
-  grid: (CrosswordCell | null)[][],
-  placedWords: CrosswordWord[],
-  acrossNumber: number,
-  downNumber: number
-): void {
-  const word = wordItem.word;
-  const length = word.length;
-
-  if (orientation === 'across') {
-    for (let i = 0; i < length; i++) {
-      grid[row][col + i] = {
-        row,
-        col: col + i,
-        letter: word[i],
-        isStartOfAcross: i === 0,
-        isStartOfDown: false,
-        acrossNumber: acrossNumber + 1,
-        downNumber: undefined,
-      };
-    }
-    placedWords.push({
-      id: wordItem.id,
-      word,
-      meaning: wordItem.meaning,
-      orientation: 'across',
-      startRow: row,
-      startCol: col,
-      number: acrossNumber + 1,
-      hintLimit: getWordHintLimit(word),
-      hintUsedCount: 0,
-    });
-    acrossNumber++;
-  } else {
-    for (let i = 0; i < length; i++) {
-      grid[row + i][col] = {
-        row: row + i,
-        col,
-        letter: word[i],
-        isStartOfAcross: false,
-        isStartOfDown: i === 0,
-        acrossNumber: undefined,
-        downNumber: downNumber + 1,
-      };
-    }
-    placedWords.push({
-      id: wordItem.id,
-      word,
-      meaning: wordItem.meaning,
-      orientation: 'down',
-      startRow: row,
-      startCol: col,
-      number: downNumber + 1,
-      hintLimit: getWordHintLimit(word),
-      hintUsedCount: 0,
-    });
-    downNumber++;
-  }
-}
-
-function findPlacementCandidates(
-  word: string,
-  grid: (CrosswordCell | null)[][]
-): PlacementCandidate[] {
-  const candidates: PlacementCandidate[] = [];
-  const length = word.length;
-
-  for (let row = 0; row < grid.length; row++) {
-    for (let col = 0; col <= grid[0].length - length; col++) {
-      // 가로 배치 후보
-      if (canPlaceAcross(word, row, col, grid)) {
-        candidates.push({
-          word: null as any,
-          row,
-          col,
-          orientation: 'across',
-          matches: true,
-          isAdjacentToExistingBlock: false,
-        });
-      }
-
-      // 세로 배치 후보
-      if (canPlaceDown(word, row, col, grid)) {
-        candidates.push({
-          word: null as any,
-          row,
-          col,
-          orientation: 'down',
-          matches: true,
-          isAdjacentToExistingBlock: false,
-        });
-      }
-    }
-  }
-
-  return candidates;
-}
-
-function canPlaceAcross(
-  word: string,
-  row: number,
-  col: number,
-  grid: (CrosswordCell | null)[][]
-): boolean {
-  for (let i = 0; i < word.length; i++) {
-    const cell = grid[row][col + i];
-    if (cell === null) return false;
-    if (cell.letter !== undefined && cell.letter !== word[i]) return false;
-  }
-  return true;
-}
-
-function canPlaceDown(
-  word: string,
-  row: number,
-  col: number,
-  grid: (CrosswordCell | null)[][]
-): boolean {
-  for (let i = 0; i < word.length; i++) {
-    const cell = grid[row + i][col];
-    if (cell === null) return false;
-    if (cell.letter !== undefined && cell.letter !== word[i]) return false;
-  }
-  return true;
-}
-
-function assignNumbers(
-  grid: (CrosswordCell | null)[][],
+  item: WordItem, candidate: PlacementCandidate,
+  grid: (CrosswordCell | null)[][], ownership: Set<Direction>[][],
   placedWords: CrosswordWord[]
 ): void {
-  // 가로 번호 매기기
-  for (let row = 0; row < grid.length; row++) {
-    let acrossNum = 0;
-    for (let col = 0; col < grid[row].length; col++) {
-      const cell = grid[row][col];
-      if (cell && cell.isStartOfAcross) {
-        acrossNum++;
-        cell.acrossNumber = acrossNum;
-      }
+  const { row, col, orientation } = candidate;
+  for (let i = 0; i < item.word.length; i++) {
+    const r = row + (orientation === 'down' ? i : 0);
+    const c = col + (orientation === 'across' ? i : 0);
+    grid[r][c] ??= { row: r, col: c, letter: item.word[i] };
+    ownership[r][c].add(orientation);
+  }
+  placedWords.push({
+    id: item.id, word: item.word, meaning: item.meaning, example: item.example, orientation,
+    startRow: row, startCol: col, number: 0,
+    hintLimit: getWordHintLimit(item.word), hintUsedCount: 0,
+  });
+}
+
+function assignNumbers(grid: (CrosswordCell | null)[][], words: CrosswordWord[]): void {
+  for (const word of words) {
+    const cell = grid[word.startRow][word.startCol];
+    if (cell) {
+      if (word.orientation === 'across') cell.isStartOfAcross = true;
+      else cell.isStartOfDown = true;
     }
   }
-
-  // 세로 번호 매기기
-  for (let col = 0; col < grid[0].length; col++) {
-    let downNum = 0;
-    for (let row = 0; row < grid.length; row++) {
-      const cell = grid[row][col];
-      if (cell && cell.isStartOfDown) {
-        downNum++;
-        cell.downNumber = downNum;
-      }
+  // One row-major number per starting square, shared by both directions.
+  let number = 0;
+  for (const row of grid) {
+    for (const cell of row) {
+      if (!cell || (!cell.isStartOfAcross && !cell.isStartOfDown)) continue;
+      number++;
+      if (cell.isStartOfAcross) cell.acrossNumber = number;
+      if (cell.isStartOfDown) cell.downNumber = number;
     }
+  }
+  for (const word of words) {
+    const cell = grid[word.startRow][word.startCol];
+    word.number = (word.orientation === 'across' ? cell?.acrossNumber : cell?.downNumber) ?? 0;
   }
 }
