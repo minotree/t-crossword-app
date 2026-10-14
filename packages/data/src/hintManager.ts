@@ -66,6 +66,7 @@ export async function claimAdReward(
     p_amount: amount,
   });
 
+  // RPC 함수는 직접 값을 반환하거나 에러를 던짐
   if (result.error) {
     throw new Error(`광고 리워드 충전 실패: ${result.error.message}`);
   }
