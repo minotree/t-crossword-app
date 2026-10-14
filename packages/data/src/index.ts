@@ -1,3 +1,3 @@
-// packages/data entry point
-export * from './supabaseClient.js';
-export * from './hintManager.js';
+export type { SupabaseClient } from './supabaseClient.js';
+export { getSupabaseClient } from './supabaseClient.js';
+export { getUserHintBalance, consumeGlobalHint, claimAdReward, InsufficientHintError } from './hintManager.js';
