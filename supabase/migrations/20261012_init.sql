@@ -2,18 +2,24 @@
 CREATE TABLE IF NOT EXISTS user_profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   hint_balance INTEGER NOT NULL DEFAULT 10,
-  CHECK (hint_balance >= 0),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
+
+-- CHECK 제약조건 추가
+ALTER TABLE user_profiles
+ADD CONSTRAINT check_hint_balance_non_negative
+CHECK (hint_balance >= 0);
 
 -- RLS 활성화
 ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
 
 -- 본인 행 SELECT 허용 정책
+DROP POLICY IF EXISTS "Users can view own profile" ON user_profiles;
 CREATE POLICY "Users can view own profile" ON user_profiles
   FOR SELECT USING (auth.uid() = id);
 
 -- 본인 행 UPDATE 허용 정책
+DROP POLICY IF EXISTS "Users can update own profile" ON user_profiles;
 CREATE POLICY "Users can update own profile" ON user_profiles
   FOR UPDATE USING (auth.uid() = id);
 
@@ -28,15 +34,16 @@ END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 -- 트리거 작성
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
 -- 광고 리워드 힌트 충전 RPC 함수
 CREATE OR REPLACE FUNCTION grant_ad_reward_hints(p_user_id UUID, p_amount INT)
-RETURNS INT AS $$
+RETURNS INTEGER AS $$
 DECLARE
-  v_new_balance INT;
+  v_new_balance INTEGER;
 BEGIN
   UPDATE user_profiles
   SET hint_balance = hint_balance + p_amount,

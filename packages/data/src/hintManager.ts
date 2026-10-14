@@ -61,14 +61,14 @@ export async function claimAdReward(
   userId: string,
   amount: number
 ): Promise<number> {
-  const { data, error } = await client.rpc('grant_ad_reward_hints', {
+  const result = await client.rpc('grant_ad_reward_hints', {
     p_user_id: userId,
     p_amount: amount,
   });
 
-  if (error) {
-    throw new Error(`광고 리워드 충전 실패: ${error.message}`);
+  if (result.error) {
+    throw new Error(`광고 리워드 충전 실패: ${result.error.message}`);
   }
 
-  return data;
+  return result.data;
 }
