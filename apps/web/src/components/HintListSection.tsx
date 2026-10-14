@@ -1,5 +1,6 @@
 import type React from 'react';
 import type { CrosswordWord } from '@t-crossword/core';
+import { primaryMeaning } from './primaryMeaning.js';
 
 interface HintListSectionProps {
   words: CrosswordWord[];
@@ -58,7 +59,7 @@ export const HintListSection: React.FC<HintListSectionProps> = ({
                 isSolved ? 'line-through text-gray-400' : 'text-gray-900'
               }`}
             >
-              {item.meaning}
+              {primaryMeaning(item.meaning)}
             </span>
             <span className="flex-shrink-0 text-[11px] font-semibold text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
               {item.word.length}자

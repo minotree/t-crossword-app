@@ -79,9 +79,9 @@ export function QuizPage() {
 
       {/* 설정 제어 바 (난이도 & 격자 크기) */}
       <div className="w-full max-w-4xl mx-auto px-4 mt-4 mb-3">
-        <div className="flex flex-wrap items-center justify-between gap-3 bg-white p-2.5 sm:p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
+        <div className="flex items-center justify-between gap-1 bg-white p-2 sm:p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
           {/* 난이도 선택 */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 bg-slate-100 p-1 rounded-xl">
             {(
               [
                 { key: 'beginner', label: '초급' },
@@ -93,7 +93,7 @@ export function QuizPage() {
                 key={item.key}
                 type="button"
                 onClick={() => handleLevelChange(item.key)}
-                className={`px-3 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                className={`px-2 sm:px-3 py-2 text-xs whitespace-nowrap font-bold rounded-lg transition-all cursor-pointer ${
                   level === item.key
                     ? 'bg-white text-indigo-600 shadow-2xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -105,13 +105,13 @@ export function QuizPage() {
           </div>
 
           {/* 격자 크기 선택 */}
-          <div className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl">
+          <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 bg-slate-100 p-1 rounded-xl">
             {([8, 10, 12] as const).map((size) => (
               <button
                 key={size}
                 type="button"
                 onClick={() => handleGridSizeChange(size)}
-                className={`px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+                className={`px-1.5 sm:px-2.5 py-2 text-xs whitespace-nowrap font-bold rounded-lg transition-all cursor-pointer ${
                   gridSize === size
                     ? 'bg-white text-indigo-600 shadow-2xs'
                     : 'text-slate-600 hover:text-slate-900'

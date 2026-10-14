@@ -173,7 +173,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
       <section
         aria-labelledby="word-input-title"
         aria-modal="true"
-        className="relative w-full max-w-md rounded-3xl border border-gray-100 bg-white p-5 shadow-2xl sm:p-6"
+        className="relative w-full max-w-xl max-h-[90dvh] overflow-y-auto rounded-3xl border border-gray-100 bg-white p-4 shadow-2xl sm:p-6"
         role="dialog"
       >
         <button
@@ -186,27 +186,30 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
         </button>
 
         <div className="mb-5 text-center">
-          <p className="mb-2 text-xs font-bold text-indigo-700">
+          <p className="mb-2 px-8 text-base font-bold text-indigo-700 sm:text-lg">
             {word.orientation === 'across' ? '가로' : '세로'} {word.number}번, {length}자
           </p>
           <h2
-            className="px-4 text-lg font-bold leading-snug text-gray-900 sm:text-xl"
+            className="px-4 text-xl font-bold leading-snug text-gray-900 sm:text-2xl"
             id="word-input-title"
           >
             {word.meaning}
           </h2>
           {word.example?.trim() && (
-            <p className="mt-3 px-2 text-sm leading-relaxed text-gray-500 break-words">
+            <p className="mt-3 px-2 text-base leading-relaxed text-gray-600 break-words sm:text-lg">
               {maskWordInExample(word.example, word.word)}
             </p>
           )}
         </div>
 
-        <div className="my-6 flex items-center justify-center gap-1.5 sm:gap-2">
+        <div
+          className="my-6 mx-auto grid w-full gap-1 sm:gap-1.5"
+          style={{ gridTemplateColumns: `repeat(${length}, minmax(0, 1fr))`, maxWidth: `${length * 48}px` }}
+        >
           {Array.from({ length }, (_, index) => (
             <input
               aria-label={`${length}자 중 ${index + 1}번째 글자`}
-              className={`h-12 w-10 rounded-xl border-2 text-center text-xl font-bold uppercase outline-none focus:border-indigo-500 sm:h-14 sm:w-12 sm:text-2xl ${
+              className={`h-12 w-full min-w-0 px-0 rounded-lg border-2 text-center ${length >= 10 ? 'text-base sm:text-xl' : 'text-xl sm:text-2xl'} font-bold uppercase outline-none focus:border-indigo-500 sm:h-14 ${
                 isSuccess
                   ? 'border-emerald-500 bg-emerald-100 text-emerald-900'
                   : inputs[index]
