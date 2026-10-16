@@ -164,7 +164,7 @@ export function useCrosswordGame({
   );
 
   const useWordHint = useCallback(
-    async (wordId: string): Promise<{ index: number; letter: string } | null> => {
+    async (wordId: string, targetIndex: number): Promise<{ index: number; letter: string } | null> => {
       if (!navigator.onLine) throw new Error('힌트 사용은 인터넷 연결이 필요합니다.');
       if (!puzzle || !userId || globalHintBalance <= 0) return null;
 
@@ -188,7 +188,7 @@ export function useCrosswordGame({
         if (userGrid[row]?.[col] !== expected[index]) unrevealedIndices.push(index);
       }
 
-      if (unrevealedIndices.length === 0) return null;
+      if (!Number.isInteger(targetIndex) || !unrevealedIndices.includes(targetIndex)) return null;
 
       let nextBalance: number;
       try {
@@ -198,8 +198,8 @@ export function useCrosswordGame({
         throw error;
       }
 
-      const targetIndex = unrevealedIndices[0];
       const revealedLetter = expected[targetIndex];
+      wordProgressStore.markHintUsed(wordId);
       setGlobalHintBalance(nextBalance);
       setUserGrid((previousGrid) => {
         const nextGrid = previousGrid.map((row) => [...row]);

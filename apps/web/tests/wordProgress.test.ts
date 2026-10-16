@@ -8,6 +8,29 @@ function memoryStorage() {
 }
 
 describe('device word progress', () => {
+  it('persists hint history without duplicates and keeps it after resetting completed words', () => {
+    const storage = memoryStorage();
+    const store = createWordProgressStore(() => storage);
+    store.markHintUsed('word-2');
+    store.markHintUsed('word-2');
+    store.markCompleted('word-2');
+    store.resetCompleted();
+    expect(createWordProgressStore(() => storage).getSnapshot().hintUsedWordIds).toEqual(['word-2']);
+  });
+
+  it('loads legacy progress with an empty hint history', () => {
+    const storage = memoryStorage();
+    storage.setItem(WORD_PROGRESS_KEY, JSON.stringify({ completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'] }));
+    expect(createWordProgressStore(() => storage).getSnapshot()).toEqual({
+      completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], hintUsedWordIds: [], error: null,
+    });
+  });
+
+  it('rejects invalid hint history', () => {
+    const storage = memoryStorage();
+    storage.setItem(WORD_PROGRESS_KEY, JSON.stringify({ completedWordIds: [], bookmarkedWordIds: [], hintUsedWordIds: [42] }));
+    expect(createWordProgressStore(() => storage).getSnapshot().error).not.toBeNull();
+  });
   it('resets completed records durably while keeping bookmarks', () => {
     const storage = memoryStorage();
     const store = createWordProgressStore(() => storage);
@@ -15,7 +38,7 @@ describe('device word progress', () => {
     store.toggleBookmark('word-2');
     expect(store.resetCompleted()).toBe(true);
     expect(createWordProgressStore(() => storage).getSnapshot()).toEqual({
-      completedWordIds: [], bookmarkedWordIds: ['word-2'], error: null,
+      completedWordIds: [], bookmarkedWordIds: ['word-2'], hintUsedWordIds: [], error: null,
     });
   });
 
@@ -53,7 +76,7 @@ describe('device word progress', () => {
     first.markCompleted('word-2');
     first.toggleBookmark('word-3');
     const restored = createWordProgressStore(() => storage);
-    expect(restored.getSnapshot()).toEqual({ completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], error: null });
+    expect(restored.getSnapshot()).toEqual({ completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], hintUsedWordIds: [], error: null });
     restored.toggleBookmark('word-3');
     expect(createWordProgressStore(() => storage).getSnapshot().bookmarkedWordIds).toEqual([]);
     expect(restored.getSnapshot().completedWordIds).toEqual(['word-2']);

@@ -6,6 +6,7 @@ const tabs = [
   { key: 'all', label: '전체' },
   { key: 'bookmarked', label: '즐겨찾기' },
   { key: 'completed', label: '학습완료' },
+  { key: 'mistakes', label: '오답노트' },
 ] as const;
 const levels = { beginner: '초급', intermediate: '중급', advanced: '고급' };
 
@@ -15,9 +16,11 @@ export function WordBankPage() {
   const [query, setQuery] = useState('');
   const completed = useMemo(() => new Set(progress.completedWordIds), [progress.completedWordIds]);
   const bookmarked = useMemo(() => new Set(progress.bookmarkedWordIds), [progress.bookmarkedWordIds]);
+  const hintUsed = useMemo(() => new Set(progress.hintUsedWordIds), [progress.hintUsedWordIds]);
   const words = defaultVocabList.filter((word) => {
     if (tab === 'completed' && !completed.has(word.id) && word.isQuizUsed !== true) return false;
     if (tab === 'bookmarked' && !bookmarked.has(word.id)) return false;
+    if (tab === 'mistakes' && !hintUsed.has(word.id)) return false;
     const search = query.trim().toLowerCase();
     return word.word.toLowerCase().includes(search) || word.meaning.toLowerCase().includes(search);
   });
@@ -39,6 +42,7 @@ export function WordBankPage() {
             </button>
           ))}
         </nav>
+        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">퀴즈에서 힌트를 사용한 단어입니다. 이 기기에 저장됩니다.</p>}
         <label className="block mt-4">
           <span className="sr-only">단어 또는 뜻 검색</span>
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="단어 또는 뜻 검색"
@@ -46,7 +50,7 @@ export function WordBankPage() {
         </label>
         <p className="my-3 text-sm text-slate-500" aria-live="polite">{words.length}개 단어</p>
         {words.length === 0 && <p className="rounded-xl bg-white p-8 text-center text-slate-500">
-          {query.trim() ? '검색 결과가 없습니다.' : tab === 'completed' ? '퍼즐에서 정답을 맞히면 여기에 표시됩니다.' : '즐겨찾기한 단어가 없습니다.'}
+          {query.trim() ? '검색 결과가 없습니다.' : tab === 'mistakes' ? '퀴즈에서 힌트를 사용하면 여기에 표시됩니다.' : tab === 'completed' ? '퍼즐에서 정답을 맞히면 여기에 표시됩니다.' : '즐겨찾기한 단어가 없습니다.'}
         </p>}
         <ul className="space-y-2">
           {words.map((word) => (
