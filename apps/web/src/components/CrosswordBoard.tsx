@@ -55,9 +55,9 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
   };
 
   return (
-    <div className="w-full max-w-full mx-auto p-2 sm:p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+    <div className="w-full max-w-[min(400px,46svh)] mx-auto p-1 bg-white rounded-lg shadow-sm border border-gray-100">
       <div
-        className="grid gap-[2px] sm:gap-1 bg-gray-200 p-[2px] sm:p-1 rounded-xl select-none"
+        className="grid gap-px bg-gray-300 p-px rounded select-none overflow-hidden"
         style={{
           gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))`,
           gridTemplateRows: `repeat(${size}, minmax(0, 1fr))`,
@@ -76,7 +76,8 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
               return (
                 <div
                   key={`${row}-${col}`}
-                  className="bg-gray-800/90 rounded-[4px] sm:rounded-md transition-colors"
+                  className="min-h-0 min-w-0 bg-gray-800"
+                  style={{ gridRow: row + 1, gridColumn: col + 1 }}
                 />
               );
             }
@@ -86,9 +87,10 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
             return (
               <div
                 key={`${row}-${col}`}
-                className={`relative flex min-h-0 min-w-0 items-center justify-center overflow-hidden font-bold text-base sm:text-2xl leading-none rounded-[4px] sm:rounded-md border transition-all ${
+                style={{ gridRow: row + 1, gridColumn: col + 1 }}
+                className={`relative flex min-h-0 min-w-0 items-center justify-center overflow-hidden font-bold text-sm sm:text-lg leading-none border ${
                   inSelected
-                    ? 'bg-amber-100 border-amber-400 text-amber-950 scale-[0.98] shadow-sm'
+                    ? 'bg-amber-100 border-amber-400 text-amber-950'
                     : isSolved
                     ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
                     : 'bg-white border-gray-300 text-gray-900'
@@ -96,13 +98,13 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
               >
                 {/* 좌상단 시작 단어 번호 표시 */}
                 {numberToShow && (
-                  <span className="absolute top-[1px] left-[2px] sm:top-[2px] sm:left-[3px] text-[8px] sm:text-[11px] font-semibold text-gray-500 leading-none">
+                  <span className="absolute top-px left-px text-[8px] sm:text-[10px] font-semibold text-gray-500 leading-none">
                     {numberToShow}
                   </span>
                 )}
 
                 {/* 입력/공개된 알파벳 글자 */}
-                <span className="translate-y-[2px] sm:translate-y-1">{userChar}</span>
+                <span className="relative top-[2px]">{userChar}</span>
               </div>
             );
           })

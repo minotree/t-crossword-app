@@ -41,7 +41,7 @@ export function QuizPage() {
   };
 
   return (
-    <div className="min-h-full bg-slate-50 text-slate-900 pb-12">
+    <div className="min-h-full bg-slate-50 text-slate-900 pb-4">
       {/* 상단 네비게이션 헤더 */}
       <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80">
         <div className="w-full max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 px-4 py-3">
@@ -78,8 +78,8 @@ export function QuizPage() {
       </header>
 
       {/* 설정 제어 바 (난이도 & 격자 크기) */}
-      <div className="w-full max-w-4xl mx-auto px-4 mt-4 mb-3">
-        <div className="flex items-center justify-between gap-1 bg-white p-2 sm:p-3 rounded-2xl border border-slate-200/80 shadow-2xs">
+      <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 my-2">
+        <div className="flex items-center justify-between gap-1 bg-white p-1 rounded-xl border border-slate-200/80 shadow-2xs">
           {/* 난이도 선택 */}
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 bg-slate-100 p-1 rounded-xl">
             {(
@@ -131,7 +131,7 @@ export function QuizPage() {
         </p>
       )}
 
-      <main className="w-full max-w-4xl mx-auto px-4">
+      <main className="w-full max-w-4xl mx-auto px-3 sm:px-4">
         {wordProgressError && <p role="alert" className="mb-3 text-sm text-rose-700">{wordProgressError}</p>}
         {puzzle && puzzle.words.length === 0 && (
           <p role="status" className="mb-3 rounded-xl bg-white p-4 text-sm text-slate-600">
