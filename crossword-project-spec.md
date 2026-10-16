@@ -1,12 +1,14 @@
 # 십자낱말 영단어 통합 프로젝트 사양서 (PRD, TRD, Architecture, User Flow, Prompts)
 
+> 작업 지침은 [AGENTS.md](AGENTS.md), 구조는 [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md), 구현·검증 현황은 [progress.md](progress.md)를 따른다. 이 문서의 요구사항은 구현 완료를 뜻하지 않는다.
+
 ---
 
 ## 1. PRD (Product Requirements Document - 제품 요구사항 정의서)
 
 ### 1.1 제품 개요 및 목적
 * **제품명**: 십자낱말 영단어 (Crossword Vocab) - 크로스 플랫폼 & 앱인토스 미니앱
-* **목적**: 기존의 사용자 CSV 직접 업로드 방식에서 발전하여, 초급/중급/고급의 정제 단어 데이터를 앱 내에 기본 내장하고, 단일 코드베이스 모노레포(`pnpm workspace`) 구조를 통해 크로스 플랫폼(iOS/Android/PWA)과 앱인토스(Apps in Toss) 양쪽 서비스에 안정적으로 동시 배포 가능한 오프라인 퍼스트 십자낱말 학습 앱 구축.
+* **목적**: 기존의 사용자 CSV 직접 업로드 방식에서 발전하여, 초급/중급/고급의 정제 단어 데이터를 앱 내에 기본 내장하고, 공통 도메인 로직을 공유하는 모노레포(`pnpm workspace`)에서 웹/PWA, Ionic 기반 iOS/Android, Apps in Toss를 독립적으로 구축·배포한다. 오프라인 기능은 플랫폼별로 지원 범위를 명시한다.
 * **타겟 사용자**: 초/중/고급 영단어를 흥미롭게 복습하고 학습하고자 하는 일반 모바일 사용자 및 토스 미니앱 이용자.
 
 ### 1.2 핵심 요구사항 목록
@@ -14,7 +16,7 @@
    * `pnpm workspace` 모노레포 구조로 패키지를 완전 격리하여 Ionic/Capacitor 코드와 Toss Granite/TDS 코드 간 **소스 오염 100% 방지**.
 2. **내장 JSON 데이터베이스 & 난이도/격자 선택**
    * **단어 데이터**: 하나의 정제 단어장(`vocab.json`)에 난이도 컬럼(`level: beginner | intermediate | advanced`)을 포함하여 관리.
-   * **난이도 선택**: 초급(Beginner), 중급(Intermediate), 고급(Advanced) 3단계 선택.
+   * **난이도 선택**: 초급(Beginner), 중급(Intermediate), 고급(Advanced) 3단계 선택. 초급은 초급, 중급은 초급+중급, 고급은 전체 어휘를 누적 사용한다.
    * **격자 크기 선택**: 8x8, 10x10, 12x12 선택 유지.
    * **최소 단어 길이 제약**: **최소 3글자 이상** 어휘만 퍼즐에 출제.
 3. **고도화된 힌트 및 광고 정책 (Dynamic Hint System)**
@@ -29,21 +31,30 @@
    * 메인 그리드의 셀 더블 터치 가로/세로 방향 전환 기능 **제공 안 함**.
    * 메인 그리드 하단에 가로/세로 힌트 박스 제공 ➔ 힌트 항목 선택 시 **[정답 입력 모달]** 오픈.
    * [정답 입력 모달] 내부에서 단어 뜻, 글자수, 전용 입력 그리드, 단어 힌트 버튼 제공.
-   * 모달 내 입력 칸 글자 입력 시 다음 셀로 **자동 포커스 이동 (Auto-Advance)** 및 백스페이스 클릭 시 이전 셀 삭제 및 이동.
+   * 모달 내 입력은 수정 가능한 셀 사이에서 자동 포커스 이동·백스페이스 이동을 지원한다. 다른 문제로 이미 완성된 교차 셀은 읽기 전용으로 보존하고 건너뛴다.
+   * 틀린 스펠링은 다른 색과 접근성 상태로 표시한다. 힌트 영역·정답 입력 모달·단어장에 동의어가 있으면 표시한다.
 5. **백엔드 (Supabase)**
-   * 익명 로그인 및 토스 식별 키 기반 데이터 동기화 (보유 힌트 잔액, 출석 보상, 오답노트/북마크).
+   * 익명 로그인 및 토스 식별 연동은 플랫폼별 인증 경계를 지킨다. 힌트 잔액은 서버에서 검증·차감한다.
+   * 웹 학습완료·즐겨찾기는 현재 기기 브라우저의 로컬 저장소에 보관한다. 기기 간 학습 기록 동기화·출석·광고 보상은 구현 상태를 `progress.md`에서 확인하며 완료된 기능으로 안내하지 않는다.
+6. **그림책 읽기**
+   * 하단 메뉴 `그림책`에서 초급·중급·고급을 선택한다. 중급은 중·고등학생, 고급은 성인 대상이다.
+   * 시·창작 에세이·소설을 제공하며 영어 본문과 삽화를 한 카드에 담는다. 페이지별 `해석 보기`, 이전·다음·목록 복귀를 지원한다.
+   * 별도 보이는 영어 원문 버튼은 중복 제공하지 않으며 스크린리더용 영어 텍스트와 AI 활용 표시는 유지한다.
+   * 현재 콘텐츠는 초급 45편·45장, 중급 9편·36장, 고급 7편·38장이다. 고급은 시 2편·에세이 2편·SF/현실 미스터리/법정 드라마 소설 각 1편이다. 후속 작품 분량은 사용자 요청에 따른다.
+   * 원본·해석·삽화는 직접 창작하거나 이용 권한을 확인한 자료만 사용한다. 검수·권리 상태와 생성 기록을 보존하며 자세한 절차는 `AGENTS.md` 14~15절을 따른다.
+   * 웹/PWA에서는 성공적으로 내려받아 캐시에 남은 이미지만 오프라인에서 다시 열 수 있다. 처음 여는 이미지는 온라인이 필요하다.
 ---
 
 ## 2. TRD (Technical Requirements Document - 기술 사양서)
 
 ### 2.1 개발 환경 및 기술 스택
-* **IDE / Tooling**: Antigravity IDE / VS Code + Antigravity CLI (`agy`)
-* **주언어**: TypeScript 5.x
-* **패키지 매니저**: pnpm (pnpm workspace)
-* **백엔드**: Supabase (Database, Auth, RLS, RPC)
-* **Target 1 (Cross-platform)**: React 18 + Vite + Ionic React + Capacitor 6 (iOS/Android/PWA) + AdMob
-* **Target 2 (Apps in Toss)**: React 18 + Vite + TDS (Toss Design System) + Granite CLI + Toss SDK + Toss Reward Ads
-* **개발 도구**: Node.js v20+, Git, Android Studio Jellyfish+
+
+- 공통: TypeScript strict, pnpm workspace, Supabase. 실제 설치 버전은 각 `package.json`과 lockfile을 확인한다.
+- 웹/PWA: React 19, Vite, Tailwind CSS v4. UI·라우팅·브라우저 저장·서비스 워커는 `apps/web` 소유다.
+- 모바일: Ionic React 8, Capacitor 7. `apps/mobile`이 독립 UI·라우팅·네이티브 연동을 소유한다.
+- 토스: `apps/toss`에서 TDS와 실제 선택한 SDK의 공식 요구사항을 따른다. 현재 앱 구현은 후속 작업이며 버전·설정 파일을 미리 확정하지 않는다.
+- 웹 Node 지원 범위는 `apps/web/package.json`의 `engines`를 따른다. 현재 `^20.19.0 || ^22.13.0 || >=24`이며 루트의 최소 버전만으로 호환성을 판단하지 않는다.
+- 네이티브 JDK·Android SDK·Xcode 버전은 선택한 Capacitor 버전의 요구사항을 확인한다. 웹 빌드 성공을 네이티브 호환성 증명으로 사용하지 않는다.
 
 ### 2.2 힌트 한도 산출 핵심 함수 (`packages/core/src/utils/hintLimit.ts`)
 ```typescript
@@ -61,41 +72,22 @@ export const getWordHintLimit = (word: string): number => {
 
 ---
 
-## 3. 디렉토리 및 모노레포 아키텍처 (Directory & Monorepo Architecture)
+## 3. 디렉토리 및 모노레포 아키텍처
 
-```text
-crossword-monorepo/
-├── pnpm-workspace.yaml
-├── package.json
-├── tsconfig.base.json
-├── packages/
-│   ├── core/                      # [공통 비즈니스 로직 & 데이터]
-│   │   ├── src/
-│   │   │   ├── algorithms/        # crosswordGenerator.ts (탐욕적 교차 배치)
-│   │   │   ├── assets/            # vocab.json (단일 정제 단어장)
-│   │   │   ├── services/          # wordBankService.ts, supabaseClient.ts, hintManager.ts
-│   │   │   ├── types/             # WordItem, CrosswordCell, HintPolicy, GameState
-│   │   │   └── utils/             # hintLimit.ts
-│   │   └── package.json
-│   └── ui/                        # [공통 UI 컴포넌트]
-│       ├── src/
-│       │   ├── Grid/              # CrosswordBoard.tsx (메인 십자낱말 보드)
-│       │   ├── HintBox/           # HintListSection.tsx (하단 가로/세로 힌트 박스)
-│       │   ├── Modals/            # WordInputModal.tsx (정답 입력 모달), WordBankModal.tsx, PuzzleCompletionModal.tsx
-│       │   └── Keyboard/          # VirtualKeyboard.tsx
-│       └── package.json
-└── apps/
-    ├── crossplatform/             # [타겟 1] Ionic + Capacitor + AdMob App
-    │   ├── vite.config.ts
-    │   ├── capacitor.config.ts
-    │   ├── src/main.tsx
-    │   └── package.json
-    └── toss/                      # [타겟 2] Apps in Toss (TDS + Granite) App
-        ├── vite.config.ts
-        ├── granite.config.ts
-        ├── src/main.tsx
-        └── package.json
-```
+상세 목표 구조는 [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md)를 따른다. 현재 구현 여부는 [progress.md](progress.md)에서 구분한다.
+
+| 책임 | 위치 |
+| --- | --- |
+| 플랫폼별 UI·라우팅·인증/저장 어댑터 | `apps/web`, `apps/mobile`, 향후 `apps/toss` |
+| 공통 DTO·포트·검증 계약 | `packages/contracts` |
+| 프레임워크 독립 퍼즐·힌트·단어장 규칙 | `packages/core` |
+| Supabase 클라이언트 팩토리·힌트 데이터 접근 | `packages/data` |
+| 순수 유틸리티 | `packages/utils` |
+| DB 스키마·RLS·RPC | `supabase/migrations`, `supabase/functions` |
+| 그림책 원문·해석·원본 이미지·제작/검수 기록 | `content/beginner-poems`, `content/intermediate-readings`, `content/advanced-readings` |
+| 웹용 파생 JSON·WebP | `apps/web/src/data`, `apps/web/public/picture-books` |
+
+`packages/core`는 React·플랫폼 SDK·Supabase 클라이언트·브라우저 전역을 가져오지 않는다. UI와 라우팅은 공유하지 않으며, 공유 UI 패키지 도입에는 사용자 승인이 필요하다. 내부 패키지는 `@t-crossword/*` 공개 API와 `workspace:*`로 참조한다.
 
 ---
 
@@ -105,7 +97,7 @@ crossword-monorepo/
 [앱 실행 / 진입]
    │
    ├──▶ [Supabase 익명 인증 / 토스 식별 키 연동]
-   │       └──▶ [서버 동기화: 보유 힌트 잔액, 학습 기록, 북마크]
+   │       └──▶ [서버: 보유 힌트 잔액 / 웹 기기 저장: 학습완료·즐겨찾기]
    │
    ▼
 [메인 화면]
@@ -121,10 +113,10 @@ crossword-monorepo/
                  ▼
          [정답 입력 모달 (WordInputModal)]
                  │
-                 ├──▶ 단어 뜻, 품사, 스펠링 글자수 확인
+                 ├──▶ 단어 뜻, 품사, 동의어, 스펠링 글자수 확인
                  ├──▶ 단어별 정답 입력 전용 그리드
-                 │       ├──▶ 알파벳 입력 ➔ [자동 포커스 이동 (Auto-Advance)]
-                 │       └──▶ 백스페이스 ➔ [이전 셀 글자 삭제 및 이동]
+                 │       ├──▶ 알파벳 입력 ➔ [완성된 교차 셀을 건너뛰어 자동 이동]
+                 │       └──▶ 백스페이스 ➔ [완성된 교차 셀을 보존하고 수정 가능한 셀로 이동]
                  │
                  ├──▶ [단어 힌트 버튼 클릭]
                  │       ├──▶ (단어 남은 힌트 > 0 AND 글로벌 힌트 > 0)
@@ -137,162 +129,78 @@ crossword-monorepo/
                                  └──▶ [모든 단어 정답 완성 시] ──▶ [완주 축하 모달 (PuzzleCompletionModal)]
 ```
 
----
-
-## 5. Prompt Design (AI 코딩 에이전트용 프롬프트 세트)
-
-### [Prompt 0] 시스템 공통 규칙 및 스타일 가이드 (System Prompt)
-```text
-[Role & Context]
-너는 TypeScript 기반 모노레포(pnpm workspace) 전문가이자 React / Ionic / Toss Design System / Supabase에 능통한 수석 프론트엔드 아키텍트이다.
-현재 프로젝트는 하나의 모노레포에서 (1) Ionic+Capacitor 기반 크로스 플랫폼 앱(`apps/crossplatform`)과 (2) 토스 미니앱(`apps/toss`)을 완전 분리하여 구축하는 십자낱말 영단어 게임이다.
-
-[Strict Workspace Constraints]
-1. `apps/toss` 패키지에는 `@ionic/react`, `@capacitor/core` 등 Ionic 관련 패키지를 절대 import 하지 마라.
-2. `apps/crossplatform` 패키지에는 `@toss/tds`, `granite` 관련 패키지를 절대 import 하지 마라.
-3. 공통 데이터 모델, 십자낱말 생성 알고리즘, 힌트 정책 계산기, Supabase 클라이언트는 반드시 `packages/core`에만 위치시켜라.
-4. 모든 코드는 TypeScript strict mode를 준수하고 Any 타입을 금지한다.
-5. 퍼즐 풀이 시간 측정(Timer) 기능 및 메인 그리드 셀 더블 터치 방향 전환 로직은 작성하지 말 것.
-```
-
-### [Prompt 1] Monorepo 워크스페이스 스케폴딩 & 패키지 경계 설정
-```text
-[Goal]
-pnpm workspace 기반의 모노레포 기본 구조와 패키지 간 경계를 설정해줘.
-
-[Target Directory Structure]
-- pnpm-workspace.yaml
-- package.json (root)
-- tsconfig.base.json
-- packages/core/
-- packages/ui/
-- apps/crossplatform/
-- apps/toss/
-
-[Requirements]
-1. `pnpm-workspace.yaml`에 `packages/*` 및 `apps/*`를 포함하도록 작성해줘.
-2. 루트 `package.json`에는 공통 빌드 스크립트(`build:core`, `dev:cross`, `dev:toss`)를 작성해줘.
-3. `tsconfig.base.json`을 작성하고 패키지 간 경로 별칭(Path Aliases: `@crossword/core`, `@crossword/ui`)을 설정해줘.
-4. `packages/core` 및 `packages/ui` 패키지의 `package.json`을 작성하여, 다른 apps 패키지에서 workspace 참조(`workspace:*`)가 가능하도록 패키지명을 `@crossword/core`, `@crossword/ui`로 지정해줘.
-```
-
-### [Prompt 2] `@crossword/core` - 단어장 데이터 & 비즈니스 로직
-```text
-[Goal]
-`packages/core` 패키지에 타입 정의, 내장 JSON 단어장 로더, 십자낱말 생성 알고리즘, 힌트 계산 유틸리티, 단어장 서비스(`wordBankService`)를 구현해줘.
-
-[Target Files]
-- packages/core/src/types/index.ts
-- packages/core/src/assets/vocab.json
-- packages/core/src/utils/hintLimit.ts
-- packages/core/src/algorithms/crosswordGenerator.ts
-- packages/core/src/services/wordBankService.ts
-- packages/core/src/index.ts
-
-[Requirements]
-1. `types/index.ts`:
-   - `DifficultyLevel`: 'beginner' | 'intermediate' | 'advanced'
-   - `GridSize`: 8 | 10 | 12
-   - `WordItem`: { id: string; level: DifficultyLevel; word: string; meaning: string; partOfSpeech: string; example: string; exampleMeaning: string; synonym?: string; isBookmarked?: boolean; isQuizUsed?: boolean; }
-   - `CrosswordCell`: { row: number; col: number; letter: string; isStartOfAcross?: boolean; isStartOfDown?: boolean; acrossNumber?: number; downNumber?: number; }
-   - `CrosswordWord`: { id: string; word: string; meaning: string; orientation: 'across' | 'down'; startRow: number; startCol: number; number: number; hintLimit: number; hintUsedCount: number; }
-
-2. `utils/hintLimit.ts`:
-   - `getWordHintLimit(word: string): number` 구현 (3~4자: 1개, 5~6자: 2개, 7자 이상: 3개, 3자 미만: 0개).
-
-3. `algorithms/crosswordGenerator.ts`:
-   - `generateCrossword(vocabList: WordItem[], level: DifficultyLevel, gridSize: GridSize)` 구현.
-   - 단어 최소 길이는 3자 이상만 필터링할 것.
-   - 탐욕적 교차 알고리즘 적용 및 단어 인접성(통짜 블록화) 방지 경계 검사 logic 포함.
-   - 생성된 단어 객체에는 `getWordHintLimit(word)`를 호출하여 `hintLimit` 값을 자동 할당할 것.
-
-4. `services/wordBankService.ts`:
-   - 내장 `vocab.json` 로드, `toggleBookmark()`, `markWordAsUsed()`, `searchWords()` 구현.
-```
-
-### [Prompt 3] Supabase 백엔드 연동 & RLS / 힌트 충전 RPC
-```text
-[Goal]
-Supabase 데이터베이스 Schema SQL과 유저 프로필/힌트 지갑 관리 클라이언트를 구현해줘.
-
-[Target Files]
-- supabase/migrations/20261012_init.sql
-- packages/core/src/services/supabaseClient.ts
-- packages/core/src/services/hintManager.ts
-
-[Requirements]
-1. `20261012_init.sql`:
-   - `user_profiles` 테이블 생성: `id (UUID, PK, auth.users 참조)`, `hint_balance (INTEGER, DEFAULT 10)`, `updated_at (TIMESTAMP)`
-   - RLS 정책 작성: 본인 행에 대해서만 SELECT, UPDATE 허용.
-   - RPC 함수 작성 `grant_ad_reward_hints(p_user_id UUID, p_amount INT)`: 안전하게 `hint_balance = hint_balance + p_amount` 수행 후 변경된 잔액 반환.
-2. `supabaseClient.ts` & `hintManager.ts`:
-   - Supabase 클라이언트 초기화, `getUserHintBalance()`, `consumeGlobalHint()`, `claimAdReward()` 구현.
-```
-
-### [Prompt 4] `@crossword/ui` - 하단 힌트 박스 & 정답 입력 모달 UI
-```text
-[Goal]
-`packages/ui` 패키지에 타이머를 제거하고, 하단 힌트 박스 선택 기반의 정답 입력 모달 시스템 및 공통 UI 컴포넌트를 구현해줘.
-
-[Target Files]
-- packages/ui/src/Grid/CrosswordBoard.tsx
-- packages/ui/src/HintBox/HintListSection.tsx
-- packages/ui/src/Modals/WordInputModal.tsx
-- packages/ui/src/Modals/WordBankModal.tsx
-- packages/ui/src/Modals/PuzzleCompletionModal.tsx
-- packages/ui/src/Keyboard/VirtualKeyboard.tsx
-- packages/ui/src/index.ts
-
-[Requirements & UX Rules]
-1. `CrosswordBoard.tsx`:
-   - 메인 보드는 배치된 글자 및 완성 상태만 시각적으로 표시함.
-   - 셀 더블 터치 방향 전환 및 타이머(Timer) 로직은 절대로 포함하지 말 것.
-2. `HintBox/HintListSection.tsx`:
-   - 메인 보드 하단에 [가로 힌트] 및 [세로 힌트] 리스트를 분리 표시함.
-   - 각 항목 클릭 시 `WordInputModal`을 오픈함.
-3. `Modals/WordInputModal.tsx`:
-   - 선택된 힌트 정보(단어 뜻, 품사, 글자수) 및 스펠링 길이만큼 전용 입력 셀 그리드 생성.
-   - 모달 내 글자 입력 시 다음 셀로 자동 포커스 이동 (Auto-Advance), 백스페이스 시 이전 셀 삭제 및 이동.
-   - 단어별 힌트 사용 버튼: `getWordHintLimit(word)` 기반 한도 표시 (예: 0/1). 클릭 시 모달 내 빈 셀 1글자 공개 및 글로벌 힌트 -1 차감.
-   - 정답 완료 시 모달이 닫히며 메인 보드(`CrosswordBoard`)의 해당 영역에 글자가 즉시 반영됨.
-4. `PuzzleCompletionModal.tsx`:
-   - 퍼즐 모든 단어 완성 시 완주 축하 팝업 출력 (사용한 총 힌트 개수, 출제 단어 복습 리스트 제공).
-```
-
-### [Prompt 5] `apps/crossplatform` & `apps/toss` 타겟 앱 진입점 연동
-```text
-[Goal]
-`apps/crossplatform` 및 `apps/toss` 모듈에 각각 Ionic/Capacitor/AdMob 및 Toss TDS/Granite/리워드광고를 연결하여 진입점을 구성해줘.
-
-[Requirements]
-1. 메인 레이아웃: 상단(난이도/격자크기/글로벌 힌트), 중앙(메인 보드), 하단(가로/세로 힌트 박스).
-2. 힌트 박스 ➔ 정답 입력 모달 오픈 ➔ 모달 내 힌트 버튼 클릭 시 광고 연동 및 힌트 차감/충전 수행.
-3. 퍼즐 완성 시 완주 모달 출력 및 학습 이력 저장.
-```
+그림책 흐름: `그림책 → 난이도 → 작품 → 페이지 읽기 / 해석 보기 → 이전·다음 / 목록`. 광고 충전 흐름은 목표 요구사항이며 실제 광고 보상 연결은 미완료다.
 
 ---
 
-## 6. 개발 환경 세팅 가이드 (Development Environment Setup)
+## 5. AI 작업 프롬프트 기준
 
-### 6.1 필수 의존성 소프트웨어 설치 및 버전
-* **Node.js**: v20.x LTS 이상
-* **pnpm**: v9.x 이상 (`npm install -g pnpm`)
-* **Java/JDK**: OpenJDK 17 (Android Studio 빌드용)
-* **Android Studio**: Jellyfish (2024.1.1) 이상 & Android SDK 34+
+모든 작업 프롬프트는 먼저 `AGENTS.md`와 관련 패키지 지침을 읽도록 명시한다. 자동 로딩은 도구 설정과 실제 동작을 확인한 경우에만 신뢰한다. 다음 항목은 기존 구현을 무시하고 처음부터 재생성하라는 지시가 아니다.
 
-### 6.2 프로젝트 초기화 및 빌드 명령어
-```bash
-# 1. 저장소 이동 및 pnpm 의존성 설치
-pnpm install
+### 공통 로직 작업
 
-# 2. 공통 패키지 라이브러리 빌드
-pnpm --filter @crossword/core build
-pnpm --filter @crossword/ui build
-
-# 3. 타겟별 개발 서버 실행
-# 3.1 크로스 플랫폼 (Ionic/Capacitor PWA)
-pnpm --filter crossplatform dev
-
-# 3.2 앱인토스 미니앱 (Toss Granite)
-pnpm --filter toss dev
+```text
+기존 packages/contracts, core, utils의 공개 API와 테스트를 확인한다.
+요청한 도메인 규칙을 프레임워크 독립적으로 변경하고 관련 테스트를 실행한다.
+앱 UI나 Supabase 구현을 core에 넣지 않는다. 기존 사용자 변경을 보존한다.
 ```
+
+### Supabase 작업
+
+```text
+기존 supabase/migrations/20261012_init.sql과 packages/data의 구현을 먼저 확인한다.
+플랫폼별 인증 초기화와 재사용 데이터 접근을 구분한다.
+사용자에게 hint_balance 직접 변경 권한을 주지 않고 서버에서 잔액을 원자적으로 차감한다.
+광고 보상은 서버에서 검증한 요청만 처리하며 클라이언트가 임의 금액을 지급할 수 없게 한다.
+RLS와 RPC 권한을 검토하고 실제 DB 검증 여부를 구분한다.
+프로덕션 변경·파괴적 작업·배포는 별도 사용자 승인을 받는다.
+```
+
+### 플랫폼 UI 작업
+
+```text
+대상 앱의 화면·스타일·라우팅·SDK 연동만 수정한다. 공통 규칙은 공개 패키지 API를 사용한다.
+메인 보드는 표시 전용으로 유지하고 힌트 목록에서 입력 모달을 연다.
+입력 오류 표시·완성된 교차 셀 보존·동의어·접근성 동작을 유지한다.
+타이머와 셀 더블 터치 방향 전환을 임의로 추가하지 않는다.
+```
+
+### 그림책 작업
+
+```text
+AGENTS.md 14~15절과 해당 콘텐츠 README를 확인한다.
+대상 독자와 누적 어휘에 맞춰 영어 원문·해석을 작성하고 문법·내용을 먼저 검토한다.
+독자적인 삽화와 제작 기록을 만들고 이미지 속 본문을 시각적으로 대조한다.
+수정 시 원본·해석·이미지·기록·검수 자료를 맞춘 뒤 웹용 변환을 실행한다.
+검사 통과와 최종 편집·권리 검토를 구분하고 실제 기기 확인을 임의로 완료 처리하지 않는다.
+```
+
+## 6. 개발 및 검증 명령
+
+저장소 루트에서 실행한다. 이미 설치된 환경을 먼저 확인하고 필요한 경우에만 의존성을 설치한다.
+
+```powershell
+pnpm install --frozen-lockfile
+pnpm --filter @t-crossword/web dev
+pnpm --filter @t-crossword/web lint
+pnpm --filter @t-crossword/web typecheck
+pnpm --filter @t-crossword/web build
+pnpm --filter @t-crossword/core test
+pnpm --filter @t-crossword/mobile dev
+```
+
+웹 테스트는 현재 웹 전용 `test` 스크립트가 없으므로, 기존 설치 환경에서 `apps/web`로 이동한 뒤 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`로 실행한다. 루트 `pnpm test`만으로 웹 테스트까지 실행되었다고 판단하지 않는다.
+
+```powershell
+node scripts/convert-vocab.mjs words_completed.csv
+python content/beginner-poems/build-gallery.py
+python content/intermediate-readings/validate.py
+python content/intermediate-readings/build-preview.py
+python content/advanced-readings/validate.py
+python content/advanced-readings/build-preview.py
+python scripts/prepare-picture-books.py
+```
+
+위 데이터 변환·갤러리 명령은 파일을 갱신하므로 원본을 변경한 작업에서 필요한 것만 실행한다. 문서만 수정했다면 경로·명령·내용과 `git diff --check`를 확인한다.
+
+웹 lint 환경은 [docs/lint.md](docs/lint.md), 배포·오프라인·기기 검증은 [docs/vercel-pwa.md](docs/vercel-pwa.md)를 따른다. 최신 실행 결과와 미검증 항목은 [progress.md](progress.md)에 기록한다. 커밋·푸시·배포는 별도 사용자 승인이 필요하다.

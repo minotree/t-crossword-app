@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-second-life-01-01",
+  "bookId": "intermediate-second-life-01",
+  "page": 1,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original coming-of-age second-life fantasy for teenagers, literary gouache, copper, sage and warm cream palette, invented historical setting with no existing franchise references. Recurring narrator: East Asian teenage prince with black hair half tied using a dark green ribbon, simple pale gold robe, carrying a small red notebook. Recurring clerk: older East Asian woman with gray-streaked hair in a dark blue robe. Grounded compassionate story, no violence or copied costumes or emblems. Scene: Teenage prince with half-tied black hair, green ribbon and pale gold robe looking at an unfamiliar reflection in a palace mirror, blank red notebook on a nearby desk, soft morning light. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"A Second Life, A Small Choice\". Under it print smaller page heading \"Another Face\" (omit it if identical to book title), and page indicator \"1 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nIn my first life, I was always waiting to become someone with great power. Then I woke in a palace with another face in the mirror. People called me prince. My old memories remained, but my body and my name belonged to this strange country. I searched for a magic power. All I found was a blank notebook and the same fear of choosing wrong.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-fa097cdf-4594-4d82-a7e5-ab6989c800fc.png",
+  "target": "images/intermediate-second-life-01-01.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "advanced-sf-01-05",
+  "bookId": "advanced-sf-01",
+  "page": 5,
+  "target": "images/advanced-sf-01-05.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older siblings sitting in separate chairs near the shop window at dusk, dark storage panel behind them, technician discreetly at a distance. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"Two Chairs\" (omit duplicate heading if identical), page indicator \"5 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThey met after closing time. The operator placed two chairs near the window and left the storage panel dark. At first they discussed the weather. Then the man admitted he had used the restriction to avoid a decision. He had wanted his regret removed without having to revise the account in which he was right.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-c746c13c-9616-4dcc-8bbf-275e3a59f481.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

@@ -1,0 +1,13 @@
+{
+  "id": "advanced-essay-02-02",
+  "bookId": "advanced-essay-02",
+  "page": 2,
+  "target": "images/advanced-essay-02-02.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Mature reflective editorial illustration. Same Korean woman in her late thirties, chin-length black hair, rust cardigan. The woman writing two balanced columns in a notebook, a study book and a family photograph on the table, clear afternoon light. No legible extra writing. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Life I Did Not Choose\", smaller page heading \"An Honest Account\" (omit duplicate heading if identical), page indicator \"2 / 3\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nI wrote two columns, not to prove my choice superior but to restore proportion. One held the opportunities I had abandoned. The other held what staying had allowed: a friendship, steady care for my mother, time to study. Neither column canceled the other. A genuine account could acknowledge loss without declaring the present a failure.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-b6496134-dac2-49fb-8782-e430529ddd26.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

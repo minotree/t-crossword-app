@@ -65,6 +65,11 @@ export const HintListSection: React.FC<HintListSectionProps> = ({
               {item.word.length}자
             </span>
           </div>
+          {item.synonym?.trim() && (
+            <p className="mt-1 break-words text-xs text-indigo-700">
+              동의어: {item.synonym}
+            </p>
+          )}
           {isSolved && (
             <p className="text-xs font-semibold text-emerald-600 mt-1">
               정답: {item.word}

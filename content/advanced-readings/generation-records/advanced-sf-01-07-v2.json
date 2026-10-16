@@ -1,0 +1,16 @@
+{
+  "id": "advanced-sf-01-07-v2",
+  "bookId": "advanced-sf-01",
+  "page": 7,
+  "target": "images/advanced-sf-01-07-v2.png",
+  "prompt": "Use case: precise-object-edit. Edit this finished English reading card. Change ONLY the woman standing at the open door in the RIGHT BACKGROUND into the man's OLDER SISTER, a Korean woman aged sixty with clearly GRAY chin-length bobbed hair, mature facial lines and plain GREEN coat. Keep the woman technician at the LEFT COUNTER identical. There must be two distinct women of different ages, not duplicate versions of the technician. Preserve ALL English typography, every word, spelling, title, heading, page number, reading panel and its layout PIXEL-IDENTICALLY where possible. Preserve the existing original watercolor/gouache illustration style, colors, setting, and all other elements. Do not add any new text or labels. Only the upper illustration changes as specified.",
+  "creationPrompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The technician handing the man a plain review form while his sister stands near the open shop door, ordinary city traffic outside, no legal symbols. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"A New Instruction\" (omit duplicate heading if identical), page indicator \"7 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe man requested a formal examination of his restriction. The shop required a waiting period and an independent witness before any change. He agreed. His sister agreed to receive one letter, with no promise of a reply. Outside, the city continued its ordinary traffic. Nothing in the sky announced that a difficult choice had become possible.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-c7e411d7-3021-4608-88d5-971f03cb750a.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [
+    "images/advanced-sf-01-07.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

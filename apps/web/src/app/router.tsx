@@ -3,6 +3,7 @@ import { HomePage } from '../pages/HomePage.js';
 import { WordBankPage } from '../pages/WordBankPage.js';
 import { QuizPage } from '../pages/QuizPage.js';
 import { SettingsPage } from '../pages/SettingsPage.js';
+import { PictureBooksPage } from '../pages/PictureBooksPage.js';
 import { AppLayout } from './AppLayout.js';
 
 export const router = createBrowserRouter([
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: 'quiz', element: <QuizPage /> },
       { path: 'word-bank', element: <WordBankPage /> },
+      { path: 'picture-books', element: <PictureBooksPage /> },
       { path: 'settings', element: <SettingsPage /> },
     ],
   },

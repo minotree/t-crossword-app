@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-essay-03-03",
+  "bookId": "intermediate-essay-03",
+  "page": 3,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original young-adult editorial gouache, muted lavender, navy and warm cream. A Korean teenage boy with short slightly curly black hair and a rust sweater, and a friend with straight black hair and navy cardigan. Respectful everyday school atmosphere. Scene: Same two friends smiling beside a completed shared club poster, late afternoon school window light, balanced teamwork rather than one person doing everything. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"Learning to Say No\". Under it print smaller page heading \"Respect for Both People\" (omit it if identical to book title), and page indicator \"3 / 3\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nSaying no can still feel difficult. Someone may be disappointed, and I still need to be responsible for my promises. But respect cannot mean giving away all my time. I can listen, explain my limits, and offer what I can do with care. Friends grow closer when both people have room to speak with care.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-f187c93c-de39-4689-acf1-ff5e374ba25c.png",
+  "target": "images/intermediate-essay-03-03.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

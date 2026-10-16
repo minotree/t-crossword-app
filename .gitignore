@@ -1,10 +1,12 @@
 # Aider
 .aider*
+!.aider.conf.yml
 .aider.tags.cache.v4/
 
 # Dependencies
 node_modules/
 .pnpm-store/
+tmp/lint-tools/
 
 # Build outputs
 dist/

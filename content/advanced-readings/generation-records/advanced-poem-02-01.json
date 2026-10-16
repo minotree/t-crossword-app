@@ -1,0 +1,13 @@
+{
+  "id": "advanced-poem-02-01",
+  "bookId": "advanced-poem-02",
+  "page": 1,
+  "target": "images/advanced-poem-02-01.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Adult poetic editorial illustration. A modest apartment at dusk, a tired adult arriving with bread, another adult drawing a chair toward a small kitchen table, a steaming kettle. City train reflected faintly in window, restrained olive and amber. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of an Ordinary Day\", smaller page heading \"The Weight of an Ordinary Day\" (omit duplicate heading if identical), page indicator \"1 / 1\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe crowded train delivers us\nto separate floors of borrowed light.\nI carry bread, a minor ache,\nthe conversation left unfinished.\n\nAt home, a pot breaks the silence.\nYou move a chair to make me room.\nNo monument records this kindness.\nIts weight is how I know the ground.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-41e27a62-2a5c-4f55-ad08-c40526c10e40.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

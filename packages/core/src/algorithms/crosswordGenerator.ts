@@ -145,7 +145,7 @@ function placeWord(
     ownership[r][c].add(orientation);
   }
   placedWords.push({
-    id: item.id, word: item.word, meaning: item.meaning, example: item.example, orientation,
+    id: item.id, word: item.word, meaning: item.meaning, example: item.example, synonym: item.synonym, orientation,
     startRow: row, startCol: col, number: 0,
     hintLimit: getWordHintLimit(item.word), hintUsedCount: 0,
   });

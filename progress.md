@@ -77,7 +77,7 @@
 
 ### 추가 작업 기록 (2026-10-15)
 
-개발 순서: **웹의 모든 기능 구현·검증 → 하이브리드 앱 → 토스 미니앱**. 플랫폼별 UI·라우팅·인증·저장은 분리하고, 퍼즐과 학습 관련 공통 규칙은 공유 패키지에서 관리한다.
+개발 순서: **웹의 모든 기능 구현·검증 → 토스 미니앱 → 하이브리드 앱**. 플랫폼별 UI·라우팅·인증·저장은 분리하고, 퍼즐과 학습 관련 공통 규칙은 공유 패키지에서 관리한다.
 
 #### 퍼즐 생성 및 출제 조건
 - [x] 실제 교차를 요구하고 같은 방향 중복 배치·단어 앞뒤 및 측면 인접 충돌 방지
@@ -125,10 +125,10 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - [x] `packages/core`에서 `node node_modules/typescript/bin/tsc --noEmit`: 통과
 - [x] `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/wordProgress.test.ts`: 마지막 실행 **7개 테스트 통과** (저장·복원·재출제 제외·초기화·실패 처리)
 - [x] `apps/web`에서 `node node_modules/typescript/bin/tsc --noEmit` 및 `node node_modules/vite/bin/vite.js build`: 예문 표시 변경까지 통과
-  - 이후 영문 입력 안내 변경은 공백 검사만 수행; 최신 코드 전체 타입 검사·빌드는 재실행 필요
+  - 이후 고급 그림책 추가까지 웹 lint·타입 검사·빌드를 재실행해 통과했다(아래 그림책 검증 이력 참고).
   - 빌드에서 500kB 초과 청크 경고 발생; 번들 최적화 미완료
 - [x] `apps/mobile` 타입 검사: 이전 공유 생성기 변경 시 통과; 이후 변경의 최신 검증은 미실행
-- [ ] 웹 lint: ESLint 미설치로 미실행
+- [x] 웹 ESLint 설치·flat config 구성 및 고급 그림책 추가 후 lint 통과 (`docs/lint.md` 참고)
 - [ ] 실제 브라우저 및 스마트폰·태블릿에서 레이아웃·모달·하단 메뉴·저장·초기화 검증
 - [x] PWA manifest·192/512px 아이콘·빌드 해시별 서비스 워커·업데이트 안내 구현
 - [x] 오프라인 로컬 퍼즐·단어장·학습 기록 사용 경로 및 온라인 전용 힌트 안내 구현
@@ -159,6 +159,28 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 
 ---
 
+### 그림책 콘텐츠와 읽기 화면
+
+- [x] 하단 `그림책` 메뉴, 초급·중급·고급 선택 및 작품별 한글 해석 연결
+- [x] 초급 동시·삽화 45편, 본문에서 초급 단어 537종 사용
+- [x] 중·고등학생용 중급 9편·36장: 시·창작 에세이·소설 각 3편 (소설: SF·무협·환생 각 8장)
+- [x] 성인용 고급 7편·38장의 영어 원문·한글 해석 작성: 시 2편(각 1장), 에세이 2편(각 3장), SF·현실 미스터리·법정 드라마 소설 각 1편(각 10장)
+- [x] 고급 삽화 38장 제작·원문 대조·웹용 변환과 최종 연결 검증 (누적 웹용 이미지 119장)
+- [x] 다중 페이지 이전·다음·목록 복귀, 페이지별 해석과 직접 접근 URL 연결
+- [x] 난이도별 누적 어휘와 명시된 기본 문법어·활용형·파생형 검사 및 제작 기록 작성 (고급: 기본 어휘 594종, 고급 목록 135종 포함)
+- [x] 고급 추가 후 웹 lint·typecheck·build, 웹 테스트 20개, 고급 원본·제작 기록·웹 JSON·빌드 이미지 대조, 서비스 워커 문법 검사 통과
+  - 기존 500kB 초과 번들 경고는 남아 있음. 브라우저·기기 검증과 배포 전 편집·권리 검토는 별도.
+- [ ] 실제 브라우저·기기에서 읽기·페이지 이동·오프라인 이미지 동작 검증 (사용자 확인 예정)
+- [ ] 배포 전 콘텐츠 편집·권리 검토
+- 콘텐츠와 검수 자료: `content/beginner-poems/`, `content/intermediate-readings/`, `content/advanced-readings/`. 웹용 이미지·목록 갱신: `python scripts/prepare-picture-books.py`.
+
+### 지침·연계 문서 동기화 (2026-10-16)
+
+- [x] `AGENTS.md` 14~15절과 구조·사양서·그림책 README·lint/PWA 문서 연결
+- [x] 사양서의 과거 공유 UI·통합 앱 경로·core 내 Supabase 배치 지침과 실행 명령을 현재 패키지 경계에 맞게 정리
+- [x] Aider 읽기 설정에 사양서·진행표 추가 (실제 세션의 자동 로딩 여부는 별도 확인)
+- 문서·읽기 설정만 변경했으며 앱 코드·의존성·배포 설정은 변경하지 않았다. 이 작업의 검증은 로컬 참조 경로·명령 대응·공백 검사이며, 위 실행 검사 이력과 구분한다.
+
 ## Phase 5. Supabase backend integration and hint RPC (implementation complete; project verification pending)
 
 - [x] Create `user_profiles` schema with RLS, anonymous-user profile creation, and secure hint RPCs.
@@ -167,16 +189,16 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - [ ] Configure root `.env.local`, enable anonymous sign-ins, apply the migration, and verify against a real Supabase project.
 - [x] Restrict ad reward grants to `service_role` and provide a data helper for a trusted server; ad-platform verification remains in Phases 6 and 7.
 
-## 📌 Phase 6. Mobile 앱 구현 (`apps/mobile` - Ionic + Capacitor)
-- [ ] `apps/web`에서 검증된 UI 패턴을 Ionic React 컴포넌트로 구현
-- [ ] Capacitor 네이티브 설정 (Android/iOS)
-- [ ] AdMob 보상형 동영상 광고 플러그인 연동 (광고 시청 -> 힌트 충전)
-- [ ] 모바일 기기/에뮬레이터 동작 검증
-
----
-
-## 📌 Phase 7. Toss 미니앱 구현 (`apps/toss` - Apps in Toss)
+## 📌 Phase 6. Toss 미니앱 구현 (`apps/toss` - Apps in Toss)
 - [ ] `apps/toss` 스캐폴딩 (Granite CLI + Vite)
 - [ ] TDS (Toss Design System) 컴포넌트로 UI 구현
 - [ ] Toss SDK 연동 (사용자 인증, 토스 리워드 광고)
 - [ ] Toss 샌드박스 환경 동작 검증
+
+---
+
+## 📌 Phase 7. Mobile 앱 구현 (`apps/mobile` - Ionic + Capacitor)
+- [ ] `apps/web`에서 검증된 UI 패턴을 Ionic React 컴포넌트로 구현
+- [ ] Capacitor 네이티브 설정 (Android/iOS)
+- [ ] AdMob 보상형 동영상 광고 플러그인 연동 (광고 시청 -> 힌트 충전)
+- [ ] 모바일 기기/에뮬레이터 동작 검증

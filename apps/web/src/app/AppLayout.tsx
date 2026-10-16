@@ -6,6 +6,7 @@ const items: { to: string; label: string; icon: MenuIconName }[] = [
   { to: '/', label: '홈', icon: 'home' },
   { to: '/quiz', label: '퀴즈 풀기', icon: 'quiz' },
   { to: '/word-bank', label: '단어장', icon: 'book' },
+  { to: '/picture-books', label: '그림책', icon: 'picture-book' },
   { to: '/settings', label: '설정', icon: 'settings' },
 ];
 

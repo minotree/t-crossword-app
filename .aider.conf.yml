@@ -1,0 +1,12 @@
+# Aider configuration file
+# Read-only context to load; verify loading in the actual Aider session
+
+read:
+  - AGENTS.md
+  - PROJECT_STRUCTURE.md
+  - crossword-project-spec.md
+  - progress.md
+
+# Optional settings for local LLM (Ollama + Qwen) stability
+# commit: true
+# auto-commits: false

@@ -47,15 +47,23 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
     setErrorMessage('');
     setIsSuccess(false);
 
-    const firstEmptyIndex = currentLetters.findIndex((letter) => !letter);
-    const targetIndex = firstEmptyIndex === -1 ? 0 : firstEmptyIndex;
+    const targetIndex = Array.from({ length }, (_, index) => index)
+      .find((index) => !currentLetters[index]);
     const focusTimer = window.setTimeout(() => {
+      if (targetIndex === undefined) return;
       inputRefs.current[targetIndex]?.focus();
       inputRefs.current[targetIndex]?.select();
     }, 50);
 
     return () => window.clearTimeout(focusTimer);
   }, [word.id, length, currentLetters]);
+
+  const findEditableIndex = (index: number, direction: -1 | 1) => {
+    for (let next = index + direction; next >= 0 && next < length; next += direction) {
+      if (!currentLetters[next]) return next;
+    }
+    return -1;
+  };
 
   const submitAnswer = (answer: string) => {
     if (onSubmit(word.id, answer)) {
@@ -69,6 +77,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   };
 
   const handleInputChange = (index: number, value: string) => {
+    if (currentLetters[index]) return;
     setErrorMessage('');
     const letter = value.slice(-1).toUpperCase();
     if (letter && !/^[A-Z]$/.test(letter)) {
@@ -80,9 +89,10 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
     nextInputs[index] = letter;
     setInputs(nextInputs);
 
-    if (letter && index < length - 1) {
-      inputRefs.current[index + 1]?.focus();
-      inputRefs.current[index + 1]?.select();
+    const nextIndex = findEditableIndex(index, 1);
+    if (letter && nextIndex !== -1) {
+      inputRefs.current[nextIndex]?.focus();
+      inputRefs.current[nextIndex]?.select();
     }
 
     if (letter && nextInputs.every((item) => item.length === 1)) {
@@ -95,18 +105,18 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   };
 
   const handleKeyDown = (index: number, event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Backspace' && !inputs[index] && index > 0) {
+    if (event.key === 'Backspace' && !inputs[index]) {
       event.preventDefault();
+      const previousIndex = findEditableIndex(index, -1);
+      if (previousIndex === -1) return;
       const nextInputs = [...inputs];
-      nextInputs[index - 1] = '';
+      nextInputs[previousIndex] = '';
       setInputs(nextInputs);
-      inputRefs.current[index - 1]?.focus();
-    } else if (event.key === 'ArrowLeft' && index > 0) {
+      inputRefs.current[previousIndex]?.focus();
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
-      inputRefs.current[index - 1]?.focus();
-    } else if (event.key === 'ArrowRight' && index < length - 1) {
-      event.preventDefault();
-      inputRefs.current[index + 1]?.focus();
+      const nextIndex = findEditableIndex(index, event.key === 'ArrowLeft' ? -1 : 1);
+      if (nextIndex !== -1) inputRefs.current[nextIndex]?.focus();
     } else if (event.key === 'Enter') {
       event.preventDefault();
       handleSubmit();
@@ -195,6 +205,11 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
           >
             {word.meaning}
           </h2>
+          {word.synonym?.trim() && (
+            <p className="mt-3 break-words px-2 text-sm font-medium text-indigo-700 sm:text-base">
+              동의어: {word.synonym}
+            </p>
+          )}
           {word.example?.trim() && (
             <p className="mt-3 px-2 text-base leading-relaxed text-gray-600 break-words sm:text-lg">
               {maskWordInExample(word.example, word.word)}
@@ -209,15 +224,20 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
           {Array.from({ length }, (_, index) => (
             <input
               aria-label={`${length}자 중 ${index + 1}번째 글자`}
-              className={`h-12 w-full min-w-0 px-0 rounded-lg border-2 text-center ${length >= 10 ? 'text-base sm:text-xl' : 'text-xl sm:text-2xl'} font-bold uppercase outline-none focus:border-indigo-500 sm:h-14 ${
+              aria-invalid={Boolean(inputs[index] && inputs[index] !== word.word[index]?.toUpperCase())}
+              className={`h-12 w-full min-w-0 px-0 rounded-lg border-2 text-center ${length >= 10 ? 'text-base sm:text-xl' : 'text-xl sm:text-2xl'} font-bold uppercase outline-none sm:h-14 ${
                 isSuccess
                   ? 'border-emerald-500 bg-emerald-100 text-emerald-900'
-                  : inputs[index]
-                    ? 'border-indigo-500 bg-indigo-50 text-indigo-950'
-                    : 'border-gray-200 bg-gray-50 text-gray-900'
+                  : inputs[index] && inputs[index] !== word.word[index]?.toUpperCase()
+                    ? 'border-rose-500 bg-rose-50 text-rose-700 focus:border-rose-600'
+                    : inputs[index]
+                      ? 'border-indigo-500 bg-indigo-50 text-indigo-950 focus:border-indigo-500'
+                      : 'border-gray-200 bg-gray-50 text-gray-900 focus:border-indigo-500'
               }`}
               key={index}
               maxLength={1}
+              readOnly={Boolean(currentLetters[index])}
+              tabIndex={currentLetters[index] ? -1 : 0}
               onChange={(event) => handleInputChange(index, event.target.value)}
               onKeyDown={(event) => handleKeyDown(index, event)}
               ref={(element) => {

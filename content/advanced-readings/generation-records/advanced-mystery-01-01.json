@@ -1,0 +1,13 @@
+{
+  "id": "advanced-mystery-01-01",
+  "bookId": "advanced-mystery-01",
+  "page": 1,
+  "target": "images/advanced-mystery-01-01.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The young man setting an old brass clock and faded receipt on a nearly empty repair-shop counter while the woman pauses beside packed tools. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"Closing Time\" (omit duplicate heading if identical), page indicator \"1 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nOn the final evening, the shopkeeper had already packed the tools when a young man brought in a broken clock. He asked for the repair promised on an old receipt. The date was twenty years earlier. Her father had signed it. She recognized his handwriting, but the address beneath it belonged to a building that no longer existed.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-4256a300-e1da-4b58-97b2-6da84b4180de.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

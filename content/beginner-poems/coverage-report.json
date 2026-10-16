@@ -1,0 +1,2853 @@
+{
+  "countingRule": "Distinct lowercase words actually present in poem bodies; titles, word lists and illustration prompts excluded. Hyphenated words stay intact.",
+  "beginnerVocabularyCount": 775,
+  "poemCount": 45,
+  "previousBodyWordCount": 161,
+  "bodyWordCount": 537,
+  "additionalBodyWords": 376,
+  "target": 500,
+  "targetReached": true,
+  "usedWords": [
+    "above",
+    "across",
+    "add",
+    "address",
+    "adult",
+    "afraid",
+    "after",
+    "afternoon",
+    "again",
+    "ahead",
+    "air",
+    "airplane",
+    "album",
+    "all",
+    "alone",
+    "along",
+    "and",
+    "animal",
+    "answer",
+    "apple",
+    "arm",
+    "around",
+    "arrive",
+    "art",
+    "aunt",
+    "autumn",
+    "away",
+    "baby",
+    "back",
+    "badminton",
+    "bag",
+    "bake",
+    "ball",
+    "banana",
+    "baseball",
+    "basket",
+    "basketball",
+    "bath",
+    "beach",
+    "bear",
+    "beauty",
+    "bee",
+    "beef",
+    "before",
+    "begin",
+    "below",
+    "belt",
+    "beside",
+    "big",
+    "bike",
+    "bird",
+    "biscuit",
+    "black",
+    "blue",
+    "boat",
+    "body",
+    "book",
+    "borrow",
+    "box",
+    "bread",
+    "breakfast",
+    "bridge",
+    "bright",
+    "bring",
+    "brother",
+    "brown",
+    "brush",
+    "build",
+    "bus",
+    "butter",
+    "button",
+    "buy",
+    "cake",
+    "camera",
+    "camp",
+    "can",
+    "candy",
+    "cap",
+    "car",
+    "card",
+    "care",
+    "carrot",
+    "carry",
+    "cash",
+    "cat",
+    "catch",
+    "cheap",
+    "check",
+    "cheese",
+    "chicken",
+    "child",
+    "chocolate",
+    "choose",
+    "circle",
+    "city",
+    "class",
+    "clean",
+    "clear",
+    "climb",
+    "clock",
+    "close",
+    "clothes",
+    "cloud",
+    "club",
+    "coat",
+    "cold",
+    "collect",
+    "color",
+    "come",
+    "comic",
+    "compute",
+    "cook",
+    "cookie",
+    "cool",
+    "cost",
+    "country",
+    "cousin",
+    "cow",
+    "crayon",
+    "cream",
+    "cup",
+    "curtain",
+    "cut",
+    "dance",
+    "danger",
+    "daughter",
+    "day",
+    "deep",
+    "delicious",
+    "design",
+    "desk",
+    "difficult",
+    "discuss",
+    "doctor",
+    "dog",
+    "doll",
+    "door",
+    "doughnut",
+    "down",
+    "draw",
+    "dream",
+    "dress",
+    "drive",
+    "drum",
+    "dry",
+    "duck",
+    "during",
+    "ear",
+    "early",
+    "earth",
+    "east",
+    "eat",
+    "egg",
+    "eight",
+    "elephant",
+    "eleven",
+    "end",
+    "energy",
+    "evening",
+    "every",
+    "example",
+    "exercise",
+    "eye",
+    "face",
+    "fall",
+    "family",
+    "far",
+    "farm",
+    "fast",
+    "father",
+    "favorite",
+    "feel",
+    "field",
+    "file",
+    "film",
+    "find",
+    "finger",
+    "finish",
+    "fire",
+    "first",
+    "fish",
+    "five",
+    "floor",
+    "flower",
+    "fly",
+    "focus",
+    "food",
+    "foot",
+    "football",
+    "for",
+    "forest",
+    "fork",
+    "four",
+    "fox",
+    "fresh",
+    "friend",
+    "fruit",
+    "fun",
+    "future",
+    "game",
+    "garden",
+    "get",
+    "give",
+    "goal",
+    "gold",
+    "good",
+    "grandfather",
+    "grape",
+    "grass",
+    "gray",
+    "green",
+    "ground",
+    "group",
+    "grow",
+    "guitar",
+    "habit",
+    "hair",
+    "hamburger",
+    "hand",
+    "hang",
+    "happy",
+    "hat",
+    "have",
+    "head",
+    "heart",
+    "heavy",
+    "hello",
+    "helmet",
+    "help",
+    "here",
+    "high",
+    "hike",
+    "hill",
+    "history",
+    "hit",
+    "hold",
+    "home",
+    "homework",
+    "hope",
+    "horse",
+    "hospital",
+    "hour",
+    "house",
+    "hundred",
+    "husband",
+    "ice",
+    "image",
+    "inside",
+    "internet",
+    "jacket",
+    "jam",
+    "join",
+    "juice",
+    "jump",
+    "just",
+    "keep",
+    "key",
+    "kick",
+    "kitchen",
+    "knife",
+    "lake",
+    "land",
+    "late",
+    "learn",
+    "left",
+    "leg",
+    "lesson",
+    "library",
+    "light",
+    "like",
+    "line",
+    "lion",
+    "lip",
+    "listen",
+    "little",
+    "long",
+    "look",
+    "love",
+    "low",
+    "lunch",
+    "mail",
+    "make",
+    "map",
+    "marathon",
+    "market",
+    "mathematics",
+    "meat",
+    "medal",
+    "member",
+    "memory",
+    "milk",
+    "mind",
+    "monkey",
+    "month",
+    "moon",
+    "morning",
+    "mother",
+    "mountain",
+    "mouse",
+    "mouth",
+    "move",
+    "movie",
+    "music",
+    "name",
+    "nation",
+    "nature",
+    "near",
+    "neck",
+    "never",
+    "new",
+    "newspaper",
+    "night",
+    "north",
+    "nose",
+    "not",
+    "note",
+    "notebook",
+    "number",
+    "nurse",
+    "old",
+    "one",
+    "open",
+    "orange",
+    "page",
+    "paint",
+    "pants",
+    "paper",
+    "parent",
+    "part",
+    "partner",
+    "pass",
+    "pay",
+    "pen",
+    "pencil",
+    "piano",
+    "pick",
+    "picture",
+    "pig",
+    "pilot",
+    "pink",
+    "pizza",
+    "play",
+    "please",
+    "potato",
+    "power",
+    "present",
+    "pretty",
+    "print",
+    "problem",
+    "program",
+    "project",
+    "puppy",
+    "put",
+    "question",
+    "quiet",
+    "quiz",
+    "rabbit",
+    "race",
+    "radio",
+    "rain",
+    "read",
+    "ready",
+    "recreation",
+    "red",
+    "return",
+    "ribbon",
+    "right",
+    "ring",
+    "river",
+    "road",
+    "robot",
+    "rock",
+    "room",
+    "run",
+    "safe",
+    "salad",
+    "sale",
+    "salt",
+    "sand",
+    "sandwich",
+    "save",
+    "school",
+    "science",
+    "scissors",
+    "score",
+    "sea",
+    "second",
+    "see",
+    "seven",
+    "ship",
+    "shirt",
+    "shoe",
+    "shop",
+    "short",
+    "show",
+    "sick",
+    "sing",
+    "sister",
+    "sit",
+    "six",
+    "size",
+    "skate",
+    "ski",
+    "skin",
+    "skirt",
+    "sky",
+    "slow",
+    "small",
+    "smell",
+    "smile",
+    "snow",
+    "soccer",
+    "sock",
+    "soft",
+    "software",
+    "some",
+    "son",
+    "song",
+    "sound",
+    "soup",
+    "south",
+    "spaghetti",
+    "speed",
+    "spoon",
+    "sport",
+    "spring",
+    "stand",
+    "star",
+    "start",
+    "stay",
+    "stone",
+    "stop",
+    "story",
+    "street",
+    "strong",
+    "study",
+    "style",
+    "subway",
+    "sugar",
+    "summer",
+    "sun",
+    "swim",
+    "tail",
+    "take",
+    "talk",
+    "tall",
+    "taste",
+    "taxi",
+    "teach",
+    "team",
+    "television",
+    "ten",
+    "tennis",
+    "tent",
+    "test",
+    "textbook",
+    "thank",
+    "the",
+    "there",
+    "they",
+    "thing",
+    "third",
+    "thirteen",
+    "thirty",
+    "this",
+    "three",
+    "ticket",
+    "tiger",
+    "time",
+    "today",
+    "together",
+    "tomato",
+    "tomorrow",
+    "tonight",
+    "too",
+    "tooth",
+    "touch",
+    "town",
+    "toy",
+    "track",
+    "train",
+    "travel",
+    "tree",
+    "trip",
+    "truck",
+    "true",
+    "try",
+    "turn",
+    "twelve",
+    "twenty",
+    "two",
+    "type",
+    "uncle",
+    "under",
+    "understand",
+    "vegetable",
+    "very",
+    "video",
+    "violin",
+    "visit",
+    "voice",
+    "wait",
+    "wake",
+    "wall",
+    "wash",
+    "watch",
+    "water",
+    "watermelon",
+    "way",
+    "wear",
+    "website",
+    "week",
+    "weekend",
+    "welcome",
+    "well",
+    "west",
+    "wet",
+    "where",
+    "white",
+    "wife",
+    "will",
+    "win",
+    "wind",
+    "window",
+    "winter",
+    "wish",
+    "with",
+    "wood",
+    "word",
+    "work",
+    "world",
+    "write",
+    "year",
+    "yellow",
+    "yesterday",
+    "you",
+    "young"
+  ],
+  "unusedWords": [
+    "about",
+    "act",
+    "against",
+    "age",
+    "ago",
+    "agree",
+    "almost",
+    "already",
+    "alright",
+    "also",
+    "always",
+    "another",
+    "any",
+    "apartment",
+    "area",
+    "ask",
+    "bad",
+    "bank",
+    "base",
+    "bat",
+    "because",
+    "become",
+    "bed",
+    "behind",
+    "believe",
+    "bell",
+    "between",
+    "bill",
+    "birth",
+    "blood",
+    "board",
+    "bone",
+    "both",
+    "bottle",
+    "bottom",
+    "boy",
+    "brave",
+    "break",
+    "burn",
+    "business",
+    "busy",
+    "but",
+    "call",
+    "campaign",
+    "case",
+    "center",
+    "certain",
+    "chair",
+    "chance",
+    "change",
+    "church",
+    "clever",
+    "coffee",
+    "college",
+    "company",
+    "condition",
+    "congratulate",
+    "control",
+    "corner",
+    "could",
+    "couple",
+    "course",
+    "court",
+    "cover",
+    "cross",
+    "cry",
+    "culture",
+    "customer",
+    "dark",
+    "date",
+    "dead",
+    "death",
+    "decide",
+    "dialogue",
+    "die",
+    "dinner",
+    "double",
+    "drink",
+    "drop",
+    "enough",
+    "enter",
+    "fact",
+    "fail",
+    "fan",
+    "fat",
+    "festival",
+    "fight",
+    "fill",
+    "fine",
+    "fix",
+    "fool",
+    "forget",
+    "form",
+    "free",
+    "from",
+    "front",
+    "full",
+    "gentleman",
+    "girl",
+    "glad",
+    "glass",
+    "god",
+    "goodbye",
+    "great",
+    "guess",
+    "gum",
+    "guy",
+    "hard",
+    "hate",
+    "heat",
+    "hero",
+    "hobby",
+    "holiday",
+    "honest",
+    "hot",
+    "how",
+    "however",
+    "human",
+    "hunt",
+    "hurry",
+    "idea",
+    "into",
+    "introduce",
+    "invite",
+    "issue",
+    "job",
+    "kid",
+    "kill",
+    "kind",
+    "king",
+    "kiss",
+    "know",
+    "lady",
+    "large",
+    "laser",
+    "last",
+    "lazy",
+    "letter",
+    "lie",
+    "life",
+    "live",
+    "luck",
+    "mad",
+    "man",
+    "many",
+    "marry",
+    "may",
+    "meet",
+    "middle",
+    "might",
+    "model",
+    "money",
+    "much",
+    "must",
+    "need",
+    "news",
+    "next",
+    "nice",
+    "nothing",
+    "now",
+    "off",
+    "office",
+    "often",
+    "oil",
+    "okay",
+    "only",
+    "out",
+    "over",
+    "park",
+    "party",
+    "people",
+    "place",
+    "plan",
+    "plastic",
+    "point",
+    "police",
+    "poor",
+    "prince",
+    "push",
+    "queen",
+    "quick",
+    "remember",
+    "restaurant",
+    "restroom",
+    "rich",
+    "rose",
+    "sad",
+    "same",
+    "say",
+    "season",
+    "sell",
+    "send",
+    "service",
+    "set",
+    "she",
+    "should",
+    "shy",
+    "side",
+    "sleep",
+    "sorry",
+    "space",
+    "speak",
+    "staff",
+    "steak",
+    "store",
+    "sure",
+    "table",
+    "tape",
+    "telephone",
+    "tell",
+    "than",
+    "that",
+    "think",
+    "thirst",
+    "tire",
+    "top",
+    "twenty-first",
+    "twenty-third",
+    "twice",
+    "ugly",
+    "umbrella",
+    "use",
+    "walk",
+    "want",
+    "war",
+    "weather",
+    "wedding",
+    "weight",
+    "what",
+    "when",
+    "who",
+    "why",
+    "wine",
+    "woman",
+    "worry",
+    "wrong",
+    "yes",
+    "zoo"
+  ],
+  "wordPoems": {
+    "above": [
+      "beginner-08",
+      "beginner-10",
+      "beginner-38"
+    ],
+    "across": [
+      "beginner-04",
+      "beginner-37"
+    ],
+    "add": [
+      "beginner-24"
+    ],
+    "address": [
+      "beginner-35"
+    ],
+    "adult": [
+      "beginner-32",
+      "beginner-40"
+    ],
+    "afraid": [
+      "beginner-29"
+    ],
+    "after": [
+      "beginner-44"
+    ],
+    "afternoon": [
+      "beginner-44"
+    ],
+    "again": [
+      "beginner-09",
+      "beginner-29",
+      "beginner-33"
+    ],
+    "ahead": [
+      "beginner-37"
+    ],
+    "air": [
+      "beginner-40"
+    ],
+    "airplane": [
+      "beginner-38"
+    ],
+    "album": [
+      "beginner-36"
+    ],
+    "all": [
+      "beginner-14",
+      "beginner-42"
+    ],
+    "alone": [
+      "beginner-29",
+      "beginner-30"
+    ],
+    "along": [
+      "beginner-03",
+      "beginner-18",
+      "beginner-40",
+      "beginner-45"
+    ],
+    "and": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-05",
+      "beginner-06",
+      "beginner-09",
+      "beginner-10",
+      "beginner-11",
+      "beginner-12",
+      "beginner-13",
+      "beginner-14",
+      "beginner-15",
+      "beginner-18",
+      "beginner-19",
+      "beginner-20",
+      "beginner-21",
+      "beginner-22",
+      "beginner-23",
+      "beginner-24",
+      "beginner-25",
+      "beginner-26",
+      "beginner-27",
+      "beginner-28",
+      "beginner-29",
+      "beginner-30",
+      "beginner-31",
+      "beginner-33",
+      "beginner-36",
+      "beginner-37",
+      "beginner-38",
+      "beginner-39",
+      "beginner-40",
+      "beginner-41",
+      "beginner-42",
+      "beginner-43",
+      "beginner-44",
+      "beginner-45"
+    ],
+    "animal": [
+      "beginner-14"
+    ],
+    "answer": [
+      "beginner-34"
+    ],
+    "apple": [
+      "beginner-09"
+    ],
+    "arm": [
+      "beginner-27"
+    ],
+    "around": [
+      "beginner-03",
+      "beginner-06",
+      "beginner-17"
+    ],
+    "arrive": [
+      "beginner-37"
+    ],
+    "art": [
+      "beginner-32"
+    ],
+    "aunt": [
+      "beginner-30"
+    ],
+    "autumn": [
+      "beginner-18"
+    ],
+    "away": [
+      "beginner-39"
+    ],
+    "baby": [
+      "beginner-30"
+    ],
+    "back": [
+      "beginner-15",
+      "beginner-19",
+      "beginner-31",
+      "beginner-40"
+    ],
+    "badminton": [
+      "beginner-42"
+    ],
+    "bag": [
+      "beginner-15"
+    ],
+    "bake": [
+      "beginner-24"
+    ],
+    "ball": [
+      "beginner-06",
+      "beginner-42"
+    ],
+    "banana": [
+      "beginner-21"
+    ],
+    "baseball": [
+      "beginner-42"
+    ],
+    "basket": [
+      "beginner-23",
+      "beginner-41"
+    ],
+    "basketball": [
+      "beginner-42"
+    ],
+    "bath": [
+      "beginner-28"
+    ],
+    "beach": [
+      "beginner-39"
+    ],
+    "bear": [
+      "beginner-14"
+    ],
+    "beauty": [
+      "beginner-32"
+    ],
+    "bee": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-15",
+      "beginner-43"
+    ],
+    "beef": [
+      "beginner-22"
+    ],
+    "before": [
+      "beginner-28"
+    ],
+    "begin": [
+      "beginner-27",
+      "beginner-33"
+    ],
+    "below": [
+      "beginner-07",
+      "beginner-10",
+      "beginner-27",
+      "beginner-38",
+      "beginner-41"
+    ],
+    "belt": [
+      "beginner-25"
+    ],
+    "beside": [
+      "beginner-16",
+      "beginner-18",
+      "beginner-19",
+      "beginner-21",
+      "beginner-24",
+      "beginner-28",
+      "beginner-31",
+      "beginner-40",
+      "beginner-42"
+    ],
+    "big": [
+      "beginner-14",
+      "beginner-42"
+    ],
+    "bike": [
+      "beginner-43"
+    ],
+    "bird": [
+      "beginner-01"
+    ],
+    "biscuit": [
+      "beginner-21"
+    ],
+    "black": [
+      "beginner-26"
+    ],
+    "blue": [
+      "beginner-07",
+      "beginner-17"
+    ],
+    "boat": [
+      "beginner-07"
+    ],
+    "body": [
+      "beginner-27",
+      "beginner-29"
+    ],
+    "book": [
+      "beginner-08",
+      "beginner-12"
+    ],
+    "borrow": [
+      "beginner-33"
+    ],
+    "box": [
+      "beginner-31"
+    ],
+    "bread": [
+      "beginner-11"
+    ],
+    "breakfast": [
+      "beginner-21"
+    ],
+    "bridge": [
+      "beginner-37"
+    ],
+    "bright": [
+      "beginner-08",
+      "beginner-26"
+    ],
+    "bring": [
+      "beginner-23"
+    ],
+    "brother": [
+      "beginner-11"
+    ],
+    "brown": [
+      "beginner-26"
+    ],
+    "brush": [
+      "beginner-28"
+    ],
+    "build": [
+      "beginner-35"
+    ],
+    "bus": [
+      "beginner-37"
+    ],
+    "butter": [
+      "beginner-21"
+    ],
+    "button": [
+      "beginner-25"
+    ],
+    "buy": [
+      "beginner-23"
+    ],
+    "cake": [
+      "beginner-16",
+      "beginner-24"
+    ],
+    "camera": [
+      "beginner-36"
+    ],
+    "camp": [
+      "beginner-40"
+    ],
+    "can": [
+      "beginner-09",
+      "beginner-11",
+      "beginner-12",
+      "beginner-16",
+      "beginner-29",
+      "beginner-33",
+      "beginner-40",
+      "beginner-41",
+      "beginner-44"
+    ],
+    "candy": [
+      "beginner-24"
+    ],
+    "cap": [
+      "beginner-25"
+    ],
+    "car": [
+      "beginner-37"
+    ],
+    "card": [
+      "beginner-32"
+    ],
+    "care": [
+      "beginner-22",
+      "beginner-23",
+      "beginner-24",
+      "beginner-29",
+      "beginner-34",
+      "beginner-39",
+      "beginner-40",
+      "beginner-42"
+    ],
+    "carrot": [
+      "beginner-10"
+    ],
+    "carry": [
+      "beginner-07"
+    ],
+    "cash": [
+      "beginner-23"
+    ],
+    "cat": [
+      "beginner-05"
+    ],
+    "catch": [
+      "beginner-42"
+    ],
+    "cheap": [
+      "beginner-23"
+    ],
+    "check": [
+      "beginner-23",
+      "beginner-29",
+      "beginner-35"
+    ],
+    "cheese": [
+      "beginner-21"
+    ],
+    "chicken": [
+      "beginner-22"
+    ],
+    "child": [
+      "beginner-22",
+      "beginner-29"
+    ],
+    "chocolate": [
+      "beginner-24"
+    ],
+    "choose": [
+      "beginner-22",
+      "beginner-26"
+    ],
+    "circle": [
+      "beginner-32"
+    ],
+    "city": [
+      "beginner-37"
+    ],
+    "class": [
+      "beginner-32",
+      "beginner-34"
+    ],
+    "clean": [
+      "beginner-28"
+    ],
+    "clear": [
+      "beginner-31",
+      "beginner-34"
+    ],
+    "climb": [
+      "beginner-40"
+    ],
+    "clock": [
+      "beginner-44"
+    ],
+    "close": [
+      "beginner-08"
+    ],
+    "clothes": [
+      "beginner-25"
+    ],
+    "cloud": [
+      "beginner-38"
+    ],
+    "club": [
+      "beginner-35",
+      "beginner-43"
+    ],
+    "coat": [
+      "beginner-25"
+    ],
+    "cold": [
+      "beginner-25"
+    ],
+    "collect": [
+      "beginner-31"
+    ],
+    "color": [
+      "beginner-18",
+      "beginner-26",
+      "beginner-32"
+    ],
+    "come": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-05",
+      "beginner-06",
+      "beginner-10",
+      "beginner-11",
+      "beginner-13",
+      "beginner-15",
+      "beginner-16",
+      "beginner-18",
+      "beginner-19",
+      "beginner-20",
+      "beginner-30"
+    ],
+    "comic": [
+      "beginner-33"
+    ],
+    "compute": [
+      "beginner-35"
+    ],
+    "cook": [
+      "beginner-22"
+    ],
+    "cookie": [
+      "beginner-22"
+    ],
+    "cool": [
+      "beginner-39"
+    ],
+    "cost": [
+      "beginner-23"
+    ],
+    "country": [
+      "beginner-38"
+    ],
+    "cousin": [
+      "beginner-30"
+    ],
+    "cow": [
+      "beginner-31",
+      "beginner-41"
+    ],
+    "crayon": [
+      "beginner-32"
+    ],
+    "cream": [
+      "beginner-24"
+    ],
+    "cup": [
+      "beginner-21",
+      "beginner-24"
+    ],
+    "curtain": [
+      "beginner-28"
+    ],
+    "cut": [
+      "beginner-24"
+    ],
+    "dance": [
+      "beginner-03",
+      "beginner-13"
+    ],
+    "danger": [
+      "beginner-39"
+    ],
+    "daughter": [
+      "beginner-30"
+    ],
+    "day": [
+      "beginner-14",
+      "beginner-18",
+      "beginner-29",
+      "beginner-39",
+      "beginner-41",
+      "beginner-42"
+    ],
+    "deep": [
+      "beginner-39"
+    ],
+    "delicious": [
+      "beginner-22"
+    ],
+    "design": [
+      "beginner-32",
+      "beginner-35"
+    ],
+    "desk": [
+      "beginner-33"
+    ],
+    "difficult": [
+      "beginner-34"
+    ],
+    "discuss": [
+      "beginner-34"
+    ],
+    "doctor": [
+      "beginner-29"
+    ],
+    "dog": [
+      "beginner-06"
+    ],
+    "doll": [
+      "beginner-31"
+    ],
+    "door": [
+      "beginner-20",
+      "beginner-29"
+    ],
+    "doughnut": [
+      "beginner-24"
+    ],
+    "down": [
+      "beginner-06",
+      "beginner-15"
+    ],
+    "draw": [
+      "beginner-32"
+    ],
+    "dream": [
+      "beginner-16",
+      "beginner-24",
+      "beginner-42"
+    ],
+    "dress": [
+      "beginner-26"
+    ],
+    "drive": [
+      "beginner-37",
+      "beginner-45"
+    ],
+    "drum": [
+      "beginner-13"
+    ],
+    "dry": [
+      "beginner-25",
+      "beginner-28"
+    ],
+    "duck": [
+      "beginner-31"
+    ],
+    "during": [
+      "beginner-41"
+    ],
+    "ear": [
+      "beginner-27"
+    ],
+    "early": [
+      "beginner-44"
+    ],
+    "earth": [
+      "beginner-38"
+    ],
+    "east": [
+      "beginner-38"
+    ],
+    "eat": [
+      "beginner-21"
+    ],
+    "egg": [
+      "beginner-21"
+    ],
+    "eight": [
+      "beginner-45"
+    ],
+    "elephant": [
+      "beginner-14",
+      "beginner-31"
+    ],
+    "eleven": [
+      "beginner-45"
+    ],
+    "end": [
+      "beginner-09"
+    ],
+    "energy": [
+      "beginner-41"
+    ],
+    "evening": [
+      "beginner-44"
+    ],
+    "every": [
+      "beginner-29",
+      "beginner-30",
+      "beginner-41",
+      "beginner-45"
+    ],
+    "example": [
+      "beginner-34"
+    ],
+    "exercise": [
+      "beginner-43"
+    ],
+    "eye": [
+      "beginner-27"
+    ],
+    "face": [
+      "beginner-27",
+      "beginner-42"
+    ],
+    "fall": [
+      "beginner-28"
+    ],
+    "family": [
+      "beginner-11",
+      "beginner-14",
+      "beginner-20",
+      "beginner-21",
+      "beginner-25"
+    ],
+    "far": [
+      "beginner-37"
+    ],
+    "farm": [
+      "beginner-41"
+    ],
+    "fast": [
+      "beginner-43"
+    ],
+    "father": [
+      "beginner-11"
+    ],
+    "favorite": [
+      "beginner-36"
+    ],
+    "feel": [
+      "beginner-26",
+      "beginner-30",
+      "beginner-39",
+      "beginner-40",
+      "beginner-44",
+      "beginner-45"
+    ],
+    "field": [
+      "beginner-15",
+      "beginner-41"
+    ],
+    "file": [
+      "beginner-35"
+    ],
+    "film": [
+      "beginner-36"
+    ],
+    "find": [
+      "beginner-33"
+    ],
+    "finger": [
+      "beginner-27"
+    ],
+    "finish": [
+      "beginner-35"
+    ],
+    "fire": [
+      "beginner-40"
+    ],
+    "first": [
+      "beginner-45"
+    ],
+    "fish": [
+      "beginner-07"
+    ],
+    "five": [
+      "beginner-45"
+    ],
+    "floor": [
+      "beginner-28"
+    ],
+    "flower": [
+      "beginner-02",
+      "beginner-17"
+    ],
+    "fly": [
+      "beginner-01"
+    ],
+    "focus": [
+      "beginner-35"
+    ],
+    "food": [
+      "beginner-21",
+      "beginner-23",
+      "beginner-41"
+    ],
+    "foot": [
+      "beginner-27"
+    ],
+    "football": [
+      "beginner-42"
+    ],
+    "for": [
+      "beginner-09",
+      "beginner-11",
+      "beginner-16",
+      "beginner-17",
+      "beginner-22",
+      "beginner-25",
+      "beginner-26",
+      "beginner-29",
+      "beginner-32",
+      "beginner-38",
+      "beginner-40",
+      "beginner-42",
+      "beginner-43"
+    ],
+    "forest": [
+      "beginner-40"
+    ],
+    "fork": [
+      "beginner-24"
+    ],
+    "four": [
+      "beginner-45"
+    ],
+    "fox": [
+      "beginner-31"
+    ],
+    "fresh": [
+      "beginner-21",
+      "beginner-23"
+    ],
+    "friend": [
+      "beginner-09"
+    ],
+    "fruit": [
+      "beginner-23"
+    ],
+    "fun": [
+      "beginner-43"
+    ],
+    "future": [
+      "beginner-44"
+    ],
+    "game": [
+      "beginner-12",
+      "beginner-27",
+      "beginner-42"
+    ],
+    "garden": [
+      "beginner-10",
+      "beginner-17"
+    ],
+    "get": [
+      "beginner-06"
+    ],
+    "give": [
+      "beginner-09",
+      "beginner-34"
+    ],
+    "goal": [
+      "beginner-42"
+    ],
+    "gold": [
+      "beginner-18",
+      "beginner-26"
+    ],
+    "good": [
+      "beginner-02",
+      "beginner-08",
+      "beginner-14",
+      "beginner-28",
+      "beginner-40"
+    ],
+    "grandfather": [
+      "beginner-30"
+    ],
+    "grape": [
+      "beginner-23"
+    ],
+    "grass": [
+      "beginner-19"
+    ],
+    "gray": [
+      "beginner-25"
+    ],
+    "green": [
+      "beginner-26"
+    ],
+    "ground": [
+      "beginner-04",
+      "beginner-41"
+    ],
+    "group": [
+      "beginner-40"
+    ],
+    "grow": [
+      "beginner-10",
+      "beginner-11",
+      "beginner-12",
+      "beginner-29",
+      "beginner-41"
+    ],
+    "guitar": [
+      "beginner-13"
+    ],
+    "habit": [
+      "beginner-28"
+    ],
+    "hair": [
+      "beginner-27",
+      "beginner-28"
+    ],
+    "hamburger": [
+      "beginner-22"
+    ],
+    "hand": [
+      "beginner-27",
+      "beginner-28",
+      "beginner-39",
+      "beginner-41"
+    ],
+    "hang": [
+      "beginner-28"
+    ],
+    "happy": [
+      "beginner-03",
+      "beginner-06",
+      "beginner-21",
+      "beginner-24",
+      "beginner-30"
+    ],
+    "hat": [
+      "beginner-25"
+    ],
+    "have": [
+      "beginner-14"
+    ],
+    "head": [
+      "beginner-27"
+    ],
+    "heart": [
+      "beginner-21",
+      "beginner-29"
+    ],
+    "heavy": [
+      "beginner-41"
+    ],
+    "hello": [
+      "beginner-02"
+    ],
+    "helmet": [
+      "beginner-43"
+    ],
+    "help": [
+      "beginner-12",
+      "beginner-29"
+    ],
+    "here": [
+      "beginner-05",
+      "beginner-13",
+      "beginner-19",
+      "beginner-30"
+    ],
+    "high": [
+      "beginner-06",
+      "beginner-27"
+    ],
+    "hike": [
+      "beginner-40"
+    ],
+    "hill": [
+      "beginner-18",
+      "beginner-40"
+    ],
+    "history": [
+      "beginner-33",
+      "beginner-44"
+    ],
+    "hit": [
+      "beginner-42"
+    ],
+    "hold": [
+      "beginner-39"
+    ],
+    "home": [
+      "beginner-23",
+      "beginner-30",
+      "beginner-38"
+    ],
+    "homework": [
+      "beginner-34"
+    ],
+    "hope": [
+      "beginner-29"
+    ],
+    "horse": [
+      "beginner-31",
+      "beginner-41"
+    ],
+    "hospital": [
+      "beginner-29"
+    ],
+    "hour": [
+      "beginner-44"
+    ],
+    "house": [
+      "beginner-03"
+    ],
+    "hundred": [
+      "beginner-45"
+    ],
+    "husband": [
+      "beginner-30"
+    ],
+    "ice": [
+      "beginner-39"
+    ],
+    "image": [
+      "beginner-32"
+    ],
+    "inside": [
+      "beginner-20",
+      "beginner-22",
+      "beginner-23"
+    ],
+    "internet": [
+      "beginner-35"
+    ],
+    "jacket": [
+      "beginner-25"
+    ],
+    "jam": [
+      "beginner-21"
+    ],
+    "join": [
+      "beginner-40",
+      "beginner-43"
+    ],
+    "juice": [
+      "beginner-21"
+    ],
+    "jump": [
+      "beginner-06",
+      "beginner-19"
+    ],
+    "just": [
+      "beginner-15"
+    ],
+    "keep": [
+      "beginner-24",
+      "beginner-25",
+      "beginner-31",
+      "beginner-39"
+    ],
+    "key": [
+      "beginner-36"
+    ],
+    "kick": [
+      "beginner-42"
+    ],
+    "kitchen": [
+      "beginner-24"
+    ],
+    "knife": [
+      "beginner-24"
+    ],
+    "lake": [
+      "beginner-40"
+    ],
+    "land": [
+      "beginner-38",
+      "beginner-39"
+    ],
+    "late": [
+      "beginner-44"
+    ],
+    "learn": [
+      "beginner-12",
+      "beginner-33",
+      "beginner-45"
+    ],
+    "left": [
+      "beginner-37"
+    ],
+    "leg": [
+      "beginner-27"
+    ],
+    "lesson": [
+      "beginner-34"
+    ],
+    "library": [
+      "beginner-33"
+    ],
+    "light": [
+      "beginner-20",
+      "beginner-28",
+      "beginner-37",
+      "beginner-40"
+    ],
+    "like": [
+      "beginner-26"
+    ],
+    "line": [
+      "beginner-35",
+      "beginner-45"
+    ],
+    "lion": [
+      "beginner-14"
+    ],
+    "lip": [
+      "beginner-27"
+    ],
+    "listen": [
+      "beginner-03",
+      "beginner-13"
+    ],
+    "little": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-05",
+      "beginner-07",
+      "beginner-14",
+      "beginner-15",
+      "beginner-17",
+      "beginner-18",
+      "beginner-19",
+      "beginner-22",
+      "beginner-23",
+      "beginner-36"
+    ],
+    "long": [
+      "beginner-26"
+    ],
+    "look": [
+      "beginner-05",
+      "beginner-14",
+      "beginner-27"
+    ],
+    "love": [
+      "beginner-09",
+      "beginner-11",
+      "beginner-20",
+      "beginner-24",
+      "beginner-25",
+      "beginner-37",
+      "beginner-38",
+      "beginner-39",
+      "beginner-41"
+    ],
+    "low": [
+      "beginner-36"
+    ],
+    "lunch": [
+      "beginner-22"
+    ],
+    "mail": [
+      "beginner-05"
+    ],
+    "make": [
+      "beginner-13",
+      "beginner-16",
+      "beginner-27",
+      "beginner-32",
+      "beginner-34"
+    ],
+    "map": [
+      "beginner-38"
+    ],
+    "marathon": [
+      "beginner-43"
+    ],
+    "market": [
+      "beginner-23"
+    ],
+    "mathematics": [
+      "beginner-34"
+    ],
+    "meat": [
+      "beginner-22"
+    ],
+    "medal": [
+      "beginner-43"
+    ],
+    "member": [
+      "beginner-43"
+    ],
+    "memory": [
+      "beginner-36"
+    ],
+    "milk": [
+      "beginner-21"
+    ],
+    "mind": [
+      "beginner-12"
+    ],
+    "monkey": [
+      "beginner-14"
+    ],
+    "month": [
+      "beginner-44"
+    ],
+    "moon": [
+      "beginner-08"
+    ],
+    "morning": [
+      "beginner-02",
+      "beginner-23",
+      "beginner-25",
+      "beginner-37"
+    ],
+    "mother": [
+      "beginner-11"
+    ],
+    "mountain": [
+      "beginner-04"
+    ],
+    "mouse": [
+      "beginner-31"
+    ],
+    "mouth": [
+      "beginner-27"
+    ],
+    "move": [
+      "beginner-27"
+    ],
+    "movie": [
+      "beginner-36"
+    ],
+    "music": [
+      "beginner-03",
+      "beginner-13",
+      "beginner-36"
+    ],
+    "name": [
+      "beginner-12"
+    ],
+    "nation": [
+      "beginner-38"
+    ],
+    "nature": [
+      "beginner-41"
+    ],
+    "near": [
+      "beginner-30",
+      "beginner-39",
+      "beginner-41",
+      "beginner-44"
+    ],
+    "neck": [
+      "beginner-27"
+    ],
+    "never": [
+      "beginner-09",
+      "beginner-30",
+      "beginner-43",
+      "beginner-44"
+    ],
+    "new": [
+      "beginner-13",
+      "beginner-32",
+      "beginner-33",
+      "beginner-35",
+      "beginner-38"
+    ],
+    "newspaper": [
+      "beginner-33"
+    ],
+    "night": [
+      "beginner-08"
+    ],
+    "north": [
+      "beginner-38"
+    ],
+    "nose": [
+      "beginner-05"
+    ],
+    "not": [
+      "beginner-04",
+      "beginner-26",
+      "beginner-29"
+    ],
+    "note": [
+      "beginner-33"
+    ],
+    "notebook": [
+      "beginner-33"
+    ],
+    "number": [
+      "beginner-35",
+      "beginner-45"
+    ],
+    "nurse": [
+      "beginner-29"
+    ],
+    "old": [
+      "beginner-13",
+      "beginner-26",
+      "beginner-30"
+    ],
+    "one": [
+      "beginner-04",
+      "beginner-08",
+      "beginner-09",
+      "beginner-12",
+      "beginner-14",
+      "beginner-15",
+      "beginner-16",
+      "beginner-17",
+      "beginner-18",
+      "beginner-21",
+      "beginner-22",
+      "beginner-23",
+      "beginner-24",
+      "beginner-25",
+      "beginner-27",
+      "beginner-28",
+      "beginner-29",
+      "beginner-30",
+      "beginner-31",
+      "beginner-32",
+      "beginner-33",
+      "beginner-34",
+      "beginner-35",
+      "beginner-36",
+      "beginner-38",
+      "beginner-40",
+      "beginner-42",
+      "beginner-45"
+    ],
+    "open": [
+      "beginner-20",
+      "beginner-28"
+    ],
+    "orange": [
+      "beginner-23"
+    ],
+    "page": [
+      "beginner-32",
+      "beginner-33"
+    ],
+    "paint": [
+      "beginner-32"
+    ],
+    "pants": [
+      "beginner-25"
+    ],
+    "paper": [
+      "beginner-32"
+    ],
+    "parent": [
+      "beginner-30"
+    ],
+    "part": [
+      "beginner-29"
+    ],
+    "partner": [
+      "beginner-43"
+    ],
+    "pass": [
+      "beginner-42"
+    ],
+    "pay": [
+      "beginner-23"
+    ],
+    "pen": [
+      "beginner-33"
+    ],
+    "pencil": [
+      "beginner-12"
+    ],
+    "piano": [
+      "beginner-13"
+    ],
+    "pick": [
+      "beginner-26"
+    ],
+    "picture": [
+      "beginner-32"
+    ],
+    "pig": [
+      "beginner-31"
+    ],
+    "pilot": [
+      "beginner-38"
+    ],
+    "pink": [
+      "beginner-17"
+    ],
+    "pizza": [
+      "beginner-22"
+    ],
+    "play": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-06",
+      "beginner-07",
+      "beginner-12",
+      "beginner-18",
+      "beginner-19",
+      "beginner-29",
+      "beginner-31",
+      "beginner-41"
+    ],
+    "please": [
+      "beginner-21",
+      "beginner-32"
+    ],
+    "potato": [
+      "beginner-10"
+    ],
+    "power": [
+      "beginner-43"
+    ],
+    "present": [
+      "beginner-16",
+      "beginner-17"
+    ],
+    "pretty": [
+      "beginner-26"
+    ],
+    "print": [
+      "beginner-32"
+    ],
+    "problem": [
+      "beginner-34"
+    ],
+    "program": [
+      "beginner-35"
+    ],
+    "project": [
+      "beginner-35"
+    ],
+    "puppy": [
+      "beginner-31"
+    ],
+    "put": [
+      "beginner-31"
+    ],
+    "question": [
+      "beginner-34"
+    ],
+    "quiet": [
+      "beginner-18",
+      "beginner-31"
+    ],
+    "quiz": [
+      "beginner-34"
+    ],
+    "rabbit": [
+      "beginner-19"
+    ],
+    "race": [
+      "beginner-42"
+    ],
+    "radio": [
+      "beginner-36"
+    ],
+    "rain": [
+      "beginner-03"
+    ],
+    "read": [
+      "beginner-12",
+      "beginner-33"
+    ],
+    "ready": [
+      "beginner-12",
+      "beginner-36",
+      "beginner-43"
+    ],
+    "recreation": [
+      "beginner-43"
+    ],
+    "red": [
+      "beginner-18"
+    ],
+    "return": [
+      "beginner-38"
+    ],
+    "ribbon": [
+      "beginner-26"
+    ],
+    "right": [
+      "beginner-37"
+    ],
+    "ring": [
+      "beginner-26"
+    ],
+    "river": [
+      "beginner-15"
+    ],
+    "road": [
+      "beginner-37"
+    ],
+    "robot": [
+      "beginner-31"
+    ],
+    "rock": [
+      "beginner-40"
+    ],
+    "room": [
+      "beginner-28"
+    ],
+    "run": [
+      "beginner-06"
+    ],
+    "safe": [
+      "beginner-24",
+      "beginner-39"
+    ],
+    "salad": [
+      "beginner-22"
+    ],
+    "sale": [
+      "beginner-23"
+    ],
+    "salt": [
+      "beginner-24"
+    ],
+    "sand": [
+      "beginner-39"
+    ],
+    "sandwich": [
+      "beginner-22"
+    ],
+    "save": [
+      "beginner-35",
+      "beginner-36"
+    ],
+    "school": [
+      "beginner-12"
+    ],
+    "science": [
+      "beginner-33"
+    ],
+    "scissors": [
+      "beginner-32"
+    ],
+    "score": [
+      "beginner-42"
+    ],
+    "sea": [
+      "beginner-07",
+      "beginner-38",
+      "beginner-39"
+    ],
+    "second": [
+      "beginner-44",
+      "beginner-45"
+    ],
+    "see": [
+      "beginner-04",
+      "beginner-10",
+      "beginner-15",
+      "beginner-19",
+      "beginner-45"
+    ],
+    "seven": [
+      "beginner-45"
+    ],
+    "ship": [
+      "beginner-38"
+    ],
+    "shirt": [
+      "beginner-25"
+    ],
+    "shoe": [
+      "beginner-25"
+    ],
+    "shop": [
+      "beginner-22"
+    ],
+    "short": [
+      "beginner-26"
+    ],
+    "show": [
+      "beginner-10",
+      "beginner-32",
+      "beginner-35",
+      "beginner-36",
+      "beginner-43"
+    ],
+    "sick": [
+      "beginner-29"
+    ],
+    "sing": [
+      "beginner-01",
+      "beginner-13",
+      "beginner-26"
+    ],
+    "sister": [
+      "beginner-11"
+    ],
+    "sit": [
+      "beginner-05",
+      "beginner-06",
+      "beginner-11"
+    ],
+    "six": [
+      "beginner-45"
+    ],
+    "size": [
+      "beginner-26"
+    ],
+    "skate": [
+      "beginner-43"
+    ],
+    "ski": [
+      "beginner-43"
+    ],
+    "skin": [
+      "beginner-27"
+    ],
+    "skirt": [
+      "beginner-26"
+    ],
+    "sky": [
+      "beginner-01",
+      "beginner-25"
+    ],
+    "slow": [
+      "beginner-27",
+      "beginner-41",
+      "beginner-43"
+    ],
+    "small": [
+      "beginner-14",
+      "beginner-40"
+    ],
+    "smell": [
+      "beginner-24"
+    ],
+    "smile": [
+      "beginner-22",
+      "beginner-29",
+      "beginner-36",
+      "beginner-42",
+      "beginner-43"
+    ],
+    "snow": [
+      "beginner-04"
+    ],
+    "soccer": [
+      "beginner-42"
+    ],
+    "sock": [
+      "beginner-25"
+    ],
+    "soft": [
+      "beginner-28"
+    ],
+    "software": [
+      "beginner-35"
+    ],
+    "some": [
+      "beginner-13",
+      "beginner-21",
+      "beginner-23",
+      "beginner-24",
+      "beginner-31"
+    ],
+    "son": [
+      "beginner-30"
+    ],
+    "song": [
+      "beginner-26"
+    ],
+    "sound": [
+      "beginner-04",
+      "beginner-36"
+    ],
+    "soup": [
+      "beginner-11"
+    ],
+    "south": [
+      "beginner-38"
+    ],
+    "spaghetti": [
+      "beginner-22"
+    ],
+    "speed": [
+      "beginner-43"
+    ],
+    "spoon": [
+      "beginner-24"
+    ],
+    "sport": [
+      "beginner-31",
+      "beginner-42"
+    ],
+    "spring": [
+      "beginner-17",
+      "beginner-26"
+    ],
+    "stand": [
+      "beginner-40"
+    ],
+    "star": [
+      "beginner-08",
+      "beginner-36"
+    ],
+    "start": [
+      "beginner-21"
+    ],
+    "stay": [
+      "beginner-19",
+      "beginner-39"
+    ],
+    "stone": [
+      "beginner-40"
+    ],
+    "stop": [
+      "beginner-19",
+      "beginner-22",
+      "beginner-43"
+    ],
+    "story": [
+      "beginner-33"
+    ],
+    "street": [
+      "beginner-03",
+      "beginner-37"
+    ],
+    "strong": [
+      "beginner-41"
+    ],
+    "study": [
+      "beginner-33"
+    ],
+    "style": [
+      "beginner-26",
+      "beginner-35"
+    ],
+    "subway": [
+      "beginner-37"
+    ],
+    "sugar": [
+      "beginner-24"
+    ],
+    "summer": [
+      "beginner-39"
+    ],
+    "sun": [
+      "beginner-02",
+      "beginner-10",
+      "beginner-21"
+    ],
+    "swim": [
+      "beginner-39"
+    ],
+    "tail": [
+      "beginner-05"
+    ],
+    "take": [
+      "beginner-15",
+      "beginner-35",
+      "beginner-38"
+    ],
+    "talk": [
+      "beginner-30"
+    ],
+    "tall": [
+      "beginner-14"
+    ],
+    "taste": [
+      "beginner-22",
+      "beginner-24"
+    ],
+    "taxi": [
+      "beginner-37"
+    ],
+    "teach": [
+      "beginner-34"
+    ],
+    "team": [
+      "beginner-42"
+    ],
+    "television": [
+      "beginner-36"
+    ],
+    "ten": [
+      "beginner-45"
+    ],
+    "tennis": [
+      "beginner-42"
+    ],
+    "tent": [
+      "beginner-40"
+    ],
+    "test": [
+      "beginner-34"
+    ],
+    "textbook": [
+      "beginner-33"
+    ],
+    "thank": [
+      "beginner-21"
+    ],
+    "the": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-03",
+      "beginner-04",
+      "beginner-05",
+      "beginner-06",
+      "beginner-07",
+      "beginner-08",
+      "beginner-10",
+      "beginner-11",
+      "beginner-12",
+      "beginner-14",
+      "beginner-15",
+      "beginner-16",
+      "beginner-17",
+      "beginner-18",
+      "beginner-19",
+      "beginner-20",
+      "beginner-21",
+      "beginner-22",
+      "beginner-23",
+      "beginner-24",
+      "beginner-25",
+      "beginner-26",
+      "beginner-27",
+      "beginner-28",
+      "beginner-29",
+      "beginner-31",
+      "beginner-32",
+      "beginner-33",
+      "beginner-34",
+      "beginner-35",
+      "beginner-36",
+      "beginner-37",
+      "beginner-38",
+      "beginner-39",
+      "beginner-40",
+      "beginner-41",
+      "beginner-42",
+      "beginner-43",
+      "beginner-44",
+      "beginner-45"
+    ],
+    "there": [
+      "beginner-14"
+    ],
+    "they": [
+      "beginner-13"
+    ],
+    "thing": [
+      "beginner-32"
+    ],
+    "third": [
+      "beginner-45"
+    ],
+    "thirteen": [
+      "beginner-45"
+    ],
+    "thirty": [
+      "beginner-45"
+    ],
+    "this": [
+      "beginner-06"
+    ],
+    "three": [
+      "beginner-45"
+    ],
+    "ticket": [
+      "beginner-37"
+    ],
+    "tiger": [
+      "beginner-31"
+    ],
+    "time": [
+      "beginner-28",
+      "beginner-35",
+      "beginner-44",
+      "beginner-45"
+    ],
+    "today": [
+      "beginner-12",
+      "beginner-25",
+      "beginner-34",
+      "beginner-44"
+    ],
+    "together": [
+      "beginner-11",
+      "beginner-12",
+      "beginner-13",
+      "beginner-20",
+      "beginner-21",
+      "beginner-37"
+    ],
+    "tomato": [
+      "beginner-10"
+    ],
+    "tomorrow": [
+      "beginner-34",
+      "beginner-44"
+    ],
+    "tonight": [
+      "beginner-44"
+    ],
+    "too": [
+      "beginner-10",
+      "beginner-22",
+      "beginner-23",
+      "beginner-33",
+      "beginner-44"
+    ],
+    "tooth": [
+      "beginner-27",
+      "beginner-28"
+    ],
+    "touch": [
+      "beginner-36"
+    ],
+    "town": [
+      "beginner-06",
+      "beginner-15"
+    ],
+    "toy": [
+      "beginner-31"
+    ],
+    "track": [
+      "beginner-15",
+      "beginner-31",
+      "beginner-40"
+    ],
+    "train": [
+      "beginner-15"
+    ],
+    "travel": [
+      "beginner-37"
+    ],
+    "tree": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-15",
+      "beginner-18",
+      "beginner-19"
+    ],
+    "trip": [
+      "beginner-37",
+      "beginner-38"
+    ],
+    "truck": [
+      "beginner-37"
+    ],
+    "true": [
+      "beginner-16"
+    ],
+    "try": [
+      "beginner-32",
+      "beginner-34"
+    ],
+    "turn": [
+      "beginner-33",
+      "beginner-36",
+      "beginner-37"
+    ],
+    "twelve": [
+      "beginner-45"
+    ],
+    "twenty": [
+      "beginner-45"
+    ],
+    "two": [
+      "beginner-45"
+    ],
+    "type": [
+      "beginner-35"
+    ],
+    "uncle": [
+      "beginner-30"
+    ],
+    "under": [
+      "beginner-01",
+      "beginner-25"
+    ],
+    "understand": [
+      "beginner-34",
+      "beginner-39"
+    ],
+    "vegetable": [
+      "beginner-23"
+    ],
+    "very": [
+      "beginner-06",
+      "beginner-08",
+      "beginner-27",
+      "beginner-30",
+      "beginner-36",
+      "beginner-39"
+    ],
+    "video": [
+      "beginner-36"
+    ],
+    "violin": [
+      "beginner-13"
+    ],
+    "visit": [
+      "beginner-30"
+    ],
+    "voice": [
+      "beginner-36"
+    ],
+    "wait": [
+      "beginner-44"
+    ],
+    "wake": [
+      "beginner-21"
+    ],
+    "wall": [
+      "beginner-28"
+    ],
+    "wash": [
+      "beginner-28"
+    ],
+    "watch": [
+      "beginner-36"
+    ],
+    "water": [
+      "beginner-10",
+      "beginner-39"
+    ],
+    "watermelon": [
+      "beginner-23"
+    ],
+    "way": [
+      "beginner-06",
+      "beginner-18"
+    ],
+    "wear": [
+      "beginner-25"
+    ],
+    "website": [
+      "beginner-35"
+    ],
+    "week": [
+      "beginner-44"
+    ],
+    "weekend": [
+      "beginner-44"
+    ],
+    "welcome": [
+      "beginner-30"
+    ],
+    "well": [
+      "beginner-39"
+    ],
+    "west": [
+      "beginner-38"
+    ],
+    "wet": [
+      "beginner-28"
+    ],
+    "where": [
+      "beginner-07"
+    ],
+    "white": [
+      "beginner-04",
+      "beginner-07"
+    ],
+    "wife": [
+      "beginner-30"
+    ],
+    "will": [
+      "beginner-07"
+    ],
+    "win": [
+      "beginner-42"
+    ],
+    "wind": [
+      "beginner-07",
+      "beginner-18"
+    ],
+    "window": [
+      "beginner-28"
+    ],
+    "winter": [
+      "beginner-25"
+    ],
+    "wish": [
+      "beginner-16"
+    ],
+    "with": [
+      "beginner-01",
+      "beginner-02",
+      "beginner-03",
+      "beginner-15",
+      "beginner-21",
+      "beginner-22",
+      "beginner-23",
+      "beginner-24",
+      "beginner-29",
+      "beginner-32",
+      "beginner-33",
+      "beginner-34",
+      "beginner-38",
+      "beginner-39",
+      "beginner-40",
+      "beginner-42",
+      "beginner-44"
+    ],
+    "wood": [
+      "beginner-40"
+    ],
+    "word": [
+      "beginner-12"
+    ],
+    "work": [
+      "beginner-32",
+      "beginner-33",
+      "beginner-41"
+    ],
+    "world": [
+      "beginner-04",
+      "beginner-15",
+      "beginner-38"
+    ],
+    "write": [
+      "beginner-12"
+    ],
+    "year": [
+      "beginner-41",
+      "beginner-44"
+    ],
+    "yellow": [
+      "beginner-17"
+    ],
+    "yesterday": [
+      "beginner-44"
+    ],
+    "you": [
+      "beginner-01",
+      "beginner-03",
+      "beginner-07",
+      "beginner-09",
+      "beginner-16",
+      "beginner-17",
+      "beginner-22",
+      "beginner-25",
+      "beginner-26",
+      "beginner-32",
+      "beginner-33",
+      "beginner-38",
+      "beginner-43",
+      "beginner-44"
+    ],
+    "young": [
+      "beginner-30"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "id": "advanced-sf-01-06",
+  "bookId": "advanced-sf-01",
+  "page": 6,
+  "target": "images/advanced-sf-01-06.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older woman speaking steadily while her brother listens, a small sealed memory vessel on a side table, warm light on both faces. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"An Incomplete Record\" (omit duplicate heading if identical), page indicator \"6 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nHis sister did not offer immediate forgiveness. She described the years in which she had built a life elsewhere. Some were difficult; some were joyful. None appeared in the fragment he wished to recover. A stored memory, the operator said, preserved a perspective. It could not supply the whole truth about another person's life.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-a53248fd-43b1-4d51-b832-95c7b9d971e5.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

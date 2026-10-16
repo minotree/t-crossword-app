@@ -58,6 +58,9 @@ export function WordBankPage() {
                   {(completed.has(word.id) || word.isQuizUsed === true) && <span className="text-xs font-bold text-emerald-700">✓ 학습완료</span>}
                 </div>
                 <p className="mt-1 text-sm">{word.meaning}</p>
+                {word.synonym?.trim() && (
+                  <p className="mt-1 break-words text-sm text-indigo-700">동의어: {word.synonym}</p>
+                )}
                 {word.example && <p className="mt-2 text-sm text-slate-500">{word.example}<br />{word.exampleMeaning}</p>}
               </div>
               <button type="button" aria-label={`${word.word} 즐겨찾기`} aria-pressed={bookmarked.has(word.id)}

@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-poem-02-01",
+  "bookId": "intermediate-poem-02",
+  "page": 1,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Mature original editorial gouache, muted blue and amber. A Korean teenage girl with a short black bob and a plain olive school jacket sits beside a bus window at dusk. Restrained thoughtful mood, no childish mascots. Scene: Bus interior, teenage girl beside a rain-speckled window with city reflections and a sunset sky, a few quiet passengers. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"Between Two Stops\". Under it print smaller page heading \"Between Two Stops\" (omit it if identical to book title), and page indicator \"1 / 1\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nThe bus carries a hundred plans.\nOne window holds the evening sky.\nOne person leaves; another stays.\nThe city changes as we pass.\n\nI do not know my final stop.\nToday, one small step is enough.\nBetween the place I leave and find,\nthere is still room to change my mind.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-25671c8c-e209-4789-a726-95b6ab2dfd2b.png",
+  "target": "images/intermediate-poem-02-01.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

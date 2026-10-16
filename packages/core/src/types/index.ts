@@ -26,6 +26,7 @@ export interface CrosswordCell {
 
 export interface CrosswordWord {
   example?: string;
+  synonym?: string;
   id: string;
   word: string;
   meaning: string;

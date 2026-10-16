@@ -1,0 +1,16 @@
+{
+  "id": "advanced-sf-01-10-v2",
+  "bookId": "advanced-sf-01",
+  "page": 10,
+  "target": "images/advanced-sf-01-10-v2.png",
+  "prompt": "Use case: precise-object-edit. Edit this finished English reading card. Change ONLY the woman walking beside the older man on the LEFT OUTDOOR HALF into his OLDER SISTER, a Korean woman aged sixty with clearly GRAY chin-length bob hair, mature facial lines, and plain GREEN coat. They are older siblings of similar age, not a romantic couple. Keep the older man identical, and keep the YOUNGER woman technician INSIDE THE SHOP ON THE RIGHT identical. Preserve all English typography, every word, title, heading, page indicator, reading panel, colors, watercolor/gouache style, setting, and all other elements unchanged. Do not add text. Only this one outdoor character changes.",
+  "creationPrompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older siblings walking at a respectful distance along a city riverside in morning light; small inset-like view through shop window of technician closing a drawer, restrained hopeful ending. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"A Place to Begin\" (omit duplicate heading if identical), page indicator \"10 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nA week later, his sister sent a brief reply. She suggested a walk, not a return to the old business. He folded the letter and kept it in his coat. At the shop, the operator closed the account. On the table lay an empty receipt. For once, the next important moment had not yet been stored.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-6a108371-575b-411a-bf8d-967f7f7d32da.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [
+    "images/advanced-sf-01-10.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

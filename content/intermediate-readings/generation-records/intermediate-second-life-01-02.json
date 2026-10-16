@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-second-life-01-02",
+  "bookId": "intermediate-second-life-01",
+  "page": 2,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original coming-of-age second-life fantasy for teenagers, literary gouache, copper, sage and warm cream palette, invented historical setting with no existing franchise references. Recurring narrator: East Asian teenage prince with black hair half tied using a dark green ribbon, simple pale gold robe, carrying a small red notebook. Recurring clerk: older East Asian woman with gray-streaked hair in a dark blue robe. Grounded compassionate story, no violence or copied costumes or emblems. Scene: Pale-gold-robed prince at a modest palace council table, officials with papers, older blue-robed woman clerk quietly pointing to an empty-cart report, prince holding red notebook. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"A Second Life, A Small Choice\". Under it print smaller page heading \"The Empty Market\" (omit it if identical to book title), and page indicator \"2 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nAt my first council meeting, an officer reported that a village had not sent its food to the city. 'They ignore our orders,' he said. I almost agreed because everyone else did. Then a quiet clerk mentioned an empty cart returning from the road. I asked what the driver had seen. Nobody in the room knew the answer.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-b7b67597-94b9-4cc4-a843-f59778b160aa.png",
+  "target": "images/intermediate-second-life-01-02.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

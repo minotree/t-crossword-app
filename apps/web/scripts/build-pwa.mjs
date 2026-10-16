@@ -17,7 +17,9 @@ const files = (await filesIn(dist)).sort();
 const hash = createHash('sha256');
 for (const file of files) hash.update(relative(dist, file)).update(await readFile(file));
 const cache = `t-crossword-shell-${hash.digest('hex').slice(0, 16)}`;
-const urls = files.map((file) => '/' + relative(dist, file).replaceAll('\\', '/'));
+// Picture books load on demand so installing the app does not download every illustration.
+const urls = files.map((file) => '/' + relative(dist, file).replaceAll('\\', '/'))
+  .filter((url) => !url.startsWith('/picture-books/'));
 await writeFile(resolve(dist, 'sw.js'), `
 const CACHE = ${JSON.stringify(cache)};
 const URLS = ${JSON.stringify(urls)};
@@ -38,6 +40,17 @@ self.addEventListener('fetch', event => {
   if (event.request.mode === 'navigate') {
     event.respondWith(caches.open(CACHE).then(cache => cache.match('/index.html'))
       .then(cached => cached || fetch(event.request)));
+  } else if (url.pathname.startsWith('/picture-books/')) {
+    event.respondWith(caches.open(CACHE).then(async cache => {
+      const cached = await cache.match(event.request);
+      if (cached) return cached;
+      const response = await fetch(event.request);
+      if (response.ok) {
+        try { await cache.put(event.request, response.clone()); }
+        catch { console.warn('Picture book could not be cached.'); }
+      }
+      return response;
+    }));
   } else if (URLS.includes(url.pathname)) {
     event.respondWith(caches.open(CACHE).then(cache => cache.match(url.pathname))
       .then(cached => cached || fetch(event.request)));

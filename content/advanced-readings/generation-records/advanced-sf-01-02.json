@@ -1,0 +1,13 @@
+{
+  "id": "advanced-sf-01-02",
+  "bookId": "advanced-sf-01",
+  "page": 2,
+  "target": "images/advanced-sf-01-02.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. Across the counter the technician gently explains a boundary, the older man listening, a sealed small memory vessel between them, no readable screen text. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"The Restriction\" (omit duplicate heading if identical), page indicator \"2 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nShe explained that the device could restore a memory only with valid consent. His earlier instruction forbade release to anyone, including himself. He did not dispute the signature. Instead, he asked who had been present that afternoon. The database contained a name, but she could not reveal another person's private information merely because he requested it.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-220eaa8d-bea6-476c-8ca9-493ff3c327f5.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}
