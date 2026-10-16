@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigation } from 'react-router-dom';
 import { MenuIcon, type MenuIconName } from '../components/MenuIcon.js';
 import { PwaStatus } from '../components/PwaStatus.js';
 
@@ -11,9 +11,11 @@ const items: { to: string; label: string; icon: MenuIconName }[] = [
 ];
 
 export function AppLayout() {
+  const navigation = useNavigation();
   return <div className="flex h-dvh flex-col overflow-hidden bg-white">
     <div className="min-h-0 flex-1 overflow-y-auto">
       <PwaStatus />
+      {navigation.state !== 'idle' && <p role="status" className="p-2 text-center text-sm text-slate-600">화면을 불러오는 중입니다.</p>}
       <Outlet />
     </div>
     <nav aria-label="하단 메뉴" className="relative z-40 shrink-0 border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)]">

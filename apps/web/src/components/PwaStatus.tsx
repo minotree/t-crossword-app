@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { scheduleAfterLoad } from '../adapters/scheduleAfterLoad.js';
 
 export function useOnlineStatus() {
   const [online, setOnline] = useState(navigator.onLine);
@@ -30,16 +31,18 @@ export function PwaStatus() {
       window.location.reload();
     };
     navigator.serviceWorker.addEventListener('controllerchange', changed);
-    void navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(registration => {
-      if (mounted && registration.waiting) setWaiting(registration.waiting);
-      registration.addEventListener('updatefound', () => {
-        const worker = registration.installing;
-        worker?.addEventListener('statechange', () => {
-          if (mounted && worker.state === 'installed' && navigator.serviceWorker.controller) setWaiting(worker);
+    const cancelRegistration = scheduleAfterLoad(() => {
+      void navigator.serviceWorker.register('/sw.js', { updateViaCache: 'none' }).then(registration => {
+        if (mounted && registration.waiting) setWaiting(registration.waiting);
+        registration.addEventListener('updatefound', () => {
+          const worker = registration.installing;
+          worker?.addEventListener('statechange', () => {
+            if (mounted && worker.state === 'installed' && navigator.serviceWorker.controller) setWaiting(worker);
+          });
         });
-      });
-    }).catch(() => { if (mounted) setError('오프라인 사용 준비에 실패했습니다. 인터넷 연결 후 다시 실행해 주세요.'); });
-    return () => { mounted = false; navigator.serviceWorker.removeEventListener('controllerchange', changed); };
+      }).catch(() => { if (mounted) setError('오프라인 사용 준비에 실패했습니다. 인터넷 연결 후 다시 실행해 주세요.'); });
+    });
+    return () => { mounted = false; cancelRegistration(); navigator.serviceWorker.removeEventListener('controllerchange', changed); };
   }, []);
   return <>
     {!online && <p role="status" className="bg-amber-50 p-2 text-center text-sm">오프라인입니다. 퍼즐과 단어장은 이용할 수 있으며, 힌트 사용은 인터넷 연결이 필요합니다.</p>}

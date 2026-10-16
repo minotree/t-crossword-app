@@ -174,6 +174,18 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - [ ] 배포 전 콘텐츠 편집·권리 검토
 - 콘텐츠와 검수 자료: `content/beginner-poems/`, `content/intermediate-readings/`, `content/advanced-readings/`. 웹용 이미지·목록 갱신: `python scripts/prepare-picture-books.py`.
 
+### 초기 JavaScript 번들 최적화 (2026-10-16)
+
+- [x] 홈을 제외한 퀴즈·단어장·그림책·설정을 경로별 동적 import로 분리하고 로딩·실패 안내 추가
+- [x] 그림책 데이터와 공통 단어 데이터를 초기 홈의 정적 의존성에서 분리 (도메인 패키지 API 변경 없음)
+- [x] 서비스 워커 등록을 페이지 load 이후 유휴 시간으로 지연; 분리된 JS는 설치 캐시에 포함해 기존 오프라인 메뉴 범위 유지
+- 빌드 비교: 초기 JS 1,750.99kB → 557.27kB (약 68% 감소), Vite gzip 표시 491.88kB → 164.78kB. 전체 배포 용량과 설치 캐시 다운로드 총량을 줄인 수치는 아니다.
+- [x] 웹 `lint`·`typecheck`·`build` 통과. 기존 로컬 pnpm 실행기에 `--config.verifyDepsBeforeRun=false --filter @t-crossword/web`를 지정해 각각 실행했다.
+- [x] `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`: 웹 테스트 29개 통과
+- [x] 루트에서 `node --test apps/web/scripts/check-build.mjs`: 초기 정적 의존성·메뉴 precache·오프라인 JS 응답 검사 3개 통과
+- [x] `node --check apps/web/dist/sw.js`, `git diff --check` 통과
+- 500kB 초과 청크 경고는 초기 공통 코드와 별도 단어 데이터에 남아 있다. 실제 브라우저·기기에서의 로딩 시간·PWA 설치·업데이트 확인은 사용자 확인 예정이며, 실제 배포 완료 여부는 별도 확인한다.
+
 ### 지침·연계 문서 동기화 (2026-10-16)
 
 - [x] `AGENTS.md` 14~15절과 구조·사양서·그림책 README·lint/PWA 문서 연결
