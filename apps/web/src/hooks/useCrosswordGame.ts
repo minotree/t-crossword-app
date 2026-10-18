@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { wordProgressStore } from '../adapters/wordProgress.js';
 import {
   consumeGlobalHint,
+  claimPuzzleCompletionReward,
   getUserHintBalance,
   InsufficientHintError,
   type SupabaseClient,
@@ -52,6 +53,36 @@ export function useCrosswordGame({
   const [selectedWord, setSelectedWord] = useState<CrosswordWord | null>(null);
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCompletionModalOpen, setIsCompletionModalOpen] = useState(false);
+  const roundId = useRef('');
+  const rewardAttempt = useRef<string | null>(null);
+  const [completionRewardStatus, setCompletionRewardStatus] = useState<'idle' | 'pending' | 'granted' | 'error'>('idle');
+  const [completionRewardError, setCompletionRewardError] = useState<string | null>(null);
+  const activeUserId = useRef(userId);
+  useEffect(() => { activeUserId.current = userId; }, [userId]);
+
+  const claimCompletionReward = useCallback(async () => {
+    if (!userId || !puzzle?.words.length || solvedWordIds.length !== puzzle.words.length) return;
+    const id = roundId.current;
+    if (rewardAttempt.current === id) return;
+    rewardAttempt.current = id;
+    setCompletionRewardStatus('pending');
+    setCompletionRewardError(null);
+    try {
+      const balance = await claimPuzzleCompletionReward(client, id);
+      if (activeUserId.current !== userId) return;
+      setGlobalHintBalance(balance);
+      if (roundId.current === id) setCompletionRewardStatus('granted');
+    } catch (error: unknown) {
+      if (roundId.current !== id || activeUserId.current !== userId) return;
+      rewardAttempt.current = null;
+      setCompletionRewardStatus('error');
+      setCompletionRewardError(error instanceof Error ? error.message : '보상 지급에 실패했습니다. 다시 시도해 주세요.');
+    }
+  }, [client, userId, puzzle, solvedWordIds]);
+
+  useEffect(() => {
+    if (completionRewardStatus === 'idle') void claimCompletionReward();
+  }, [claimCompletionReward, completionRewardStatus]);
 
   useEffect(() => {
     let isActive = true;
@@ -93,6 +124,10 @@ export function useCrosswordGame({
         ...word, isQuizUsed: completed.has(word.id) ? true : word.isQuizUsed,
       }));
       const newPuzzle = generateCrossword(words, newLevel, newSize);
+      roundId.current = crypto.randomUUID();
+      rewardAttempt.current = null;
+      setCompletionRewardStatus('idle');
+      setCompletionRewardError(null);
       setPuzzle(newPuzzle);
       setLevel(newLevel);
       setGridSize(newSize);
@@ -267,6 +302,9 @@ export function useCrosswordGame({
     isHintBalanceLoading,
     hintBalanceError,
     totalHintsUsed,
+    completionRewardStatus,
+    completionRewardError,
+    claimCompletionReward,
     selectedWord,
     selectedWordCurrentLetters,
     isInputModalOpen,

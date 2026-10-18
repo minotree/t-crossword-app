@@ -8,6 +8,34 @@ function memoryStorage() {
 }
 
 describe('device word progress', () => {
+  it('dismisses mistakes durably without removing history, bookmarks or completion', () => {
+    const storage = memoryStorage();
+    const store = createWordProgressStore(() => storage);
+    store.markHintUsed('word-2');
+    store.markHintUsed('word-3');
+    store.markCompleted('word-2');
+    store.toggleBookmark('word-2');
+    store.dismissMistake('word-2');
+    store.dismissMistake('word-2');
+    const restored = createWordProgressStore(() => storage);
+    expect(restored.getSnapshot()).toEqual({
+      completedWordIds: ['word-2'], bookmarkedWordIds: ['word-2'],
+      hintUsedWordIds: ['word-2', 'word-3'], dismissedMistakeWordIds: ['word-2'], error: null,
+    });
+    restored.resetCompleted();
+    expect(createWordProgressStore(() => storage).getSnapshot().dismissedMistakeWordIds).toEqual(['word-2']);
+    restored.markHintUsed('word-2');
+    expect(createWordProgressStore(() => storage).getSnapshot().dismissedMistakeWordIds).toEqual([]);
+  });
+
+  it('rejects invalid dismissed mistake records', () => {
+    const storage = memoryStorage();
+    storage.setItem(WORD_PROGRESS_KEY, JSON.stringify({
+      completedWordIds: [], bookmarkedWordIds: [], dismissedMistakeWordIds: [42],
+    }));
+    expect(createWordProgressStore(() => storage).getSnapshot().error).not.toBeNull();
+  });
+
   it('persists hint history without duplicates and keeps it after resetting completed words', () => {
     const storage = memoryStorage();
     const store = createWordProgressStore(() => storage);
@@ -22,7 +50,7 @@ describe('device word progress', () => {
     const storage = memoryStorage();
     storage.setItem(WORD_PROGRESS_KEY, JSON.stringify({ completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'] }));
     expect(createWordProgressStore(() => storage).getSnapshot()).toEqual({
-      completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], hintUsedWordIds: [], error: null,
+      completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], hintUsedWordIds: [], dismissedMistakeWordIds: [], error: null,
     });
   });
 
@@ -38,7 +66,7 @@ describe('device word progress', () => {
     store.toggleBookmark('word-2');
     expect(store.resetCompleted()).toBe(true);
     expect(createWordProgressStore(() => storage).getSnapshot()).toEqual({
-      completedWordIds: [], bookmarkedWordIds: ['word-2'], hintUsedWordIds: [], error: null,
+      completedWordIds: [], bookmarkedWordIds: ['word-2'], hintUsedWordIds: [], dismissedMistakeWordIds: [], error: null,
     });
   });
 
@@ -76,7 +104,7 @@ describe('device word progress', () => {
     first.markCompleted('word-2');
     first.toggleBookmark('word-3');
     const restored = createWordProgressStore(() => storage);
-    expect(restored.getSnapshot()).toEqual({ completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], hintUsedWordIds: [], error: null });
+    expect(restored.getSnapshot()).toEqual({ completedWordIds: ['word-2'], bookmarkedWordIds: ['word-3'], hintUsedWordIds: [], dismissedMistakeWordIds: [], error: null });
     restored.toggleBookmark('word-3');
     expect(createWordProgressStore(() => storage).getSnapshot().bookmarkedWordIds).toEqual([]);
     expect(restored.getSnapshot().completedWordIds).toEqual(['word-2']);

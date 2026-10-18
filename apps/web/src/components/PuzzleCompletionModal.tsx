@@ -5,6 +5,9 @@ interface PuzzleCompletionModalProps {
   isOpen: boolean;
   words: CrosswordWord[];
   totalHintsUsed: number;
+  rewardStatus: 'idle' | 'pending' | 'granted' | 'error';
+  rewardError: string | null;
+  onRetryReward: () => void;
   onClose: () => void;
   onNewGame: () => void;
 }
@@ -13,6 +16,9 @@ export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
   isOpen,
   words,
   totalHintsUsed,
+  rewardStatus,
+  rewardError,
+  onRetryReward,
   onClose,
   onNewGame,
 }) => {
@@ -40,6 +46,16 @@ export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
               <p className="text-xs text-amber-600 font-semibold">사용한 힌트</p>
               <p className="text-lg font-bold text-amber-950">{totalHintsUsed}회</p>
             </div>
+          </div>
+          <div className="mt-3 text-sm">
+            {rewardStatus === 'granted' && <p role="status" className="font-bold text-indigo-700">🎁 완성 보상! 힌트 5개가 추가되었습니다.</p>}
+            {(rewardStatus === 'idle' || rewardStatus === 'pending') && <p role="status" className="text-slate-600">완성 보상 힌트 5개를 지급하고 있습니다.</p>}
+            {rewardStatus === 'error' && (
+              <div>
+                <p role="alert" className="text-rose-700">{rewardError}</p>
+                <button type="button" onClick={onRetryReward} className="mt-2 rounded-lg px-3 py-2 font-bold text-indigo-700 hover:bg-indigo-50">보상 다시 받기</button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -84,7 +100,8 @@ export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
           <button
             type="button"
             onClick={onNewGame}
-            className="flex-2 py-3 px-4 rounded-2xl font-bold text-sm text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200 transition-all active:scale-98 cursor-pointer"
+            disabled={rewardStatus !== 'granted'}
+            className="flex-2 py-3 px-4 rounded-2xl font-bold text-sm text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200 transition-all active:scale-98 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             다음 퍼즐 풀기 ✨
           </button>

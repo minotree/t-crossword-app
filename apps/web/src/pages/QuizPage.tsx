@@ -20,6 +20,9 @@ export function QuizPage() {
     isHintBalanceLoading,
     hintBalanceError,
     totalHintsUsed,
+    completionRewardStatus,
+    completionRewardError,
+    claimCompletionReward,
     selectedWord,
     selectedWordCurrentLetters,
     isInputModalOpen,
@@ -41,9 +44,9 @@ export function QuizPage() {
   };
 
   return (
-    <div className="min-h-full bg-slate-50 text-slate-900 pb-4">
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-slate-50 text-slate-900 pb-2">
       {/* 상단 네비게이션 헤더 */}
-      <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80">
+      <header className="shrink-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80">
         <div className="w-full max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="text-2xl">🧩</span>
@@ -78,7 +81,7 @@ export function QuizPage() {
       </header>
 
       {/* 설정 제어 바 (난이도 & 격자 크기) */}
-      <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 my-2">
+      <div className="w-full max-w-4xl mx-auto shrink-0 px-3 sm:px-4 my-2">
         <div className="flex items-center justify-between gap-1 bg-white p-1 rounded-xl border border-slate-200/80 shadow-2xs">
           {/* 난이도 선택 */}
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 bg-slate-100 p-1 rounded-xl">
@@ -124,6 +127,10 @@ export function QuizPage() {
         </div>
       </div>
 
+      <p className="mx-auto mb-2 w-full max-w-4xl shrink-0 px-3 text-xs text-indigo-700 sm:px-4">
+        🎁 한 판을 모두 완성하면 힌트 5개를 드려요.
+      </p>
+
       {/* 메인 콘텐츠 영역 */}
       {hintBalanceError && (
         <p className="mx-auto mt-3 w-full max-w-4xl px-4 text-sm text-rose-700" role="alert">
@@ -131,7 +138,7 @@ export function QuizPage() {
         </p>
       )}
 
-      <main className="w-full max-w-4xl mx-auto px-3 sm:px-4">
+      <main className="flex min-h-0 flex-1 flex-col w-full max-w-4xl mx-auto px-3 sm:px-4">
         {wordProgressError && <p role="alert" className="mb-3 text-sm text-rose-700">{wordProgressError}</p>}
         {puzzle && puzzle.words.length === 0 && (
           <p role="status" className="mb-3 rounded-xl bg-white p-4 text-sm text-slate-600">
@@ -139,14 +146,18 @@ export function QuizPage() {
           </p>
         )}
         {/* 십자낱말 보드 */}
+        <div className="grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] gap-2 landscape:grid-cols-2 landscape:grid-rows-[minmax(0,1fr)]">
+        <div className="min-h-0 min-w-0">
         <CrosswordBoard
           puzzle={puzzle}
           userGrid={userGrid}
           selectedWord={selectedWord}
           solvedWordIds={solvedWordIds}
         />
+        </div>
 
-        {/* 하단 가로/세로 힌트 리스트 */}
+        {/* 화면 방향별 배치에서도 힌트 영역만 스크롤한다. */}
+        <section aria-label="퍼즐 힌트" tabIndex={0} className="min-h-0 min-w-0 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-2 focus-visible:outline-indigo-600">
         {puzzle && (
           <HintListSection
             words={puzzle.words}
@@ -155,6 +166,8 @@ export function QuizPage() {
             onSelectWord={selectWord}
           />
         )}
+        </section>
+        </div>
       </main>
 
       {/* 정답 입력 모달 */}
@@ -176,6 +189,9 @@ export function QuizPage() {
           isOpen={isCompletionModalOpen}
           words={puzzle.words}
           totalHintsUsed={totalHintsUsed}
+          rewardStatus={completionRewardStatus}
+          rewardError={completionRewardError}
+          onRetryReward={() => { void claimCompletionReward(); }}
           onClose={closeCompletionModal}
           onNewGame={() => startNewGame(level, gridSize)}
         />

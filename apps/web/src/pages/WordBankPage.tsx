@@ -17,10 +17,11 @@ export function WordBankPage() {
   const completed = useMemo(() => new Set(progress.completedWordIds), [progress.completedWordIds]);
   const bookmarked = useMemo(() => new Set(progress.bookmarkedWordIds), [progress.bookmarkedWordIds]);
   const hintUsed = useMemo(() => new Set(progress.hintUsedWordIds), [progress.hintUsedWordIds]);
+  const dismissedMistakes = useMemo(() => new Set(progress.dismissedMistakeWordIds), [progress.dismissedMistakeWordIds]);
   const words = defaultVocabList.filter((word) => {
     if (tab === 'completed' && !completed.has(word.id) && word.isQuizUsed !== true) return false;
     if (tab === 'bookmarked' && !bookmarked.has(word.id)) return false;
-    if (tab === 'mistakes' && !hintUsed.has(word.id)) return false;
+    if (tab === 'mistakes' && (!hintUsed.has(word.id) || dismissedMistakes.has(word.id))) return false;
     const search = query.trim().toLowerCase();
     return word.word.toLowerCase().includes(search) || word.meaning.toLowerCase().includes(search);
   });
@@ -42,7 +43,7 @@ export function WordBankPage() {
             </button>
           ))}
         </nav>
-        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">퀴즈에서 힌트를 사용한 단어입니다. 이 기기에 저장됩니다.</p>}
+        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">퀴즈에서 힌트를 사용한 단어입니다. 이 기기에 저장됩니다. 삭제해도 단어와 학습 기록은 유지되며, 다시 힌트를 사용하면 표시됩니다.</p>}
         <label className="block mt-4">
           <span className="sr-only">단어 또는 뜻 검색</span>
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="단어 또는 뜻 검색"
@@ -67,10 +68,19 @@ export function WordBankPage() {
                 )}
                 {word.example && <p className="mt-2 text-sm text-slate-500">{word.example}<br />{word.exampleMeaning}</p>}
               </div>
+              <div className="flex shrink-0 flex-col items-center gap-2">
               <button type="button" aria-label={`${word.word} 즐겨찾기`} aria-pressed={bookmarked.has(word.id)}
                 onClick={() => wordProgressStore.toggleBookmark(word.id)} className="text-2xl text-amber-500 rounded-lg px-2 focus:ring-2 focus:ring-indigo-500">
                 {bookmarked.has(word.id) ? '★' : '☆'}
               </button>
+              {tab === 'mistakes' && (
+                <button type="button" aria-label={`${word.word} 오답노트에서 삭제`}
+                  onClick={() => wordProgressStore.dismissMistake(word.id)}
+                  className="rounded-lg px-3 py-2 text-sm font-medium text-rose-700 hover:bg-rose-50 focus-visible:outline-2 focus-visible:outline-indigo-600">
+                  삭제
+                </button>
+              )}
+              </div>
             </li>
           ))}
         </ul>

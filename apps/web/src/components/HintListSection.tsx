@@ -81,7 +81,7 @@ export const HintListSection: React.FC<HintListSectionProps> = ({
   };
 
   return (
-    <div className="w-full max-w-full mx-auto mt-2 grid grid-cols-2 gap-2 sm:gap-3">
+    <div className="w-full max-w-full mx-auto grid grid-cols-2 gap-2 sm:gap-3 landscape:grid-cols-1">
       {/* 가로 힌트 */}
       <div className="min-w-0">
         <h3 className="flex flex-wrap items-center gap-1 sm:gap-2 font-bold text-gray-800 text-sm sm:text-base mb-2">

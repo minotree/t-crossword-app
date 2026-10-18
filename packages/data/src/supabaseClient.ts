@@ -27,6 +27,10 @@ export type Database = {
     };
     Views: { [_ in never]: never };
     Functions: {
+      claim_puzzle_completion_reward: {
+        Args: { p_round_id: string };
+        Returns: number;
+      };
       consume_user_hint: {
         Args: Record<PropertyKey, never>;
         Returns: number;

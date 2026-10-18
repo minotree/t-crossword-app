@@ -42,6 +42,13 @@ export async function consumeGlobalHint(client: SupabaseClient): Promise<number>
   return data;
 }
 
+/** The server grants a fixed five hints once for this user's round ID. */
+export async function claimPuzzleCompletionReward(client: SupabaseClient, roundId: string): Promise<number> {
+  const { data, error } = await client.rpc('claim_puzzle_completion_reward', { p_round_id: roundId });
+  if (error) throw new Error('완성 보상 힌트 5개를 지급하지 못했습니다. 인터넷 연결을 확인하고 다시 시도해 주세요.');
+  return data;
+}
+
 /** Call only from a trusted server after verifying the ad reward. */
 export async function claimAdReward(
   client: SupabaseClient,

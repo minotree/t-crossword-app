@@ -42,7 +42,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   const [isHintLoading, setIsHintLoading] = useState(false);
   const [errorFeedbackCount, setErrorFeedbackCount] = useState(0);
   const [incorrectIndices, setIncorrectIndices] = useState<number[]>([]);
-  const errorFeedbackLimit = length * 2;
+  const errorFeedbackLimit = length;
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
@@ -269,7 +269,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
         </div>
 
         <div className="mb-4 text-center text-xs leading-relaxed text-gray-600">
-          <p>오답 글자의 붉은색 안내는 창을 열 때마다 글자 수 × 2회까지 제공됩니다.</p>
+          <p>오답 글자의 붉은색 안내는 창을 열 때마다 단어의 글자 수만큼 제공됩니다.</p>
           <p role="status">오답 표시 남은 횟수: {errorFeedbackLimit - errorFeedbackCount} / {errorFeedbackLimit}회</p>
           <p>횟수를 모두 사용해도 입력과 정답 제출은 계속할 수 있습니다. 창을 다시 열면 초기화됩니다.</p>
         </div>

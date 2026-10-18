@@ -2,6 +2,7 @@ export interface WordProgress {
   completedWordIds: string[];
   bookmarkedWordIds: string[];
   hintUsedWordIds: string[];
+  dismissedMistakeWordIds: string[];
   error: string | null;
 }
 
@@ -9,14 +10,14 @@ type ProgressStorage = Pick<Storage, 'getItem' | 'setItem'>;
 export const WORD_PROGRESS_KEY = 't-crossword.word-progress.v1';
 
 export function createWordProgressStore(getStorage: () => ProgressStorage) {
-  let snapshot: WordProgress = { completedWordIds: [], bookmarkedWordIds: [], hintUsedWordIds: [], error: null };
+  let snapshot: WordProgress = { completedWordIds: [], bookmarkedWordIds: [], hintUsedWordIds: [], dismissedMistakeWordIds: [], error: null };
   const listeners = new Set<() => void>();
   const emit = () => listeners.forEach((listener) => listener());
   const load = () => {
     try {
       const raw = getStorage().getItem(WORD_PROGRESS_KEY);
       if (!raw) {
-        snapshot = { completedWordIds: [], bookmarkedWordIds: [], hintUsedWordIds: [], error: null };
+        snapshot = { completedWordIds: [], bookmarkedWordIds: [], hintUsedWordIds: [], dismissedMistakeWordIds: [], error: null };
       } else {
         const parsed: unknown = JSON.parse(raw);
         if (!parsed || typeof parsed !== 'object' ||
@@ -24,10 +25,12 @@ export function createWordProgressStore(getStorage: () => ProgressStorage) {
         const completed = parsed.completedWordIds;
         const bookmarks = parsed.bookmarkedWordIds;
         const hintUsed = 'hintUsedWordIds' in parsed ? parsed.hintUsedWordIds : [];
+        const dismissed = 'dismissedMistakeWordIds' in parsed ? parsed.dismissedMistakeWordIds : [];
+        if (!Array.isArray(dismissed) || !dismissed.every((id): id is string => typeof id === 'string')) throw new Error('Invalid dismissed mistakes');
         if (!Array.isArray(hintUsed) || !hintUsed.every((id): id is string => typeof id === 'string')) throw new Error('Invalid hint history');
         if (!Array.isArray(completed) || !completed.every((id): id is string => typeof id === 'string') ||
             !Array.isArray(bookmarks) || !bookmarks.every((id): id is string => typeof id === 'string')) throw new Error('Invalid progress');
-        snapshot = { completedWordIds: [...new Set(completed)], bookmarkedWordIds: [...new Set(bookmarks)], hintUsedWordIds: [...new Set(hintUsed)], error: null };
+        snapshot = { completedWordIds: [...new Set(completed)], bookmarkedWordIds: [...new Set(bookmarks)], hintUsedWordIds: [...new Set(hintUsed)], dismissedMistakeWordIds: [...new Set(dismissed)], error: null };
       }
     } catch {
       snapshot = { ...snapshot, error: '기기의 학습 기록을 읽지 못했습니다. 저장소 설정을 확인해 주세요.' };
@@ -41,6 +44,7 @@ export function createWordProgressStore(getStorage: () => ProgressStorage) {
         completedWordIds: snapshot.completedWordIds,
         bookmarkedWordIds: snapshot.bookmarkedWordIds,
         hintUsedWordIds: snapshot.hintUsedWordIds,
+        dismissedMistakeWordIds: snapshot.dismissedMistakeWordIds,
       }));
     } catch {
       snapshot = { ...snapshot, error: '학습 기록을 기기에 저장하지 못했습니다. 새로고침하면 이번 기록이 사라질 수 있습니다.' };
@@ -61,6 +65,7 @@ export function createWordProgressStore(getStorage: () => ProgressStorage) {
         getStorage().setItem(WORD_PROGRESS_KEY, JSON.stringify({
           completedWordIds: [], bookmarkedWordIds: next.bookmarkedWordIds,
           hintUsedWordIds: next.hintUsedWordIds,
+          dismissedMistakeWordIds: next.dismissedMistakeWordIds,
         }));
         snapshot = next;
         emit();
@@ -75,7 +80,11 @@ export function createWordProgressStore(getStorage: () => ProgressStorage) {
       save({ ...snapshot, completedWordIds: [...new Set([...snapshot.completedWordIds, id])] });
     },
     markHintUsed(id: string) {
-      save({ ...snapshot, hintUsedWordIds: [...new Set([...snapshot.hintUsedWordIds, id])] });
+      save({ ...snapshot, hintUsedWordIds: [...new Set([...snapshot.hintUsedWordIds, id])],
+        dismissedMistakeWordIds: snapshot.dismissedMistakeWordIds.filter((value) => value !== id) });
+    },
+    dismissMistake(id: string) {
+      save({ ...snapshot, dismissedMistakeWordIds: [...new Set([...snapshot.dismissedMistakeWordIds, id])] });
     },
     toggleBookmark(id: string) {
       const ids = snapshot.bookmarkedWordIds;
