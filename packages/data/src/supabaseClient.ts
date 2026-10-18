@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import type { SupabaseClient as SupabaseClientBase } from '@supabase/supabase-js';
+import type { HintReveal, HintAnswerResult } from '@t-crossword/contracts';
 
 export type UserProfile = {
   id: string;
@@ -27,6 +28,11 @@ export type Database = {
     };
     Views: { [_ in never]: never };
     Functions: {
+      open_toss_hint_session: { Args: { p_identity_hash: string; p_session_hash: string }; Returns: number };
+      get_toss_hint_balance: { Args: { p_session_hash: string }; Returns: number };
+      register_toss_hint_round: { Args: { p_session_hash: string; p_round_id: string; p_words: { id: string; answer: string; hintLimit: number }[] }; Returns: number };
+      consume_toss_round_hint: { Args: { p_session_hash: string; p_round_id: string; p_word_id: string; p_index: number; p_request_id: string }; Returns: HintReveal };
+      submit_toss_round_answer: { Args: { p_session_hash: string; p_round_id: string; p_word_id: string; p_answer: string }; Returns: HintAnswerResult };
       claim_puzzle_completion_reward: {
         Args: { p_round_id: string };
         Returns: number;

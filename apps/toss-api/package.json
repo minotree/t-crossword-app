@@ -1,0 +1,25 @@
+{
+  "name": "@t-crossword/toss-api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "build": "tsc --noEmit && vite build",
+    "start": "node --env-file-if-exists=.env.local dist/main.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@t-crossword/contracts": "workspace:*",
+    "@t-crossword/core": "workspace:*",
+    "@t-crossword/data": "workspace:*"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.10",
+    "@types/node": "^22.0.0",
+    "typescript": "catalog:",
+    "vite": "^6.3.5",
+    "vitest": "catalog:"
+  }
+}

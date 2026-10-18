@@ -1,0 +1,47 @@
+{
+  "name": "@t-crossword/toss",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5174 --strictPort",
+    "dev:browser": "vite --host 0.0.0.0 --port 5174 --strictPort",
+    "prepare:books": "node ../../scripts/prepare-toss-picture-books.mjs",
+    "build": "pnpm run prepare:books && tsc --noEmit && vite build",
+    "build:ait": "pnpm run build && ait build",
+    "preview": "vite preview --port 4174",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "test": "vitest run",
+    "deploy": "ait deploy"
+  },
+  "dependencies": {
+    "@apps-in-toss/web-framework": "3.8.0",
+    "@emotion/react": "^11.14.0",
+    "@t-crossword/core": "workspace:*",
+    "@t-crossword/contracts": "workspace:*",
+    "@toss/tds-mobile": "2.5.1",
+    "@toss/tds-mobile-ait": "2.5.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@apps-in-toss/devtools": "^3.8.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.5.2",
+    "eslint": "^10.12.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^16.5.0",
+    "jsdom": "26.1.0",
+    "typescript": "catalog:",
+    "typescript-eslint": "^8.71.2",
+    "vite": "^6.3.5",
+    "vitest": "catalog:"
+  }
+}

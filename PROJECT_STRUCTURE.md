@@ -47,15 +47,20 @@ project-root/
 │   │   └── package.json
 │   │
 │   ├── toss/
+│   │   ├── apps-in-toss.config.ts # SDK 3.x appName, permissions and webBundleDir
+│   │   ├── vite.config.ts         # Independent Vite + development-only mock tools
+│   │   ├── README.md              # Run/build steps, implemented scope and pending integrations
 │   │   ├── src/
 │   │   │   ├── app/                # Toss navigation, providers, composition root
 │   │   │   ├── pages/              # Toss-specific screens
 │   │   │   ├── components/         # TDS UI
 │   │   │   ├── hooks/
 │   │   │   ├── adapters/           # Toss SDK, token/auth bridge
-│   │   │   └── main.tsx            # Adjust to actual Toss SDK tooling
+│   │   │   └── main.tsx            # TDS AIT Provider and Toss app composition root
+│   │   ├── tests/                  # Storage and puzzle presentation regression tests
 │   │   └── package.json
 │   │
+│   ├── toss-api/                  # Node 24 mTLS auth and server-issued puzzle/hint API
 │   └── desktop/                   # OPTIONAL: create only if needed
 │       ├── src/
 │       ├── src-tauri/

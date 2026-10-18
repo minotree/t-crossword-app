@@ -5,6 +5,17 @@
 
 ---
 
+## 마무리 기록 (2026-10-18): 토스 앱·힌트 API와 고정 힌트 제목
+
+- 토스 독립 React 18/TDS 앱과 Node 24 mTLS 인증 API, 공통 DTO·퍼즐 응답 검증·서버 전용 데이터 저장소, 토스 전용 지갑 마이그레이션을 정리했다. 웹·토스는 가로/세로 제목·진행 숫자를 고정하고 2열 문제 목록만 스크롤한다. 앱 UI·라우팅은 공유하지 않는다.
+- 사용자 확인 기록: SQL Editor 적용, 실제 토스 인증·잔액 조회·힌트 10→9 차감·완성 보상 9→14, 오답노트 등록/숨김·학습 기록 보존. 이번 마무리에서는 기기 검증이나 DB 변경을 추가 실행하지 않았다. 아래 단계별 과거 미구현·미검증 기록보다 이 최신 상태와 앱 README를 우선한다.
+- 문서: AGENTS.md의 화면·플랫폼 경계 규칙을 반영하고 구조·제품 사양·웹 보상 문서·토스 README의 현재 구현과 검증 범위를 맞췄다. 콘텐츠 원본은 변경하지 않았다. 토스 그림책은 승인된 작품 0편, 검토 대기 61편을 제외한다.
+- 환경: Node v24.22.0 / pnpm 10.34.7. `pnpm.cmd typecheck`, `pnpm.cmd lint` 통과. `pnpm.cmd --filter @t-crossword/core test` 21개, `pnpm.cmd --filter @t-crossword/toss test` 33개, `pnpm.cmd --filter @t-crossword/toss-api test` 13개 통과. 웹은 apps/web에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests` 38개 통과.
+- 빌드: `pnpm.cmd --filter @t-crossword/web build`, `pnpm.cmd --filter @t-crossword/toss build:ait`, `pnpm.cmd --filter @t-crossword/toss-api build` 통과. `node --test apps/web/scripts/check-build.mjs` 3개, `pnpm.cmd install --lockfile-only --frozen-lockfile --offline`, `git diff --check` 통과. 의존성을 재설치하지 않았다. 웹·토스의 500kB 초과 청크 경고는 남아 있다.
+- 루트 `pnpm.cmd test`는 기존 packages/utils에 테스트 파일이 없어 실패했다. 관련 core·토스·API·웹 검사는 위 개별 명령으로 모두 통과했으며 루트 전체 테스트 성공으로 기록하지 않는다.
+- 남은 작업: 상시 HTTPS API 호스팅·프록시 요청 제한·모니터링·세션/판 보관 정책, 실제 DB 동시성·통신 실패 재시도, 완전 종료 후 저장 기록·가로 회전·키보드·Safe Area·접근성 추가 검증, 그림책 편집·권리 검토와 광고 보상. 모바일 네이티브 검증·별도 배포·토스 업로드는 실행하지 않았다. 임시 터널 API 주소는 빌드 시 포함되므로 운영 전 주소 변경·재빌드가 필요하다.
+- 커밋·일반 푸시 결과는 최종 보고에 기록한다. 비밀 환경변수·인증서·빌드 산출물은 커밋에서 제외한다.
+
 ## 추가 작업 기록 (2026-10-18): 퀴즈 배치·오답노트 삭제·완성 보상
 
 - [x] 세로 화면은 그리드 위·힌트 아래, 가로 화면은 그리드 왼쪽·힌트 오른쪽으로 배치한다. 퀴즈 화면 높이를 하단 메뉴 위 공간에 맞추고 힌트 영역만 스크롤한다. 방향은 CSS 화면 너비·높이로 판단한다.
@@ -161,7 +172,7 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - [x] 오프라인 로컬 퍼즐·단어장·학습 기록 사용 경로 및 온라인 전용 힌트 안내 구현
 - [ ] PWA 설치·오프라인 재실행·업데이트 실제 브라우저/기기 검증
 - [ ] 웹 광고 시청·보상 검증 및 힌트 충전 UI 연결
-- [ ] 모바일·토스 UI, 기기 저장 및 인증 어댑터 구현 (현재 영구 저장은 웹만 연결)
+- [ ] 모바일·토스 UI, 기기 저장 및 인증 어댑터 구현 (웹 연결 완료; 토스 저장·1차 UI는 구현했으며 실제 토스 저장·인증과 모바일 연결은 미검증/미완료)
 
 학습완료·즐겨찾기는 해당 브라우저·사이트에 저장되며, 사이트 데이터 삭제 시 사라지고 다른 기기와 동기화되지 않는다. 힌트 잔액은 이 기록과 별개로 Supabase의 사용자별 `hint_balance`를 조회·차감하며, 새 퍼즐에서도 유지한다.
 
@@ -229,10 +240,83 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - [x] Restrict ad reward grants to `service_role` and provide a data helper for a trusted server; ad-platform verification remains in Phases 6 and 7.
 
 ## 📌 Phase 6. Toss 미니앱 구현 (`apps/toss` - Apps in Toss)
-- [ ] `apps/toss` 스캐폴딩 (Granite CLI + Vite)
-- [ ] TDS (Toss Design System) 컴포넌트로 UI 구현
+
+### 힌트 후속 구현 및 인증서 설정 (2026-10-18)
+
+- 사용자 확인으로 최신 세로 화면의 난이도/크기 한 줄·힌트 목록 표시·스크롤과 설정 학습 초기화가 정상 동작함을 확인했다. 가로 회전 결과와 초기화 후 모든 보존 항목의 실기기 검증은 별도다. 하단 메뉴 명칭은 줄바꿈을 막았고, 상단 제목 여백은 위 56→44px·아래 16→12px로 줄였다. 토스 버튼과의 실제 간격은 새 번들에서 재확인이 필요하다.
+
+- 실기기 퀴즈 레이아웃 회귀 수정: 난이도/크기 버튼이 두 줄로 내려가고 보드가 힌트 목록 공간을 소진하는 화면을 확인했다. 토스 설정 바를 고정 2그룹×3버튼의 한 줄 grid로 바꾸고, 세로 화면의 남은 공간을 보드/힌트에 3:2로 배분하며 힌트 최소 120px를 확보했다. 보드는 크기가 정해진 부모의 가로·세로 container 단위 중 작은 값에 맞춰 축소한다. 가로 화면은 좌우 배치를 유지한다. `apps/toss/src/styles.css`만 실행 코드 수정. 토스 `lint`·`build:ait`(타입 검사 포함), `git diff --check` 통과. CSS 배치 수정이라 동일 로직 테스트는 반복하지 않았으며 실제 iPhone 재확인·회전 검증은 대기다.
+
+- 다음 단계 구현: 토스 하단에 그림책·설정을 추가했다. 그림책은 난이도·목록·읽기·이전/다음·목록 복귀·페이지별 해석·스크린리더 영어 원문·이미지 실패 재시도·AI 활용 고지를 제공하고 SDK 뒤로가기는 읽기→목록→홈으로 처리한다. 공통 원본에서 토스 소유 파일을 생성하는 `scripts/prepare-toss-picture-books.mjs`를 추가했다. 현재 원본 61편 모두 편집/권리 검토 전이므로 포함하지 않았다(승인 작품 0편). 원본의 명시적 `approved` 상태만 허용하며 토스 UI에는 준비 안내를 표시한다. 읽기 UI는 독립 테스트용 2쪽 자료로 검사했다. 실제 작품·삽화 연결은 미완료다.
+- 설정의 학습 기록 초기화는 확인 창 후 저장 성공 시에만 반영하고 현재 판을 종료한다. 즐겨찾기·오답노트·힌트 잔액을 보존하며 저장 실패 시 기존 기록을 유지한다. 원격 DB 삭제·지갑 변경은 없다. 현재 기기에서 초기화한 기록이 완료 단어 재출제 기준이다.
+- 이 단계 검증: `pnpm.cmd --filter @t-crossword/toss test` 33개, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build:ait`(콘텐츠 준비·타입 검사 포함), `git diff --check` 통과. 큰 청크 경고 유지. 실제 기기 메뉴·초기화·읽기·뒤로가기 검증은 미실행. 새 `.ait` 생성, 업로드·배포는 미실행이며 API·터널은 테스트용으로 유지했다.
+
+- PWA·토스 힌트 스크롤 공통 개선: 가로/세로 제목과 진행 숫자를 스크롤 영역 밖의 고정 2열 헤더로 분리했다. 그 아래 가로·세로 문제 목록만 하나의 영역에서 함께 스크롤하며 화면 방향을 바꿔도 두 제목이 항상 보인다. 바깥 힌트 영역은 스크롤하지 않는다. 키보드 포커스는 내부 문제 목록에 제공한다. 웹 `HintListSection.tsx`·`QuizPage.tsx`, 토스 `App.tsx`·`styles.css` 수정.
+- 검증: 웹/토스 각각 `lint`·타입 검사를 포함한 `build`/`build:ait` 통과, 토스 테스트 31개 통과. 큰 청크 경고 유지. 실제 브라우저·토스 기기의 가로/세로 스크롤 확인은 미실행이다. 최신 `.ait` 생성 완료, 배포·업로드 미실행.
+
+- PWA와 토스의 홈/퀴즈 흐름 일관성 요청 반영: 토스 홈을 퍼즐 그림·동일한 환영 문구·퀴즈 시작/단어장 관리 버튼으로 변경하고 난이도·크기 설정을 퀴즈 내부로 이동했다. 설정 변경은 선택한 값으로 새 판을 생성하며 성공 후 선택 상태를 반영한다. 홈 왕복은 기존 판을 유지한다. 하단 메뉴에 독립 SVG 아이콘과 명칭을 함께 표시하고 상단 도구 겹침을 줄이도록 여백을 보완했다. TDS·토스 인증·저장·지갑과 독립 UI 경계를 유지한다. 그림책·설정은 후속 구현이다.
+- 검증: `pnpm.cmd --filter @t-crossword/toss test` 31개(홈→단어장/퀴즈·설정 변경 전달·홈 왕복 시 판 보존 회귀 포함), `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build:ait`(타입 검사 포함) 통과. 큰 청크 경고 유지. 실제 토스 재업로드 후 홈·상단 여백·회전·작은 화면 검증은 미실행이다.
+- 사용자가 오답노트에서 삭제한 `UGLY`가 학습완료 목록에 남아 있음을 확인했고, 새 번들의 동의어 보라색 반영도 확인했다.
+
+- 추가 사용자 화면 확인: 오답노트 `UGLY` 1개에서 삭제 후 0개·빈 목록 안내로 전환됐으며 학습 10개·힌트 14개는 유지됐다. 마지막 홈 화면에도 같은 학습·잔액과 새 퍼즐 시작 버튼이 표시된다. 전체/학습완료 목록에서 `UGLY` 원본 유지 여부, 완전 종료·재접속 수행 여부와 미완성 판의 종료 후 미복원은 이 화면만으로 확정하지 않는다.
+
+- 실제 토스 후속 검증: 사용자가 힌트 사용 단어의 오답노트 등록을 확인했다. 이어 제공한 완료 화면에서 초급 8×8 판의 10/10 완료·학습 10개와 완성 보상 안내, 잔액 9→14(+5)를 확인했다. 힌트 공개·차감·오답노트 등록·판 완성 보상까지 실제 사용자 흐름이 검증됐다. 오답노트 삭제 후 원본/기타 기록 보존, 앱 종료 후 잔액·학습 기록 유지 및 퍼즐 미복원은 확인 대기다.
+
+- 사용자 제공 실제 토스 화면에서 4글자 문제의 힌트 사용 후 첫 글자 `U` 공개, 잔액 10→9, 단어별 사용량 1/1과 한도 도달 시 버튼 비활성화를 확인했다. 오답 표시 남은 횟수 4/4도 표시된다. 오답노트 등록 및 완성 보상 5개는 아직 별도 확인 대기다.
+- 단어장 동의어 색상을 힌트와 같은 보라색(`#6d28d9`)으로 변경했다(`App.tsx`, `styles.css`). 토스 `build:ait`(타입 검사 포함)·`lint`·`git diff --check` 통과. 새 번들을 생성했으며 해당 단어장 색상의 실제 기기 반영은 별도 확인이 필요하다.
+
+- 실제 토스 인증 후속 결과: 네트워크 제한 밖에서 API를 재시작한 뒤 사용자가 휴대폰에서 힌트 잔액 표시 성공을 확인했다. 실제 토스 인증·서버 지갑 잔액 조회 경로가 동작함을 확인했다. 힌트 1개 차감·오답노트 등록·판 완성 보상 5개와 재시도/재실행 검증은 아직 별도 확인이 필요하다. 앞선 실패 상태와 재시도 대기 기록은 이 결과로 갱신된다.
+
+- CORS 수정 후 실기기에서 사용자 확인 실패가 표시됐다. 서버의 외부 통신 제한 가능성을 확인하기 위해 사용자 도구 승인 후 API를 네트워크 제한 밖에서 재시작했다. 선택적 인증 진단에 HTTP 상태·제한된 오류 코드/전송 코드만 추가했다. 토큰·인증 코드·인증서·응답 본문은 출력하지 않는다. API `build`와 `test` 13개, `git diff --check` 통과. 실제 인증 재시도 결과 대기 중이며 원인 확정·인증 성공으로 기록하지 않는다.
+
+- 실기기 초기 `Load failed` 원인 확인: 서버에서 실제 테스트 Origin `https://t-crossword.private-apps.tossmini.com`의 CORS 차단을 확인했다. 로컬 API 허용 목록에 이 정확한 Origin을 추가하고 재시작했다. 진단은 환경 변수로 선택하는 거부 Origin 정규화 출력만 추가했으며 요청 본문·토큰·키는 출력하지 않는다. API 타입 검사/빌드는 통과했다. 실제 인증 성공 여부는 재시도 확인 대기다.
+
+- 임시 HTTPS 준비: 사용자 요청으로 공식 Cloudflare `cloudflared` 2026.10.1을 PC 임시 폴더에 내려받아 로컬 API(8787) 터널을 실행했다. 무시되는 토스 `.env.local`에 발급된 HTTPS API 주소를 설정하고 `pnpm.cmd --filter @t-crossword/toss build:ait`를 다시 실행해 성공했다(큰 청크 경고 유지). 외부 HTTPS에서 CORS preflight 204와 미인증 요청 401을 확인했다. 사용자·잔액 변경은 없다. 실제 미니앱 실행 Origin 등록·콘솔 테스트 업로드·토스 인증은 아직 미실행이다. 재시작 시 주소 변경 가능성과 설정 절차는 API README에 기록했다.
+
+- 후속 실제 연결 확인: 사용자가 SQL Editor 실행 성공 화면을 제공했다. 실제 Supabase의 `get_toss_hint_balance`에 존재하지 않는 세션 해시로 요청하여 서버 키는 예상한 `toss_session_expired`(28000), 공개 anon 키는 권한 거부(42501)를 반환함을 확인했다. 사용자 생성·잔액 변경은 없었다. 서버 전용 키 설정도 완료됐으며 키 값은 출력하지 않았다. 아래 DB 미적용·키 미설정 기록은 이 확인 전 상태다. 모든 테이블의 실제 RLS 조회·실제 토스 인증/차감/보상 통합 검증은 아직 미실행이다.
+
+- 별도 `apps/toss-api` Node 24 서버, 토스 인증 코드 mTLS 교환, 공유 DTO·퍼즐 응답 검증·데이터 저장소와 토스 전용 지갑 SQL을 구현했다. 최초 10개, 한 글자당 1개 차감, 단어별 한도, 재시도 중복 차감 방지, 모든 정답 검증 후 판당 5개 지급을 처리한다. 기존 웹 지갑은 유지한다.
+- 토스 화면의 잔액·힌트·오류 재시도·공개 글자 보존·오답노트 등록/재표시를 연결했다. 서버 URL이 없으면 힌트와 보상은 비활성이다. 아래 초기 기록의 힌트 미구현 상태는 이 기록으로 갱신된다.
+- 사용자 제공 외부 폴더에서 인증서·개인 키 파싱, 키 쌍 일치와 현재 유효기간을 확인했다. 내용을 출력하지 않았다. 무시되는 API `.env.local`에 파일 경로와 기존 공개 Supabase URL을 설정했다. 서버 전용 키는 빈 값이며 프런트 서버 URL은 아직 활성화하지 않았다.
+- 검증 통과: `pnpm.cmd typecheck`; `pnpm.cmd --filter @t-crossword/toss test` 30개; `pnpm.cmd --filter @t-crossword/toss-api test` 13개; `pnpm.cmd --filter @t-crossword/core test` 21개; 토스 `lint`·`build:ait`, API `build`, 웹 `build`. SQL은 PGlite에서 권한·소유권·한도·잔액·보상·멱등성을 검사했다. 실제 Supabase 부하 검증은 아니다.
+- lockfile 기존 비토스 importer 보존 및 참조 1,376개 확인. `pnpm.cmd install --lockfile-only --frozen-lockfile --offline` 통과. 큰 청크 경고는 유지된다.
+- 미실행: 실제 DB 마이그레이션 적용, 서버 전용 키 설정, 실제 mTLS 교환·HTTPS/CORS·토스 기기 통합 검증, 업로드·배포·커밋·푸시. 설정과 경계는 `apps/toss-api/README.md`, `docs/decisions/20261018-toss-hint-api.md` 참조.
+
+- [x] `apps/toss` 스캐폴딩 (SDK 3.8.0 + 독립 Vite, `apps-in-toss.config.ts`)
+- [x] React 18 + TDS Mobile/AIT 2.5.1 기반 홈·퍼즐 설정·퀴즈·정답 입력·완료 복습·단어장 1차 UI
+- [x] 공유 core 공개 API로 퍼즐 생성·예문 마스킹·어휘 사용, 완료 단어 재출제 제외
+- [x] 토스 SDK Storage/브라우저 별도 저장 어댑터, 학습완료·즐겨찾기 복원, 비동기 순차 저장·실패 재시도
+- [x] SDK 뒤로가기 구독과 TDS Safe Area 연결 (실제 토스 동작 미검증)
+- [x] `t-crossword.ait` 생성 성공; 업로드·배포 미실행
+- [x] 글자별 입력·교차 셀 보존·오답 표시 횟수 및 중앙 정렬 정답 창
+- [ ] 웹과의 나머지 기능 대응: 오답노트 힌트 등록 연동·그림책·설정
 - [ ] Toss SDK 연동 (사용자 인증, 토스 리워드 광고)
+- [ ] 서버 힌트 차감·완성 보상 5개와 토스 인증 사용자 연결
 - [ ] Toss 샌드박스 환경 동작 검증
+
+### 토스 1차 작업 기록 (2026-10-18)
+
+- 정답 입력 창을 비교 이미지에 맞춰 중앙 정렬·보라색 동의어·글자별 칸으로 변경했다. 이미 완성된 교차 셀은 읽기 전용이며 포커스·방향키·백스페이스는 수정 가능한 셀로 이동한다. 올바른 단어 완성 시 한 번 자동 제출하고 수동 제출도 유지한다. 오답 붉은색 표시는 글자 수만큼 제공하고 정답 글자·삭제·한글 입력은 차감하지 않는다. 소진 후에도 입력·제출을 허용하며 재실행 시 초기화한다. 힌트 버튼은 실제 서버 미연결을 나타내는 `힌트 준비 중`으로 비활성화한다. 보드와 입력 창의 공개 셀 계산은 토스 전용 표시 도우미로 통일했다.
+- 힌트 카드 왼쪽 정렬 및 동의어 보라색(`#6d28d9`) 요청도 반영했다. 웹 앱 화면·훅을 import하지 않고 토스 전용 UI를 유지한다.
+- 입력 회귀 테스트를 위해 MIT `jsdom` 26.1.0을 토스 개발 의존성으로 추가했다. 최초 DOM 테스트에서 개발 도구가 공유 core 파일에 패널 import를 주입하는 문제를 발견해 플러그인을 개발 서버에만 적용하도록 수정했다. jsdom의 dialog·matchMedia·Safe Area 부재와 초기 포커스 타이머 대기는 테스트 환경에서 보완했다. 실제 토스 SDK 검증으로 간주하지 않는다.
+- 검증: `pnpm.cmd --filter @t-crossword/toss test` 3개 파일·21개 통과. 교차 셀 보존·자동 제출 중복 방지·오답 표시 한도·소진 후 제출·정답/삭제/한글 입력 제외·백스페이스·재실행 초기화·빈 칸 안내를 DOM 조작으로 확인했다. `pnpm.cmd --filter @t-crossword/toss build:ait`, `pnpm.cmd --filter @t-crossword/toss lint` 통과. lockfile의 기존 앱 해석을 보존하고 스냅샷 참조 1,371개를 확인했으며 `pnpm.cmd install --lockfile-only --frozen-lockfile --offline`·`git diff --check` 통과. 큰 청크 경고는 유지된다. 실제 브라우저·토스의 가상 키보드·레이아웃·포커스는 미검증이다.
+
+- 웹 대비 퀴즈 안내 누락 보완: 상단에 `한 판을 모두 완성하면 힌트 5개를 드려요.`와 `보상 기능 준비 중`을 함께 표시했다. 실제 서버 지급 기능은 아직 미연결이다. 가로·세로 힌트 카드를 토스 전용 `ClueButton`으로 분리해 동의어가 있으면 별도 줄에 표시하고 빈 동의어는 생략한다. 추가 안내 높이를 반영해 가로 화면의 보드 높이를 조정했다.
+- 해당 변경 검증: `pnpm.cmd --filter @t-crossword/toss test` 16개 통과(가로·세로 동의어 표시/빈 값 생략 포함), `pnpm.cmd --filter @t-crossword/toss build:ait`, `pnpm.cmd --filter @t-crossword/toss lint`, `git diff --check` 통과. 실제 브라우저·토스 기기에서 긴 동의어 줄바꿈·회전·가독성 확인은 미실행이며 큰 번들 경고는 유지된다.
+
+- 오답노트 누락 보완: 토스 단어장에 네 번째 탭·목록 필터·빈 목록 안내·목록에서만 삭제하는 버튼을 추가했다. 힌트 이력과 숨김 ID를 별도로 저장하고 기존 학습완료·즐겨찾기 기록을 보존한다. 힌트 사용 기능은 아직 토스에 없어 실제 플레이에서의 등록·재표시는 후속 연동 대상이다. 웹 오답노트를 자동 이전하거나 오답 제출을 힌트 사용으로 간주하지 않는다.
+- 이 변경의 검증: `pnpm.cmd --filter @t-crossword/toss test` 14개 통과, `pnpm.cmd --filter @t-crossword/toss build:ait`와 `pnpm.cmd --filter @t-crossword/toss lint`, `git diff --check` 통과. 기존 기록 호환·숨김 후 저장 복원·다른 기록 보존·잘못된 필드 거부를 검사했다. 실제 브라우저 상호작용·토스 런타임 확인은 미실행이다.
+- 이어 하기 범위 확정: 사용자 요청에 따라 앱을 켜 둔 동안만 지원한다. 종료·새로고침 후 진행 중 퍼즐 복원은 후속 구현 대상에서 제외하며 학습완료·즐겨찾기 등 기록 저장은 유지한다.
+
+- 콘솔 등록 후 빌드 구성 확인: 사용자가 앱 이름 `영어 퍼즐`, `appName: t-crossword`, 앱 유형 `게임`으로 생성했다고 확인했다. `apps-in-toss.config.ts`의 `appName`·`webBundleDir: dist`·Vite 출력 및 `.ait` 생성 명령을 확인하고 토스 HTML/화면 제목을 `영어 퍼즐`로 맞췄다. SDK 3.8.0에 없는 예전 이름·게임 유형 필드를 추가하지 않았으며 콘솔 정보는 README에 기록했다. 콘솔 직접 조회·업로드·배포는 미실행이다. 아래 콘솔 미등록 기록은 1차 구현 시작 당시의 상태다.
+- 등록 정보 반영 후 `pnpm.cmd --filter @t-crossword/toss build:ait`(타입 검사·웹 빌드·`t-crossword.ait` 생성), `pnpm.cmd --filter @t-crossword/toss lint`, `git diff --check` 통과. 큰 청크 경고는 유지되며 이름 변경에 무관한 기존 테스트를 반복하지 않았다.
+
+- 콘솔 미등록 상태로 사용자와 `appName: t-crossword` 합의. 앱 SDK/TDS는 `apps/toss`에만 설치하고 다른 앱 UI·라우팅은 가져오지 않았다. TDS의 React 18 peer 요구를 따르며 웹의 React 19는 유지한다. 개발 도구 때문에 토스 패키지 Node 조건은 24 이상이다.
+- SDK 3.x는 이전 Granite 설정·개발 명령과 달라 실제 설치한 CLI 도움말·설정 타입을 확인했다. Vite 5174 포트·공식 개발 도구 플러그인·`apps-in-toss.config.ts`로 구성했다. 상세 명령·이용 범위·남은 기능은 [토스 README](apps/toss/README.md)에 기록했다.
+- 검증: `pnpm.cmd --filter @t-crossword/toss build:ait`로 타입 검사·프로덕션 Vite 빌드·`.ait` 생성 성공. `pnpm.cmd --filter @t-crossword/toss lint` 및 `pnpm.cmd typecheck` 전체 통과. `pnpm.cmd --filter @t-crossword/toss test`는 2개 파일·10개 테스트 통과. 최초 모달 렌더 테스트는 TDS Provider 누락으로 실패했으며 실제 앱과 동일한 Provider를 적용해 통과했다.
+- SDK/TDS 의존성 추가로 `pnpm-lock.yaml` 갱신. pnpm 10이 기존 모바일 Ionic/react-router 연결까지 바꾼 것을 diff에서 발견해 기존 워크스페이스 importer·패키지·스냅샷을 보존하고 토스에 필요한 항목만 추가했다. 모든 기존 importer 해석 결과 동일 및 스냅샷 참조 1,255개 연결 확인. `pnpm.cmd install --lockfile-only --frozen-lockfile --offline` 통과. 모듈까지 설치하는 frozen 재검증은 pnpm의 비대화형 모듈 재구성 요구로 중단되어 임의 삭제·재설치를 수행하지 않았다. `protobufjs` 빌드 스크립트는 임의 승인하지 않았다. 토스 번들 약 2.33MB(gzip 약 687kB) 및 큰 청크 경고가 있어 초기 로드 최적화가 남아 있다.
+- 추가 확인: `pnpm.cmd --filter @t-crossword/toss dev` 시작 성공, `http://localhost:5174/` 및 `/src/main.tsx` HTTP 200·엔트리 모듈의 개발 도구 주입 확인. 프로덕션 산출물에서 `ait-devtools`, `__AIT_DEVTOOLS`, `AitDevtoolsPanel`, `DEFAULT_STATE` 표식은 발견되지 않았다. 표식 검사만으로 개발 도구 코드 부재를 완전히 증명하지는 않는다. React 18 설치 이후 기존 웹의 `pnpm.cmd --filter @t-crossword/web build`도 통과했고 웹 산출물 해시가 이전과 동일했다. `git diff --check` 통과.
+- 미실행: 실제 브라우저 상호작용·토스 샌드박스·토스앱, 네이티브 저장·뒤로가기·Safe Area·키보드·회전·포커스·기기 성능, 로그인·광고·서버 보상 통합과 업로드·배포. 콘솔 등록은 사용자가 완료했다고 확인했다. 기존 웹·모바일 UI 코드는 변경하지 않았다. HTTP 응답·렌더 테스트·개발 모의 실행을 기기 검증으로 간주하지 않는다.
 
 ---
 

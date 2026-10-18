@@ -57,7 +57,7 @@
 - 공통: TypeScript strict, pnpm workspace, Supabase. 실제 설치 버전은 각 `package.json`과 lockfile을 확인한다.
 - 웹/PWA: React 19, Vite, Tailwind CSS v4. UI·라우팅·브라우저 저장·서비스 워커는 `apps/web` 소유다.
 - 모바일: Ionic React 8, Capacitor 7. `apps/mobile`이 독립 UI·라우팅·네이티브 연동을 소유한다.
-- 토스: `apps/toss`에서 TDS와 실제 선택한 SDK의 공식 요구사항을 따른다. 현재 앱 구현은 후속 작업이며 버전·설정 파일을 미리 확정하지 않는다.
+- 토스: 독립 React 18 앱인 `apps/toss`에서 SDK 3.8.0·TDS Mobile/AIT 2.5.1과 `apps-in-toss.config.ts`를 사용한다(Node 24 이상). 별도 `apps/toss-api`가 mTLS 사용자 확인과 서버 힌트 지갑을 연결한다. 구현·실기기 확인 범위와 남은 작업은 각 앱 README를 따른다.
 - 웹 Node 지원 범위는 `apps/web/package.json`의 `engines`를 따른다. 현재 `^20.19.0 || ^22.13.0 || >=24`이며 루트의 최소 버전만으로 호환성을 판단하지 않는다.
 - 네이티브 JDK·Android SDK·Xcode 버전은 선택한 Capacitor 버전의 요구사항을 확인한다. 웹 빌드 성공을 네이티브 호환성 증명으로 사용하지 않는다.
 
@@ -83,7 +83,8 @@ export const getWordHintLimit = (word: string): number => {
 
 | 책임 | 위치 |
 | --- | --- |
-| 플랫폼별 UI·라우팅·인증/저장 어댑터 | `apps/web`, `apps/mobile`, 향후 `apps/toss` |
+| 플랫폼별 UI·라우팅·인증/저장 어댑터 | `apps/web`, `apps/mobile`, `apps/toss` |
+| 토스 mTLS 사용자 확인·서버 출제·힌트 API | `apps/toss-api` |
 | 공통 DTO·포트·검증 계약 | `packages/contracts` |
 | 프레임워크 독립 퍼즐·힌트·단어장 규칙 | `packages/core` |
 | Supabase 클라이언트 팩토리·힌트 데이터 접근 | `packages/data` |

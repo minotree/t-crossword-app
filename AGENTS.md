@@ -71,6 +71,7 @@ scripts/
 - Define supported offline operations; do not promise offline behavior for network-only features.
 - Test installation, cache updates and data consistency where PWA features are enabled.
 - 웹 퀴즈는 화면 너비가 높이보다 클 때 그리드 왼쪽·힌트 오른쪽, 그 외에는 그리드 위·힌트 아래로 배치하고 힌트 영역만 스크롤한다.
+- 웹·토스 퀴즈 모두 가로/세로 힌트 제목과 진행 숫자는 고정하고 아래 2열 문제 목록만 스크롤한다. 가로·세로 화면 모두 적용한다.
 - 오답노트 삭제는 목록 숨김으로 처리하고 단어·힌트 사용 이력·즐겨찾기·학습완료 기록을 보존한다. 같은 단어에 힌트를 다시 사용하면 목록에 복귀한다.
 - 오답 붉은색 표시 한도는 입력 창을 열 때마다 단어 글자 수만큼이다. 정답 글자·삭제는 차감하지 않으며 소진 후에도 입력·제출을 허용한다.
 - 판 완성 보상은 현재 힌트 잔액에 5개를 더하며, 서버 지급 확인 후 성공을 안내한다. 재시도에는 같은 판 ID를 사용한다. 적용·신뢰 경계·미검증 항목은 `docs/puzzle-completion-rewards.md`를 따른다.
@@ -83,6 +84,7 @@ scripts/
 ### Toss Mini App
 - Owns TDS-based UI, Toss SDK integration, platform navigation and authentication handshakes.
 - **TDS and current Toss platform rules take priority over visual consistency with other apps.**
+- UI 구현은 분리하되 제공하는 기능의 화면 구성·메뉴 명칭·사용 흐름은 Web/PWA를 기준으로 일관되게 유지한다. 플랫폼 제약이나 미구현 범위로 차이가 생기면 구분해 기록한다.
 - Never call Toss-specific APIs from shared core logic or ordinary web/mobile UI.
 - Verify SDK versions, permissions, deployment rules and authentication flows against current official documentation.
 - Test critical behavior inside the actual Toss environment where required.
@@ -246,4 +248,5 @@ Respect tool/system safety requirements first. Within project guidance, prioriti
 - 웹 lint 환경: `docs/lint.md`
 - Vercel·PWA 배포와 기기 검증: `docs/vercel-pwa.md`
 - 퍼즐 완성 힌트 보상: `docs/puzzle-completion-rewards.md`
+- 토스 미니앱 개발·검증 범위: `apps/toss/README.md`
 - 그림책 제작·검수 기준: `content/beginner-poems/README.md`, `content/intermediate-readings/README.md`, `content/advanced-readings/README.md`

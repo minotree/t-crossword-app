@@ -157,7 +157,7 @@ export function QuizPage() {
         </div>
 
         {/* 화면 방향별 배치에서도 힌트 영역만 스크롤한다. */}
-        <section aria-label="퍼즐 힌트" tabIndex={0} className="min-h-0 min-w-0 overflow-y-auto overscroll-contain pr-1 focus-visible:outline-2 focus-visible:outline-indigo-600">
+        <section aria-label="퍼즐 힌트" className="min-h-0 min-w-0 overflow-hidden">
         {puzzle && (
           <HintListSection
             words={puzzle.words}
