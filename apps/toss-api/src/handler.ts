@@ -1,34 +1,61 @@
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
-import { defaultVocabList, generateCrossword, type DifficultyLevel, type GridSize } from '@t-crossword/core';
-import { isRecord } from '@t-crossword/contracts';
+import { defaultVocabList, generateCrossword, parseCrosswordPuzzle, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { isRecord, isHintBalance } from '@t-crossword/contracts';
 import { TossHintError, type createTossHintRepository } from '@t-crossword/data';
+import { createRequestLimiter, readLimitedBody } from './requestLimit.js';
 
 export const hash = (value: string) => createHash('sha256').update(value).digest('hex');
 type Repository = ReturnType<typeof createTossHintRepository>;
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 
-export function createHintHandler({ repository, exchangeCode, allowedOrigins }: {
+export function createHintHandler({ repository, exchangeCode, allowedOrigins, probeCode, now }: {
   repository: Repository;
   exchangeCode: (code: string) => Promise<string>;
   allowedOrigins: string[];
+  probeCode?: (code: string) => Promise<boolean>;
+  now?: () => number;
 }) {
+  const limit = createRequestLimiter(now);
   return async (request: Request): Promise<Response> => {
     const origin = request.headers.get('Origin');
     const headers = new Headers({ 'Content-Type': 'application/json', 'Cache-Control': 'no-store', 'Vary': 'Origin' });
     if (origin && !allowedOrigins.includes(origin)) return new Response(JSON.stringify({ error: '허용되지 않은 요청입니다.' }), { status: 403, headers });
     if (origin) headers.set('Access-Control-Allow-Origin', origin);
+    if (request.method === 'GET' && new URL(request.url).pathname === '/healthz') {
+      return new Response(JSON.stringify({ status: 'ok' }), { status: 200, headers });
+    }
     headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     headers.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
     const json = (value: unknown, status = 200) => new Response(JSON.stringify(value), { status, headers });
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers });
     if (request.method !== 'POST') return json({ error: 'POST 요청만 지원합니다.' }, 405);
+    const rejectLimit = (seconds: number) => {
+      headers.set('Retry-After', String(seconds));
+      headers.set('Access-Control-Expose-Headers', 'Retry-After');
+      return json({ error: `요청이 많습니다. ${seconds}초 후 다시 시도해 주세요.`, code: 'rate_limited' }, 429);
+    };
+    const globalWait = limit('global', 600);
+    if (globalWait) return rejectLimit(globalWait);
     try {
-      const raw = await request.text();
-      if (raw.length > 65_536) return json({ error: '요청이 너무 큽니다.' }, 413);
+      const action = new URL(request.url).pathname.replace(/\/$/, '');
+      if (!['/session', '/auth-probe', '/balance', '/round', '/hint', '/answer'].includes(action)) return json({ error: '경로를 찾지 못했습니다.' }, 404);
+      if (action === '/session' || action === '/auth-probe') {
+        const wait = limit('authentication', 20);
+        if (wait) return rejectLimit(wait);
+      }
+      const raw = await readLimitedBody(request);
+      if (raw === null) return json({ error: '요청이 너무 큽니다.' }, 413);
       let body: unknown;
       try { body = JSON.parse(raw); } catch { return json({ error: '잘못된 요청입니다.' }, 400); }
       if (!isRecord(body)) return json({ error: '잘못된 요청입니다.' }, 400);
-      const action = new URL(request.url).pathname.replace(/\/$/, '');
+      if (action === '/auth-probe') {
+        if (!probeCode) return json({ error: '인증 시험이 비활성 상태입니다.' }, 404);
+        // The temporary relay accepts only explicitly configured app origins.
+        if (!origin) return json({ error: '허용되지 않은 요청입니다.' }, 403);
+        if (typeof body.code !== 'string' || !body.code || body.code.length > 1024) return json({ error: '인증 코드가 필요합니다.' }, 400);
+        try { return json({ authenticated: await probeCode(body.code) }); }
+        catch { return json({ authenticated: false, error: '무료 인증 연결을 확인하지 못했습니다. 실제 토스에서 다시 시도해 주세요.' }); }
+      }
       if (action === '/session') {
         if (typeof body.code !== 'string' || !body.code || body.code.length > 1024) return json({ error: '인증 코드가 필요합니다.' }, 400);
         let identity: string;
@@ -41,15 +68,35 @@ export function createHintHandler({ repository, exchangeCode, allowedOrigins }: 
       const authorization = request.headers.get('Authorization');
       if (!authorization || !/^Bearer [A-Za-z0-9_-]{43}$/.test(authorization)) return json({ error: '사용자 확인이 필요합니다.', code: 'unauthorized' }, 401);
       const sessionHash = hash(authorization.slice(7));
+      const sessionWait = limit(`session:${sessionHash}`, 120);
+      if (sessionWait) return rejectLimit(sessionWait);
+      const actionWait = limit(`${action}:${sessionHash}`, action === '/round' ? 6 : action === '/hint' ? 30 : 90);
+      if (actionWait) return rejectLimit(actionWait);
       if (action === '/balance') return json({ balance: await repository.balance(sessionHash) });
       if (action === '/round') {
         const level: DifficultyLevel | null = body.level === 'beginner' || body.level === 'intermediate' || body.level === 'advanced' ? body.level : null;
         const size: GridSize | null = body.size === 8 || body.size === 10 || body.size === 12 ? body.size : null;
         if (!level || !size || !Array.isArray(body.completedWordIds) || body.completedWordIds.length > 5000 ||
             !body.completedWordIds.every((id) => typeof id === 'string' && id.length <= 100)) return json({ error: '퍼즐 설정이 올바르지 않습니다.' }, 400);
+        if (body.requestId !== undefined && (typeof body.requestId !== 'string' || !UUID.test(body.requestId))) return json({ error: '퍼즐 요청 정보가 올바르지 않습니다.' }, 400);
+        const fingerprint = hash(JSON.stringify({ level, size, completedWordIds: [...new Set(body.completedWordIds)].sort() }));
+        const roundResponse = (value: unknown) => {
+          if (!isRecord(value) || !isHintBalance(value.balance) ||
+              (value.roundId !== null && (typeof value.roundId !== 'string' || !UUID.test(value.roundId)))) throw new Error('Invalid round snapshot');
+          const puzzle = parseCrosswordPuzzle(value.puzzle);
+          if (puzzle.level !== level || puzzle.size !== size || Boolean(puzzle.words.length) !== Boolean(value.roundId)) throw new Error('Invalid round snapshot');
+          return json({ roundId: value.roundId, puzzle, balance: value.balance });
+        };
+        if (typeof body.requestId === 'string') {
+          const saved = await repository.findRoundCreation(sessionHash, body.requestId, fingerprint);
+          if (saved !== null) return roundResponse(saved);
+        }
         await repository.balance(sessionHash);
         const completed = new Set(body.completedWordIds);
         const puzzle = generateCrossword(defaultVocabList.map((word) => ({ ...word, isQuizUsed: word.isQuizUsed || completed.has(word.id) })), level, size);
+        if (typeof body.requestId === 'string') {
+          return roundResponse(await repository.saveRoundCreation(sessionHash, body.requestId, fingerprint, puzzle.words.length ? randomUUID() : null, puzzle));
+        }
         if (!puzzle.words.length) return json({ roundId: null, puzzle, balance: await repository.balance(sessionHash) });
         const roundId = randomUUID();
         const balance = await repository.startRound(sessionHash, roundId, puzzle.words.map((word) => ({ id: word.id, answer: word.word.toUpperCase(), hintLimit: word.hintLimit })));

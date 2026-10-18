@@ -9,6 +9,8 @@ node_modules/
 tmp/lint-tools/
 
 # Build outputs
+supabase/.temp/
+supabase/functions/toss-hints/index.ts
 dist/
 build/
 out/

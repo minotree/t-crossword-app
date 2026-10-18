@@ -28,6 +28,8 @@ export type Database = {
     };
     Views: { [_ in never]: never };
     Functions: {
+      get_toss_round_creation: { Args: { p_session_hash: string; p_request_id: string; p_fingerprint: string }; Returns: unknown };
+      save_toss_round_creation: { Args: { p_session_hash: string; p_request_id: string; p_fingerprint: string; p_round_id: string | null; p_puzzle: string }; Returns: unknown };
       open_toss_hint_session: { Args: { p_identity_hash: string; p_session_hash: string }; Returns: number };
       get_toss_hint_balance: { Args: { p_session_hash: string }; Returns: number };
       register_toss_hint_round: { Args: { p_session_hash: string; p_round_id: string; p_words: { id: string; answer: string; hintLimit: number }[] }; Returns: number };

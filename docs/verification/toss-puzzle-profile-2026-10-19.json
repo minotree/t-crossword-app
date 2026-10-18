@@ -1,0 +1,986 @@
+{
+  "runtime": "v24.22.0",
+  "platform": "win32",
+  "arch": "x64",
+  "cpu": "AMD Ryzen 5 7500F 6-Core Processor             ",
+  "scope": "Local Node handler; DB mocked; includes body parsing, generation and serialization; excludes startup, mTLS, real DB and Edge runtime. Seeds 1,2,3 per scenario. Burst is a single JS worker, not parallel CPU execution.",
+  "rows": [
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 140,
+      "wallMs": 79.95179999999993,
+      "words": 12
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 63,
+      "wallMs": 50.67859999999996,
+      "words": 10
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 62,
+      "wallMs": 54.79770000000008,
+      "words": 15
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 94,
+      "wallMs": 74.89300000000003,
+      "words": 11
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 31,
+      "wallMs": 26.95550000000003,
+      "words": 13
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 32,
+      "wallMs": 23.792600000000107,
+      "words": 11
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.2474000000000842,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.9850999999999885,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.8927999999999656,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.8562999999999192,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.7362999999999147,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 8,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.6977000000000544,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 93,
+      "wallMs": 80.67589999999996,
+      "words": 18
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 79,
+      "wallMs": 71.93150000000014,
+      "words": 22
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 62,
+      "wallMs": 57.06400000000008,
+      "words": 19
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 31,
+      "wallMs": 33.85750000000007,
+      "words": 17
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 31,
+      "wallMs": 32.731500000000096,
+      "words": 19
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 47,
+      "wallMs": 34.94789999999989,
+      "words": 19
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.5454999999999472,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.2687999999998283,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 1.044499999999971,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.900000000000091,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.004799999999932,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 10,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 1.032699999999977,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 125,
+      "wallMs": 105.66409999999996,
+      "words": 30
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 109,
+      "wallMs": 114.27739999999994,
+      "words": 27
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 126,
+      "wallMs": 121.9511,
+      "words": 28
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 62,
+      "wallMs": 58.69100000000003,
+      "words": 26
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 47,
+      "wallMs": 58.31900000000019,
+      "words": 25
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 62,
+      "wallMs": 64.06140000000005,
+      "words": 29
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.3949999999999818,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.6166000000000622,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.8759999999999764,
+      "words": 1
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.8430999999998221,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.786200000000008,
+      "words": 0
+    },
+    {
+      "level": "beginner",
+      "size": 12,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.7086000000001604,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 110,
+      "wallMs": 114.7074,
+      "words": 12
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 124,
+      "wallMs": 104.27790000000005,
+      "words": 12
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 109,
+      "wallMs": 120.35789999999974,
+      "words": 11
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 47,
+      "wallMs": 53.451300000000174,
+      "words": 12
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 63,
+      "wallMs": 54.12960000000021,
+      "words": 10
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 63,
+      "wallMs": 66.47980000000007,
+      "words": 10
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.7750999999998385,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.1366000000002714,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.8367000000002918,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.7405000000003383,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 16,
+      "wallMs": 1.035500000000411,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 8,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.9497999999998683,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 171,
+      "wallMs": 189.8376000000003,
+      "words": 19
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 172,
+      "wallMs": 189.6867000000002,
+      "words": 18
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 203,
+      "wallMs": 213.8051999999998,
+      "words": 17
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 125,
+      "wallMs": 89.01099999999997,
+      "words": 19
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 78,
+      "wallMs": 76.22289999999975,
+      "words": 19
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 110,
+      "wallMs": 87.38110000000006,
+      "words": 20
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.2228000000000065,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.2687000000000808,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.9618999999997868,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.7021000000004278,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.7622000000001208,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 10,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.8153999999999542,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 234,
+      "wallMs": 257.72749999999996,
+      "words": 28
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 281,
+      "wallMs": 296.14739999999983,
+      "words": 27
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 329,
+      "wallMs": 293.4802999999997,
+      "words": 24
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 109,
+      "wallMs": 120.3453999999997,
+      "words": 25
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 125,
+      "wallMs": 118.58460000000014,
+      "words": 23
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 140,
+      "wallMs": 142.53120000000035,
+      "words": 24
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.2630000000008295,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.1338000000005195,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 16,
+      "wallMs": 0.8730999999997948,
+      "words": 1
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.4088000000001557,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.9174999999995634,
+      "words": 0
+    },
+    {
+      "level": "intermediate",
+      "size": 12,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.7436999999999898,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 234,
+      "wallMs": 187.33610000000044,
+      "words": 13
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 172,
+      "wallMs": 168.01190000000042,
+      "words": 11
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 172,
+      "wallMs": 176.5092999999997,
+      "words": 10
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 93,
+      "wallMs": 86.5,
+      "words": 11
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 79,
+      "wallMs": 90.59870000000046,
+      "words": 11
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 93,
+      "wallMs": 86.71230000000014,
+      "words": 12
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.5531000000000859,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.9926000000004933,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.8519999999998618,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.9439999999995052,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.6841999999996915,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 8,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.8740999999999985,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 282,
+      "wallMs": 289.35360000000037,
+      "words": 19
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 297,
+      "wallMs": 294.1372000000001,
+      "words": 18
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 281,
+      "wallMs": 282.5626000000002,
+      "words": 18
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 125,
+      "wallMs": 132.6891999999998,
+      "words": 17
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 140,
+      "wallMs": 136.76639999999952,
+      "words": 17
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 126,
+      "wallMs": 126.76670000000013,
+      "words": 17
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.2109000000000378,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 15,
+      "wallMs": 0.9115000000001601,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.7451999999993859,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 0.9408999999996013,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.0429000000003725,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 10,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.9642000000003463,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "none",
+      "sample": 0,
+      "cpuMs": 438,
+      "wallMs": 441.5505000000003,
+      "words": 24
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "none",
+      "sample": 1,
+      "cpuMs": 485,
+      "wallMs": 488.0726999999997,
+      "words": 25
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "none",
+      "sample": 2,
+      "cpuMs": 437,
+      "wallMs": 454.4457999999995,
+      "words": 26
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "half",
+      "sample": 0,
+      "cpuMs": 204,
+      "wallMs": 214.61509999999998,
+      "words": 24
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "half",
+      "sample": 1,
+      "cpuMs": 250,
+      "wallMs": 215.95750000000044,
+      "words": 25
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "half",
+      "sample": 2,
+      "cpuMs": 172,
+      "wallMs": 177.8682000000008,
+      "words": 26
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.3685999999997875,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 0.9300999999995838,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "almost-all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.7957000000005792,
+      "words": 1
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "all",
+      "sample": 0,
+      "cpuMs": 0,
+      "wallMs": 1.0529999999998836,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "all",
+      "sample": 1,
+      "cpuMs": 0,
+      "wallMs": 1.022000000000844,
+      "words": 0
+    },
+    {
+      "level": "advanced",
+      "size": 12,
+      "completion": "all",
+      "sample": 2,
+      "cpuMs": 0,
+      "wallMs": 0.7777999999998428,
+      "words": 0
+    }
+  ],
+  "burst": {
+    "requests": 6,
+    "cpuMs": 2562,
+    "wallMs": 2559.8660999999993
+  }
+}

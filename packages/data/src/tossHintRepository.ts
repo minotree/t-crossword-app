@@ -13,6 +13,8 @@ function fail(error: { code: string; message: string }): never {
     insufficient_hint_balance: '남은 힌트가 없습니다.',
     word_already_solved: '이미 완성한 단어입니다.',
     too_many_rounds: '새 퍼즐 요청이 많습니다. 잠시 후 다시 시도해 주세요.',
+    round_request_mismatch: '같은 퍼즐 요청의 설정이 달라졌습니다. 새 퍼즐을 요청해 주세요.',
+    round_request_expired: '퍼즐 요청이 만료되었습니다. 새 퍼즐을 요청해 주세요.',
   };
   const known = Object.hasOwn(messages, error.message);
   throw new TossHintError(error.code === '28000' ? 'unauthorized' : known ? error.message : 'hint_failed',
@@ -22,6 +24,14 @@ function fail(error: { code: string; message: string }): never {
 /** Trusted server only: the supplied client must use a server-side service key. */
 export function createTossHintRepository(client: SupabaseClient) {
   return {
+    async findRoundCreation(sessionHash: string, requestId: string, fingerprint: string) {
+      const { data, error } = await client.rpc('get_toss_round_creation', { p_session_hash: sessionHash, p_request_id: requestId, p_fingerprint: fingerprint });
+      if (error) fail(error); return data;
+    },
+    async saveRoundCreation(sessionHash: string, requestId: string, fingerprint: string, roundId: string | null, puzzle: unknown) {
+      const { data, error } = await client.rpc('save_toss_round_creation', { p_session_hash: sessionHash, p_request_id: requestId, p_fingerprint: fingerprint, p_round_id: roundId, p_puzzle: JSON.stringify(puzzle) });
+      if (error) fail(error); return data;
+    },
     async openSession(identityHash: string, sessionHash: string) {
       const { data, error } = await client.rpc('open_toss_hint_session', { p_identity_hash: identityHash, p_session_hash: sessionHash });
       if (error) fail(error); return data;

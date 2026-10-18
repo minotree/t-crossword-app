@@ -23,6 +23,7 @@ export function createRemoteHintGateway(baseUrl: string, createCode = async () =
   }
   let token: string | null = null;
   let authenticating: Promise<void> | null = null;
+  let pendingRound: { settings: string; requestId: string } | null = null;
 
   async function authenticate(): Promise<void> {
     if (authenticating) return authenticating;
@@ -54,10 +55,20 @@ export function createRemoteHintGateway(baseUrl: string, createCode = async () =
       return value.balance;
     },
     async startRound(level, size, completedWordIds) {
-      const value = await post('round', { level, size, completedWordIds });
+      const completed = [...new Set(completedWordIds)].sort();
+      const settings = JSON.stringify({ level, size, completedWordIds: completed });
+      if (pendingRound?.settings !== settings) pendingRound = { settings, requestId: crypto.randomUUID() };
+      const pending = pendingRound;
+      let value: unknown;
+      try { value = await post('round', { level, size, completedWordIds: completed, requestId: pending.requestId }); }
+      catch (error) {
+        if (error instanceof HintGatewayError && ['round_request_expired', 'round_request_mismatch'].includes(error.code) && pendingRound === pending) pendingRound = null;
+        throw error;
+      }
       if (!isRecord(value) || !isHintBalance(value.balance) || (value.roundId !== null && typeof value.roundId !== 'string')) throw new Error('퍼즐 정보를 확인하지 못했습니다.');
       const puzzle = parseCrosswordPuzzle(value.puzzle);
       if ((puzzle.words.length > 0 && !value.roundId) || puzzle.size !== size || puzzle.level !== level) throw new Error('퍼즐 설정이 일치하지 않습니다.');
+      if (pendingRound === pending) pendingRound = null;
       return { roundId: value.roundId, puzzle, balance: value.balance };
     },
     async reveal(roundId, wordId, index, requestId) { return parseHintReveal(await post('hint', { roundId, wordId, index, requestId })); },

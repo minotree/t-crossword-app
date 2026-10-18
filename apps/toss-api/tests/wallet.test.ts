@@ -1,7 +1,9 @@
-import { beforeAll, beforeEach, afterAll, describe, expect, it } from 'vitest';
+import { beforeAll, beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { PGlite } from '@electric-sql/pglite';
 import { parseHintReveal, parseHintAnswer } from '@t-crossword/contracts';
+import { createHintHandler, hash } from '../src/handler.js';
+import { createEdgeHandler } from '../src/edgeAdapter.js';
 
 const db = new PGlite();
 const player = 'a'.repeat(64), session = '1'.repeat(64), otherSession = '2'.repeat(64);
@@ -33,6 +35,77 @@ beforeEach(async () => {
 });
 
 describe('PostgreSQL Toss hint wallet', () => {
+  it('queues overlapping duplicate hints without spending twice (single PGlite connection)', async () => {
+    const results = await Promise.all(Array.from({ length: 12 }, () => reveal()));
+    expect(results.every((result) => result.balance === 9 && result.letter === 'S')).toBe(true);
+    expect(await balance()).toBe(9);
+    const rows = await db.query<{ count: number }>('select count(*)::int as count from public.toss_hint_requests');
+    expect(rows.rows[0].count).toBe(1);
+  });
+
+  it('deducts only once when distinct request IDs target the same position', async () => {
+    const results = await Promise.all(Array.from({ length: 12 }, (_, index) => reveal(0, `00000000-0000-4000-8000-${String(index + 10).padStart(12, '0')}`)));
+    expect(results.every((result) => result.balance === 9 && result.used === 1)).toBe(true);
+    expect(await balance()).toBe(9);
+  });
+
+  it('does not overspend the last hint across overlapping different-word requests', async () => {
+    await db.query('update public.toss_hint_players set balance=1 where identity_hash=$1', [player]);
+    const results = await Promise.allSettled([
+      reveal(),
+      db.query('select public.consume_toss_round_hint($1,$2,$3,$4,$5)', [session, round, 'book', 0, '00000000-0000-4000-8000-000000000003']),
+    ]);
+    expect(results.filter((result) => result.status === 'fulfilled')).toHaveLength(1);
+    const failed = results.find((result) => result.status === 'rejected');
+    expect(String(failed?.status === 'rejected' ? failed.reason : '')).toContain('insufficient_hint_balance');
+    expect(await balance()).toBe(0);
+  });
+
+  it('grants one completion reward for overlapping final answers', async () => {
+    await answer('sea', 'SEA');
+    const results = await Promise.all(Array.from({ length: 12 }, () => answer('book', 'BOOK')));
+    expect(results.every((result) => result.correct && result.completed && result.balance === 15)).toBe(true);
+    expect(await balance()).toBe(15);
+    const result = await db.query<{ solved: string[]; rewarded: boolean }>('select solved,rewarded from public.toss_hint_rounds where id=$1', [round]);
+    expect(result.rows[0]).toEqual({ solved: ['sea', 'book'], rewarded: true });
+  });
+
+  it('retries after committed hint and completion responses are lost through the Edge handler', async () => {
+    const token = 't'.repeat(43);
+    await db.query('select public.open_toss_hint_session($1,$2)', [player, hash(token)]);
+    const repository = {
+      findRoundCreation: vi.fn(), saveRoundCreation: vi.fn(),
+      openSession: vi.fn(), startRound: vi.fn(),
+      balance,
+      async reveal(tokenHash: string, roundId: string, wordId: string, index: number, id: string) {
+        const result = await db.query<{ value: unknown }>('select public.consume_toss_round_hint($1,$2,$3,$4,$5) as value', [tokenHash, roundId, wordId, index, id]);
+        return parseHintReveal(result.rows[0].value);
+      },
+      async answer(tokenHash: string, roundId: string, wordId: string, value: string) {
+        const result = await db.query<{ value: unknown }>('select public.submit_toss_round_answer($1,$2,$3,$4) as value', [tokenHash, roundId, wordId, value]);
+        return parseHintAnswer(result.rows[0].value);
+      },
+    };
+    const handler = createEdgeHandler(createHintHandler({ repository, exchangeCode: vi.fn(), allowedOrigins: ['https://app.example'] }));
+    const post = (path: string, body: Record<string, unknown>) => handler(new Request(`https://project.example/functions/v1/toss-hints/${path}`, {
+      method: 'POST', headers: { Origin: 'https://app.example', Authorization: `Bearer ${token}` }, body: JSON.stringify(body),
+    }));
+    const hint = { roundId: round, wordId: 'sea', index: 0, requestId };
+    const lostHint = await post('hint', hint);
+    expect(lostHint.status).toBe(200);
+    await lostHint.body?.cancel(); // Commit succeeded; the client never reads the response.
+    expect(await balance()).toBe(9);
+    expect(await (await post('hint', hint)).json()).toEqual({ balance: 9, index: 0, letter: 'S', used: 1 });
+    await answer('sea', 'SEA');
+    const final = { roundId: round, wordId: 'book', answer: 'BOOK' };
+    const lostAnswer = await post('answer', final);
+    expect(lostAnswer.status).toBe(200);
+    await lostAnswer.body?.cancel();
+    expect(await balance()).toBe(14);
+    expect(await (await post('answer', final)).json()).toEqual({ correct: true, completed: true, balance: 14 });
+    expect(await balance()).toBe(14);
+  });
+
   it('grants ten initial hints once per verified identity and retains balances across sessions', async () => {
     expect(await balance()).toBe(10);
     await reveal();

@@ -6,6 +6,7 @@
   "engines": { "node": ">=24" },
   "scripts": {
     "build": "tsc --noEmit && vite build",
+    "build:edge": "tsc --noEmit && vite build --config vite.edge.config.ts",
     "start": "node --env-file-if-exists=.env.local dist/main.js",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"

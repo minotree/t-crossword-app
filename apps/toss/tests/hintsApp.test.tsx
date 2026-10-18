@@ -70,6 +70,33 @@ it('retries the same hint request, records the notebook, and updates the verifie
   expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([word.id]);
 });
 
+it('waits for confirmed completion after a lost final-answer response and retries the same round', async () => {
+  const { word, puzzle } = fixture();
+  const answer = vi.fn().mockRejectedValueOnce(new Error('응답 유실: 다시 시도해 주세요.'))
+    .mockResolvedValue({ correct: true, completed: true, balance: 15 });
+  const gateway = { balance: async () => 10, startRound: async () => ({ roundId: 'same-round', puzzle, balance: 10 }), reveal: vi.fn(), answer };
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App hintGateway={gateway} /></TDSMobileAITProvider>));
+  await click('퍼즐 퀴즈 시작하기');
+  const clue = container.querySelector('.clue-button');
+  if (!(clue instanceof HTMLButtonElement)) throw new Error('Clue missing');
+  await act(async () => clue.click());
+  const inputs = Array.from(container.querySelectorAll('dialog input')).filter((element): element is HTMLInputElement => element instanceof HTMLInputElement);
+  await type(inputs[0], 'S'); await type(inputs[1], 'E'); await type(inputs[2], 'A');
+  expect(container.textContent).toContain('응답 유실');
+  expect(container.textContent).not.toContain('완성 보상으로 힌트 5개가 추가되었습니다.');
+  expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([]);
+  expect(container.textContent).toContain('10개');
+  const form = container.querySelector('dialog form');
+  if (!(form instanceof HTMLFormElement)) throw new Error('Answer form missing');
+  await act(async () => { form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); });
+  expect(answer).toHaveBeenCalledTimes(2);
+  expect(answer.mock.calls[0]).toEqual(['same-round', word.id, 'SEA']);
+  expect(answer.mock.calls[1]).toEqual(answer.mock.calls[0]);
+  expect(container.textContent).toContain('15개');
+  expect(container.textContent).toContain('완성 보상으로 힌트 5개가 추가되었습니다.');
+  expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([word.id]);
+});
+
 it('keeps the PWA welcome flow and changes puzzle settings inside the quiz without losing a round on home navigation', async () => {
   const { puzzle } = fixture();
   const startRound = vi.fn().mockImplementation(async (level, size) => ({ roundId: 'round-1', puzzle: { ...puzzle, level, size }, balance: 10 }));

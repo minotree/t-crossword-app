@@ -60,7 +60,7 @@ project-root/
 │   │   ├── tests/                  # Storage and puzzle presentation regression tests
 │   │   └── package.json
 │   │
-│   ├── toss-api/                  # Node 24 mTLS auth and server-issued puzzle/hint API
+│   ├── toss-api/                  # Node/Edge handler, instance limits, round replay; CPU/SQL regression tests
 │   └── desktop/                   # OPTIONAL: create only if needed
 │       ├── src/
 │       ├── src-tauri/

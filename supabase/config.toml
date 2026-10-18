@@ -1,0 +1,7 @@
+# Toss uses its own mTLS-backed session tokens, not Supabase Auth JWTs.
+# The application handler authenticates every wallet/round/hint/answer request.
+[functions.toss-hints]
+verify_jwt = false
+
+[functions.toss-mtls-probe]
+verify_jwt = true

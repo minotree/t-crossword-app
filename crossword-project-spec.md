@@ -57,7 +57,8 @@
 - 공통: TypeScript strict, pnpm workspace, Supabase. 실제 설치 버전은 각 `package.json`과 lockfile을 확인한다.
 - 웹/PWA: React 19, Vite, Tailwind CSS v4. UI·라우팅·브라우저 저장·서비스 워커는 `apps/web` 소유다.
 - 모바일: Ionic React 8, Capacitor 7. `apps/mobile`이 독립 UI·라우팅·네이티브 연동을 소유한다.
-- 토스: 독립 React 18 앱인 `apps/toss`에서 SDK 3.8.0·TDS Mobile/AIT 2.5.1과 `apps-in-toss.config.ts`를 사용한다(Node 24 이상). 별도 `apps/toss-api`가 mTLS 사용자 확인과 서버 힌트 지갑을 연결한다. 구현·실기기 확인 범위와 남은 작업은 각 앱 README를 따른다.
+- 토스: 독립 React 18 앱인 `apps/toss`에서 SDK 3.8.0·TDS Mobile/AIT 2.5.1과 `apps-in-toss.config.ts`를 사용한다(Node 24 이상). `apps/toss-api`의 mTLS 인증·힌트 핸들러를 Supabase Edge Function으로 번들해 별도 서버 관리 없이 연결한다. Node 진입점은 로컬 시험용으로 보존한다. 무료 사용량·실제 검증 범위는 `docs/toss-free-hosting.md`, 구현 범위는 각 앱 README를 따른다.
+- 토스 판 생성은 요청 UUID가 있는 경우 사용자별 결과 스냅샷을 재사용해 응답 유실 재시도의 중복 등록을 막는다. 인스턴스별 요청 제한도 제공하며 다중 worker·월 무료 호출량 자체의 소모 차단과 구분한다. 적용 결과·만료·구버전 호환·남은 기기 검증은 `docs/toss-round-idempotency.md`를 따른다.
 - 웹 Node 지원 범위는 `apps/web/package.json`의 `engines`를 따른다. 현재 `^20.19.0 || ^22.13.0 || >=24`이며 루트의 최소 버전만으로 호환성을 판단하지 않는다.
 - 네이티브 JDK·Android SDK·Xcode 버전은 선택한 Capacitor 버전의 요구사항을 확인한다. 웹 빌드 성공을 네이티브 호환성 증명으로 사용하지 않는다.
 

@@ -82,6 +82,9 @@ scripts/
 - Browser-only testing does not prove Android/iOS compatibility.
 
 ### Toss Mini App
+- 판 생성 재시도는 같은 설정·요청 UUID를 유지하며 서버의 사용자별 결과 스냅샷을 재사용한다. DB→API→앱 순서로 적용하고, ID 없는 구버전 경로·동시 출제 CPU 중복·월 호출량 소모 방어 한계를 `docs/toss-round-idempotency.md`와 `docs/toss-free-hosting.md`에 구분한다.
+- 콘솔 업로드 키는 사용자 로컬 `ait token add` 프로필로 등록하고 키 내용은 읽거나 로그·채팅·저장소에 남기지 않는다. 명시적으로 승인된 `ait deploy` 업로드와 공개 검토 요청·출시를 구분한다. CLI 성공·실제 기기 검증도 별도로 기록한다.
+- 토스 출시는 별도 서버 관리 없이 무료 범위를 기준으로 한다. 유료 호스팅·요금제 전환을 기본 전제로 삼지 않는다. Supabase Edge Functions 대체는 실제 mTLS·실행 제한 검증 전 확정하지 않는다. 검토 상태는 `docs/toss-free-hosting.md`를 따른다.
 - Owns TDS-based UI, Toss SDK integration, platform navigation and authentication handshakes.
 - **TDS and current Toss platform rules take priority over visual consistency with other apps.**
 - UI 구현은 분리하되 제공하는 기능의 화면 구성·메뉴 명칭·사용 흐름은 Web/PWA를 기준으로 일관되게 유지한다. 플랫폼 제약이나 미구현 범위로 차이가 생기면 구분해 기록한다.
@@ -226,6 +229,7 @@ Respect tool/system safety requirements first. Within project guidance, prioriti
 - `apps/web/src/data/`의 그림책 JSON과 `apps/web/public/picture-books/`의 WebP는 `python scripts/prepare-picture-books.py`로 갱신한다(Python/Pillow 필요). 파생 파일만 직접 고쳐 원본과 불일치하게 만들지 않는다. 생성된 웹용 파일을 배포 소스에 포함하며 Vercel 빌드에 Python이 있다고 가정하지 않는다.
 - 작품 ID와 페이지 순서·이미지 경로를 안정적으로 관리한다. 이미지 보정본은 버전이 있는 별도 파일로 저장하고 원본·이전 제작 기록을 보존한다. 실제 사용하는 경로와 제작 기록을 함께 갱신한다.
 - 기술 검사 통과와 최종 편집·권리 검토 상태를 구분한다. `draft-unreviewed`를 이미지 생성이나 빌드 성공만으로 검토 완료 상태로 바꾸지 않는다.
+- 토스 그림책은 `scripts/prepare-toss-picture-book-images.py`로 원본에서 토스 전용 WebP를 준비하고 결과 파일을 저장소에 포함한다. 일반 빌드는 Python 없이 `prepare-toss-picture-books.mjs`로 승인 목록·원본/이미지 해시를 확인한다. 승인 후 본문·해석·이미지가 바뀌면 변경 부분을 재검토하고 `content/picture-book-approval.json`을 갱신한다. 해시 갱신만으로 검토를 대신하지 않는다. `build:ait`의 이미지 대응·번들 크기 검사와 실제 기기 가독성 검증을 구분한다.
 
 ### 제작과 검수 순서
 
