@@ -13,8 +13,8 @@ const items: { to: string; label: string; icon: MenuIconName }[] = [
 export function AppLayout() {
   const navigation = useNavigation();
   const { pathname } = useLocation();
-  return <div className="flex h-dvh flex-col overflow-hidden bg-white">
-    <div className={pathname === '/quiz' ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : 'min-h-0 flex-1 overflow-y-auto'}>
+  return <div className="flex h-dvh flex-col overflow-hidden bg-white pt-[env(safe-area-inset-top)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
+    <div data-page-scroll className={pathname === '/quiz' ? 'flex min-h-0 flex-1 flex-col overflow-hidden' : 'min-h-0 flex-1 overflow-y-auto'}>
       <PwaStatus />
       {navigation.state !== 'idle' && <p role="status" className="p-2 text-center text-sm text-slate-600">화면을 불러오는 중입니다.</p>}
       <Outlet />

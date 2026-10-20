@@ -30,7 +30,8 @@ export function WordBankPage() {
     <div className="min-h-full bg-slate-50 text-slate-900 pb-10">
       <header className="bg-white border-b border-slate-200">
         <div className="w-full max-w-4xl mx-auto flex items-center justify-between px-4 py-4">
-          <h1 className="text-lg font-black">단어장 관리</h1>
+          <h1 className="text-lg font-black">나의 단어장</h1>
+          <p className="text-sm text-slate-500" aria-live="polite">{words.length}개 단어</p>
         </div>
       </header>
       <main className="w-full max-w-4xl mx-auto px-4 pt-4">
@@ -49,11 +50,10 @@ export function WordBankPage() {
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="단어 또는 뜻 검색"
             className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
         </label>
-        <p className="my-3 text-sm text-slate-500" aria-live="polite">{words.length}개 단어</p>
         {words.length === 0 && <p className="rounded-xl bg-white p-8 text-center text-slate-500">
           {query.trim() ? '검색 결과가 없습니다.' : tab === 'mistakes' ? '퀴즈에서 힌트를 사용하면 여기에 표시됩니다.' : tab === 'completed' ? '퍼즐에서 정답을 맞히면 여기에 표시됩니다.' : '즐겨찾기한 단어가 없습니다.'}
         </p>}
-        <ul className="space-y-2">
+        <ul className="mt-3 space-y-2">
           {words.map((word) => (
             <li key={word.id} className="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-4">
               <div className="flex-1 min-w-0">

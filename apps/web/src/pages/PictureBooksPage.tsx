@@ -31,19 +31,30 @@ export function PictureBooksPage() {
     ? requestedPage - 1 : 0;
   const selectedPage = selectedBook?.pages[pageIndex];
   const pageRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const previousBook = useRef<string | null>(null);
+  const listScrollTop = useRef(0);
 
   useEffect(() => {
-    pageRef.current?.scrollIntoView({ block: 'start' });
+    if (bookId && previousBook.current === bookId) {
+      titleRef.current?.scrollIntoView({ block: 'start' });
+    } else if (!bookId && previousBook.current) {
+      const scroller = pageRef.current?.closest('[data-page-scroll]');
+      if (scroller) scroller.scrollTop = listScrollTop.current;
+    } else {
+      pageRef.current?.scrollIntoView({ block: 'start' });
+    }
+    previousBook.current = bookId;
   }, [level.key, bookId, pageIndex]);
 
   return <div ref={pageRef} className="min-h-full bg-slate-50 pb-10 text-slate-900">
     <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto w-full max-w-4xl px-4 py-4">
-        <h1 className="text-lg font-black">그림책</h1>
-        <p className="mt-1 text-sm text-slate-500">그림과 함께 영어 시·에세이·소설을 읽어 보세요.</p>
+      <div className="mx-auto flex w-full max-w-4xl items-center gap-3 px-4 py-3">
+        <h1 className="shrink-0 text-lg font-black">그림책</h1>
+        <p className="min-w-0 text-xs leading-relaxed text-slate-500 sm:text-sm">그림과 함께 영어 시·에세이·소설을 읽어 보세요.</p>
       </div>
     </header>
-    <main className="mx-auto w-full max-w-4xl px-4 pt-4">
+    <main className="mx-auto w-full max-w-4xl px-4 pt-2">
       <nav aria-label="그림책 난이도" className="flex overflow-hidden rounded-xl border border-slate-200 bg-white">
         {levels.map((item) => <button key={item.key} type="button" aria-pressed={item.key === level.key}
           onClick={() => setParams({ level: item.key })}
@@ -53,8 +64,7 @@ export function PictureBooksPage() {
       </nav>
 
       {selectedBook && selectedPage ? <section className="mt-4" aria-labelledby="picture-book-title">
-        <Link to={`?level=${level.key}`} className="inline-block rounded-lg px-2 py-2 text-sm font-semibold text-indigo-700 focus-visible:outline-2">← 목록으로</Link>
-        <h2 id="picture-book-title" lang="en" className="mb-4 mt-2 text-xl font-bold">{selectedBook.title}</h2>
+        <h2 ref={titleRef} id="picture-book-title" lang="en" className="mb-4 mt-2 text-xl font-bold">{selectedBook.title}</h2>
         {selectedBook.koreanTitle && <p className="mb-3 text-sm text-slate-600">{selectedBook.koreanTitle} · {genreLabels[selectedBook.genre]}{selectedBook.subgenre && ` · ${selectedBook.subgenre}`}</p>}
         {selectedBook.pages.length > 1 && <p className="mb-3 text-sm font-semibold text-slate-600" aria-live="polite">{pageIndex + 1} / {selectedBook.pages.length}장 · <span lang="en">{selectedPage.title}</span></p>}
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-[#fff9eb]">
@@ -73,8 +83,9 @@ export function PictureBooksPage() {
           {pageIndex + 1 < selectedBook.pages.length ? <button type="button"
             onClick={() => setParams({ level: level.key, book: selectedBook.id, page: String(pageIndex + 2) })}
             className="rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white focus-visible:outline-2 focus-visible:outline-blue-600">다음 →</button>
-            : <Link to={`?level=${level.key}`} className="rounded-xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white focus-visible:outline-2">목록으로</Link>}
+            : <span className="px-4 py-3 text-sm text-slate-500">마지막 장</span>}
         </nav>}
+        <Link to={`?level=${level.key}`} className="mt-4 inline-block rounded-xl bg-indigo-50 px-4 py-3 text-sm font-bold text-indigo-700 focus-visible:outline-2 focus-visible:outline-indigo-600">← 목록으로</Link>
       </section> : <>
         {bookId && <p role="status" className="mt-4 text-sm text-slate-600">선택한 그림책을 찾을 수 없습니다. 목록에서 다시 선택해 주세요.</p>}
         {books.length === 0 ? <div role="status" className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-12 text-center">
@@ -84,7 +95,9 @@ export function PictureBooksPage() {
           <p className="my-3 text-sm text-slate-500">{level.label} 그림책 {books.length}편</p>
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4">
             {books.map((book) => <li key={book.id}>
-              <Link to={`?level=${level.key}&book=${book.id}`} className="block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:border-indigo-300 focus-visible:outline-2 focus-visible:outline-blue-600">
+              <Link to={`?level=${level.key}&book=${book.id}`} onClick={() => {
+                listScrollTop.current = pageRef.current?.closest('[data-page-scroll]')?.scrollTop ?? 0;
+              }} className="block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:border-indigo-300 focus-visible:outline-2 focus-visible:outline-blue-600">
                 <BookImage image={book.pages[0].image} title={book.title} preview />
                 <h2 lang="en" className="break-words border-t border-slate-100 px-3 py-3 text-sm font-bold">{book.title}</h2>
                 {book.koreanTitle && <p className="px-3 pb-2 text-xs text-slate-600">{book.koreanTitle}</p>}

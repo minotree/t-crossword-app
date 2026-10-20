@@ -67,15 +67,6 @@ export function QuizPage() {
               <span>{isHintBalanceLoading ? '...' : globalHintBalance}</span>
             </div>
 
-            {/* 새 게임 버튼 */}
-            <button
-              type="button"
-              onClick={() => startNewGame(level, gridSize)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-sm shadow-indigo-200 transition-all cursor-pointer"
-            >
-              <span>🔄</span>
-              <span>새 퍼즐</span>
-            </button>
           </div>
         </div>
       </header>
@@ -127,9 +118,14 @@ export function QuizPage() {
         </div>
       </div>
 
-      <p className="mx-auto mb-2 w-full max-w-4xl shrink-0 px-3 text-xs text-indigo-700 sm:px-4">
-        🎁 한 판을 모두 완성하면 힌트 5개를 드려요.
-      </p>
+      <div className="mx-auto mb-2 flex w-full max-w-4xl shrink-0 flex-wrap items-center justify-between gap-2 px-3 sm:px-4">
+        <p className="min-w-0 flex-1 text-xs text-indigo-700">🎁 완성하면 힌트 5개를 드려요.</p>
+        <div className="flex shrink-0 items-center gap-2 whitespace-nowrap">
+          <span className="text-sm font-bold text-indigo-700" aria-live="polite" aria-label="전체 정답 진행">{solvedWordIds.length} / {puzzle?.words.length ?? 0}</span>
+          <button type="button" onClick={() => startNewGame(level, gridSize)}
+            className="min-h-11 rounded-xl bg-indigo-50 px-3 text-sm font-bold text-indigo-700 hover:bg-indigo-100 focus-visible:outline-2 focus-visible:outline-indigo-600">새 퍼즐</button>
+        </div>
+      </div>
 
       {/* 메인 콘텐츠 영역 */}
       {hintBalanceError && (
