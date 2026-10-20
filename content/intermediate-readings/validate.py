@@ -58,8 +58,14 @@ def audit():
                     if token.endswith('s'): candidates += [token[:-1]]
                     if token.endswith('es'): candidates += [token[:-2]]
                     if token.endswith('ies'): candidates += [token[:-3] + 'y']
-                    if token.endswith('ed'): candidates += [token[:-1], token[:-2], token[:-3], token[:-3] + 'y']
-                    if token.endswith('ing'): candidates += [token[:-3], token[:-3] + 'e', token[:-4]]
+                    # Only -ied restores y; arbitrary truncation confused copied with cop.
+                    if token.endswith('ied'): candidates += [token[:-3] + 'y']
+                    if token.endswith('ed'):
+                        candidates += [token[:-1], token[:-2]]
+                        if len(token) > 4 and token[-3] == token[-4]: candidates += [token[:-3]]
+                    if token.endswith('ing'):
+                        candidates += [token[:-3], token[:-3] + 'e']
+                        if len(token) > 5 and token[-4] == token[-5]: candidates += [token[:-4]]
                     base = next((c for c in candidates if c in known), None)
                     if base:
                         report['inflections'][token] = base

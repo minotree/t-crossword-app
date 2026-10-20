@@ -28,6 +28,7 @@ export type Database = {
     };
     Views: { [_ in never]: never };
     Functions: {
+      toss_test_ad_reward: { Args: { p_session_hash: string; p_request_id: string; p_claim: boolean }; Returns: number };
       get_toss_round_creation: { Args: { p_session_hash: string; p_request_id: string; p_fingerprint: string }; Returns: unknown };
       save_toss_round_creation: { Args: { p_session_hash: string; p_request_id: string; p_fingerprint: string; p_round_id: string | null; p_puzzle: string }; Returns: unknown };
       open_toss_hint_session: { Args: { p_identity_hash: string; p_session_hash: string }; Returns: number };

@@ -21,6 +21,7 @@ if (!allowedOrigins.length || allowedOrigins.some((value) => {
 })) throw new Error('Invalid allowed origins');
 
 const handler = createHintHandler({
+  testAdsEnabled: Deno.env.get('TOSS_TEST_AD_REWARDS') === 'true',
   repository: createTossHintRepository(getSupabaseClient(required('SUPABASE_URL'), required('SUPABASE_SERVICE_ROLE_KEY'))),
   allowedOrigins,
   exchangeCode: async (code) => {

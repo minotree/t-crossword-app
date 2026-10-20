@@ -4,8 +4,8 @@
     "level": "advanced",
     "genre": "poem",
     "title": "The Letter I Did Not Send",
-    "koreanTitle": "대답하지 않은 편지",
-    "reviewStatus": "draft-unreviewed",
+    "koreanTitle": "보내지 않은 편지",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Letter I Did Not Send",
@@ -22,7 +22,7 @@
     "genre": "poem",
     "title": "The Weight of an Ordinary Day",
     "koreanTitle": "평범한 하루의 무게",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Weight of an Ordinary Day",
@@ -39,7 +39,7 @@
     "genre": "essay",
     "title": "Without a Job Title",
     "koreanTitle": "직함 없이 나를 소개한다면",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "An Empty Line",
@@ -70,7 +70,7 @@
     "genre": "essay",
     "title": "The Life I Did Not Choose",
     "koreanTitle": "선택하지 않은 삶과 화해하기",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Other Platform",
@@ -101,7 +101,7 @@
     "genre": "novel",
     "title": "The Memory Deposit",
     "koreanTitle": "기억을 맡기는 가게",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "A Different Request",
@@ -154,10 +154,10 @@
       },
       {
         "title": "Before the Light",
-        "text": "During the waiting period, he wrote the letter. He described what he remembered and acknowledged what he could not know. He made no claim that suffering entitled him to a renewed relationship. When he returned, the restriction had been lifted through the shop's examination. The operator asked whether he still wished to proceed. He said yes.",
+        "text": "During the waiting period, he wrote the letter. He described what he remembered and acknowledged what he could not know. He did not claim a right to a renewed relationship merely because he had suffered. When he returned, the restriction had been lifted through the shop's examination. The operator asked whether he still wished to proceed. He said yes.",
         "translation": "대기 기간 동안 그는 편지를 썼다. 자신이 기억하는 것을 설명하고 알 수 없는 것은 인정했다. 고통을 겪었다고 해서 재회할 권리가 생긴다는 주장도 하지 않았다. 그가 다시 왔을 때, 가게의 검토 절차를 거쳐 제한이 풀려 있었다. 기술자는 그래도 복원을 원하는지 물었다. 그는 그렇다고 답했다.",
         "scene": "Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older man holding a finished letter beside the technician and a softly lit memory device, hands calm, careful preparation without invasive medical imagery.",
-        "image": "images/advanced-sf-01-08.png"
+        "image": "images/advanced-sf-01-08-v2.png"
       },
       {
         "title": "The Afternoon",
@@ -182,7 +182,7 @@
     "genre": "novel",
     "title": "The Last Customer",
     "koreanTitle": "문을 닫기 전 마지막 손님",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "Closing Time",
@@ -194,7 +194,7 @@
       {
         "title": "The Wrong Number",
         "text": "The receipt recorded a deposit larger than the clock's value. The shopkeeper suspected an error. Her father had kept precise accounts, even when the business declined. She found the old journal in a lower box. Beside the payment stood a number that did not correspond to any repair. Someone had drawn a small square around it.",
-        "translation": "영수증의 보증금은 시계 값보다 컸다. 주인은 오류를 의심했다. 아버지는 장사가 기울 때에도 장부를 정확히 썼다. 그녀는 아래 서랍에서 옛 장부를 찾았다. 그 금액 옆에는 어떤 수리 내역과도 맞지 않는 번호가 적혀 있었다. 누군가 그 주위에 작은 네모를 그려 놓았다.",
+        "translation": "영수증의 맡긴 돈은 시계 값보다 컸다. 주인은 오류를 의심했다. 아버지는 장사가 기울 때에도 장부를 정확히 썼다. 그녀는 아래쪽 상자에서 옛 장부를 찾았다. 그 금액 옆에는 어떤 수리 내역과도 맞지 않는 번호가 적혀 있었다. 누군가 그 주위에 작은 네모를 그려 놓았다.",
         "scene": "Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The woman comparing a faded receipt with an old ledger under a brass desk lamp, young man waiting nearby, small boxed mark visible but no readable invented words.",
         "image": "images/advanced-mystery-01-02.png"
       },
@@ -215,16 +215,16 @@
       {
         "title": "A Familiar Face",
         "text": "The young man identified the woman as his mother. The shopkeeper studied her father's expression and felt an unwelcome suspicion. Had the deposit concealed a secret relationship? The letters might answer, but they were addressed to the mother. She returned them unopened. The young man called home and asked whether they could come by the following morning.",
-        "translation": "청년은 사진 속 여성이 어머니라고 했다. 주인은 아버지의 표정을 보며 달갑지 않은 의심에 사로잡혔다. 그 돈에 비밀스러운 관계가 숨겨져 있었을까? 편지가 답을 줄지도 몰랐지만, 수신인은 청년의 어머니였다. 그녀는 뜯지 않은 채 돌려주었다. 청년은 집에 전화해 다음 날 아침 함께 찾아가도 되는지 물었다.",
+        "translation": "청년은 사진 속 여성이 어머니라고 했다. 주인은 아버지의 표정을 보며 달갑지 않은 의심에 사로잡혔다. 맡긴 돈에 비밀스러운 관계가 숨겨져 있었을까? 편지가 답을 줄지도 몰랐지만, 수신인은 청년의 어머니였다. 그녀는 뜯지 않은 채 돌려주었다. 청년은 집에 전화해 다음 날 아침 함께 찾아가도 되는지 물었다.",
         "scene": "Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The woman looking at an old photograph then handing sealed letters back to the young man, who makes a phone call near the window. Respectful tension, no sinister shadows.",
         "image": "images/advanced-mystery-01-05.png"
       },
       {
         "title": "The Account",
-        "text": "His mother read the letters before they arrived. Years earlier, she had helped the father organize deliveries while recovering from an injury. The distinct deposit was payment he owed her, held at her request while she lacked a safe place to keep it. The clock was their private reminder. Then illness had interrupted their contact, leaving the account unresolved.",
-        "translation": "어머니는 두 사람이 오기 전에 편지를 읽었다. 오래전 그녀는 부상에서 회복하는 동안 주인의 아버지를 도와 배달 업무를 정리했다. 그 특별한 금액은 아버지가 지급해야 할 보수였다. 안전하게 보관할 곳이 없어 그녀의 요청으로 맡겨 둔 돈이었다. 시계는 두 사람 사이의 표시였다. 그러다 병으로 연락이 끊기면서 정산도 끝나지 못했다.",
+        "text": "His mother read the letters before they arrived. Years earlier, she had helped the father organize deliveries while recovering from an injury. The money recorded as a deposit was payment he owed her, held at her request while she lacked a safe place to keep it. The clock was their private reminder. Then illness had interrupted their contact, leaving the account unresolved.",
+        "translation": "어머니는 두 사람이 오기 전에 편지를 읽었다. 오래전 그녀는 부상에서 회복하는 동안 주인의 아버지를 도와 배달 업무를 정리했다. 맡긴 돈으로 기록된 그 금액은 아버지가 지급해야 할 보수였다. 안전하게 보관할 곳이 없어 그녀의 요청으로 맡겨 둔 돈이었다. 시계는 두 사람 사이의 표시였다. 그러다 병으로 연락이 끊기면서 정산도 끝나지 못했다.",
         "scene": "Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. Young man's mother, a Korean woman sixty with short gray hair and green sweater, explaining open letters at her kitchen table to the two visitors, morning light.",
-        "image": "images/advanced-mystery-01-06.png"
+        "image": "images/advanced-mystery-01-06-v2.png"
       },
       {
         "title": "A Different Debt",
@@ -263,7 +263,7 @@
     "genre": "novel",
     "title": "The Weight of a Signature",
     "koreanTitle": "서명 한 줄의 무게",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Claim",
@@ -331,7 +331,7 @@
       {
         "title": "The Next Signature",
         "text": "Back at the workshop, she changed the contract examination process. Revised pages would carry clear dates; approval would be recorded before work began. She also paid the wages still owed to her former colleague. On the next agreement, her hand paused above the signature line. The pen was ordinary. What it committed other people to endure was not.",
-        "translation": "작업장으로 돌아온 그녀는 계약 검토 절차를 바꿨다. 수정된 쪽에는 날짜를 분명히 쓰고, 일을 시작하기 전에 승인을 기록하기로 했다. 옛 동료에게 남아 있던 임금도 지급했다. 다음 계약서에서 그녀의 손은 서명란 위에 잠시 멈췄다. 펜는 평범했다. 그러나 그 펜가 다른 사람들에게 감당하게 할 일은 가볍지 않았다.",
+        "translation": "작업장으로 돌아온 그녀는 계약 검토 절차를 바꿨다. 수정된 쪽에는 날짜를 분명히 쓰고, 일을 시작하기 전에 승인을 기록하기로 했다. 옛 동료에게 남아 있던 임금도 지급했다. 다음 계약서에서 그녀의 손은 서명란 위에 잠시 멈췄다. 펜은 평범했다. 그러나 그 펜이 다른 사람들에게 감당하게 할 일은 가볍지 않았다.",
         "scene": "Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. The owner at her printing-workshop desk pausing with a pen above a new agreement, clear organized page tabs, printing equipment softly in background, quiet responsible ending.",
         "image": "images/advanced-courtroom-01-10.png"
       }

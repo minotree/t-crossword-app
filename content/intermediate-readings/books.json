@@ -5,7 +5,7 @@
     "genre": "poem",
     "title": "Not Yet in Bloom",
     "koreanTitle": "아직 피지 않은 꽃",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "Not Yet in Bloom",
@@ -22,7 +22,7 @@
     "genre": "essay",
     "title": "More Than a Grade",
     "koreanTitle": "점수보다 오래 남은 것",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Result",
@@ -54,7 +54,7 @@
     "subgenre": "SF",
     "title": "A Message from Tomorrow",
     "koreanTitle": "내일에서 온 메시지",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Message",
@@ -120,7 +120,7 @@
     "title": "Between Two Stops",
     "koreanTitle": "두 정류장 사이",
     "level": "intermediate",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "Between Two Stops",
@@ -137,7 +137,7 @@
     "title": "A Place for My Voice",
     "koreanTitle": "내 목소리가 머무는 자리",
     "level": "intermediate",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "A Place for My Voice",
@@ -154,7 +154,7 @@
     "title": "An Hour Without a Screen",
     "koreanTitle": "화면을 끄고 발견한 한 시간",
     "level": "intermediate",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Habit",
@@ -185,7 +185,7 @@
     "title": "Learning to Say No",
     "koreanTitle": "친구에게 아니라고 말하기",
     "level": "intermediate",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "The Simple Answer",
@@ -216,7 +216,7 @@
     "title": "The Quiet Bridge",
     "koreanTitle": "고요한 다리의 수련생",
     "level": "intermediate",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "A Small Duty",
@@ -283,7 +283,7 @@
     "title": "A Second Life, A Small Choice",
     "koreanTitle": "두 번째 삶의 작은 선택",
     "level": "intermediate",
-    "reviewStatus": "draft-unreviewed",
+    "reviewStatus": "approved",
     "pages": [
       {
         "title": "Another Face",

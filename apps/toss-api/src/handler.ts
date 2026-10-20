@@ -1,5 +1,5 @@
 import { createHash, randomBytes, randomUUID } from 'node:crypto';
-import { defaultVocabList, generateCrossword, parseCrosswordPuzzle, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { defaultVocabList, generateCrossword, parseCrosswordPuzzle, registerCrosswordDraft, vocabularyForProgress, crosswordPlacements, type DifficultyLevel, type GridSize, type CrosswordPuzzle } from '@t-crossword/core';
 import { isRecord, isHintBalance } from '@t-crossword/contracts';
 import { TossHintError, type createTossHintRepository } from '@t-crossword/data';
 import { createRequestLimiter, readLimitedBody } from './requestLimit.js';
@@ -8,8 +8,9 @@ export const hash = (value: string) => createHash('sha256').update(value).digest
 type Repository = ReturnType<typeof createTossHintRepository>;
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 
-export function createHintHandler({ repository, exchangeCode, allowedOrigins, probeCode, now }: {
-  repository: Repository;
+export function createHintHandler({ repository, exchangeCode, allowedOrigins, probeCode, now, testAdsEnabled = false }: {
+  repository: Omit<Repository, 'testAdReward'> & Partial<Pick<Repository, 'testAdReward'>>;
+  testAdsEnabled?: boolean;
   exchangeCode: (code: string) => Promise<string>;
   allowedOrigins: string[];
   probeCode?: (code: string) => Promise<boolean>;
@@ -38,7 +39,7 @@ export function createHintHandler({ repository, exchangeCode, allowedOrigins, pr
     if (globalWait) return rejectLimit(globalWait);
     try {
       const action = new URL(request.url).pathname.replace(/\/$/, '');
-      if (!['/session', '/auth-probe', '/balance', '/round', '/hint', '/answer'].includes(action)) return json({ error: '경로를 찾지 못했습니다.' }, 404);
+      if (!['/session', '/auth-probe', '/balance', '/round', '/round/register', '/hint', '/answer', '/ads/test/prepare', '/ads/test/claim'].includes(action)) return json({ error: '경로를 찾지 못했습니다.' }, 404);
       if (action === '/session' || action === '/auth-probe') {
         const wait = limit('authentication', 20);
         if (wait) return rejectLimit(wait);
@@ -70,16 +71,30 @@ export function createHintHandler({ repository, exchangeCode, allowedOrigins, pr
       const sessionHash = hash(authorization.slice(7));
       const sessionWait = limit(`session:${sessionHash}`, 120);
       if (sessionWait) return rejectLimit(sessionWait);
-      const actionWait = limit(`${action}:${sessionHash}`, action === '/round' ? 6 : action === '/hint' ? 30 : 90);
+      const roundAction = action === '/round' || action === '/round/register';
+      const actionWait = limit(`${roundAction ? '/round' : action}:${sessionHash}`, roundAction ? 6 : action === '/hint' ? 30 : 90);
       if (actionWait) return rejectLimit(actionWait);
       if (action === '/balance') return json({ balance: await repository.balance(sessionHash) });
-      if (action === '/round') {
+      if (action === '/ads/test/prepare' || action === '/ads/test/claim') {
+        if (!testAdsEnabled || !repository.testAdReward) return json({ error: '광고 보상 테스트가 아직 준비되지 않았습니다.', code: 'ads_disabled' }, 503);
+        if (body.adGroupId !== 'ait-ad-test-rewarded-id' || typeof body.requestId !== 'string' || !UUID.test(body.requestId)) return json({ error: '광고 요청 정보가 올바르지 않습니다.' }, 400);
+        return json({ balance: await repository.testAdReward(sessionHash, body.requestId, action === '/ads/test/claim') });
+      }
+      if (roundAction) {
         const level: DifficultyLevel | null = body.level === 'beginner' || body.level === 'intermediate' || body.level === 'advanced' ? body.level : null;
         const size: GridSize | null = body.size === 8 || body.size === 10 || body.size === 12 ? body.size : null;
         if (!level || !size || !Array.isArray(body.completedWordIds) || body.completedWordIds.length > 5000 ||
             !body.completedWordIds.every((id) => typeof id === 'string' && id.length <= 100)) return json({ error: '퍼즐 설정이 올바르지 않습니다.' }, 400);
         if (body.requestId !== undefined && (typeof body.requestId !== 'string' || !UUID.test(body.requestId))) return json({ error: '퍼즐 요청 정보가 올바르지 않습니다.' }, 400);
-        const fingerprint = hash(JSON.stringify({ level, size, completedWordIds: [...new Set(body.completedWordIds)].sort() }));
+        const vocabulary = vocabularyForProgress(defaultVocabList, body.completedWordIds);
+        let devicePuzzle: CrosswordPuzzle | undefined;
+        if (action === '/round/register') {
+          if (typeof body.requestId !== 'string') return json({ error: '퍼즐 요청 ID가 필요합니다.' }, 400);
+          try { devicePuzzle = registerCrosswordDraft(vocabulary, level, size, body.placements); }
+          catch { return json({ error: '퍼즐 배치를 확인하지 못했습니다.', code: 'invalid_round_draft' }, 400); }
+        }
+        const fingerprint = hash(JSON.stringify({ level, size, completedWordIds: [...new Set(body.completedWordIds)].sort(),
+          ...(devicePuzzle ? { source: 'device-v1', placements: crosswordPlacements(devicePuzzle) } : {}) }));
         const roundResponse = (value: unknown) => {
           if (!isRecord(value) || !isHintBalance(value.balance) ||
               (value.roundId !== null && (typeof value.roundId !== 'string' || !UUID.test(value.roundId)))) throw new Error('Invalid round snapshot');
@@ -92,8 +107,7 @@ export function createHintHandler({ repository, exchangeCode, allowedOrigins, pr
           if (saved !== null) return roundResponse(saved);
         }
         await repository.balance(sessionHash);
-        const completed = new Set(body.completedWordIds);
-        const puzzle = generateCrossword(defaultVocabList.map((word) => ({ ...word, isQuizUsed: word.isQuizUsed || completed.has(word.id) })), level, size);
+        const puzzle = devicePuzzle ?? generateCrossword(vocabulary, level, size);
         if (typeof body.requestId === 'string') {
           return roundResponse(await repository.saveRoundCreation(sessionHash, body.requestId, fingerprint, puzzle.words.length ? randomUUID() : null, puzzle));
         }

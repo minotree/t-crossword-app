@@ -1,0 +1,13 @@
+{
+  "id": "beginner-42-v2",
+  "target": "images/beginner-42-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"Sport Day\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nSport day, football, soccer, team.\nBasketball, baseball, one big dream.\nTennis, badminton, hit the ball.\nCatch and kick, one game for all.\nGoal and score, pass and race.\nWin with care, a smile on every face.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-6df2b2e0-bb84-4fc3-8932-0b5ffc3add08.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-42.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

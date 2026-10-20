@@ -1,0 +1,13 @@
+{
+  "id": "beginner-32-v2",
+  "target": "images/beginner-32-v2.png",
+  "prompt": "Use case: text-localization. Edit target: this existing Art Class reading card. Change ONLY the word \"you\" at the end of line 2 to \"me\". Preserve the illustration, title, colors, layout and all other text. The corrected full body must read exactly:\nArt class, paper, paint, crayon.\nDraw one circle, work with me.\nDesign one image, color the page.\nScissors for the adult, please.\nPrint one picture, make one card.\nShow the beauty, try one thing new.\nKeep all text readable and fully inside the card. No added captions or marks.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-233669fb-6032-46b2-a5ee-6482feee8f91.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-32.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

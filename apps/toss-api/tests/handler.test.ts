@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createHintHandler, hash } from '../src/handler.js';
 import { parseTossIdentity } from '../src/tossAuth.js';
+import { crosswordPlacements, defaultVocabList, generateCrossword } from '@t-crossword/core';
+import { TossHintError } from '@t-crossword/data';
 
 function setup(now?: () => number) {
   const repository = {
@@ -19,6 +21,61 @@ const post = (path: string, body: unknown, origin = 'http://localhost:5174') => 
 });
 
 describe('Toss hint API boundary', () => {
+  it('registers device placements with server vocabulary and canonical hint limits', async () => {
+    const { handler, repository } = setup();
+    const puzzle = generateCrossword(defaultVocabList.slice(0, 20), 'beginner', 8);
+    expect(puzzle.words.length).toBeGreaterThan(0);
+    repository.saveRoundCreation.mockImplementation(async (_session, _request, _fingerprint, roundId, registered) => ({ roundId, puzzle: registered, balance: 10 }));
+    const response = await handler(post('/round/register', { level: 'beginner', size: 8, completedWordIds: [],
+      requestId: '00000000-0000-4000-8000-000000000001',
+      placements: crosswordPlacements(puzzle).map(placement => ({ ...placement, word: 'FAKE', hintLimit: 99, meaning: 'fake' })) }));
+    expect(response.status).toBe(200);
+    expect((await response.json()).puzzle).toEqual(puzzle);
+    expect(repository.saveRoundCreation).toHaveBeenCalledTimes(1);
+    expect(repository.startRound).not.toHaveBeenCalled();
+  });
+
+  it('rejects forged, excluded, empty and missing device drafts before saving', async () => {
+    const puzzle = generateCrossword(defaultVocabList.slice(0, 20), 'beginner', 8);
+    const placements = crosswordPlacements(puzzle);
+    const body = { level: 'beginner', size: 8, completedWordIds: [], requestId: '00000000-0000-4000-8000-000000000001', placements };
+    for (const invalid of [
+      { ...body, requestId: undefined }, { ...body, placements: undefined }, { ...body, placements: [] },
+      { ...body, placements: [{ ...placements[0], id: 'forged' }] },
+      { ...body, completedWordIds: puzzle.words.map(word => word.id) },
+      { ...body, placements: [placements[0], placements[0]] },
+    ]) {
+      const { handler, repository } = setup();
+      expect((await handler(post('/round/register', invalid))).status).toBe(400);
+      expect(repository.saveRoundCreation).not.toHaveBeenCalled();
+    }
+  });
+
+  it('shares the round request limit between device registration and legacy generation', async () => {
+    const { handler } = setup();
+    for (let index = 0; index < 6; index++) expect((await handler(post(index % 2 ? '/round/register' : '/round', {}))).status).toBe(400);
+    expect((await handler(post('/round/register', {}))).status).toBe(429);
+  });
+
+  it('binds the request fingerprint to the device source and exact canonical placements', async () => {
+    const { handler, repository } = setup();
+    const sea = defaultVocabList.find(word => word.word === 'SEA');
+    if (!sea) throw new Error('Missing SEA fixture');
+    const placements = crosswordPlacements(generateCrossword([sea], 'beginner', 8));
+    const expectedFingerprint = hash(JSON.stringify({ level: 'beginner', size: 8, completedWordIds: [], source: 'device-v1', placements }));
+    const body = { level: 'beginner', size: 8, completedWordIds: [], requestId: '00000000-0000-4000-8000-000000000001', placements };
+    repository.findRoundCreation.mockImplementation(async (_session, _request, fingerprint) => {
+      if (fingerprint !== expectedFingerprint) throw new TossHintError('round_request_mismatch', '설정 불일치');
+      return null;
+    });
+    repository.saveRoundCreation.mockImplementation(async (_session, _request, _fingerprint, roundId, puzzle) => ({ roundId, puzzle, balance: 10 }));
+    expect((await handler(post('/round/register', body))).status).toBe(200);
+    expect(repository.findRoundCreation).toHaveBeenCalledWith(hash(token), body.requestId, expectedFingerprint);
+    expect((await handler(post('/round/register', { ...body, placements: [{ ...placements[0], startRow: 0 }] }))).status).toBe(409);
+    expect((await handler(post('/round', body))).status).toBe(409);
+    expect(repository.saveRoundCreation).toHaveBeenCalledTimes(1);
+  });
+
   it('keeps legacy requests without an ID compatible but non-idempotent', async () => {
     const { handler, repository } = setup();
     const body = { level: 'beginner', size: 8, completedWordIds: [] };

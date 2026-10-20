@@ -1,0 +1,13 @@
+{
+  "id": "beginner-38-v2",
+  "target": "images/beginner-38-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"Airplane Day\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nAirplane, pilot, land and sea.\nCountry, nation, new for you.\nNorth and south, east and west.\nSee the map and take one trip.\nShip below and cloud above.\nReturn home with love for the world.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-e6fe1f41-9bb3-4e12-b23d-e8dc6844594a.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-38.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

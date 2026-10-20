@@ -1,0 +1,13 @@
+{
+  "id": "beginner-01-v2",
+  "target": "images/beginner-01-v2.png",
+  "prompt": "Use case: text-localization. Edit this existing reading card. Preserve illustration, people, colors, layout, title Little Bird. Replace body ONLY with exact four lines, matching existing type:\nLittle bird, sing with me.\nLittle tree under the sky.\nLittle bee, fly with me.\nCome and play under the sky.\nNo extra text. Save corrected card.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-d95e1f23-8d6c-4165-ba7c-81c31e5ff7ce.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-01.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

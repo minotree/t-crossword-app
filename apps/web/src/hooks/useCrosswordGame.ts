@@ -9,7 +9,7 @@ import {
 } from '@t-crossword/data';
 import {
   defaultVocabList,
-  generateCrossword,
+  generateCrossword, vocabularyForProgress,
   WordBankService,
   type CrosswordPuzzle,
   type CrosswordWord,
@@ -119,10 +119,7 @@ export function useCrosswordGame({
 
   const startNewGame = useCallback(
     (newLevel: DifficultyLevel = level, newSize: GridSize = gridSize) => {
-      const completed = new Set(wordProgressStore.getSnapshot().completedWordIds);
-      const words = wordBank.getAllWords().map((word) => ({
-        ...word, isQuizUsed: completed.has(word.id) ? true : word.isQuizUsed,
-      }));
+      const words = vocabularyForProgress(wordBank.getAllWords(), wordProgressStore.getSnapshot().completedWordIds);
       const newPuzzle = generateCrossword(words, newLevel, newSize);
       roundId.current = crypto.randomUUID();
       rewardAttempt.current = null;

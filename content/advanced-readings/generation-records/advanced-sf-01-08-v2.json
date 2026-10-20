@@ -1,0 +1,15 @@
+{
+  "id": "advanced-sf-01-08-v2",
+  "bookId": "advanced-sf-01",
+  "page": 8,
+  "target": "images/advanced-sf-01-08-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"The Memory Deposit\". Preserve heading \"Before the Light\" and page indicator \"8 / 10\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nDuring the waiting period, he wrote the letter. He described what he remembered and acknowledged what he could not know. He did not claim a right to a renewed relationship merely because he had suffered. When he returned, the restriction had been lifted through the shop's examination. The operator asked whether he still wished to proceed. He said yes.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-a3819271-645b-45dc-ac60-2eb4d303620d.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/advanced-sf-01-08.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

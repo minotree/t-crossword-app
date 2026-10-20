@@ -9,6 +9,11 @@ from PIL import Image, ImageDraw
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent.parent
 
+# Basic function words and explicit plural forms are separate from base vocabulary.
+GRAMMAR = set('a i me my their to your on'.split())
+INFLECTIONS = {'socks': 'sock', 'shoes': 'shoe', 'teeth': 'tooth',
+               'hands': 'hand', 'toys': 'toy'}
+
 
 def tokens(text):
     return set(re.findall(r'[a-z]+(?:-[a-z]+)*', text.lower()))
@@ -18,30 +23,39 @@ def main():
     poems = json.loads((ROOT / 'poems.json').read_text(encoding='utf-8'))
     vocab = json.loads((REPO / 'packages/core/src/assets/vocab.json').read_text(encoding='utf-8'))
     known = {w['word'].lower() for w in vocab if w['level'] == 'beginner'}
+    assert set(INFLECTIONS.values()) <= known
     records = json.loads((ROOT / 'generation-record.json').read_text(encoding='utf-8'))
     assert len(poems) == 45
     assert len({p['id'] for p in poems}) == len(poems)
     assert len(records) == len(poems)
     assert len({r['id'] for r in records}) == len(records)
     assert {p['id'] for p in poems} == {r['id'] for r in records}
+    record_by_id = {r['id']: r for r in records}
     word_poems = {}
     previous = set()
     for i, poem in enumerate(poems):
+        evidence = record_by_id[poem['id']]
+        assert evidence['target'] == poem['image'], poem['id']
+        assert poem['poem'] in evidence['prompt'], poem['id']
         actual = tokens(poem['title'] + ' ' + poem['poem'])
-        assert actual <= known, (poem['id'], actual - known)
+        assert actual <= known | GRAMMAR | INFLECTIONS.keys(), (poem['id'], actual - known - GRAMMAR - INFLECTIONS.keys())
         assert actual == set(poem['words']), poem['id']
         assert len(poem['poem'].splitlines()) == (4 if i < 20 else 6)
         assert poem['translation'].strip(), poem['id']
         assert len(poem['translation'].splitlines()) == len(poem['poem'].splitlines()), poem['id']
-        for word in tokens(poem['poem']):
+        body_bases = {INFLECTIONS.get(w, w) for w in tokens(poem['poem'])
+                      if w in known or w in INFLECTIONS}
+        for word in body_bases:
             word_poems.setdefault(word, []).append(poem['id'])
         if i < 20:
-            previous |= tokens(poem['poem'])
+            previous |= {INFLECTIONS.get(w, w) for w in tokens(poem['poem']) if w in known or w in INFLECTIONS}
         with Image.open(ROOT / poem['image']) as image:
             image.verify()
     assert len(word_poems) >= 500
     report = {
-        'countingRule': 'Distinct lowercase words actually present in poem bodies; titles, word lists and illustration prompts excluded. Hyphenated words stay intact.',
+        'countingRule': 'Distinct beginner base vocabulary in poem bodies; titles, word lists, illustration prompts and separately allowed grammar words excluded. Explicit plurals map to their base and are not counted twice. Hyphenated words stay intact.',
+        'grammarWords': sorted({w for p in poems for w in tokens(p['title'] + ' ' + p['poem']) if w in GRAMMAR and w not in known}),
+        'inflections': {w: base for w, base in INFLECTIONS.items() if any(w in tokens(p['title'] + ' ' + p['poem']) for p in poems)},
         'beginnerVocabularyCount': len(known), 'poemCount': len(poems),
         'previousBodyWordCount': len(previous), 'bodyWordCount': len(word_poems),
         'additionalBodyWords': len(set(word_poems) - previous),
@@ -73,7 +87,7 @@ a:focus-visible,summary:focus-visible{outline:3px solid #315da8;outline-offset:3
 </style><header><h1>초급 영어 동시·삽화 45편</h1>
 <p>기존 20편 + 추가 25편 · 본문에 사용한 초급 단어 ''' + str(len(word_poems)) + '''종 / ''' + str(len(known)) + '''종</p>
 <p>이미지를 누르면 원본을, 제목을 펼치면 원문과 사용 단어를 확인할 수 있습니다.</p>
-<p>직접 창작한 콘텐츠 초안입니다. 배포 전 편집·권리 검토가 필요합니다.</p>
+<p>AI를 활용한 창작 콘텐츠입니다. 작품별 검토 상태는 원본 데이터와 검토 보고서를 확인하세요.</p>
 <a href="coverage-report.json">단어 사용 현황</a> · <a href="overview.jpg">전체 이미지 모음</a>
 </header><main>''' + ''.join(cards) + '</main></html>\n'
     (ROOT / 'index.html').write_text(page, encoding='utf-8')

@@ -156,10 +156,8 @@
     "agreed": "agree",
     "announced": "announce",
     "acknowledged": "acknowledge",
-    "made": "make",
-    "suffering": "suffer",
-    "entitled": "entity",
     "renewed": "renew",
+    "suffered": "suffer",
     "returned": "return",
     "lifted": "lift",
     "fragments": "fragment",
@@ -550,7 +548,6 @@
     "display": "intermediate",
     "dispute": "advanced",
     "distance": "intermediate",
-    "distinct": "advanced",
     "distinguish": "advanced",
     "document": "intermediate",
     "door": "beginner",
@@ -568,7 +565,6 @@
     "empty": "intermediate",
     "endure": "advanced",
     "enter": "beginner",
-    "entity": "advanced",
     "envelope": "intermediate",
     "erase": "advanced",
     "error": "advanced",
@@ -1059,7 +1055,7 @@
     {
       "book": "advanced-sf-01",
       "page": 8,
-      "words": 56
+      "words": 59
     },
     {
       "book": "advanced-sf-01",
@@ -1099,7 +1095,7 @@
     {
       "book": "advanced-mystery-01",
       "page": 6,
-      "words": 59
+      "words": 62
     },
     {
       "book": "advanced-mystery-01",
@@ -1175,6 +1171,6 @@
   "levelCounts": {
     "beginner": 244,
     "intermediate": 215,
-    "advanced": 135
+    "advanced": 133
   }
 }

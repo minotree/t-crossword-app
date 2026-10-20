@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-19",
+  "bookId": "advanced-sf-01",
+  "affectedHistoricalRecords": [
+    "generation-records/advanced-sf-01-05-v2.json",
+    "generation-records/advanced-sf-01-07-v2.json",
+    "generation-records/advanced-sf-01-10-v2.json"
+  ],
+  "correction": "OLDER SISTER in these historical edit prompts was an incorrect relative-age instruction. The intended relationship follows the Korean translation: the man is her older brother, and she is his younger sister. Both are older adults. Gray hair and an age near sixty do not imply that she is older than her brother.",
+  "characterGuide": {
+    "brother": "Older Korean man with gray hair and a brown coat; older brother of the woman in green.",
+    "sister": "Older Korean woman with gray chin-length hair and a green coat; younger sister of the man in brown.",
+    "operator": "Korean woman around forty with short black hair and a charcoal jacket; unrelated shop operator."
+  },
+  "historicalRecordsPreserved": true,
+  "reviewStatus": "draft-unreviewed"
+}

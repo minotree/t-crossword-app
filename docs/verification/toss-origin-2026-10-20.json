@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Asia/Seoul",
+  "project": "zduyaejdjwfhsiazcmrn",
+  "changesToServer": false,
+  "healthChecks": [
+    { "origin": null, "status": 200, "elapsedMs": 567 },
+    { "origin": "https://not-allowed.example", "status": 403, "elapsedMs": 164 },
+    { "origin": "https://example.org", "status": 403, "elapsedMs": 30 },
+    { "origin": "https://t-crossword.private-web.tossmini.com", "status": 403, "elapsedMs": 21, "note": "Initial assumed Origin was incorrect; rejected. No allowlist change." },
+    { "origin": "https://t-crossword.private-apps.tossmini.com", "status": 200, "elapsedMs": 171, "allowOriginMatches": true }
+  ],
+  "preflight": { "path": "/round/register", "origin": "https://t-crossword.private-apps.tossmini.com", "status": 204, "elapsedMs": 39, "allowOriginMatches": true },
+  "blockedPost": { "path": "/round/register", "origin": "https://not-allowed.example", "status": 403 },
+  "conclusion": "Previous timeouts did not reproduce. Rejection and existing test Origin allowance confirmed; original timeout cause remains undetermined. Production Origin and actual browser WebView checks remain separate."
+}

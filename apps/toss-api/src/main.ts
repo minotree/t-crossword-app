@@ -16,6 +16,7 @@ const probeSettings = process.env.TOSS_AUTH_PROBE_SETTINGS_PATH;
 const probeToken = probeSettings ? parseEnv(readFileSync(probeSettings, 'utf8')).TOSS_PROBE_TOKEN : undefined;
 if (probeSettings && (!probeToken || probeToken.length < 32)) throw new Error('인증 시험 설정을 확인해 주세요.');
 const handler = createHintHandler({
+  testAdsEnabled: process.env.TOSS_TEST_AD_REWARDS === 'true',
   probeCode: probeToken ? createAuthProbe(`${required('SUPABASE_URL')}/functions/v1/toss-mtls-probe`, required('SUPABASE_SERVICE_ROLE_KEY'), probeToken) : undefined,
   repository: createTossHintRepository(getSupabaseClient(required('SUPABASE_URL'), required('SUPABASE_SERVICE_ROLE_KEY'))),
   exchangeCode: createTossAuthExchange(readFileSync(required('TOSS_MTLS_CERT_PATH'), 'utf8'), readFileSync(required('TOSS_MTLS_KEY_PATH'), 'utf8'), process.env.TOSS_MTLS_KEY_PASSPHRASE),

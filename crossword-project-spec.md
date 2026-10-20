@@ -85,7 +85,7 @@ export const getWordHintLimit = (word: string): number => {
 | 책임 | 위치 |
 | --- | --- |
 | 플랫폼별 UI·라우팅·인증/저장 어댑터 | `apps/web`, `apps/mobile`, `apps/toss` |
-| 토스 mTLS 사용자 확인·서버 출제·힌트 API | `apps/toss-api` |
+| 토스 mTLS 사용자 확인·기기 출제 판 검증/등록·힌트 API(구버전 서버 출제 호환) | `apps/toss-api` |
 | 공통 DTO·포트·검증 계약 | `packages/contracts` |
 | 프레임워크 독립 퍼즐·힌트·단어장 규칙 | `packages/core` |
 | Supabase 클라이언트 팩토리·힌트 데이터 접근 | `packages/data` |

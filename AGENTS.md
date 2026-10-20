@@ -67,6 +67,7 @@ scripts/
 ## 4. UI and Platform Boundaries
 
 ### Web/PWA
+- 향후 하이브리드 배포를 고려해 Safe Area·작은 화면·가로 회전·키보드 표시 시 콘텐츠와 조작 영역을 확인한다. 토스에서 검증한 메뉴 명칭·사용 흐름은 일관되게 반영하되 광고·네이티브 상단 영역에 따른 치수는 플랫폼에 맞춘다. 웹 UI 개선을 Capacitor 통합이나 Android/iOS 검증 완료로 보고하지 않는다.
 - Owns React/Tailwind components, browser routing, responsive layouts and service-worker behavior.
 - Define supported offline operations; do not promise offline behavior for network-only features.
 - Test installation, cache updates and data consistency where PWA features are enabled.
@@ -82,6 +83,8 @@ scripts/
 - Browser-only testing does not prove Android/iOS compatibility.
 
 ### Toss Mini App
+- 배너 광고를 사용하는 토스 미니앱은 초기 화면 설계부터 토스 기본 상단 영역·앱 헤더·하단 메뉴·배너·Safe Area·키보드를 제외한 실제 콘텐츠 공간을 계산한다. 배너를 나중에 추가할 공간으로 취급하지 않으며, 작은 화면에서도 퍼즐·힌트·그림책 본문의 가독성과 조작 영역을 확보한다. 중복 제목·설명·진행 표시를 정리하고 고정 영역과 스크롤 영역을 함께 설계한다.
+- 이 앱의 배너는 하단 메뉴 아래 최하단에 배치하고 메뉴와 간격을 확보한다. 배너 높이·표준 UI는 현재 공식 SDK 기준을 확인하며 광고를 임의 축소·자르거나 메뉴·본문과 겹치지 않는다. 미지원·광고 없음·실패·보상형 광고 이용 중 배너가 사라지는 경우에도 콘텐츠 공간과 하단 안전 영역이 정상적으로 유지되는지 확인한다. 자동 검사와 실제 토스 기기의 배치·가독성 검증을 구분하고, 상세 기준은 `docs/toss-ads.md`를 따른다.
 - 판 생성 재시도는 같은 설정·요청 UUID를 유지하며 서버의 사용자별 결과 스냅샷을 재사용한다. DB→API→앱 순서로 적용하고, ID 없는 구버전 경로·동시 출제 CPU 중복·월 호출량 소모 방어 한계를 `docs/toss-round-idempotency.md`와 `docs/toss-free-hosting.md`에 구분한다.
 - 콘솔 업로드 키는 사용자 로컬 `ait token add` 프로필로 등록하고 키 내용은 읽거나 로그·채팅·저장소에 남기지 않는다. 명시적으로 승인된 `ait deploy` 업로드와 공개 검토 요청·출시를 구분한다. CLI 성공·실제 기기 검증도 별도로 기록한다.
 - 토스 출시는 별도 서버 관리 없이 무료 범위를 기준으로 한다. 유료 호스팅·요금제 전환을 기본 전제로 삼지 않는다. Supabase Edge Functions 대체는 실제 mTLS·실행 제한 검증 전 확정하지 않는다. 검토 상태는 `docs/toss-free-hosting.md`를 따른다.
@@ -97,6 +100,8 @@ scripts/
 - Grant minimal system and filesystem permissions.
 
 ## 5. Shared Business Logic
+
+- 웹/PWA·토스·향후 하이브리드 앱의 문제 출제는 `packages/core` 공통 엔진을 기기에서 실행한다. 플랫폼별로 출제 규칙을 복제하지 않는다. 서버는 등록한 판을 공통 단어장·배치 규칙으로 검증하고 힌트·정답·보상을 처리한다. 토스 구버전 서버 출제 호환·재시도·적용 순서는 `docs/decisions/20261019-device-puzzle-generation.md`를 따른다.
 
 - Keep business rules as pure TypeScript functions/classes where practical.
 - Prefer dependency injection through interfaces/ports for persistence, auth, clock, geolocation and other effects.

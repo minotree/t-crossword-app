@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, afterAll, expect, it, vi } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { PGlite } from '@electric-sql/pglite';
-import { defaultVocabList, generateCrossword } from '@t-crossword/core';
+import { defaultVocabList, generateCrossword, crosswordPlacements } from '@t-crossword/core';
 import { createHintHandler, hash } from '../src/handler.js';
 
 const db = new PGlite();
@@ -125,7 +125,7 @@ it('restricts replay data and both RPCs to trusted server calls', async () => {
   await db.exec('reset role');
 });
 
-it('replays the committed HTTP result after a lost response without invoking registration again', async () => {
+it.each(['/round', '/round/register'])('replays the committed %s result after a lost response without invoking registration again', async (path) => {
   const token = 't'.repeat(43);
   await db.query('select public.open_toss_hint_session($1,$2)', [player, hash(token)]);
   const repository = {
@@ -133,9 +133,10 @@ it('replays the committed HTTP result after a lost response without invoking reg
     openSession: vi.fn(), balance: vi.fn().mockResolvedValue(10), startRound: vi.fn(), reveal: vi.fn(), answer: vi.fn(),
   };
   const handler = createHintHandler({ repository, exchangeCode: vi.fn(), allowedOrigins: [] });
-  const post = (completedWordIds: string[]) => handler(new Request('https://local.example/round', {
+  const post = (completedWordIds: string[]) => handler(new Request(`https://local.example${path}`, {
     method: 'POST', headers: { Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ level: 'beginner', size: 8, completedWordIds, requestId: id }),
+    body: JSON.stringify({ level: 'beginner', size: 8, completedWordIds, requestId: id,
+      ...(path === '/round/register' ? { placements: crosswordPlacements(puzzle) } : {}) }),
   }));
   const first = await post(['unused-b', 'unused-a']);
   expect(first.status).toBe(200);

@@ -115,9 +115,8 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, hint
           onChange={(event) => changeLetter(index, event.target.value)} onKeyDown={(event) => keyDown(index, event)} />)}
       </div>
       <div className="answer-guidance">
-        <p>오답 글자의 붉은색 안내는 창을 열 때마다 단어의 글자 수만큼 제공됩니다.</p>
         <p role="status">오답 표시 남은 횟수: {length - feedbackCount} / {length}회</p>
-        <p>횟수를 모두 사용해도 입력과 정답 제출은 계속할 수 있습니다. 창을 다시 열면 초기화됩니다.</p>
+        <p>다시 열면 초기화 · 소진 후에도 입력·제출 가능</p>
       </div>
       {error && <p role="alert" className="error">{error}</p>}
       <div className="answer-actions">

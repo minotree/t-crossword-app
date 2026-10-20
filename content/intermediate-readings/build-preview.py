@@ -26,7 +26,7 @@ for book in books:
         all_pages.append((f'{book["id"]}-{number:02}', path))
     cards.append('</div></section>')
 prefix = '''<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>중급 그림책</title><style>body{margin:24px;background:#f4f1e9;color:#233045;font-family:system-ui,sans-serif}section{max-width:1400px;margin:32px auto}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}article{background:white;border-radius:16px;overflow:hidden}img{width:100%;display:block}details{padding:16px}summary{cursor:pointer}p{white-space:pre-line;line-height:1.9}</style>''' + f'<h1>중급 그림책 · {len(books)}편 {len(all_pages)}장</h1><p>시·창작 에세이·SF·무협·환생 단편소설. 편집·권리 검토 전 초안.</p>'
+<title>중급 그림책</title><style>body{margin:24px;background:#f4f1e9;color:#233045;font-family:system-ui,sans-serif}section{max-width:1400px;margin:32px auto}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:20px}article{background:white;border-radius:16px;overflow:hidden}img{width:100%;display:block}details{padding:16px}summary{cursor:pointer}p{white-space:pre-line;line-height:1.9}</style>''' + f'<h1>중급 그림책 · {len(books)}편 {len(all_pages)}장</h1><p>시·창작 에세이·SF·무협·환생 단편소설. AI 활용 창작 콘텐츠. 작품별 검토 상태는 원본 데이터와 검토 보고서 참조.</p>'
 (ROOT / 'index.html').write_text(prefix + ''.join(cards) + '</html>\n', encoding='utf-8')
 overview = Image.new('RGB', (1600, ((len(all_pages) + 3) // 4) * 520), '#f4f1e9')
 for i, (label, path) in enumerate(all_pages):

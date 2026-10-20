@@ -1,0 +1,13 @@
+{
+  "id": "beginner-44-v2",
+  "target": "images/beginner-44-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"Time Song\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nClock and hour, early and late.\nSecond after second, never wait.\nYesterday, today, tomorrow, too.\nAfternoon, evening, tonight with you.\nWeek and weekend, month and year.\nFuture and history, far and near.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-6453ffc8-a739-48a6-8ad5-ee1e54feec61.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-44.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

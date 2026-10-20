@@ -3,8 +3,8 @@
     "id": "beginner-01",
     "level": "beginner",
     "title": "Little Bird",
-    "poem": "Little bird, sing with you.\nLittle tree under the sky.\nLittle bee, fly with you.\nCome and play under the sky.",
-    "translation": "작은 새야, 너와 함께 노래해요.\n하늘 아래 작은 나무가 있어요.\n작은 벌아, 너와 함께 날아요.\n이리 와서 하늘 아래 함께 놀아요.",
+    "poem": "Little bird, sing with me.\nLittle tree under the sky.\nLittle bee, fly with me.\nCome and play under the sky.",
+    "translation": "작은 새야, 나와 함께 노래하자.\n하늘 아래 작은 나무가 있어요.\n작은 벌아, 나와 함께 날자.\n이리 와서 하늘 아래 함께 놀자.",
     "image": "picture-books/beginner-01.webp"
   },
   {
@@ -19,8 +19,8 @@
     "id": "beginner-03",
     "level": "beginner",
     "title": "Rain Song",
-    "poem": "Rain around the house.\nRain along the street.\nListen, happy music.\nDance with you.",
-    "translation": "집 둘레에 비가 내려요.\n거리를 따라 비가 내려요.\n들어 봐요, 즐거운 음악이에요.\n너와 함께 춤을 춰요.",
+    "poem": "Rain around the house.\nRain along the street.\nListen to the happy music.\nCome and dance with me.",
+    "translation": "집 둘레에 비가 내려요.\n거리를 따라 비가 내려요.\n즐거운 음악에 귀 기울여 봐요.\n이리 와서 나와 함께 춤을 춰요.",
     "image": "picture-books/beginner-03.webp"
   },
   {
@@ -163,16 +163,16 @@
     "id": "beginner-21",
     "level": "beginner",
     "title": "Breakfast Time",
-    "poem": "Breakfast, banana, butter, cheese.\nOne egg, some milk, some juice, please.\nJam and biscuit beside the cup.\nEat together, wake with the sun.\nFresh food, one happy start.\nThank the family with the heart.",
-    "translation": "아침 식사에 바나나, 버터, 치즈.\n달걀 하나, 우유와 주스도 주세요.\n컵 옆에는 잼과 비스킷.\n함께 먹고 해와 함께 깨어나요.\n신선한 음식으로 기분 좋게 시작해요.\n가족에게 마음을 담아 고마워해요.",
+    "poem": "Breakfast, banana, butter, cheese.\nOne egg, some milk, some juice, please.\nJam and biscuit beside the cup.\nEat together, wake with the sun.\nFresh food, one happy start.\nI thank my family for their care.",
+    "translation": "아침 식사에 바나나, 버터, 치즈.\n달걀 하나, 우유와 주스도 주세요.\n컵 옆에는 잼과 비스킷.\n함께 먹고 해와 함께 깨어나요.\n신선한 음식으로 기분 좋게 시작해요.\n나는 가족의 보살핌에 감사해요.",
     "image": "picture-books/beginner-21.webp"
   },
   {
     "id": "beginner-22",
     "level": "beginner",
     "title": "Lunch Shop",
-    "poem": "Lunch inside the little shop.\nSandwich, salad, hamburger, stop!\nChoose the pizza, taste the beef.\nChicken, meat, spaghetti, too.\nOne delicious cookie for the child.\nCook with care and smile with you.",
-    "translation": "작은 가게 안에서 먹는 점심.\n샌드위치, 샐러드, 햄버거 앞에서 멈춰요!\n피자를 고르고 소고기를 맛봐요.\n닭고기와 고기, 스파게티도 있어요.\n아이를 위한 맛있는 쿠키 하나.\n정성껏 요리하고 너와 함께 웃어요.",
+    "poem": "Lunch inside the little shop.\nSandwich, salad, hamburger, too.\nChoose the pizza, taste the beef.\nChicken, meat, spaghetti, too.\nOne delicious cookie for the child.\nCook with care and smile with me.",
+    "translation": "작은 가게 안에서 먹는 점심.\n샌드위치와 샐러드, 햄버거도 있어요.\n피자를 고르고 소고기를 맛봐요.\n닭고기와 고기, 스파게티도 있어요.\n아이를 위한 맛있는 쿠키 하나.\n정성껏 요리하고 나와 함께 웃어요.",
     "image": "picture-books/beginner-22.webp"
   },
   {
@@ -195,16 +195,16 @@
     "id": "beginner-25",
     "level": "beginner",
     "title": "Winter Clothes",
-    "poem": "Winter morning, cold and gray.\nWear the jacket, coat today.\nShirt and pants, one sock, one shoe.\nHat and belt, one cap for you.\nButton the clothes and keep the clothes dry.\nFamily love under the winter sky.",
-    "translation": "춥고 잿빛인 겨울 아침.\n오늘은 재킷과 코트를 입어요.\n셔츠와 바지, 양말 한 짝, 신발 한 짝.\n모자와 벨트, 너를 위한 모자 하나.\n옷의 단추를 잠그고 옷이 젖지 않게 해요.\n겨울 하늘 아래 가족의 사랑이 있어요.",
+    "poem": "Winter morning, cold and gray.\nWear the jacket, coat today.\nShirt and pants, clean socks and shoes.\nHat and belt, one cap for you.\nButton the clothes and keep the clothes dry.\nFamily love under the winter sky.",
+    "translation": "춥고 잿빛인 겨울 아침.\n오늘은 재킷과 코트를 입어요.\n셔츠와 바지, 깨끗한 양말과 신발.\n모자와 벨트, 너를 위한 모자 하나.\n옷의 단추를 잠그고 옷이 젖지 않게 해요.\n겨울 하늘 아래 가족의 사랑이 있어요.",
     "image": "picture-books/beginner-25.webp"
   },
   {
     "id": "beginner-26",
     "level": "beginner",
     "title": "Dress and Color",
-    "poem": "Dress and skirt, ribbon and ring.\nPick the style for the spring.\nBlack and brown, green and gold.\nPretty color, bright, not old.\nChoose the size, short and long.\nFeel like you and sing the song.",
-    "translation": "원피스와 치마, 리본과 반지.\n봄에 어울리는 옷차림을 골라요.\n검정과 갈색, 초록과 금빛.\n빛나고 새로운 예쁜 빛깔.\n짧은 것과 긴 것, 크기를 골라요.\n나답게 느끼며 노래를 불러요.",
+    "poem": "Dress and skirt, ribbon and ring.\nPick the style for the spring.\nBlack and brown, green and gold.\nPretty color, bright and new.\nChoose the size, short and long.\nFeel like you and sing the song.",
+    "translation": "원피스와 치마, 리본과 반지.\n봄에 어울리는 옷차림을 골라요.\n검정과 갈색, 초록과 금빛.\n밝고 새로운 예쁜 빛깔.\n짧은 것과 긴 것, 크기를 골라요.\n나답게 느끼며 노래를 불러요.",
     "image": "picture-books/beginner-26.webp"
   },
   {
@@ -219,8 +219,8 @@
     "id": "beginner-28",
     "level": "beginner",
     "title": "Clean Day",
-    "poem": "Bath time, brush the tooth.\nWash the hand and clean the room.\nWet hair beside the wall.\nDry the floor before the fall.\nHang the curtain, open the window.\nSoft light, one good habit.",
-    "translation": "목욕 시간, 이를 닦아요.\n손을 씻고 방을 청소해요.\n벽 옆에서 머리카락이 젖어 있어요.\n넘어지기 전에 바닥의 물기를 닦아요.\n커튼을 달고 창문을 열어요.\n부드러운 빛, 좋은 습관 하나.",
+    "poem": "Bath time, brush your teeth.\nWash your hands and clean the room.\nWet hair beside the wall.\nDry the floor before a fall.\nHang the curtain, open the window.\nSoft light, one good habit.",
+    "translation": "목욕 시간, 이를 닦아요.\n손을 씻고 방을 청소해요.\n벽 옆에서 머리카락이 젖어 있어요.\n넘어지지 않도록 바닥의 물기를 닦아요.\n커튼을 달고 창문을 열어요.\n부드러운 빛, 좋은 습관 하나.",
     "image": "picture-books/beginner-28.webp"
   },
   {
@@ -243,7 +243,7 @@
     "id": "beginner-31",
     "level": "beginner",
     "title": "The Toy Room",
-    "poem": "Doll and robot, mouse and fox.\nToy and puppy beside the box.\nPig and cow, one duck, one horse.\nTiger, elephant, play some sport!\nCollect the toy and put the box back.\nKeep one clear and quiet track.",
+    "poem": "Doll and robot, mouse and fox.\nToy and puppy beside the box.\nPig and cow, one duck, one horse.\nTiger, elephant, play some sport!\nCollect the toys and put the box back.\nKeep one clear and quiet track.",
     "translation": "인형과 로봇, 생쥐와 여우.\n상자 옆 장난감과 강아지.\n돼지와 소, 오리 한 마리와 말 한 마리.\n호랑이와 코끼리야, 운동하며 놀자!\n장난감을 모으고 상자를 제자리에 두어요.\n길 하나는 깨끗하고 조용하게 비워 두어요.",
     "image": "picture-books/beginner-31.webp"
   },
@@ -251,8 +251,8 @@
     "id": "beginner-32",
     "level": "beginner",
     "title": "Art Class",
-    "poem": "Art class, paper, paint, crayon.\nDraw one circle, work with you.\nDesign one image, color the page.\nScissors for the adult, please.\nPrint one picture, make one card.\nShow the beauty, try one thing new.",
-    "translation": "미술 시간, 종이와 물감, 크레용.\n너와 함께 동그라미 하나를 그려요.\n그림을 구상하고 종이에 색칠해요.\n가위는 어른에게 맡겨 주세요.\n그림 하나를 인쇄하고 카드 하나를 만들어요.\n아름다움을 표현하고 새로운 것을 시도해요.",
+    "poem": "Art class, paper, paint, crayon.\nDraw one circle, work with me.\nDesign one image, color the page.\nScissors for the adult, please.\nPrint one picture, make one card.\nShow the beauty, try one thing new.",
+    "translation": "미술 시간, 종이와 물감, 크레용.\n나와 함께 동그라미 하나를 그려요.\n그림을 구상하고 종이에 색칠해요.\n가위는 어른에게 맡겨 주세요.\n그림 하나를 인쇄하고 카드 하나를 만들어요.\n아름다움을 표현하고 새로운 것을 시도해요.",
     "image": "picture-books/beginner-32.webp"
   },
   {
@@ -283,24 +283,24 @@
     "id": "beginner-36",
     "level": "beginner",
     "title": "Music and Film",
-    "poem": "Radio, television, video, film.\nCamera ready, sound very low.\nSave one voice and watch the show.\nAlbum, movie, favorite star.\nTouch the key and turn the radio.\nMemory, music, one little smile.",
-    "translation": "라디오, 텔레비전, 영상, 영화.\n카메라는 준비됐고 소리는 아주 작아요.\n목소리를 저장하고 공연을 봐요.\n앨범과 영화, 좋아하는 스타.\n버튼을 누르고 라디오를 조작해요.\n추억과 음악, 작은 미소 하나.",
+    "poem": "Radio, television, video, film.\nCamera ready, sound very low.\nSave one voice and watch the show.\nAlbum, movie, favorite star.\nTouch the key and turn on the radio.\nMemory, music, one little smile.",
+    "translation": "라디오, 텔레비전, 영상, 영화.\n카메라는 준비됐고 소리는 아주 작아요.\n목소리를 저장하고 공연을 봐요.\n앨범과 영화, 좋아하는 스타.\n버튼을 누르고 라디오를 켜요.\n추억과 음악, 작은 미소 하나.",
     "image": "picture-books/beginner-36.webp"
   },
   {
     "id": "beginner-37",
     "level": "beginner",
     "title": "City Trip",
-    "poem": "City morning, bus and car.\nTaxi, truck, travel far.\nSubway ticket, street light.\nDrive the road and turn right.\nLeft, ahead, across the bridge.\nArrive together, love the trip.",
-    "translation": "도시의 아침, 버스와 자동차.\n택시와 트럭을 타고 멀리 여행해요.\n지하철 표와 가로등.\n길을 달리다가 오른쪽으로 돌아요.\n왼쪽으로, 앞으로, 다리를 건너요.\n함께 도착해 여행을 즐겨요.",
+    "poem": "City morning, bus and car.\nTaxi, truck, travel far.\nSubway ticket, street light.\nDrive along the road and turn right.\nLeft, ahead, across the bridge.\nArrive together, love the trip.",
+    "translation": "도시의 아침, 버스와 자동차.\n택시와 트럭을 타고 멀리 여행해요.\n지하철 표와 가로등.\n길을 따라 달리다가 오른쪽으로 돌아요.\n왼쪽으로, 앞으로, 다리를 건너요.\n함께 도착해 여행을 즐겨요.",
     "image": "picture-books/beginner-37.webp"
   },
   {
     "id": "beginner-38",
     "level": "beginner",
     "title": "Airplane Day",
-    "poem": "Airplane, pilot, land and sea.\nCountry, nation, new for you.\nNorth and south, east and west.\nMap the earth and take one trip.\nShip below and cloud above.\nReturn home with love for the world.",
-    "translation": "비행기와 조종사, 땅과 바다.\n너에게는 새로운 나라와 국가.\n북쪽과 남쪽, 동쪽과 서쪽.\n지도를 보며 지구를 여행해요.\n아래에는 배, 위에는 구름.\n세상을 사랑하는 마음을 안고 집으로 돌아와요.",
+    "poem": "Airplane, pilot, land and sea.\nCountry, nation, new for you.\nNorth and south, east and west.\nSee the map and take one trip.\nShip below and cloud above.\nReturn home with love for the world.",
+    "translation": "비행기와 조종사, 땅과 바다.\n너에게는 새로운 나라와 국가.\n북쪽과 남쪽, 동쪽과 서쪽.\n지도를 보고 여행을 떠나요.\n아래에는 배, 위에는 구름.\n세상을 사랑하는 마음을 안고 집으로 돌아와요.",
     "image": "picture-books/beginner-38.webp"
   },
   {
@@ -331,8 +331,8 @@
     "id": "beginner-42",
     "level": "beginner",
     "title": "Sport Day",
-    "poem": "Sport day, football, soccer, team.\nBasketball, baseball, one big dream.\nTennis, badminton, hit the ball.\nCatch and kick, one game for all.\nGoal and score, pass and race.\nWin with care, smile face beside face.",
-    "translation": "체육 시간, 미식축구와 축구, 우리 팀.\n농구와 야구, 커다란 꿈 하나.\n테니스와 배드민턴, 공을 쳐요.\n잡고 차며 모두 함께 놀아요.\n골과 점수, 패스와 달리기.\n서로 배려하며 이기고 나란히 웃어요.",
+    "poem": "Sport day, football, soccer, team.\nBasketball, baseball, one big dream.\nTennis, badminton, hit the ball.\nCatch and kick, one game for all.\nGoal and score, pass and race.\nWin with care, a smile on every face.",
+    "translation": "체육 시간, 미식축구와 축구, 우리 팀.\n농구와 야구, 커다란 꿈 하나.\n테니스와 배드민턴, 공을 쳐요.\n잡고 차며 모두 함께 놀아요.\n골과 점수, 패스와 달리기.\n서로 배려하며 이기니 모두의 얼굴에 미소가 피어요.",
     "image": "picture-books/beginner-42.webp"
   },
   {
@@ -347,16 +347,16 @@
     "id": "beginner-44",
     "level": "beginner",
     "title": "Time Song",
-    "poem": "Clock and hour, early and late.\nSecond after second, never wait.\nYesterday, today, tomorrow, too.\nAfternoon, evening, tonight with you.\nWeek and weekend, month and year.\nFuture, history, the time can feel near.",
-    "translation": "시계와 시간, 이를 때도 늦을 때도 있어요.\n매초 시간이 흐르니 마냥 기다리지 말아요.\n어제와 오늘, 내일도 있어요.\n오후와 저녁, 오늘 밤도 너와 함께해요.\n평일과 주말, 한 달과 한 해.\n미래와 지난날이 가까이 느껴져요.",
+    "poem": "Clock and hour, early and late.\nSecond after second, never wait.\nYesterday, today, tomorrow, too.\nAfternoon, evening, tonight with you.\nWeek and weekend, month and year.\nFuture and history, far and near.",
+    "translation": "시계와 시간, 이를 때도 늦을 때도 있어요.\n매초 시간이 흐르니 마냥 기다리지 말아요.\n어제와 오늘, 내일도 있어요.\n오후와 저녁, 오늘 밤도 너와 함께해요.\n평일과 주말, 한 달과 한 해.\n멀기도 가깝기도 한 미래와 지난날.",
     "image": "picture-books/beginner-44.webp"
   },
   {
     "id": "beginner-45",
     "level": "beginner",
     "title": "Number Song",
-    "poem": "Two, three, four and five.\nSix, seven, eight, feel the drive.\nTen, eleven, twelve, thirteen.\nTwenty, thirty, one hundred, see.\nFirst and second, third along the line.\nLearn the number, every time.",
-    "translation": "둘, 셋, 넷, 다섯.\n여섯, 일곱, 여덟, 신나게 나아가요.\n열, 열하나, 열둘, 열셋.\n스물, 서른, 백도 봐요.\n줄을 따라 첫째, 둘째, 셋째.\n그때그때 숫자를 배워요.",
+    "poem": "Two, three, four and five.\nSix, seven, eight, sing and smile.\nTen, eleven, twelve, thirteen.\nTwenty, thirty, one hundred, see.\nFirst and second, third along the line.\nLearn the number, every time.",
+    "translation": "둘, 셋, 넷, 다섯.\n여섯, 일곱, 여덟, 노래하며 웃어요.\n열, 열하나, 열둘, 열셋.\n스물, 서른, 백도 봐요.\n줄을 따라 첫째, 둘째, 셋째.\n그때그때 숫자를 배워요.",
     "image": "picture-books/beginner-45.webp"
   }
 ]

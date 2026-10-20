@@ -1,13 +1,78 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createRemoteHintGateway } from '../src/adapters/hintGateway.js';
+import { generateDevicePuzzle } from '../src/adapters/puzzleGeneration.js';
+import type { CrosswordPuzzle, GridSize } from '@t-crossword/core';
+import { defaultVocabList, generateCrossword } from '@t-crossword/core';
+
+vi.mock('../src/adapters/puzzleGeneration.js', () => ({
+  generateDevicePuzzle: vi.fn(async (level: string, size: number) => ({ level, size, words: [],
+    grid: Array.from({ length: size }, () => Array.from({ length: size }, () => null)) })),
+}));
 
 const token = 's'.repeat(43);
 const response = (value: unknown, status = 200) => new Response(JSON.stringify(value), { status });
-const emptyRound = (size = 8) => ({ roundId: null, balance: 10, puzzle: {
+const emptyRound = (size: GridSize = 8): { roundId: null; balance: number; puzzle: CrosswordPuzzle } => ({ roundId: null, balance: 10, puzzle: {
   level: 'beginner', size, words: [], grid: Array.from({ length: size }, () => Array.from({ length: size }, () => null)),
 } });
 describe('Toss authenticated hint transport', () => {
+  it('sends the test ad identity without a client reward amount and retries the same claim ID after reauthentication', async () => {
+    const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 }))
+      .mockResolvedValueOnce(response({ balance: 10 }))
+      .mockResolvedValueOnce(response({}, 401))
+      .mockResolvedValueOnce(response({ token, balance: 15 }))
+      .mockResolvedValueOnce(response({ balance: 15 }));
+    const gateway = createRemoteHintGateway('https://api.example', async () => 'code', fetcher);
+    const requestId = '00000000-0000-4000-8000-000000000001';
+    expect(await gateway.prepareTestAd?.(requestId)).toBe(10);
+    expect(await gateway.claimTestAd?.(requestId)).toBe(15);
+    expect(JSON.parse(fetcher.mock.calls[1][1].body)).toEqual({ requestId, adGroupId: 'ait-ad-test-rewarded-id' });
+    expect(fetcher.mock.calls[2][1].body).toBe(fetcher.mock.calls[4][1].body);
+    expect(fetcher.mock.calls[4][0]).toBe('https://api.example/ads/test/claim');
+  });
+  it('registers only device placements and refuses a different returned board while retaining its retry identity', async () => {
+    const sea = defaultVocabList.find(word => word.word === 'SEA');
+    if (!sea) throw new Error('Missing SEA fixture');
+    const puzzle = generateCrossword([sea], 'beginner', 8);
+    const generate = vi.fn(async () => puzzle);
+    const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 }))
+      .mockResolvedValueOnce(response(emptyRound()))
+      .mockResolvedValueOnce(response({ puzzle, roundId: '00000000-0000-4000-8000-000000000001', balance: 10 }));
+    const gateway = createRemoteHintGateway('https://api.example', async () => 'code', fetcher, generate);
+    await expect(gateway.startRound('beginner', 8, [])).rejects.toThrow('등록된 퍼즐이 일치하지 않습니다.');
+    expect((await gateway.startRound('beginner', 8, [])).puzzle).toEqual(puzzle);
+    expect(generate).toHaveBeenCalledTimes(1);
+    expect(fetcher.mock.calls[1][1].body).toBe(fetcher.mock.calls[2][1].body);
+    const { placements } = JSON.parse(fetcher.mock.calls[1][1].body);
+    expect(placements).toEqual([{ id: sea.id, orientation: 'across', startRow: 4, startCol: 2 }]);
+    expect(placements[0]).not.toHaveProperty('word');
+    expect(placements[0]).not.toHaveProperty('hintLimit');
+  });
+
+  it('keeps a device draft after an unsupported registration response without falling back to server generation', async () => {
+    const generate = vi.fn(async () => emptyRound().puzzle);
+    const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 }))
+      .mockResolvedValueOnce(response({ error: '경로를 찾지 못했습니다.' }, 404))
+      .mockResolvedValueOnce(response(emptyRound()));
+    const gateway = createRemoteHintGateway('https://api.example', async () => 'code', fetcher, generate);
+    await expect(gateway.startRound('beginner', 8, [])).rejects.toThrow('경로');
+    await gateway.startRound('beginner', 8, []);
+    expect(generate).toHaveBeenCalledTimes(1);
+    expect(fetcher.mock.calls[1][1].body).toBe(fetcher.mock.calls[2][1].body);
+    expect(fetcher.mock.calls.slice(1).every(call => call[0].endsWith('/round/register'))).toBe(true);
+  });
+
+  it('retries local generation failures without sending or registering a broken puzzle', async () => {
+    const generate = vi.fn().mockRejectedValueOnce(new Error('worker failed')).mockResolvedValueOnce(emptyRound().puzzle);
+    const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 })).mockResolvedValueOnce(response(emptyRound()));
+    const gateway = createRemoteHintGateway('https://api.example', async () => 'code', fetcher, generate);
+    await expect(gateway.startRound('beginner', 8, [])).rejects.toThrow('worker failed');
+    expect(fetcher).not.toHaveBeenCalled();
+    await gateway.startRound('beginner', 8, []);
+    expect(generate).toHaveBeenCalledTimes(2);
+  });
+
   it('reuses a failed creation ID with canonical settings and starts a new ID after success', async () => {
+    vi.mocked(generateDevicePuzzle).mockClear();
     const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 }))
       .mockRejectedValueOnce(new Error('lost round response'))
       .mockResolvedValueOnce(response(emptyRound()))
@@ -16,11 +81,15 @@ describe('Toss authenticated hint transport', () => {
     await expect(gateway.startRound('beginner', 8, ['b', 'a', 'a'])).rejects.toThrow('lost round');
     await gateway.startRound('beginner', 8, ['a', 'b']);
     expect(fetcher.mock.calls[1][1].body).toBe(fetcher.mock.calls[2][1].body);
+    expect(generateDevicePuzzle).toHaveBeenCalledTimes(1);
     const first = JSON.parse(fetcher.mock.calls[1][1].body);
     expect(first.requestId).toMatch(/^[a-f0-9-]{36}$/);
     expect(first.completedWordIds).toEqual(['a', 'b']);
+    expect(first.placements).toEqual([]);
+    expect(fetcher.mock.calls[1][0]).toBe('https://api.example/round/register');
     await gateway.startRound('beginner', 8, ['a', 'b']);
     expect(JSON.parse(fetcher.mock.calls[3][1].body).requestId).not.toBe(first.requestId);
+    expect(generateDevicePuzzle).toHaveBeenCalledTimes(2);
   });
 
   it('changes the request ID when settings change after a failed creation', async () => {
@@ -53,12 +122,12 @@ describe('Toss authenticated hint transport', () => {
     expect(fetcher.mock.calls[1][1].body).toBe(fetcher.mock.calls[2][1].body);
   });
 
-  it('allows a new creation attempt after an expired request is explicitly rejected', async () => {
+  it.each(['round_request_expired', 'round_request_mismatch', 'invalid_round_draft'])('allows a new creation attempt after explicit %s rejection', async (code) => {
     const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 }))
-      .mockResolvedValueOnce(response({ code: 'round_request_expired', error: '요청이 만료되었습니다.' }, 409))
+      .mockResolvedValueOnce(response({ code, error: '요청을 다시 시작해 주세요.' }, 409))
       .mockResolvedValueOnce(response(emptyRound()));
     const gateway = createRemoteHintGateway('https://api.example', async () => 'code', fetcher);
-    await expect(gateway.startRound('beginner', 8, [])).rejects.toMatchObject({ code: 'round_request_expired' });
+    await expect(gateway.startRound('beginner', 8, [])).rejects.toMatchObject({ code });
     await gateway.startRound('beginner', 8, []);
     expect(JSON.parse(fetcher.mock.calls[1][1].body).requestId).not.toBe(JSON.parse(fetcher.mock.calls[2][1].body).requestId);
   });

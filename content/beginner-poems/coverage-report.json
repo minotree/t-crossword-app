@@ -1,10 +1,27 @@
 {
-  "countingRule": "Distinct lowercase words actually present in poem bodies; titles, word lists and illustration prompts excluded. Hyphenated words stay intact.",
+  "countingRule": "Distinct beginner base vocabulary in poem bodies; titles, word lists, illustration prompts and separately allowed grammar words excluded. Explicit plurals map to their base and are not counted twice. Hyphenated words stay intact.",
+  "grammarWords": [
+    "a",
+    "i",
+    "me",
+    "my",
+    "on",
+    "their",
+    "to",
+    "your"
+  ],
+  "inflections": {
+    "socks": "sock",
+    "shoes": "shoe",
+    "teeth": "tooth",
+    "hands": "hand",
+    "toys": "toy"
+  },
   "beginnerVocabularyCount": 775,
   "poemCount": 45,
   "previousBodyWordCount": 161,
-  "bodyWordCount": 537,
-  "additionalBodyWords": 376,
+  "bodyWordCount": 536,
+  "additionalBodyWords": 375,
   "target": 500,
   "targetReached": true,
   "usedWords": [
@@ -157,7 +174,6 @@
     "during",
     "ear",
     "early",
-    "earth",
     "east",
     "eat",
     "egg",
@@ -626,6 +642,7 @@
     "double",
     "drink",
     "drop",
+    "earth",
     "enough",
     "enter",
     "fact",
@@ -843,12 +860,14 @@
     "along": [
       "beginner-03",
       "beginner-18",
+      "beginner-37",
       "beginner-40",
       "beginner-45"
     ],
     "and": [
       "beginner-01",
       "beginner-02",
+      "beginner-03",
       "beginner-05",
       "beginner-06",
       "beginner-09",
@@ -997,8 +1016,7 @@
       "beginner-24",
       "beginner-28",
       "beginner-31",
-      "beginner-40",
-      "beginner-42"
+      "beginner-40"
     ],
     "big": [
       "beginner-14",
@@ -1095,8 +1113,7 @@
       "beginner-29",
       "beginner-33",
       "beginner-40",
-      "beginner-41",
-      "beginner-44"
+      "beginner-41"
     ],
     "candy": [
       "beginner-24"
@@ -1111,6 +1128,7 @@
       "beginner-32"
     ],
     "care": [
+      "beginner-21",
       "beginner-22",
       "beginner-23",
       "beginner-24",
@@ -1171,6 +1189,7 @@
       "beginner-34"
     ],
     "clean": [
+      "beginner-25",
       "beginner-28"
     ],
     "clear": [
@@ -1213,6 +1232,7 @@
     "come": [
       "beginner-01",
       "beginner-02",
+      "beginner-03",
       "beginner-05",
       "beginner-06",
       "beginner-10",
@@ -1338,8 +1358,7 @@
       "beginner-26"
     ],
     "drive": [
-      "beginner-37",
-      "beginner-45"
+      "beginner-37"
     ],
     "drum": [
       "beginner-13"
@@ -1359,9 +1378,6 @@
     ],
     "early": [
       "beginner-44"
-    ],
-    "earth": [
-      "beginner-38"
     ],
     "east": [
       "beginner-38"
@@ -1395,6 +1411,7 @@
       "beginner-29",
       "beginner-30",
       "beginner-41",
+      "beginner-42",
       "beginner-45"
     ],
     "example": [
@@ -1421,7 +1438,8 @@
       "beginner-25"
     ],
     "far": [
-      "beginner-37"
+      "beginner-37",
+      "beginner-44"
     ],
     "farm": [
       "beginner-41"
@@ -1439,9 +1457,7 @@
       "beginner-26",
       "beginner-30",
       "beginner-39",
-      "beginner-40",
-      "beginner-44",
-      "beginner-45"
+      "beginner-40"
     ],
     "field": [
       "beginner-15",
@@ -1503,6 +1519,7 @@
       "beginner-11",
       "beginner-16",
       "beginner-17",
+      "beginner-21",
       "beginner-22",
       "beginner-25",
       "beginner-26",
@@ -1639,7 +1656,6 @@
       "beginner-27"
     ],
     "heart": [
-      "beginner-21",
       "beginner-29"
     ],
     "heavy": [
@@ -1957,6 +1973,7 @@
     ],
     "new": [
       "beginner-13",
+      "beginner-26",
       "beginner-32",
       "beginner-33",
       "beginner-35",
@@ -1976,7 +1993,6 @@
     ],
     "not": [
       "beginner-04",
-      "beginner-26",
       "beginner-29"
     ],
     "note": [
@@ -1994,7 +2010,6 @@
     ],
     "old": [
       "beginner-13",
-      "beginner-26",
       "beginner-30"
     ],
     "one": [
@@ -2252,6 +2267,7 @@
       "beginner-10",
       "beginner-15",
       "beginner-19",
+      "beginner-38",
       "beginner-45"
     ],
     "seven": [
@@ -2285,7 +2301,8 @@
     "sing": [
       "beginner-01",
       "beginner-13",
-      "beginner-26"
+      "beginner-26",
+      "beginner-45"
     ],
     "sister": [
       "beginner-11"
@@ -2334,7 +2351,8 @@
       "beginner-29",
       "beginner-36",
       "beginner-42",
-      "beginner-43"
+      "beginner-43",
+      "beginner-45"
     ],
     "snow": [
       "beginner-04"
@@ -2410,7 +2428,6 @@
     ],
     "stop": [
       "beginner-19",
-      "beginner-22",
       "beginner-43"
     ],
     "story": [
@@ -2536,7 +2553,6 @@
       "beginner-41",
       "beginner-42",
       "beginner-43",
-      "beginner-44",
       "beginner-45"
     ],
     "there": [
@@ -2572,7 +2588,6 @@
     "time": [
       "beginner-28",
       "beginner-35",
-      "beginner-44",
       "beginner-45"
     ],
     "today": [
@@ -2831,16 +2846,12 @@
       "beginner-44"
     ],
     "you": [
-      "beginner-01",
-      "beginner-03",
       "beginner-07",
       "beginner-09",
       "beginner-16",
       "beginner-17",
-      "beginner-22",
       "beginner-25",
       "beginner-26",
-      "beginner-32",
       "beginner-33",
       "beginner-38",
       "beginner-43",

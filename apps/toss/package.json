@@ -11,7 +11,7 @@
     "dev:browser": "vite --host 0.0.0.0 --port 5174 --strictPort",
     "prepare:books": "node ../../scripts/prepare-toss-picture-books.mjs",
     "build": "pnpm run prepare:books && tsc --noEmit && vite build",
-    "build:ait": "pnpm run build && ait build",
+    "build:ait": "pnpm run build && node ../../scripts/check-toss-picture-book-build.mjs && ait build",
     "preview": "vite preview --port 4174",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --max-warnings 0",

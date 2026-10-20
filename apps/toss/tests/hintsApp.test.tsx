@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeAll, beforeEach, expect, it, vi } from 'vitest';
-import { act } from 'react';
+import { act, useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { TDSMobileAITProvider } from '@toss/tds-mobile-ait';
 import { defaultVocabList, type CrosswordPuzzle, type CrosswordWord } from '@t-crossword/core';
@@ -30,7 +30,7 @@ function fixture() {
   return { word, puzzle: { size: 8 as const, level: 'beginner' as const, words: [word], grid } };
 }
 async function click(text: string) {
-  const button = Array.from(container.querySelectorAll('button')).find((element) => element.textContent?.includes(text));
+  const button = Array.from(container.querySelectorAll('button')).find((element) => element.textContent?.includes(text) || element.getAttribute('aria-label')?.includes(text));
   if (!button) throw new Error(`Missing button: ${text}`);
   await act(async () => button.click());
 }
@@ -41,13 +41,44 @@ async function type(input: HTMLInputElement, value: string) {
   });
 }
 
+it('searches and filters a large word bank while preserving notebook and bookmark changes', async () => {
+  const { word } = fixture();
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+    completedWordIds: defaultVocabList.map((item) => item.id), bookmarkedWordIds: [],
+    hintUsedWordIds: [word.id], dismissedMistakeWordIds: [],
+  }));
+  const gateway = { balance: async () => 10, startRound: vi.fn(), reveal: vi.fn(), answer: vi.fn() };
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App hintGateway={gateway} /></TDSMobileAITProvider>));
+  await click('단어장 보기');
+  const search = container.querySelector('input');
+  if (!(search instanceof HTMLInputElement)) throw new Error('Search missing');
+  await type(search, 'sea');
+  const cards = Array.from(container.querySelectorAll('.word-list > li'));
+  expect(cards.length).toBeGreaterThan(0);
+  expect(cards.every((card) => card.querySelector('h3')?.textContent?.toLowerCase().includes('sea'))).toBe(true);
+  const bookmark = container.querySelector('button[aria-label="SEA 즐겨찾기"]');
+  if (!(bookmark instanceof HTMLButtonElement)) throw new Error('Bookmark missing');
+  await act(async () => bookmark.click());
+  await click('즐겨찾기');
+  expect(container.querySelectorAll('.word-list > li')).toHaveLength(1);
+  await click('오답노트');
+  await click('삭제');
+  expect(container.querySelectorAll('.word-list > li')).toHaveLength(0);
+  const saved = parseProgress(localStorage.getItem(PROGRESS_KEY));
+  expect(saved.bookmarkedWordIds).toEqual([word.id]);
+  expect(saved.hintUsedWordIds).toEqual([word.id]);
+  expect(saved.completedWordIds).toHaveLength(defaultVocabList.length);
+  await click('홈');
+  expect(container.textContent).toContain('오신 것을 환영합니다!');
+});
+
 it('retries the same hint request, records the notebook, and updates the verified completion reward', async () => {
   const { word, puzzle } = fixture();
   const reveal = vi.fn().mockRejectedValueOnce(new Error('응답 시간 초과')).mockResolvedValue({ balance: 9, index: 0, letter: 'S', used: 1 });
   const answer = vi.fn().mockResolvedValue({ correct: true, completed: true, balance: 14 });
   const gateway = { balance: async () => 10, startRound: async () => ({ roundId: 'round-1', puzzle, balance: 10 }), reveal, answer };
   await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App hintGateway={gateway} /></TDSMobileAITProvider>));
-  await click('퍼즐 퀴즈 시작하기');
+  await click('퀴즈 시작');
   const clue = container.querySelector('.clue-button');
   if (!(clue instanceof HTMLButtonElement)) throw new Error('Clue missing');
   await act(async () => clue.click());
@@ -76,7 +107,7 @@ it('waits for confirmed completion after a lost final-answer response and retrie
     .mockResolvedValue({ correct: true, completed: true, balance: 15 });
   const gateway = { balance: async () => 10, startRound: async () => ({ roundId: 'same-round', puzzle, balance: 10 }), reveal: vi.fn(), answer };
   await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App hintGateway={gateway} /></TDSMobileAITProvider>));
-  await click('퍼즐 퀴즈 시작하기');
+  await click('퀴즈 시작');
   const clue = container.querySelector('.clue-button');
   if (!(clue instanceof HTMLButtonElement)) throw new Error('Clue missing');
   await act(async () => clue.click());
@@ -104,19 +135,22 @@ it('keeps the PWA welcome flow and changes puzzle settings inside the quiz witho
   await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App hintGateway={gateway} /></TDSMobileAITProvider>));
   expect(container.textContent).toContain('오신 것을 환영합니다!');
   expect(container.querySelector('[aria-label="퍼즐 설정"]')).toBeNull();
-  await click('단어장 관리하기');
+  await click('단어장 보기');
   expect(container.textContent).toContain('나의 단어장');
   const home = container.querySelectorAll('nav button')[0] as HTMLButtonElement;
   await act(async () => home.click());
-  await click('퍼즐 퀴즈 시작하기');
+  await click('퀴즈 시작');
   expect(startRound).toHaveBeenCalledExactlyOnceWith('beginner', 10, []);
+  expect(container.querySelector('.quiz-heading')).toBeNull();
+  expect(container.querySelector('.quiz-summary [aria-label="전체 단어 진행률"]')?.textContent).toBe(`0 / ${puzzle.words.length}`);
+  expect(container.querySelector('.quiz-summary')?.textContent).toContain('새 퍼즐');
   expect(container.querySelector('[aria-label="퍼즐 설정"]')).not.toBeNull();
   await click('중급');
   expect(startRound).toHaveBeenLastCalledWith('intermediate', 10, []);
   await click('8×8');
   expect(startRound).toHaveBeenLastCalledWith('intermediate', 8, []);
   await act(async () => home.click());
-  await click('퍼즐 퀴즈 시작하기');
+  await click('퀴즈 시작');
   expect(startRound).toHaveBeenCalledTimes(3);
   expect(container.querySelector('nav [aria-current="page"]')?.textContent).toContain('퀴즈 풀기');
 });
@@ -158,9 +192,78 @@ it('renders separate reading pages, translation, image failure retry and navigat
   await act(async () => img?.dispatchEvent(new Event('error')));
   expect(container.textContent).toContain('그림을 불러오지 못했습니다.');
   await click('다시 불러오기'); expect(container.querySelector('img')).not.toBeNull();
+  const article = container.querySelector('article');
+  const readyImage = container.querySelector('img');
+  if (!readyImage) throw new Error('Reading image missing');
+  Object.defineProperties(readyImage, { naturalWidth: { value: 900 }, naturalHeight: { value: 1200 } });
+  await act(async () => readyImage.dispatchEvent(new Event('load')));
+  expect(readyImage.getAttribute('width')).toBe('900');
+  expect(readyImage.getAttribute('height')).toBe('1200');
+  container.querySelector('details')?.setAttribute('open', '');
   await click('다음'); expect(onPageChange).toHaveBeenCalledWith(1);
   await render('test', 1); expect(container.querySelector('details')?.hasAttribute('open')).toBe(false);
+  expect(container.querySelector('article')).toBe(article);
+  expect(container.querySelector('img')).toBe(readyImage);
+  expect(readyImage.getAttribute('src')).toContain('test-2.png');
+  expect(readyImage.getAttribute('height')).toBe('1200');
   expect(container.querySelector('.sr-only')?.textContent).toBe('Second page text');
   await click('이전'); expect(onPageChange).toHaveBeenCalledWith(0);
   await click('중급'); expect(onLevelChange).toHaveBeenCalledWith('intermediate');
+});
+
+it.each(['beginner', 'intermediate', 'advanced'] as const)('restores the %s list offset and provides a list button on every reading page', async (initialLevel) => {
+  const books: PictureBook[] = (['beginner', 'intermediate', 'advanced'] as const).map((level) => ({
+    id: level, level, genre: 'poem', title: `${level} story`, koreanTitle: '',
+    pages: [
+      { title: 'First', text: 'First', translation: '첫 장', image: 'test-first.webp' },
+      { title: 'Second', text: 'Second', translation: '둘째 장', image: 'test-second.webp' },
+    ],
+  }));
+  function Reading() {
+    const [level, setLevel] = useState(initialLevel);
+    const [selectedId, setSelectedId] = useState<string | null>(null);
+    const [pageIndex, setPageIndex] = useState(0);
+    return <main className="scroll-page"><PictureBooks books={books} level={level} selectedId={selectedId} pageIndex={pageIndex}
+      onSelect={(id) => { setSelectedId(id); setPageIndex(0); }} onPageChange={setPageIndex}
+      onLevelChange={(value) => { setLevel(value); setSelectedId(null); setPageIndex(0); }} />
+      <button onClick={() => { setSelectedId(null); setPageIndex(0); }}>기기 뒤로</button>
+    </main>;
+  }
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><Reading /></TDSMobileAITProvider>));
+  const scroller = container.querySelector('main');
+  if (!scroller) throw new Error('Reading scroller missing');
+  scroller.scrollTop = 320;
+  await click(`${initialLevel} story`);
+  expect(scroller.scrollTop).toBe(0);
+  const actions = () => Array.from(container.querySelectorAll<HTMLButtonElement>('.image-page-navigation button'));
+  expect(actions().map(button => button.getAttribute('aria-label'))).toEqual(['이전 페이지', '다음 페이지']);
+  expect(actions()[0].disabled).toBe(true);
+  const title = container.querySelector('article h3');
+  if (!title) throw new Error('Reading title missing');
+  const titleRect = vi.spyOn(title, 'getBoundingClientRect').mockImplementation(() =>
+    new DOMRect(0, 100 + 200 - scroller.scrollTop, 300, 30));
+  const scrollerRect = vi.spyOn(scroller, 'getBoundingClientRect').mockReturnValue(new DOMRect(0, 100, 300, 600));
+  scroller.scrollTop = 900;
+  await act(async () => actions()[1].click());
+  expect(scroller.scrollTop).toBe(200);
+  expect(actions()[1].disabled).toBe(true);
+  scroller.scrollTop = 600;
+  await act(async () => actions()[0].click());
+  expect(scroller.scrollTop).toBe(200);
+  expect(actions()[0].disabled).toBe(true);
+  titleRect.mockRestore();
+  scrollerRect.mockRestore();
+  scroller.scrollTop = 1100;
+  const listButton = container.querySelector<HTMLButtonElement>('.reading-actions button');
+  if (!listButton) throw new Error('List action missing');
+  await act(async () => listButton.click());
+  expect(container.querySelector('.book-list')).not.toBeNull();
+  expect(scroller.scrollTop).toBe(320);
+  scroller.scrollTop = 720;
+  await click(`${initialLevel} story`);
+  scroller.scrollTop = 1100;
+  await click('기기 뒤로');
+  expect(scroller.scrollTop).toBe(720);
+  await click(initialLevel === 'beginner' ? '중급' : '초급');
+  expect(scroller.scrollTop).toBe(0);
 });

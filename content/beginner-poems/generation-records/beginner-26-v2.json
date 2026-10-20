@@ -1,0 +1,13 @@
+{
+  "id": "beginner-26-v2",
+  "target": "images/beginner-26-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"Dress and Color\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nDress and skirt, ribbon and ring.\nPick the style for the spring.\nBlack and brown, green and gold.\nPretty color, bright and new.\nChoose the size, short and long.\nFeel like you and sing the song.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-95abade2-34d9-40e4-b2e8-a001353a8446.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-26.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

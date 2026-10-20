@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-20",
+  "timezone": "Asia/Seoul",
+  "checkedAt": "2026-10-19T15:28:05.685Z",
+  "project": "zduyaejdjwfhsiazcmrn",
+  "runId": "7db68583-74dc-4e2e-89a3-f4c1fc8d9314",
+  "syntheticIdentityHash": "be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f",
+  "passed": true,
+  "requests": { "edge": 15, "sessionSeedRpc": 2, "inspection": 4, "total": 21, "maxConcurrent": 2 },
+  "results": {
+    "roundCount": 1,
+    "snapshotCount": 1,
+    "sessionCount": 2,
+    "hintRequestCount": 4,
+    "balanceSequence": [10, 9, 8, 13],
+    "rewardedOnce": true,
+    "uniqueSolvedWords": 2,
+    "registrationReplaySameRound": true,
+    "hintReplayNoExtraSpend": true,
+    "finalAnswerReplayNoExtraReward": true
+  },
+  "cleanup": {
+    "approved": true,
+    "sqlTransactions": 1,
+    "exitCode": 0,
+    "remainingTestPlayers": 0,
+    "scope": "Only rows linked to the syntheticIdentityHash above, with child records removed before the player. Foreign keys and commit remained intact."
+  },
+  "limitations": [
+    "Responses discarded after HTTP headers; no physical network fault injection.",
+    "No connection PID or forced row-lock contention observation.",
+    "No large load, real Toss SDK authentication exchange or device Worker test.",
+    "No fresh billing Usage or automatic alert configuration."
+  ]
+}

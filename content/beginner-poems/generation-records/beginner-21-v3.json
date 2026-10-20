@@ -1,0 +1,13 @@
+{
+  "id": "beginner-21-v3",
+  "target": "images/beginner-21-v3.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"Breakfast Time\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nBreakfast, banana, butter, cheese.\nOne egg, some milk, some juice, please.\nJam and biscuit beside the cup.\nEat together, wake with the sun.\nFresh food, one happy start.\nI thank my family for their care.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-956acd71-c5ae-4503-b07e-eed78654a438.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-21.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}

@@ -7,6 +7,9 @@ export class TossHintError extends Error {
 
 function fail(error: { code: string; message: string }): never {
   const messages: Record<string, string> = {
+    ad_reward_limit: '광고 보상은 1분에 한 번, 24시간 동안 최대 10번 받을 수 있습니다.',
+    ad_reward_expired: '광고 보상 요청이 만료되었습니다.',
+    ad_reward_unavailable: '광고 보상 요청을 찾지 못했습니다.',
     toss_session_expired: '사용자 확인이 필요합니다.',
     toss_round_unavailable: '이 퍼즐의 힌트를 더 이상 사용할 수 없습니다. 새 퍼즐을 시작해 주세요.',
     word_hint_limit: '이 단어의 힌트를 모두 사용했습니다.',
@@ -24,6 +27,10 @@ function fail(error: { code: string; message: string }): never {
 /** Trusted server only: the supplied client must use a server-side service key. */
 export function createTossHintRepository(client: SupabaseClient) {
   return {
+    async testAdReward(sessionHash: string, requestId: string, claim: boolean) {
+      const { data, error } = await client.rpc('toss_test_ad_reward', { p_session_hash: sessionHash, p_request_id: requestId, p_claim: claim });
+      if (error) fail(error); return data;
+    },
     async findRoundCreation(sessionHash: string, requestId: string, fingerprint: string) {
       const { data, error } = await client.rpc('get_toss_round_creation', { p_session_hash: sessionHash, p_request_id: requestId, p_fingerprint: fingerprint });
       if (error) fail(error); return data;

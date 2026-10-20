@@ -1,9 +1,12 @@
 import { User } from '@apps-in-toss/web-framework';
 import { isRecord, isHintBalance, parseHintReveal, parseHintAnswer, type HintReveal, type HintAnswerResult } from '@t-crossword/contracts';
-import { parseCrosswordPuzzle, type CrosswordPuzzle, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { crosswordPlacements, parseCrosswordPuzzle, type CrosswordPuzzle, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { generateDevicePuzzle } from './puzzleGeneration.js';
 
 export interface HintRound { roundId: string | null; puzzle: CrosswordPuzzle; balance: number }
 export interface HintGateway {
+  prepareTestAd?(requestId: string): Promise<number>;
+  claimTestAd?(requestId: string): Promise<number>;
   balance(): Promise<number>;
   startRound(level: DifficultyLevel, size: GridSize, completedWordIds: string[]): Promise<HintRound>;
   reveal(roundId: string, wordId: string, index: number, requestId: string): Promise<HintReveal>;
@@ -15,7 +18,7 @@ export class HintGatewayError extends Error {
 }
 
 /** Tokens stay in memory and are never used as Supabase user sessions. */
-export function createRemoteHintGateway(baseUrl: string, createCode = async () => (await User.createAnonymousKeyAuthCode()).code, fetcher = fetch): HintGateway {
+export function createRemoteHintGateway(baseUrl: string, createCode = async () => (await User.createAnonymousKeyAuthCode()).code, fetcher = fetch, generatePuzzle = generateDevicePuzzle): HintGateway {
   const base = baseUrl.replace(/\/$/, '');
   const url = new URL(base);
   if (url.protocol !== 'https:' && !(import.meta.env.DEV && url.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(url.hostname))) {
@@ -23,7 +26,7 @@ export function createRemoteHintGateway(baseUrl: string, createCode = async () =
   }
   let token: string | null = null;
   let authenticating: Promise<void> | null = null;
-  let pendingRound: { settings: string; requestId: string } | null = null;
+  let pendingRound: { settings: string; requestId: string; puzzle: Promise<CrosswordPuzzle> } | null = null;
 
   async function authenticate(): Promise<void> {
     if (authenticating) return authenticating;
@@ -49,6 +52,16 @@ export function createRemoteHintGateway(baseUrl: string, createCode = async () =
     return value;
   }
   return {
+    async prepareTestAd(requestId) {
+      const value = await post('ads/test/prepare', { requestId, adGroupId: 'ait-ad-test-rewarded-id' });
+      if (!isRecord(value) || !isHintBalance(value.balance)) throw new Error('광고 보상 준비를 확인하지 못했습니다.');
+      return value.balance;
+    },
+    async claimTestAd(requestId) {
+      const value = await post('ads/test/claim', { requestId, adGroupId: 'ait-ad-test-rewarded-id' });
+      if (!isRecord(value) || !isHintBalance(value.balance)) throw new Error('광고 보상 지급을 확인하지 못했습니다.');
+      return value.balance;
+    },
     async balance() {
       const value = await post('balance', {});
       if (!isRecord(value) || !isHintBalance(value.balance)) throw new Error('힌트 잔액을 확인하지 못했습니다.');
@@ -57,17 +70,21 @@ export function createRemoteHintGateway(baseUrl: string, createCode = async () =
     async startRound(level, size, completedWordIds) {
       const completed = [...new Set(completedWordIds)].sort();
       const settings = JSON.stringify({ level, size, completedWordIds: completed });
-      if (pendingRound?.settings !== settings) pendingRound = { settings, requestId: crypto.randomUUID() };
+      if (pendingRound?.settings !== settings) pendingRound = { settings, requestId: crypto.randomUUID(), puzzle: generatePuzzle(level, size, completed) };
       const pending = pendingRound;
+      let generated: CrosswordPuzzle;
+      try { generated = await pending.puzzle; }
+      catch (error) { if (pendingRound === pending) pendingRound = null; throw error; }
       let value: unknown;
-      try { value = await post('round', { level, size, completedWordIds: completed, requestId: pending.requestId }); }
+      try { value = await post('round/register', { level, size, completedWordIds: completed, requestId: pending.requestId, placements: crosswordPlacements(generated) }); }
       catch (error) {
-        if (error instanceof HintGatewayError && ['round_request_expired', 'round_request_mismatch'].includes(error.code) && pendingRound === pending) pendingRound = null;
+        if (error instanceof HintGatewayError && ['round_request_expired', 'round_request_mismatch', 'invalid_round_draft'].includes(error.code) && pendingRound === pending) pendingRound = null;
         throw error;
       }
       if (!isRecord(value) || !isHintBalance(value.balance) || (value.roundId !== null && typeof value.roundId !== 'string')) throw new Error('퍼즐 정보를 확인하지 못했습니다.');
       const puzzle = parseCrosswordPuzzle(value.puzzle);
       if ((puzzle.words.length > 0 && !value.roundId) || puzzle.size !== size || puzzle.level !== level) throw new Error('퍼즐 설정이 일치하지 않습니다.');
+      if (JSON.stringify(crosswordPlacements(puzzle)) !== JSON.stringify(crosswordPlacements(generated))) throw new Error('등록된 퍼즐이 일치하지 않습니다.');
       if (pendingRound === pending) pendingRound = null;
       return { roundId: value.roundId, puzzle, balance: value.balance };
     },

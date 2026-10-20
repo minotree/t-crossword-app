@@ -1,0 +1,13 @@
+{
+  "id": "beginner-31-v2",
+  "target": "images/beginner-31-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"The Toy Room\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nDoll and robot, mouse and fox.\nToy and puppy beside the box.\nPig and cow, one duck, one horse.\nTiger, elephant, play some sport!\nCollect the toys and put the box back.\nKeep one clear and quiet track.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-0c2956bf-cd59-4dfc-b353-f79017d9bde6.png",
+  "tool": "ImageGen",
+  "model": "not-provided",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/beginner-31.png"
+  ],
+  "reviewStatus": "draft-unreviewed"
+}
