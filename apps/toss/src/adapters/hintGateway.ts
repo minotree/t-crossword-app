@@ -5,8 +5,6 @@ import { generateDevicePuzzle } from './puzzleGeneration.js';
 
 export interface HintRound { roundId: string | null; puzzle: CrosswordPuzzle; balance: number }
 export interface HintGateway {
-  prepareTestAd?(requestId: string): Promise<number>;
-  claimTestAd?(requestId: string): Promise<number>;
   balance(): Promise<number>;
   startRound(level: DifficultyLevel, size: GridSize, completedWordIds: string[]): Promise<HintRound>;
   reveal(roundId: string, wordId: string, index: number, requestId: string): Promise<HintReveal>;
@@ -52,16 +50,6 @@ export function createRemoteHintGateway(baseUrl: string, createCode = async () =
     return value;
   }
   return {
-    async prepareTestAd(requestId) {
-      const value = await post('ads/test/prepare', { requestId, adGroupId: 'ait-ad-test-rewarded-id' });
-      if (!isRecord(value) || !isHintBalance(value.balance)) throw new Error('광고 보상 준비를 확인하지 못했습니다.');
-      return value.balance;
-    },
-    async claimTestAd(requestId) {
-      const value = await post('ads/test/claim', { requestId, adGroupId: 'ait-ad-test-rewarded-id' });
-      if (!isRecord(value) || !isHintBalance(value.balance)) throw new Error('광고 보상 지급을 확인하지 못했습니다.');
-      return value.balance;
-    },
     async balance() {
       const value = await post('balance', {});
       if (!isRecord(value) || !isHintBalance(value.balance)) throw new Error('힌트 잔액을 확인하지 못했습니다.');

@@ -1,0 +1,14 @@
+{
+  "runId": "7db68583-74dc-4e2e-89a3-f4c1fc8d9314",
+  "project": "zduyaejdjwfhsiazcmrn",
+  "identity": "be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f",
+  "plan": {
+    "maxConcurrent": 2,
+    "edgeRequests": 15,
+    "seedRpcRequests": 2,
+    "inspectionRequests": 4,
+    "writes": "one synthetic player, two sessions, one round and creation snapshot, at most four hint request rows",
+    "expectedBalance": "10 -> 9 -> 8 -> 13; completion reward once",
+    "cleanup": "separate scoped SQL transaction; never executed automatically"
+  }
+}

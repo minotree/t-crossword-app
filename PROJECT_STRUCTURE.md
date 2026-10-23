@@ -2,7 +2,7 @@
 
 This architecture uses independent UIs for Web/PWA, Ionic/Capacitor Mobile and Toss/TDS. Only domain/business logic, contracts, validation and reusable data-access patterns are shared. Tauri Desktop is optional.
 
-문제 출제는 플랫폼별 기기에서 `packages/core` 공통 엔진을 실행한다. 웹·토스는 학습완료 제외 함수를 공유하고 토스 Worker는 앱이 소유한다. 서버는 기기 배치를 공통 규칙으로 검증·등록하고 힌트·정답·보상을 처리한다. Ionic/Capacitor는 아직 준비 화면이며 이후 같은 엔진을 연결한다. 토스는 2026-10-20 API v3 배포·테스트 번들 업로드를 완료했으며 기기 확인은 대기다. 구버전 서버 출제 호환·검증 결과는 [기기 출제 결정](docs/decisions/20261019-device-puzzle-generation.md)을 따른다.
+문제 출제는 웹·토스·모바일 기기에서 `packages/core` 공통 엔진을 실행한다. Worker와 UI는 각 앱이 소유한다. 서버는 기기 배치를 공통 규칙으로 검증·등록하고 힌트·정답·보상을 처리한다. Ionic/Capacitor는 독립 홈·퀴즈·단어장·그림책·Android 뒤로가기를 구현했으며, 모바일 익명 인증·서버 힌트는 코드 구현 후 운영 연결·기기 통합 검증 대기다. 토스는 사용자 번들 업로드·확인 후 2026-10-23 최신본 검수 요청 완료, 결과 대기다. 세부 구현·검증 상태는 [모바일 README](apps/mobile/README.md)와 [진행 기록](progress.md), 구버전 서버 출제 호환은 [기기 출제 결정](docs/decisions/20261019-device-puzzle-generation.md)을 따른다.
 
 작업 규칙은 [AGENTS.md](AGENTS.md), 제품 요구사항은 [crossword-project-spec.md](crossword-project-spec.md), 실제 구현·검증 현황은 [progress.md](progress.md)를 따른다. 아래 트리에는 향후 목표 디렉터리도 포함되며 모두 구현되었다는 뜻은 아니다.
 

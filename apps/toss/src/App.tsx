@@ -12,7 +12,7 @@ import { PuzzleBoard } from './components/PuzzleBoard.js';
 import { ClueButton } from './components/ClueButton.js';
 import { NavigationIcon } from './components/NavigationIcon.js';
 import { PictureBooks } from './components/PictureBooks.js';
-import { AdBanner, RewardedAd } from './components/Ads.js';
+import { AdBanner } from './components/Ads.js';
 import { WordList } from './components/WordList.js';
 import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
@@ -39,7 +39,6 @@ export function App({ hintGateway }: { hintGateway?: HintGateway } = {}) {
   const [saveError, setSaveError] = useState('');
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [page, setPage] = useState<Page>('home');
-  const [showAds, setShowAds] = useState(false);
   const [bookLevel, setBookLevel] = useState<DifficultyLevel>('beginner');
   const [bookId, setBookId] = useState<string | null>(null);
   const [bookPage, setBookPage] = useState(0);
@@ -101,10 +100,9 @@ export function App({ hintGateway }: { hintGateway?: HintGateway } = {}) {
   }, [selected, showCompletion, resetPending, confirmReset, page, bookId]);
 
   useEffect(() => {
-    if (showAds) return;
     if (page === 'home' && !selected && !showCompletion) return;
     return subscribeBack(back, () => { setSaveError('뒤로 가기를 처리하지 못했습니다. 화면의 닫기 버튼을 이용해 주세요.'); });
-  }, [page, back, selected, showCompletion, showAds]);
+  }, [page, back, selected, showCompletion]);
 
   const saveProgress = useCallback((value: Progress) => {
     progressRef.current = value;
@@ -224,24 +222,26 @@ export function App({ hintGateway }: { hintGateway?: HintGateway } = {}) {
   };
 
   if (!progress) return <main className="startup" aria-busy={!loadError}>
-    <h1>영어 퍼즐</h1>
+    <h1>영어 낱말</h1>
     {loadError ? <><p role="alert" className="error">{loadError}</p><Button onClick={() => setLoadAttempt((value) => value + 1)}>다시 불러오기</Button></> : <p role="status">학습 기록을 불러오고 있어요.</p>}
   </main>;
 
   return <div className="app-shell">
-    <header className="app-heading"><h1>영어 퍼즐</h1><div className="wallet-heading"><span>{progress.completedWordIds.length}개 학습</span><button className="hint-wallet" aria-label="광고 보고 힌트 받기" disabled={isGameBusy} onClick={() => setShowAds(true)}><strong aria-live="polite">💡 {hintBalance === null ? (gateway ? '확인 중' : '연결 필요') : `${hintBalance}개`}</strong></button></div></header>
+    <header className="app-heading"><h1>영어 낱말</h1><div className="wallet-heading"><span>{progress.completedWordIds.length}개 학습</span><span className="hint-wallet" aria-label="힌트 잔액"><strong aria-live="polite">💡 {hintBalance === null ? (gateway ? '확인 중' : '연결 필요') : `${hintBalance}개`}</strong></span></div></header>
     {hintError && <div role="alert" className="save-error"><p>{hintError}</p>{gateway && <Button size="small" variant="weak" disabled={isGameBusy} onClick={() => { void refreshBalance(); }}>잔액 다시 확인</Button>}</div>}
     {saveError && <div role="alert" className="save-error"><p>{saveError}</p><Button size="small" variant="weak" onClick={() => { if (progressRef.current) saveProgress(progressRef.current); }}>다시 저장</Button></div>}
-    <main className={page === 'quiz' ? 'quiz-page' : 'scroll-page'}>
+    <main className={page === 'home' ? 'scroll-page home-page' : page === 'quiz' ? 'quiz-page' : page === 'words' ? 'words-page' : page === 'books' && !bookId ? 'books-list-page' : 'scroll-page'}>
       {page === 'home' && <>
         <section className="home-welcome" aria-labelledby="welcome-title">
           <p className="home-title">영어 단어 십자낱말 풀이</p>
+          <div className="home-body">
           <div className="home-puzzle" aria-hidden="true"><div>{['W', 'O', 'R', '', 'D', '', '', 'S', ''].map((letter, index) => <span key={index} className={letter ? 'letter' : ''}>{letter}</span>)}</div></div>
           <h2 id="welcome-title">영어 단어 십자낱말 풀이에<br />오신 것을 환영합니다!</h2>
           <p className="home-description">단어장에 저장된 단어들로 맞춤형 십자낱말 퍼즐을 즐기고 영어 실력을 키워보세요.</p>
           <div className="home-actions">
             <Button display="block" disabled={isGameBusy} loading={isGameBusy} onClick={openQuiz}><span className="home-action-label"><NavigationIcon name="quiz" /><span>퀴즈 시작</span></span></Button>
             <Button display="block" variant="weak" onClick={() => setPage('words')}><span className="home-action-label"><NavigationIcon name="words" /><span>단어장 보기</span></span></Button>
+          </div>
           </div>
         </section>
       </>}
@@ -285,21 +285,26 @@ export function App({ hintGateway }: { hintGateway?: HintGateway } = {}) {
           <Button key={item.key} size="small" variant={filter === item.key ? 'fill' : 'weak'} aria-pressed={filter === item.key} onClick={() => { setFilter(item.key); setVisibleCount(50); }}>{item.label}</Button>)}</div>
         <TextField variant="box" aria-label="단어 또는 뜻 검색" placeholder="단어 또는 뜻 검색" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(50); }} />
         {filter === 'mistakes' && <p className="secondary">힌트를 사용한 단어를 모아 보는 곳입니다. 삭제해도 단어와 학습 기록은 유지됩니다.</p>}
+        <div className="word-list-scroll" role="region" aria-label="단어 목록" tabIndex={0}>
         {words.length === 0 && <p className="empty">{filter === 'mistakes' && !query.trim() ? '아직 오답노트에 등록된 단어가 없습니다.' : '표시할 단어가 없습니다.'}</p>}
         <WordList words={words} visibleCount={visibleCount} completed={completedWords} bookmarked={bookmarkedWords}
           mistakes={filter === 'mistakes'} onBookmark={toggleBookmark} onDismiss={dismissWord} />
         {visibleCount < words.length && <Button display="block" variant="weak" onClick={() => setVisibleCount((value) => value + 50)}>단어 더 보기</Button>}
+        </div>
       </section>}
       {page === 'books' && <PictureBooks level={bookLevel} selectedId={bookId} pageIndex={bookPage}
         onLevelChange={(value) => { setBookLevel(value); setBookId(null); setBookPage(0); }}
         onSelect={(id) => { setBookId(id); setBookPage(0); }} onPageChange={setBookPage} />}
       {page === 'settings' && <section className="settings-page">
-        <h2>설정</h2><h3>데이터 관리</h3>
+        <h2>설정</h2>
+        <aside className="home-shortcut-guide" aria-label="홈 화면에 추가 안내">
+          <p>영어 낱말을 더 가까이 두세요.</p>
+          <p>오른쪽 위 <span className="shortcut-more" aria-label="더보기">···</span> 를 누르고<br /><strong>‘휴대폰 홈 화면에 추가’</strong>를 선택해 보세요.</p>
+        </aside>
+        <h3>데이터 관리</h3>
         {settingsMessage && <p role="status" className="secondary">{settingsMessage}</p>}
         <p>학습 완료 상태만 초기화합니다 (완료: {progress.completedWordIds.length}개)</p>
         <Button display="block" variant="weak" disabled={!progress.completedWordIds.length || isGameBusy} onClick={() => { setSettingsMessage(''); setConfirmReset(true); }}>학습 기록 초기화</Button>
-        <h3>힌트 받기</h3>
-        <Button display="block" variant="weak" disabled={isGameBusy} onClick={() => setShowAds(true)}>광고 보고 힌트 5개 받기</Button>
         <h3>앱 정보</h3><p>영어 단어 십자낱말 풀이 v{version}</p>
         {import.meta.env.VITE_TOSS_AUTH_PROBE === 'true' && <>
           <Button display="block" variant="weak" disabled={probePending} loading={probePending} onClick={() => {
@@ -317,7 +322,6 @@ export function App({ hintGateway }: { hintGateway?: HintGateway } = {}) {
         <p className="secondary">이 기기에 학습 기록을 저장합니다. 힌트 잔액은 서버에 보관합니다.</p>
       </section>}
     </main>
-    <RewardedAd open={showAds} gateway={gateway} onClose={() => setShowAds(false)} onBalance={(balance) => { setHintBalance(balance); balanceVersion.current++; }} />
     <nav className="bottom-navigation" aria-label="하단 메뉴">
       <Button size="medium" variant="weak" aria-current={page === 'home' ? 'page' : undefined} onClick={() => setPage('home')}><span className="navigation-item"><NavigationIcon name="home" />홈</span></Button>
       <Button size="medium" variant="weak" aria-current={page === 'quiz' ? 'page' : undefined} disabled={isGameBusy} onClick={openQuiz}><span className="navigation-item"><NavigationIcon name="quiz" />퀴즈 풀기</span></Button>
@@ -325,7 +329,8 @@ export function App({ hintGateway }: { hintGateway?: HintGateway } = {}) {
       <Button size="medium" variant="weak" aria-current={page === 'books' ? 'page' : undefined} onClick={() => setPage('books')}><span className="navigation-item"><NavigationIcon name="books" />그림책</span></Button>
       <Button size="medium" variant="weak" aria-current={page === 'settings' ? 'page' : undefined} onClick={() => setPage('settings')}><span className="navigation-item"><NavigationIcon name="settings" />설정</span></Button>
     </nav>
-    <AdBanner enabled={!showAds} />
+    <AdBanner enabled />
+    <div className="bottom-safe-area" aria-hidden="true" />
     {selected && puzzle && <AnswerModal key={selected.id} word={selected} currentLetters={getCurrentLetters(puzzle, solvedIds, selected, hintedCells)} hintBalance={hintBalance} hintUsedCount={hintUsage[selected.id] ?? 0} onUseHint={gateway && roundId ? (index) => requestWordHint(selected, index) : undefined} onClose={() => setSelected(null)} onSubmit={submitAnswer} />}
     {showCompletion && puzzle && <Modal title="퍼즐 완성! 축하해요" onClose={() => setShowCompletion(false)}>
       <p>{puzzle.words.length}개 단어를 모두 맞혔어요. 단어장에서 다시 복습할 수 있어요.</p>

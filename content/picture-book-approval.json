@@ -7,7 +7,7 @@
   "books": [
     {
       "id": "beginner-01",
-      "contentSha256": "d4846f42bf08fbe3a4e7fa85397218821ec0951de3f4923223aa683ff7ccbfb0",
+      "contentSha256": "da24285757bc0af4110a92790a9b94a683b99bf36c77559d7dcad512c75bc885",
       "imageSha256": [
         "e1e56a10f55d036d60c293b0847f55312ebf1ce565383fb5c441b415e282ef9a"
       ],
@@ -16,11 +16,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-02",
-      "contentSha256": "97d4892d947e590bbf87a777a8bc52575a547c875901117f37526f0245b5df31",
+      "contentSha256": "938e841720a2758f032381abb5ad3c35b2797923227ff05cb1502c044d1b029a",
       "imageSha256": [
         "f0840328860ef6a244bbe5bb60056ecdbbe7336bdfa6cb60b7ace8076f61d213"
       ],
@@ -29,11 +33,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-03",
-      "contentSha256": "1596aac5a8f38362b5802a84db2d804bff9be639859083a8188ff8e2489ba348",
+      "contentSha256": "17f0f27683bf4888a259bc66e8881f210bc16b23d039891309dfe87e421a676e",
       "imageSha256": [
         "7fd1a966911e8c04cd0b6d918f89226627c08700357b63c1acb9e5cb76198015"
       ],
@@ -42,11 +50,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-04",
-      "contentSha256": "2446c300d01d227bc2e6d9f649fe67996dcef32cb48ba99dda297cd6704b38fb",
+      "contentSha256": "5ce6cd62a00da7208d0c7a4aae3202f0686c60d417ba14b0835d1fbb83afee1e",
       "imageSha256": [
         "98feaa1b16dcf4a78db45f37a6efc864a6a83a2741f3fcaf6ccc51c8cc1f9dcb"
       ],
@@ -55,11 +67,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-05",
-      "contentSha256": "c3e8127200203acf6d9cd72a7dddf6f3d6b1860cad31a4ecc157e012217d1177",
+      "contentSha256": "bc6298902c76bc30365a167584c3e3223ca67674a0a472f676a0ea27fe977ccc",
       "imageSha256": [
         "86e5cb9fe4de1e0e8221f81352cfcee5ccde25d5d5a1369aa6800f65a343d7ac"
       ],
@@ -68,11 +84,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-06",
-      "contentSha256": "bc405c91300e40b14380f4f2096976d7083dd798b577a4eda7728de7d068b5b0",
+      "contentSha256": "d61363622deeaf836ac0e4918d2a2a1e1fa54795c9b52caf48d05ba68641b65d",
       "imageSha256": [
         "4da8eef46a7e9fb229acdb2962510ca8fd3f54bbebfe3b9b963132c969b16f81"
       ],
@@ -81,11 +101,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-07",
-      "contentSha256": "db65b36772801658e41fb6b9fcb89cae5dc2367bd5d36bf29ef0a0740f65fcd8",
+      "contentSha256": "fa04b483d26f690f34ff1cb8e12b94f8280a116dbbd1cb0ab91dcfc12943f512",
       "imageSha256": [
         "5bc3b39295925af29910f1d9e0d8249445dbb915ecd17b92dbd673f94a9acbc9"
       ],
@@ -94,11 +118,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-08",
-      "contentSha256": "f15d7c0b6edb7114e174e347766bde89db7e1b6a4609af5cf7072189ab7d0ced",
+      "contentSha256": "9bfe3a79f3f5f98bf3e37bdd4036705be8f0c97bf96294c4aec72b6cb0e7418b",
       "imageSha256": [
         "7a3fa5dc037bbb9c01c6f127bb382ceffb730a7d95eb219c025e388d8ade1701"
       ],
@@ -107,11 +135,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-09",
-      "contentSha256": "0af075e9c9aeb2c7f7d34887beaffde5ed789187169a1e290b5db07e0bee2018",
+      "contentSha256": "aea48754cc310474479c57d28b99acf0e797484e25f507e16d04949a264eac42",
       "imageSha256": [
         "c55fe9bd1a6682d4790a4939bd8c5104a4b825aa8e6d03c15b34739efdad902e"
       ],
@@ -120,11 +152,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-10",
-      "contentSha256": "258f10610a3f8f0f7cbfca168b4388b86a7f3b3855bc77f55bc6c3966de08095",
+      "contentSha256": "221197f002b04eeb09129a59184d25a187c6dad9de13a0a6b344c3ce82d6a29f",
       "imageSha256": [
         "3e5f0b1137aeb54b338f36cb358a90bb532d30c6940c8566ae8a53b6ef681699"
       ],
@@ -133,11 +169,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-11",
-      "contentSha256": "d1bbda8f15d756fca79f632c2ee5363b7229bc3d4419afb94ef9078516434725",
+      "contentSha256": "b0a9d1480fcb5bd73def5f4fd31ffababe8d8dc653291775541b94ac3a121c06",
       "imageSha256": [
         "e7a10058c6a6d7d50884455e121536d6236e185cb9dfa52e9a1a82b00b81aa66"
       ],
@@ -146,11 +186,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-12",
-      "contentSha256": "a9575429cf183883febaa71b72862815a87323d904d4ef3bb91db4e1eb7d60c4",
+      "contentSha256": "01c9e4812705c1c0b49feeb91e3be2e5073dac6ab87b604eb16b117756be6f71",
       "imageSha256": [
         "50c1fe278dd633232be56410582126b8b7769113a500ddc8527823f6ff68f4ef"
       ],
@@ -159,11 +203,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-13",
-      "contentSha256": "e67434af47748014b9744cb377bc79d361278eed8fc30ffb383b27cfddd6872a",
+      "contentSha256": "4dd7294456df66c007b021d659381e274a7383c1ce4c9494ce07006b74338375",
       "imageSha256": [
         "f62231281cacc3b7e4142b1eea0ad79378d7a88912dfe226ffead011f0be7284"
       ],
@@ -172,11 +220,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-14",
-      "contentSha256": "5f88093e90a33882fe27c72a516d301510feca109ce4d77a7414caa7ca16cd20",
+      "contentSha256": "fe483ec49d8b46aeb1361203d90809b3c54e56786b9dd9fb91546a4feb7730e8",
       "imageSha256": [
         "fbdcd0e33af757b3917f154fe893252e28980eda9d0c8760ec6ba186a38a6818"
       ],
@@ -185,11 +237,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-15",
-      "contentSha256": "de96f742c77048bebab92df06b72dc78edb523efe1ba64be636a5fa5545cbea7",
+      "contentSha256": "7a041dc5efe6703305aaccc0ea7a4ee64abdc0a91805f140eda02659d884d3f5",
       "imageSha256": [
         "4816db4999cda39e3ac2d5495bb6a18653694f97b9934df82a11a338b607ba1a"
       ],
@@ -198,11 +254,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-16",
-      "contentSha256": "2b0543d4d2aeb027091b8106af5011c09a487ad07a2a69991913c7a2fd845ab6",
+      "contentSha256": "9ca95b8a676cd45b1277539a3e6e5ce9ed5fcef2cf31c9776bfc4b81550c4532",
       "imageSha256": [
         "9dbbafa86a32f6a8f2178b78c8ef6bf3bfd2f943a9d119949142045b3d0450c6"
       ],
@@ -211,11 +271,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-17",
-      "contentSha256": "ea8ab49775c346534882bf2315c2964833b97d65ad0654ff1717522d10e55cb5",
+      "contentSha256": "98008598fba21b943f206fc46d8ee1ecb25be3add327bda8b7879512ca93b227",
       "imageSha256": [
         "14ce48ed389ed320d165b2f598d93f4406a6091371b63229d6b0e002d272571b"
       ],
@@ -224,11 +288,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-18",
-      "contentSha256": "c337b7d7bd64b9f0a4760957fe919baa4902b4ecf2cbde8911a4a80f8957f849",
+      "contentSha256": "a90eded2902174f42b0fa23a3731294bd67e12a9c1f80688a25518e633d77e94",
       "imageSha256": [
         "59c8ddf1fac74d1cc473f80e833b7247be34716350a389ae1d532868be12c8d6"
       ],
@@ -237,11 +305,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-19",
-      "contentSha256": "3f74cd3303be85a15d3175ba09f19a5bcecf991eb61677e11365babe1bb7efbb",
+      "contentSha256": "3a6ea0c91d2b832319c301c59278d266acd760331c8f9544508c906e30ef5f5f",
       "imageSha256": [
         "5e469fd00ab271235cb3f06906b36e885cfbec1d1cb9bf49657aed37e3888266"
       ],
@@ -250,11 +322,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-20",
-      "contentSha256": "7d6d476d31b24b4f410ab35ec5facfd332081280062b241799302ec8331a3847",
+      "contentSha256": "454432fad22151fb794a146c30cffcbe7a4f36ef0a297cbe1bf59fb37b287002",
       "imageSha256": [
         "edfdc9ab16ca84c0bd32130e121dd972538cad14d111431b7e19032e388e2864"
       ],
@@ -263,11 +339,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-21",
-      "contentSha256": "8e3b4c47c111286a3e07a57248e5f3e770c352c5a23466d8dce496ad14d9a2c9",
+      "contentSha256": "0464f55e16a9f26a6ba52dcadb23ff372c70e7caaa97ec4f107174f31497eca2",
       "imageSha256": [
         "e64719e8ebe741f7c6ff9c9ad1c3af3e1406f4da6284ced82ea19ab5e01d4543"
       ],
@@ -276,11 +356,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-22",
-      "contentSha256": "0a54bf906fdadc62c6778b0840cf83b169969ea75b169ea0bbf7d8952b8b2301",
+      "contentSha256": "5223e50cf13ab62ef7b5352b79e7a4e0278b0358027b651fd78194441da2c49a",
       "imageSha256": [
         "00e9de754d2f6b4dcf0f5d67bf8da3423c4e97f07bd3e826dd70c2f48e9a86a8"
       ],
@@ -289,11 +373,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-23",
-      "contentSha256": "7b093e3629137f2d661d61a4b897e5f15555a0506f1ae70ec6491723d7e22984",
+      "contentSha256": "5191523e952b1c635e702e59dbd6d279b2459d1859ad69096d998f6a5aa035d3",
       "imageSha256": [
         "c77fe13ba8f5fb53930267e18cafc2944fff6e0fd86f5b51a79007189f95792d"
       ],
@@ -302,11 +390,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-24",
-      "contentSha256": "cf1ac889c6e2c73b01dbe06eb395b8e87f76f7a694439e0e3c0bb4da6e7ad3bd",
+      "contentSha256": "375d55039af0f3676ff0ae6a42f2142cb2d0213c66b72d2998cb762653936169",
       "imageSha256": [
         "9aea8dd171f73ddc7b77a94b95896c74ea203df091c2b793e65f2ce7b0ff9cb6"
       ],
@@ -315,11 +407,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-25",
-      "contentSha256": "d907ffe77e9fbd29c25cc093520d9f2d8b0925c70e1dc12779dd8dc1db578b97",
+      "contentSha256": "4ef59ef0ba9754468f69d913ecf316072a6253ca01f8504423cc257569de19f5",
       "imageSha256": [
         "c6f158504e724513487d95d75ef6694fcdd25f03a7a8fe5f754b6631a75adbf3"
       ],
@@ -328,11 +424,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-26",
-      "contentSha256": "3f5543df9673a241633a9b0cc7f456ed0f656e5e53b0ea6c4112e678ffbe9c05",
+      "contentSha256": "dffd4b47376364110136fedadef00f365674fc8fca26a21e0ddc6067af5c71f8",
       "imageSha256": [
         "bd3306bb6f4904ca07ff37f1d94e1f419068f44cca1b688aabc93f27a3bbc010"
       ],
@@ -341,11 +441,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-27",
-      "contentSha256": "4ccdaa4c0144265ff8c1d756d6255982be06368d45640c1c6c29bb62a359c4d0",
+      "contentSha256": "27ba3f1a6dc277c2affc953bc81b19462c59b6a68971e3d8e88d0c524cff2624",
       "imageSha256": [
         "bce7b5769ab7551ebd8e1b566c1f9376c85f67359b630ade36d6e8a7911017da"
       ],
@@ -354,11 +458,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-28",
-      "contentSha256": "dd0cb4733dcf1e040ea2658688f22a1685ea4d202eea40be6f39139c3de913b9",
+      "contentSha256": "68d7ae7a9a6c9cbfbeb8e13a3d398d521e1491a14fc278ecd043004c9888f100",
       "imageSha256": [
         "256dd19cd4e0d7ea8e5fb16e15f36aaf82764a615e92809a05703b0093f97013"
       ],
@@ -367,11 +475,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-29",
-      "contentSha256": "8721524c1ae12f4530f79fb6ee85e8176c5da00749963e4eda4bd270ba0bd8bc",
+      "contentSha256": "6b3b06864d8f6cd3f735930e4f32cfe8d73c0d7d5ac073ae756d2a9e01e3439c",
       "imageSha256": [
         "c44f5dcaa0a1bc2c6ab0137ad5b54bf6a8ef9bbd148851a53d85bfe631539023"
       ],
@@ -380,11 +492,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-30",
-      "contentSha256": "6e8aef34217e3b9cf31db1cb38c5290ac2834ad418e28a4d81cf1f701ede30a5",
+      "contentSha256": "98dd2fd7acd97b5b335da577f3668ed4d5a9337d41326c68fc0681ae14c8bc63",
       "imageSha256": [
         "5397f03d1f702aca1f0b5d2491af609a342d199b848ca14904bc6cc386dd7572"
       ],
@@ -393,11 +509,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-31",
-      "contentSha256": "d2a3eaa500dcf6ec09e3fc25b11bcc53609cf0c61695f86521fde4c7f44f2be2",
+      "contentSha256": "a6dc0d77293ad1f9423502fb1af7b1aa1966cda90b95280659522c3cc0548259",
       "imageSha256": [
         "93d7148d56d24ab9b62cbb5e185c4c76e3b1da12b255bf184de0eda04d9f59c8"
       ],
@@ -406,11 +526,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-32",
-      "contentSha256": "c7b27a7a068d2ecf627dcbebaac4440eeffa68b7f00810cc254b4d6cf9fa609b",
+      "contentSha256": "e1f82e9498c3d3cf60585d097eef179b6cf3f9e2fce6492cb9c6cbf5e8f01f4b",
       "imageSha256": [
         "3e8b7e9f1fa51b118a9d5d714b118edff43426cd18c3a53e43fe099d37ce8c7b"
       ],
@@ -419,11 +543,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-33",
-      "contentSha256": "913a8e3d7f5cb916b0ea4dcf3d7444a77b3e4f79c91ff400ede17b02ef7e9c0e",
+      "contentSha256": "23bb5fe2c1f203fb02ae49c971675d97cb4c0bb3427c5b3567842fd260cf33d0",
       "imageSha256": [
         "8c03c69523c352dcdff20307629bb67de1ab118d1eb3d4e7edad251af3db453d"
       ],
@@ -432,11 +560,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-34",
-      "contentSha256": "9883eb5662027e56c79c50c20cc249bea539daa8fe715d1a082065e61ef6d75c",
+      "contentSha256": "09de8106e2879af384108aaf91fa53233dafddd3d041e657c6940ea1338c5d73",
       "imageSha256": [
         "097dcd89b754da842b92bc297469212b17ac08b45e16e9d24c268ea49bf89618"
       ],
@@ -445,11 +577,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-35",
-      "contentSha256": "b312640e10c39309d50b82fff86da82178b0b15b856604fb8fca339a9b44f915",
+      "contentSha256": "72a3dc21322cfc3090f46f190520bb7f673679bb598a358023f0cae946091333",
       "imageSha256": [
         "2fbe33d6e84ed71f4ff68631e98089f8cf8fc5791700c636011c11e0c3868f1e"
       ],
@@ -458,11 +594,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-36",
-      "contentSha256": "753cda2dbb8e263d651d5e2a95b565145c6b0149b93cfa8ad82f6d8a416a24dd",
+      "contentSha256": "a7b1d44bf6982697703fb807fba024cd031801a483c7f6063a5b3f3aa6e4f461",
       "imageSha256": [
         "09afdbde936e1aff293a5176e6f8821173610c330cb6d4592e3047b9644065d8"
       ],
@@ -471,11 +611,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-37",
-      "contentSha256": "6920179c3c608eaecf323abe857fd9de6223636e3d31d38de755ad7886409689",
+      "contentSha256": "8e8e7dd888b529de25a43f588c1ad0a9d7a95a784345aaffe83e7cb00786e158",
       "imageSha256": [
         "58e3a015c824f2e50899b9dacb39d4200cee8b9d5b51379b8300d143d253bd3a"
       ],
@@ -484,11 +628,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-38",
-      "contentSha256": "8cc6bc20af4a3ca0add22dea35602f98513cc44b32eb343808376c20c7a68cfa",
+      "contentSha256": "bd1ad93707f55a81b383219c9d06e4c0124763f04c38a3bba29be2224514b01d",
       "imageSha256": [
         "5f7bb20b54c3c0bd316abf1d7bffd44e821c11757db0d5561db36dfa64668a19"
       ],
@@ -497,11 +645,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-39",
-      "contentSha256": "857fffad31fbb2a9ee7f31b30910651ce21685788bc7f5defefc3a57eb28f51b",
+      "contentSha256": "12de9ae20762270b06ada7eb0883159f41f05bbe59cead1be763c66bd739f268",
       "imageSha256": [
         "f1d029bd9e1b456597e4cd285d24c03e297600d0cc6c82a61d5428d2c9a6a65d"
       ],
@@ -510,11 +662,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-40",
-      "contentSha256": "69fac3f9dced4c994154457715667c742947d5bd30938f5c70c30a133752de6f",
+      "contentSha256": "341eebd2b4e8820a43e42d42359c1a06ebc9fb9ada1adece5285ceb5f8ffc624",
       "imageSha256": [
         "5f3ca6ab2a32815e6d6efeb7202242f3998d9079522fe0449c1ac56241ab474c"
       ],
@@ -523,11 +679,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-41",
-      "contentSha256": "204f8a96afb9c8d37d1b73102895c3f22dc4470df663e5c328a7757307d09357",
+      "contentSha256": "e462cd064ed332621314bfab3df2326dc391582bb737580ae485e4b6677f2e67",
       "imageSha256": [
         "9432b047020b1fa03fce38f37abb953471b45b27980eb16c55377c44b2c97a46"
       ],
@@ -536,11 +696,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-42",
-      "contentSha256": "de3f270040da4ed8ab6129779e274d426054990b468275a7b1ff2241086ad0f5",
+      "contentSha256": "a857aa308b068248eb153f9115a7a966986a8ac2c0c9940f4eafa0543a8b615e",
       "imageSha256": [
         "00286f9a1365f43db80557e30ce86735c8a04482cd569b43e77e459d1f330eb5"
       ],
@@ -549,11 +713,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-43",
-      "contentSha256": "a9083fa3c920cf36a3b535c5a4a0164eab65714bc11da4b849b2e955a0da3554",
+      "contentSha256": "13396edc015dd4ffbec2a8411573ac4f90862987ba070e35685d73245e162636",
       "imageSha256": [
         "dc5bfeae7024c2e051a3e8cc0e21e4a5692074d219351f77def30b8a8beba80c"
       ],
@@ -562,11 +730,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-44",
-      "contentSha256": "7ff6e695f06d5c55d4800708550f8cf4654bd0da4f22dbee327725a115a6e8c5",
+      "contentSha256": "dc47a40de72d21c4fd05d951034bb94c194630516e85405cb3936e3dd93d4a13",
       "imageSha256": [
         "c2d90db3b388bdd236191cbd8c71180940ca3ce235137147cc08508dfd482593"
       ],
@@ -575,11 +747,15 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "beginner-45",
-      "contentSha256": "d7a7848dedc8ed7e28ad5efc5a578ed7ae0de3b995d05871d88ee147b3218516",
+      "contentSha256": "443d537988bbbfaaa7be37a4c662ce5a693c399a8f267731931c854cc94c457d",
       "imageSha256": [
         "a614ff4b73a9ba90e8563c3b9d4f28757d40f3d9e343d95bb1fe41aa5cfdfafc"
       ],
@@ -588,7 +764,11 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "koreanTitleReview": {
+        "date": "2026-10-21",
+        "evidence": "content/beginner-poems/title-review-2026-10-21.md"
+      }
     },
     {
       "id": "intermediate-poem-01",
@@ -605,7 +785,7 @@
     },
     {
       "id": "intermediate-essay-01",
-      "contentSha256": "3ca31c2b46a92cf38a0db5bded3c3b9445ba3c7d8779f52e0dafb970ba02c22f",
+      "contentSha256": "f6706fd05db435e4e0b7ce5de72d3f6ddd12eeb12f743071ecc8be57613255fd",
       "imageSha256": [
         "58feb74b067fa78f48031b704b439a6409fa522288d3e7311e9b84d4dc0e2abf",
         "3d47b4794e0ad60a0419665bd30bffa24d0e6560394e0e3d911ef2715f8c9131",
@@ -616,11 +796,20 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "intermediate-sf-01",
-      "contentSha256": "e929feb5fe047b095cf4b02e165156045824342a69088afb6aa914d997206412",
+      "contentSha256": "97a0c7dd4a3fa2a1e1913b2fa22584ab3a6d02a3f44966637975b086c7157f29",
       "imageSha256": [
         "220dd2c337685809971fc56d08f5ae18d2bb0fc08579937413e3a2b4c2ff8ea3",
         "fbc88eb05b53f2d81f7bdfefb1eb24b4d2875265c44ee975e52fa7ffb53be8d7",
@@ -636,7 +825,19 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          8
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "intermediate-poem-02",
@@ -666,7 +867,7 @@
     },
     {
       "id": "intermediate-essay-02",
-      "contentSha256": "c5ddf60820aee99bb6b04a69fc54748d7442d39be8e075f1a34eb81db78850f3",
+      "contentSha256": "34c7eaf88cb35a83062f01da384390c53a32e78980024a11f3796127bc9a4ade",
       "imageSha256": [
         "c224ccaa1589f600d7b1186a20218a81fb672f86242e1b7165fe51294671ab79",
         "26a95352d7670b2de5907445108510f33f25db7c905b71d59db4ac9e15b1efca",
@@ -677,11 +878,20 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "intermediate-essay-03",
-      "contentSha256": "56fb73225090a3cd2e8402a3ddffae4f3d5eec24f32449108551b04acba441de",
+      "contentSha256": "1fa32fc601da710b1dff1f52eda8b889e6ed64fcac128bfc20f0e16e53ee495b",
       "imageSha256": [
         "69d5169a5ce86ece49e6397b094f79e8a90d3ad544be94304d03f93c1d692a23",
         "7b9fd0835e7fb81bcf68085c50daf6decc04172561d1e34b3b8564251a50442e",
@@ -692,11 +902,20 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "intermediate-martial-01",
-      "contentSha256": "1a07b7087fcf678047a0a8325edfd1fc2c173a01bc859cfdba36009d5e4ab46b",
+      "contentSha256": "4f27c8e778ef9ea4ab84bc0391c557cc205782032249ec9b91b0a5680991367b",
       "imageSha256": [
         "4af884652fe2e5e00c42c1a5f2d03d952bc6fc56c5fd26efef30d6d04bf31d1b",
         "d04a24762f1cbc68ff65addcd30fc129775bb90af540abcfeed7efacee6a27de",
@@ -712,11 +931,21 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          4,
+          6
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "intermediate-second-life-01",
-      "contentSha256": "c6065c6c7e4453e6e904d7427a232ee42c8c8db581f809fa7b318e9609f77260",
+      "contentSha256": "ac36b64229ba6c5480f4d3298da625e336ac30af056b7bb4384cdeb2987ec631",
       "imageSha256": [
         "10f3b3b6add23b8ad2710a08c9e44d7fdf80d4294f8d9c3d88ae1250c242e3ac",
         "45fb29d4f2c073e2558cbe443bd02e8c9fc8867cd5dbfd5377fed4a3e1dd1592",
@@ -732,7 +961,19 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          3,
+          4,
+          6,
+          7,
+          8
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "advanced-poem-01",
@@ -762,7 +1003,7 @@
     },
     {
       "id": "advanced-essay-01",
-      "contentSha256": "6a4d775dac9812a83461831e4c4a308b3c421c6a795c97cbabd42d6c4a718d17",
+      "contentSha256": "2b3cf9767855bd168d973eaf576b66c90241385c4993243c1136cd494b75eb85",
       "imageSha256": [
         "ba131f6fd7152829fb049b71b2d87b702e1073be68803d311f8ee3ff61d863c7",
         "1de750f07fad71379c72b0e5cbe090f5507150a789b985b91e74ad95e5d31e91",
@@ -773,11 +1014,20 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "advanced-essay-02",
-      "contentSha256": "332398d89855da41c4e8df7a05edcc4e2d0bcbe1469584b1e490ab771d884a3b",
+      "contentSha256": "feac8e063abc0a1e7b957a58b60bd6802f1ca63de6a727957bb293f424570dae",
       "imageSha256": [
         "2970da56e0a7c58e4faf7db2140b2a11e9104cb010f348fcd7762213825ed731",
         "f0fb357c2136f32dd07d9b42a4d8cd2053c851549d56324aa86fed02ee987a46",
@@ -788,11 +1038,20 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          3
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "advanced-sf-01",
-      "contentSha256": "e8d112ae74cebc725634a1b392a69a8d868b0e8d009c5dfe26605517d9a8d4f9",
+      "contentSha256": "c25a5b99b6fcb5e8b03ae693648f304fc2cbc71db42d345bfcd4e93f8ff249ea",
       "imageSha256": [
         "5999bfdcd99629479502d85df3841d4c3e7547b7d6fcfb9c100ad07ca76b25ef",
         "a1399db9347173631e4c8c7aa3ebe9e1f4b093212826480dfc92cfe669369a34",
@@ -810,11 +1069,26 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "advanced-mystery-01",
-      "contentSha256": "54a9989c894ed1f78ad726d03a13d530dcc82a4617595258b71582be40b22c6e",
+      "contentSha256": "c4c0f9af1d31bbb86aab5cb25959bcedf1afa72ca400d7c5d055bd0dfaade8a4",
       "imageSha256": [
         "ba1f2222dbdb3344c405e31e49fd0f06a7e2fced5da75d7d73394584a09cb0ff",
         "533ef4e8dc0672421ea8a46b16ca60785a4ac506f82392adf1b67a6cf787722a",
@@ -832,11 +1106,25 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          2,
+          4,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     },
     {
       "id": "advanced-courtroom-01",
-      "contentSha256": "953e8aa6475c972f06245d6bbedefc91048cb1a2736756cf590ccc365f80ae62",
+      "contentSha256": "ef665edd83bf8cc1247a7f2e740166910b80e43c171e898b8217c9a937465fc4",
       "imageSha256": [
         "f5725023180a175cdbe234710d95bfcec925fed801d27733a3b3ecf5b69827dd",
         "6aa9fe067a35aecd0ad86a5545e55618aee80e98ac58cdeb826683b0cc8b87a6",
@@ -854,7 +1142,20 @@
         "image-text-title-page",
         "character-scene",
         "generation-records-and-references"
-      ]
+      ],
+      "translationReview": {
+        "date": "2026-10-21",
+        "pages": [
+          1,
+          3,
+          4,
+          6,
+          7,
+          8,
+          9
+        ],
+        "evidence": "content/translation-review-2026-10-21.md"
+      }
     }
   ]
 }

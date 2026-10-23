@@ -232,7 +232,12 @@ it.each(['beginner', 'intermediate', 'advanced'] as const)('restores the %s list
   await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><Reading /></TDSMobileAITProvider>));
   const scroller = container.querySelector('main');
   if (!scroller) throw new Error('Reading scroller missing');
-  scroller.scrollTop = 320;
+  const listScroller = () => {
+    const list = container.querySelector<HTMLElement>('.book-list-scroll');
+    if (!list) throw new Error('Book list scroller missing');
+    return list;
+  };
+  listScroller().scrollTop = 320;
   await click(`${initialLevel} story`);
   expect(scroller.scrollTop).toBe(0);
   const actions = () => Array.from(container.querySelectorAll<HTMLButtonElement>('.image-page-navigation button'));
@@ -258,12 +263,22 @@ it.each(['beginner', 'intermediate', 'advanced'] as const)('restores the %s list
   if (!listButton) throw new Error('List action missing');
   await act(async () => listButton.click());
   expect(container.querySelector('.book-list')).not.toBeNull();
-  expect(scroller.scrollTop).toBe(320);
-  scroller.scrollTop = 720;
+  expect(listScroller().scrollTop).toBe(320);
+  listScroller().scrollTop = 720;
   await click(`${initialLevel} story`);
   scroller.scrollTop = 1100;
   await click('기기 뒤로');
-  expect(scroller.scrollTop).toBe(720);
+  expect(listScroller().scrollTop).toBe(720);
   await click(initialLevel === 'beginner' ? '중급' : '초급');
-  expect(scroller.scrollTop).toBe(0);
+  expect(listScroller().scrollTop).toBe(0);
+});
+
+it('keeps the hint balance visible without rewarded-ad entry points in the release', async () => {
+  const gateway = { balance: async () => 10, startRound: vi.fn(), reveal: vi.fn(), answer: vi.fn() };
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App hintGateway={gateway} /></TDSMobileAITProvider>));
+  expect(container.querySelector('[aria-label="힌트 잔액"]')?.textContent).toContain('10개');
+  expect(container.querySelector('[aria-label="광고 보고 힌트 받기"]')).toBeNull();
+  await click('설정');
+  expect(container.textContent).not.toContain('광고 보고 힌트');
+  expect(container.textContent).toContain('v1.0.1');
 });

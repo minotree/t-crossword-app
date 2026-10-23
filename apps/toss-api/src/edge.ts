@@ -2,6 +2,7 @@ import { getSupabaseClient, createTossHintRepository } from '@t-crossword/data';
 import { createHintHandler } from './handler.js';
 import { createEdgeHandler } from './edgeAdapter.js';
 import { parseTossIdentity } from './tossIdentity.js';
+import { tossAppCredentials } from './tossAppCredentials.js';
 
 // Minimal host contract for workspace typechecking; provided by hosted Deno.
 declare const Deno: {
@@ -24,8 +25,9 @@ const handler = createHintHandler({
   testAdsEnabled: Deno.env.get('TOSS_TEST_AD_REWARDS') === 'true',
   repository: createTossHintRepository(getSupabaseClient(required('SUPABASE_URL'), required('SUPABASE_SERVICE_ROLE_KEY'))),
   allowedOrigins,
-  exchangeCode: async (code) => {
-    const client = Deno.createHttpClient({ cert: required('TOSS_MTLS_CERT_PEM'), key: required('TOSS_MTLS_KEY_PEM') });
+  exchangeCode: async (code, origin) => {
+    const credentials = tossAppCredentials(origin);
+    const client = Deno.createHttpClient({ cert: required(credentials.cert), key: required(credentials.key) });
     try {
       const init = {
         method: 'POST', client, redirect: 'error' as const, signal: AbortSignal.timeout(10_000),
@@ -33,7 +35,7 @@ const handler = createHintHandler({
       };
       const response = await fetch('https://apps-in-toss-api.toss.im/api-partner/v1/apps-in-toss/users/anon-key/exchange', init);
       if (!response.ok) throw new Error('Toss authentication failed');
-      return parseTossIdentity(await response.json());
+      return credentials.identityPrefix + parseTossIdentity(await response.json());
     } finally { client.close(); }
   },
 });

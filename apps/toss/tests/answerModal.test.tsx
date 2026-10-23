@@ -44,7 +44,48 @@ async function type(input: HTMLInputElement, value: string) {
   });
 }
 
+it('fits the dialog into the keyboard viewport and restores centering when closed', async () => {
+  const viewport = Object.assign(new EventTarget(), { height: 400, offsetTop: 30 });
+  vi.stubGlobal('visualViewport', viewport);
+  vi.stubGlobal('innerHeight', 800);
+  vi.stubGlobal('requestAnimationFrame', (callback: FrameRequestCallback) => { callback(0); return 1; });
+  vi.stubGlobal('cancelAnimationFrame', vi.fn());
+  try {
+    await render();
+    const dialog = container.querySelector('dialog');
+    expect(dialog?.style.inset).toBe('38px 0 auto');
+    expect(dialog?.style.maxHeight).toBe('384px');
+    const stableStyle = dialog?.getAttribute('style');
+    viewport.offsetTop = 70;
+    await act(async () => {
+      viewport.dispatchEvent(new Event('scroll'));
+      container.querySelectorAll('input')[1]?.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+    });
+    expect(dialog?.getAttribute('style')).toBe(stableStyle);
+    viewport.height = 300;
+    await act(async () => { viewport.dispatchEvent(new Event('resize')); });
+    expect(dialog?.style.maxHeight).toBe('284px');
+    expect(dialog?.style.inset).toBe('38px 0 auto');
+    viewport.height = 800;
+    await act(async () => { viewport.dispatchEvent(new Event('resize')); });
+    expect(dialog?.getAttribute('style')).toBeNull();
+  } finally { vi.unstubAllGlobals(); }
+});
+
 describe('Toss letter input', () => {
+  it('keeps red feedback on other cells across focus moves and subsequent input', async () => {
+    const inputs = await render();
+    await type(inputs[0], 'X');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
+    await act(async () => inputs[1].focus());
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
+    await type(inputs[1], 'Y');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
+    expect(inputs[1].getAttribute('aria-invalid')).toBe('true');
+    await type(inputs[0], 'S');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('false');
+    expect(inputs[1].getAttribute('aria-invalid')).toBe('true');
+  });
   it('reveals only the first empty cell, preserves typed letters, and blocks duplicate clicks while pending', async () => {
     let resolveHint: ((value: { index: number; letter: string; balance: number; used: number }) => void) | undefined;
     const onUseHint = vi.fn(() => new Promise<{ index: number; letter: string; balance: number; used: number }>((resolve) => { resolveHint = resolve; }));
@@ -54,10 +95,30 @@ describe('Toss letter input', () => {
     if (!hint) throw new Error('Hint button missing');
     await act(async () => { hint.click(); hint.click(); });
     expect(onUseHint).toHaveBeenCalledExactlyOnceWith(1);
-    expect(inputs.every((input) => input.readOnly)).toBe(true);
+    expect(inputs.every((input) => !input.readOnly)).toBe(true);
+    expect(document.activeElement).toBe(inputs[2]);
+    expect(inputs[2].getAttribute('aria-disabled')).toBe('true');
+    await type(inputs[2], 'A');
+    expect(inputs[2].value).toBe('');
     await act(async () => { resolveHint?.({ index: 1, letter: 'E', balance: 9, used: 1 }); });
     expect(inputs.map((input) => input.value)).toEqual(['X', 'E', '']);
     expect(onSubmit).not.toHaveBeenCalled();
+  });
+
+  it('preserves keyboard focus outside the revealed cell across the parent hint update', async () => {
+    const onUseHint = vi.fn().mockResolvedValue({ index: 0, letter: 'S', balance: 9, used: 1 });
+    const inputs = await render([], { hintBalance: 10, onUseHint });
+    const hint = Array.from(container.querySelectorAll('button')).find(button => button.textContent?.includes('힌트 ('));
+    if (!hint) throw new Error('Hint button missing');
+    const pointer = new Event('pointerdown', { bubbles: true, cancelable: true });
+    await act(async () => { hint.dispatchEvent(pointer); hint.click(); });
+    expect(pointer.defaultPrevented).toBe(true);
+    expect(document.activeElement).toBe(inputs[1]);
+    await render(['S', '', ''], { hintBalance: 9, hintUsedCount: 1, onUseHint });
+    expect(inputs[0].readOnly).toBe(true);
+    expect(document.activeElement).toBe(inputs[1]);
+    await act(async () => inputs[2].focus({ preventScroll: true }));
+    expect(document.activeElement).toBe(inputs[2]);
   });
 
   it('does not request a hint for a filled word and preserves inputs after a failure', async () => {

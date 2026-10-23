@@ -1,0 +1,6 @@
+html[data-layout-debug] body { background: #f9c2ff; }
+html[data-layout-debug] #root { background: #ddd0ff; }
+html[data-layout-debug] .bottom-navigation { background: #c6f5dc; }
+html[data-layout-debug] .ad-banner { background: #fff3a6; outline: 1px solid #b89200; outline-offset: -1px; }
+html[data-layout-debug] .bottom-safe-area { background: #ffbc80; }
+.layout-diagnostics { position: fixed; z-index: 10000; top: 8px; left: 4px; max-width: calc(100vw - 8px); padding: 6px; background: #17202be8; color: #fff; font: 10px/1.5 monospace; white-space: pre-wrap; pointer-events: none; }

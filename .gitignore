@@ -11,6 +11,7 @@ tmp/lint-tools/
 # Build outputs
 supabase/.temp/
 supabase/functions/toss-hints/index.ts
+supabase/functions/mobile-hints/index.ts
 dist/
 build/
 out/

@@ -29,14 +29,14 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, hint
   useEffect(() => {
     const timer = window.setTimeout(() => {
       const index = initialFocusIndex.current;
-      if (index !== undefined) { inputs.current[index]?.focus(); inputs.current[index]?.select(); }
+      if (index !== undefined) { inputs.current[index]?.focus({ preventScroll: true }); inputs.current[index]?.select(); }
     }, 0);
     return () => window.clearTimeout(timer);
   }, []);
 
   const focus = (index: number, direction: -1 | 1) => {
     for (let next = index + direction; next >= 0 && next < length; next += direction) {
-      if (!currentLetters[next]) { inputs.current[next]?.focus(); inputs.current[next]?.select(); return; }
+      if (!currentLetters[next]) { inputs.current[next]?.focus({ preventScroll: true }); inputs.current[next]?.select(); return; }
     }
   };
 
@@ -79,7 +79,7 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, hint
         if (currentLetters[previous]) continue;
         const next = [...letters]; next[previous] = ''; setLetters(next);
         setIncorrectIndices((values) => values.filter((value) => value !== previous));
-        inputs.current[previous]?.focus();
+        inputs.current[previous]?.focus({ preventScroll: true });
         return;
       }
     }
@@ -89,6 +89,10 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, hint
     if (!onUseHint || hintPending.current || submitted.current) return;
     const index = letters.findIndex((letter, position) => !letter && !currentLetters[position]);
     if (index < 0) { setError('힌트는 빈 칸에만 사용할 수 있습니다. 글자를 지운 뒤 사용해 주세요.'); return; }
+    // Move off the cell that will become read-only before the server reveals it.
+    // Toggling a focused input's readOnly state can dismiss/reopen the iOS keyboard.
+    const nextBlank = letters.findIndex((letter, position) => position !== index && !letter && !currentLetters[position]);
+    if (nextBlank >= 0) inputs.current[nextBlank]?.focus({ preventScroll: true });
     hintPending.current = true; setIsHintLoading(true); setError('');
     try {
       const result = await onUseHint(index);
@@ -109,8 +113,9 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, hint
         {letters.map((letter, index) => <input key={index} type="text" value={letter} maxLength={1}
           aria-label={`${length}자 중 ${index + 1}번째 글자`} aria-invalid={incorrectIndices.includes(index)}
           className={`answer-cell${incorrectIndices.includes(index) ? ' incorrect' : ''}`}
-          readOnly={Boolean(currentLetters[index]) || isHintLoading || isSubmitting} tabIndex={currentLetters[index] ? -1 : 0}
-          autoComplete="off" autoCapitalize="characters" spellCheck={false} inputMode="text"
+          readOnly={Boolean(currentLetters[index]) || isSubmitting} tabIndex={currentLetters[index] ? -1 : 0}
+          aria-disabled={isHintLoading || undefined}
+          autoComplete="off" autoCapitalize="characters" spellCheck={false} inputMode="text" lang="en" enterKeyHint="done"
           ref={(element) => { inputs.current[index] = element; }}
           onChange={(event) => changeLetter(index, event.target.value)} onKeyDown={(event) => keyDown(index, event)} />)}
       </div>
@@ -120,7 +125,7 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, hint
       </div>
       {error && <p role="alert" className="error">{error}</p>}
       <div className="answer-actions">
-        <Button type="button" variant="weak" disabled={!onUseHint || hintBalance === null || hintBalance <= 0 || hintUsedCount >= word.hintLimit || isHintLoading || isSubmitting} loading={isHintLoading} onClick={() => { void requestHint(); }}>
+        <Button type="button" variant="weak" onPointerDown={(event) => { event.preventDefault(); }} disabled={!onUseHint || hintBalance === null || hintBalance <= 0 || hintUsedCount >= word.hintLimit || isHintLoading || isSubmitting} loading={isHintLoading} onClick={() => { void requestHint(); }}>
           {onUseHint ? `힌트 (${hintUsedCount}/${word.hintLimit}) · ${hintBalance ?? '확인 중'}개 남음` : '힌트 연결 필요'}
         </Button>
         <Button type="submit" disabled={isHintLoading || isSubmitting} loading={isSubmitting}>정답입력</Button>

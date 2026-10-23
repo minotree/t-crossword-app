@@ -1,0 +1,304 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/PictureBooks.tsx");import.meta.env = {"BASE_URL": "/", "DEV": true, "MODE": "development", "PROD": false, "SSR": false, "VITE_TOSS_AUTH_PROBE": "false", "VITE_TOSS_HINT_API_URL": "https://zduyaejdjwfhsiazcmrn.supabase.co/functions/v1/toss-hints"};import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=22722a36"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+let prevRefreshReg;
+let prevRefreshSig;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  prevRefreshReg = window.$RefreshReg$;
+  prevRefreshSig = window.$RefreshSig$;
+  window.$RefreshReg$ = RefreshRuntime.getRefreshReg("D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx");
+  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
+}
+var _s = $RefreshSig$(), _s2 = $RefreshSig$();
+import __vite__cjsImport3_react from "/node_modules/.vite/deps/react.js?v=22722a36"; const useEffect = __vite__cjsImport3_react["useEffect"]; const useLayoutEffect = __vite__cjsImport3_react["useLayoutEffect"]; const useRef = __vite__cjsImport3_react["useRef"]; const useState = __vite__cjsImport3_react["useState"];
+import { Button } from "/node_modules/.vite/deps/@toss_tds-mobile.js?v=22722a36";
+import { isRecord } from "/@fs/D:/DEV/t-crossword-app/packages/contracts/src/index.ts";
+import preparedBooks from "/src/data/picture-books.json?t=1792558915687&import";
+function isPictureBook(value) {
+  return isRecord(value) && typeof value.id === "string" && typeof value.title === "string" && typeof value.koreanTitle === "string" && typeof value.genre === "string" && (value.level === "beginner" || value.level === "intermediate" || value.level === "advanced") && Array.isArray(value.pages) && value.pages.length > 0 && value.pages.every((page) => isRecord(page) && typeof page.title === "string" && typeof page.text === "string" && typeof page.translation === "string" && typeof page.image === "string" && /^picture-books\/[a-z0-9-]+\.webp$/.test(page.image));
+}
+const source = preparedBooks;
+if (!Array.isArray(source) || !source.every(isPictureBook)) throw new Error("그림책 데이터 형식을 확인해 주세요.");
+export const pictureBooks = source;
+const useReadingLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+function BookImage({ image, title, nextImage }) {
+  _s();
+  const [failedImage, setFailedImage] = useState(null);
+  const [loadedImage, setLoadedImage] = useState(null);
+  const [dimensions, setDimensions] = useState({ width: 1024, height: 1536 });
+  useEffect(() => {
+    if (loadedImage !== image || !nextImage) return;
+    const upcoming = new Image();
+    upcoming.decoding = "async";
+    upcoming.src = `${import.meta.env.BASE_URL}${nextImage}`;
+    void upcoming.decode?.().catch(() => {
+    });
+    return () => {
+      upcoming.removeAttribute("src");
+    };
+  }, [image, loadedImage, nextImage]);
+  return failedImage === image ? /* @__PURE__ */ jsxDEV("div", { role: "status", className: "empty", children: [
+    /* @__PURE__ */ jsxDEV("p", { children: " 그림을 불러오지 못했습니다." }, void 0, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 56,
+      columnNumber: 71
+    }, this),
+    /* @__PURE__ */ jsxDEV(Button, { size: "small", variant: "weak", onClick: () => setFailedImage(null), children: "다시 불러오기" }, void 0, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 56,
+      columnNumber: 94
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+    lineNumber: 56,
+    columnNumber: 34
+  }, this) : /* @__PURE__ */ jsxDEV(
+    "img",
+    {
+      src: `${import.meta.env.BASE_URL}${image}`,
+      alt: `${title} 삽화와 영어 본문`,
+      decoding: "async",
+      width: dimensions.width,
+      height: dimensions.height,
+      style: { aspectRatio: `${dimensions.width} / ${dimensions.height}` },
+      onLoad: (event) => {
+        const { naturalWidth, naturalHeight } = event.currentTarget;
+        if (naturalWidth && naturalHeight) setDimensions({ width: naturalWidth, height: naturalHeight });
+        setLoadedImage(image);
+      },
+      onError: () => setFailedImage(image)
+    },
+    void 0,
+    false,
+    {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 57,
+      columnNumber: 3
+    },
+    this
+  );
+}
+_s(BookImage, "m/2OkTXt32MFXEXGfzd8S8Z8HGA=");
+_c = BookImage;
+export function PictureBooks({
+  level,
+  onLevelChange,
+  selectedId,
+  pageIndex,
+  onSelect,
+  onPageChange,
+  books = pictureBooks
+}) {
+  _s2();
+  const section = useRef(null);
+  const titleRef = useRef(null);
+  const listScrollTop = useRef(0);
+  const previous = useRef({ level, selectedId, pageIndex });
+  useReadingLayoutEffect(() => {
+    const scroller = section.current?.closest("main.scroll-page");
+    const before = previous.current;
+    if (scroller) {
+      if (before.level !== level) {
+        listScrollTop.current = 0;
+        scroller.scrollTop = 0;
+      } else if (before.selectedId && !selectedId) {
+        scroller.scrollTop = listScrollTop.current;
+      } else if (selectedId && before.selectedId !== selectedId) {
+        scroller.scrollTop = 0;
+      } else if (selectedId && before.pageIndex !== pageIndex && titleRef.current) {
+        scroller.scrollTop += titleRef.current.getBoundingClientRect().top - scroller.getBoundingClientRect().top - scroller.clientTop;
+      }
+    }
+    previous.current = { level, selectedId, pageIndex };
+  }, [level, selectedId, pageIndex]);
+  const openBook = (id) => {
+    listScrollTop.current = section.current?.closest("main.scroll-page")?.scrollTop ?? 0;
+    onSelect(id);
+  };
+  const selected = books.find((book) => book.level === level && book.id === selectedId);
+  const page = selected?.pages[pageIndex];
+  return /* @__PURE__ */ jsxDEV("section", { ref: section, className: "picture-books", children: [
+    /* @__PURE__ */ jsxDEV("div", { className: "picture-books-heading", children: [
+      /* @__PURE__ */ jsxDEV("h2", { children: "그림책" }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 100,
+        columnNumber: 44
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "secondary", children: "그림과 함께 영어 시·에세이·소설을 읽어 보세요." }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 100,
+        columnNumber: 56
+      }, this)
+    ] }, void 0, true, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 100,
+      columnNumber: 5
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { className: "choices", "aria-label": "그림책 난이도", children: ["beginner", "intermediate", "advanced"].map((value) => /* @__PURE__ */ jsxDEV(Button, { size: "small", variant: value === level ? "fill" : "weak", "aria-pressed": value === level, onClick: () => onLevelChange(value), children: { beginner: "초급", intermediate: "중급", advanced: "고급" }[value] }, value, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 101,
+      columnNumber: 119
+    }, this)) }, void 0, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 101,
+      columnNumber: 5
+    }, this),
+    selected && page ? /* @__PURE__ */ jsxDEV("article", { children: [
+      /* @__PURE__ */ jsxDEV("h3", { ref: titleRef, lang: "en", children: selected.title }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 103,
+        columnNumber: 7
+      }, this),
+      selected.koreanTitle && /* @__PURE__ */ jsxDEV("p", { children: selected.koreanTitle }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 103,
+        columnNumber: 82
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "secondary", "aria-live": "polite", children: [
+        pageIndex + 1,
+        " / ",
+        selected.pages.length,
+        "장 · ",
+        page.title
+      ] }, void 0, true, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 104,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "book-page-visual", children: [
+        /* @__PURE__ */ jsxDEV(BookImage, { image: page.image, title: page.title, nextImage: selected.pages[pageIndex + 1]?.image }, void 0, false, {
+          fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+          lineNumber: 106,
+          columnNumber: 9
+        }, this),
+        selected.pages.length > 1 && /* @__PURE__ */ jsxDEV("nav", { className: "image-page-navigation", "aria-label": "그림책 페이지 이동", children: [
+          /* @__PURE__ */ jsxDEV(Button, { className: "page-arrow previous-page", size: "small", variant: "weak", "aria-label": "이전 페이지", disabled: pageIndex === 0, onClick: () => onPageChange(pageIndex - 1), children: /* @__PURE__ */ jsxDEV("svg", { "aria-hidden": "true", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ jsxDEV("path", { d: "m15 5-7 7 7 7", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round" }, void 0, false, {
+            fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+            lineNumber: 109,
+            columnNumber: 92
+          }, this) }, void 0, false, {
+            fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+            lineNumber: 109,
+            columnNumber: 13
+          }, this) }, void 0, false, {
+            fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+            lineNumber: 108,
+            columnNumber: 11
+          }, this),
+          /* @__PURE__ */ jsxDEV(Button, { className: "page-arrow next-page", size: "small", variant: "weak", "aria-label": "다음 페이지", disabled: pageIndex + 1 >= selected.pages.length, onClick: () => onPageChange(pageIndex + 1), children: /* @__PURE__ */ jsxDEV("svg", { "aria-hidden": "true", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", children: /* @__PURE__ */ jsxDEV("path", { d: "m9 5 7 7-7 7", stroke: "currentColor", strokeWidth: "2.5", strokeLinecap: "round", strokeLinejoin: "round" }, void 0, false, {
+            fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+            lineNumber: 112,
+            columnNumber: 92
+          }, this) }, void 0, false, {
+            fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+            lineNumber: 112,
+            columnNumber: 13
+          }, this) }, void 0, false, {
+            fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+            lineNumber: 111,
+            columnNumber: 11
+          }, this)
+        ] }, void 0, true, {
+          fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+          lineNumber: 107,
+          columnNumber: 39
+        }, this)
+      ] }, void 0, true, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 105,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "sr-only", lang: "en", children: page.text }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 116,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ jsxDEV("details", { children: [
+        /* @__PURE__ */ jsxDEV("summary", { children: "해석 보기" }, void 0, false, {
+          fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+          lineNumber: 117,
+          columnNumber: 32
+        }, this),
+        /* @__PURE__ */ jsxDEV("p", { lang: "ko", children: page.translation }, void 0, false, {
+          fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+          lineNumber: 117,
+          columnNumber: 56
+        }, this)
+      ] }, pageIndex, true, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 117,
+        columnNumber: 7
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "reading-actions", children: /* @__PURE__ */ jsxDEV(Button, { size: "small", variant: "weak", onClick: () => onSelect(null), children: "목록으로" }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 119,
+        columnNumber: 9
+      }, this) }, void 0, false, {
+        fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+        lineNumber: 118,
+        columnNumber: 7
+      }, this)
+    ] }, selected.id, true, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 102,
+      columnNumber: 25
+    }, this) : /* @__PURE__ */ jsxDEV("ul", { className: "book-list", children: books.filter((book) => book.level === level).map((book) => /* @__PURE__ */ jsxDEV("li", { children: /* @__PURE__ */ jsxDEV(Button, { display: "block", variant: "weak", onClick: () => openBook(book.id), children: [
+      book.title,
+      book.koreanTitle && ` · ${book.koreanTitle}`
+    ] }, void 0, true, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 121,
+      columnNumber: 122
+    }, this) }, book.id, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 121,
+      columnNumber: 104
+    }, this)) }, void 0, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 121,
+      columnNumber: 18
+    }, this),
+    !books.some((book) => book.level === level) && /* @__PURE__ */ jsxDEV("p", { role: "status", className: "empty", children: "그림책을 준비하고 있어요." }, void 0, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 122,
+      columnNumber: 53
+    }, this),
+    /* @__PURE__ */ jsxDEV("p", { className: "secondary", children: "이 앱의 읽기 콘텐츠는 AI를 활용해 창작한 글·해석·삽화입니다." }, void 0, false, {
+      fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+      lineNumber: 123,
+      columnNumber: 5
+    }, this)
+  ] }, void 0, true, {
+    fileName: "D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx",
+    lineNumber: 99,
+    columnNumber: 10
+  }, this);
+}
+_s2(PictureBooks, "eUL2+7dtthzabbxlZeqs82JNOYw=", false, function() {
+  return [useReadingLayoutEffect];
+});
+_c2 = PictureBooks;
+var _c, _c2;
+$RefreshReg$(_c, "BookImage");
+$RefreshReg$(_c2, "PictureBooks");
+if (import.meta.hot && !inWebWorker) {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+if (import.meta.hot && !inWebWorker) {
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("D:/DEV/t-crossword-app/apps/toss/src/components/PictureBooks.tsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+
+//# sourceMappingURL=data:application/json;base64,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QUFBLFdBbUJwQixJQUFhLHVCQUFDLFFBQUcsV0FBVSxhQUFhb0QsZ0JBQU1zQixPQUFPLENBQUNMLFNBQVNBLEtBQUtqRSxVQUFVQSxLQUFLLEVBQUVrRSxJQUFJLENBQUNELFNBQVMsdUJBQUMsUUFBaUIsaUNBQUMsVUFBTyxTQUFRLFNBQVEsU0FBUSxRQUFPLFNBQVMsTUFBTUgsU0FBU0csS0FBS3JFLEVBQUUsR0FBSXFFO0FBQUFBLFdBQUtwRTtBQUFBQSxNQUFPb0UsS0FBS25FLGVBQWUsTUFBTW1FLEtBQUtuRSxXQUFXO0FBQUEsU0FBaEk7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQUFtSSxLQUE1SW1FLEtBQUtyRSxJQUFkO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBOEosQ0FBSyxLQUF6UDtBQUFBO0FBQUE7QUFBQTtBQUFBLFdBQTJQO0FBQUEsSUFDdlEsQ0FBQ29ELE1BQU11QixLQUFLLENBQUNOLFNBQVNBLEtBQUtqRSxVQUFVQSxLQUFLLEtBQUssdUJBQUMsT0FBRSxNQUFLLFVBQVMsV0FBVSxTQUFRLDhCQUFuQztBQUFBO0FBQUE7QUFBQTtBQUFBLFdBQWlEO0FBQUEsSUFDakcsdUJBQUMsT0FBRSxXQUFVLGFBQVksb0RBQXpCO0FBQUE7QUFBQTtBQUFBO0FBQUEsV0FBNkQ7QUFBQSxPQXhCeEQ7QUFBQTtBQUFBO0FBQUE7QUFBQSxTQXlCUDtBQUNGO0FBQUNpRCxJQTNEZVAsY0FBWTtBQUFBLFVBUzFCNUIsc0JBQXNCO0FBQUE7QUFBQSxNQVRSNEI7QUFBWSxJQUFBOEIsSUFBQUM7QUFBQSxhQUFBRCxJQUFBO0FBQUEsYUFBQUMsS0FBQSIsIm5hbWVzIjpbInVzZUVmZmVjdCIsInVzZUxheW91dEVmZmVjdCIsInVzZVJlZiIsInVzZVN0YXRlIiwiQnV0dG9uIiwiaXNSZWNvcmQiLCJwcmVwYXJlZEJvb2tzIiwiaXNQaWN0dXJlQm9vayIsInZhbHVlIiwiaWQiLCJ0aXRsZSIsImtvcmVhblRpdGxlIiwiZ2VucmUiLCJsZXZlbCIsIkFycmF5IiwiaXNBcnJheSIsInBhZ2VzIiwibGVuZ3RoIiwiZXZlcnkiLCJwYWdlIiwidGV4dCIsInRyYW5zbGF0aW9uIiwiaW1hZ2UiLCJ0ZXN0Iiwic291cmNlIiwiRXJyb3IiLCJwaWN0dXJlQm9va3MiLCJ1c2VSZWFkaW5nTGF5b3V0RWZmZWN0Iiwid2luZG93IiwiQm9va0ltYWdlIiwibmV4dEltYWdlIiwiX3MiLCJmYWlsZWRJbWFnZSIsInNldEZhaWxlZEltYWdlIiwibG9hZGVkSW1hZ2UiLCJzZXRMb2FkZWRJbWFnZSIsImRpbWVuc2lvbnMiLCJzZXREaW1lbnNpb25zIiwid2lkdGgiLCJoZWlnaHQiLCJ1cGNvbWluZyIsIkltYWdlIiwiZGVjb2RpbmciLCJzcmMiLCJpbXBvcnQiLCJlbnYiLCJCQVNFX1VSTCIsImRlY29kZSIsImNhdGNoIiwicmVtb3ZlQXR0cmlidXRlIiwiYXNwZWN0UmF0aW8iLCJldmVudCIsIm5hdHVyYWxXaWR0aCIsIm5hdHVyYWxIZWlnaHQiLCJjdXJyZW50VGFyZ2V0IiwiUGljdHVyZUJvb2tzIiwib25MZXZlbENoYW5nZSIsInNlbGVjdGVkSWQiLCJwYWdlSW5kZXgiLCJvblNlbGVjdCIsIm9uUGFnZUNoYW5nZSIsImJvb2tzIiwiX3MyIiwic2VjdGlvbiIsInRpdGxlUmVmIiwibGlzdFNjcm9sbFRvcCIsInByZXZpb3VzIiwic2Nyb2xsZXIiLCJjdXJyZW50IiwiY2xvc2VzdCIsImJlZm9yZSIsInNjcm9sbFRvcCIsImdldEJvdW5kaW5nQ2xpZW50UmVjdCIsInRvcCIsImNsaWVudFRvcCIsIm9wZW5Cb29rIiwic2VsZWN0ZWQiLCJmaW5kIiwiYm9vayIsIm1hcCIsImJlZ2lubmVyIiwiaW50ZXJtZWRpYXRlIiwiYWR2YW5jZWQiLCJmaWx0ZXIiLCJzb21lIiwiX2MiLCJfYzIiXSwiaWdub3JlTGlzdCI6W10sInNvdXJjZXMiOlsiUGljdHVyZUJvb2tzLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VFZmZlY3QsIHVzZUxheW91dEVmZmVjdCwgdXNlUmVmLCB1c2VTdGF0ZSB9IGZyb20gJ3JlYWN0JztcclxuaW1wb3J0IHsgQnV0dG9uIH0gZnJvbSAnQHRvc3MvdGRzLW1vYmlsZSc7XHJcbmltcG9ydCB0eXBlIHsgRGlmZmljdWx0eUxldmVsIH0gZnJvbSAnQHQtY3Jvc3N3b3JkL2NvcmUnO1xyXG5pbXBvcnQgeyBpc1JlY29yZCB9IGZyb20gJ0B0LWNyb3Nzd29yZC9jb250cmFjdHMnO1xyXG5pbXBvcnQgcHJlcGFyZWRCb29rcyBmcm9tICcuLi9kYXRhL3BpY3R1cmUtYm9va3MuanNvbic7XHJcblxyXG5leHBvcnQgaW50ZXJmYWNlIFBpY3R1cmVCb29rIHtcclxuICBpZDogc3RyaW5nOyBsZXZlbDogRGlmZmljdWx0eUxldmVsOyB0aXRsZTogc3RyaW5nOyBrb3JlYW5UaXRsZTogc3RyaW5nOyBnZW5yZTogc3RyaW5nO1xyXG4gIHBhZ2VzOiB7IHRpdGxlOiBzdHJpbmc7IHRleHQ6IHN0cmluZzsgdHJhbnNsYXRpb246IHN0cmluZzsgaW1hZ2U6IHN0cmluZyB9W107XHJcbn1cclxuZnVuY3Rpb24gaXNQaWN0dXJlQm9vayh2YWx1ZTogdW5rbm93bik6IHZhbHVlIGlzIFBpY3R1cmVCb29rIHtcclxuICByZXR1cm4gaXNSZWNvcmQodmFsdWUpICYmIHR5cGVvZiB2YWx1ZS5pZCA9PT0gJ3N0cmluZycgJiYgdHlwZW9mIHZhbHVlLnRpdGxlID09PSAnc3RyaW5nJyAmJlxyXG4gICAgdHlwZW9mIHZhbHVlLmtvcmVhblRpdGxlID09PSAnc3RyaW5nJyAmJiB0eXBlb2YgdmFsdWUuZ2VucmUgPT09ICdzdHJpbmcnICYmXHJcbiAgICAodmFsdWUubGV2ZWwgPT09ICdiZWdpbm5lcicgfHwgdmFsdWUubGV2ZWwgPT09ICdpbnRlcm1lZGlhdGUnIHx8IHZhbHVlLmxldmVsID09PSAnYWR2YW5jZWQnKSAmJlxyXG4gICAgQXJyYXkuaXNBcnJheSh2YWx1ZS5wYWdlcykgJiYgdmFsdWUucGFnZXMubGVuZ3RoID4gMCAmJiB2YWx1ZS5wYWdlcy5ldmVyeSgocGFnZTogdW5rbm93bikgPT4gaXNSZWNvcmQocGFnZSkgJiZcclxuICAgICAgdHlwZW9mIHBhZ2UudGl0bGUgPT09ICdzdHJpbmcnICYmIHR5cGVvZiBwYWdlLnRleHQgPT09ICdzdHJpbmcnICYmIHR5cGVvZiBwYWdlLnRyYW5zbGF0aW9uID09PSAnc3RyaW5nJyAmJlxyXG4gICAgICB0eXBlb2YgcGFnZS5pbWFnZSA9PT0gJ3N0cmluZycgJiYgL15waWN0dXJlLWJvb2tzXFwvW2EtejAtOS1dK1xcLndlYnAkLy50ZXN0KHBhZ2UuaW1hZ2UpKTtcclxufVxyXG5jb25zdCBzb3VyY2U6IHVua25vd24gPSBwcmVwYXJlZEJvb2tzO1xyXG5pZiAoIUFycmF5LmlzQXJyYXkoc291cmNlKSB8fCAhc291cmNlLmV2ZXJ5KGlzUGljdHVyZUJvb2spKSB0aHJvdyBuZXcgRXJyb3IoJ+q3uOumvOyxhSDrjbDsnbTthLAg7ZiV7Iud7J2EIO2ZleyduO2VtCDso7zshLjsmpQuJyk7XHJcbmV4cG9ydCBjb25zdCBwaWN0dXJlQm9va3M6IFBpY3R1cmVCb29rW10gPSBzb3VyY2U7XHJcbmNvbnN0IHVzZVJlYWRpbmdMYXlvdXRFZmZlY3QgPSB0eXBlb2Ygd2luZG93ID09PSAndW5kZWZpbmVkJyA/IHVzZUVmZmVjdCA6IHVzZUxheW91dEVmZmVjdDtcclxuXHJcbmZ1bmN0aW9uIEJvb2tJbWFnZSh7IGltYWdlLCB0aXRsZSwgbmV4dEltYWdlIH06IHsgaW1hZ2U6IHN0cmluZzsgdGl0bGU6IHN0cmluZzsgbmV4dEltYWdlPzogc3RyaW5nIH0pIHtcclxuICBjb25zdCBbZmFpbGVkSW1hZ2UsIHNldEZhaWxlZEltYWdlXSA9IHVzZVN0YXRlPHN0cmluZyB8IG51bGw+KG51bGwpO1xyXG4gIGNvbnN0IFtsb2FkZWRJbWFnZSwgc2V0TG9hZGVkSW1hZ2VdID0gdXNlU3RhdGU8c3RyaW5nIHwgbnVsbD4obnVsbCk7XHJcbiAgY29uc3QgW2RpbWVuc2lvbnMsIHNldERpbWVuc2lvbnNdID0gdXNlU3RhdGUoeyB3aWR0aDogMTAyNCwgaGVpZ2h0OiAxNTM2IH0pO1xyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBpZiAobG9hZGVkSW1hZ2UgIT09IGltYWdlIHx8ICFuZXh0SW1hZ2UpIHJldHVybjtcclxuICAgIGNvbnN0IHVwY29taW5nID0gbmV3IEltYWdlKCk7XHJcbiAgICB1cGNvbWluZy5kZWNvZGluZyA9ICdhc3luYyc7XHJcbiAgICB1cGNvbWluZy5zcmMgPSBgJHtpbXBvcnQubWV0YS5lbnYuQkFTRV9VUkx9JHtuZXh0SW1hZ2V9YDtcclxuICAgIC8vIFNwZWN1bGF0aXZlIGRlY29kaW5nIGlzIG9wdGlvbmFsOyB0aGUgdmlzaWJsZSBpbWFnZSByZXRhaW5zIGVycm9yL3JldHJ5IGhhbmRsaW5nLlxyXG4gICAgdm9pZCB1cGNvbWluZy5kZWNvZGU/LigpLmNhdGNoKCgpID0+IHt9KTtcclxuICAgIHJldHVybiAoKSA9PiB7IHVwY29taW5nLnJlbW92ZUF0dHJpYnV0ZSgnc3JjJyk7IH07XHJcbiAgfSwgW2ltYWdlLCBsb2FkZWRJbWFnZSwgbmV4dEltYWdlXSk7XHJcbiAgcmV0dXJuIGZhaWxlZEltYWdlID09PSBpbWFnZSA/IDxkaXYgcm9sZT1cInN0YXR1c1wiIGNsYXNzTmFtZT1cImVtcHR5XCI+PHA+IOq3uOumvOydhCDrtojrn6zsmKTsp4Ag66q77ZaI7Iq164uI64ukLjwvcD48QnV0dG9uIHNpemU9XCJzbWFsbFwiIHZhcmlhbnQ9XCJ3ZWFrXCIgb25DbGljaz17KCkgPT4gc2V0RmFpbGVkSW1hZ2UobnVsbCl9PuuLpOyLnCDrtojrn6zsmKTquLA8L0J1dHRvbj48L2Rpdj5cclxuICAgIDogPGltZyBzcmM9e2Ake2ltcG9ydC5tZXRhLmVudi5CQVNFX1VSTH0ke2ltYWdlfWB9IGFsdD17YCR7dGl0bGV9IOyCve2ZlOyZgCDsmIHslrQg67O466y4YH0gZGVjb2Rpbmc9XCJhc3luY1wiXHJcbiAgICAgIHdpZHRoPXtkaW1lbnNpb25zLndpZHRofSBoZWlnaHQ9e2RpbWVuc2lvbnMuaGVpZ2h0fSBzdHlsZT17eyBhc3BlY3RSYXRpbzogYCR7ZGltZW5zaW9ucy53aWR0aH0gLyAke2RpbWVuc2lvbnMuaGVpZ2h0fWAgfX1cclxuICAgICAgb25Mb2FkPXsoZXZlbnQpID0+IHtcclxuICAgICAgICBjb25zdCB7IG5hdHVyYWxXaWR0aCwgbmF0dXJhbEhlaWdodCB9ID0gZXZlbnQuY3VycmVudFRhcmdldDtcclxuICAgICAgICBpZiAobmF0dXJhbFdpZHRoICYmIG5hdHVyYWxIZWlnaHQpIHNldERpbWVuc2lvbnMoeyB3aWR0aDogbmF0dXJhbFdpZHRoLCBoZWlnaHQ6IG5hdHVyYWxIZWlnaHQgfSk7XHJcbiAgICAgICAgc2V0TG9hZGVkSW1hZ2UoaW1hZ2UpO1xyXG4gICAgICB9fSBvbkVycm9yPXsoKSA9PiBzZXRGYWlsZWRJbWFnZShpbWFnZSl9IC8+O1xyXG59XHJcblxyXG5leHBvcnQgZnVuY3Rpb24gUGljdHVyZUJvb2tzKHsgbGV2ZWwsIG9uTGV2ZWxDaGFuZ2UsIHNlbGVjdGVkSWQsIHBhZ2VJbmRleCwgb25TZWxlY3QsIG9uUGFnZUNoYW5nZSwgYm9va3MgPSBwaWN0dXJlQm9va3MgfToge1xyXG4gIGxldmVsOiBEaWZmaWN1bHR5TGV2ZWw7IG9uTGV2ZWxDaGFuZ2U6IChsZXZlbDogRGlmZmljdWx0eUxldmVsKSA9PiB2b2lkO1xyXG4gIHNlbGVjdGVkSWQ6IHN0cmluZyB8IG51bGw7IHBhZ2VJbmRleDogbnVtYmVyOyBvblNlbGVjdDogKGlkOiBzdHJpbmcgfCBudWxsKSA9PiB2b2lkO1xyXG4gIG9uUGFnZUNoYW5nZTogKGluZGV4OiBudW1iZXIpID0+IHZvaWQ7IGJvb2tzPzogUGljdHVyZUJvb2tbXTtcclxufSkge1xyXG4gIGNvbnN0IHNlY3Rpb24gPSB1c2VSZWY8SFRNTEVsZW1lbnQ+KG51bGwpO1xyXG4gIGNvbnN0IHRpdGxlUmVmID0gdXNlUmVmPEhUTUxIZWFkaW5nRWxlbWVudD4obnVsbCk7XHJcbiAgY29uc3QgbGlzdFNjcm9sbFRvcCA9IHVzZVJlZigwKTtcclxuICBjb25zdCBwcmV2aW91cyA9IHVzZVJlZih7IGxldmVsLCBzZWxlY3RlZElkLCBwYWdlSW5kZXggfSk7XHJcbiAgdXNlUmVhZGluZ0xheW91dEVmZmVjdCgoKSA9PiB7XHJcbiAgICBjb25zdCBzY3JvbGxlciA9IHNlY3Rpb24uY3VycmVudD8uY2xvc2VzdCgnbWFpbi5zY3JvbGwtcGFnZScpO1xyXG4gICAgY29uc3QgYmVmb3JlID0gcHJldmlvdXMuY3VycmVudDtcclxuICAgIGlmIChzY3JvbGxlcikge1xyXG4gICAgICBpZiAoYmVmb3JlLmxldmVsICE9PSBsZXZlbCkge1xyXG4gICAgICAgIGxpc3RTY3JvbGxUb3AuY3VycmVudCA9IDA7XHJcbiAgICAgICAgc2Nyb2xsZXIuc2Nyb2xsVG9wID0gMDtcclxuICAgICAgfSBlbHNlIGlmIChiZWZvcmUuc2VsZWN0ZWRJZCAmJiAhc2VsZWN0ZWRJZCkge1xyXG4gICAgICAgIHNjcm9sbGVyLnNjcm9sbFRvcCA9IGxpc3RTY3JvbGxUb3AuY3VycmVudDtcclxuICAgICAgfSBlbHNlIGlmIChzZWxlY3RlZElkICYmIGJlZm9yZS5zZWxlY3RlZElkICE9PSBzZWxlY3RlZElkKSB7XHJcbiAgICAgICAgc2Nyb2xsZXIuc2Nyb2xsVG9wID0gMDtcclxuICAgICAgfSBlbHNlIGlmIChzZWxlY3RlZElkICYmIGJlZm9yZS5wYWdlSW5kZXggIT09IHBhZ2VJbmRleCAmJiB0aXRsZVJlZi5jdXJyZW50KSB7XHJcbiAgICAgICAgc2Nyb2xsZXIuc2Nyb2xsVG9wICs9IHRpdGxlUmVmLmN1cnJlbnQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkudG9wIC0gc2Nyb2xsZXIuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkudG9wIC0gc2Nyb2xsZXIuY2xpZW50VG9wO1xyXG4gICAgICB9XHJcbiAgICB9XHJcbiAgICBwcmV2aW91cy5jdXJyZW50ID0geyBsZXZlbCwgc2VsZWN0ZWRJZCwgcGFnZUluZGV4IH07XHJcbiAgfSwgW2xldmVsLCBzZWxlY3RlZElkLCBwYWdlSW5kZXhdKTtcclxuICBjb25zdCBvcGVuQm9vayA9IChpZDogc3RyaW5nKSA9PiB7XHJcbiAgICAvLyBTYXZlIGJlZm9yZSByZXBsYWNpbmcgdGhlIGxvbmcgbGlzdDogRE9NIHVwZGF0ZXMgY2FuIGNsYW1wIGl0cyBzY3JvbGwgb2Zmc2V0LlxyXG4gICAgbGlzdFNjcm9sbFRvcC5jdXJyZW50ID0gc2VjdGlvbi5jdXJyZW50Py5jbG9zZXN0KCdtYWluLnNjcm9sbC1wYWdlJyk/LnNjcm9sbFRvcCA/PyAwO1xyXG4gICAgb25TZWxlY3QoaWQpO1xyXG4gIH07XHJcbiAgY29uc3Qgc2VsZWN0ZWQgPSBib29rcy5maW5kKChib29rKSA9PiBib29rLmxldmVsID09PSBsZXZlbCAmJiBib29rLmlkID09PSBzZWxlY3RlZElkKTtcclxuICBjb25zdCBwYWdlID0gc2VsZWN0ZWQ/LnBhZ2VzW3BhZ2VJbmRleF07XHJcbiAgcmV0dXJuIDxzZWN0aW9uIHJlZj17c2VjdGlvbn0gY2xhc3NOYW1lPVwicGljdHVyZS1ib29rc1wiPlxyXG4gICAgPGRpdiBjbGFzc05hbWU9XCJwaWN0dXJlLWJvb2tzLWhlYWRpbmdcIj48aDI+6re466a87LGFPC9oMj48cCBjbGFzc05hbWU9XCJzZWNvbmRhcnlcIj7qt7jrprzqs7wg7ZWo6ruYIOyYgeyWtCDsi5zCt+yXkOyEuOydtMK37IaM7ISk7J2EIOydveyWtCDrs7TshLjsmpQuPC9wPjwvZGl2PlxyXG4gICAgPGRpdiBjbGFzc05hbWU9XCJjaG9pY2VzXCIgYXJpYS1sYWJlbD1cIuq3uOumvOyxhSDrgpzsnbTrj4RcIj57KFsnYmVnaW5uZXInLCAnaW50ZXJtZWRpYXRlJywgJ2FkdmFuY2VkJ10gYXMgY29uc3QpLm1hcCgodmFsdWUpID0+IDxCdXR0b24gc2l6ZT1cInNtYWxsXCIga2V5PXt2YWx1ZX0gdmFyaWFudD17dmFsdWUgPT09IGxldmVsID8gJ2ZpbGwnIDogJ3dlYWsnfSBhcmlhLXByZXNzZWQ9e3ZhbHVlID09PSBsZXZlbH0gb25DbGljaz17KCkgPT4gb25MZXZlbENoYW5nZSh2YWx1ZSl9Pnt7IGJlZ2lubmVyOiAn7LSI6riJJywgaW50ZXJtZWRpYXRlOiAn7KSR6riJJywgYWR2YW5jZWQ6ICfqs6DquIknIH1bdmFsdWVdfTwvQnV0dG9uPil9PC9kaXY+XHJcbiAgICB7c2VsZWN0ZWQgJiYgcGFnZSA/IDxhcnRpY2xlIGtleT17c2VsZWN0ZWQuaWR9PlxyXG4gICAgICA8aDMgcmVmPXt0aXRsZVJlZn0gbGFuZz1cImVuXCI+e3NlbGVjdGVkLnRpdGxlfTwvaDM+e3NlbGVjdGVkLmtvcmVhblRpdGxlICYmIDxwPntzZWxlY3RlZC5rb3JlYW5UaXRsZX08L3A+fVxyXG4gICAgICA8cCBjbGFzc05hbWU9XCJzZWNvbmRhcnlcIiBhcmlhLWxpdmU9XCJwb2xpdGVcIj57cGFnZUluZGV4ICsgMX0gLyB7c2VsZWN0ZWQucGFnZXMubGVuZ3RofeyepSDCtyB7cGFnZS50aXRsZX08L3A+XHJcbiAgICAgIDxkaXYgY2xhc3NOYW1lPVwiYm9vay1wYWdlLXZpc3VhbFwiPlxyXG4gICAgICAgIDxCb29rSW1hZ2UgaW1hZ2U9e3BhZ2UuaW1hZ2V9IHRpdGxlPXtwYWdlLnRpdGxlfSBuZXh0SW1hZ2U9e3NlbGVjdGVkLnBhZ2VzW3BhZ2VJbmRleCArIDFdPy5pbWFnZX0gLz5cclxuICAgICAgICB7c2VsZWN0ZWQucGFnZXMubGVuZ3RoID4gMSAmJiA8bmF2IGNsYXNzTmFtZT1cImltYWdlLXBhZ2UtbmF2aWdhdGlvblwiIGFyaWEtbGFiZWw9XCLqt7jrprzssYUg7Y6Y7J207KeAIOydtOuPmVwiPlxyXG4gICAgICAgICAgPEJ1dHRvbiBjbGFzc05hbWU9XCJwYWdlLWFycm93IHByZXZpb3VzLXBhZ2VcIiBzaXplPVwic21hbGxcIiB2YXJpYW50PVwid2Vha1wiIGFyaWEtbGFiZWw9XCLsnbTsoIQg7Y6Y7J207KeAXCIgZGlzYWJsZWQ9e3BhZ2VJbmRleCA9PT0gMH0gb25DbGljaz17KCkgPT4gb25QYWdlQ2hhbmdlKHBhZ2VJbmRleCAtIDEpfT5cclxuICAgICAgICAgICAgPHN2ZyBhcmlhLWhpZGRlbj1cInRydWVcIiB3aWR0aD1cIjI0XCIgaGVpZ2h0PVwiMjRcIiB2aWV3Qm94PVwiMCAwIDI0IDI0XCIgZmlsbD1cIm5vbmVcIj48cGF0aCBkPVwibTE1IDUtNyA3IDcgN1wiIHN0cm9rZT1cImN1cnJlbnRDb2xvclwiIHN0cm9rZVdpZHRoPVwiMi41XCIgc3Ryb2tlTGluZWNhcD1cInJvdW5kXCIgc3Ryb2tlTGluZWpvaW49XCJyb3VuZFwiIC8+PC9zdmc+XHJcbiAgICAgICAgICA8L0J1dHRvbj5cclxuICAgICAgICAgIDxCdXR0b24gY2xhc3NOYW1lPVwicGFnZS1hcnJvdyBuZXh0LXBhZ2VcIiBzaXplPVwic21hbGxcIiB2YXJpYW50PVwid2Vha1wiIGFyaWEtbGFiZWw9XCLri6TsnYwg7Y6Y7J207KeAXCIgZGlzYWJsZWQ9e3BhZ2VJbmRleCArIDEgPj0gc2VsZWN0ZWQucGFnZXMubGVuZ3RofSBvbkNsaWNrPXsoKSA9PiBvblBhZ2VDaGFuZ2UocGFnZUluZGV4ICsgMSl9PlxyXG4gICAgICAgICAgICA8c3ZnIGFyaWEtaGlkZGVuPVwidHJ1ZVwiIHdpZHRoPVwiMjRcIiBoZWlnaHQ9XCIyNFwiIHZpZXdCb3g9XCIwIDAgMjQgMjRcIiBmaWxsPVwibm9uZVwiPjxwYXRoIGQ9XCJtOSA1IDcgNy03IDdcIiBzdHJva2U9XCJjdXJyZW50Q29sb3JcIiBzdHJva2VXaWR0aD1cIjIuNVwiIHN0cm9rZUxpbmVjYXA9XCJyb3VuZFwiIHN0cm9rZUxpbmVqb2luPVwicm91bmRcIiAvPjwvc3ZnPlxyXG4gICAgICAgICAgPC9CdXR0b24+XHJcbiAgICAgICAgPC9uYXY+fVxyXG4gICAgICA8L2Rpdj5cclxuICAgICAgPHAgY2xhc3NOYW1lPVwic3Itb25seVwiIGxhbmc9XCJlblwiPntwYWdlLnRleHR9PC9wPlxyXG4gICAgICA8ZGV0YWlscyBrZXk9e3BhZ2VJbmRleH0+PHN1bW1hcnk+7ZW07ISdIOuztOq4sDwvc3VtbWFyeT48cCBsYW5nPVwia29cIj57cGFnZS50cmFuc2xhdGlvbn08L3A+PC9kZXRhaWxzPlxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlYWRpbmctYWN0aW9uc1wiPlxyXG4gICAgICAgIDxCdXR0b24gc2l6ZT1cInNtYWxsXCIgdmFyaWFudD1cIndlYWtcIiBvbkNsaWNrPXsoKSA9PiBvblNlbGVjdChudWxsKX0+66qp66Gd7Jy866GcPC9CdXR0b24+XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgPC9hcnRpY2xlPiA6IDx1bCBjbGFzc05hbWU9XCJib29rLWxpc3RcIj57Ym9va3MuZmlsdGVyKChib29rKSA9PiBib29rLmxldmVsID09PSBsZXZlbCkubWFwKChib29rKSA9PiA8bGkga2V5PXtib29rLmlkfT48QnV0dG9uIGRpc3BsYXk9XCJibG9ja1wiIHZhcmlhbnQ9XCJ3ZWFrXCIgb25DbGljaz17KCkgPT4gb3BlbkJvb2soYm9vay5pZCl9Pntib29rLnRpdGxlfXtib29rLmtvcmVhblRpdGxlICYmIGAgwrcgJHtib29rLmtvcmVhblRpdGxlfWB9PC9CdXR0b24+PC9saT4pfTwvdWw+fVxyXG4gICAgeyFib29rcy5zb21lKChib29rKSA9PiBib29rLmxldmVsID09PSBsZXZlbCkgJiYgPHAgcm9sZT1cInN0YXR1c1wiIGNsYXNzTmFtZT1cImVtcHR5XCI+6re466a87LGF7J2EIOykgOu5hO2VmOqzoCDsnojslrTsmpQuPC9wPn1cclxuICAgIDxwIGNsYXNzTmFtZT1cInNlY29uZGFyeVwiPuydtCDslbHsnZgg7J296riwIOy9mO2FkOy4oOuKlCBBSeulvCDtmZzsmqntlbQg7LC97J6R7ZWcIOq4gMK37ZW07ISdwrfsgr3tmZTsnoXri4jri6QuPC9wPlxyXG4gIDwvc2VjdGlvbj47XHJcbn1cclxuIl0sImZpbGUiOiJEOi9ERVYvdC1jcm9zc3dvcmQtYXBwL2FwcHMvdG9zcy9zcmMvY29tcG9uZW50cy9QaWN0dXJlQm9va3MudHN4In0=

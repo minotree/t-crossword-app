@@ -1,0 +1,5107 @@
+import {
+  Global,
+  Zb,
+  css
+} from "/node_modules/.vite/deps/chunk-S5UURJRS.js?v=22722a36";
+import {
+  require_jsx_runtime
+} from "/node_modules/.vite/deps/chunk-WUH7MFPY.js?v=22722a36";
+import "/node_modules/.vite/deps/chunk-Q4ZO2COS.js?v=22722a36";
+import {
+  require_react
+} from "/node_modules/.vite/deps/chunk-TSLWNT4O.js?v=22722a36";
+import {
+  __commonJS,
+  __toESM
+} from "/node_modules/.vite/deps/chunk-EQCVQC35.js?v=22722a36";
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/constants.js
+var require_constants = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/constants.js"(exports, module) {
+    "use strict";
+    var SEMVER_SPEC_VERSION = "2.0.0";
+    var MAX_LENGTH = 256;
+    var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || /* istanbul ignore next */
+    9007199254740991;
+    var MAX_SAFE_COMPONENT_LENGTH = 16;
+    var MAX_SAFE_BUILD_LENGTH = MAX_LENGTH - 6;
+    var RELEASE_TYPES = [
+      "major",
+      "premajor",
+      "minor",
+      "preminor",
+      "patch",
+      "prepatch",
+      "prerelease"
+    ];
+    module.exports = {
+      MAX_LENGTH,
+      MAX_SAFE_COMPONENT_LENGTH,
+      MAX_SAFE_BUILD_LENGTH,
+      MAX_SAFE_INTEGER,
+      RELEASE_TYPES,
+      SEMVER_SPEC_VERSION,
+      FLAG_INCLUDE_PRERELEASE: 1,
+      FLAG_LOOSE: 2
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/debug.js
+var require_debug = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/debug.js"(exports, module) {
+    "use strict";
+    var debug = typeof process === "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...args) => console.error("SEMVER", ...args) : () => {
+    };
+    module.exports = debug;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/re.js
+var require_re = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/re.js"(exports, module) {
+    "use strict";
+    var {
+      MAX_SAFE_COMPONENT_LENGTH,
+      MAX_SAFE_BUILD_LENGTH,
+      MAX_LENGTH
+    } = require_constants();
+    var debug = require_debug();
+    exports = module.exports = {};
+    var re2 = exports.re = [];
+    var safeRe = exports.safeRe = [];
+    var src = exports.src = [];
+    var safeSrc = exports.safeSrc = [];
+    var t = exports.t = {};
+    var R2 = 0;
+    var LETTERDASHNUMBER = "[a-zA-Z0-9-]";
+    var safeRegexReplacements = [
+      ["\\s", 1],
+      ["\\d", MAX_LENGTH],
+      [LETTERDASHNUMBER, MAX_SAFE_BUILD_LENGTH]
+    ];
+    var makeSafeRegex = (value) => {
+      for (const [token, max] of safeRegexReplacements) {
+        value = value.split(`${token}*`).join(`${token}{0,${max}}`).split(`${token}+`).join(`${token}{1,${max}}`);
+      }
+      return value;
+    };
+    var createToken = (name, value, isGlobal) => {
+      const safe = makeSafeRegex(value);
+      const index = R2++;
+      debug(name, index, value);
+      t[name] = index;
+      src[index] = value;
+      safeSrc[index] = safe;
+      re2[index] = new RegExp(value, isGlobal ? "g" : void 0);
+      safeRe[index] = new RegExp(safe, isGlobal ? "g" : void 0);
+    };
+    createToken("NUMERICIDENTIFIER", "0|[1-9]\\d*");
+    createToken("NUMERICIDENTIFIERLOOSE", "\\d+");
+    createToken("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${LETTERDASHNUMBER}*`);
+    createToken("MAINVERSION", `(${src[t.NUMERICIDENTIFIER]})\\.(${src[t.NUMERICIDENTIFIER]})\\.(${src[t.NUMERICIDENTIFIER]})`);
+    createToken("MAINVERSIONLOOSE", `(${src[t.NUMERICIDENTIFIERLOOSE]})\\.(${src[t.NUMERICIDENTIFIERLOOSE]})\\.(${src[t.NUMERICIDENTIFIERLOOSE]})`);
+    createToken("PRERELEASEIDENTIFIER", `(?:${src[t.NONNUMERICIDENTIFIER]}|${src[t.NUMERICIDENTIFIER]})`);
+    createToken("PRERELEASEIDENTIFIERLOOSE", `(?:${src[t.NONNUMERICIDENTIFIER]}|${src[t.NUMERICIDENTIFIERLOOSE]})`);
+    createToken("PRERELEASE", `(?:-(${src[t.PRERELEASEIDENTIFIER]}(?:\\.${src[t.PRERELEASEIDENTIFIER]})*))`);
+    createToken("PRERELEASELOOSE", `(?:-?(${src[t.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${src[t.PRERELEASEIDENTIFIERLOOSE]})*))`);
+    createToken("BUILDIDENTIFIER", `${LETTERDASHNUMBER}+`);
+    createToken("BUILD", `(?:\\+(${src[t.BUILDIDENTIFIER]}(?:\\.${src[t.BUILDIDENTIFIER]})*))`);
+    createToken("FULLPLAIN", `v?${src[t.MAINVERSION]}${src[t.PRERELEASE]}?${src[t.BUILD]}?`);
+    createToken("FULL", `^${src[t.FULLPLAIN]}$`);
+    createToken("LOOSEPLAIN", `[v=\\s]*${src[t.MAINVERSIONLOOSE]}${src[t.PRERELEASELOOSE]}?${src[t.BUILD]}?`);
+    createToken("LOOSE", `^${src[t.LOOSEPLAIN]}$`);
+    createToken("GTLT", "((?:<|>)?=?)");
+    createToken("XRANGEIDENTIFIERLOOSE", `${src[t.NUMERICIDENTIFIERLOOSE]}|x|X|\\*`);
+    createToken("XRANGEIDENTIFIER", `${src[t.NUMERICIDENTIFIER]}|x|X|\\*`);
+    createToken("XRANGEPLAIN", `[v=\\s]*(${src[t.XRANGEIDENTIFIER]})(?:\\.(${src[t.XRANGEIDENTIFIER]})(?:\\.(${src[t.XRANGEIDENTIFIER]})(?:${src[t.PRERELEASE]})?${src[t.BUILD]}?)?)?`);
+    createToken("XRANGEPLAINLOOSE", `[v=\\s]*(${src[t.XRANGEIDENTIFIERLOOSE]})(?:\\.(${src[t.XRANGEIDENTIFIERLOOSE]})(?:\\.(${src[t.XRANGEIDENTIFIERLOOSE]})(?:${src[t.PRERELEASELOOSE]})?${src[t.BUILD]}?)?)?`);
+    createToken("XRANGE", `^${src[t.GTLT]}\\s*${src[t.XRANGEPLAIN]}$`);
+    createToken("XRANGELOOSE", `^${src[t.GTLT]}\\s*${src[t.XRANGEPLAINLOOSE]}$`);
+    createToken("COERCEPLAIN", `${"(^|[^\\d])(\\d{1,"}${MAX_SAFE_COMPONENT_LENGTH}})(?:\\.(\\d{1,${MAX_SAFE_COMPONENT_LENGTH}}))?(?:\\.(\\d{1,${MAX_SAFE_COMPONENT_LENGTH}}))?`);
+    createToken("COERCE", `${src[t.COERCEPLAIN]}(?:$|[^\\d])`);
+    createToken("COERCEFULL", src[t.COERCEPLAIN] + `(?:${src[t.PRERELEASE]})?(?:${src[t.BUILD]})?(?:$|[^\\d])`);
+    createToken("COERCERTL", src[t.COERCE], true);
+    createToken("COERCERTLFULL", src[t.COERCEFULL], true);
+    createToken("LONETILDE", "(?:~>?)");
+    createToken("TILDETRIM", `(\\s*)${src[t.LONETILDE]}\\s+`, true);
+    exports.tildeTrimReplace = "$1~";
+    createToken("TILDE", `^${src[t.LONETILDE]}${src[t.XRANGEPLAIN]}$`);
+    createToken("TILDELOOSE", `^${src[t.LONETILDE]}${src[t.XRANGEPLAINLOOSE]}$`);
+    createToken("LONECARET", "(?:\\^)");
+    createToken("CARETTRIM", `(\\s*)${src[t.LONECARET]}\\s+`, true);
+    exports.caretTrimReplace = "$1^";
+    createToken("CARET", `^${src[t.LONECARET]}${src[t.XRANGEPLAIN]}$`);
+    createToken("CARETLOOSE", `^${src[t.LONECARET]}${src[t.XRANGEPLAINLOOSE]}$`);
+    createToken("COMPARATORLOOSE", `^${src[t.GTLT]}\\s*(${src[t.LOOSEPLAIN]})$|^$`);
+    createToken("COMPARATOR", `^${src[t.GTLT]}\\s*(${src[t.FULLPLAIN]})$|^$`);
+    createToken("COMPARATORTRIM", `(\\s*)${src[t.GTLT]}\\s*(${src[t.LOOSEPLAIN]}|${src[t.XRANGEPLAIN]})`, true);
+    exports.comparatorTrimReplace = "$1$2$3";
+    createToken("HYPHENRANGE", `^\\s*(${src[t.XRANGEPLAIN]})\\s+-\\s+(${src[t.XRANGEPLAIN]})\\s*$`);
+    createToken("HYPHENRANGELOOSE", `^\\s*(${src[t.XRANGEPLAINLOOSE]})\\s+-\\s+(${src[t.XRANGEPLAINLOOSE]})\\s*$`);
+    createToken("STAR", "(<|>)?=?\\s*\\*");
+    createToken("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$");
+    createToken("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/parse-options.js
+var require_parse_options = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/parse-options.js"(exports, module) {
+    "use strict";
+    var looseOption = Object.freeze({ loose: true });
+    var emptyOpts = Object.freeze({});
+    var parseOptions = (options) => {
+      if (!options) {
+        return emptyOpts;
+      }
+      if (typeof options !== "object") {
+        return looseOption;
+      }
+      return options;
+    };
+    module.exports = parseOptions;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/identifiers.js
+var require_identifiers = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/identifiers.js"(exports, module) {
+    "use strict";
+    var numeric = /^[0-9]+$/;
+    var compareIdentifiers = (a, b2) => {
+      if (typeof a === "number" && typeof b2 === "number") {
+        return a === b2 ? 0 : a < b2 ? -1 : 1;
+      }
+      const anum = numeric.test(a);
+      const bnum = numeric.test(b2);
+      if (anum && bnum) {
+        a = +a;
+        b2 = +b2;
+      }
+      return a === b2 ? 0 : anum && !bnum ? -1 : bnum && !anum ? 1 : a < b2 ? -1 : 1;
+    };
+    var rcompareIdentifiers = (a, b2) => compareIdentifiers(b2, a);
+    module.exports = {
+      compareIdentifiers,
+      rcompareIdentifiers
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/classes/semver.js
+var require_semver = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/classes/semver.js"(exports, module) {
+    "use strict";
+    var debug = require_debug();
+    var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants();
+    var { safeRe: re2, t } = require_re();
+    var parseOptions = require_parse_options();
+    var { compareIdentifiers } = require_identifiers();
+    var isPrereleaseIdentifier = (prerelease, identifier) => {
+      const identifiers = identifier.split(".");
+      if (identifiers.length > prerelease.length) {
+        return false;
+      }
+      for (let i = 0; i < identifiers.length; i++) {
+        if (compareIdentifiers(prerelease[i], identifiers[i]) !== 0) {
+          return false;
+        }
+      }
+      return true;
+    };
+    var SemVer = class _SemVer {
+      constructor(version, options) {
+        options = parseOptions(options);
+        if (version instanceof _SemVer) {
+          if (version.loose === !!options.loose && version.includePrerelease === !!options.includePrerelease) {
+            return version;
+          } else {
+            version = version.version;
+          }
+        } else if (typeof version !== "string") {
+          throw new TypeError(`Invalid version. Must be a string. Got type "${typeof version}".`);
+        }
+        if (version.length > MAX_LENGTH) {
+          throw new TypeError(
+            `version is longer than ${MAX_LENGTH} characters`
+          );
+        }
+        debug("SemVer", version, options);
+        this.options = options;
+        this.loose = !!options.loose;
+        this.includePrerelease = !!options.includePrerelease;
+        const m = version.trim().match(options.loose ? re2[t.LOOSE] : re2[t.FULL]);
+        if (!m) {
+          throw new TypeError(`Invalid Version: ${version}`);
+        }
+        this.raw = version;
+        this.major = +m[1];
+        this.minor = +m[2];
+        this.patch = +m[3];
+        if (this.major > MAX_SAFE_INTEGER || this.major < 0) {
+          throw new TypeError("Invalid major version");
+        }
+        if (this.minor > MAX_SAFE_INTEGER || this.minor < 0) {
+          throw new TypeError("Invalid minor version");
+        }
+        if (this.patch > MAX_SAFE_INTEGER || this.patch < 0) {
+          throw new TypeError("Invalid patch version");
+        }
+        if (!m[4]) {
+          this.prerelease = [];
+        } else {
+          this.prerelease = m[4].split(".").map((id2) => {
+            if (/^[0-9]+$/.test(id2)) {
+              const num = +id2;
+              if (num >= 0 && num < MAX_SAFE_INTEGER) {
+                return num;
+              }
+            }
+            return id2;
+          });
+        }
+        this.build = m[5] ? m[5].split(".") : [];
+        this.format();
+      }
+      format() {
+        this.version = `${this.major}.${this.minor}.${this.patch}`;
+        if (this.prerelease.length) {
+          this.version += `-${this.prerelease.join(".")}`;
+        }
+        return this.version;
+      }
+      toString() {
+        return this.version;
+      }
+      compare(other) {
+        debug("SemVer.compare", this.version, this.options, other);
+        if (!(other instanceof _SemVer)) {
+          if (typeof other === "string" && other === this.version) {
+            return 0;
+          }
+          other = new _SemVer(other, this.options);
+        }
+        if (other.version === this.version) {
+          return 0;
+        }
+        return this.compareMain(other) || this.comparePre(other);
+      }
+      compareMain(other) {
+        if (!(other instanceof _SemVer)) {
+          other = new _SemVer(other, this.options);
+        }
+        if (this.major < other.major) {
+          return -1;
+        }
+        if (this.major > other.major) {
+          return 1;
+        }
+        if (this.minor < other.minor) {
+          return -1;
+        }
+        if (this.minor > other.minor) {
+          return 1;
+        }
+        if (this.patch < other.patch) {
+          return -1;
+        }
+        if (this.patch > other.patch) {
+          return 1;
+        }
+        return 0;
+      }
+      comparePre(other) {
+        if (!(other instanceof _SemVer)) {
+          other = new _SemVer(other, this.options);
+        }
+        if (this.prerelease.length && !other.prerelease.length) {
+          return -1;
+        } else if (!this.prerelease.length && other.prerelease.length) {
+          return 1;
+        } else if (!this.prerelease.length && !other.prerelease.length) {
+          return 0;
+        }
+        let i = 0;
+        do {
+          const a = this.prerelease[i];
+          const b2 = other.prerelease[i];
+          debug("prerelease compare", i, a, b2);
+          if (a === void 0 && b2 === void 0) {
+            return 0;
+          } else if (b2 === void 0) {
+            return 1;
+          } else if (a === void 0) {
+            return -1;
+          } else if (a === b2) {
+            continue;
+          } else {
+            return compareIdentifiers(a, b2);
+          }
+        } while (++i);
+      }
+      compareBuild(other) {
+        if (!(other instanceof _SemVer)) {
+          other = new _SemVer(other, this.options);
+        }
+        let i = 0;
+        do {
+          const a = this.build[i];
+          const b2 = other.build[i];
+          debug("build compare", i, a, b2);
+          if (a === void 0 && b2 === void 0) {
+            return 0;
+          } else if (b2 === void 0) {
+            return 1;
+          } else if (a === void 0) {
+            return -1;
+          } else if (a === b2) {
+            continue;
+          } else {
+            return compareIdentifiers(a, b2);
+          }
+        } while (++i);
+      }
+      // preminor will bump the version up to the next minor release, and immediately
+      // down to pre-release. premajor and prepatch work the same way.
+      inc(release, identifier, identifierBase) {
+        if (release.startsWith("pre")) {
+          if (!identifier && identifierBase === false) {
+            throw new Error("invalid increment argument: identifier is empty");
+          }
+          if (identifier) {
+            const match = `-${identifier}`.match(this.options.loose ? re2[t.PRERELEASELOOSE] : re2[t.PRERELEASE]);
+            if (!match || match[1] !== identifier) {
+              throw new Error(`invalid identifier: ${identifier}`);
+            }
+          }
+        }
+        switch (release) {
+          case "premajor":
+            this.prerelease.length = 0;
+            this.patch = 0;
+            this.minor = 0;
+            this.major++;
+            this.inc("pre", identifier, identifierBase);
+            break;
+          case "preminor":
+            this.prerelease.length = 0;
+            this.patch = 0;
+            this.minor++;
+            this.inc("pre", identifier, identifierBase);
+            break;
+          case "prepatch":
+            this.prerelease.length = 0;
+            this.inc("patch", identifier, identifierBase);
+            this.inc("pre", identifier, identifierBase);
+            break;
+          // If the input is a non-prerelease version, this acts the same as
+          // prepatch.
+          case "prerelease":
+            if (this.prerelease.length === 0) {
+              this.inc("patch", identifier, identifierBase);
+            }
+            this.inc("pre", identifier, identifierBase);
+            break;
+          case "release":
+            if (this.prerelease.length === 0) {
+              throw new Error(`version ${this.raw} is not a prerelease`);
+            }
+            this.prerelease.length = 0;
+            break;
+          case "major":
+            if (this.minor !== 0 || this.patch !== 0 || this.prerelease.length === 0) {
+              this.major++;
+            }
+            this.minor = 0;
+            this.patch = 0;
+            this.prerelease = [];
+            break;
+          case "minor":
+            if (this.patch !== 0 || this.prerelease.length === 0) {
+              this.minor++;
+            }
+            this.patch = 0;
+            this.prerelease = [];
+            break;
+          case "patch":
+            if (this.prerelease.length === 0) {
+              this.patch++;
+            }
+            this.prerelease = [];
+            break;
+          // This probably shouldn't be used publicly.
+          // 1.0.0 'pre' would become 1.0.0-0 which is the wrong direction.
+          case "pre": {
+            const base = Number(identifierBase) ? 1 : 0;
+            if (this.prerelease.length === 0) {
+              this.prerelease = [base];
+            } else {
+              let i = this.prerelease.length;
+              while (--i >= 0) {
+                if (typeof this.prerelease[i] === "number") {
+                  this.prerelease[i]++;
+                  i = -2;
+                }
+              }
+              if (i === -1) {
+                if (identifier === this.prerelease.join(".") && identifierBase === false) {
+                  throw new Error("invalid increment argument: identifier already exists");
+                }
+                this.prerelease.push(base);
+              }
+            }
+            if (identifier) {
+              let prerelease = [identifier, base];
+              if (identifierBase === false) {
+                prerelease = [identifier];
+              }
+              if (isPrereleaseIdentifier(this.prerelease, identifier)) {
+                const prereleaseBase = this.prerelease[identifier.split(".").length];
+                if (isNaN(prereleaseBase)) {
+                  this.prerelease = prerelease;
+                }
+              } else {
+                this.prerelease = prerelease;
+              }
+            }
+            break;
+          }
+          default:
+            throw new Error(`invalid increment argument: ${release}`);
+        }
+        this.raw = this.format();
+        if (this.build.length) {
+          this.raw += `+${this.build.join(".")}`;
+        }
+        return this;
+      }
+    };
+    module.exports = SemVer;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/parse.js
+var require_parse = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/parse.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var parse = (version, options, throwErrors = false) => {
+      if (version instanceof SemVer) {
+        return version;
+      }
+      try {
+        return new SemVer(version, options);
+      } catch (er2) {
+        if (!throwErrors) {
+          return null;
+        }
+        throw er2;
+      }
+    };
+    module.exports = parse;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/valid.js
+var require_valid = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/valid.js"(exports, module) {
+    "use strict";
+    var parse = require_parse();
+    var valid = (version, options) => {
+      const v2 = parse(version, options);
+      return v2 ? v2.version : null;
+    };
+    module.exports = valid;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/clean.js
+var require_clean = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/clean.js"(exports, module) {
+    "use strict";
+    var parse = require_parse();
+    var clean = (version, options) => {
+      const s2 = parse(version.trim().replace(/^[=v]+/, ""), options);
+      return s2 ? s2.version : null;
+    };
+    module.exports = clean;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/inc.js
+var require_inc = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/inc.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var inc = (version, release, options, identifier, identifierBase) => {
+      if (typeof options === "string") {
+        identifierBase = identifier;
+        identifier = options;
+        options = void 0;
+      }
+      try {
+        return new SemVer(
+          version instanceof SemVer ? version.version : version,
+          options
+        ).inc(release, identifier, identifierBase).version;
+      } catch (er2) {
+        return null;
+      }
+    };
+    module.exports = inc;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/diff.js
+var require_diff = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/diff.js"(exports, module) {
+    "use strict";
+    var parse = require_parse();
+    var diff = (version1, version2) => {
+      const v1 = parse(version1, null, true);
+      const v2 = parse(version2, null, true);
+      const comparison = v1.compare(v2);
+      if (comparison === 0) {
+        return null;
+      }
+      const v1Higher = comparison > 0;
+      const highVersion = v1Higher ? v1 : v2;
+      const lowVersion = v1Higher ? v2 : v1;
+      const highHasPre = !!highVersion.prerelease.length;
+      const lowHasPre = !!lowVersion.prerelease.length;
+      if (lowHasPre && !highHasPre) {
+        if (!lowVersion.patch && !lowVersion.minor) {
+          return "major";
+        }
+        if (lowVersion.compareMain(highVersion) === 0) {
+          if (lowVersion.minor && !lowVersion.patch) {
+            return "minor";
+          }
+          return "patch";
+        }
+      }
+      const prefix = highHasPre ? "pre" : "";
+      if (v1.major !== v2.major) {
+        return prefix + "major";
+      }
+      if (v1.minor !== v2.minor) {
+        return prefix + "minor";
+      }
+      if (v1.patch !== v2.patch) {
+        return prefix + "patch";
+      }
+      return "prerelease";
+    };
+    module.exports = diff;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/major.js
+var require_major = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/major.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var major = (a, loose) => new SemVer(a, loose).major;
+    module.exports = major;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/minor.js
+var require_minor = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/minor.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var minor = (a, loose) => new SemVer(a, loose).minor;
+    module.exports = minor;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/patch.js
+var require_patch = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/patch.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var patch = (a, loose) => new SemVer(a, loose).patch;
+    module.exports = patch;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/prerelease.js
+var require_prerelease = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/prerelease.js"(exports, module) {
+    "use strict";
+    var parse = require_parse();
+    var prerelease = (version, options) => {
+      const parsed = parse(version, options);
+      return parsed && parsed.prerelease.length ? parsed.prerelease : null;
+    };
+    module.exports = prerelease;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/compare.js
+var require_compare = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/compare.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var compare = (a, b2, loose) => new SemVer(a, loose).compare(new SemVer(b2, loose));
+    module.exports = compare;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/rcompare.js
+var require_rcompare = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/rcompare.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var rcompare = (a, b2, loose) => compare(b2, a, loose);
+    module.exports = rcompare;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/compare-loose.js
+var require_compare_loose = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/compare-loose.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var compareLoose = (a, b2) => compare(a, b2, true);
+    module.exports = compareLoose;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/compare-build.js
+var require_compare_build = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/compare-build.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var compareBuild = (a, b2, loose) => {
+      const versionA = new SemVer(a, loose);
+      const versionB = new SemVer(b2, loose);
+      return versionA.compare(versionB) || versionA.compareBuild(versionB);
+    };
+    module.exports = compareBuild;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/sort.js
+var require_sort = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/sort.js"(exports, module) {
+    "use strict";
+    var compareBuild = require_compare_build();
+    var sort = (list, loose) => list.sort((a, b2) => compareBuild(a, b2, loose));
+    module.exports = sort;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/rsort.js
+var require_rsort = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/rsort.js"(exports, module) {
+    "use strict";
+    var compareBuild = require_compare_build();
+    var rsort = (list, loose) => list.sort((a, b2) => compareBuild(b2, a, loose));
+    module.exports = rsort;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/gt.js
+var require_gt = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/gt.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var gt2 = (a, b2, loose) => compare(a, b2, loose) > 0;
+    module.exports = gt2;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/lt.js
+var require_lt = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/lt.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var lt2 = (a, b2, loose) => compare(a, b2, loose) < 0;
+    module.exports = lt2;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/eq.js
+var require_eq = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/eq.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var eq = (a, b2, loose) => compare(a, b2, loose) === 0;
+    module.exports = eq;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/neq.js
+var require_neq = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/neq.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var neq = (a, b2, loose) => compare(a, b2, loose) !== 0;
+    module.exports = neq;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/gte.js
+var require_gte = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/gte.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var gte2 = (a, b2, loose) => compare(a, b2, loose) >= 0;
+    module.exports = gte2;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/lte.js
+var require_lte = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/lte.js"(exports, module) {
+    "use strict";
+    var compare = require_compare();
+    var lte = (a, b2, loose) => compare(a, b2, loose) <= 0;
+    module.exports = lte;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/cmp.js
+var require_cmp = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/cmp.js"(exports, module) {
+    "use strict";
+    var eq = require_eq();
+    var neq = require_neq();
+    var gt2 = require_gt();
+    var gte2 = require_gte();
+    var lt2 = require_lt();
+    var lte = require_lte();
+    var cmp = (a, op, b2, loose) => {
+      switch (op) {
+        case "===":
+          if (typeof a === "object") {
+            a = a.version;
+          }
+          if (typeof b2 === "object") {
+            b2 = b2.version;
+          }
+          return a === b2;
+        case "!==":
+          if (typeof a === "object") {
+            a = a.version;
+          }
+          if (typeof b2 === "object") {
+            b2 = b2.version;
+          }
+          return a !== b2;
+        case "":
+        case "=":
+        case "==":
+          return eq(a, b2, loose);
+        case "!=":
+          return neq(a, b2, loose);
+        case ">":
+          return gt2(a, b2, loose);
+        case ">=":
+          return gte2(a, b2, loose);
+        case "<":
+          return lt2(a, b2, loose);
+        case "<=":
+          return lte(a, b2, loose);
+        default:
+          throw new TypeError(`Invalid operator: ${op}`);
+      }
+    };
+    module.exports = cmp;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/coerce.js
+var require_coerce = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/coerce.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var parse = require_parse();
+    var { safeRe: re2, t } = require_re();
+    var coerce2 = (version, options) => {
+      if (version instanceof SemVer) {
+        return version;
+      }
+      if (typeof version === "number") {
+        version = String(version);
+      }
+      if (typeof version !== "string") {
+        return null;
+      }
+      options = options || {};
+      let match = null;
+      if (!options.rtl) {
+        match = version.match(options.includePrerelease ? re2[t.COERCEFULL] : re2[t.COERCE]);
+      } else {
+        const coerceRtlRegex = options.includePrerelease ? re2[t.COERCERTLFULL] : re2[t.COERCERTL];
+        let next;
+        while ((next = coerceRtlRegex.exec(version)) && (!match || match.index + match[0].length !== version.length)) {
+          if (!match || next.index + next[0].length !== match.index + match[0].length) {
+            match = next;
+          }
+          coerceRtlRegex.lastIndex = next.index + next[1].length + next[2].length;
+        }
+        coerceRtlRegex.lastIndex = -1;
+      }
+      if (match === null) {
+        return null;
+      }
+      const major = match[2];
+      const minor = match[3] || "0";
+      const patch = match[4] || "0";
+      const prerelease = options.includePrerelease && match[5] ? `-${match[5]}` : "";
+      const build = options.includePrerelease && match[6] ? `+${match[6]}` : "";
+      return parse(`${major}.${minor}.${patch}${prerelease}${build}`, options);
+    };
+    module.exports = coerce2;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/truncate.js
+var require_truncate = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/truncate.js"(exports, module) {
+    "use strict";
+    var parse = require_parse();
+    var constants = require_constants();
+    var SemVer = require_semver();
+    var truncate = (version, truncation, options) => {
+      if (!constants.RELEASE_TYPES.includes(truncation)) {
+        return null;
+      }
+      const clonedVersion = cloneInputVersion(version, options);
+      return clonedVersion && doTruncation(clonedVersion, truncation);
+    };
+    var cloneInputVersion = (version, options) => {
+      const versionStringToParse = version instanceof SemVer ? version.version : version;
+      return parse(versionStringToParse, options);
+    };
+    var doTruncation = (version, truncation) => {
+      if (isPrerelease(truncation)) {
+        return version.version;
+      }
+      version.prerelease = [];
+      switch (truncation) {
+        case "major":
+          version.minor = 0;
+          version.patch = 0;
+          break;
+        case "minor":
+          version.patch = 0;
+          break;
+      }
+      return version.format();
+    };
+    var isPrerelease = (type) => {
+      return type.startsWith("pre");
+    };
+    module.exports = truncate;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/lrucache.js
+var require_lrucache = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/internal/lrucache.js"(exports, module) {
+    "use strict";
+    var LRUCache = class {
+      constructor() {
+        this.max = 1e3;
+        this.map = /* @__PURE__ */ new Map();
+      }
+      get(key) {
+        const value = this.map.get(key);
+        if (value === void 0) {
+          return void 0;
+        } else {
+          this.map.delete(key);
+          this.map.set(key, value);
+          return value;
+        }
+      }
+      delete(key) {
+        return this.map.delete(key);
+      }
+      set(key, value) {
+        const deleted = this.delete(key);
+        if (!deleted && value !== void 0) {
+          if (this.map.size >= this.max) {
+            const firstKey = this.map.keys().next().value;
+            this.delete(firstKey);
+          }
+          this.map.set(key, value);
+        }
+        return this;
+      }
+    };
+    module.exports = LRUCache;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/classes/range.js
+var require_range = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/classes/range.js"(exports, module) {
+    "use strict";
+    var SPACE_CHARACTERS = /\s+/g;
+    var Range = class _Range {
+      constructor(range, options) {
+        options = parseOptions(options);
+        if (range instanceof _Range) {
+          if (range.loose === !!options.loose && range.includePrerelease === !!options.includePrerelease) {
+            return range;
+          } else {
+            return new _Range(range.raw, options);
+          }
+        }
+        if (range instanceof Comparator) {
+          this.raw = range.value;
+          this.set = [[range]];
+          this.formatted = void 0;
+          return this;
+        }
+        this.options = options;
+        this.loose = !!options.loose;
+        this.includePrerelease = !!options.includePrerelease;
+        this.raw = range.trim().replace(SPACE_CHARACTERS, " ");
+        this.set = this.raw.split("||").map((r) => this.parseRange(r.trim())).filter((c2) => c2.length);
+        if (!this.set.length) {
+          throw new TypeError(`Invalid SemVer Range: ${this.raw}`);
+        }
+        if (this.set.length > 1) {
+          const first = this.set[0];
+          this.set = this.set.filter((c2) => !isNullSet(c2[0]));
+          if (this.set.length === 0) {
+            this.set = [first];
+          } else if (this.set.length > 1) {
+            for (const c2 of this.set) {
+              if (c2.length === 1 && isAny(c2[0])) {
+                this.set = [c2];
+                break;
+              }
+            }
+          }
+        }
+        this.formatted = void 0;
+      }
+      get range() {
+        if (this.formatted === void 0) {
+          this.formatted = "";
+          for (let i = 0; i < this.set.length; i++) {
+            if (i > 0) {
+              this.formatted += "||";
+            }
+            const comps = this.set[i];
+            for (let k2 = 0; k2 < comps.length; k2++) {
+              if (k2 > 0) {
+                this.formatted += " ";
+              }
+              this.formatted += comps[k2].toString().trim();
+            }
+          }
+        }
+        return this.formatted;
+      }
+      format() {
+        return this.range;
+      }
+      toString() {
+        return this.range;
+      }
+      parseRange(range) {
+        range = range.replace(BUILDSTRIPRE, "");
+        const memoOpts = (this.options.includePrerelease && FLAG_INCLUDE_PRERELEASE) | (this.options.loose && FLAG_LOOSE);
+        const memoKey = memoOpts + ":" + range;
+        const cached = cache.get(memoKey);
+        if (cached) {
+          return cached;
+        }
+        const loose = this.options.loose;
+        const hr2 = loose ? re2[t.HYPHENRANGELOOSE] : re2[t.HYPHENRANGE];
+        range = range.replace(hr2, hyphenReplace(this.options.includePrerelease));
+        debug("hyphen replace", range);
+        range = range.replace(re2[t.COMPARATORTRIM], comparatorTrimReplace);
+        debug("comparator trim", range);
+        range = range.replace(re2[t.TILDETRIM], tildeTrimReplace);
+        debug("tilde trim", range);
+        range = range.replace(re2[t.CARETTRIM], caretTrimReplace);
+        debug("caret trim", range);
+        let rangeList = range.split(" ").map((comp) => parseComparator(comp, this.options)).join(" ").split(/\s+/).map((comp) => replaceGTE0(comp, this.options));
+        if (loose) {
+          rangeList = rangeList.filter((comp) => {
+            debug("loose invalid filter", comp, this.options);
+            return !!comp.match(re2[t.COMPARATORLOOSE]);
+          });
+        }
+        debug("range list", rangeList);
+        const rangeMap = /* @__PURE__ */ new Map();
+        const comparators = rangeList.map((comp) => new Comparator(comp, this.options));
+        for (const comp of comparators) {
+          if (isNullSet(comp)) {
+            return [comp];
+          }
+          rangeMap.set(comp.value, comp);
+        }
+        if (rangeMap.size > 1 && rangeMap.has("")) {
+          rangeMap.delete("");
+        }
+        const result = [...rangeMap.values()];
+        cache.set(memoKey, result);
+        return result;
+      }
+      intersects(range, options) {
+        if (!(range instanceof _Range)) {
+          throw new TypeError("a Range is required");
+        }
+        return this.set.some((thisComparators) => {
+          return isSatisfiable(thisComparators, options) && range.set.some((rangeComparators) => {
+            return isSatisfiable(rangeComparators, options) && thisComparators.every((thisComparator) => {
+              return rangeComparators.every((rangeComparator) => {
+                return thisComparator.intersects(rangeComparator, options);
+              });
+            });
+          });
+        });
+      }
+      // if ANY of the sets match ALL of its comparators, then pass
+      test(version) {
+        if (!version) {
+          return false;
+        }
+        if (typeof version === "string") {
+          try {
+            version = new SemVer(version, this.options);
+          } catch (er2) {
+            return false;
+          }
+        }
+        for (let i = 0; i < this.set.length; i++) {
+          if (testSet(this.set[i], version, this.options)) {
+            return true;
+          }
+        }
+        return false;
+      }
+    };
+    module.exports = Range;
+    var LRU = require_lrucache();
+    var cache = new LRU();
+    var parseOptions = require_parse_options();
+    var Comparator = require_comparator();
+    var debug = require_debug();
+    var SemVer = require_semver();
+    var {
+      safeRe: re2,
+      src,
+      t,
+      comparatorTrimReplace,
+      tildeTrimReplace,
+      caretTrimReplace
+    } = require_re();
+    var { FLAG_INCLUDE_PRERELEASE, FLAG_LOOSE } = require_constants();
+    var BUILDSTRIPRE = new RegExp(src[t.BUILD], "g");
+    var isNullSet = (c2) => c2.value === "<0.0.0-0";
+    var isAny = (c2) => c2.value === "";
+    var isSatisfiable = (comparators, options) => {
+      let result = true;
+      const remainingComparators = comparators.slice();
+      let testComparator = remainingComparators.pop();
+      while (result && remainingComparators.length) {
+        result = remainingComparators.every((otherComparator) => {
+          return testComparator.intersects(otherComparator, options);
+        });
+        testComparator = remainingComparators.pop();
+      }
+      return result;
+    };
+    var parseComparator = (comp, options) => {
+      comp = comp.replace(re2[t.BUILD], "");
+      debug("comp", comp, options);
+      comp = replaceCarets(comp, options);
+      debug("caret", comp);
+      comp = replaceTildes(comp, options);
+      debug("tildes", comp);
+      comp = replaceXRanges(comp, options);
+      debug("xrange", comp);
+      comp = replaceStars(comp, options);
+      debug("stars", comp);
+      return comp;
+    };
+    var isX = (id2) => !id2 || id2.toLowerCase() === "x" || id2 === "*";
+    var invalidXRangeOrder = (M, m, p) => isX(M) && !isX(m) || isX(m) && p && !isX(p);
+    var replaceTildes = (comp, options) => {
+      return comp.trim().split(/\s+/).map((c2) => replaceTilde(c2, options)).join(" ");
+    };
+    var replaceTilde = (comp, options) => {
+      const r = options.loose ? re2[t.TILDELOOSE] : re2[t.TILDE];
+      const z2 = options.includePrerelease ? "-0" : "";
+      return comp.replace(r, (_2, M, m, p, pr2) => {
+        debug("tilde", comp, _2, M, m, p, pr2);
+        let ret;
+        if (isX(M)) {
+          ret = "";
+        } else if (isX(m)) {
+          ret = `>=${M}.0.0${z2} <${+M + 1}.0.0-0`;
+        } else if (isX(p)) {
+          ret = `>=${M}.${m}.0${z2} <${M}.${+m + 1}.0-0`;
+        } else if (pr2) {
+          debug("replaceTilde pr", pr2);
+          ret = `>=${M}.${m}.${p}-${pr2} <${M}.${+m + 1}.0-0`;
+        } else {
+          ret = `>=${M}.${m}.${p} <${M}.${+m + 1}.0-0`;
+        }
+        debug("tilde return", ret);
+        return ret;
+      });
+    };
+    var replaceCarets = (comp, options) => {
+      return comp.trim().split(/\s+/).map((c2) => replaceCaret(c2, options)).join(" ");
+    };
+    var replaceCaret = (comp, options) => {
+      debug("caret", comp, options);
+      const r = options.loose ? re2[t.CARETLOOSE] : re2[t.CARET];
+      const z2 = options.includePrerelease ? "-0" : "";
+      return comp.replace(r, (_2, M, m, p, pr2) => {
+        debug("caret", comp, _2, M, m, p, pr2);
+        let ret;
+        if (isX(M)) {
+          ret = "";
+        } else if (isX(m)) {
+          ret = `>=${M}.0.0${z2} <${+M + 1}.0.0-0`;
+        } else if (isX(p)) {
+          if (M === "0") {
+            ret = `>=${M}.${m}.0${z2} <${M}.${+m + 1}.0-0`;
+          } else {
+            ret = `>=${M}.${m}.0${z2} <${+M + 1}.0.0-0`;
+          }
+        } else if (pr2) {
+          debug("replaceCaret pr", pr2);
+          if (M === "0") {
+            if (m === "0") {
+              ret = `>=${M}.${m}.${p}-${pr2} <${M}.${m}.${+p + 1}-0`;
+            } else {
+              ret = `>=${M}.${m}.${p}-${pr2} <${M}.${+m + 1}.0-0`;
+            }
+          } else {
+            ret = `>=${M}.${m}.${p}-${pr2} <${+M + 1}.0.0-0`;
+          }
+        } else {
+          debug("no pr");
+          if (M === "0") {
+            if (m === "0") {
+              ret = `>=${M}.${m}.${p} <${M}.${m}.${+p + 1}-0`;
+            } else {
+              ret = `>=${M}.${m}.${p} <${M}.${+m + 1}.0-0`;
+            }
+          } else {
+            ret = `>=${M}.${m}.${p} <${+M + 1}.0.0-0`;
+          }
+        }
+        debug("caret return", ret);
+        return ret;
+      });
+    };
+    var replaceXRanges = (comp, options) => {
+      debug("replaceXRanges", comp, options);
+      return comp.split(/\s+/).map((c2) => replaceXRange(c2, options)).join(" ");
+    };
+    var replaceXRange = (comp, options) => {
+      comp = comp.trim();
+      const r = options.loose ? re2[t.XRANGELOOSE] : re2[t.XRANGE];
+      return comp.replace(r, (ret, gtlt, M, m, p, pr2) => {
+        debug("xRange", comp, ret, gtlt, M, m, p, pr2);
+        if (invalidXRangeOrder(M, m, p)) {
+          return comp;
+        }
+        const xM = isX(M);
+        const xm = xM || isX(m);
+        const xp = xm || isX(p);
+        const anyX = xp;
+        if (gtlt === "=" && anyX) {
+          gtlt = "";
+        }
+        pr2 = options.includePrerelease ? "-0" : "";
+        if (xM) {
+          if (gtlt === ">" || gtlt === "<") {
+            ret = "<0.0.0-0";
+          } else {
+            ret = "*";
+          }
+        } else if (gtlt && anyX) {
+          if (xm) {
+            m = 0;
+          }
+          p = 0;
+          if (gtlt === ">") {
+            gtlt = ">=";
+            if (xm) {
+              M = +M + 1;
+              m = 0;
+              p = 0;
+            } else {
+              m = +m + 1;
+              p = 0;
+            }
+          } else if (gtlt === "<=") {
+            gtlt = "<";
+            if (xm) {
+              M = +M + 1;
+            } else {
+              m = +m + 1;
+            }
+          }
+          if (gtlt === "<") {
+            pr2 = "-0";
+          }
+          ret = `${gtlt + M}.${m}.${p}${pr2}`;
+        } else if (xm) {
+          ret = `>=${M}.0.0${pr2} <${+M + 1}.0.0-0`;
+        } else if (xp) {
+          ret = `>=${M}.${m}.0${pr2} <${M}.${+m + 1}.0-0`;
+        }
+        debug("xRange return", ret);
+        return ret;
+      });
+    };
+    var replaceStars = (comp, options) => {
+      debug("replaceStars", comp, options);
+      return comp.trim().replace(re2[t.STAR], "");
+    };
+    var replaceGTE0 = (comp, options) => {
+      debug("replaceGTE0", comp, options);
+      return comp.trim().replace(re2[options.includePrerelease ? t.GTE0PRE : t.GTE0], "");
+    };
+    var hyphenReplace = (incPr) => ($02, from, fM, fm, fp, fpr, fb, to2, tM, tm, tp, tpr) => {
+      if (isX(fM)) {
+        from = "";
+      } else if (isX(fm)) {
+        from = `>=${fM}.0.0${incPr ? "-0" : ""}`;
+      } else if (isX(fp)) {
+        from = `>=${fM}.${fm}.0${incPr ? "-0" : ""}`;
+      } else if (fpr) {
+        from = `>=${from}`;
+      } else {
+        from = `>=${from}${incPr ? "-0" : ""}`;
+      }
+      if (isX(tM)) {
+        to2 = "";
+      } else if (isX(tm)) {
+        to2 = `<${+tM + 1}.0.0-0`;
+      } else if (isX(tp)) {
+        to2 = `<${tM}.${+tm + 1}.0-0`;
+      } else if (tpr) {
+        to2 = `<=${tM}.${tm}.${tp}-${tpr}`;
+      } else if (incPr) {
+        to2 = `<${tM}.${tm}.${+tp + 1}-0`;
+      } else {
+        to2 = `<=${to2}`;
+      }
+      return `${from} ${to2}`.trim();
+    };
+    var testSet = (set, version, options) => {
+      for (let i = 0; i < set.length; i++) {
+        if (!set[i].test(version)) {
+          return false;
+        }
+      }
+      if (version.prerelease.length && !options.includePrerelease) {
+        for (let i = 0; i < set.length; i++) {
+          debug(set[i].semver);
+          if (set[i].semver === Comparator.ANY) {
+            continue;
+          }
+          if (set[i].semver.prerelease.length > 0) {
+            const allowed = set[i].semver;
+            if (allowed.major === version.major && allowed.minor === version.minor && allowed.patch === version.patch) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+      return true;
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/classes/comparator.js
+var require_comparator = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/classes/comparator.js"(exports, module) {
+    "use strict";
+    var ANY = Symbol("SemVer ANY");
+    var Comparator = class _Comparator {
+      static get ANY() {
+        return ANY;
+      }
+      constructor(comp, options) {
+        options = parseOptions(options);
+        if (comp instanceof _Comparator) {
+          if (comp.loose === !!options.loose) {
+            return comp;
+          } else {
+            comp = comp.value;
+          }
+        }
+        comp = comp.trim().split(/\s+/).join(" ");
+        debug("comparator", comp, options);
+        this.options = options;
+        this.loose = !!options.loose;
+        this.parse(comp);
+        if (this.semver === ANY) {
+          this.value = "";
+        } else {
+          this.value = this.operator + this.semver.version;
+        }
+        debug("comp", this);
+      }
+      parse(comp) {
+        const r = this.options.loose ? re2[t.COMPARATORLOOSE] : re2[t.COMPARATOR];
+        const m = comp.match(r);
+        if (!m) {
+          throw new TypeError(`Invalid comparator: ${comp}`);
+        }
+        this.operator = m[1] !== void 0 ? m[1] : "";
+        if (this.operator === "=") {
+          this.operator = "";
+        }
+        if (!m[2]) {
+          this.semver = ANY;
+        } else {
+          this.semver = new SemVer(m[2], this.options.loose);
+        }
+      }
+      toString() {
+        return this.value;
+      }
+      test(version) {
+        debug("Comparator.test", version, this.options.loose);
+        if (this.semver === ANY || version === ANY) {
+          return true;
+        }
+        if (typeof version === "string") {
+          try {
+            version = new SemVer(version, this.options);
+          } catch (er2) {
+            return false;
+          }
+        }
+        return cmp(version, this.operator, this.semver, this.options);
+      }
+      intersects(comp, options) {
+        if (!(comp instanceof _Comparator)) {
+          throw new TypeError("a Comparator is required");
+        }
+        if (this.operator === "") {
+          if (this.value === "") {
+            return true;
+          }
+          return new Range(comp.value, options).test(this.value);
+        } else if (comp.operator === "") {
+          if (comp.value === "") {
+            return true;
+          }
+          return new Range(this.value, options).test(comp.semver);
+        }
+        options = parseOptions(options);
+        if (options.includePrerelease && (this.value === "<0.0.0-0" || comp.value === "<0.0.0-0")) {
+          return false;
+        }
+        if (!options.includePrerelease && (this.value.startsWith("<0.0.0") || comp.value.startsWith("<0.0.0"))) {
+          return false;
+        }
+        if (this.operator.startsWith(">") && comp.operator.startsWith(">")) {
+          return true;
+        }
+        if (this.operator.startsWith("<") && comp.operator.startsWith("<")) {
+          return true;
+        }
+        if (this.semver.version === comp.semver.version && this.operator.includes("=") && comp.operator.includes("=")) {
+          return true;
+        }
+        if (cmp(this.semver, "<", comp.semver, options) && this.operator.startsWith(">") && comp.operator.startsWith("<")) {
+          return true;
+        }
+        if (cmp(this.semver, ">", comp.semver, options) && this.operator.startsWith("<") && comp.operator.startsWith(">")) {
+          return true;
+        }
+        return false;
+      }
+    };
+    module.exports = Comparator;
+    var parseOptions = require_parse_options();
+    var { safeRe: re2, t } = require_re();
+    var cmp = require_cmp();
+    var debug = require_debug();
+    var SemVer = require_semver();
+    var Range = require_range();
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/satisfies.js
+var require_satisfies = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/functions/satisfies.js"(exports, module) {
+    "use strict";
+    var Range = require_range();
+    var satisfies = (version, range, options) => {
+      try {
+        range = new Range(range, options);
+      } catch (er2) {
+        return false;
+      }
+      return range.test(version);
+    };
+    module.exports = satisfies;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/to-comparators.js
+var require_to_comparators = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/to-comparators.js"(exports, module) {
+    "use strict";
+    var Range = require_range();
+    var toComparators = (range, options) => new Range(range, options).set.map((comp) => comp.map((c2) => c2.value).join(" ").trim().split(" "));
+    module.exports = toComparators;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/max-satisfying.js
+var require_max_satisfying = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/max-satisfying.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var Range = require_range();
+    var maxSatisfying = (versions, range, options) => {
+      let max = null;
+      let maxSV = null;
+      let rangeObj = null;
+      try {
+        rangeObj = new Range(range, options);
+      } catch (er2) {
+        return null;
+      }
+      versions.forEach((v2) => {
+        if (rangeObj.test(v2)) {
+          if (!max || maxSV.compare(v2) === -1) {
+            max = v2;
+            maxSV = new SemVer(max, options);
+          }
+        }
+      });
+      return max;
+    };
+    module.exports = maxSatisfying;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/min-satisfying.js
+var require_min_satisfying = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/min-satisfying.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var Range = require_range();
+    var minSatisfying = (versions, range, options) => {
+      let min = null;
+      let minSV = null;
+      let rangeObj = null;
+      try {
+        rangeObj = new Range(range, options);
+      } catch (er2) {
+        return null;
+      }
+      versions.forEach((v2) => {
+        if (rangeObj.test(v2)) {
+          if (!min || minSV.compare(v2) === 1) {
+            min = v2;
+            minSV = new SemVer(min, options);
+          }
+        }
+      });
+      return min;
+    };
+    module.exports = minSatisfying;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/min-version.js
+var require_min_version = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/min-version.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var Range = require_range();
+    var gt2 = require_gt();
+    var minVersion = (range, loose) => {
+      range = new Range(range, loose);
+      let minver = new SemVer("0.0.0");
+      if (range.test(minver)) {
+        return minver;
+      }
+      minver = new SemVer("0.0.0-0");
+      if (range.test(minver)) {
+        return minver;
+      }
+      minver = null;
+      for (let i = 0; i < range.set.length; ++i) {
+        const comparators = range.set[i];
+        let setMin = null;
+        comparators.forEach((comparator) => {
+          const compver = new SemVer(comparator.semver.version);
+          switch (comparator.operator) {
+            case ">":
+              if (compver.prerelease.length === 0) {
+                compver.patch++;
+              } else {
+                compver.prerelease.push(0);
+              }
+              compver.raw = compver.format();
+            /* fallthrough */
+            case "":
+            case ">=":
+              if (!setMin || gt2(compver, setMin)) {
+                setMin = compver;
+              }
+              break;
+            case "<":
+            case "<=":
+              break;
+            /* istanbul ignore next */
+            default:
+              throw new Error(`Unexpected operation: ${comparator.operator}`);
+          }
+        });
+        if (setMin && (!minver || gt2(minver, setMin))) {
+          minver = setMin;
+        }
+      }
+      if (minver && range.test(minver)) {
+        return minver;
+      }
+      return null;
+    };
+    module.exports = minVersion;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/valid.js
+var require_valid2 = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/valid.js"(exports, module) {
+    "use strict";
+    var Range = require_range();
+    var validRange = (range, options) => {
+      try {
+        return new Range(range, options).range || "*";
+      } catch (er2) {
+        return null;
+      }
+    };
+    module.exports = validRange;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/outside.js
+var require_outside = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/outside.js"(exports, module) {
+    "use strict";
+    var SemVer = require_semver();
+    var Comparator = require_comparator();
+    var { ANY } = Comparator;
+    var Range = require_range();
+    var satisfies = require_satisfies();
+    var gt2 = require_gt();
+    var lt2 = require_lt();
+    var lte = require_lte();
+    var gte2 = require_gte();
+    var outside = (version, range, hilo, options) => {
+      version = new SemVer(version, options);
+      range = new Range(range, options);
+      let gtfn, ltefn, ltfn, comp, ecomp;
+      switch (hilo) {
+        case ">":
+          gtfn = gt2;
+          ltefn = lte;
+          ltfn = lt2;
+          comp = ">";
+          ecomp = ">=";
+          break;
+        case "<":
+          gtfn = lt2;
+          ltefn = gte2;
+          ltfn = gt2;
+          comp = "<";
+          ecomp = "<=";
+          break;
+        default:
+          throw new TypeError('Must provide a hilo val of "<" or ">"');
+      }
+      if (satisfies(version, range, options)) {
+        return false;
+      }
+      for (let i = 0; i < range.set.length; ++i) {
+        const comparators = range.set[i];
+        let high = null;
+        let low = null;
+        comparators.forEach((comparator) => {
+          if (comparator.semver === ANY) {
+            comparator = new Comparator(">=0.0.0");
+          }
+          high = high || comparator;
+          low = low || comparator;
+          if (gtfn(comparator.semver, high.semver, options)) {
+            high = comparator;
+          } else if (ltfn(comparator.semver, low.semver, options)) {
+            low = comparator;
+          }
+        });
+        if (high.operator === comp || high.operator === ecomp) {
+          return false;
+        }
+        if ((!low.operator || low.operator === comp) && ltefn(version, low.semver)) {
+          return false;
+        } else if (low.operator === ecomp && ltfn(version, low.semver)) {
+          return false;
+        }
+      }
+      return true;
+    };
+    module.exports = outside;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/gtr.js
+var require_gtr = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/gtr.js"(exports, module) {
+    "use strict";
+    var outside = require_outside();
+    var gtr = (version, range, options) => outside(version, range, ">", options);
+    module.exports = gtr;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/ltr.js
+var require_ltr = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/ltr.js"(exports, module) {
+    "use strict";
+    var outside = require_outside();
+    var ltr = (version, range, options) => outside(version, range, "<", options);
+    module.exports = ltr;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/intersects.js
+var require_intersects = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/intersects.js"(exports, module) {
+    "use strict";
+    var Range = require_range();
+    var intersects = (r1, r2, options) => {
+      r1 = new Range(r1, options);
+      r2 = new Range(r2, options);
+      return r1.intersects(r2, options);
+    };
+    module.exports = intersects;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/simplify.js
+var require_simplify = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/simplify.js"(exports, module) {
+    "use strict";
+    var satisfies = require_satisfies();
+    var compare = require_compare();
+    module.exports = (versions, range, options) => {
+      const set = [];
+      let first = null;
+      let prev = null;
+      const v2 = versions.sort((a, b2) => compare(a, b2, options));
+      for (const version of v2) {
+        const included = satisfies(version, range, options);
+        if (included) {
+          prev = version;
+          if (!first) {
+            first = version;
+          }
+        } else {
+          if (prev) {
+            set.push([first, prev]);
+          }
+          prev = null;
+          first = null;
+        }
+      }
+      if (first) {
+        set.push([first, null]);
+      }
+      const ranges = [];
+      for (const [min, max] of set) {
+        if (min === max) {
+          ranges.push(min);
+        } else if (!max && min === v2[0]) {
+          ranges.push("*");
+        } else if (!max) {
+          ranges.push(`>=${min}`);
+        } else if (min === v2[0]) {
+          ranges.push(`<=${max}`);
+        } else {
+          ranges.push(`${min} - ${max}`);
+        }
+      }
+      const simplified = ranges.join(" || ");
+      const original = typeof range.raw === "string" ? range.raw : String(range);
+      return simplified.length < original.length ? simplified : range;
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/subset.js
+var require_subset = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/ranges/subset.js"(exports, module) {
+    "use strict";
+    var Range = require_range();
+    var Comparator = require_comparator();
+    var { ANY } = Comparator;
+    var satisfies = require_satisfies();
+    var compare = require_compare();
+    var subset = (sub, dom, options = {}) => {
+      if (sub === dom) {
+        return true;
+      }
+      sub = new Range(sub, options);
+      dom = new Range(dom, options);
+      let sawNonNull = false;
+      OUTER: for (const simpleSub of sub.set) {
+        for (const simpleDom of dom.set) {
+          const isSub = simpleSubset(simpleSub, simpleDom, options);
+          sawNonNull = sawNonNull || isSub !== null;
+          if (isSub) {
+            continue OUTER;
+          }
+        }
+        if (sawNonNull) {
+          return false;
+        }
+      }
+      return true;
+    };
+    var minimumVersionWithPreRelease = [new Comparator(">=0.0.0-0")];
+    var minimumVersion = [new Comparator(">=0.0.0")];
+    var simpleSubset = (sub, dom, options) => {
+      if (sub === dom) {
+        return true;
+      }
+      if (sub.length === 1 && sub[0].semver === ANY) {
+        if (dom.length === 1 && dom[0].semver === ANY) {
+          return true;
+        } else if (options.includePrerelease) {
+          sub = minimumVersionWithPreRelease;
+        } else {
+          sub = minimumVersion;
+        }
+      }
+      if (dom.length === 1 && dom[0].semver === ANY) {
+        if (options.includePrerelease) {
+          return true;
+        } else {
+          dom = minimumVersion;
+        }
+      }
+      const eqSet = /* @__PURE__ */ new Set();
+      let gt2, lt2;
+      for (const c2 of sub) {
+        if (c2.operator === ">" || c2.operator === ">=") {
+          gt2 = higherGT(gt2, c2, options);
+        } else if (c2.operator === "<" || c2.operator === "<=") {
+          lt2 = lowerLT(lt2, c2, options);
+        } else {
+          eqSet.add(c2.semver);
+        }
+      }
+      if (eqSet.size > 1) {
+        return null;
+      }
+      let gtltComp;
+      if (gt2 && lt2) {
+        gtltComp = compare(gt2.semver, lt2.semver, options);
+        if (gtltComp > 0) {
+          return null;
+        } else if (gtltComp === 0 && (gt2.operator !== ">=" || lt2.operator !== "<=")) {
+          return null;
+        }
+      }
+      for (const eq of eqSet) {
+        if (gt2 && !satisfies(eq, String(gt2), options)) {
+          return null;
+        }
+        if (lt2 && !satisfies(eq, String(lt2), options)) {
+          return null;
+        }
+        for (const c2 of dom) {
+          if (!satisfies(eq, String(c2), options)) {
+            return false;
+          }
+        }
+        return true;
+      }
+      let higher, lower;
+      let hasDomLT, hasDomGT;
+      let needDomLTPre = lt2 && !options.includePrerelease && lt2.semver.prerelease.length ? lt2.semver : false;
+      let needDomGTPre = gt2 && !options.includePrerelease && gt2.semver.prerelease.length ? gt2.semver : false;
+      if (needDomLTPre && needDomLTPre.prerelease.length === 1 && lt2.operator === "<" && needDomLTPre.prerelease[0] === 0) {
+        needDomLTPre = false;
+      }
+      for (const c2 of dom) {
+        hasDomGT = hasDomGT || c2.operator === ">" || c2.operator === ">=";
+        hasDomLT = hasDomLT || c2.operator === "<" || c2.operator === "<=";
+        if (gt2) {
+          if (needDomGTPre) {
+            if (c2.semver.prerelease && c2.semver.prerelease.length && c2.semver.major === needDomGTPre.major && c2.semver.minor === needDomGTPre.minor && c2.semver.patch === needDomGTPre.patch) {
+              needDomGTPre = false;
+            }
+          }
+          if (c2.operator === ">" || c2.operator === ">=") {
+            higher = higherGT(gt2, c2, options);
+            if (higher === c2 && higher !== gt2) {
+              return false;
+            }
+          } else if (gt2.operator === ">=" && !c2.test(gt2.semver)) {
+            return false;
+          }
+        }
+        if (lt2) {
+          if (needDomLTPre) {
+            if (c2.semver.prerelease && c2.semver.prerelease.length && c2.semver.major === needDomLTPre.major && c2.semver.minor === needDomLTPre.minor && c2.semver.patch === needDomLTPre.patch) {
+              needDomLTPre = false;
+            }
+          }
+          if (c2.operator === "<" || c2.operator === "<=") {
+            lower = lowerLT(lt2, c2, options);
+            if (lower === c2 && lower !== lt2) {
+              return false;
+            }
+          } else if (lt2.operator === "<=" && !c2.test(lt2.semver)) {
+            return false;
+          }
+        }
+        if (!c2.operator && (lt2 || gt2) && gtltComp !== 0) {
+          return false;
+        }
+      }
+      if (gt2 && hasDomLT && !lt2 && gtltComp !== 0) {
+        return false;
+      }
+      if (lt2 && hasDomGT && !gt2 && gtltComp !== 0) {
+        return false;
+      }
+      if (needDomGTPre || needDomLTPre) {
+        return false;
+      }
+      return true;
+    };
+    var higherGT = (a, b2, options) => {
+      if (!a) {
+        return b2;
+      }
+      const comp = compare(a.semver, b2.semver, options);
+      return comp > 0 ? a : comp < 0 ? b2 : b2.operator === ">" && a.operator === ">=" ? b2 : a;
+    };
+    var lowerLT = (a, b2, options) => {
+      if (!a) {
+        return b2;
+      }
+      const comp = compare(a.semver, b2.semver, options);
+      return comp < 0 ? a : comp > 0 ? b2 : b2.operator === "<" && a.operator === "<=" ? b2 : a;
+    };
+    module.exports = subset;
+  }
+});
+
+// ../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/index.js
+var require_semver2 = __commonJS({
+  "../../node_modules/.pnpm/semver@7.8.5/node_modules/semver/index.js"(exports, module) {
+    "use strict";
+    var internalRe = require_re();
+    var constants = require_constants();
+    var SemVer = require_semver();
+    var identifiers = require_identifiers();
+    var parse = require_parse();
+    var valid = require_valid();
+    var clean = require_clean();
+    var inc = require_inc();
+    var diff = require_diff();
+    var major = require_major();
+    var minor = require_minor();
+    var patch = require_patch();
+    var prerelease = require_prerelease();
+    var compare = require_compare();
+    var rcompare = require_rcompare();
+    var compareLoose = require_compare_loose();
+    var compareBuild = require_compare_build();
+    var sort = require_sort();
+    var rsort = require_rsort();
+    var gt2 = require_gt();
+    var lt2 = require_lt();
+    var eq = require_eq();
+    var neq = require_neq();
+    var gte2 = require_gte();
+    var lte = require_lte();
+    var cmp = require_cmp();
+    var coerce2 = require_coerce();
+    var truncate = require_truncate();
+    var Comparator = require_comparator();
+    var Range = require_range();
+    var satisfies = require_satisfies();
+    var toComparators = require_to_comparators();
+    var maxSatisfying = require_max_satisfying();
+    var minSatisfying = require_min_satisfying();
+    var minVersion = require_min_version();
+    var validRange = require_valid2();
+    var outside = require_outside();
+    var gtr = require_gtr();
+    var ltr = require_ltr();
+    var intersects = require_intersects();
+    var simplifyRange = require_simplify();
+    var subset = require_subset();
+    module.exports = {
+      parse,
+      valid,
+      clean,
+      inc,
+      diff,
+      major,
+      minor,
+      patch,
+      prerelease,
+      compare,
+      rcompare,
+      compareLoose,
+      compareBuild,
+      sort,
+      rsort,
+      gt: gt2,
+      lt: lt2,
+      eq,
+      neq,
+      gte: gte2,
+      lte,
+      cmp,
+      coerce: coerce2,
+      truncate,
+      Comparator,
+      Range,
+      satisfies,
+      toComparators,
+      maxSatisfying,
+      minSatisfying,
+      minVersion,
+      validRange,
+      outside,
+      gtr,
+      ltr,
+      intersects,
+      simplifyRange,
+      subset,
+      SemVer,
+      re: internalRe.re,
+      src: internalRe.src,
+      tokens: internalRe.t,
+      SEMVER_SPEC_VERSION: constants.SEMVER_SPEC_VERSION,
+      RELEASE_TYPES: constants.RELEASE_TYPES,
+      compareIdentifiers: identifiers.compareIdentifiers,
+      rcompareIdentifiers: identifiers.rcompareIdentifiers
+    };
+  }
+});
+
+// ../../node_modules/.pnpm/valibot@1.5.0_typescript@5.9.3/node_modules/valibot/dist/index.mjs
+var store$4;
+var DEFAULT_CONFIG = {
+  lang: void 0,
+  message: void 0,
+  abortEarly: void 0,
+  abortPipeEarly: void 0
+};
+function getGlobalConfig(config$1) {
+  if (!config$1 && !store$4) return DEFAULT_CONFIG;
+  return {
+    lang: (config$1 == null ? void 0 : config$1.lang) ?? (store$4 == null ? void 0 : store$4.lang),
+    message: config$1 == null ? void 0 : config$1.message,
+    abortEarly: (config$1 == null ? void 0 : config$1.abortEarly) ?? (store$4 == null ? void 0 : store$4.abortEarly),
+    abortPipeEarly: (config$1 == null ? void 0 : config$1.abortPipeEarly) ?? (store$4 == null ? void 0 : store$4.abortPipeEarly)
+  };
+}
+var store$3;
+function getGlobalMessage(lang) {
+  return store$3 == null ? void 0 : store$3.get(lang);
+}
+var store$2;
+function getSchemaMessage(lang) {
+  return store$2 == null ? void 0 : store$2.get(lang);
+}
+var store$1;
+function getSpecificMessage(reference, lang) {
+  var _a2;
+  return (_a2 = store$1 == null ? void 0 : store$1.get(reference)) == null ? void 0 : _a2.get(lang);
+}
+function _stringify(input) {
+  var _a2, _b;
+  const type = typeof input;
+  if (type === "string") return `"${input}"`;
+  if (type === "number" || type === "bigint" || type === "boolean") return `${input}`;
+  if (type === "object" || type === "function") return (input && ((_b = (_a2 = Object.getPrototypeOf(input)) == null ? void 0 : _a2.constructor) == null ? void 0 : _b.name)) ?? "null";
+  return type;
+}
+function _addIssue(context, label, dataset, config$1, other) {
+  const input = other && "input" in other ? other.input : dataset.value;
+  const expected = (other == null ? void 0 : other.expected) ?? context.expects ?? null;
+  const received = (other == null ? void 0 : other.received) ?? _stringify(input);
+  const issue = {
+    kind: context.kind,
+    type: context.type,
+    input,
+    expected,
+    received,
+    message: `Invalid ${label}: ${expected ? `Expected ${expected} but r` : "R"}eceived ${received}`,
+    requirement: context.requirement,
+    path: other == null ? void 0 : other.path,
+    issues: other == null ? void 0 : other.issues,
+    lang: config$1.lang,
+    abortEarly: config$1.abortEarly,
+    abortPipeEarly: config$1.abortPipeEarly
+  };
+  const isSchema = context.kind === "schema";
+  const message$1 = (other == null ? void 0 : other.message) ?? context.message ?? getSpecificMessage(context.reference, issue.lang) ?? (isSchema ? getSchemaMessage(issue.lang) : null) ?? config$1.message ?? getGlobalMessage(issue.lang);
+  if (message$1 !== void 0) issue.message = typeof message$1 === "function" ? message$1(issue) : message$1;
+  if (isSchema) dataset.typed = false;
+  if (dataset.issues) dataset.issues.push(issue);
+  else dataset.issues = [issue];
+}
+function _isSameValueZero(value1, value2) {
+  return value1 === value2 || Number.isNaN(value1) && Number.isNaN(value2);
+}
+function _isValidObjectKey(object$1, key) {
+  return Object.prototype.hasOwnProperty.call(object$1, key) && key !== "__proto__" && key !== "prototype" && key !== "constructor";
+}
+function _joinExpects(values$1, separator) {
+  const list = [...new Set(values$1)];
+  if (list.length > 1) return `(${list.join(` ${separator} `)})`;
+  return list[0] ?? "never";
+}
+function _standardSchema(schema) {
+  schema["~standard"] = {
+    version: 1,
+    vendor: "valibot",
+    validate: (value$1) => schema["~run"]({ value: value$1 }, getGlobalConfig())
+  };
+  return schema;
+}
+var EMOJI_REGEX = new RegExp("^(?:[\\u{1F1E6}-\\u{1F1FF}]{2}|\\u{1F3F4}[\\u{E0061}-\\u{E007A}]{2}[\\u{E0030}-\\u{E0039}\\u{E0061}-\\u{E007A}]{1,3}\\u{E007F}|(?:\\p{Emoji}\\uFE0F\\u20E3?|\\p{Emoji_Modifier_Base}\\p{Emoji_Modifier}?|(?![\\p{Emoji_Modifier_Base}\\u{1F1E6}-\\u{1F1FF}])\\p{Emoji_Presentation})(?:\\u200D(?:\\p{Emoji}\\uFE0F\\u20E3?|\\p{Emoji_Modifier_Base}\\p{Emoji_Modifier}?|(?![\\p{Emoji_Modifier_Base}\\u{1F1E6}-\\u{1F1FF}])\\p{Emoji_Presentation}))*)+$", "u");
+function getFallback(schema, dataset, config$1) {
+  return typeof schema.fallback === "function" ? schema.fallback(dataset, config$1) : schema.fallback;
+}
+function getDefault(schema, dataset, config$1) {
+  return typeof schema.default === "function" ? schema.default(dataset, config$1) : schema.default;
+}
+function literal(literal_, message$1) {
+  return _standardSchema({
+    kind: "schema",
+    type: "literal",
+    reference: literal,
+    expects: _stringify(literal_),
+    async: false,
+    literal: literal_,
+    message: message$1,
+    "~run"(dataset, config$1) {
+      if (_isSameValueZero(dataset.value, this.literal)) dataset.typed = true;
+      else _addIssue(this, "type", dataset, config$1);
+      return dataset;
+    }
+  });
+}
+function looseObject(entries$1, message$1) {
+  return _standardSchema({
+    kind: "schema",
+    type: "loose_object",
+    reference: looseObject,
+    expects: "Object",
+    async: false,
+    entries: entries$1,
+    message: message$1,
+    "~run"(dataset, config$1) {
+      var _a2;
+      const input = dataset.value;
+      if (input && typeof input === "object") {
+        dataset.typed = true;
+        dataset.value = {};
+        for (const key in this.entries) {
+          const valueSchema = this.entries[key];
+          if (key in input || (valueSchema.type === "exact_optional" || valueSchema.type === "optional" || valueSchema.type === "nullish") && valueSchema.default !== void 0) {
+            const value$1 = key in input ? input[key] : getDefault(valueSchema);
+            const valueDataset = valueSchema["~run"]({ value: value$1 }, config$1);
+            if (valueDataset.issues) {
+              const pathItem = {
+                type: "object",
+                origin: "value",
+                input,
+                key,
+                value: value$1
+              };
+              for (const issue of valueDataset.issues) {
+                if (issue.path) issue.path.unshift(pathItem);
+                else issue.path = [pathItem];
+                (_a2 = dataset.issues) == null ? void 0 : _a2.push(issue);
+              }
+              if (!dataset.issues) dataset.issues = valueDataset.issues;
+              if (config$1.abortEarly) {
+                dataset.typed = false;
+                break;
+              }
+            }
+            if (!valueDataset.typed) dataset.typed = false;
+            dataset.value[key] = valueDataset.value;
+          } else if (valueSchema.fallback !== void 0) dataset.value[key] = getFallback(valueSchema);
+          else if (valueSchema.type !== "exact_optional" && valueSchema.type !== "optional" && valueSchema.type !== "nullish") {
+            _addIssue(this, "key", dataset, config$1, {
+              input: void 0,
+              expected: `"${key}"`,
+              path: [{
+                type: "object",
+                origin: "key",
+                input,
+                key,
+                value: input[key]
+              }]
+            });
+            if (config$1.abortEarly) break;
+          }
+        }
+        if (!dataset.issues || !config$1.abortEarly) {
+          for (const key in input) if (_isValidObjectKey(input, key) && !Object.prototype.hasOwnProperty.call(this.entries, key)) dataset.value[key] = input[key];
+        }
+      } else _addIssue(this, "type", dataset, config$1);
+      return dataset;
+    }
+  });
+}
+function object(entries$1, message$1) {
+  return _standardSchema({
+    kind: "schema",
+    type: "object",
+    reference: object,
+    expects: "Object",
+    async: false,
+    entries: entries$1,
+    message: message$1,
+    "~run"(dataset, config$1) {
+      var _a2;
+      const input = dataset.value;
+      if (input && typeof input === "object") {
+        dataset.typed = true;
+        dataset.value = {};
+        for (const key in this.entries) {
+          const valueSchema = this.entries[key];
+          if (key in input || (valueSchema.type === "exact_optional" || valueSchema.type === "optional" || valueSchema.type === "nullish") && valueSchema.default !== void 0) {
+            const value$1 = key in input ? input[key] : getDefault(valueSchema);
+            const valueDataset = valueSchema["~run"]({ value: value$1 }, config$1);
+            if (valueDataset.issues) {
+              const pathItem = {
+                type: "object",
+                origin: "value",
+                input,
+                key,
+                value: value$1
+              };
+              for (const issue of valueDataset.issues) {
+                if (issue.path) issue.path.unshift(pathItem);
+                else issue.path = [pathItem];
+                (_a2 = dataset.issues) == null ? void 0 : _a2.push(issue);
+              }
+              if (!dataset.issues) dataset.issues = valueDataset.issues;
+              if (config$1.abortEarly) {
+                dataset.typed = false;
+                break;
+              }
+            }
+            if (!valueDataset.typed) dataset.typed = false;
+            dataset.value[key] = valueDataset.value;
+          } else if (valueSchema.fallback !== void 0) dataset.value[key] = getFallback(valueSchema);
+          else if (valueSchema.type !== "exact_optional" && valueSchema.type !== "optional" && valueSchema.type !== "nullish") {
+            _addIssue(this, "key", dataset, config$1, {
+              input: void 0,
+              expected: `"${key}"`,
+              path: [{
+                type: "object",
+                origin: "key",
+                input,
+                key,
+                value: input[key]
+              }]
+            });
+            if (config$1.abortEarly) break;
+          }
+        }
+      } else _addIssue(this, "type", dataset, config$1);
+      return dataset;
+    }
+  });
+}
+function optional(wrapped, default_) {
+  return _standardSchema({
+    kind: "schema",
+    type: "optional",
+    reference: optional,
+    expects: `(${wrapped.expects} | undefined)`,
+    async: false,
+    wrapped,
+    default: default_,
+    "~run"(dataset, config$1) {
+      if (dataset.value === void 0) {
+        if (this.default !== void 0) dataset.value = getDefault(this, dataset, config$1);
+        if (dataset.value === void 0) {
+          dataset.typed = true;
+          return dataset;
+        }
+      }
+      return this.wrapped["~run"](dataset, config$1);
+    }
+  });
+}
+function picklist(options, message$1) {
+  return _standardSchema({
+    kind: "schema",
+    type: "picklist",
+    reference: picklist,
+    expects: _joinExpects(options.map(_stringify), "|"),
+    async: false,
+    options,
+    message: message$1,
+    "~run"(dataset, config$1) {
+      if (this.options.includes(dataset.value)) dataset.typed = true;
+      else _addIssue(this, "type", dataset, config$1);
+      return dataset;
+    }
+  });
+}
+function string(message$1) {
+  return _standardSchema({
+    kind: "schema",
+    type: "string",
+    reference: string,
+    expects: "string",
+    async: false,
+    message: message$1,
+    "~run"(dataset, config$1) {
+      if (typeof dataset.value === "string") dataset.typed = true;
+      else _addIssue(this, "type", dataset, config$1);
+      return dataset;
+    }
+  });
+}
+function unknown() {
+  return _standardSchema({
+    kind: "schema",
+    type: "unknown",
+    reference: unknown,
+    expects: "unknown",
+    async: false,
+    "~run"(dataset) {
+      dataset.typed = true;
+      return dataset;
+    }
+  });
+}
+function safeParse(schema, input, config$1) {
+  const dataset = schema["~run"]({ value: input }, getGlobalConfig(config$1));
+  return {
+    typed: dataset.typed,
+    success: !dataset.issues,
+    output: dataset.value,
+    issues: dataset.issues
+  };
+}
+
+// ../../node_modules/.pnpm/@webview-bridge+utils@1.7.10/node_modules/@webview-bridge/utils/dist/index.js
+function _array_like_to_array(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+function _array_without_holes(arr) {
+  if (Array.isArray(arr)) return _array_like_to_array(arr);
+}
+function _assert_this_initialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _call_super(_this, derived, args) {
+  derived = _get_prototype_of(derived);
+  return _possible_constructor_return(_this, _is_native_reflect_construct() ? Reflect.construct(derived, args || [], _get_prototype_of(_this).constructor) : derived.apply(_this, args));
+}
+function _class_call_check(instance2, Constructor) {
+  if (!(instance2 instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+function _construct(Parent, args, Class) {
+  if (_is_native_reflect_construct()) {
+    _construct = Reflect.construct;
+  } else {
+    _construct = function construct(Parent2, args2, Class2) {
+      var a = [
+        null
+      ];
+      a.push.apply(a, args2);
+      var Constructor = Function.bind.apply(Parent2, a);
+      var instance2 = new Constructor();
+      if (Class2) _set_prototype_of(instance2, Class2.prototype);
+      return instance2;
+    };
+  }
+  return _construct.apply(null, arguments);
+}
+function _get_prototype_of(o2) {
+  _get_prototype_of = Object.setPrototypeOf ? Object.getPrototypeOf : function getPrototypeOf(o3) {
+    return o3.__proto__ || Object.getPrototypeOf(o3);
+  };
+  return _get_prototype_of(o2);
+}
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _set_prototype_of(subClass, superClass);
+}
+function _instanceof(left, right) {
+  if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+    return !!right[Symbol.hasInstance](left);
+  } else {
+    return left instanceof right;
+  }
+}
+function _is_native_function(fn2) {
+  return Function.toString.call(fn2).indexOf("[native code]") !== -1;
+}
+function _iterable_to_array(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+function _non_iterable_spread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _possible_constructor_return(self, call) {
+  if (call && (_type_of(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+  return _assert_this_initialized(self);
+}
+function _set_prototype_of(o2, p) {
+  _set_prototype_of = Object.setPrototypeOf || function setPrototypeOf(o3, p2) {
+    o3.__proto__ = p2;
+    return o3;
+  };
+  return _set_prototype_of(o2, p);
+}
+function _to_consumable_array(arr) {
+  return _array_without_holes(arr) || _iterable_to_array(arr) || _unsupported_iterable_to_array(arr) || _non_iterable_spread();
+}
+function _type_of(obj) {
+  "@swc/helpers - typeof";
+  return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj;
+}
+function _unsupported_iterable_to_array(o2, minLen) {
+  if (!o2) return;
+  if (typeof o2 === "string") return _array_like_to_array(o2, minLen);
+  var n2 = Object.prototype.toString.call(o2).slice(8, -1);
+  if (n2 === "Object" && o2.constructor) n2 = o2.constructor.name;
+  if (n2 === "Map" || n2 === "Set") return Array.from(n2);
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2)) return _array_like_to_array(o2, minLen);
+}
+function _wrap_native_super(Class) {
+  var _cache = typeof Map === "function" ? /* @__PURE__ */ new Map() : void 0;
+  _wrap_native_super = function wrapNativeSuper(Class2) {
+    if (Class2 === null || !_is_native_function(Class2)) return Class2;
+    if (typeof Class2 !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class2)) return _cache.get(Class2);
+      _cache.set(Class2, Wrapper);
+    }
+    function Wrapper() {
+      return _construct(Class2, arguments, _get_prototype_of(this).constructor);
+    }
+    Wrapper.prototype = Object.create(Class2.prototype, {
+      constructor: {
+        value: Wrapper,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    return _set_prototype_of(Wrapper, Class2);
+  };
+  return _wrap_native_super(Class);
+}
+function _is_native_reflect_construct() {
+  try {
+    var result = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
+    }));
+  } catch (_2) {
+  }
+  return (_is_native_reflect_construct = function() {
+    return !!result;
+  })();
+}
+var NativeMethodError = (function(Error1) {
+  "use strict";
+  _inherits(NativeMethodError2, Error1);
+  function NativeMethodError2(methodName) {
+    _class_call_check(this, NativeMethodError2);
+    var _this;
+    _this = _call_super(this, NativeMethodError2, [
+      "An error occurred in the native bridge: ".concat(methodName)
+    ]);
+    _this.name = "NativeMethodError";
+    return _this;
+  }
+  return NativeMethodError2;
+})(_wrap_native_super(Error));
+var deserializeError = function(value) {
+  var ErrorConstructor = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : Error;
+  var parsed = typeof value === "string" ? JSON.parse(value) : value;
+  if (parsed === null || parsed === void 0 ? void 0 : parsed.__isError) {
+    var err = new ErrorConstructor(parsed.message);
+    err.name = parsed.name;
+    err.stack = parsed.stack;
+    return err;
+  }
+  return value;
+};
+var createEvents = function() {
+  return {
+    events: {},
+    emit: function emit(event) {
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+      var callbacks = this.events[event] || [];
+      for (var i = 0, length = callbacks.length; i < length; i++) {
+        var _callbacks;
+        (_callbacks = callbacks)[i].apply(_callbacks, _to_consumable_array(args));
+      }
+    },
+    on: function on2(event, cb) {
+      var _this = this;
+      if (!this.events[event]) {
+        this.events[event] = [
+          cb
+        ];
+      } else {
+        var _this_events_event;
+        (_this_events_event = this.events[event]) === null || _this_events_event === void 0 ? void 0 : _this_events_event.push(cb);
+      }
+      return function() {
+        var _this_events_event2;
+        _this.events[event] = (_this_events_event2 = _this.events[event]) === null || _this_events_event2 === void 0 ? void 0 : _this_events_event2.filter(function(i) {
+          return cb !== i;
+        });
+      };
+    }
+  };
+};
+var createResolver = function(param) {
+  var emitter = param.emitter, evaluate = param.evaluate, eventId = param.eventId, _param_failHandler = param.failHandler, failHandler = _param_failHandler === void 0 ? false : _param_failHandler, methodName = param.methodName, onFallback = param.onFallback;
+  return new Promise(function(resolve, reject) {
+    var unbind = emitter.on("".concat(methodName, "-").concat(eventId), function(data, throwOccurred) {
+      unbind();
+      if (throwOccurred) {
+        if (_instanceof(failHandler, NativeMethodError)) {
+          onFallback === null || onFallback === void 0 ? void 0 : onFallback();
+          reject(deserializeError(throwOccurred));
+        } else if (_instanceof(failHandler, Error)) {
+          reject(failHandler);
+        } else {
+          resolve(void 0);
+        }
+      } else {
+        resolve(data);
+      }
+    });
+    evaluate();
+  });
+};
+var TABLE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+var ID_LENGTH = 21;
+var createRandomId = function() {
+  var size = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : ID_LENGTH;
+  var randomValues = Array.from({
+    length: size
+  }, function() {
+    return TABLE[Math.floor(Math.random() * TABLE.length)];
+  });
+  return randomValues.join("");
+};
+var equals = function(a, b2) {
+  if (a === b2) {
+    return true;
+  }
+  if (a && b2 && (typeof a === "undefined" ? "undefined" : _type_of(a)) === "object" && (typeof b2 === "undefined" ? "undefined" : _type_of(b2)) === "object") {
+    var arrA = Array.isArray(a);
+    var arrB = Array.isArray(b2);
+    var i;
+    var length;
+    var key;
+    if (arrA && arrB) {
+      length = a.length;
+      if (length !== b2.length) {
+        return false;
+      }
+      for (i = length; i-- !== 0; ) {
+        if (!equals(a[i], b2[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+    if (arrA !== arrB) {
+      return false;
+    }
+    var keys = Object.keys(a);
+    length = keys.length;
+    if (length !== Object.keys(b2).length) {
+      return false;
+    }
+    for (i = length; i-- !== 0; ) {
+      if (!Object.prototype.hasOwnProperty.call(b2, keys[i])) {
+        return false;
+      }
+    }
+    for (i = length; i-- !== 0; ) {
+      key = keys[i];
+      if (!equals(a[key], b2[key])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return a !== a && b2 !== b2;
+};
+var removeUndefinedKeys = function(obj) {
+  var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = void 0;
+  try {
+    for (var _iterator = Object.keys(obj)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var key = _step.value;
+      if (obj[key] === void 0) {
+        delete obj[key];
+      }
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+  return obj;
+};
+var timeout = function(ms) {
+  var throwOnError = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      if (throwOnError) {
+        reject(new Error("Timeout"));
+      } else {
+        resolve(void 0);
+      }
+    }, ms);
+  });
+};
+
+// ../../node_modules/.pnpm/@webview-bridge+web@1.7.10/node_modules/@webview-bridge/web/dist/index.js
+function _array_like_to_array2(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+  return arr2;
+}
+function _array_with_holes(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+function _array_without_holes2(arr) {
+  if (Array.isArray(arr)) return _array_like_to_array2(arr);
+}
+function _assert_this_initialized2(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+  return self;
+}
+function _call_super2(_this, derived, args) {
+  derived = _get_prototype_of2(derived);
+  return _possible_constructor_return2(_this, _is_native_reflect_construct2() ? Reflect.construct(derived, args || [], _get_prototype_of2(_this).constructor) : derived.apply(_this, args));
+}
+function _class_call_check2(instance2, Constructor) {
+  if (!(instance2 instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+function _construct2(Parent, args, Class) {
+  if (_is_native_reflect_construct2()) {
+    _construct2 = Reflect.construct;
+  } else {
+    _construct2 = function construct(Parent2, args2, Class2) {
+      var a = [
+        null
+      ];
+      a.push.apply(a, args2);
+      var Constructor = Function.bind.apply(Parent2, a);
+      var instance2 = new Constructor();
+      if (Class2) _set_prototype_of2(instance2, Class2.prototype);
+      return instance2;
+    };
+  }
+  return _construct2.apply(null, arguments);
+}
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+function _create_class(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+function _define_property(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+function _get_prototype_of2(o2) {
+  _get_prototype_of2 = Object.setPrototypeOf ? Object.getPrototypeOf : function getPrototypeOf(o3) {
+    return o3.__proto__ || Object.getPrototypeOf(o3);
+  };
+  return _get_prototype_of2(o2);
+}
+function _inherits2(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _set_prototype_of2(subClass, superClass);
+}
+function _is_native_function2(fn2) {
+  return Function.toString.call(fn2).indexOf("[native code]") !== -1;
+}
+function _iterable_to_array2(iter) {
+  if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
+}
+function _iterable_to_array_limit(arr, i) {
+  var _i2 = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
+  if (_i2 == null) return;
+  var _arr = [];
+  var _n2 = true;
+  var _d2 = false;
+  var _s, _e2;
+  try {
+    for (_i2 = _i2.call(arr); !(_n2 = (_s = _i2.next()).done); _n2 = true) {
+      _arr.push(_s.value);
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d2 = true;
+    _e2 = err;
+  } finally {
+    try {
+      if (!_n2 && _i2["return"] != null) _i2["return"]();
+    } finally {
+      if (_d2) throw _e2;
+    }
+  }
+  return _arr;
+}
+function _non_iterable_rest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _non_iterable_spread2() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+function _object_spread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys2 = Object.keys(source);
+    if (typeof Object.getOwnPropertySymbols === "function") {
+      ownKeys2 = ownKeys2.concat(Object.getOwnPropertySymbols(source).filter(function(sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+    ownKeys2.forEach(function(key) {
+      _define_property(target, key, source[key]);
+    });
+  }
+  return target;
+}
+function ownKeys(object2, enumerableOnly) {
+  var keys = Object.keys(object2);
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object2);
+    if (enumerableOnly) {
+      symbols = symbols.filter(function(sym) {
+        return Object.getOwnPropertyDescriptor(object2, sym).enumerable;
+      });
+    }
+    keys.push.apply(keys, symbols);
+  }
+  return keys;
+}
+function _object_spread_props(target, source) {
+  source = source != null ? source : {};
+  if (Object.getOwnPropertyDescriptors) {
+    Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+  } else {
+    ownKeys(Object(source)).forEach(function(key) {
+      Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+    });
+  }
+  return target;
+}
+function _possible_constructor_return2(self, call) {
+  if (call && (_type_of2(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+  return _assert_this_initialized2(self);
+}
+function _set_prototype_of2(o2, p) {
+  _set_prototype_of2 = Object.setPrototypeOf || function setPrototypeOf(o3, p2) {
+    o3.__proto__ = p2;
+    return o3;
+  };
+  return _set_prototype_of2(o2, p);
+}
+function _sliced_to_array(arr, i) {
+  return _array_with_holes(arr) || _iterable_to_array_limit(arr, i) || _unsupported_iterable_to_array2(arr, i) || _non_iterable_rest();
+}
+function _to_array(arr) {
+  return _array_with_holes(arr) || _iterable_to_array2(arr) || _unsupported_iterable_to_array2(arr) || _non_iterable_rest();
+}
+function _to_consumable_array2(arr) {
+  return _array_without_holes2(arr) || _iterable_to_array2(arr) || _unsupported_iterable_to_array2(arr) || _non_iterable_spread2();
+}
+function _type_of2(obj) {
+  "@swc/helpers - typeof";
+  return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj;
+}
+function _unsupported_iterable_to_array2(o2, minLen) {
+  if (!o2) return;
+  if (typeof o2 === "string") return _array_like_to_array2(o2, minLen);
+  var n2 = Object.prototype.toString.call(o2).slice(8, -1);
+  if (n2 === "Object" && o2.constructor) n2 = o2.constructor.name;
+  if (n2 === "Map" || n2 === "Set") return Array.from(n2);
+  if (n2 === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n2)) return _array_like_to_array2(o2, minLen);
+}
+function _wrap_native_super2(Class) {
+  var _cache = typeof Map === "function" ? /* @__PURE__ */ new Map() : void 0;
+  _wrap_native_super2 = function wrapNativeSuper(Class2) {
+    if (Class2 === null || !_is_native_function2(Class2)) return Class2;
+    if (typeof Class2 !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class2)) return _cache.get(Class2);
+      _cache.set(Class2, Wrapper);
+    }
+    function Wrapper() {
+      return _construct2(Class2, arguments, _get_prototype_of2(this).constructor);
+    }
+    Wrapper.prototype = Object.create(Class2.prototype, {
+      constructor: {
+        value: Wrapper,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    return _set_prototype_of2(Wrapper, Class2);
+  };
+  return _wrap_native_super2(Class);
+}
+function _is_native_reflect_construct2() {
+  try {
+    var result = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
+    }));
+  } catch (_2) {
+  }
+  return (_is_native_reflect_construct2 = function() {
+    return !!result;
+  })();
+}
+var __defProp = Object.defineProperty;
+var __defNormalProp = function(obj, key, value) {
+  return key in obj ? __defProp(obj, key, {
+    enumerable: true,
+    configurable: true,
+    writable: true,
+    value
+  }) : obj[key] = value;
+};
+var __publicField = function(obj, key, value) {
+  return __defNormalProp(obj, (typeof key === "undefined" ? "undefined" : _type_of2(key)) !== "symbol" ? key + "" : key, value);
+};
+var MethodNotFoundError = (function(Error1) {
+  "use strict";
+  _inherits2(MethodNotFoundError2, Error1);
+  function MethodNotFoundError2(methodName) {
+    _class_call_check2(this, MethodNotFoundError2);
+    var _this;
+    _this = _call_super2(this, MethodNotFoundError2, [
+      "Method ".concat(methodName, " is not defined")
+    ]);
+    _this.name = "MethodNotFoundError";
+    return _this;
+  }
+  return MethodNotFoundError2;
+})(_wrap_native_super2(Error));
+var createPromiseProxy = function() {
+  return new Proxy({}, {
+    get: function() {
+      return function() {
+        return Promise.resolve();
+      };
+    }
+  });
+};
+var linkBridgeStore = function(emitter) {
+  var initialState = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  var getState = function() {
+    return state;
+  };
+  var setState = function(newState) {
+    var _newState = _object_spread({}, state, removeUndefinedKeys(newState));
+    if (equals(state, _newState)) {
+      return;
+    }
+    var prevState = state;
+    state = _newState;
+    emitChange(state, prevState);
+  };
+  emitter.on("bridgeStateChange", function(data) {
+    setState(data);
+  });
+  var state = _object_spread({}, initialState);
+  var listeners = /* @__PURE__ */ new Set();
+  var emitChange = function(newState, prevState) {
+    var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = void 0;
+    try {
+      for (var _iterator = listeners[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var listener = _step.value;
+        listener(newState, prevState);
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  };
+  var subscribe = function(listener) {
+    listeners.add(listener);
+    return function() {
+      return listeners.delete(listener);
+    };
+  };
+  return {
+    getState,
+    subscribe
+  };
+};
+var mockStore = function() {
+  var initialState = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
+  var state = initialState;
+  var getState = function() {
+    return state;
+  };
+  var subscribe = function() {
+    return function() {
+    };
+  };
+  return {
+    getState,
+    subscribe
+  };
+};
+var BridgeInstance = (function() {
+  "use strict";
+  function BridgeInstance2(_bridgeId, _options, _emitter, _bridgeMethods, _nativeInitialState) {
+    _class_call_check2(this, BridgeInstance2);
+    this._bridgeId = _bridgeId;
+    this._options = _options;
+    this._emitter = _emitter;
+    this._bridgeMethods = _bridgeMethods;
+    this._nativeInitialState = _nativeInitialState;
+    __publicField(this, "_defaultTimeoutMs", 2e3);
+    __publicField(this, "_isListenerRegistered", false);
+    __publicField(this, "store", mockStore());
+    __publicField(this, "loose", createPromiseProxy());
+    this._hydrate(_bridgeMethods, _nativeInitialState);
+  }
+  _create_class(BridgeInstance2, [
+    {
+      key: "isReactNativeWebView",
+      get: function get() {
+        return Boolean(window.ReactNativeWebView);
+      }
+    },
+    {
+      key: "isWebViewBridgeAvailable",
+      get: function get() {
+        return this._bridgeMethods.length > 0;
+      }
+    },
+    {
+      key: "isNativeMethodAvailable",
+      value: function isNativeMethodAvailable(methodName) {
+        return typeof methodName === "string" && this._bridgeMethods.includes(methodName);
+      }
+    },
+    {
+      key: "addEventListener",
+      value: function addEventListener(eventName, listener) {
+        return this._emitter.on("postMessage/".concat(String(eventName)), listener);
+      }
+    },
+    {
+      key: "_postMessage",
+      value: function _postMessage(type, body) {
+        var _window_ReactNativeWebView;
+        (_window_ReactNativeWebView = window.ReactNativeWebView) === null || _window_ReactNativeWebView === void 0 ? void 0 : _window_ReactNativeWebView.postMessage(JSON.stringify(body ? {
+          type,
+          body,
+          bridgeId: this._bridgeId
+        } : {
+          type,
+          bridgeId: this._bridgeId
+        }));
+      }
+    },
+    {
+      key: "_createNativeMethod",
+      value: function _createNativeMethod(methodName, throwOnError, timeoutMs, onFallback) {
+        var _this = this;
+        return function() {
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          var eventId = createRandomId();
+          return Promise.race([
+            createResolver({
+              emitter: _this._emitter,
+              methodName,
+              eventId,
+              evaluate: function() {
+                _this._postMessage("bridge", {
+                  method: methodName,
+                  eventId,
+                  args
+                });
+              },
+              onFallback: function() {
+                onFallback === null || onFallback === void 0 ? void 0 : onFallback(methodName, args);
+              },
+              failHandler: throwOnError && new NativeMethodError(methodName)
+            }),
+            timeoutMs > 0 && timeout(timeoutMs, throwOnError)
+          ].filter(Boolean));
+        };
+      }
+    },
+    {
+      key: "_willMethodThrowOnError",
+      value: function _willMethodThrowOnError(methodName) {
+        var throwOnError = this._options.throwOnError;
+        return throwOnError === true || Array.isArray(throwOnError) && throwOnError.includes(methodName);
+      }
+    },
+    {
+      key: "_createLoose",
+      value: function _createLoose(initialState) {
+        var _this = this;
+        var _this__options = this._options, tmp = _this__options.timeout, timeoutMs = tmp === void 0 ? this._defaultTimeoutMs : tmp, onFallback = _this__options.onFallback;
+        return new Proxy(initialState, {
+          get: function(target, methodName) {
+            if (methodName in target && ![
+              "isWebViewBridgeAvailable",
+              "isNativeMethodAvailable"
+            ].includes(methodName)) {
+              return target[methodName];
+            }
+            return _this._createNativeMethod(methodName, _this._willMethodThrowOnError(methodName), timeoutMs, onFallback);
+          }
+        });
+      }
+    },
+    {
+      key: "_hydrate",
+      value: function _hydrate(bridgeMethods) {
+        var _this = this;
+        var nativeInitialState = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+        var _this__options = this._options, tmp = _this__options.timeout, timeoutMs = tmp === void 0 ? this._defaultTimeoutMs : tmp, onFallback = _this__options.onFallback, _this__options_initialBridge = _this__options.initialBridge, initialBridge = _this__options_initialBridge === void 0 ? {} : _this__options_initialBridge;
+        var initialMethods = Object.entries(initialBridge).filter(function(param) {
+          var _param = _sliced_to_array(param, 2), _2 = _param[0], bridge = _param[1];
+          return typeof bridge === "function";
+        });
+        var initialBridgeMethodNames = initialMethods.map(function(param) {
+          var _param = _sliced_to_array(param, 1), methodName = _param[0];
+          return methodName;
+        });
+        Object.defineProperties(this, Object.fromEntries(initialMethods.map(function(param) {
+          var _param = _sliced_to_array(param, 2), methodName = _param[0], value = _param[1];
+          return [
+            methodName,
+            {
+              value,
+              writable: true
+            }
+          ];
+        })));
+        this._bridgeMethods = _to_consumable_array2(bridgeMethods).concat(_to_consumable_array2(initialBridgeMethodNames));
+        this._nativeInitialState = nativeInitialState;
+        var nativeMethods = bridgeMethods.reduce(function(acc, methodName) {
+          if (!_this.isReactNativeWebView) {
+            return acc;
+          }
+          var nativeMethod = _this._createNativeMethod(methodName, _this._willMethodThrowOnError(methodName), timeoutMs, onFallback);
+          Object.defineProperty(_this, methodName, {
+            value: nativeMethod,
+            writable: false
+          });
+          return Object.assign(acc, _define_property({}, methodName, nativeMethod));
+        }, initialBridge);
+        this.loose = this._createLoose(nativeMethods);
+        this.store = linkBridgeStore(this._emitter, _object_spread({}, nativeMethods, nativeInitialState));
+        if (!this._isListenerRegistered) {
+          var handleVisibilityChange = function() {
+            if (document.visibilityState === "visible") {
+              _this._postMessage("getBridgeState");
+            }
+          };
+          document.addEventListener("visibilitychange", handleVisibilityChange);
+          this._isListenerRegistered = true;
+        }
+        this._postMessage("getBridgeState");
+        var _window_nativeBatchedEvents;
+        var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = void 0;
+        try {
+          for (var _iterator = ((_window_nativeBatchedEvents = window.nativeBatchedEvents) !== null && _window_nativeBatchedEvents !== void 0 ? _window_nativeBatchedEvents : [])[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var _step_value = _to_array(_step.value), eventName = _step_value[0], args = _step_value.slice(1);
+            var _this__emitter;
+            (_this__emitter = this._emitter).emit.apply(_this__emitter, [
+              eventName
+            ].concat(_to_consumable_array2(args)));
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+        window.nativeBatchedEvents = [];
+        return true;
+      }
+    }
+  ]);
+  return BridgeInstance2;
+})();
+var linkBridge = function() {
+  var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {
+    timeout: 2e3,
+    throwOnError: false,
+    debug: false
+  };
+  if (typeof window === "undefined") {
+    var _options_initialBridge;
+    var initialBridge = (_options_initialBridge = options === null || options === void 0 ? void 0 : options.initialBridge) !== null && _options_initialBridge !== void 0 ? _options_initialBridge : {};
+    var initialMethods = Object.entries(initialBridge).filter(function(param) {
+      var _param = _sliced_to_array(param, 2), _2 = _param[0], bridge = _param[1];
+      return typeof bridge === "function";
+    });
+    var initialBridgeMethodNames = initialMethods.map(function(param) {
+      var _param = _sliced_to_array(param, 1), methodName = _param[0];
+      return methodName;
+    });
+    return {
+      addEventListener: function(_eventName, _listener) {
+        return function() {
+        };
+      },
+      loose: {},
+      isWebViewBridgeAvailable: initialBridgeMethodNames.length > 0,
+      isNativeMethodAvailable: function(method) {
+        return initialBridgeMethodNames.includes(method);
+      },
+      store: mockStore(options === null || options === void 0 ? void 0 : options.initialBridge)
+    };
+  }
+  if (options.debug && !window.ReactNativeWebView) {
+    console.warn("[WebViewBridge] Not in a WebView environment");
+  }
+  var bridgeId = createRandomId();
+  var emitter = createEvents();
+  window.nativeEmitterMap = _object_spread_props(_object_spread({}, window.nativeEmitterMap || {}), _define_property({}, bridgeId, emitter));
+  if (!window.nativeEmitter) {
+    window.nativeEmitter = emitter;
+  }
+  var _window___bridgeMethods__;
+  var bridgeMethods = (_window___bridgeMethods__ = window.__bridgeMethods__) !== null && _window___bridgeMethods__ !== void 0 ? _window___bridgeMethods__ : [];
+  var _window___bridgeInitialState__;
+  var nativeInitialState = (_window___bridgeInitialState__ = window.__bridgeInitialState__) !== null && _window___bridgeInitialState__ !== void 0 ? _window___bridgeInitialState__ : {};
+  var instance2 = new BridgeInstance(bridgeId, options, emitter, bridgeMethods, nativeInitialState);
+  if (bridgeMethods.length === 0) {
+    var unsubscribe = emitter.on("hydrate", function(param) {
+      var bridgeMethods2 = param.bridgeMethods, nativeInitialState2 = param.nativeInitialState;
+      instance2._hydrate(bridgeMethods2, nativeInitialState2);
+      unsubscribe();
+    });
+  }
+  var onFallback = options.onFallback, onReady = options.onReady;
+  var proxy = new Proxy(instance2, {
+    get: function(target, methodName, proxy2) {
+      if (methodName in target) {
+        return target[methodName];
+      }
+      proxy2._postMessage("fallback", {
+        method: methodName
+      });
+      if (proxy2._willMethodThrowOnError(methodName)) {
+        return function() {
+          for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+          }
+          onFallback === null || onFallback === void 0 ? void 0 : onFallback(methodName, args);
+          return Promise.reject(new MethodNotFoundError(methodName));
+        };
+      }
+      if (options.debug) {
+        console.warn("[WebViewBridge] ".concat(methodName, " is not defined, using fallback."));
+      }
+      return function() {
+        return Promise.resolve();
+      };
+    }
+  });
+  onReady === null || onReady === void 0 ? void 0 : onReady(proxy);
+  return proxy;
+};
+
+// ../../node_modules/.pnpm/@apps-in-toss+web-framework_e5e533f30e49c2e12e4d339707a77825/node_modules/@apps-in-toss/web-framework/dist/index.js
+var import_semver = __toESM(require_semver2());
+function getConstant(name) {
+  return window.__appsInTossConstants[name];
+}
+var serializedErrorSchema = looseObject({
+  __instanceof: literal("Error"),
+  name: string(),
+  message: string(),
+  stack: optional(string())
+});
+function deserializeError2(serialized) {
+  const parsed = safeParse(serializedErrorSchema, serialized);
+  if (!parsed.success) return serialized;
+  const { __instanceof: _2, name, message, stack, ...props } = parsed.output;
+  const error = new Error(message);
+  error.name = name;
+  error.stack = stack;
+  Object.entries(props).forEach(([key, value]) => {
+    error[key] = value;
+  });
+  return error;
+}
+function unwrapBridgeResponse(response) {
+  const restored = deserializeError2(response);
+  if (restored !== response) throw restored;
+  return response;
+}
+function createLinkBridge() {
+  return linkBridge({
+    timeout: 0,
+    throwOnError: true
+  });
+}
+var instance = null;
+function getWebViewBridge() {
+  instance ?? (instance = createLinkBridge());
+  return instance;
+}
+function assertWebViewEnvironment() {
+  if (typeof window === "undefined" || window.ReactNativeWebView == null) throw new Error("apps-in-toss 웹뷰 환경이 아니에요. 토스 앱 안에서만 호출할 수 있어요.");
+}
+var WEBVIEW_BRIDGE_EVENT_CHANNEL = "appsInTossEvent";
+var envelopeSchema = object({
+  subscriptionId: string(),
+  kind: picklist(["event", "error"]),
+  payload: optional(unknown())
+});
+function createSubscriptionId() {
+  return Math.random().toString(36).substring(2) + Date.now().toString(36);
+}
+var noop = () => {
+};
+function callEventMethod(name, options) {
+  if (typeof window === "undefined") return noop;
+  assertWebViewEnvironment();
+  const bridge = getWebViewBridge();
+  const subscriptionId = createSubscriptionId();
+  const removeListener = bridge.addEventListener(WEBVIEW_BRIDGE_EVENT_CHANNEL, (rawEnvelope) => {
+    var _a2, _b;
+    const parsed = safeParse(envelopeSchema, rawEnvelope);
+    if (!parsed.success || parsed.output.subscriptionId !== subscriptionId) return;
+    const envelope = parsed.output;
+    if (envelope.kind === "event") (_a2 = options.onEvent) == null ? void 0 : _a2.call(options, envelope.payload);
+    else (_b = options.onError) == null ? void 0 : _b.call(options, deserializeError2(envelope.payload));
+  });
+  bridge.loose.__subscribeAppEvent({
+    method: name,
+    subscriptionId,
+    params: options.params
+  }).catch((error) => {
+    var _a2;
+    (_a2 = options.onError) == null ? void 0 : _a2.call(options, error);
+  });
+  return () => {
+    removeListener();
+    bridge.loose.__unsubscribeAppEvent({ subscriptionId }).catch(noop);
+  };
+}
+function callAsyncMethod(name, ...args) {
+  assertWebViewEnvironment();
+  return getWebViewBridge().loose[name](...args).then(unwrapBridgeResponse);
+}
+var isAdMobLoaded = Object.assign((options) => callAsyncMethod("getCachedStatusAppsInTossAdmob", options), { isSupported: () => getConstant("isGetCachedStatusAppsInTossAdmobSupported") });
+var loadAdMob = Object.assign((params) => {
+  let cancelled = false;
+  callAsyncMethod("loadAppsInTossAdmob", params.options).then((data) => {
+    if (!cancelled) params.onEvent({
+      type: "loaded",
+      data
+    });
+  }).catch((error) => {
+    if (!cancelled) params.onError(error);
+  });
+  return () => {
+    cancelled = true;
+  };
+}, { isSupported: () => getConstant("isLoadAppsInTossAdmobSupported") });
+var showAdMob = Object.assign((params) => {
+  return callEventMethod("showAppsInTossAdmob", {
+    params: params.options,
+    onEvent: params.onEvent,
+    onError: params.onError
+  });
+}, { isSupported: () => getConstant("isShowAppsInTossAdmobSupported") });
+var SDK_VERSION = "3.8.0";
+function getInjectedTossAds() {
+  var _a2;
+  if (typeof window === "undefined") return;
+  return (_a2 = window.__appsInToss) == null ? void 0 : _a2.ads;
+}
+function getInjectedTossAdsOrThrow() {
+  const ads = getInjectedTossAds();
+  if (ads == null) throw new Error("[toss-ad] Failed to find injected sdk by host.");
+  return ads;
+}
+function toError(error) {
+  return error instanceof Error ? error : new Error(String(error));
+}
+function initialize(options) {
+  var _a2, _b;
+  try {
+    getInjectedTossAdsOrThrow().initialize({
+      ...options,
+      sdkVersion: SDK_VERSION
+    });
+  } catch (error) {
+    (_b = (_a2 = options.callbacks) == null ? void 0 : _a2.onInitializationFailed) == null ? void 0 : _b.call(_a2, toError(error));
+  }
+}
+function attach(adGroupId, target, options = {}) {
+  var _a2, _b;
+  try {
+    getInjectedTossAdsOrThrow().attach(adGroupId, target, options);
+  } catch (error) {
+    (_b = (_a2 = options.callbacks) == null ? void 0 : _a2.onAdFailedToRender) == null ? void 0 : _b.call(_a2, {
+      slotId: "",
+      adGroupId: adGroupId.trim(),
+      adMetadata: {},
+      error: {
+        code: 0,
+        message: toError(error).message
+      }
+    });
+  }
+}
+function attachBanner(adGroupId, target, options = {}) {
+  var _a2, _b;
+  try {
+    return getInjectedTossAdsOrThrow().attachBanner(adGroupId, target, options);
+  } catch (error) {
+    (_b = (_a2 = options.callbacks) == null ? void 0 : _a2.onAdFailedToRender) == null ? void 0 : _b.call(_a2, {
+      slotId: "",
+      adGroupId: adGroupId.trim(),
+      adMetadata: {},
+      error: {
+        code: 0,
+        message: toError(error).message
+      }
+    });
+    return { destroy() {
+    } };
+  }
+}
+function destroy(slotId) {
+  var _a2;
+  (_a2 = getInjectedTossAds()) == null ? void 0 : _a2.destroy(slotId);
+}
+function destroyAll() {
+  var _a2;
+  (_a2 = getInjectedTossAds()) == null ? void 0 : _a2.destroyAll();
+}
+function isSupported$3() {
+  var _a2;
+  return ((_a2 = getInjectedTossAds()) == null ? void 0 : _a2.initialize.isSupported()) ?? false;
+}
+var TossAds = {
+  initialize: Object.assign(initialize, { isSupported: isSupported$3 }),
+  /**
+  * @deprecated attach는 더 이상 권장되지 않습니다. attachBanner를 사용해주세요.
+  */
+  attach: Object.assign(attach, { isSupported: isSupported$3 }),
+  attachBanner: Object.assign(attachBanner, { isSupported: isSupported$3 }),
+  destroy: Object.assign(destroy, { isSupported: isSupported$3 }),
+  destroyAll: Object.assign(destroyAll, { isSupported: isSupported$3 })
+};
+var loadFullScreenAd = Object.assign((params) => {
+  return callEventMethod("loadFullScreenAd", {
+    params: params.options,
+    onEvent: params.onEvent,
+    onError: params.onError
+  });
+}, { isSupported: () => getConstant("isLoadFullScreenAdSupported") });
+var showFullScreenAd = Object.assign((params) => {
+  return callEventMethod("showFullScreenAd", {
+    params: params.options,
+    onEvent: params.onEvent,
+    onError: params.onError
+  });
+}, { isSupported: () => getConstant("isShowFullScreenAdSupported") });
+var PermissionError = class extends Error {
+  constructor({ methodName, message }) {
+    super();
+    this.name = `${methodName} permission error`;
+    this.message = message;
+  }
+};
+var GetClipboardTextPermissionError = class extends PermissionError {
+  constructor() {
+    super({
+      methodName: "getClipboardText",
+      message: "클립보드 읽기 권한이 거부되었어요."
+    });
+  }
+};
+function withPermission(fn2, permission, errorClass) {
+  const wrapped = async (...args) => {
+    if (await callAsyncMethod("requestPermission", permission) === "denied") throw new errorClass();
+    return fn2(...args);
+  };
+  return Object.assign(wrapped, {
+    getPermission: () => callAsyncMethod("getPermission", permission),
+    openPermissionDialog: () => callAsyncMethod("openPermissionDialog", permission)
+  });
+}
+var getClipboardText = withPermission(() => callAsyncMethod("getClipboardText"), {
+  name: "clipboard",
+  access: "read"
+}, GetClipboardTextPermissionError);
+var SetClipboardTextPermissionError = class extends PermissionError {
+  constructor() {
+    super({
+      methodName: "setClipboardText",
+      message: "클립보드 쓰기 권한이 거부되었어요."
+    });
+  }
+};
+var setClipboardText = withPermission((text) => callAsyncMethod("setClipboardText", { text }), {
+  name: "clipboard",
+  access: "write"
+}, SetClipboardTextPermissionError);
+function isMinVersionSupported(minVersions) {
+  if (getConstant("operationalEnvironment") === "sandbox") return true;
+  const currentVersion = getConstant("tossAppVersion");
+  const minVersion = getConstant("platformOS") === "ios" ? minVersions.ios : minVersions.android;
+  if (minVersion === void 0) return false;
+  if (minVersion === "always") return true;
+  if (minVersion === "never") return false;
+  return (0, import_semver.gte)((0, import_semver.coerce)(currentVersion) ?? currentVersion, minVersion);
+}
+var UNSUPPORTED_APP_VERSION = "UNSUPPORTED_APP_VERSION";
+var UNSUPPORTED_OS_VERSION = "UNSUPPORTED_OS_VERSION";
+function formatUnsupportedAppVersionMessage({ android, ios }) {
+  if (android == null && ios == null) return "현재 토스앱 버전에서 사용할 수 없는 기능이에요. 토스앱을 최신 버전으로 업데이트해 주세요.";
+  if (android != null && ios != null) return android === ios ? `토스앱 ${android} 이상에서 사용할 수 있어요.` : `토스앱 Android ${android}, iOS ${ios} 이상에서 사용할 수 있어요.`;
+  return `${android != null ? "Android" : "iOS"} 토스앱 ${android ?? ios} 이상에서만 사용할 수 있어요.`;
+}
+function createUnsupportedAppVersionError(minVersion) {
+  const error = new Error(formatUnsupportedAppVersionMessage(minVersion));
+  error.name = UNSUPPORTED_APP_VERSION;
+  error.code = UNSUPPORTED_APP_VERSION;
+  return error;
+}
+function formatUnsupportedOSVersionMessage({ android, ios }) {
+  if (android == null && ios == null) return "현재 기기의 OS 버전에서 사용할 수 없는 기능이에요. OS를 최신 버전으로 업데이트해 주세요.";
+  if (android != null && ios != null) return `Android ${android}, iOS ${ios} 이상에서만 사용할 수 있어요. 기기의 OS를 업데이트해 주세요.`;
+  return `${android != null ? "Android" : "iOS"} ${android ?? ios} 이상에서만 사용할 수 있어요.`;
+}
+function createUnsupportedOSVersionError(minOSVersion) {
+  const error = new Error(formatUnsupportedOSVersionMessage(minOSVersion));
+  error.name = UNSUPPORTED_OS_VERSION;
+  error.code = UNSUPPORTED_OS_VERSION;
+  return error;
+}
+function isTossAppVersionSupported(minVersion) {
+  return isMinVersionSupported(minVersion);
+}
+function assertSupported(fn2, isSupported2) {
+  const { MIN_OS_VERSION, MIN_TOSS_APP_VERSION } = fn2;
+  if (MIN_OS_VERSION == null) {
+    if (!isSupported2()) throw createUnsupportedAppVersionError(MIN_TOSS_APP_VERSION ?? {});
+    return;
+  }
+  if (MIN_OS_VERSION[getConstant("platformOS")] == null) throw createUnsupportedOSVersionError(MIN_OS_VERSION);
+  if (MIN_TOSS_APP_VERSION != null && !isTossAppVersionSupported(MIN_TOSS_APP_VERSION)) throw createUnsupportedAppVersionError(MIN_TOSS_APP_VERSION);
+  if (!isSupported2()) throw createUnsupportedOSVersionError(MIN_OS_VERSION);
+}
+function withUnsupportedThrow(fn2, flag) {
+  const isSupported2 = flag != null ? () => getConstant(flag) : () => {
+    var _a2;
+    return ((_a2 = fn2.isSupported) == null ? void 0 : _a2.call(fn2)) !== false;
+  };
+  return Object.assign(((...args) => {
+    assertSupported(fn2, isSupported2);
+    return fn2(...args);
+  }), fn2, { isSupported: isSupported2 });
+}
+var fetchAlbumItems = Object.assign((options) => callAsyncMethod("fetchAlbumItems", options ?? {}), { isSupported: () => getConstant("isFetchAlbumItemsSupported") });
+var FetchContactsPermissionError = class extends PermissionError {
+  constructor() {
+    super({
+      methodName: "fetchContacts",
+      message: "연락처 권한이 거부되었어요."
+    });
+  }
+};
+var fetchContacts = withPermission((options) => callAsyncMethod("fetchContacts", options), {
+  name: "contacts",
+  access: "read"
+}, FetchContactsPermissionError);
+var GetCurrentLocationPermissionError = class extends PermissionError {
+  constructor() {
+    super({
+      methodName: "getCurrentLocation",
+      message: "위치 권한이 거부되었어요."
+    });
+  }
+};
+var Accuracy = (function(Accuracy2) {
+  Accuracy2[Accuracy2["Lowest"] = 1] = "Lowest";
+  Accuracy2[Accuracy2["Low"] = 2] = "Low";
+  Accuracy2[Accuracy2["Balanced"] = 3] = "Balanced";
+  Accuracy2[Accuracy2["High"] = 4] = "High";
+  Accuracy2[Accuracy2["Highest"] = 5] = "Highest";
+  Accuracy2[Accuracy2["BestForNavigation"] = 6] = "BestForNavigation";
+  return Accuracy2;
+})({});
+var getCurrentLocation = withPermission((options) => callAsyncMethod("getCurrentLocation", options), {
+  name: "geolocation",
+  access: "access"
+}, GetCurrentLocationPermissionError);
+var FetchAlbumPhotosPermissionError = class extends PermissionError {
+  constructor() {
+    super({
+      methodName: "fetchAlbumPhotos",
+      message: "사진첩 권한이 거부되었어요."
+    });
+  }
+};
+var fetchAlbumPhotos = withPermission((options) => callAsyncMethod("fetchAlbumPhotos", options ?? {}), {
+  name: "photos",
+  access: "read"
+}, FetchAlbumPhotosPermissionError);
+function getLocale() {
+  return getConstant("locale");
+}
+var OpenCameraPermissionError = class extends PermissionError {
+  constructor() {
+    super({
+      methodName: "openCamera",
+      message: "카메라 권한이 거부되었어요."
+    });
+  }
+};
+var openCamera = withPermission((options) => callAsyncMethod("openCamera", options ?? {}), {
+  name: "camera",
+  access: "access"
+}, OpenCameraPermissionError);
+var openURL = (url) => callAsyncMethod("openURL", { url });
+function getPlatformOS() {
+  return getConstant("platformOS");
+}
+var StartUpdateLocationPermissionError = GetCurrentLocationPermissionError;
+var startUpdateLocation = Object.assign((eventParams) => {
+  let unsubscribe = null;
+  let cancelled = false;
+  callAsyncMethod("requestPermission", {
+    name: "geolocation",
+    access: "access"
+  }).then((status) => {
+    if (cancelled) return;
+    if (status === "denied") {
+      eventParams.onError(new StartUpdateLocationPermissionError());
+      return;
+    }
+    unsubscribe = callEventMethod("startUpdateLocation", {
+      params: eventParams.options,
+      onEvent: eventParams.onEvent,
+      onError: (error) => {
+        const locationError = new StartUpdateLocationPermissionError();
+        if (error instanceof Error && error.name === locationError.name) return eventParams.onError(locationError);
+        return eventParams.onError(error);
+      }
+    });
+  }).catch((error) => {
+    eventParams.onError(error);
+  });
+  return () => {
+    cancelled = true;
+    unsubscribe == null ? void 0 : unsubscribe();
+    unsubscribe = null;
+  };
+}, {
+  getPermission: () => callAsyncMethod("getPermission", {
+    name: "geolocation",
+    access: "access"
+  }),
+  openPermissionDialog: () => callAsyncMethod("openPermissionDialog", {
+    name: "geolocation",
+    access: "access"
+  })
+});
+var generateHapticFeedback = (options) => callAsyncMethod("generateHapticFeedback", options);
+var Device = {
+  /**
+  * 사용자 로케일 정보예요. 값을 못 가져오면 기본값은 `ko-KR`이에요.
+  */
+  get locale() {
+    return getLocale();
+  },
+  /**
+  * 현재 플랫폼(`ios`/`android`) 정보예요.
+  */
+  get os() {
+    return getPlatformOS();
+  },
+  /**
+  * 앨범에서 사진 목록을 불러와요.
+  * 기본값은 `maxCount=10`, `maxWidth=1024`, `base64=false`예요. 권한이 없으면 `FetchAlbumPhotosPermissionError`가 발생해요.
+  */
+  getPhotos: fetchAlbumPhotos,
+  /**
+  * 연락처 목록을 페이지 단위로 가져와요. `offset`은 첫 호출에 `0`, 이후 `nextOffset`을 사용해요.
+  * 권한이 없으면 `FetchContactsPermissionError`가 발생해요.
+  */
+  getContacts: fetchContacts,
+  /**
+  * 디바이스의 현재 위치를 한 번 조회해요. 지속 감지가 필요하면 `subscribeLocation`을 사용하세요.
+  * 권한이 없으면 `GetCurrentLocationPermissionError`가 발생해요.
+  */
+  getLocation: getCurrentLocation,
+  /**
+  * 카메라를 실행해 촬영한 이미지를 `{ id, dataUri }`로 반환해요.
+  * 기본값은 `base64=false`, `maxWidth=1024`예요. 권한이 없으면 `OpenCameraPermissionError`가 발생해요.
+  */
+  openCamera,
+  /**
+  * 앨범에서 사진·동영상을 선택해 가져와요. 취소하면 빈 배열을 반환하고, `types`를 안 넘기면 사진만 선택돼요.
+  * @since Toss - Android 5.261.0, iOS 5.261.0
+  */
+  getAlbumItems: withUnsupportedThrow(fetchAlbumItems, "isFetchAlbumItemsSupported"),
+  /**
+  * 디바이스에 햅틱 진동을 일으켜요. `type`이 필수예요.
+  */
+  triggerHaptic: generateHapticFeedback,
+  /**
+  * 위치 변경을 계속 감지하고 콜백을 실행해요. 반환되는 cleanup 함수로 구독을 해제해야 해요.
+  * `timeInterval`은 시스템 영향으로 지정값보다 길어질 수 있어요.
+  * 권한이 없으면 `StartUpdateLocationPermissionError`가 발생해요.
+  */
+  subscribeLocation: startUpdateLocation,
+  /**
+  * 지정한 URL을 기기의 기본 브라우저나 관련 앱에서 열어요.
+  */
+  openURL
+};
+var env = {
+  /**
+  * 현재 배포 ID를 가져와요. 개발 환경에서는 `'local'`이에요.
+  *
+  * @deprecated 이 함수는 더 이상 사용되지 않아요. `Environment.deploymentId`를 사용해주세요.
+  */
+  getDeploymentId: () => getConstant("deploymentId")
+};
+function getDeviceId() {
+  return getConstant("deviceId");
+}
+function getOperationalEnvironment() {
+  return getConstant("operationalEnvironment");
+}
+var getNetworkStatus = () => {
+  return callAsyncMethod("getNetworkStatus");
+};
+var getServerTime = Object.assign(async () => {
+  return (await callAsyncMethod("getServerTime")).serverTime;
+}, {
+  MIN_TOSS_APP_VERSION: {
+    android: "5.245.0",
+    ios: "5.245.0"
+  },
+  isSupported: () => getConstant("isGetServerTimeSupported")
+});
+function getGroupId() {
+  return getConstant("groupId");
+}
+function getSchemeUri() {
+  return getConstant("schemeUri");
+}
+function getTossAppVersion() {
+  return getConstant("tossAppVersion");
+}
+var Environment = {
+  /**
+  * 기기 고유 식별자예요.
+  */
+  get deviceId() {
+    return getDeviceId();
+  },
+  /**
+  * 앱인토스 그룹 ID예요.
+  */
+  get groupId() {
+    return getGroupId();
+  },
+  /**
+  * 운영 환경(`toss`/`sandbox`) 정보예요.
+  */
+  get environment() {
+    return getOperationalEnvironment();
+  },
+  /**
+  * 토스 앱 버전 정보예요.
+  */
+  get tossAppVersion() {
+    return getTossAppVersion();
+  },
+  /**
+  * 현재 배포 ID예요. 개발 환경에서는 `'local'`이에요.
+  */
+  get deploymentId() {
+    return env.getDeploymentId();
+  },
+  /**
+  * 앱에 처음 진입할 때 사용한 스킴 URL이에요. 이후 페이지 이동은 반영되지 않아요.
+  */
+  get initialURL() {
+    return getSchemeUri();
+  },
+  /**
+  * 디바이스의 현재 네트워크 연결 상태를 가져와요.
+  * `OFFLINE` | `WIFI` | `2G`–`5G` | `WWAN`(iOS) | `UNKNOWN`(Android) 중 하나예요.
+  */
+  getNetworkStatus,
+  /**
+  * 토스 앱 서버의 현재 시간을 Unix timestamp(ms)로 가져와요. 디바이스 시계가 아니에요.
+  * @since Toss - Android 5.245.0, iOS 5.245.0
+  */
+  getServerTime: withUnsupportedThrow(getServerTime, "isGetServerTimeSupported")
+};
+function getAppsInTossGlobals() {
+  return getConstant("appsInTossGlobals");
+}
+var openPDFViewer = Object.assign((params) => callAsyncMethod("openPDFViewer", params), {
+  MIN_TOSS_APP_VERSION: {
+    android: "5.261.0",
+    ios: "5.261.0"
+  },
+  isSupported: () => getConstant("isOpenPDFViewerSupported")
+});
+var MIN_TOSS_APP_VERSION$16 = {
+  android: "5.218.0",
+  ios: "5.216.0"
+};
+var saveBase64Data = Object.assign(async (params) => {
+  if (!saveBase64Data.isSupported()) {
+    console.warn("saveBase64Data is not supported in this app version");
+    return;
+  }
+  await callAsyncMethod("saveBase64Data", params);
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$16,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$16)
+});
+var File2 = {
+  /**
+  * Base64로 인코딩된 데이터를 지정한 파일 이름과 MIME 타입으로 기기에 저장해요.
+  * `fileName`에는 확장자를 포함해야 해요.
+  * @since Toss - Android 5.218.0, iOS 5.216.0
+  */
+  saveBase64: withUnsupportedThrow(saveBase64Data),
+  /**
+  * Base64로 인코딩된 PDF 데이터를 네이티브 PDF 뷰어로 열어요. 뷰어를 닫으면 `'CLOSE'`를 반환해요.
+  * @since Toss - Android 5.261.0, iOS 5.261.0
+  */
+  openPDFViewer: withUnsupportedThrow(openPDFViewer, "isOpenPDFViewerSupported")
+};
+var MIN_TOSS_APP_VERSION$15 = {
+  android: "5.221.0",
+  ios: "5.221.0"
+};
+var getGameCenterGameProfile = Object.assign(async () => {
+  if (!getGameCenterGameProfile.isSupported()) return;
+  return callAsyncMethod("getGameCenterGameProfile");
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$15,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$15)
+});
+var MIN_TOSS_APP_VERSION$14 = {
+  android: "5.221.0",
+  ios: "5.221.0"
+};
+var openGameCenterLeaderboard = Object.assign(async () => {
+  if (!openGameCenterLeaderboard.isSupported()) return;
+  return callAsyncMethod("openGameCenterLeaderboard");
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$14,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$14)
+});
+var MIN_TOSS_APP_VERSION$13 = {
+  android: "5.221.0",
+  ios: "5.221.0"
+};
+var submitGameCenterLeaderBoardScore = Object.assign(async (params) => {
+  if (!submitGameCenterLeaderBoardScore.isSupported()) return;
+  return callAsyncMethod("submitGameCenterLeaderBoardScore", params);
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$13,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$13)
+});
+var subscribeInfoOverlayHidden = (eventParams) => callEventMethod("gameInfoOverlayHidden", {
+  onEvent: eventParams.onEvent,
+  onError: eventParams.onError
+});
+var Game = {
+  /**
+  * 게임센터 리더보드 웹뷰를 열어요.
+  * @since Toss - Android 5.221.0, iOS 5.221.0
+  */
+  openLeaderboard: withUnsupportedThrow(openGameCenterLeaderboard),
+  /**
+  * 사용자의 게임 점수를 토스게임센터 리더보드에 제출해요.
+  * `score`는 실수형 숫자의 문자열이어야 해요. 예: `"123.45"`
+  * @since Toss - Android 5.221.0, iOS 5.221.0
+  */
+  setLeaderboardScore: withUnsupportedThrow(submitGameCenterLeaderBoardScore),
+  /**
+  * 토스게임센터 프로필 정보를 가져와요.
+  * 프로필이 없으면 `statusCode: 'PROFILE_NOT_FOUND'`를 반환해요.
+  * @since Toss - Android 5.221.0, iOS 5.221.0
+  */
+  getUserProfile: withUnsupportedThrow(getGameCenterGameProfile),
+  /**
+  * 게임 정보 오버레이가 완전히 사라진 시점을 구독해요.
+  * 반환되는 구독 해제 함수는 더 이상 이벤트가 필요하지 않을 때 호출하세요.
+  */
+  subscribeInfoOverlayHidden
+};
+var IAP_MIN_VERSION = {
+  android: "5.219.0",
+  ios: "5.219.0"
+};
+var IAP_PENDING_ORDERS_MIN_VERSION = {
+  android: "5.234.0",
+  ios: "5.231.0"
+};
+var IAP_COMPLETED_OR_REFUNDED_ORDERS_MIN_VERSION = {
+  android: "5.231.0",
+  ios: "5.231.0"
+};
+var IAP_COMPLETE_PRODUCT_GRANT_MIN_VERSION = {
+  android: "5.233.0",
+  ios: "5.233.0"
+};
+var IAP_SUBSCRIPTION_INFO_MIN_VERSION = {
+  android: "5.253.0",
+  ios: "5.250.0"
+};
+var IAP_SUBSCRIPTION_PURCHASE_MIN_VERSION = {
+  android: "5.248.0",
+  ios: "5.249.0"
+};
+var completeProductGrant = Object.assign((args) => callAsyncMethod("completeProductGrant", args.params), {
+  MIN_TOSS_APP_VERSION: IAP_COMPLETE_PRODUCT_GRANT_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_COMPLETE_PRODUCT_GRANT_MIN_VERSION)
+});
+var createOneTimePurchaseOrder = Object.assign((params) => {
+  const noop2 = () => {
+  };
+  if (!isMinVersionSupported(IAP_MIN_VERSION)) return noop2;
+  const { options, onEvent, onError } = params;
+  const sku = options.sku ?? options.productId;
+  if (!getConstant("isRequestOneTimePurchaseSupported")) {
+    callAsyncMethod("iapCreateOneTimePurchaseOrder", { productId: sku }).then((response) => {
+      Promise.resolve(options.processProductGrant({ orderId: response.orderId })).then(() => {
+        onEvent({
+          type: "success",
+          data: response
+        });
+      }).catch((error) => {
+        onError(error);
+      });
+    }).catch((error) => {
+      onError(error);
+    });
+    return noop2;
+  }
+  return callEventMethod("requestOneTimePurchase", {
+    params: { sku },
+    onEvent: async (event) => {
+      if (event.type === "purchased") {
+        const isProductGranted = await options.processProductGrant({ orderId: event.data.orderId });
+        await callAsyncMethod("processProductGrant", {
+          orderId: event.data.orderId,
+          isProductGranted
+        }).catch(onError);
+      } else onEvent(event);
+    },
+    onError: (error) => onError(error)
+  });
+}, {
+  MIN_TOSS_APP_VERSION: IAP_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_MIN_VERSION)
+});
+var createSubscriptionPurchaseOrder = Object.assign((params) => {
+  const noop2 = () => {
+  };
+  if (!isMinVersionSupported(IAP_SUBSCRIPTION_PURCHASE_MIN_VERSION)) return noop2;
+  const { options, onEvent, onError } = params;
+  const { sku, offerId, processProductGrant: handleProcessProductGrant } = options;
+  return callEventMethod("requestSubscriptionPurchase", {
+    params: {
+      sku,
+      offerId: offerId ?? null
+    },
+    onEvent: async (event) => {
+      if (event.type === "purchased") {
+        const isProductGranted = await handleProcessProductGrant({
+          orderId: event.data.orderId,
+          subscriptionId: event.data.subscriptionId
+        });
+        await callAsyncMethod("processProductGrant", {
+          orderId: event.data.orderId,
+          isProductGranted
+        }).catch(onError);
+      } else onEvent(event);
+    },
+    onError: (error) => onError(error)
+  });
+}, {
+  MIN_TOSS_APP_VERSION: IAP_SUBSCRIPTION_PURCHASE_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_SUBSCRIPTION_PURCHASE_MIN_VERSION)
+});
+var getCompletedOrRefundedOrders = Object.assign(() => callAsyncMethod("getCompletedOrRefundedOrders", {}), {
+  MIN_TOSS_APP_VERSION: IAP_COMPLETED_OR_REFUNDED_ORDERS_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_COMPLETED_OR_REFUNDED_ORDERS_MIN_VERSION)
+});
+var getPendingOrders = Object.assign(() => callAsyncMethod("getPendingOrders"), {
+  MIN_TOSS_APP_VERSION: IAP_PENDING_ORDERS_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_PENDING_ORDERS_MIN_VERSION)
+});
+var getProductItemList = Object.assign(() => callAsyncMethod("iapGetProductItemList"), {
+  MIN_TOSS_APP_VERSION: IAP_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_MIN_VERSION)
+});
+var getSubscriptionInfo = Object.assign((args) => callAsyncMethod("getSubscriptionInfo", args), {
+  MIN_TOSS_APP_VERSION: IAP_SUBSCRIPTION_INFO_MIN_VERSION,
+  isSupported: () => isMinVersionSupported(IAP_SUBSCRIPTION_INFO_MIN_VERSION)
+});
+var IAP = {
+  /**
+  * 단건 인앱결제 주문서 페이지로 이동해요.
+  * 반환되는 cleanup 함수는 결제 흐름이 끝나면 반드시 호출해야 해요.
+  * 상품 식별자는 `sku`를 사용하세요. (`productId`는 deprecated)
+  * @since Toss - Android 5.219.0, iOS 5.219.0
+  */
+  createOneTimePurchaseOrder: withUnsupportedThrow(createOneTimePurchaseOrder),
+  /**
+  * 구독 인앱결제 주문서 페이지로 이동해요.
+  * 반환되는 cleanup 함수는 결제 흐름이 끝나면 반드시 호출해야 해요.
+  * @since Toss - Android 5.248.0, iOS 5.249.0
+  */
+  createSubscriptionPurchaseOrder: withUnsupportedThrow(createSubscriptionPurchaseOrder),
+  /**
+  * 구매 가능한 상품 목록을 가져와요.
+  * @since Toss - Android 5.219.0, iOS 5.219.0
+  */
+  getProductItemList: withUnsupportedThrow(getProductItemList),
+  /**
+  * 아직 결제가 완료되지 않은 대기 중인 주문 목록을 가져와요.
+  * @since Toss - Android 5.234.0, iOS 5.231.0
+  */
+  getPendingOrders: withUnsupportedThrow(getPendingOrders),
+  /**
+  * 완료·환불된 주문 목록을 가져와요. `hasNext` / `nextKey`로 페이지네이션해요.
+  * @since Toss - Android 5.231.0, iOS 5.231.0
+  */
+  getCompletedOrRefundedOrders: withUnsupportedThrow(getCompletedOrRefundedOrders),
+  /**
+  * 상품 지급 완료를 앱에 알려요. `{ params: { orderId } }` 형태이며, 지급 완료 여부(boolean)를 반환해요.
+  * @since Toss - Android 5.233.0, iOS 5.233.0
+  */
+  completeProductGrant: withUnsupportedThrow(completeProductGrant),
+  /**
+  * 구독 주문의 현재 상태 정보를 가져와요. `{ params: { orderId } }` 형태예요.
+  * @since Toss - Android 5.253.0, iOS 5.250.0
+  */
+  getSubscriptionInfo: withUnsupportedThrow(getSubscriptionInfo)
+};
+var MIN_TOSS_APP_VERSION$12 = {
+  android: "5.255.0",
+  ios: "5.255.0"
+};
+var requestNotificationAgreement = Object.assign((params) => {
+  return callEventMethod("requestNotificationAgreement", {
+    params: params.options,
+    onEvent: (event) => params.onEvent(event),
+    onError: (error) => {
+      params.onError(error);
+    }
+  });
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$12,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$12)
+});
+var Notification = {
+  /**
+  * 알림 동의 화면을 요청하고, 동의 결과를 콜백으로 전달해요.
+  * `templateCode`는 콘솔 스마트발송 템플릿 코드예요. 반환되는 cleanup 함수로 콜백을 해제해야 해요.
+  * @since Toss - Android 5.255.0, iOS 5.255.0
+  */
+  requestAgreement: withUnsupportedThrow(requestNotificationAgreement)
+};
+var MIN_TOSS_APP_VERSION$11 = {
+  android: "5.232.0",
+  ios: "5.232.0"
+};
+function isSupported$2() {
+  return isMinVersionSupported(MIN_TOSS_APP_VERSION$11);
+}
+function isGrantPromotionRewardError(error) {
+  return typeof error === "object" && error !== null && "code" in error && typeof error.code === "string" && "message" in error && typeof error.message === "string";
+}
+var grantPromotionReward = Object.assign(async (params) => {
+  if (!isSupported$2()) return;
+  try {
+    const response = await callAsyncMethod("grantPromotionReward", params);
+    if (response.key) return response;
+    return "ERROR";
+  } catch (error) {
+    if (isGrantPromotionRewardError(error)) return {
+      errorCode: error.code,
+      message: error.message
+    };
+    return "ERROR";
+  }
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$11,
+  isSupported: isSupported$2
+});
+var MIN_TOSS_APP_VERSION$10 = {
+  android: "5.223.0",
+  ios: "5.223.0"
+};
+function isSupported$1() {
+  return isMinVersionSupported(MIN_TOSS_APP_VERSION$10);
+}
+var contactsViral = Object.assign((params) => {
+  if (!isSupported$1()) return () => {
+  };
+  return callEventMethod("contactsViral", {
+    params: params.options,
+    onEvent: params.onEvent,
+    onError: (error) => params.onError(error)
+  });
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$10,
+  isSupported: isSupported$1
+});
+function createGrantRewardError(code, message) {
+  const error = new Error(message);
+  error.name = code;
+  error.code = code;
+  return error;
+}
+var Promotion = {
+  /**
+  * 프로모션 코드를 사용해 유저에게 리워드를 지급해요. 성공 시 `{ key }`를 반환해요.
+  * 지급 실패면 실패 코드(`error.code`)를 담은 에러를, 알 수 없는 오류면 `UNKNOWN_ERROR`를 throw해요.
+  * @since Toss - Android 5.232.0, iOS 5.232.0
+  */
+  grantReward: withUnsupportedThrow(Object.assign(async (params) => {
+    const result = await grantPromotionReward({ params });
+    if (result === "ERROR" || result === void 0) throw createGrantRewardError("UNKNOWN_ERROR", "리워드 지급 중 알 수 없는 오류가 발생했어요.");
+    if ("errorCode" in result) throw createGrantRewardError(result.errorCode, result.message);
+    return result;
+  }, {
+    isSupported: grantPromotionReward.isSupported,
+    MIN_TOSS_APP_VERSION: grantPromotionReward.MIN_TOSS_APP_VERSION
+  })),
+  /**
+  * 친구에게 공유하고 리워드를 받을 수 있는 기능을 제공해요.
+  * `options.moduleId`는 콘솔 공유 리워드 UUID예요. 반환되는 cleanup 함수로 구독을 해제해야 해요.
+  * @deprecated 이 API는 더 이상 사용을 권장하지 않아요.
+  * @since Toss - Android 5.223.0, iOS 5.223.0
+  */
+  openContactsInvite: withUnsupportedThrow(contactsViral)
+};
+var requestReview = Object.assign(() => callAsyncMethod("requestMiniAppReview"), {
+  MIN_TOSS_APP_VERSION: {
+    android: "5.253.0",
+    ios: "5.253.0"
+  },
+  isSupported: () => getConstant("isRequestReviewSupported")
+});
+var Review = {
+  /**
+  * 유저에게 미니앱 리뷰를 요청해요.
+  * @since Toss - Android 5.253.0, iOS 5.253.0
+  */
+  request: withUnsupportedThrow(requestReview, "isRequestReviewSupported")
+};
+function getSafeAreaInsets() {
+  return getConstant("safeAreaInsets");
+}
+var closeView = () => callAsyncMethod("closeView");
+var setScreenAwakeMode = (options) => callAsyncMethod("setScreenAwakeMode", options);
+var setIosSwipeGestureEnabled = (options) => callAsyncMethod("setIosSwipeGestureEnabled", options);
+var MIN_TOSS_APP_VERSION$8 = {
+  android: "5.215.0",
+  ios: "5.215.0"
+};
+var setDeviceOrientation = Object.assign(async (options) => {
+  if (!setDeviceOrientation.isSupported()) return;
+  return callAsyncMethod("setDeviceOrientation", options);
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$8,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$8)
+});
+var setSecureScreen = (options) => callAsyncMethod("setSecureScreen", options);
+var Screen = {
+  /**
+  * 현재 화면을 닫아요.
+  */
+  close: closeView,
+  /**
+  * 화면이 항상 켜져 있도록 설정하거나 해제해요. 앱 전체에 영향을 주므로 화면을 벗어날 때 이전 상태로 복구하세요.
+  * 앱을 벗어나면 항상 켜짐 모드가 풀릴 수 있어요.
+  */
+  setAwakeMode: setScreenAwakeMode,
+  /**
+  * 화면 캡쳐를 차단하거나 허용해요. `{ enabled: true }`면 차단, `false`면 허용이에요.
+  */
+  setSecure: setSecureScreen,
+  /**
+  * iOS에서 화면을 스와이프해 뒤로가기하는 기능을 켜거나 꺼요. 옵션 키는 `isEnabled`예요.
+  */
+  setIosSwipeBack: setIosSwipeGestureEnabled,
+  /**
+  * 기기 화면 방향을 `'portrait'` 또는 `'landscape'`로 설정해요. 앱 전체에 영향을 주므로 화면을 벗어날 때 복구하세요.
+  * @since Toss - Android 5.215.0, iOS 5.215.0
+  */
+  setOrientation: withUnsupportedThrow(setDeviceOrientation)
+};
+var clearItems = () => callAsyncMethod("clearStorage");
+var getItem = (key) => callAsyncMethod("getStorageItem", { key });
+var getItems = Object.assign((keys) => callAsyncMethod("getStorageItems", { keys }), { MIN_TOSS_APP_VERSION: {
+  android: "5.270.0",
+  ios: "5.270.0"
+} });
+var removeItem = (key) => callAsyncMethod("removeStorageItem", { key });
+var setItem = (key, value) => callAsyncMethod("setStorageItem", {
+  key,
+  value
+});
+var setItems = Object.assign((items) => callAsyncMethod("setStorageItems", { items }), { MIN_TOSS_APP_VERSION: {
+  android: "5.270.0",
+  ios: "5.270.0"
+} });
+var Storage = {
+  /**
+  * 로컬 저장소에서 문자열 값을 가져와요. 값이 없으면 `null`을 반환해요.
+  */
+  getItem,
+  /**
+  * 로컬 저장소에서 여러 문자열 값을 한 번에 가져와요. 저장되지 않은 키의 값은 `null`이에요.
+  * @since Toss - Android 5.270.0, iOS 5.270.0
+  */
+  getItems: withUnsupportedThrow(getItems, "isGetStorageItemsSupported"),
+  /**
+  * 로컬 저장소에 문자열 값을 저장해요. 앱이 종료되어도 유지돼요.
+  */
+  setItem,
+  /**
+  * 로컬 저장소에 여러 문자열 값을 한 번에 저장해요.
+  * @since Toss - Android 5.270.0, iOS 5.270.0
+  */
+  setItems: withUnsupportedThrow(setItems, "isSetStorageItemsSupported"),
+  /**
+  * 특정 키의 값을 삭제해요.
+  */
+  removeItem,
+  /**
+  * 로컬 저장소의 모든 값을 삭제해요.
+  */
+  clearItems
+};
+var MIN_TOSS_APP_VERSION$5 = {
+  android: "5.237.0",
+  ios: "5.237.0"
+};
+var getIsTossLoginIntegratedService = Object.assign(async () => {
+  if (!getIsTossLoginIntegratedService.isSupported()) return;
+  return callAsyncMethod("getIsTossLoginIntegratedService");
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$5,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$5)
+});
+var appLogin = () => callAsyncMethod("appLogin");
+var MIN_TOSS_APP_VERSION$4 = {
+  android: "5.233.0",
+  ios: "5.233.0"
+};
+var appsInTossSignTossCert = Object.assign(async (params) => {
+  if (!appsInTossSignTossCert.isSupported()) {
+    console.warn("appsInTossSignTossCert is not supported in this app version");
+    return;
+  }
+  await callAsyncMethod("appsInTossSignTossCert", params);
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$4,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$4)
+});
+var TossAuth = {
+  /**
+  * 토스 인증으로 로그인해요. 로그인이 완료되면 다시 토스 앱으로 이동해요.
+  * 반환된 `authorizationCode`와 `referrer`는 서버로 전달해야 해요.
+  */
+  login: appLogin,
+  /**
+  * 유저가 토스 로그인을 연동했는지 여부를 확인해요.
+  * 토스 로그인을 쓰지 않는 미니앱에서 호출하면 설정 오류로 throw될 수 있어요.
+  * @since Toss - Android 5.237.0, iOS 5.237.0
+  */
+  isIntegrated: withUnsupportedThrow(getIsTossLoginIntegratedService),
+  /**
+  * 토스 인증서를 사용해 서명해요. 본인확인·간편인증·전자서명의 `txId`가 필요해요.
+  * @since Toss - Android 5.233.0, iOS 5.233.0
+  */
+  sign: withUnsupportedThrow(appsInTossSignTossCert)
+};
+function checkoutPayment(options) {
+  return callAsyncMethod("checkoutPayment", options.params);
+}
+var MIN_TOSS_APP_VERSION$3 = {
+  android: "5.256.0",
+  ios: "5.256.0"
+};
+function isSupported() {
+  return getConstant("isRequestTossPayPaysBillingSupported");
+}
+function callRequestTossPayPaysBilling(options) {
+  return callAsyncMethod("requestTossPayPaysBilling", options.params);
+}
+var requestTossPayPaysBilling = Object.assign(async (options) => {
+  if (!isSupported()) {
+    console.warn("requestTossPayPaysBilling is not supported in this app version");
+    return;
+  }
+  return callRequestTossPayPaysBilling(options);
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$3,
+  isSupported
+});
+var TossPay = {
+  /**
+  * 토스페이 결제창을 띄우고 사용자 인증을 수행해요.
+  * 결제창을 통해 사용자 인증만 하며, 실제 결제 처리는 인증 성공 후 서버에서 별도로 해야 해요.
+  * `payToken`이 필요하며 `{ success, reason? }`를 반환해요.
+  */
+  authorize: (params) => checkoutPayment({ params }),
+  /**
+  * 토스페이 정기결제창을 띄우고 사용자 인증을 수행해요.
+  * 결제창을 통해 사용자 인증만 하며, 실제 결제 처리는 인증 성공 후 서버에서 별도로 해야 해요.
+  * `wrappedToken`이 필요하며 `{ success, reason? }`를 반환해요.
+  * @since Toss - Android 5.256.0, iOS 5.256.0
+  */
+  authorizeSubscription: withUnsupportedThrow(Object.assign(async (params) => {
+    return await callRequestTossPayPaysBilling({ params });
+  }, { MIN_TOSS_APP_VERSION: requestTossPayPaysBilling.MIN_TOSS_APP_VERSION }), "isRequestTossPayPaysBillingSupported"),
+  /**
+  * @deprecated TossPay.authorize를 사용해주세요
+  */
+  checkoutPayment,
+  /**
+  * @deprecated TossPay.authorizeSubscription을 사용해주세요
+  */
+  requestTossPayPaysBilling
+};
+var MIN_TOSS_APP_VERSION$2 = {
+  android: "5.232.0",
+  ios: "5.232.0"
+};
+var getAnonymousKey = Object.assign(async () => {
+  if (!getAnonymousKey.isSupported()) return;
+  try {
+    const response = await callAsyncMethod("getAnonymousKey");
+    if (response.type === "HASH") return response;
+    return "ERROR";
+  } catch {
+    return "ERROR";
+  }
+}, {
+  MIN_TOSS_APP_VERSION: MIN_TOSS_APP_VERSION$2,
+  isSupported: () => isMinVersionSupported(MIN_TOSS_APP_VERSION$2)
+});
+var getConsentedUserData = Object.assign(async (options) => {
+  if (!getConsentedUserData.isSupported()) return;
+  return await callAsyncMethod("getConsentedUserData", options);
+}, {
+  MIN_TOSS_APP_VERSION: {
+    android: "5.264.0",
+    ios: "5.264.0"
+  },
+  isSupported: () => getConstant("isGetConsentedUserDataSupported")
+});
+var getDeclaredAgeRange = Object.assign(async (params) => {
+  return await callAsyncMethod("getDeclaredAgeRange", params);
+}, {
+  MIN_TOSS_APP_VERSION: { ios: "5.266.0" },
+  MIN_OS_VERSION: { ios: "26.0" },
+  isSupported: () => getConstant("isGetDeclaredAgeRangeSupported")
+});
+var createAnonymousKeyAuthCode = () => callAsyncMethod("createAnonymousKeyAuthCode");
+function createUnknownError(message) {
+  const error = new Error(message);
+  error.name = "UNKNOWN_ERROR";
+  error.code = "UNKNOWN_ERROR";
+  return error;
+}
+var User = {
+  /**
+  * 익명 사용자 키를 받기 위한 일회용 인증 코드를 발급해요.
+  * 반환된 `code`를 파트너사 서버로 보내 교환하면 `hash`를 받을 수 있어요.
+  * 코드는 일회용이며 `expiresIn`(초) 안에 써야 해요.
+  * 교환으로 받은 `hash`는 `User.getAnonymousKey`의 `hash`와 같은 값이에요.
+  */
+  createAnonymousKeyAuthCode,
+  /**
+  * 미니앱에서 사용자의 고유 키를 가져와요. 성공 시 `{ type: 'HASH', hash }`를 반환해요.
+  * 앱 버전이 부족하면 `UNSUPPORTED_APP_VERSION`, 알 수 없는 오류면 `UNKNOWN_ERROR`를 throw해요.
+  * @since Toss - Android 5.232.0, iOS 5.232.0
+  */
+  getAnonymousKey: withUnsupportedThrow(Object.assign(async () => {
+    const result = await getAnonymousKey();
+    if (result === "ERROR") throw createUnknownError("사용자 키 조회 중 알 수 없는 오류가 발생했어요.");
+    return result;
+  }, {
+    isSupported: getAnonymousKey.isSupported,
+    MIN_TOSS_APP_VERSION: getAnonymousKey.MIN_TOSS_APP_VERSION
+  })),
+  /**
+  * 사용자 동의 기반 데이터를 요청해요. `consentedUserDataKey`가 필요하고, 동의가 필요하면 약관 웹뷰를 띄워요.
+  * @since Toss - Android 5.264.0, iOS 5.264.0
+  */
+  getConsentedData: withUnsupportedThrow(getConsentedUserData, "isGetConsentedUserDataSupported"),
+  /**
+  * iOS에서 선언된 연령 범위를 조회해요. iOS 26 이상과 토스앱 5.266.0 이상이 필요하고, `{ ageGates: number[] }`를 넘기세요.
+  * OS 버전이 부족하면 `UNSUPPORTED_OS_VERSION`, 토스앱 버전이 부족하면 `UNSUPPORTED_APP_VERSION` 에러를 던져요.
+  * @since Toss - iOS 5.266.0, OS - iOS 26.0
+  */
+  getDeclaredAgeRange: withUnsupportedThrow(getDeclaredAgeRange, "isGetDeclaredAgeRangeSupported")
+};
+function createEventEmitter() {
+  return { addEventListener: (event, args) => {
+    return callEventMethod(event, {
+      params: args.options,
+      onEvent: args.onEvent,
+      onError: args.onError ?? (() => {
+      })
+    });
+  } };
+}
+var appsInTossEvent = createEventEmitter();
+var graniteEvent = createEventEmitter();
+var tdsEvent = createEventEmitter();
+
+// ../../node_modules/.pnpm/@toss+tds-mobile-ait@2.5.1__e91bbc1cad2634b6c0718b954e52742c/node_modules/@toss/tds-mobile-ait/dist/esm/index.js
+var import_react = __toESM(require_react());
+var import_jsx_runtime = __toESM(require_jsx_runtime());
+var import_react4 = __toESM(require_react());
+var import_jsx_runtime2 = __toESM(require_jsx_runtime());
+var import_jsx_runtime3 = __toESM(require_jsx_runtime());
+var Xe = Object.defineProperty;
+var x = (e, a) => {
+  for (var r in a) Xe(e, r, { get: a[r], enumerable: true });
+};
+var V = {};
+x(V, { background: () => c0, backgroundDimmed: () => er, backgroundLevel01: () => rr, backgroundLevel02: () => tr, backgroundLevelB01: () => ar, blue100: () => I0, blue200: () => j0, blue300: () => E0, blue400: () => V0, blue50: () => M0, blue500: () => z0, blue600: () => N0, blue700: () => H0, blue800: () => F0, blue900: () => U0, dimmedBackground: () => v0, disabledBlue500: () => g0, floatBackground: () => u0, green100: () => Oa, green200: () => Pa, green300: () => xa, green400: () => Sa, green50: () => Ga, green500: () => Aa, green600: () => La, green700: () => Ca, green800: () => Ra, green900: () => Da, grey100: () => m0, grey200: () => T0, grey300: () => B0, grey400: () => k0, grey50: () => y0, grey500: () => w0, grey600: () => G0, grey700: () => O0, grey800: () => P0, grey900: () => x0, greyBackground: () => b0, greyOpacity100: () => A0, greyOpacity200: () => L0, greyOpacity300: () => C0, greyOpacity400: () => R0, greyOpacity50: () => S0, greyOpacity500: () => D0, greyOpacity600: () => Y0, greyOpacity700: () => $0, greyOpacity800: () => _0, greyOpacity900: () => W0, hairlineBorder: () => h0, layeredBackground: () => p0, opacity100: () => a0, opacity200: () => r0, opacity300: () => t0, opacity400: () => d0, opacity50: () => e0, opacity500: () => o0, opacity600: () => n0, opacity700: () => l0, opacity800: () => i0, opacity900: () => f0, orange100: () => oa, orange200: () => na, orange300: () => la, orange400: () => ia, orange50: () => da, orange500: () => fa, orange600: () => ga, orange700: () => ca, orange800: () => pa, orange900: () => ua, pcScreenBg: () => s0, purple100: () => Ha, purple200: () => Fa, purple300: () => Ua, purple400: () => qa, purple50: () => Na, purple500: () => Za, purple600: () => Ka, purple700: () => Ja, purple800: () => Qa, purple900: () => Xa, red100: () => Z0, red200: () => K0, red300: () => J0, red400: () => Q0, red50: () => q0, red500: () => X0, red600: () => ea, red700: () => aa, red800: () => ra, red900: () => ta, teal100: () => $a, teal200: () => _a, teal300: () => Wa, teal400: () => Ma, teal50: () => Ya, teal500: () => Ia, teal600: () => ja, teal700: () => Ea, teal800: () => Va, teal900: () => za, yellow100: () => ha, yellow200: () => ba, yellow300: () => sa, yellow400: () => ya, yellow50: () => va, yellow500: () => ma, yellow600: () => Ta, yellow700: () => Ba, yellow800: () => ka, yellow900: () => wa });
+var e0 = "var(--adaptiveOpacity50)";
+var a0 = "var(--adaptiveOpacity100)";
+var r0 = "var(--adaptiveOpacity200)";
+var t0 = "var(--adaptiveOpacity300)";
+var d0 = "var(--adaptiveOpacity400)";
+var o0 = "var(--adaptiveOpacity500)";
+var n0 = "var(--adaptiveOpacity600)";
+var l0 = "var(--adaptiveOpacity700)";
+var i0 = "var(--adaptiveOpacity800)";
+var f0 = "var(--adaptiveOpacity900)";
+var g0 = "var(--adaptiveDisabledBlue500)";
+var c0 = "var(--adaptiveBackground)";
+var p0 = "var(--adaptiveLayeredBackground)";
+var u0 = "var(--adaptiveFloatBackground)";
+var v0 = "var(--adaptiveDimmedBackground)";
+var h0 = "var(--adaptiveHairlineBorder)";
+var b0 = "var(--adaptiveGreyBackground)";
+var s0 = "var(--adaptivePcScreenBg)";
+var y0 = "var(--adaptiveGrey50)";
+var m0 = "var(--adaptiveGrey100)";
+var T0 = "var(--adaptiveGrey200)";
+var B0 = "var(--adaptiveGrey300)";
+var k0 = "var(--adaptiveGrey400)";
+var w0 = "var(--adaptiveGrey500)";
+var G0 = "var(--adaptiveGrey600)";
+var O0 = "var(--adaptiveGrey700)";
+var P0 = "var(--adaptiveGrey800)";
+var x0 = "var(--adaptiveGrey900)";
+var S0 = "var(--adaptiveGreyOpacity50)";
+var A0 = "var(--adaptiveGreyOpacity100)";
+var L0 = "var(--adaptiveGreyOpacity200)";
+var C0 = "var(--adaptiveGreyOpacity300)";
+var R0 = "var(--adaptiveGreyOpacity400)";
+var D0 = "var(--adaptiveGreyOpacity500)";
+var Y0 = "var(--adaptiveGreyOpacity600)";
+var $0 = "var(--adaptiveGreyOpacity700)";
+var _0 = "var(--adaptiveGreyOpacity800)";
+var W0 = "var(--adaptiveGreyOpacity900)";
+var M0 = "var(--adaptiveBlue50)";
+var I0 = "var(--adaptiveBlue100)";
+var j0 = "var(--adaptiveBlue200)";
+var E0 = "var(--adaptiveBlue300)";
+var V0 = "var(--adaptiveBlue400)";
+var z0 = "var(--adaptiveBlue500)";
+var N0 = "var(--adaptiveBlue600)";
+var H0 = "var(--adaptiveBlue700)";
+var F0 = "var(--adaptiveBlue800)";
+var U0 = "var(--adaptiveBlue900)";
+var q0 = "var(--adaptiveRed50)";
+var Z0 = "var(--adaptiveRed100)";
+var K0 = "var(--adaptiveRed200)";
+var J0 = "var(--adaptiveRed300)";
+var Q0 = "var(--adaptiveRed400)";
+var X0 = "var(--adaptiveRed500)";
+var ea = "var(--adaptiveRed600)";
+var aa = "var(--adaptiveRed700)";
+var ra = "var(--adaptiveRed800)";
+var ta = "var(--adaptiveRed900)";
+var da = "var(--adaptiveOrange50)";
+var oa = "var(--adaptiveOrange100)";
+var na = "var(--adaptiveOrange200)";
+var la = "var(--adaptiveOrange300)";
+var ia = "var(--adaptiveOrange400)";
+var fa = "var(--adaptiveOrange500)";
+var ga = "var(--adaptiveOrange600)";
+var ca = "var(--adaptiveOrange700)";
+var pa = "var(--adaptiveOrange800)";
+var ua = "var(--adaptiveOrange900)";
+var va = "var(--adaptiveYellow50)";
+var ha = "var(--adaptiveYellow100)";
+var ba = "var(--adaptiveYellow200)";
+var sa = "var(--adaptiveYellow300)";
+var ya = "var(--adaptiveYellow400)";
+var ma = "var(--adaptiveYellow500)";
+var Ta = "var(--adaptiveYellow600)";
+var Ba = "var(--adaptiveYellow700)";
+var ka = "var(--adaptiveYellow800)";
+var wa = "var(--adaptiveYellow900)";
+var Ga = "var(--adaptiveGreen50)";
+var Oa = "var(--adaptiveGreen100)";
+var Pa = "var(--adaptiveGreen200)";
+var xa = "var(--adaptiveGreen300)";
+var Sa = "var(--adaptiveGreen400)";
+var Aa = "var(--adaptiveGreen500)";
+var La = "var(--adaptiveGreen600)";
+var Ca = "var(--adaptiveGreen700)";
+var Ra = "var(--adaptiveGreen800)";
+var Da = "var(--adaptiveGreen900)";
+var Ya = "var(--adaptiveTeal50)";
+var $a = "var(--adaptiveTeal100)";
+var _a = "var(--adaptiveTeal200)";
+var Wa = "var(--adaptiveTeal300)";
+var Ma = "var(--adaptiveTeal400)";
+var Ia = "var(--adaptiveTeal500)";
+var ja = "var(--adaptiveTeal600)";
+var Ea = "var(--adaptiveTeal700)";
+var Va = "var(--adaptiveTeal800)";
+var za = "var(--adaptiveTeal900)";
+var Na = "var(--adaptivePurple50)";
+var Ha = "var(--adaptivePurple100)";
+var Fa = "var(--adaptivePurple200)";
+var Ua = "var(--adaptivePurple300)";
+var qa = "var(--adaptivePurple400)";
+var Za = "var(--adaptivePurple500)";
+var Ka = "var(--adaptivePurple600)";
+var Ja = "var(--adaptivePurple700)";
+var Qa = "var(--adaptivePurple800)";
+var Xa = "var(--adaptivePurple900)";
+var er = "var(--adaptiveBackgroundDimmed)";
+var ar = "var(--adaptiveBackgroundLevelB01)";
+var rr = "var(--adaptiveBackgroundLevel01)";
+var tr = "var(--adaptiveBackgroundLevel02)";
+var h = {};
+x(h, { background: () => Wn, backgroundDimmed: () => Pi, backgroundLevel01: () => Si, backgroundLevel02: () => Ai, backgroundLevelB01: () => xi, blue100: () => cl, blue200: () => pl, blue300: () => ul, blue400: () => vl, blue50: () => gl, blue500: () => hl, blue600: () => bl, blue700: () => sl, blue800: () => yl, blue900: () => ml, dimmedBackground: () => jn, disabledBlue500: () => _n, floatBackground: () => In, green100: () => Jl, green200: () => Ql, green300: () => Xl, green400: () => ei, green50: () => Kl, green500: () => ai, green600: () => ri, green700: () => ti, green800: () => di, green900: () => oi, grey100: () => Hn, grey200: () => Fn, grey300: () => Un, grey400: () => qn, grey50: () => Nn, grey500: () => Zn, grey600: () => Kn, grey700: () => Jn, grey800: () => Qn, grey900: () => Xn, greyBackground: () => Vn, greyOpacity100: () => al, greyOpacity200: () => rl, greyOpacity300: () => tl, greyOpacity400: () => dl, greyOpacity50: () => el, greyOpacity500: () => ol, greyOpacity600: () => nl, greyOpacity700: () => ll, greyOpacity800: () => il, greyOpacity900: () => fl, hairlineBorder: () => En, layeredBackground: () => Mn, opacity100: () => xn, opacity200: () => Sn, opacity300: () => An, opacity400: () => Ln, opacity50: () => Pn, opacity500: () => Cn, opacity600: () => Rn, opacity700: () => Dn, opacity800: () => Yn, opacity900: () => $n, orange100: () => Cl, orange200: () => Rl, orange300: () => Dl, orange400: () => Yl, orange50: () => Ll, orange500: () => $l, orange600: () => _l, orange700: () => Wl, orange800: () => Ml, orange900: () => Il, pcScreenBg: () => zn, purple100: () => si, purple200: () => yi, purple300: () => mi, purple400: () => Ti, purple50: () => bi, purple500: () => Bi, purple600: () => ki, purple700: () => wi, purple800: () => Gi, purple900: () => Oi, red100: () => Bl, red200: () => kl, red300: () => wl, red400: () => Gl, red50: () => Tl, red500: () => Ol, red600: () => Pl, red700: () => xl, red800: () => Sl, red900: () => Al, teal100: () => li, teal200: () => ii, teal300: () => fi, teal400: () => gi, teal50: () => ni, teal500: () => ci, teal600: () => pi, teal700: () => ui, teal800: () => vi, teal900: () => hi, yellow100: () => El, yellow200: () => Vl, yellow300: () => zl, yellow400: () => Nl, yellow50: () => jl, yellow500: () => Hl, yellow600: () => Fl, yellow700: () => Ul, yellow800: () => ql, yellow900: () => Zl });
+var S = {};
+x(S, { background: () => u, black: () => kn, blue100: () => ee, blue200: () => ur, blue300: () => vr, blue400: () => ae, blue50: () => X, blue500: () => re, blue600: () => hr, blue700: () => te, blue800: () => br, blue900: () => sr, darkBackground: () => v, darkFloatBackground: () => Bn, darkGreyBackground: () => mn, darkLayeredBackground: () => P, darkThemeBackground: () => Re, darkThemeBackgroundDimmed: () => on, darkThemeBackgroundLevel01: () => Ye, darkThemeBackgroundLevel02: () => _e, darkThemeBackgroundLevelB01: () => Le, darkThemeBlue100: () => _t, darkThemeBlue200: () => Wt, darkThemeBlue300: () => Mt, darkThemeBlue400: () => It, darkThemeBlue50: () => $t, darkThemeBlue500: () => jt, darkThemeBlue600: () => Et, darkThemeBlue700: () => Vt, darkThemeBlue800: () => zt, darkThemeBlue900: () => Nt, darkThemeGreen100: () => fo, darkThemeGreen200: () => go, darkThemeGreen300: () => co, darkThemeGreen400: () => po, darkThemeGreen50: () => io, darkThemeGreen500: () => uo, darkThemeGreen600: () => vo, darkThemeGreen700: () => ho, darkThemeGreen800: () => bo, darkThemeGreen900: () => so, darkThemeGrey100: () => Te, darkThemeGrey200: () => Be, darkThemeGrey300: () => ke, darkThemeGrey400: () => we, darkThemeGrey50: () => me, darkThemeGrey500: () => Ge, darkThemeGrey600: () => Oe, darkThemeGrey700: () => Pe, darkThemeGrey800: () => xe, darkThemeGrey900: () => Se, darkThemeHairlineBorder: () => ln, darkThemeOrange100: () => kd, darkThemeOrange200: () => wd, darkThemeOrange300: () => Gd, darkThemeOrange400: () => Od, darkThemeOrange50: () => Bd, darkThemeOrange500: () => Pd, darkThemeOrange600: () => xd, darkThemeOrange700: () => Sd, darkThemeOrange800: () => Ad, darkThemeOrange900: () => Ld, darkThemePcScreenBg: () => gn, darkThemePurple100: () => Zo, darkThemePurple200: () => Ko, darkThemePurple300: () => Jo, darkThemePurple400: () => Qo, darkThemePurple50: () => qo, darkThemePurple500: () => Xo, darkThemePurple600: () => en, darkThemePurple700: () => an, darkThemePurple800: () => rn, darkThemePurple900: () => tn, darkThemeRed100: () => rd, darkThemeRed200: () => td, darkThemeRed300: () => dd, darkThemeRed400: () => od, darkThemeRed50: () => ad, darkThemeRed500: () => nd, darkThemeRed600: () => ld, darkThemeRed700: () => id, darkThemeRed800: () => fd, darkThemeRed900: () => gd, darkThemeTeal100: () => Ao, darkThemeTeal200: () => Lo, darkThemeTeal300: () => Co, darkThemeTeal400: () => Ro, darkThemeTeal50: () => So, darkThemeTeal500: () => Do, darkThemeTeal600: () => Yo, darkThemeTeal700: () => $o, darkThemeTeal800: () => _o, darkThemeTeal900: () => Wo, darkThemeYellow100: () => Vd, darkThemeYellow200: () => zd, darkThemeYellow300: () => Nd, darkThemeYellow400: () => Hd, darkThemeYellow50: () => Ed, darkThemeYellow500: () => Fd, darkThemeYellow600: () => Ud, darkThemeYellow700: () => qd, darkThemeYellow800: () => Zd, darkThemeYellow900: () => Kd, floatBackground: () => Tn, green100: () => Nr, green200: () => Hr, green300: () => Fr, green400: () => fe, green50: () => zr, green500: () => Ur, green600: () => qr, green700: () => ge, green800: () => Zr, green900: () => Kr, grey100: () => z, grey200: () => or, grey300: () => nr, grey400: () => lr, grey50: () => dr, grey500: () => ir, grey600: () => fr, grey700: () => w, grey800: () => gr, grey900: () => cr, greyBackground: () => yn, greyOpacity100: () => H, greyOpacity200: () => F, greyOpacity300: () => U, greyOpacity400: () => A, greyOpacity50: () => N, greyOpacity500: () => q, greyOpacity600: () => Z, greyOpacity700: () => K, greyOpacity800: () => J, greyOpacity900: () => Q, inverseGrey100: () => pn, inverseGrey200: () => un, inverseGrey300: () => G, inverseGrey400: () => vn, inverseGrey50: () => cn, inverseGrey500: () => hn, inverseGrey600: () => bn, inverseGrey700: () => We, inverseGrey800: () => sn, inverseGrey900: () => Me, layeredBackground: () => O, lightThemeBackground: () => Ce, lightThemeBackgroundDimmed: () => dn, lightThemeBackgroundLevel01: () => De, lightThemeBackgroundLevel02: () => $e, lightThemeBackgroundLevelB01: () => Ae, lightThemeBlue100: () => Pt, lightThemeBlue200: () => xt, lightThemeBlue300: () => St, lightThemeBlue400: () => At, lightThemeBlue50: () => Ot, lightThemeBlue500: () => Lt, lightThemeBlue600: () => Ct, lightThemeBlue700: () => Rt, lightThemeBlue800: () => Dt, lightThemeBlue900: () => Yt, lightThemeGreen100: () => Qd, lightThemeGreen200: () => Xd, lightThemeGreen300: () => eo, lightThemeGreen400: () => ao, lightThemeGreen50: () => Jd, lightThemeGreen500: () => ro, lightThemeGreen600: () => to, lightThemeGreen700: () => oo, lightThemeGreen800: () => no, lightThemeGreen900: () => lo, lightThemeGrey100: () => bt, lightThemeGrey200: () => st, lightThemeGrey300: () => yt, lightThemeGrey400: () => mt, lightThemeGrey50: () => ht, lightThemeGrey500: () => Tt, lightThemeGrey600: () => Bt, lightThemeGrey700: () => kt, lightThemeGrey800: () => wt, lightThemeGrey900: () => Gt, lightThemeHairlineBorder: () => nn, lightThemeOrange100: () => pd, lightThemeOrange200: () => ud, lightThemeOrange300: () => vd, lightThemeOrange400: () => hd, lightThemeOrange50: () => cd, lightThemeOrange500: () => bd, lightThemeOrange600: () => sd, lightThemeOrange700: () => yd, lightThemeOrange800: () => md, lightThemeOrange900: () => Td, lightThemePcScreenBg: () => fn, lightThemePurple100: () => Io, lightThemePurple200: () => jo, lightThemePurple300: () => Eo, lightThemePurple400: () => Vo, lightThemePurple50: () => Mo, lightThemePurple500: () => zo, lightThemePurple600: () => No, lightThemePurple700: () => Ho, lightThemePurple800: () => Fo, lightThemePurple900: () => Uo, lightThemeRed100: () => Ft, lightThemeRed200: () => Ut, lightThemeRed300: () => qt, lightThemeRed400: () => Zt, lightThemeRed50: () => Ht, lightThemeRed500: () => Kt, lightThemeRed600: () => Jt, lightThemeRed700: () => Qt, lightThemeRed800: () => Xt, lightThemeRed900: () => ed, lightThemeTeal100: () => mo, lightThemeTeal200: () => To, lightThemeTeal300: () => Bo, lightThemeTeal400: () => ko, lightThemeTeal50: () => yo, lightThemeTeal500: () => wo, lightThemeTeal600: () => Go, lightThemeTeal700: () => Oo, lightThemeTeal800: () => Po, lightThemeTeal900: () => xo, lightThemeYellow100: () => Rd, lightThemeYellow200: () => Dd, lightThemeYellow300: () => Yd, lightThemeYellow400: () => $d, lightThemeYellow50: () => Cd, lightThemeYellow500: () => _d, lightThemeYellow600: () => Wd, lightThemeYellow700: () => Md, lightThemeYellow800: () => Id, lightThemeYellow900: () => jd, orange100: () => Pr, orange200: () => xr, orange300: () => Sr, orange400: () => Ar, orange50: () => Or, orange500: () => Lr, orange600: () => Cr, orange700: () => Rr, orange800: () => Dr, orange900: () => Yr, purple100: () => nt, purple200: () => lt, purple300: () => it, purple400: () => ft, purple50: () => ot, purple500: () => gt, purple600: () => ct, purple700: () => pt, purple800: () => ut, purple900: () => vt, red100: () => yr, red200: () => mr, red300: () => Tr, red400: () => oe, red50: () => de, red500: () => Br, red600: () => kr, red700: () => ne, red800: () => wr, red900: () => Gr, teal100: () => Qr, teal200: () => Xr, teal300: () => et, teal400: () => ce, teal50: () => Jr, teal500: () => at, teal600: () => rt, teal700: () => pe, teal800: () => tt, teal900: () => dt, white: () => pr, whiteOpacity100: () => n, whiteOpacity200: () => L, whiteOpacity300: () => ve, whiteOpacity400: () => C, whiteOpacity50: () => ue, whiteOpacity500: () => he, whiteOpacity600: () => be, whiteOpacity700: () => R, whiteOpacity800: () => se, whiteOpacity900: () => ye, yellow100: () => _r, yellow200: () => Wr, yellow300: () => Mr, yellow400: () => Ir, yellow50: () => $r, yellow500: () => jr, yellow600: () => Er, yellow700: () => le, yellow800: () => Vr, yellow900: () => ie });
+var dr = "#f9fafb";
+var z = "#f2f4f6";
+var or = "#e5e8eb";
+var nr = "#d1d6db";
+var lr = "#b0b8c1";
+var ir = "#8b95a1";
+var fr = "#6b7684";
+var w = "#4e5968";
+var gr = "#333d4b";
+var cr = "#191f28";
+var N = "rgba(0,23,51,0.02)";
+var H = "rgba(2,32,71,0.05)";
+var F = "rgba(0,27,55,0.1)";
+var U = "rgba(0,29,58,0.18)";
+var A = "rgba(0,25,54,0.31)";
+var q = "rgba(3,24,50,0.46)";
+var Z = "rgba(0,19,43,0.58)";
+var K = "rgba(3,18,40,0.7)";
+var J = "rgba(0,12,30,0.8)";
+var Q = "rgba(2,9,19,0.91)";
+var pr = "#ffffff";
+var X = "#e8f3ff";
+var ee = "#c9e2ff";
+var ur = "#90c2ff";
+var vr = "#64a8ff";
+var ae = "#4593fc";
+var re = "#3182f6";
+var hr = "#2272eb";
+var te = "#1b64da";
+var br = "#1957c2";
+var sr = "#194aa6";
+var de = "#ffeeee";
+var yr = "#ffd4d6";
+var mr = "#feafb4";
+var Tr = "#fb8890";
+var oe = "#f66570";
+var Br = "#f04452";
+var kr = "#e42939";
+var ne = "#d22030";
+var wr = "#bc1b2a";
+var Gr = "#a51926";
+var Or = "#fff3e0";
+var Pr = "#ffe0b0";
+var xr = "#ffcd80";
+var Sr = "#ffbd51";
+var Ar = "#ffa927";
+var Lr = "#fe9800";
+var Cr = "#fb8800";
+var Rr = "#f57800";
+var Dr = "#ed6700";
+var Yr = "#e45600";
+var $r = "#fff9e7";
+var _r = "#ffefbf";
+var Wr = "#ffe69b";
+var Mr = "#ffdd78";
+var Ir = "#ffd158";
+var jr = "#ffc342";
+var Er = "#ffb331";
+var le = "#faa131";
+var Vr = "#ee8f11";
+var ie = "#dd7d02";
+var zr = "#f0faf6";
+var Nr = "#aeefd5";
+var Hr = "#76e4b8";
+var Fr = "#3fd599";
+var fe = "#15c47e";
+var Ur = "#03b26c";
+var qr = "#02a262";
+var ge = "#029359";
+var Zr = "#028450";
+var Kr = "#027648";
+var Jr = "#edf8f8";
+var Qr = "#bce9e9";
+var Xr = "#89d8d8";
+var et = "#58c7c7";
+var ce = "#30b6b6";
+var at = "#18a5a5";
+var rt = "#109595";
+var pe = "#0c8585";
+var tt = "#097575";
+var dt = "#076565";
+var ot = "#f9f0fc";
+var nt = "#edccf8";
+var lt = "#da9bef";
+var it = "#c770e4";
+var ft = "#b44bd7";
+var gt = "#a234c7";
+var ct = "#9128b4";
+var pt = "#8222a2";
+var ut = "#73228e";
+var vt = "#65237b";
+var ue = "rgba(209,209,253,0.05)";
+var n = "rgba(217,217,255,0.11)";
+var L = "rgba(222,222,255,0.19)";
+var ve = "rgba(224,224,255,0.27)";
+var C = "rgba(232,232,253,0.36)";
+var he = "rgba(242,242,255,0.47)";
+var be = "rgba(248,248,255,0.6)";
+var R = "rgba(253,253,255,0.75)";
+var se = "rgba(253,253,254,0.89)";
+var ye = "rgba(255,255,255,1)";
+var ht = "#f9fafb";
+var bt = "#f2f4f6";
+var st = "#e5e8eb";
+var yt = "#d1d6db";
+var mt = "#b0b8c1";
+var Tt = "#8b95a1";
+var Bt = "#6b7684";
+var kt = "#4e5968";
+var wt = "#333d4b";
+var Gt = "#191f28";
+var me = "#202027";
+var Te = "#2c2c35";
+var Be = "#3c3c47";
+var ke = "#4d4d59";
+var we = "#62626d";
+var Ge = "#7e7e87";
+var Oe = "#9e9ea4";
+var Pe = "#c3c3c6";
+var xe = "#e4e4e5";
+var Se = "#ffffff";
+var Ot = "#e8f3ff";
+var Pt = "#c9e2ff";
+var xt = "#90c2ff";
+var St = "#64a8ff";
+var At = "#4593fc";
+var Lt = "#3182f6";
+var Ct = "#2272eb";
+var Rt = "#1b64da";
+var Dt = "#1957c2";
+var Yt = "#194aa6";
+var $t = "#202c4d";
+var _t = "#23386a";
+var Wt = "#25478c";
+var Mt = "#265ab3";
+var It = "#2970d9";
+var jt = "#3485fa";
+var Et = "#449bff";
+var Vt = "#61b0ff";
+var zt = "#8fcdff";
+var Nt = "#c8e7ff";
+var Ht = "#ffeeee";
+var Ft = "#ffd4d6";
+var Ut = "#feafb4";
+var qt = "#fb8890";
+var Zt = "#f66570";
+var Kt = "#f04452";
+var Jt = "#e42939";
+var Qt = "#d22030";
+var Xt = "#bc1b2a";
+var ed = "#a51926";
+var ad = "#3c2020";
+var rd = "#562025";
+var td = "#7a242d";
+var dd = "#9e2733";
+var od = "#ca2f3d";
+var nd = "#f04251";
+var ld = "#fa616d";
+var id = "#fe818b";
+var fd = "#ffa8ad";
+var gd = "#ffd1d3";
+var cd = "#fff3e0";
+var pd = "#ffe0b0";
+var ud = "#ffcd80";
+var vd = "#ffbd51";
+var hd = "#ffa927";
+var bd = "#fe9800";
+var sd = "#fb8800";
+var yd = "#f57800";
+var md = "#ed6700";
+var Td = "#e45600";
+var Bd = "#3d2500";
+var kd = "#563200";
+var wd = "#804600";
+var Gd = "#a85f00";
+var Od = "#cf7200";
+var Pd = "#f18600";
+var xd = "#fd9528";
+var Sd = "#ffa861";
+var Ad = "#ffc39e";
+var Ld = "#ffe4d6";
+var Cd = "#fff9e7";
+var Rd = "#ffefbf";
+var Dd = "#ffe69b";
+var Yd = "#ffdd78";
+var $d = "#ffd158";
+var _d = "#ffc342";
+var Wd = "#ffb331";
+var Md = "#faa131";
+var Id = "#ee8f11";
+var jd = "#dd7d02";
+var Ed = "#3d2d1a";
+var Vd = "#724c1e";
+var zd = "#b56f1d";
+var Nd = "#eb8b1e";
+var Hd = "#ffa126";
+var Fd = "#ffb134";
+var Ud = "#ffc259";
+var qd = "#ffd68a";
+var Zd = "#ffe5b2";
+var Kd = "#fff1d4";
+var Jd = "#f0faf6";
+var Qd = "#aeefd5";
+var Xd = "#76e4b8";
+var eo = "#3fd599";
+var ao = "#15c47e";
+var ro = "#03b26c";
+var to = "#02a262";
+var oo = "#029359";
+var no = "#028450";
+var lo = "#027648";
+var io = "#153729";
+var fo = "#135338";
+var go = "#136d47";
+var co = "#138a59";
+var po = "#13a065";
+var uo = "#16bb76";
+var vo = "#26cf88";
+var ho = "#4ee4a6";
+var bo = "#82f6c5";
+var so = "#ccffea";
+var yo = "#edf8f8";
+var mo = "#bce9e9";
+var To = "#89d8d8";
+var Bo = "#58c7c7";
+var ko = "#30b6b6";
+var wo = "#18a5a5";
+var Go = "#109595";
+var Oo = "#0c8585";
+var Po = "#097575";
+var xo = "#076565";
+var So = "#203537";
+var Ao = "#224e51";
+var Lo = "#226368";
+var Co = "#247e85";
+var Ro = "#26939a";
+var Do = "#2eaab2";
+var Yo = "#43bec7";
+var $o = "#65d4dc";
+var _o = "#9be8ee";
+var Wo = "#d6fcff";
+var Mo = "#f9f0fc";
+var Io = "#edccf8";
+var jo = "#da9bef";
+var Eo = "#c770e4";
+var Vo = "#b44bd7";
+var zo = "#a234c7";
+var No = "#9128b4";
+var Ho = "#8222a2";
+var Fo = "#73228e";
+var Uo = "#65237b";
+var qo = "#3f2447";
+var Zo = "#522361";
+var Ko = "#66247b";
+var Jo = "#7b2595";
+var Qo = "#962fb5";
+var Xo = "#ae3dd1";
+var en = "#c353e5";
+var an = "#d77cf2";
+var rn = "#eaacfc";
+var tn = "#f6d9ff";
+var dn = "rgba(0,0,0,0.2)";
+var on = "rgba(0,0,0,0.56)";
+var Ae = "#f2f4f6";
+var Le = "#101013";
+var Ce = "#ffffff";
+var Re = "#17171c";
+var De = "#ffffff";
+var Ye = "#202027";
+var $e = "#ffffff";
+var _e = "#2c2c35";
+var nn = "#e5e8eb";
+var ln = "#3c3c47";
+var fn = "#f6f7f9";
+var gn = "#202027";
+var cn = me;
+var pn = Te;
+var un = Be;
+var G = ke;
+var vn = we;
+var hn = Ge;
+var bn = Oe;
+var We = Pe;
+var sn = xe;
+var Me = Se;
+var u = Ce;
+var v = Re;
+var yn = Ae;
+var mn = Le;
+var O = De;
+var P = Ye;
+var Tn = $e;
+var Bn = _e;
+var kn = "#000000";
+function k(e) {
+  return parseInt(e, 16);
+}
+function wn(e) {
+  return 0 <= e && e <= 255;
+}
+function Gn(e) {
+  return 0 <= e && e <= 1;
+}
+function On(e, a = 1) {
+  if (!Gn(a)) throw new Error(`잘못된 알파값 입니다(0~1): ${a}`);
+  e = e.length === 7 ? e.slice(1) : e;
+  let r = k(e.slice(0, 2)), t = k(e.slice(2, 4)), l = k(e.slice(4, 6));
+  if ([r, t, l].some((i) => Number.isNaN(i) || !wn(i))) throw new Error(`잘못된 hex값 입니다.: ${e}`);
+  return `rgba(${r},${t},${l},${a})`;
+}
+var Pn = [N, ue];
+var xn = [H, n];
+var Sn = [F, L];
+var An = [U, ve];
+var Ln = [A, C];
+var Cn = [q, he];
+var Rn = [Z, be];
+var Dn = [K, R];
+var Yn = [J, se];
+var $n = [Q, ye];
+var _n = [ee, On(re, 0.2)];
+var Wn = ["#ffffff", "#17171c"];
+var Mn = ["#ffffff", "#202027"];
+var In = ["#ffffff", "#2c2c35"];
+var jn = ["rgba(0,0,0,0.2)", "rgba(0,0,0,0.56)"];
+var En = ["#e5e8eb", "#3c3c47"];
+var Vn = ["#f2f4f6", "#101013"];
+var zn = ["#f6f7f9", "#202027"];
+var Nn = ["#f9fafb", "#202027"];
+var Hn = ["#f2f4f6", "#2c2c35"];
+var Fn = ["#e5e8eb", "#3c3c47"];
+var Un = ["#d1d6db", "#4d4d59"];
+var qn = ["#b0b8c1", "#62626d"];
+var Zn = ["#8b95a1", "#7e7e87"];
+var Kn = ["#6b7684", "#9e9ea4"];
+var Jn = ["#4e5968", "#c3c3c6"];
+var Qn = ["#333d4b", "#e4e4e5"];
+var Xn = ["#191f28", "#ffffff"];
+var el = ["rgba(0,23,51,0.02)", "rgba(209,209,253,0.05)"];
+var al = ["rgba(2,32,71,0.05)", "rgba(217,217,255,0.11)"];
+var rl = ["rgba(0,27,55,0.1)", "rgba(222,222,255,0.19)"];
+var tl = ["rgba(0,29,58,0.18)", "rgba(224,224,255,0.27)"];
+var dl = ["rgba(0,25,54,0.31)", "rgba(232,232,253,0.36)"];
+var ol = ["rgba(3,24,50,0.46)", "rgba(242,242,255,0.47)"];
+var nl = ["rgba(0,19,43,0.58)", "rgba(248,248,255,0.6)"];
+var ll = ["rgba(3,18,40,0.7)", "rgba(253,253,255,0.75)"];
+var il = ["rgba(0,12,30,0.8)", "rgba(253,253,254,0.89)"];
+var fl = ["rgba(2,9,19,0.91)", "#ffffff"];
+var gl = ["#e8f3ff", "#202c4d"];
+var cl = ["#c9e2ff", "#23386a"];
+var pl = ["#90c2ff", "#25478c"];
+var ul = ["#64a8ff", "#265ab3"];
+var vl = ["#4593fc", "#2970d9"];
+var hl = ["#3182f6", "#3485fa"];
+var bl = ["#2272eb", "#449bff"];
+var sl = ["#1b64da", "#61b0ff"];
+var yl = ["#1957c2", "#8fcdff"];
+var ml = ["#194aa6", "#c8e7ff"];
+var Tl = ["#ffeeee", "#3c2020"];
+var Bl = ["#ffd4d6", "#562025"];
+var kl = ["#feafb4", "#7a242d"];
+var wl = ["#fb8890", "#9e2733"];
+var Gl = ["#f66570", "#ca2f3d"];
+var Ol = ["#f04452", "#f04251"];
+var Pl = ["#e42939", "#fa616d"];
+var xl = ["#d22030", "#fe818b"];
+var Sl = ["#bc1b2a", "#ffa8ad"];
+var Al = ["#a51926", "#ffd1d3"];
+var Ll = ["#fff3e0", "#3d2500"];
+var Cl = ["#ffe0b0", "#563200"];
+var Rl = ["#ffcd80", "#804600"];
+var Dl = ["#ffbd51", "#a85f00"];
+var Yl = ["#ffa927", "#cf7200"];
+var $l = ["#fe9800", "#f18600"];
+var _l = ["#fb8800", "#fd9528"];
+var Wl = ["#f57800", "#ffa861"];
+var Ml = ["#ed6700", "#ffc39e"];
+var Il = ["#e45600", "#ffe4d6"];
+var jl = ["#fff9e7", "#3d2d1a"];
+var El = ["#ffefbf", "#724c1e"];
+var Vl = ["#ffe69b", "#b56f1d"];
+var zl = ["#ffdd78", "#eb8b1e"];
+var Nl = ["#ffd158", "#ffa126"];
+var Hl = ["#ffc342", "#ffb134"];
+var Fl = ["#ffb331", "#ffc259"];
+var Ul = ["#faa131", "#ffd68a"];
+var ql = ["#ee8f11", "#ffe5b2"];
+var Zl = ["#dd7d02", "#fff1d4"];
+var Kl = ["#f0faf6", "#153729"];
+var Jl = ["#aeefd5", "#135338"];
+var Ql = ["#76e4b8", "#136d47"];
+var Xl = ["#3fd599", "#138a59"];
+var ei = ["#15c47e", "#13a065"];
+var ai = ["#03b26c", "#16bb76"];
+var ri = ["#02a262", "#26cf88"];
+var ti = ["#029359", "#4ee4a6"];
+var di = ["#028450", "#82f6c5"];
+var oi = ["#027648", "#ccffea"];
+var ni = ["#edf8f8", "#203537"];
+var li = ["#bce9e9", "#224e51"];
+var ii = ["#89d8d8", "#226368"];
+var fi = ["#58c7c7", "#247e85"];
+var gi = ["#30b6b6", "#26939a"];
+var ci = ["#18a5a5", "#2eaab2"];
+var pi = ["#109595", "#43bec7"];
+var ui = ["#0c8585", "#65d4dc"];
+var vi = ["#097575", "#9be8ee"];
+var hi = ["#076565", "#d6fcff"];
+var bi = ["#f9f0fc", "#3f2447"];
+var si = ["#edccf8", "#522361"];
+var yi = ["#da9bef", "#66247b"];
+var mi = ["#c770e4", "#7b2595"];
+var Ti = ["#b44bd7", "#962fb5"];
+var Bi = ["#a234c7", "#ae3dd1"];
+var ki = ["#9128b4", "#c353e5"];
+var wi = ["#8222a2", "#d77cf2"];
+var Gi = ["#73228e", "#eaacfc"];
+var Oi = ["#65237b", "#f6d9ff"];
+var Pi = ["rgba(0,0,0,0.2)", "rgba(0,0,0,0.56)"];
+var xi = ["#f2f4f6", "#101013"];
+var Si = ["#ffffff", "#202027"];
+var Ai = ["#ffffff", "#2c2c35"];
+var kf = { light: Object.fromEntries(Object.entries(h).map(([e, [a]]) => [e, a])), dark: Object.fromEntries(Object.entries(h).map(([e, [, a]]) => [e, a])) };
+var Li = "rgba(25,31,40,0.54)";
+var c = "rgba(255,255,255,0)";
+var s = "rgba(23,23,28,0)";
+var E = "rgba(32,32,39,0)";
+var Ci = "rgba(49,130,246,0.26)";
+var Ri = "rgba(244,67,54,0.26)";
+var Di = "rgba(78,89,104,0.26)";
+var Yi = "rgba(255,255,255,0.26)";
+var $i = "rgba(49,130,246,0.16)";
+var _i = "rgba(69,147,252,0.16)";
+var Wi = "rgba(0,129,138,0.16)";
+var Mi = "rgba(38,157,166,0.16)";
+var Ii = "rgba(2,162,98,0.16)";
+var ji = "rgba(21,196,126,0.16)";
+var Ei = "rgba(244,67,54,0.16)";
+var Vi = "rgba(239,83,80,0.16)";
+var zi = "rgba(255,179,49,0.16)";
+var Ni = "rgba(255,209,88,0.16)";
+var Hi = "rgba(78,89,104,0.16)";
+var Fi = "rgba(195,195,198,0.16)";
+var Ui = "rgba(23,23,28,0.7)";
+var D = { tHairlineBackground: [`repeat-x url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect fill='rgba(0, 0, 33, 0.07)' x='0' y='0' width='1' height='0.5'/></svg>")`, `repeat-x url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1' height='1'><rect fill='rgba(222, 222, 255, 0.14)' x='0' y='0' width='1' height='0.5'/></svg>")`], tGradientToTop: [o(u, c), o(v, s)], tGradientToBottom: [o(u, c, "bottom"), o(v, s, "bottom")], tGradientToRight: [o(u, c, "right"), o(v, s, "right")], tGradientToLeft: [o(u, c, "left"), o(v, s, "left")], tLayeredGradientToTop: [o(O, c), o(P, E)], tLayeredGradientToBottom: [o(O, c, "bottom"), o(P, E, "bottom")], tRadioIndicatorBackgroundColor: [Me, G], tToastBackground: [Li, n], tDarkFillButtonBackground: [w, G], tPrimaryWeakButtonBackground: [X, n], tDangerWeakButtonBackground: [de, n], tDarkWeakButtonBackground: [z, n], tLightWeakButtonBackground: [L, n], tButtonPressedAfterBackground: ["transparent", "rgba(0, 0, 0, 0.26)"], tPrimaryWeakButtonPressedBackground: [Ci, n], tDangerWeakButtonPressedBackground: [Ri, n], tDarkWeakButtonPressedBackground: [Di, n], tLightWeakButtonPressedBackground: [Yi, n], tBlueBadgeColor: [te, ae], tBlueBadgeBackground: [$i, _i], tTealBadgeColor: [pe, ce], tTealBadgeBackground: [Wi, Mi], tGreenBadgeColor: [ge, fe], tGreenBadgeBackground: [Ii, ji], tRedBadgeColor: [ne, oe], tRedBadgeBackground: [Ei, Vi], tYellowBadgeColor: [ie, le], tYellowBadgeBackground: [zi, Ni], tElephantBadgeColor: [w, We], tElephantBadgeBackground: [Hi, Fi], tSwiperBulletBackground: [C, A], tListRowDisabledBackground: [R, Ui] };
+function o(e, a, r = "top") {
+  return `linear-gradient(to ${r}, ${e}, ${a})`;
+}
+var qi = Object.entries(S);
+var Ie = Object.entries(h);
+var je = Object.entries(D);
+function Zi(e, a) {
+  return `
+    ${a} {
+      ${e}
+    }
+  `;
+}
+function b(e) {
+  return ({ wrap: a } = {}) => {
+    let r = e;
+    return a != null && (r = Zi(r, a)), r;
+  };
+}
+var Ki = b(qi.map(([e, a]) => `--${e}: ${a};`).join(`
+`));
+var Ji = b(Ie.map(([e, a]) => {
+  let [r] = a;
+  return `--${Ee(e)}: ${r};`;
+}).join(`
+`));
+var Qi = b(Ie.map(([e, a]) => {
+  let [, r] = a;
+  return `--${Ee(e)}: ${r};`;
+}).join(`
+`));
+var Xi = b(je.map(([e, a]) => {
+  let [r] = a;
+  return `--${e}: ${r};`;
+}).join(`
+`));
+var ef = b(je.map(([e, a]) => {
+  let [, r] = a;
+  return `--${e}: ${r};`;
+}).join(`
+`));
+function Ee(e) {
+  return `adaptive${e.charAt(0).toUpperCase()}${e.slice(1)}`;
+}
+var wf = Ji();
+var Gf = Qi();
+var Of = Ki();
+var Pf = Xi();
+var xf = ef();
+var Y = { ...S };
+var Sf = { ...V };
+var Ve = { ...h };
+var d;
+(function(e) {
+  e.Large = "Large", e.xLarge = "xLarge", e.xxLarge = "xxLarge", e.xxxLarge = "xxxLarge", e.A11y_Medium = "A11y_Medium", e.A11y_Large = "A11y_Large", e.A11y_xLarge = "A11y_xLarge", e.A11y_xxLarge = "A11y_xxLarge", e.A11y_xxxLarge = "A11y_xxxLarge";
+})(d || (d = {}));
+var af = [30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11];
+var Lf = { [d.Large]: af, [d.xLarge]: [32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13], [d.xxLarge]: [34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15], [d.xxxLarge]: [36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17], [d.A11y_Medium]: [40, 39, 38, 37, 36, 36, 35, 34, 33, 32, 31, 30, 28, 27, 26, 24, 23, 21, 20, 19], [d.A11y_Large]: [41, 40, 39, 38, 38, 38, 37, 37, 36, 36, 35, 34, 33, 32, 30, 28, 26, 24, 22, 21], [d.A11y_xLarge]: [41, 41, 40, 40, 40, 40, 39, 39, 39, 39, 38, 38, 37, 36, 34, 31, 29, 27, 25, 24], [d.A11y_xxLarge]: [42, 42, 41, 41, 41, 41, 40, 40, 40, 40, 39, 39, 38, 38, 37, 34, 32, 30, 28, 27], [d.A11y_xxxLarge]: [42, 42, 41, 41, 41, 41, 40, 40, 40, 40, 40, 40, 39, 39, 39, 37, 36, 34, 32, 31] };
+var f = { appVersion: /TossApp\/([\w.]+)/, batteryModePreference: /TossBatteryModePreference\/([\w.]+)/, colorPreference: /TossColorPreference\/(\w+)/, fontA11y: /TossFontAccessibility\/(\w+)/, fontScale: /TossFontScale\/(\d+(\.\d+)?)/, locale: /TossLocale\/([\w-]+)/, navbarPreference: /TossNavbarPreference\/(\w+)/, pureSafeArea: /TossPureSafeArea\/([\w.,]+)/, safeArea: /TossSafeArea\/([\w.,]+)/, safeAreaBottomTransparency: /TossSafeAreaBottomTransparency\/([a-zA-Z]+)/ };
+var Ne = (e, a) => {
+  let r = Number(e);
+  return Number.isNaN(r) ? a : r;
+};
+function He(e) {
+  var a, r, t, l, i, g, p, y, m, T;
+  if (e == null) return { appVersion: void 0, batteryModePreference: void 0, colorPreference: void 0, fontA11y: void 0, fontScale: void 0, isAndroid: false, isIOS: false, isTossApp: false, locale: void 0, navbarPreference: void 0, pureSafeArea: void 0, safeArea: void 0, safeAreaBottomTransparency: void 0 };
+  let W = (a = f.appVersion.exec(e)) === null || a === void 0 ? void 0 : a[1], qe = (r = f.colorPreference.exec(e)) === null || r === void 0 ? void 0 : r[1], M = (t = f.fontA11y.exec(e)) === null || t === void 0 ? void 0 : t[1], Ze = (l = f.fontScale.exec(e)) === null || l === void 0 ? void 0 : l[1], Ke = Ne(Ze), B = (i = f.locale.exec(e)) === null || i === void 0 ? void 0 : i[1], Je = (g = f.navbarPreference.exec(e)) === null || g === void 0 ? void 0 : g[1], I = (p = f.pureSafeArea.exec(e)) === null || p === void 0 ? void 0 : p[1], j = (y = f.safeArea.exec(e)) === null || y === void 0 ? void 0 : y[1], Qe = (m = f.safeAreaBottomTransparency.exec(e)) === null || m === void 0 ? void 0 : m[1];
+  return { appVersion: W, batteryModePreference: (T = f.batteryModePreference.exec(e)) === null || T === void 0 ? void 0 : T[1], colorPreference: qe, fontA11y: rf(M) ? M : void 0, fontScale: Ke, locale: B ?? "ko-KR", isAndroid: e.includes("Android"), isIOS: e.includes("iPhone"), isTossApp: W != null, navbarPreference: Je, pureSafeArea: I === void 0 ? void 0 : ze(I), safeArea: j === void 0 ? void 0 : ze(j), safeAreaBottomTransparency: Qe };
+}
+function ze(e) {
+  let [a = 0, r = 0, t = 0, l = 0] = e.split(",").map((i) => Ne(i, 0));
+  return { top: a, right: r, bottom: t, left: l };
+}
+function rf(e) {
+  return e == null ? false : Object.values(d).includes(e);
+}
+var $ = "";
+for (let [e, a] of Object.entries(Ve)) {
+  let [r] = a, t = `--adaptive${e.charAt(0).toUpperCase()}${e.slice(1)}`;
+  $ += `${t}: ${r};
+`;
+}
+for (let [e, a] of Object.entries(D)) {
+  let [r] = a;
+  $ += `--${e}: ${r};
+`;
+}
+function Fe() {
+  return (0, import_jsx_runtime.jsx)(Global, { styles: css`
+        :root {
+          ${$}
+        }
+      ` });
+}
+function uf() {
+  let [e, a] = (0, import_react4.useState)(void 0);
+  return (0, import_react4.useEffect)(() => {
+    try {
+      let { top: r, bottom: t } = getSafeAreaInsets();
+      a({ top: r, bottom: t });
+    } catch (r) {
+      console.error("SafeAreaInsets를 가져오는 중 에러가 발생했습니다:", r), a({ top: 0, bottom: 0 });
+    }
+  }, []), e === void 0 ? null : (0, import_jsx_runtime2.jsx)(Global, { styles: css`
+        body {
+          --toss-safe-area-top: ${e.top}px;
+          --toss-safe-area-bottom: ${e.bottom}px;
+        }
+      ` });
+}
+var Ue = (0, import_react4.memo)(uf);
+function yf() {
+  try {
+    let { brandPrimaryColor: e } = getAppsInTossGlobals();
+    return e;
+  } catch {
+    return Y.blue500;
+  }
+}
+function mf({ userAgent: e, fontScaleAvailable: a = false, children: r, brandPrimaryColor: t, ...l }) {
+  let i = t ?? yf(), g = (0, import_react.useMemo)(() => {
+    let p = typeof window > "u" ? e : window.navigator.userAgent;
+    return He(p);
+  }, [e]);
+  return (0, import_jsx_runtime3.jsxs)(import_jsx_runtime3.Fragment, { children: [(0, import_jsx_runtime3.jsx)(Fe, {}), (0, import_jsx_runtime3.jsx)(Ue, {}), (0, import_jsx_runtime3.jsx)(Zb, { userAgent: { ...g, fontScale: a ? g.fontScale : 100, fontA11y: a ? g.fontA11y : void 0, colorPreference: "light" }, token: { color: { primary: i ?? Y.blue500 } }, ...l, children: r })] });
+}
+export {
+  mf as TDSMobileAITProvider
+};
+//# sourceMappingURL=@toss_tds-mobile-ait.js.map

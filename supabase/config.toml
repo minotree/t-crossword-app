@@ -5,3 +5,7 @@ verify_jwt = false
 
 [functions.toss-mtls-probe]
 verify_jwt = true
+
+# The session endpoint verifies Supabase anonymous JWTs server-side; later requests use the issued wallet session.
+[functions.mobile-hints]
+verify_jwt = false

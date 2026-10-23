@@ -4,6 +4,22 @@ import { TDSMobileAITProvider } from '@toss/tds-mobile-ait';
 import { PictureBooks, pictureBooks } from '../src/components/PictureBooks.js';
 
 describe('prepared Toss picture books', () => {
+  it.each(['beginner', 'intermediate', 'advanced'] as const)('shows only English titles in the %s list and both titles in details', (level) => {
+    const books = pictureBooks.filter(book => book.level === level);
+    const render = (selectedId: string | null) => renderToStaticMarkup(<TDSMobileAITProvider brandPrimaryColor="#3182f6">
+      <PictureBooks level={level} selectedId={selectedId} pageIndex={0} onLevelChange={() => {}} onSelect={() => {}} onPageChange={() => {}} />
+    </TDSMobileAITProvider>);
+    const list = render(null);
+    for (const book of books) {
+      expect(book.koreanTitle).not.toBe('');
+      expect(list).toContain(book.title);
+      expect(list).not.toContain(book.koreanTitle);
+    }
+    const detail = render(books[0].id);
+    expect(detail).toContain(books[0].title);
+    expect(detail).toContain(books[0].koreanTitle);
+  });
+
   it.each(['beginner', 'intermediate', 'advanced'] as const)('omits page arrows and keeps list actions for single-page %s works', (level) => {
     const book = pictureBooks.find(item => item.level === level && item.pages.length === 1);
     if (!book) throw new Error(`Missing single-page ${level} fixture`);

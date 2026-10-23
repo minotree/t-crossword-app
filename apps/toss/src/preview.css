@@ -1,0 +1,6 @@
+/* Devtools constrains body, but CSS dvh still measures the desktop window. */
+html.ait-viewport-active #root {
+  padding-top: 54px;
+  height: var(--preview-viewport-height, 100dvh);
+}
+html.ait-viewport-active .app-shell { height: calc(100% - 54px); }

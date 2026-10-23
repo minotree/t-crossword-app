@@ -1,0 +1,10 @@
+BEGIN;
+SET LOCAL lock_timeout = '3s';
+SET LOCAL statement_timeout = '10s';
+DELETE FROM public.toss_round_creations WHERE identity_hash = 'be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f';
+DELETE FROM public.toss_hint_requests WHERE round_id IN (SELECT id FROM public.toss_hint_rounds WHERE identity_hash = 'be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f');
+DELETE FROM public.toss_hint_rounds WHERE identity_hash = 'be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f';
+DELETE FROM public.toss_hint_sessions WHERE identity_hash = 'be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f';
+DELETE FROM public.toss_hint_players WHERE identity_hash = 'be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f';
+COMMIT;
+SELECT count(*) AS remaining_test_players FROM public.toss_hint_players WHERE identity_hash = 'be79eb13a3bbc4f6df8d23332ac6feaaa3f1ed16065e55026eafb5d81b20b47f';

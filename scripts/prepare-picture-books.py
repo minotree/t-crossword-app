@@ -30,7 +30,7 @@ def prepare_image(source, filename):
 
 for poem in json.loads((SOURCE / 'poems.json').read_text(encoding='utf-8')):
     filename = poem['id'] + '.webp'
-    books.append({key: poem[key] for key in ('id', 'level', 'title', 'poem', 'translation')}
+    books.append({key: poem[key] for key in ('id', 'level', 'title', 'koreanTitle', 'poem', 'translation')}
                  | {'image': prepare_image(SOURCE / poem['image'], filename)})
 DATA.write_text(json.dumps(books, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 counts = {'beginner': len(books)}

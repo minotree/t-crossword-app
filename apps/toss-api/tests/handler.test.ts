@@ -192,7 +192,7 @@ describe('Toss hint API boundary', () => {
     const response = await handler(post('/session', { code: 'one-time-code', anonKey: 'forged-user' }));
     const result = await response.json();
     expect(response.status).toBe(200);
-    expect(exchangeCode).toHaveBeenCalledExactlyOnceWith('one-time-code');
+    expect(exchangeCode).toHaveBeenCalledExactlyOnceWith('one-time-code', 'http://localhost:5174');
     expect(repository.openSession).toHaveBeenCalledWith(hash('t-crossword:verified-user-key'), hash(result.token));
     expect(JSON.stringify(result)).not.toContain('verified-user-key');
   });

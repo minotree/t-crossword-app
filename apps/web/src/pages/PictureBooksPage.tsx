@@ -100,7 +100,6 @@ export function PictureBooksPage() {
               }} className="block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:border-indigo-300 focus-visible:outline-2 focus-visible:outline-blue-600">
                 <BookImage image={book.pages[0].image} title={book.title} preview />
                 <h2 lang="en" className="break-words border-t border-slate-100 px-3 py-3 text-sm font-bold">{book.title}</h2>
-                {book.koreanTitle && <p className="px-3 pb-2 text-xs text-slate-600">{book.koreanTitle}</p>}
                 {book.level !== 'beginner' && <p className="px-3 pb-3 text-xs font-semibold text-indigo-700">{genreLabels[book.genre]}{book.subgenre && ` · ${book.subgenre}`} · {book.pages.length}장</p>}
               </Link>
             </li>)}

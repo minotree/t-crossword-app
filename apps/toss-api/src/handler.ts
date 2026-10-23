@@ -8,10 +8,13 @@ export const hash = (value: string) => createHash('sha256').update(value).digest
 type Repository = ReturnType<typeof createTossHintRepository>;
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
 
-export function createHintHandler({ repository, exchangeCode, allowedOrigins, probeCode, now, testAdsEnabled = false }: {
+export function createHintHandler({ repository, exchangeCode, allowedOrigins, probeCode, now, testAdsEnabled = false, maxCodeLength = 1024, sessionNamespace = '', authenticationError = '토스 사용자 확인에 실패했습니다. 다시 시도해 주세요.' }: {
   repository: Omit<Repository, 'testAdReward'> & Partial<Pick<Repository, 'testAdReward'>>;
   testAdsEnabled?: boolean;
-  exchangeCode: (code: string) => Promise<string>;
+  maxCodeLength?: number;
+  sessionNamespace?: string;
+  authenticationError?: string;
+  exchangeCode: (code: string, origin: string | null) => Promise<string>;
   allowedOrigins: string[];
   probeCode?: (code: string) => Promise<boolean>;
   now?: () => number;
@@ -53,22 +56,22 @@ export function createHintHandler({ repository, exchangeCode, allowedOrigins, pr
         if (!probeCode) return json({ error: '인증 시험이 비활성 상태입니다.' }, 404);
         // The temporary relay accepts only explicitly configured app origins.
         if (!origin) return json({ error: '허용되지 않은 요청입니다.' }, 403);
-        if (typeof body.code !== 'string' || !body.code || body.code.length > 1024) return json({ error: '인증 코드가 필요합니다.' }, 400);
+        if (typeof body.code !== 'string' || !body.code || body.code.length > maxCodeLength) return json({ error: '인증 코드가 필요합니다.' }, 400);
         try { return json({ authenticated: await probeCode(body.code) }); }
         catch { return json({ authenticated: false, error: '무료 인증 연결을 확인하지 못했습니다. 실제 토스에서 다시 시도해 주세요.' }); }
       }
       if (action === '/session') {
-        if (typeof body.code !== 'string' || !body.code || body.code.length > 1024) return json({ error: '인증 코드가 필요합니다.' }, 400);
+        if (typeof body.code !== 'string' || !body.code || body.code.length > maxCodeLength) return json({ error: '인증 코드가 필요합니다.' }, 400);
         let identity: string;
-        try { identity = await exchangeCode(body.code); }
-        catch { return json({ error: '토스 사용자 확인에 실패했습니다. 다시 시도해 주세요.', code: 'auth_failed' }, 401); }
+        try { identity = await exchangeCode(body.code, origin); }
+        catch { return json({ error: authenticationError, code: 'auth_failed' }, 401); }
         const token = randomBytes(32).toString('base64url');
-        const balance = await repository.openSession(hash(`t-crossword:${identity}`), hash(token));
+        const balance = await repository.openSession(hash(`t-crossword:${identity}`), hash(sessionNamespace + token));
         return json({ token, balance });
       }
       const authorization = request.headers.get('Authorization');
       if (!authorization || !/^Bearer [A-Za-z0-9_-]{43}$/.test(authorization)) return json({ error: '사용자 확인이 필요합니다.', code: 'unauthorized' }, 401);
-      const sessionHash = hash(authorization.slice(7));
+      const sessionHash = hash(sessionNamespace + authorization.slice(7));
       const sessionWait = limit(`session:${sessionHash}`, 120);
       if (sessionWait) return rejectLimit(sessionWait);
       const roundAction = action === '/round' || action === '/round/register';

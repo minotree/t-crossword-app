@@ -15,20 +15,6 @@ const emptyRound = (size: GridSize = 8): { roundId: null; balance: number; puzzl
   level: 'beginner', size, words: [], grid: Array.from({ length: size }, () => Array.from({ length: size }, () => null)),
 } });
 describe('Toss authenticated hint transport', () => {
-  it('sends the test ad identity without a client reward amount and retries the same claim ID after reauthentication', async () => {
-    const fetcher = vi.fn().mockResolvedValueOnce(response({ token, balance: 10 }))
-      .mockResolvedValueOnce(response({ balance: 10 }))
-      .mockResolvedValueOnce(response({}, 401))
-      .mockResolvedValueOnce(response({ token, balance: 15 }))
-      .mockResolvedValueOnce(response({ balance: 15 }));
-    const gateway = createRemoteHintGateway('https://api.example', async () => 'code', fetcher);
-    const requestId = '00000000-0000-4000-8000-000000000001';
-    expect(await gateway.prepareTestAd?.(requestId)).toBe(10);
-    expect(await gateway.claimTestAd?.(requestId)).toBe(15);
-    expect(JSON.parse(fetcher.mock.calls[1][1].body)).toEqual({ requestId, adGroupId: 'ait-ad-test-rewarded-id' });
-    expect(fetcher.mock.calls[2][1].body).toBe(fetcher.mock.calls[4][1].body);
-    expect(fetcher.mock.calls[4][0]).toBe('https://api.example/ads/test/claim');
-  });
   it('registers only device placements and refuses a different returned board while retaining its retry identity', async () => {
     const sea = defaultVocabList.find(word => word.word === 'SEA');
     if (!sea) throw new Error('Missing SEA fixture');

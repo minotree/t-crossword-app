@@ -33,6 +33,7 @@ export const pictureBooks: ReadingBook[] = [
     level: 'beginner',
     genre: 'poem',
     title: book.title,
+    koreanTitle: book.koreanTitle,
     pages: [{ title: book.title, text: book.poem, translation: book.translation, image: book.image }],
   })),
   ...intermediateBooks.map((book): ReadingBook => ({
