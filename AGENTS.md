@@ -71,11 +71,12 @@ scripts/
 - Owns React/Tailwind components, browser routing, responsive layouts and service-worker behavior.
 - Define supported offline operations; do not promise offline behavior for network-only features.
 - Test installation, cache updates and data consistency where PWA features are enabled.
-- 웹 퀴즈는 화면 너비가 높이보다 클 때 그리드 왼쪽·힌트 오른쪽, 그 외에는 그리드 위·힌트 아래로 배치하고 힌트 영역만 스크롤한다.
-- 웹·토스 퀴즈 모두 가로/세로 힌트 제목과 진행 숫자는 고정하고 아래 2열 문제 목록만 스크롤한다. 가로·세로 화면 모두 적용한다.
-- 오답노트 삭제는 목록 숨김으로 처리하고 단어·힌트 사용 이력·즐겨찾기·학습완료 기록을 보존한다. 같은 단어에 힌트를 다시 사용하면 목록에 복귀한다.
-- 오답 붉은색 표시 한도는 입력 창을 열 때마다 단어 글자 수만큼이다. 정답 글자·삭제는 차감하지 않으며 소진 후에도 입력·제출을 허용한다.
-- 판 완성 보상은 현재 힌트 잔액에 5개를 더하며, 서버 지급 확인 후 성공을 안내한다. 재시도에는 같은 판 ID를 사용한다. 적용·신뢰 경계·미검증 항목은 `docs/puzzle-completion-rewards.md`를 따른다.
+- 웹/PWA·토스·모바일 퀴즈 그리드는 앱 콘텐츠의 가로 공간을 채우고 아래에 한 줄의 `문제 전체 보기` 버튼을 둔다. 버튼을 누르면 그리드 전체 영역을 덮어 2열 문제 목록을 표시한다. 닫기·Escape·단어 선택으로 닫으며 토스/Android 뒤로가기는 방향 선택·문제 목록을 먼저 닫는다. 낮은 화면에서는 본문 스크롤을 허용한다. 진행 숫자와 새 퍼즐은 오른쪽 정렬한다.
+- 세 앱의 번호가 있는 칸을 누르면 미완료 시작 단어의 정답 입력창을 연다. 같은 칸에서 가로·세로가 모두 미완료이면 두 방향의 문제를 먼저 표시한다. 한 방향만 남으면 바로 해당 입력창을 열고 모두 완료하면 번호 클릭을 비활성화한다. 완료 문제 목록도 선택할 수 없다. 완성 축하에는 하단 발사 색종이 폭죽과 큰 🎉 아이콘을 표시하며 동작 줄이기 설정과 버튼 조작을 보장한다.
+- 세 앱의 퀴즈 모두 가로/세로 문제 제목과 진행 숫자는 고정하고 아래 2열 문제 목록만 함께 스크롤한다. 가로·세로 화면 모두 적용한다.
+- 오답노트 삭제는 목록 숨김으로 처리하고 기존 단어·힌트 사용 이력·즐겨찾기·학습완료 기록을 보존한다. 글자 공개 기능 제거 후에는 기존 오답노트를 열람·숨김 관리만 하며 새 힌트 사용으로 등록·복귀시키지 않는다.
+- 웹/PWA·토스·모바일 정답 입력창은 틀린 영문 글자를 횟수 제한 없이 붉은색과 접근성 상태로 표시한다. 정답으로 수정하거나 삭제하면 해당 칸의 오답 표시를 해제하며 다른 칸의 표시는 유지한다. 남은 횟수·소진·재실행 초기화 안내는 제공하지 않는다.
+- 2026-10-25 사용자 결정으로 웹/PWA·토스·모바일의 글자 공개·힌트 잔액·완성 보상을 제거한다. 문제의 뜻·동의어·문제 목록과 완성 축하는 유지한다. 새 앱은 힌트 인증·잔액·판 등록·정답/보상 API를 호출하지 않고 기기에서 출제·정답 확인을 처리한다. 기존 운영 DB·잔액·마이그레이션·구버전 API는 임의 삭제하거나 배포하지 않는다. 이전 보상 문서는 이력이다.
 
 ### Mobile
 - Owns Ionic React screens, navigation, Capacitor plugins, permissions and lifecycle handling.
@@ -87,7 +88,7 @@ scripts/
 - 토스 번들 업로드는 사용자가 직접 수행한다(2026-10-21 사용자 결정). 에이전트는 수정·검사·`.ait` 생성과 파일 경로 안내까지 진행한다. 이후 사용자가 명시적으로 업로드를 요청한 경우에만 업로드하며, 과거 업로드 승인을 후속 버전의 자동 업로드 승인으로 해석하지 않는다.
 - 배너 광고를 사용하는 토스 미니앱은 초기 화면 설계부터 토스 기본 상단 영역·앱 헤더·하단 메뉴·배너·Safe Area·키보드를 제외한 실제 콘텐츠 공간을 계산한다. 배너를 나중에 추가할 공간으로 취급하지 않으며, 작은 화면에서도 퍼즐·힌트·그림책 본문의 가독성과 조작 영역을 확보한다. 중복 제목·설명·진행 표시를 정리하고 고정 영역과 스크롤 영역을 함께 설계한다.
 - 이 앱의 배너는 하단 메뉴 아래 최하단에 배치하고 메뉴와 간격을 확보한다. 배너 높이·표준 UI는 현재 공식 SDK 기준을 확인하며 광고를 임의 축소·자르거나 메뉴·본문과 겹치지 않는다. 미지원·광고 없음·실패·보상형 광고 이용 중 배너가 사라지는 경우에도 콘텐츠 공간과 하단 안전 영역이 정상적으로 유지되는지 확인한다. 자동 검사와 실제 토스 기기의 배치·가독성 검증을 구분하고, 상세 기준은 `docs/toss-ads.md`를 따른다.
-- 판 생성 재시도는 같은 설정·요청 UUID를 유지하며 서버의 사용자별 결과 스냅샷을 재사용한다. DB→API→앱 순서로 적용하고, ID 없는 구버전 경로·동시 출제 CPU 중복·월 호출량 소모 방어 한계를 `docs/toss-round-idempotency.md`와 `docs/toss-free-hosting.md`에 구분한다.
+- 힌트 제거 후 토스 새 앱은 기기 출제를 바로 사용하며 서버 판 등록을 하지 않는다. `docs/toss-round-idempotency.md`와 `docs/toss-free-hosting.md`의 판 등록·재시도 규칙은 기존 서버/구버전 앱 이력으로 보존한다.
 - 콘솔 업로드 키는 사용자 로컬 `ait token add` 프로필로 등록하고 키 내용은 읽거나 로그·채팅·저장소에 남기지 않는다. 명시적으로 승인된 `ait deploy` 업로드와 공개 검토 요청·출시를 구분한다. CLI 성공·실제 기기 검증도 별도로 기록한다.
 - 토스 출시는 별도 서버 관리 없이 무료 범위를 기준으로 한다. 유료 호스팅·요금제 전환을 기본 전제로 삼지 않는다. Supabase Edge Functions 대체는 실제 mTLS·실행 제한 검증 전 확정하지 않는다. 검토 상태는 `docs/toss-free-hosting.md`를 따른다.
 - Owns TDS-based UI, Toss SDK integration, platform navigation and authentication handshakes.
@@ -103,7 +104,7 @@ scripts/
 
 ## 5. Shared Business Logic
 
-- 웹/PWA·토스·향후 하이브리드 앱의 문제 출제는 `packages/core` 공통 엔진을 기기에서 실행한다. 플랫폼별로 출제 규칙을 복제하지 않는다. 서버는 등록한 판을 공통 단어장·배치 규칙으로 검증하고 힌트·정답·보상을 처리한다. 토스 구버전 서버 출제 호환·재시도·적용 순서는 `docs/decisions/20261019-device-puzzle-generation.md`를 따른다.
+- 웹/PWA·토스·하이브리드 앱의 문제 출제는 `packages/core` 공통 엔진을 기기에서 실행한다. 플랫폼별로 출제 규칙을 복제하지 않는다. 힌트 제거 후 정답 확인·완료 기록도 기기에서 처리한다. 기존 서버의 배치 검증·힌트·보상은 구버전 호환 이력이며 `docs/decisions/20261019-device-puzzle-generation.md`를 따른다.
 
 - Keep business rules as pure TypeScript functions/classes where practical.
 - Prefer dependency injection through interfaces/ports for persistence, auth, clock, geolocation and other effects.

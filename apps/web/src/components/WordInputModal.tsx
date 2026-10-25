@@ -6,12 +6,8 @@ interface WordInputModalProps {
   isOpen: boolean;
   word: CrosswordWord | null;
   currentLetters: string[];
-  hintUsedCount: number;
-  globalHintBalance: number;
-  isHintBalanceLoading: boolean;
   onClose: () => void;
   onSubmit: (wordId: string, answer: string) => boolean;
-  onUseHint: (wordId: string, targetIndex: number) => Promise<{ index: number; letter: string } | null>;
 }
 
 export const WordInputModal: FC<WordInputModalProps> = (props) => {
@@ -26,12 +22,8 @@ type ActiveWordInputModalProps = Omit<WordInputModalProps, 'word'> & {
 const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   word,
   currentLetters,
-  hintUsedCount,
-  globalHintBalance,
-  isHintBalanceLoading,
   onClose,
   onSubmit,
-  onUseHint,
 }) => {
   const length = word.word.length;
   const [inputs, setInputs] = useState<string[]>(() =>
@@ -39,10 +31,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   );
   const [errorMessage, setErrorMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isHintLoading, setIsHintLoading] = useState(false);
-  const [errorFeedbackCount, setErrorFeedbackCount] = useState(0);
   const [incorrectIndices, setIncorrectIndices] = useState<number[]>([]);
-  const errorFeedbackLimit = length;
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   useEffect(() => {
@@ -78,7 +67,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   };
 
   const handleInputChange = (index: number, value: string) => {
-    if (currentLetters[index] || isHintLoading) return;
+    if (currentLetters[index]) return;
     setErrorMessage('');
     const letter = value.slice(-1).toUpperCase();
     if (letter && !/^[A-Z]$/.test(letter)) {
@@ -89,15 +78,11 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
     const nextInputs = [...inputs];
     nextInputs[index] = letter;
     setInputs(nextInputs);
-    const showError = Boolean(
-      letter && letter !== word.word[index]?.toUpperCase() &&
-      errorFeedbackCount < errorFeedbackLimit
-    );
+    const showError = Boolean(letter && letter !== word.word[index]?.toUpperCase());
     setIncorrectIndices((previous) => [
       ...previous.filter((item) => item !== index),
       ...(showError ? [index] : []),
     ]);
-    if (showError) setErrorFeedbackCount((count) => count + 1);
 
     const nextIndex = findEditableIndex(index, 1);
     if (letter && nextIndex !== -1) {
@@ -115,7 +100,6 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   };
 
   const handleKeyDown = (index: number, event: KeyboardEvent<HTMLInputElement>) => {
-    if (isHintLoading) { event.preventDefault(); return; }
     if (event.key === 'Backspace' && !inputs[index]) {
       event.preventDefault();
       const previousIndex = findEditableIndex(index, -1);
@@ -136,7 +120,6 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   };
 
   const handleSubmit = () => {
-    if (isHintLoading) return;
     const answer = inputs.join('');
     if (answer.length !== length) {
       setErrorMessage('모든 칸에 글자를 입력해 주세요.');
@@ -144,58 +127,6 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
     }
     submitAnswer(answer);
   };
-
-  const handleHintClick = async () => {
-    if (isHintLoading || isHintBalanceLoading) return;
-    const targetIndex = inputs.findIndex((letter, index) => !letter && !currentLetters[index]);
-    if (targetIndex === -1) {
-      setErrorMessage('힌트는 빈 칸에만 사용할 수 있습니다. 글자를 지운 뒤 사용해 주세요.');
-      return;
-    }
-    if (globalHintBalance <= 0) {
-      setErrorMessage('남은 힌트가 없습니다.');
-      return;
-    }
-    if (hintUsedCount >= word.hintLimit) {
-      setErrorMessage('이 단어의 힌트를 모두 사용했습니다.');
-      return;
-    }
-
-    setIsHintLoading(true);
-    setErrorMessage('');
-    try {
-      const result = await onUseHint(word.id, targetIndex);
-      if (!result) {
-        setErrorMessage('이 단어에 힌트를 사용할 수 없습니다.');
-        return;
-      }
-
-      const nextInputs = [...inputs];
-      nextInputs[result.index] = result.letter;
-      setInputs(nextInputs);
-      setIncorrectIndices((previous) => previous.filter((index) => index !== result.index));
-      if (nextInputs.every((item) => item.length === 1)) {
-        const answer = nextInputs.join('');
-        if (answer === word.word.toUpperCase()) {
-          setIsSuccess(true);
-          window.setTimeout(() => onSubmit(word.id, answer), 250);
-        }
-      }
-    } catch (error) {
-      setErrorMessage(
-        error instanceof Error ? error.message : '힌트를 불러오지 못했습니다.'
-      );
-    } finally {
-      setIsHintLoading(false);
-    }
-  };
-
-  const isHintExhausted = hintUsedCount >= word.hintLimit;
-  const isHintDisabled =
-    isHintLoading ||
-    isHintBalanceLoading ||
-    isHintExhausted ||
-    globalHintBalance <= 0;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
@@ -255,7 +186,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
               }`}
               key={index}
               maxLength={1}
-              readOnly={Boolean(currentLetters[index]) || isHintLoading}
+              readOnly={Boolean(currentLetters[index])}
               tabIndex={currentLetters[index] ? -1 : 0}
               onChange={(event) => handleInputChange(index, event.target.value)}
               onKeyDown={(event) => handleKeyDown(index, event)}
@@ -269,9 +200,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
         </div>
 
         <div className="mb-4 text-center text-xs leading-relaxed text-gray-600">
-          <p>오답 글자의 붉은색 안내는 창을 열 때마다 단어의 글자 수만큼 제공됩니다.</p>
-          <p role="status">오답 표시 남은 횟수: {errorFeedbackLimit - errorFeedbackCount} / {errorFeedbackLimit}회</p>
-          <p>횟수를 모두 사용해도 입력과 정답 제출은 계속할 수 있습니다. 창을 다시 열면 초기화됩니다.</p>
+          <p>틀린 글자는 횟수 제한 없이 붉은색으로 표시됩니다.</p>
         </div>
 
         {errorMessage && (
@@ -282,23 +211,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
 
         <div className="mt-2 flex items-center gap-2.5">
           <button
-            className={`flex flex-1 items-center justify-center gap-2 rounded-2xl border px-3 py-3 text-sm font-bold transition-colors ${
-              isHintDisabled
-                ? 'cursor-not-allowed border-gray-200 bg-gray-100 text-gray-400'
-                : 'border-amber-200 bg-amber-50 text-amber-900 hover:bg-amber-100'
-            }`}
-            disabled={isHintDisabled}
-            onClick={() => void handleHintClick()}
-            type="button"
-          >
-            {isHintLoading ? '힌트 불러오는 중...' : `힌트 (${hintUsedCount}/${word.hintLimit})`}
-            <span className="rounded-full bg-amber-200/60 px-1.5 py-0.5 text-xs">
-              {isHintBalanceLoading ? '...' : `${globalHintBalance}개 남음`}
-            </span>
-          </button>
-          <button
             className="flex-1 rounded-2xl bg-indigo-600 px-4 py-3 text-sm font-bold text-white shadow-md shadow-indigo-200 hover:bg-indigo-700"
-            disabled={isHintLoading}
             onClick={handleSubmit}
             type="button"
           >

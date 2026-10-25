@@ -1,5 +1,100 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## 오늘 변경 최종 문서 정리·Git/배포 사용자 진행 (2026-10-25)
+
+- 사용자 결정: 오늘 변경의 최종 정리만 에이전트가 수행하고 스테이징·커밋·푸시·배포는 사용자가 직접 수행한다. `AGENTS.md`에 남은 현재 UI 명칭 두 곳을 문제로 정리하고 완성 🎉 아이콘 기준을 반영했다. 기존 진행 기록은 삭제하지 않는다.
+- 오늘 반영: 세 앱의 전체 너비 보드·문제 전체 보기 오버레이·번호별 입력/방향 선택·완료 항목 비활성화·완성 색종이/아이콘·진행/새 퍼즐 오른쪽 정렬·오답 표시 무제한. 글자 공개·힌트 잔액·완성 보상과 앱의 관련 서버 호출은 제거했다. 기존 학습 기록·오답노트·운영 DB·구버전 API는 보존한다.
+- 실행 코드와 문서는 앞선 각 항목의 검사·빌드 결과를 따른다. 이번 정리는 문서만 수정해 전체 검사를 반복하지 않고 경로·산출물 존재와 `git diff --check`를 확인했다. 웹 미리보기 캡처는 실제 웹 컴포넌트에 예시 퍼즐을 넣어 만든 것이며 토스/Android 실기기 확인을 대신하지 않는다.
+- 사용자 Git에는 새로 추가된 플랫폼별 `QuizPanel`·`PuzzleBoard`·`ClueButton`·`Modal`·`CompletionConfetti`와 테스트/어댑터 등 미추적 소스도 함께 포함해야 한다. `dist`·`.ait`·APK·개인 환경/SDK 경로·키는 소스 커밋 대상이 아니다.
+- PWA는 커밋만으로 갱신되지 않는다. Vercel Git 연결·자동 배포가 활성화된 경우 운영 브랜치로 푸시하고 배포 성공을 확인한다. 저장소 `vercel.json`은 웹 빌드/출력 경로를 지정하지만 현재 원격 Vercel 프로젝트의 연결·운영 브랜치·배포 상태는 조회하지 않았다. 설치된 PWA는 새 버전 안내를 적용해야 할 수 있다.
+- 최신 토스 배포용 파일 존재 확인: `apps/toss/english-words.ait` (30,449,636바이트), 빌드 식별자 `01a17329-93f7-7120-be6c-2d1e3af57aac`. 최신 Android 디버그 APK: `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` (35,148,462바이트). 파일 생성 완료이며 업로드·설치·검토 요청·출시를 의미하지 않는다.
+- 미검증: 새 버전의 실제 브라우저/PWA 업데이트·토스/Android/iOS 조작·키보드·배너/no-fill·폭죽 가독성/성능. 스테이징·커밋·푸시·배포·설치 없음.
+
+## 토스·Android 완성 화면 축하 아이콘 누락 보정 (2026-10-25)
+
+- 사용자 지적: 움직이는 색종이와 별개로 웹 완성 화면의 큰 🎉 아이콘이 토스에 없었다. 토스 `App`·모바일 `HomePage` 완성 모달에 48px 중앙 축하 아이콘을 추가하고 각 앱 CSS로 표시한다. 스크린리더에서는 장식으로 제외한다. 기존 발사 효과와 동작 줄이기는 유지한다.
+- `pnpm.cmd --filter @t-crossword/toss build:ait`, `pnpm.cmd --filter @t-crossword/mobile build`(타입 포함), Android sync·JDK 21 `assembleDebug`, `git diff --check` 통과. 장식 추가로 테스트는 반복하지 않았다. 기존 큰 청크·Gradle flatDir 경고 유지.
+- 최신 토스 `apps/toss/english-words.ait`, 빌드 식별자 `01a17329-93f7-7120-be6c-2d1e3af57aac`. Android `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk` 갱신. 업로드·설치·실기기 아이콘/배치 확인·커밋·푸시 없음. 이모지 모양은 기기 글꼴에 따라 다를 수 있다.
+
+## 퀴즈 목록 명칭을 문제로 통일 (2026-10-25)
+
+- 사용자 지적에 따라 세 앱의 표시 문구를 `문제 전체 보기`, `가로 문제`, `세로 문제`, `문제 선택`으로 통일했다. 접근성 이름도 퍼즐 문제/문제 목록으로 맞췄다. 내부 컴포넌트 이름·CSS 식별자·구버전 힌트 API는 변경하지 않았다. 현재 지침·요구사항·앱 안내는 새 명칭을 사용하며 과거 진행 기록은 보존한다.
+- 세 앱 빌드(타입 검사 포함), 토스 관련 상호작용 테스트 14개·웹 번호 렌더링 테스트 5개, `git diff --check` 통과. 기존 큰 청크 경고 유지. 문구 변경으로 전체 테스트·lint는 반복하지 않았다.
+- 토스 최신 로컬 산출물 `apps/toss/english-words.ait`, 빌드 식별자 `01a17325-bdd3-790e-8026-0e1afa661da7`. `pnpm.cmd --filter @t-crossword/mobile exec cap sync android`·JDK 21을 사용한 `.\gradlew.bat assembleDebug`도 통과해 `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`를 갱신했다. 업로드·설치·실기기 확인·커밋·푸시 없음.
+
+## 토스·Android에 PWA 퀴즈 변경 전체 반영 (2026-10-25)
+
+- 요청: 앞선 PWA의 그리드 너비 확대·힌트 전체 보기·번호 클릭·완료 항목 비활성화·색종이 폭죽·진행/새 퍼즐 오른쪽 정렬을 토스와 Android에도 반영했다. 글자 공개/지갑/보상 제거·오답 표시 무제한은 앞선 적용을 유지한다.
+- 토스 `QuizPanel`·`PuzzleBoard`·CSS를 독립 구현했다. 번호가 있는 칸 전체를 누르면 미완료 시작 단어만 선택하며 양방향이면 뜻/글자 수/동의어로 방향을 선택한다. 완료 번호·목록은 비활성화한다. `힌트 전체 보기`는 보드 전체를 덮고 가로/세로 제목·진행은 고정, 아래 2열 목록은 한 영역에서 함께 스크롤한다. 닫기·Escape·단어 선택·토스 뒤로가기를 연결하고 초점 이동을 처리한다. 새 판은 패널을 초기화하며 홈 왕복의 퍼즐은 유지한다.
+- 모바일도 자체 `QuizPanel`·`PuzzleBoard`·`ClueButton`·`Modal`을 구현했다. 기존 칸 클릭의 임의 단어 선택 대신 번호 시작 위치별 선택으로 맞췄다. Ionic 설정 바 아래 진행/새 퍼즐을 오른쪽 정렬했다. 기존 최대 너비·화면 높이 보드 제한·가로 화면 분할을 제거하고 본문 스크롤을 허용한다. Android 뒤로가기는 입력창·방향 선택·목록·완성창을 닫은 뒤 홈/종료로 진행한다.
+- 토스·모바일이 각각 소유하는 `CompletionConfetti`·CSS로 하단 세 지점에서 위로 발사하는 색종이/리본을 표시한다. 약 4초 내 종료·4.5초 자산 제거·언마운트 타이머 해제·포인터 비차단·동작 줄이기를 적용했다. 모바일 완성 모달에 단어 복습·다음 퍼즐도 연결했다. 앱 사이 UI import나 공유 UI 패키지는 만들지 않았다.
+- 토스 상단 영역·하단 메뉴·자동 높이 배너·Safe Area는 기존 셸 흐름을 유지한다. 2026-10-25 [공식 배너 문서](https://developers-apps-in-toss.toss.im/documentation/common/monetization/iaa/web-banner.md)의 화면 너비 컨테이너·고정형 높이 권고를 확인했고 광고 내부 크기·UI는 변경하지 않았다. 광고 없음/미지원/실패의 새 보드 배치·가독성은 실제 토스 확인 대기다. Android 가상 배너 영역도 유지한다.
+- 자동 검사 통과: `pnpm.cmd --filter @t-crossword/toss typecheck`, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss test`(11개 파일·77개), `pnpm.cmd --filter @t-crossword/toss build:ait`; `pnpm.cmd --filter @t-crossword/mobile typecheck`, `pnpm.cmd --filter @t-crossword/mobile test`(26개), `pnpm.cmd --filter @t-crossword/mobile build`, `pnpm.cmd --filter @t-crossword/mobile exec cap sync android`; `git diff --check`. 모바일에는 lint 스크립트가 없다. 마지막 색종이 표시 assertion 추가 후 토스 `exec vitest run tests/hintsApp.test.tsx` 9개도 통과했다. 웹 소스는 이번 턴에 변경하지 않아 웹 검사를 반복하지 않았다.
+- 회귀 검증: 토스에서 번호→양방향 선택→단어 전달, 한 방향 완료 후 바로 다른 방향, 전체 완료 비활성화, 목록 열기·닫기·Escape·뒤로가기·초점을 검사했다. 완성 통합 테스트는 색종이 존재도 확인한다. 모바일은 번호의 시작 좌표/교차 구분·방향별 완료 처리·빈 번호 선택을 단위 검사했다. 모바일 UI 상호작용·CSS 렌더링은 단위 검사로 검증했다고 보지 않는다.
+- Android 네이티브: 기존 Android Studio 설정의 설치 JDK 21을 명령 범위의 `JAVA_HOME`으로만 지정하고 `apps/mobile/android`에서 `.\gradlew.bat assembleDebug` 실행, `BUILD SUCCESSFUL`. 사용자 캐시 접근을 위한 도구 권한 승인을 거쳤다. 개인 경로·JDK 설정은 저장소에 추가하지 않았다. Gradle `flatDir` 권고와 기존 Vite 큰 청크 경고 유지. dist→Android assets→APK의 모든 웹 자산 해시 대응을 추가 검사했다.
+- 산출물: 토스 `apps/toss/english-words.ait` (로컬 빌드 식별자 `01a17319-3861-7c24-9316-2663e9dd088a`), Android `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`. 토스 업로드·검토 요청·출시, APK 설치·에뮬레이터 실행은 하지 않았다.
+- 실제 토스/Android/iOS의 작은 화면·회전·키보드·배너/no-fill·폭죽 성능·방향 선택/목록 뒤로가기 검증은 남아 있다. 토스 기기 회전 지원 상태는 이전 기록과 같이 별도 확인이 필요하다. 운영 DB·API·커밋·푸시 없음.
+
+## 웹 진행 숫자·새 퍼즐 오른쪽 정렬 (2026-10-25)
+
+- `QuizPage.tsx`의 진행 숫자·새 퍼즐 버튼 줄에 `justify-end`를 적용했다.
+- `pnpm.cmd --filter @t-crossword/web build`(타입·PWA 포함)·`git diff --check` 통과. 기존 큰 청크 경고 유지. 정렬 변경으로 테스트는 반복하지 않았다. 실제 브라우저 확인·배포 없음.
+
+## 정답 입력 오답 표시 무제한 (2026-10-25)
+
+- 웹/PWA `WordInputModal`·토스 `AnswerModal`의 횟수 카운터·글자 수 한도 조건·남은 횟수/초기화 안내를 제거했다. 틀린 영문 글자는 계속 붉은색과 `aria-invalid`로 표시한다. 정답 수정·삭제 시 해당 칸만 해제하며 다른 칸의 표시는 유지한다.
+- 모바일 `AnswerEntry`·`letterFeedback`도 횟수 인자·잔여 카운터를 제거했다. 토스는 글자 수를 초과해 틀린 뒤에도 붉은 표시와 제출이 가능한 상호작용 회귀 검사, 모바일은 100회 반복 오답 검사로 변경했다. 지침·요구사항·앱 README·PWA 기기 확인 기준을 갱신했다.
+- 검증 통과: `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`, `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(42개), `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss test`(72개), `pnpm.cmd --filter @t-crossword/toss build:ait`, `pnpm.cmd --filter @t-crossword/mobile test`(23개), `pnpm.cmd --filter @t-crossword/mobile build`, `pnpm.cmd --filter @t-crossword/mobile exec cap sync android`, `git diff --check`. 세 앱 빌드에 타입 검사 포함. 기존 큰 청크 경고 유지.
+- 최신 토스 로컬 번들: `apps/toss/english-words.ait`, 빌드 식별자 `01a17311-9cab-7e93-813b-0336179fed56`. 직전 힌트 제거본을 포함해 다시 생성했으며 업로드·검토 요청·출시는 하지 않았다.
+- 실제 브라우저/PWA·토스·Android/iOS 키보드/반복 입력·수정/삭제 확인은 미실행이다. APK 빌드·커밋·푸시·운영 변경 없음.
+
+## 글자 공개·힌트 잔액·완성 보상 제거 (2026-10-25)
+
+- 사용자 확인: 글자 공개·잔액·완성 보상은 삭제하고 문제의 뜻 목록은 유지한다. 웹/PWA·토스·모바일 사용자 기능에 적용했다. 기존 오답노트·즐겨찾기·학습완료·DB 잔액은 삭제하지 않는다.
+- 웹 `useCrosswordGame`·`WordInputModal`·`QuizPage`·`PuzzleCompletionModal`에서 공개/차감/잔액/보상 상태·버튼·요청을 제거했다. `App`의 Supabase 설정·익명 인증 진입 조건도 제거해 로컬 퍼즐이 인증 서버 장애로 차단되지 않는다. 완성 축하·색종이 폭죽·복습·다음 퍼즐은 유지하며 보상 대기가 없다. 문제 목록과 번호 클릭은 앞선 작업을 유지한다.
+- 토스 `App`·`AnswerModal`·`main`과 모바일 `HomePage`·`AnswerEntry`에서 공개·잔액·보상·gateway 연결을 제거했다. 공통 엔진 기기 출제 뒤 서버 판 등록 없이 사용하고 정답을 기기에서 확인해 저장한다. 토스 배너 광고는 유지한다. 서버가 정답 API에서 보상을 지급하던 경로도 새 앱이 호출하지 않는다.
+- 기존 오답노트 안내와 PWA 오프라인 안내를 수정했다. 새 오답노트 등록 정책은 추가하지 않았다. 지침·요구사항·구조·앱 README·PWA 배포·보상 문서에 최신 동작과 기존 이력을 구분했다. core의 기존 힌트 필드·계약, 미사용 gateway/auth 어댑터·테스트, 구버전 서버·마이그레이션은 호환 이력으로 남기며 운영 서버/DB 변경·삭제·배포는 하지 않았다. 기존 배포본에서는 업데이트 전까지 과거 기능이 남을 수 있다.
+- 검증 통과: `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입·PWA), `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(7개 파일·42개 테스트), `pnpm.cmd --filter @t-crossword/toss typecheck`, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss test`(10개 파일·72개 테스트), `pnpm.cmd --filter @t-crossword/toss build:ait`, `pnpm.cmd --filter @t-crossword/mobile typecheck`, `pnpm.cmd --filter @t-crossword/mobile test`(23개), `pnpm.cmd --filter @t-crossword/mobile build`, `git diff --check`. 모바일에는 lint 스크립트가 없다. 기존 큰 청크 경고는 유지한다.
+- 테스트는 폐기된 힌트 UI/보상 기대를 제거하고 일반 입력·교차 셀·학습 기록·완성 축하를 검증한다. 토스는 기기 퍼즐 생성부터 정답 완성까지 `fetch` 호출이 없고 지갑·공개·보상 UI가 없는 상호작용 회귀 검사를 통과했다. 세 앱 dist JS에서 기존 차감·보상 RPC와 판 등록 등 지정된 호출 표식이 없음을 추가 검사했다. 문자열 검사는 모든 네트워크 동작이나 실기기 검증을 대신하지 않는다.
+- Android sync는 샌드박스의 `uv_os_get_passwd ENOMEM`로 처음 실패했으며 도구 권한 승인 후 같은 `pnpm.cmd --filter @t-crossword/mobile exec cap sync android` 재실행으로 통과했다. APK 빌드·Android/iOS 기기 검증은 하지 않았다.
+- 토스 로컬 산출물: `apps/toss/english-words.ait`, CLI 빌드 식별자 `01a1730d-6a08-7bb3-ba0b-c40d48da48ff`. `ait build`만 실행했으며 업로드·검토 요청·출시는 하지 않았다. 사용자 직접 업로드 대상이다.
+- 남은 검증: 실제 브라우저/PWA 업데이트·오프라인·완성/다음 판, 토스 실제 기기·저장·배너·키보드, Android/iOS. 운영 DB·기존 API를 종료하거나 삭제하려면 별도 승인과 구버전 사용자 영향 확인이 필요하다. 커밋·푸시 없음.
+
+## 웹 퍼즐 완성 색종이 폭죽 (2026-10-25)
+
+- 요청 이미지의 색종이·리본 느낌을 CSS로 구현했다. `CompletionConfetti.tsx`와 `styles/index.css`에서 72개 입자가 화면 하단 세 지점에서 세 차례 위로 퍼진 후 내려오며 사라진다. 외부 이미지·라이브러리는 추가하지 않았다.
+- `PuzzleCompletionModal.tsx`가 열릴 때 효과를 시작하며 보상 지급 상태 변경에는 다시 시작하지 않는다. 약 4초 내 애니메이션 종료 후 4.5초에 입자를 제거하고 모달 해제 시 타이머도 정리한다. 효과는 포인터를 가로채지 않고 스크린리더에서 제외한다. 동작 줄이기 설정에서는 입자와 기존 축하 이모지 바운스를 중단한다. 서버 보상 확인 전 지급 성공을 안내하지 않는 기존 경계를 유지한다.
+- 검증: 초기 빌드에서 CSS 사용자 정의 속성 타입 오류를 확인해 명시적 타입으로 수정했다. 이후 `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입·PWA 포함), `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(7개 파일·44개 테스트), `git diff --check` 통과. 보상 상태와 독립적인 축하 표시/닫힘 회귀 검사를 추가했다. 기존 큰 청크 경고 유지.
+- 미검증: 실제 브라우저/PWA의 발사 궤적·프레임 성능·회전·동작 줄이기·버튼 조작. 정적 렌더링 테스트는 애니메이션 시각 검증을 대신하지 않는다. 웹 전용이며 토스·모바일 변경, 커밋·푸시·배포 없음.
+
+## 웹 완료 힌트 클릭 비활성화 (2026-10-25)
+
+- `HintListSection.tsx`의 완료 항목 버튼에 `disabled`를 적용해 클릭·키보드로 정답 입력창을 다시 열 수 없도록 했다. 기존 체크·정답 표시·목록 위치는 유지한다.
+- 검증: `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입·PWA 포함), `git diff --check` 통과. 기존 큰 청크 경고 유지. 단순 버튼 비활성화 변경으로 전체 테스트는 반복하지 않았다.
+- 실제 브라우저/PWA의 클릭·키보드 확인 미실행. 토스·모바일 변경, 커밋·푸시·배포 없음.
+
+## 웹 완료 번호 비활성화·남은 방향 바로 입력 (2026-10-25)
+
+- `CrosswordBoard.tsx`에서 시작 좌표의 단어 중 `solvedWordIds`에 없는 단어만 번호 클릭 대상으로 삼는다. 미완료가 2개면 방향 선택, 1개면 해당 단어 입력창, 0개면 번호 버튼 비활성화로 처리한다. 교차 칸이 초록색이어도 다른 방향이 미완료이면 입력할 수 있다. 접근성 이름도 남은 방향/완료 상태를 반영한다.
+- `tests/crosswordBoard.test.tsx`에 양방향 미완료·가로만 완료·세로만 완료·양방향 완료·단일 방향 완료의 번호 상태 회귀 검사 5개를 추가했다. 정적 렌더링 검사이며 실제 클릭·모달 전환 검증과 구분한다.
+- 검증: `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입·PWA 포함), `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(7개 파일·43개 테스트), `git diff --check` 통과. 기존 큰 청크 경고 유지.
+- 미검증: 실제 브라우저/PWA에서 완료 전후 클릭·모달 전환. 토스·모바일 변경, 커밋·푸시·배포 없음.
+
+## 웹 그리드 번호 선택·가로/세로 힌트 선택 (2026-10-25)
+
+- 요청: `CrosswordBoard.tsx`의 번호 칸 전체에 버튼을 배치하고 `QuizPage.tsx`에서 기존 `selectWord`로 연결했다. 해당 칸을 시작 좌표로 하는 단어가 하나면 바로 정답 입력창을 연다. 번호 없는 칸에는 버튼을 만들지 않는다.
+- 같은 칸에서 가로·세로가 시작하면 네이티브 dialog에 가로·세로 순으로 뜻·글자 수·동의어를 표시한다. 선택하면 방향 선택창을 닫고 해당 단어의 입력창을 연다. 닫기·Escape 취소와 브라우저의 모달 포커스 처리를 사용한다. 정답 판정·힌트 차감 규칙은 기존 흐름을 사용한다.
+- 검증: `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입·PWA 포함), `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(6개 파일·38개 테스트), `git diff --check` 통과. 기존 큰 청크 경고 유지.
+- 미검증: 실제 브라우저/PWA에서 단일·양방향 번호 클릭, 선택 취소·키보드·입력 모달 전환. 기존 테스트 통과는 신규 클릭 상호작용 검증을 포함하지 않는다. 토스·모바일 수정, 커밋·푸시·배포 없음.
+
+## 웹 퀴즈 그리드 확대·힌트 전체 보기 (2026-10-25)
+
+- 요청: 그리드를 화면 가로 공간에 맞춰 확대하고 상시 힌트 목록을 한 줄 버튼으로 변경했다. `CrosswordBoard.tsx`의 400px/46svh 제한과 `QuizPage.tsx`의 본문 최대 너비·방향별 분할을 제거했다. 작은 좌우 여백과 정사각형 셀은 유지하며 낮은 화면에서는 본문을 스크롤한다.
+- `힌트 전체 보기`를 누르면 그리드 전체 영역에 기존 가로·세로 2열 목록이 겹쳐 표시된다. 제목·진행은 고정하고 문제 목록만 스크롤한다. 닫기·Escape·단어 선택으로 닫으며 열 때 닫기 버튼, 닫을 때 열기 버튼으로 포커스를 이동한다. 단어 선택은 기존 입력창으로 연결한다. 난이도·크기·새 퍼즐 변경 시 목록을 접는다.
+- `AGENTS.md`의 웹 퀴즈 배치 기준을 최신 요청에 맞췄다. 토스·모바일 UI는 변경하지 않았다.
+- 검증: `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입 검사·PWA 생성 포함), `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(6개 파일·38개 테스트), `git diff --check` 통과. 기존 500kB 초과 청크 경고 유지.
+- 미검증: 실제 브라우저의 작은 화면·가로 회전·키보드·힌트 열기/닫기·단어 입력 흐름 및 설치된 PWA 갱신. 기존 웹 테스트는 통과했으나 신규 힌트 동작을 자동 상호작용 테스트로 검증한 것은 아니다. 커밋·푸시·배포 없음.
+
 ## 모바일 작업 문서 정리·커밋 사용자 진행 (2026-10-23)
 
 - 사용자 결정: 커밋은 사용자가 직접 수행한다. 에이전트는 이번 문서 정리에서 스테이징·커밋·푸시를 실행하지 않는다.

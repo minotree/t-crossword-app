@@ -44,14 +44,14 @@ export function WordBankPage() {
             </button>
           ))}
         </nav>
-        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">퀴즈에서 힌트를 사용한 단어입니다. 이 기기에 저장됩니다. 삭제해도 단어와 학습 기록은 유지되며, 다시 힌트를 사용하면 표시됩니다.</p>}
+        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">이 기기에 저장된 기존 오답노트 기록입니다. 삭제해도 단어와 학습 기록은 유지됩니다.</p>}
         <label className="block mt-4">
           <span className="sr-only">단어 또는 뜻 검색</span>
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="단어 또는 뜻 검색"
             className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
         </label>
         {words.length === 0 && <p className="rounded-xl bg-white p-8 text-center text-slate-500">
-          {query.trim() ? '검색 결과가 없습니다.' : tab === 'mistakes' ? '퀴즈에서 힌트를 사용하면 여기에 표시됩니다.' : tab === 'completed' ? '퍼즐에서 정답을 맞히면 여기에 표시됩니다.' : '즐겨찾기한 단어가 없습니다.'}
+          {query.trim() ? '검색 결과가 없습니다.' : tab === 'mistakes' ? '저장된 오답노트 기록이 없습니다.' : tab === 'completed' ? '퍼즐에서 정답을 맞히면 여기에 표시됩니다.' : '즐겨찾기한 단어가 없습니다.'}
         </p>}
         <ul className="mt-3 space-y-2">
           {words.map((word) => (

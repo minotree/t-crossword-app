@@ -10,10 +10,6 @@ if (import.meta.env.VITE_TOSS_LAYOUT_DEBUG === 'true') {
 
 const root = document.getElementById('root');
 if (!root) throw new Error('앱을 표시할 영역을 찾지 못했습니다.');
-// Keep browser preview traffic away from the real Toss authentication endpoint.
-const previewGateway = import.meta.env.DEV
-  ? (await import('./adapters/previewGateway.js')).createPreviewGateway()
-  : undefined;
 if (import.meta.env.DEV) {
   await import('./preview.css');
   const syncPreviewHeight = () => {
@@ -27,6 +23,6 @@ if (import.meta.env.DEV) {
 }
 createRoot(root).render(<StrictMode>
   <TDSMobileAITProvider brandPrimaryColor="#3182f6">
-    <App hintGateway={previewGateway} />
+    <App />
   </TDSMobileAITProvider>
 </StrictMode>);

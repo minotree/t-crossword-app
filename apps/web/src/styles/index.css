@@ -1,1 +1,39 @@
 @import "tailwindcss";
+/* 완성 축하: 하단 세 지점에서 발사한 색종이가 위로 퍼졌다가 내려오며 사라진다. */
+.completion-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.completion-confetti-piece {
+  position: absolute;
+  left: var(--confetti-start);
+  bottom: -24px;
+  background: var(--confetti-color);
+  opacity: 0;
+  animation-name: completion-confetti-launch;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes completion-confetti-launch {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  8% { opacity: 1; }
+  55% {
+    transform: translate3d(var(--confetti-x), var(--confetti-rise), 0) rotate(var(--confetti-spin));
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translate3d(var(--confetti-x), var(--confetti-end), 0) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .completion-confetti { display: none; }
+  .completion-confetti-piece { animation: none; }
+}

@@ -45,7 +45,7 @@ export function PwaStatus() {
     return () => { mounted = false; cancelRegistration(); navigator.serviceWorker.removeEventListener('controllerchange', changed); };
   }, []);
   return <>
-    {!online && <p role="status" className="bg-amber-50 p-2 text-center text-sm">오프라인입니다. 퍼즐과 단어장은 이용할 수 있으며, 힌트 사용은 인터넷 연결이 필요합니다.</p>}
+    {!online && <p role="status" className="bg-amber-50 p-2 text-center text-sm">오프라인입니다. 퍼즐과 단어장은 이용할 수 있습니다. 처음 여는 그림책 이미지는 인터넷 연결이 필요합니다.</p>}
     {error && <p role="alert" className="p-2 text-center text-sm text-rose-700">{error}</p>}
     {waiting && <div className="bg-blue-50 p-2 text-center text-sm">새 버전이 준비됐습니다. 업데이트하면 현재 퍼즐은 새로 시작됩니다. <button type="button" onClick={() => waiting.postMessage('SKIP_WAITING')} className="font-bold text-blue-700 underline">업데이트</button></div>}
   </>;

@@ -31,8 +31,9 @@ export const HintListSection: React.FC<HintListSectionProps> = ({
       <button
         key={item.id}
         type="button"
+        disabled={isSolved}
         onClick={() => onSelectWord(item)}
-        className={`w-full text-left p-2 rounded-lg border transition-all cursor-pointer flex items-start gap-1.5 ${
+        className={`w-full text-left p-2 rounded-lg border transition-all cursor-pointer disabled:cursor-default flex items-start gap-1.5 ${
           isSelected
             ? 'bg-amber-50 border-amber-300 ring-1 ring-amber-400'
             : isSolved
@@ -83,29 +84,29 @@ export const HintListSection: React.FC<HintListSectionProps> = ({
   return (
     <div className="flex h-full min-h-0 w-full flex-col">
       <div className="grid shrink-0 grid-cols-2 gap-2 pr-3 sm:gap-3">
-      {/* 가로 힌트 */}
+      {/* 가로 문제 */}
       <div className="min-w-0">
         <h3 className="flex flex-wrap items-center gap-1 sm:gap-2 font-bold text-gray-800 text-sm sm:text-base mb-2">
           <span className="w-2 h-2 rounded-full bg-indigo-500" />
-          가로 힌트 <span className="hidden sm:inline">(Across)</span>
+          가로 문제 <span className="hidden sm:inline">(Across)</span>
           <span className="ml-auto whitespace-nowrap text-xs text-gray-500 font-normal">
             {acrossWords.filter((w) => solvedWordIds.includes(w.id)).length} / {acrossWords.length}
           </span>
         </h3>
       </div>
 
-      {/* 세로 힌트 */}
+      {/* 세로 문제 */}
       <div className="min-w-0">
         <h3 className="flex flex-wrap items-center gap-1 sm:gap-2 font-bold text-gray-800 text-sm sm:text-base mb-2">
           <span className="w-2 h-2 rounded-full bg-indigo-500" />
-          세로 힌트 <span className="hidden sm:inline">(Down)</span>
+          세로 문제 <span className="hidden sm:inline">(Down)</span>
           <span className="ml-auto whitespace-nowrap text-xs text-gray-500 font-normal">
             {downWords.filter((w) => solvedWordIds.includes(w.id)).length} / {downWords.length}
           </span>
         </h3>
       </div>
       </div>
-      <div role="region" aria-label="힌트 문제 목록" tabIndex={0} className="grid min-h-0 flex-1 grid-cols-2 content-start gap-2 overflow-y-auto overscroll-contain pb-1 pr-1 focus-visible:outline-2 focus-visible:outline-indigo-600 sm:gap-3">
+      <div role="region" aria-label="문제 목록" tabIndex={0} className="grid min-h-0 flex-1 grid-cols-2 content-start gap-2 overflow-y-auto overscroll-contain pb-1 pr-1 focus-visible:outline-2 focus-visible:outline-indigo-600 sm:gap-3">
         <div className="min-w-0 space-y-1.5">{acrossWords.map(renderWordItem)}</div>
         <div className="min-w-0 space-y-1.5">{downWords.map(renderWordItem)}</div>
       </div>

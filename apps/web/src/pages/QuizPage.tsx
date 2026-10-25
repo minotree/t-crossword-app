@@ -1,13 +1,22 @@
+import { useEffect, useRef, useState } from 'react';
 import { useCrosswordGame } from '../hooks/useCrosswordGame.js';
 import { CrosswordBoard } from '../components/CrosswordBoard.js';
 import { HintListSection } from '../components/HintListSection.js';
 import { WordInputModal } from '../components/WordInputModal.js';
 import { PuzzleCompletionModal } from '../components/PuzzleCompletionModal.js';
 import type { DifficultyLevel, GridSize } from '@t-crossword/core';
-import { useSupabaseAuth } from '../app/SupabaseAuthProvider.js';
 
 export function QuizPage() {
-  const { client, userId } = useSupabaseAuth();
+  const [showHints, setShowHints] = useState(false);
+  const hintsButtonRef = useRef<HTMLButtonElement>(null);
+  const closeHintsRef = useRef<HTMLButtonElement>(null);
+  const closeHints = () => {
+    setShowHints(false);
+    hintsButtonRef.current?.focus();
+  };
+  useEffect(() => {
+    if (showHints) closeHintsRef.current?.focus();
+  }, [showHints]);
   const {
     wordProgressError,
     level,
@@ -15,14 +24,6 @@ export function QuizPage() {
     puzzle,
     userGrid,
     solvedWordIds,
-    wordHintUsage,
-    globalHintBalance,
-    isHintBalanceLoading,
-    hintBalanceError,
-    totalHintsUsed,
-    completionRewardStatus,
-    completionRewardError,
-    claimCompletionReward,
     selectedWord,
     selectedWordCurrentLetters,
     isInputModalOpen,
@@ -31,15 +32,16 @@ export function QuizPage() {
     selectWord,
     closeInputModal,
     submitWordAnswer,
-    useWordHint,
     closeCompletionModal,
-  } = useCrosswordGame({ client, userId });
+  } = useCrosswordGame({});
 
   const handleLevelChange = (newLevel: DifficultyLevel) => {
+    setShowHints(false);
     startNewGame(newLevel, gridSize);
   };
 
   const handleGridSizeChange = (newSize: GridSize) => {
+    setShowHints(false);
     startNewGame(level, newSize);
   };
 
@@ -60,14 +62,6 @@ export function QuizPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            {/* 글로벌 힌트 잔액 배지 */}
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold shadow-2xs">
-              <span>💡</span>
-              <span>{isHintBalanceLoading ? '...' : globalHintBalance}</span>
-            </div>
-
-          </div>
         </div>
       </header>
 
@@ -118,23 +112,16 @@ export function QuizPage() {
         </div>
       </div>
 
-      <div className="mx-auto mb-2 flex w-full max-w-4xl shrink-0 flex-wrap items-center justify-between gap-2 px-3 sm:px-4">
-        <p className="min-w-0 flex-1 text-xs text-indigo-700">🎁 완성하면 힌트 5개를 드려요.</p>
+      <div className="mx-auto mb-2 flex w-full max-w-4xl shrink-0 flex-wrap items-center justify-end gap-2 px-3 sm:px-4">
         <div className="flex shrink-0 items-center gap-2 whitespace-nowrap">
           <span className="text-sm font-bold text-indigo-700" aria-live="polite" aria-label="전체 정답 진행">{solvedWordIds.length} / {puzzle?.words.length ?? 0}</span>
-          <button type="button" onClick={() => startNewGame(level, gridSize)}
+          <button type="button" onClick={() => { setShowHints(false); startNewGame(level, gridSize); }}
             className="min-h-11 rounded-xl bg-indigo-50 px-3 text-sm font-bold text-indigo-700 hover:bg-indigo-100 focus-visible:outline-2 focus-visible:outline-indigo-600">새 퍼즐</button>
         </div>
       </div>
 
       {/* 메인 콘텐츠 영역 */}
-      {hintBalanceError && (
-        <p className="mx-auto mt-3 w-full max-w-4xl px-4 text-sm text-rose-700" role="alert">
-          Hint balance unavailable: {hintBalanceError}
-        </p>
-      )}
-
-      <main className="flex min-h-0 flex-1 flex-col w-full max-w-4xl mx-auto px-3 sm:px-4">
+      <main className="flex min-h-0 flex-1 flex-col w-full mx-auto overflow-y-auto px-3 sm:px-4">
         {wordProgressError && <p role="alert" className="mb-3 text-sm text-rose-700">{wordProgressError}</p>}
         {puzzle && puzzle.words.length === 0 && (
           <p role="status" className="mb-3 rounded-xl bg-white p-4 text-sm text-slate-600">
@@ -142,27 +129,40 @@ export function QuizPage() {
           </p>
         )}
         {/* 십자낱말 보드 */}
-        <div className="grid min-h-0 flex-1 grid-rows-[auto_minmax(0,1fr)] gap-2 landscape:grid-cols-2 landscape:grid-rows-[minmax(0,1fr)]">
-        <div className="min-h-0 min-w-0">
+        <div className="flex w-full shrink-0 flex-col gap-2">
+        <div className="relative min-w-0">
         <CrosswordBoard
           puzzle={puzzle}
           userGrid={userGrid}
           selectedWord={selectedWord}
           solvedWordIds={solvedWordIds}
+          onSelectWord={selectWord}
         />
-        </div>
-
-        {/* 화면 방향별 배치에서도 힌트 영역만 스크롤한다. */}
-        <section aria-label="퍼즐 힌트" className="min-h-0 min-w-0 overflow-hidden">
-        {puzzle && (
+        {showHints && puzzle && (
+        <section id="puzzle-hints" aria-label="퍼즐 문제" onKeyDown={(event) => {
+          if (event.key === 'Escape') { event.stopPropagation(); closeHints(); }
+        }} className="absolute inset-0 z-10 flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm">
+          <div className="mb-2 flex shrink-0 items-center justify-between gap-2">
+            <h2 className="font-bold text-slate-900">문제 전체 보기</h2>
+            <button ref={closeHintsRef} type="button" onClick={closeHints}
+              className="min-h-11 rounded-lg bg-white px-3 text-sm font-bold text-indigo-700 focus-visible:outline-2 focus-visible:outline-indigo-600">닫기</button>
+          </div>
+          <div className="min-h-0 flex-1">
           <HintListSection
             words={puzzle.words}
             solvedWordIds={solvedWordIds}
             selectedWord={selectedWord}
-            onSelectWord={selectWord}
+            onSelectWord={(word) => { closeHints(); selectWord(word); }}
           />
-        )}
+          </div>
         </section>
+        )}
+        </div>
+        <button ref={hintsButtonRef} type="button" aria-expanded={showHints} aria-controls={showHints ? 'puzzle-hints' : undefined}
+          disabled={!puzzle} onClick={() => showHints ? closeHints() : setShowHints(true)}
+          className="min-h-11 w-full shrink-0 rounded-xl border border-indigo-200 bg-white px-3 text-sm font-bold text-indigo-700 hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:opacity-50">
+          문제 전체 보기
+        </button>
         </div>
       </main>
 
@@ -171,12 +171,8 @@ export function QuizPage() {
         isOpen={isInputModalOpen}
         word={selectedWord}
         currentLetters={selectedWordCurrentLetters}
-        hintUsedCount={selectedWord ? wordHintUsage[selectedWord.id] || 0 : 0}
-        globalHintBalance={globalHintBalance}
-        isHintBalanceLoading={isHintBalanceLoading}
         onClose={closeInputModal}
         onSubmit={submitWordAnswer}
-        onUseHint={useWordHint}
       />
 
       {/* 퍼즐 완주 축하 모달 */}
@@ -184,10 +180,6 @@ export function QuizPage() {
         <PuzzleCompletionModal
           isOpen={isCompletionModalOpen}
           words={puzzle.words}
-          totalHintsUsed={totalHintsUsed}
-          rewardStatus={completionRewardStatus}
-          rewardError={completionRewardError}
-          onRetryReward={() => { void claimCompletionReward(); }}
           onClose={closeCompletionModal}
           onNewGame={() => startNewGame(level, gridSize)}
         />

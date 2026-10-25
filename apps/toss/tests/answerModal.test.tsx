@@ -27,9 +27,9 @@ beforeEach(() => {
 });
 afterEach(async () => { await act(async () => root.unmount()); container.remove(); });
 
-async function render(currentLetters: string[] = [], hintProps: Pick<Parameters<typeof AnswerModal>[0], 'hintBalance' | 'hintUsedCount' | 'onUseHint'> = {}) {
+async function render(currentLetters: string[] = []) {
   await act(async () => {
-    root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerModal word={word} currentLetters={currentLetters} onClose={() => {}} onSubmit={onSubmit} {...hintProps} /></TDSMobileAITProvider>);
+    root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerModal word={word} currentLetters={currentLetters} onClose={() => {}} onSubmit={onSubmit} /></TDSMobileAITProvider>);
   });
   await act(async () => { await new Promise((resolve) => setTimeout(resolve, 5)); });
   return Array.from(container.querySelectorAll('input'));
@@ -86,67 +86,6 @@ describe('Toss letter input', () => {
     expect(inputs[0].getAttribute('aria-invalid')).toBe('false');
     expect(inputs[1].getAttribute('aria-invalid')).toBe('true');
   });
-  it('reveals only the first empty cell, preserves typed letters, and blocks duplicate clicks while pending', async () => {
-    let resolveHint: ((value: { index: number; letter: string; balance: number; used: number }) => void) | undefined;
-    const onUseHint = vi.fn(() => new Promise<{ index: number; letter: string; balance: number; used: number }>((resolve) => { resolveHint = resolve; }));
-    const inputs = await render([], { hintBalance: 10, hintUsedCount: 0, onUseHint });
-    await type(inputs[0], 'X');
-    const hint = Array.from(container.querySelectorAll('button')).find((button) => button.textContent?.includes('힌트 ('));
-    if (!hint) throw new Error('Hint button missing');
-    await act(async () => { hint.click(); hint.click(); });
-    expect(onUseHint).toHaveBeenCalledExactlyOnceWith(1);
-    expect(inputs.every((input) => !input.readOnly)).toBe(true);
-    expect(document.activeElement).toBe(inputs[2]);
-    expect(inputs[2].getAttribute('aria-disabled')).toBe('true');
-    await type(inputs[2], 'A');
-    expect(inputs[2].value).toBe('');
-    await act(async () => { resolveHint?.({ index: 1, letter: 'E', balance: 9, used: 1 }); });
-    expect(inputs.map((input) => input.value)).toEqual(['X', 'E', '']);
-    expect(onSubmit).not.toHaveBeenCalled();
-  });
-
-  it('preserves keyboard focus outside the revealed cell across the parent hint update', async () => {
-    const onUseHint = vi.fn().mockResolvedValue({ index: 0, letter: 'S', balance: 9, used: 1 });
-    const inputs = await render([], { hintBalance: 10, onUseHint });
-    const hint = Array.from(container.querySelectorAll('button')).find(button => button.textContent?.includes('힌트 ('));
-    if (!hint) throw new Error('Hint button missing');
-    const pointer = new Event('pointerdown', { bubbles: true, cancelable: true });
-    await act(async () => { hint.dispatchEvent(pointer); hint.click(); });
-    expect(pointer.defaultPrevented).toBe(true);
-    expect(document.activeElement).toBe(inputs[1]);
-    await render(['S', '', ''], { hintBalance: 9, hintUsedCount: 1, onUseHint });
-    expect(inputs[0].readOnly).toBe(true);
-    expect(document.activeElement).toBe(inputs[1]);
-    await act(async () => inputs[2].focus({ preventScroll: true }));
-    expect(document.activeElement).toBe(inputs[2]);
-  });
-
-  it('does not request a hint for a filled word and preserves inputs after a failure', async () => {
-    const onUseHint = vi.fn().mockRejectedValue(new Error('통신 실패'));
-    const inputs = await render([], { hintBalance: 10, onUseHint });
-    await type(inputs[0], 'X'); await type(inputs[1], 'Y'); await type(inputs[2], 'Z');
-    const hint = Array.from(container.querySelectorAll('button')).find((button) => button.textContent?.includes('힌트 ('));
-    if (!hint) throw new Error('Hint button missing');
-    await act(async () => hint.click());
-    expect(onUseHint).not.toHaveBeenCalled();
-    expect(container.textContent).toContain('힌트는 빈 칸에만');
-    await type(inputs[1], '');
-    await act(async () => hint.click());
-    expect(onUseHint).toHaveBeenCalledExactlyOnceWith(1);
-    expect(inputs.map((input) => input.value)).toEqual(['X', '', 'Z']);
-    expect(container.textContent).toContain('통신 실패');
-    expect(hint.disabled).toBe(false);
-  });
-
-  it('automatically submits when a hint completes the word', async () => {
-    onSubmit.mockReturnValue(true);
-    const onUseHint = vi.fn().mockResolvedValue({ index: 2, letter: 'A', balance: 9, used: 1 });
-    await render(['S', 'E', ''], { hintBalance: 10, onUseHint });
-    const hint = Array.from(container.querySelectorAll('button')).find((button) => button.textContent?.includes('힌트 ('));
-    await act(async () => hint?.click());
-    expect(onSubmit).toHaveBeenCalledExactlyOnceWith(word, 'SEA');
-  });
-
   it('skips completed crossing cells and submits the correct word only once', async () => {
     onSubmit.mockReturnValue(true);
     const inputs = await render(['', 'E', '']);
@@ -161,23 +100,23 @@ describe('Toss letter input', () => {
     expect(onSubmit).toHaveBeenCalledTimes(1);
   });
 
-  it('limits red feedback to word length while leaving submission available', async () => {
+  it('keeps red feedback unlimited while leaving submission available', async () => {
     const inputs = await render();
     for (const value of ['X', 'Y', 'Z']) await type(inputs[0], value);
-    expect(container.textContent).toContain('0 / 3회');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
     await type(inputs[0], 'Q');
-    expect(inputs[0].getAttribute('aria-invalid')).toBe('false');
-    expect(container.textContent).toContain('0 / 3회');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
+    expect(container.textContent).not.toContain('남은 횟수');
     await type(inputs[1], 'Q'); await type(inputs[2], 'Q');
     await act(async () => { container.querySelector('form')?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); });
     expect(onSubmit).toHaveBeenCalledWith(word, 'QQQ');
     expect(container.textContent).toContain('정답이 아닙니다.');
   });
 
-  it('does not spend feedback for correct letters, deletion or non-English input', async () => {
+  it('does not mark correct letters, deletion or non-English input as incorrect', async () => {
     const inputs = await render();
     await type(inputs[0], 'S'); await type(inputs[0], ''); await type(inputs[0], '가');
-    expect(container.textContent).toContain('3 / 3회');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('false');
     expect(container.textContent).toContain('영문으로 입력해 주세요.');
     expect(onSubmit).not.toHaveBeenCalled();
   });
@@ -185,21 +124,20 @@ describe('Toss letter input', () => {
   it('backspaces past crossing cells and resets feedback when reopened', async () => {
     const inputs = await render(['', 'E', '']);
     await type(inputs[0], 'X');
-    expect(container.textContent).toContain('2 / 3회');
+    expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
     await act(async () => { inputs[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'Backspace', bubbles: true, cancelable: true })); });
     expect(inputs[0].value).toBe(''); expect(inputs[1].value).toBe('E');
     expect(document.activeElement).toBe(inputs[0]);
     await act(async () => root.render(null));
-    await render(['', 'E', '']);
-    expect(container.textContent).toContain('3 / 3회');
+    const reopened = await render(['', 'E', '']);
+    expect(reopened[0].getAttribute('aria-invalid')).toBe('false');
   });
 
-  it('reports missing cells and shows a disabled hint control without a fake balance', async () => {
+  it('reports missing cells and offers no letter-reveal control', async () => {
     await render();
     await act(async () => { container.querySelector('form')?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); });
     expect(container.textContent).toContain('모든 칸에 글자를 입력해 주세요.');
-    const hint = Array.from(container.querySelectorAll('button')).find((button) => button.textContent?.includes('힌트 연결 필요'));
-    expect(hint?.disabled).toBe(true);
+    expect(container.querySelectorAll('.answer-actions button')).toHaveLength(1);
     expect(onSubmit).not.toHaveBeenCalled();
   });
 });

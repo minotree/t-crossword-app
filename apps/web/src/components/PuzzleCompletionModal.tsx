@@ -1,13 +1,10 @@
 import type React from 'react';
 import type { CrosswordWord } from '@t-crossword/core';
+import { CompletionConfetti } from './CompletionConfetti.js';
 
 interface PuzzleCompletionModalProps {
   isOpen: boolean;
   words: CrosswordWord[];
-  totalHintsUsed: number;
-  rewardStatus: 'idle' | 'pending' | 'granted' | 'error';
-  rewardError: string | null;
-  onRetryReward: () => void;
   onClose: () => void;
   onNewGame: () => void;
 }
@@ -15,10 +12,6 @@ interface PuzzleCompletionModalProps {
 export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
   isOpen,
   words,
-  totalHintsUsed,
-  rewardStatus,
-  rewardError,
-  onRetryReward,
   onClose,
   onNewGame,
 }) => {
@@ -26,10 +19,11 @@ export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
+      <CompletionConfetti />
       <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-100 max-h-[90vh] flex flex-col">
         {/* 상단 축하 헤더 */}
         <div className="text-center pb-4 border-b border-gray-100">
-          <div className="text-5xl mb-2 animate-bounce">🎉</div>
+          <div className="text-5xl mb-2 motion-safe:animate-bounce">🎉</div>
           <h2 className="text-2xl font-black text-gray-900">
             퍼즐 완성! 축하합니다!
           </h2>
@@ -42,20 +36,6 @@ export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
               <p className="text-xs text-indigo-600 font-semibold">완성 단어</p>
               <p className="text-lg font-bold text-indigo-950">{words.length}개</p>
             </div>
-            <div className="bg-amber-50 px-4 py-2 rounded-2xl text-center">
-              <p className="text-xs text-amber-600 font-semibold">사용한 힌트</p>
-              <p className="text-lg font-bold text-amber-950">{totalHintsUsed}회</p>
-            </div>
-          </div>
-          <div className="mt-3 text-sm">
-            {rewardStatus === 'granted' && <p role="status" className="font-bold text-indigo-700">🎁 완성 보상! 힌트 5개가 추가되었습니다.</p>}
-            {(rewardStatus === 'idle' || rewardStatus === 'pending') && <p role="status" className="text-slate-600">완성 보상 힌트 5개를 지급하고 있습니다.</p>}
-            {rewardStatus === 'error' && (
-              <div>
-                <p role="alert" className="text-rose-700">{rewardError}</p>
-                <button type="button" onClick={onRetryReward} className="mt-2 rounded-lg px-3 py-2 font-bold text-indigo-700 hover:bg-indigo-50">보상 다시 받기</button>
-              </div>
-            )}
           </div>
         </div>
 
@@ -100,7 +80,6 @@ export const PuzzleCompletionModal: React.FC<PuzzleCompletionModalProps> = ({
           <button
             type="button"
             onClick={onNewGame}
-            disabled={rewardStatus !== 'granted'}
             className="flex-2 py-3 px-4 rounded-2xl font-bold text-sm text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-200 transition-all active:scale-98 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
           >
             다음 퍼즐 풀기 ✨

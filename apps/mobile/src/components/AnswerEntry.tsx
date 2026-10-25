@@ -3,13 +3,12 @@ import { IonButton } from '@ionic/react';
 import { maskWordInExample, type CrosswordWord } from '@t-crossword/core';
 import { letterFeedback, updateIncorrectCells } from '../adapters/letterFeedback.js';
 
-export function AnswerEntry({ word, known, error, onSubmit, onClose, busy = false, hintBalance = null, hintUsed = 0, onUseHint }: {
+export function AnswerEntry({ word, known, error, onSubmit, onClose, busy = false }: {
   word: CrosswordWord; known: string[]; error: string; onSubmit: (answer: string) => void; onClose: () => void;
-  busy?: boolean; hintBalance?: number | null; hintUsed?: number; onUseHint?: (index: number) => Promise<void>;
+  busy?: boolean;
 }) {
   const [letters, setLetters] = useState(() => [...known]);
   const [wrong, setWrong] = useState<number[]>([]);
-  const budget = useRef(word.word.length);
   const fields = useRef<(HTMLInputElement | null)[]>([]);
   const submitted = useRef('');
   const knownSignature = known.join('|');
@@ -28,8 +27,7 @@ export function AnswerEntry({ word, known, error, onSubmit, onClose, busy = fals
     const letter = value.replace(/[^a-z]/gi, '').slice(-1).toUpperCase();
     const next = letters.map((current, position) => position === index ? letter : current);
     setLetters(next); submitted.current = '';
-    const feedback = letterFeedback(letter, word.word[index], budget.current);
-    budget.current = feedback.remaining;
+    const feedback = letterFeedback(letter, word.word[index]);
     setWrong(previous => updateIncorrectCells(previous, index, feedback.highlight));
     if (letter) focus(index + 1);
     const answer = next.join('');
@@ -51,13 +49,6 @@ export function AnswerEntry({ word, known, error, onSubmit, onClose, busy = fals
         if (event.key === 'Backspace' && !letter) { event.preventDefault(); focus(index - 1, -1); }
       }} />)}</div>
     {error && <p role="alert" className="mobile-error">{error}</p>}
-    <div className="mobile-answer-actions"><IonButton fill="outline" disabled={busy || !onUseHint || hintBalance === null || hintBalance <= 0 || hintUsed >= word.hintLimit} onPointerDown={event => event.preventDefault()} onClick={() => {
-      const index = letters.findIndex((letter, position) => !letter && !known[position]);
-      if (index >= 0 && onUseHint) {
-        const next = letters.findIndex((letter, position) => position !== index && !letter && !known[position]);
-        if (next >= 0) focus(next);
-        void onUseHint(index);
-      }
-    }}>{onUseHint ? `힌트 (${hintUsed}/${word.hintLimit})` : '힌트 연결 필요'}</IonButton><IonButton type="submit" disabled={busy}>정답 확인</IonButton><IonButton fill="clear" disabled={busy} onClick={onClose}>닫기</IonButton></div>
+    <div className="mobile-answer-actions"><IonButton type="submit" disabled={busy}>정답 확인</IonButton><IonButton fill="clear" disabled={busy} onClick={onClose}>닫기</IonButton></div>
   </form>;
 }

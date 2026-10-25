@@ -123,4 +123,75 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-book-list span { display: block; overflow-wrap: anywhere; }
 .mobile-translation { white-space: pre-line; line-height: 1.7; }
 .mobile-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: pre-wrap; }
-@media (orientation: landscape) { .mobile-puzzle-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; } .mobile-board { width: min(100%, 48vh); width: min(100%, 95cqh); } }
+.mobile-screen-quiz { display: block; overflow-y: auto; padding: 12px; }
+.mobile-quiz { min-height: 100%; }
+.mobile-quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin: 4px 0 8px; flex-shrink: 0; color: #1b64da; font-weight: 700; }
+.mobile-quiz-summary ion-button { margin: 0; }
+.mobile-puzzle-layout { display: flex; flex-direction: column; flex: none; width: 100%; gap: 8px; container-type: normal; }
+.mobile-board-area { position: relative; width: 100%; }
+.mobile-board { width: 100%; max-width: none; }
+.mobile-cell { position: relative; min-width: 0; min-height: 0; overflow: hidden; display: grid; place-items: center; background: white; color: #191f28; font-size: clamp(10px, 2.8vw, 18px); line-height: 1; font-weight: 700; }
+.mobile-cell.blocked { background: #1f2937; }
+.mobile-cell.solved { background: #e8f3ff; }
+.mobile-cell > span { padding-top: 5px; }
+.mobile-board .mobile-cell-number { position: absolute; inset: 0; z-index: 1; display: block; background: transparent; }
+.mobile-cell-number:disabled { cursor: default; }
+.mobile-cell-number:focus-visible { outline: 2px solid #3182f6; outline-offset: -2px; }
+.mobile-all-hints-button, .mobile-hint-overlay-heading > button { min-height: 44px; border: 1px solid #c7ddfa; border-radius: 12px; background: white; color: #1b64da; padding: 8px 12px; font: inherit; font-weight: 700; }
+.mobile-hint-overlay-heading { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.mobile-hint-overlay-heading h2 { font-size: 16px; margin: 0; }
+.mobile-clues { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; gap: 0; padding: 8px; border: 1px solid #e5e8eb; border-radius: 8px; background: #f9fafb; overflow: hidden; }
+.mobile-clue-headings, .mobile-clue-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.mobile-clue-headings { flex-shrink: 0; margin-bottom: 8px; }
+.mobile-clue-headings h2 { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px; margin: 0; font-size: 14px; }
+.mobile-clue-progress { color: #1b64da; font-size: 12px; white-space: nowrap; }
+.mobile-clue-lists { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; align-content: start; }
+.mobile-clue-group { min-width: 0; }
+.mobile-clue-button { display: block; width: 100%; min-height: 44px; border: 0; border-radius: 10px; padding: 8px; margin-bottom: 8px; background: #e8f3ff; color: #1b64da; text-align: left; font: inherit; font-size: 14px; }
+.mobile-clue-button:disabled { background: #f2f4f6; color: #6b7684; }
+.mobile-quiz-modal { box-sizing: border-box; width: min(480px, calc(100% - 32px)); max-height: 85dvh; padding: 16px; border: 0; border-radius: 20px; overflow-y: auto; color: #191f28; }
+.mobile-quiz-modal::backdrop { background: #0009; }
+.mobile-direction-choices { display: grid; gap: 12px; }
+.mobile-direction-choices p { margin: 0 0 6px; font-weight: 700; }
+.mobile-completion-icon { text-align: center; font-size: 48px; line-height: 1.2; margin-bottom: 12px; }
+.mobile-review { list-style: none; padding: 0; margin: 16px 0; }
+.mobile-review li { padding: 10px 0; border-bottom: 1px solid #e5e8eb; }
+.mobile-review span { display: block; margin-top: 4px; color: #6b7684; }
+
+.completion-confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.completion-confetti-piece {
+  position: absolute;
+  left: var(--confetti-start);
+  bottom: -24px;
+  background: var(--confetti-color);
+  opacity: 0;
+  animation-name: completion-confetti-launch;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+@keyframes completion-confetti-launch {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  8% { opacity: 1; }
+  55% {
+    transform: translate3d(var(--confetti-x), var(--confetti-rise), 0) rotate(var(--confetti-spin));
+    opacity: 1;
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translate3d(var(--confetti-x), var(--confetti-end), 0) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .completion-confetti { display: none; }
+  .completion-confetti-piece { animation: none; }
+}
