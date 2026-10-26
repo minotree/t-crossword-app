@@ -10,6 +10,7 @@ const word = { id: 'sea', word: 'SEA', meaning: '바다', synonym: 'ocean', orie
 let container: HTMLDivElement;
 let root: Root;
 const onSubmit = vi.fn<(...args: Parameters<Parameters<typeof AnswerModal>[0]['onSubmit']>) => boolean>();
+const onMistake = vi.fn<(id: string) => void>();
 
 beforeAll(() => {
   Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
@@ -24,12 +25,13 @@ beforeEach(() => {
   document.body.append(container);
   root = createRoot(container);
   onSubmit.mockReset().mockReturnValue(false);
+  onMistake.mockReset();
 });
 afterEach(async () => { await act(async () => root.unmount()); container.remove(); });
 
 async function render(currentLetters: string[] = []) {
   await act(async () => {
-    root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerModal word={word} currentLetters={currentLetters} onClose={() => {}} onSubmit={onSubmit} /></TDSMobileAITProvider>);
+    root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerModal word={word} currentLetters={currentLetters} onClose={() => {}} onSubmit={onSubmit} onMistake={onMistake} /></TDSMobileAITProvider>);
   });
   await act(async () => { await new Promise((resolve) => setTimeout(resolve, 5)); });
   return Array.from(container.querySelectorAll('input'));
@@ -43,6 +45,17 @@ async function type(input: HTMLInputElement, value: string) {
     input.dispatchEvent(new Event('input', { bubbles: true }));
   });
 }
+
+it('records a mistake immediately with an incomplete answer and ignores correct or cleared letters', async () => {
+  const inputs = await render();
+  await type(inputs[0], 'X');
+  expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
+  expect(onMistake).toHaveBeenCalledWith(word.id);
+  expect(onSubmit).not.toHaveBeenCalled();
+  await type(inputs[0], 'S');
+  await type(inputs[0], '');
+  expect(onMistake).toHaveBeenCalledTimes(1);
+});
 
 it('fits the dialog into the keyboard viewport and restores centering when closed', async () => {
   const viewport = Object.assign(new EventTarget(), { height: 400, offsetTop: 30 });

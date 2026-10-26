@@ -1,0 +1,53 @@
+{
+  "checked_date": "2026-10-26",
+  "reviewer": "Codex conversation agent; local Qwen review recorded separately",
+  "status": "editorially-reviewed-release-pending",
+  "selected_wordnet_synsets": {
+    "abstraction": "05780104-n", "accrue": "00155869-v", "aggregate": "01385170-v",
+    "analogous": "02071973-s", "anomaly": "14505821-n", "antecedent": "07326880-n",
+    "ascertain": "00721302-v", "assimilate": "00602255-v", "attenuate": "00220701-v",
+    "augment": "00154388-v", "autonomy": "14001031-n", "axiom": "06753550-n",
+    "coherent": "00464513-a", "concurrent": "02378496-s", "connotation": "05923566-n",
+    "consensus": "13971901-n", "contingent": "00555859-s", "converge": "02710402-v",
+    "correlate": "02658979-v", "corroborate": "00665886-v", "cumulative": "00048460-s",
+    "deduce": "00636574-v", "delineate": "00989084-v", "denote": "00932161-v",
+    "dichotomy": "07939880-n", "discern": "02193194-v", "discrete": "02110778-s",
+    "dissonance": "13982357-n", "empirical": "00858917-a", "encompass": "02629793-v",
+    "engender": "01649024-v", "equivocal": "00895442-a", "exacerbate": "00208210-v",
+    "extrapolate": "00642644-v", "heuristic": "05847956-n", "homogeneous": "01199751-a",
+    "implicit": "00941485-a", "incongruous": "00562469-a", "integral": "01348528-s",
+    "intrinsic": "01348258-a", "juxtapose": "01501960-v", "latent": "00044608-s",
+    "mitigate": "00198850-v", "nuance": "06606191-n", "paradigm": "06210171-n",
+    "plausible": "01799457-a", "propensity": "07499113-n", "salient": "00580805-s",
+    "substantiate": "00665886-v", "tacit": "00942163-s"
+  },
+  "changes": {
+    "augment": {
+      "reason": "장비 공유의 비용 절감을 예산 자체 증가와 혼동하지 않도록 새 예문 작성",
+      "fields": {
+        "예문": "Universities can augment their research budgets by securing additional grants from independent foundations.",
+        "예문해석": "대학들은 독립 재단들로부터 추가 지원금을 확보하여 연구 예산을 늘릴 수 있다."
+      }
+    },
+    "corroborate": {
+      "reason": "목격자와 진술의 소유 관계 명확화",
+      "fields": {
+        "예문": "Independent records corroborate the witness's account of how the factory operated during the strike."
+      }
+    },
+    "integral": {
+      "reason": "형용사 뜻과 an integral part의 번역 대응 개선",
+      "fields": {
+        "예문해석": "공공 협의는 지역 공동체에 영향을 미치는 모든 계획 과정의 필수적인 부분이다."
+      }
+    },
+    "antecedent": {
+      "reason": "precursor는 선행하는 대상 일반을 뜻해 선택한 원인 의미의 정확한 동의어로 제시하지 않음",
+      "fields": { "동의어": "" }
+    },
+    "dichotomy": {
+      "reason": "division은 두 부분으로의 구분이라는 의미를 보장하지 않아 동의어에서 제외",
+      "fields": { "동의어": "" }
+    }
+  }
+}

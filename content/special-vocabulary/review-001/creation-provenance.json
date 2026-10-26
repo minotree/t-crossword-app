@@ -1,0 +1,26 @@
+{
+  "recorded_date": "2026-10-26",
+  "initial_generation": {
+    "tool": "ChatGPT web",
+    "model_user_reported": "gpt 6.1 sol light",
+    "model_evidence": "User supplied the model label in this conversation on 2026-10-26; no internal model ID verified",
+    "generation_date": "Not independently verified; original source file states 2026-10-26 as source-check date",
+    "prompt_file": "vocabulary-special-prompt-001.txt",
+    "reference_material": "Original sources CSV identifies Princeton WordNet 3.0; original retrieval history not independently verified",
+    "inputs": ["vocabulary-special-candidates-001.csv", "vocabulary-special-sources-001.csv"]
+  },
+  "editorial_review": {
+    "tool": "Codex conversation agent",
+    "date": "2026-10-26",
+    "scope": "50 rows; WordNet selected meanings and POS; Korean meanings and translations; English examples and synonyms",
+    "decisions": "editorial-decisions.json",
+    "reference_files": ["wordnet-evidence.json", "selected-synsets.json", "wordnet-download.json", "WORDNET-LICENSE.txt"],
+    "limits": "No comprehensive external similarity search or human final editorial review. Not TOEFL frequency verification. Not a non-infringement guarantee."
+  },
+  "local_reviews": [
+    {"tool": "Ollama", "model": "qwen3:14b", "request": "qwen3-review-request.json", "response": "qwen3-review-response.json"},
+    {"tool": "Ollama", "model": "gpt-oss:20b", "request": "gpt-oss-review-request.json", "response": "gpt-oss-review-response.json", "status": "incomplete; length limit; not counted as completed review"},
+    {"tool": "Ollama", "model": "gpt-oss:20b", "request": "gpt-oss-review-retry-request.json", "response": "gpt-oss-review-retry-response.json", "status": "completed; 50 headwords returned; no issues reported; not proof of correctness"}
+  ],
+  "deployment": "Review assets only; not merged into operational vocabulary or app bundles."
+}

@@ -1,0 +1,570 @@
+[
+  {
+    "word": "analogy",
+    "item_id": "00651176-n",
+    "lemmas": [
+      "analogy"
+    ],
+    "gloss": "drawing a comparison in order to show a similarity in some respect; \"the operation of a computer presents and interesting analogy to the working of the brain\"; \"the models show by analogy how matter is built up\"",
+    "source_record_sha256": "364b94b225212af96238e918293a3fe5dc58e50f5f8bd2edff0d2940c13e2f05",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "catalyst",
+    "item_id": "09900711-n",
+    "lemmas": [
+      "catalyst"
+    ],
+    "gloss": "something that causes an important event to happen; \"the invasion acted as a catalyst to unite the country\"",
+    "source_record_sha256": "49f7a9b8ea55593263b2a6fae6ab3abb0f8ffad245a420a088ffc9983cc2592c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "circumscribe",
+    "item_id": "00235368-v",
+    "lemmas": [
+      "limit",
+      "circumscribe",
+      "confine"
+    ],
+    "gloss": "restrict or confine, \"I limit you to two visits to the pub a day\"",
+    "source_record_sha256": "d0200e61e10ef76201755ef37e95e8251a4342cf804e556ec86fa99725c75646",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "circumvent",
+    "item_id": "00809654-v",
+    "lemmas": [
+      "hedge",
+      "fudge",
+      "evade",
+      "put_off",
+      "circumvent",
+      "parry",
+      "elude",
+      "skirt",
+      "dodge",
+      "duck",
+      "sidestep"
+    ],
+    "gloss": "avoid or try to avoid fulfilling, answering, or performing (duties, questions, or issues); \"He dodged the issue\"; \"she skirted the problem\"; \"They tend to evade their responsibilities\"; \"he evaded the questions skillfully\"",
+    "source_record_sha256": "05e7bcdb81a1c1d3f0c2d8e4dfc8f920b880e92b2def1ac2e567402ad7020f8f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cogent",
+    "item_id": "01770392-s",
+    "lemmas": [
+      "cogent",
+      "telling",
+      "weighty"
+    ],
+    "gloss": "powerfully persuasive; \"a cogent argument\"; \"a telling presentation\"; \"a weighty argument\"",
+    "source_record_sha256": "5cb8f4e1878a6505f07f7e145c53a48ed3e2b1610ad2f50b7b8b84f6eddd3217",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cohesive",
+    "item_id": "02477047-s",
+    "lemmas": [
+      "cohesive"
+    ],
+    "gloss": "cohering or tending to cohere; well integrated; \"a cohesive organization\"",
+    "source_record_sha256": "4a02e4c80e1f3ca68c6d5eb4a502f61224b2a4b893b959993ffa55b26ce4a99d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "congruent",
+    "item_id": "00562116-a",
+    "lemmas": [
+      "congruous",
+      "congruent"
+    ],
+    "gloss": "corresponding in character or kind",
+    "source_record_sha256": "37ada377fe263d485885a08f9e8da4be0fd7b8b301e8fea0fc9ecbed64668075",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "convoluted",
+    "item_id": "02176841-s",
+    "lemmas": [
+      "Byzantine",
+      "convoluted",
+      "involved",
+      "knotty",
+      "tangled",
+      "tortuous"
+    ],
+    "gloss": "highly complex or intricate and occasionally devious; \"the Byzantine tax structure\"; \"Byzantine methods for holding on to his chairmanship\"; \"convoluted legal language\"; \"convoluted reasoning\"; \"the plot was too involved\"; \"a knotty problem\"; \"got his way by labyrinthine maneuvering\"; \"Oh, what a tangled web we weave\"- Sir Walter Scott; \"tortuous legal procedures\"; \"tortuous negotiations lasting for months\"",
+    "source_record_sha256": "957ee9249d19334a26473a46a482a7547aaedc6659f2bebe4c68d56c78d074b4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "diffuse",
+    "item_id": "00540487-s",
+    "lemmas": [
+      "diffuse"
+    ],
+    "gloss": "spread out; not concentrated in one place; \"a large diffuse organization\"",
+    "source_record_sha256": "aef6ddfaab80bdac01518d0ba053e7743da1f6195d6a9fdeb47fd1d4d82df46e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "displace",
+    "item_id": "02406011-v",
+    "lemmas": [
+      "preempt",
+      "displace"
+    ],
+    "gloss": "take the place of or have precedence over; \"live broadcast of the presidential debate preempts the regular news hour\"; \"discussion of the emergency situation will preempt the lecture by the professor\"",
+    "source_record_sha256": "b3c9427a1f20568e735f342dcaf7b632c610ae1bdd4a86a2cc1e5d1935be6a33",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "disseminate",
+    "item_id": "00968211-v",
+    "lemmas": [
+      "circulate",
+      "circularize",
+      "circularise",
+      "distribute",
+      "disseminate",
+      "propagate",
+      "broadcast",
+      "spread",
+      "diffuse",
+      "disperse",
+      "pass_around"
+    ],
+    "gloss": "cause to become widely known; \"spread information\"; \"circulate a rumor\"; \"broadcast the news\"",
+    "source_record_sha256": "dc3dbc9607403f352b6891a84f67a82cfffc164d26506ed94462a6e973cb2f09",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "diverge",
+    "item_id": "02709906-v",
+    "lemmas": [
+      "diverge"
+    ],
+    "gloss": "extend in a different direction; \"The lines start to diverge here\"; \"Their interests diverged\"",
+    "source_record_sha256": "df735a09bdc15dde5cd12ab739baca05e10d74efc0f18c293d6d764d5d809416",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dormant",
+    "item_id": "00034032-s",
+    "lemmas": [
+      "abeyant",
+      "dormant"
+    ],
+    "gloss": "inactive but capable of becoming active; \"her feelings of affection are dormant but easily awakened\"",
+    "source_record_sha256": "3c54337f4bad26692727aa202ffc26445ab0a111aa24a686d12bdf52131dcf96",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "elusive",
+    "item_id": "01717901-s",
+    "lemmas": [
+      "elusive",
+      "subtle"
+    ],
+    "gloss": "difficult to detect or grasp by the mind or analyze; \"his whole attitude had undergone a subtle change\"; \"a subtle difference\"; \"that elusive thing the soul\"",
+    "source_record_sha256": "f1c8113c36d46cbbdb3a6b10b7643ecaaa0f60f8d1f649112ccf0963d1e1b30d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "emulate",
+    "item_id": "02675701-v",
+    "lemmas": [
+      "emulate"
+    ],
+    "gloss": "strive to equal or match, especially by imitating; \"He is emulating the skating skills of his older sister\"",
+    "source_record_sha256": "09230aac5820d712b9fd15df5f1888d4af891e7f187254aa5a32054d71fb4218",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "endogenous",
+    "item_id": "00873113-a",
+    "lemmas": [
+      "endogenous",
+      "endogenic"
+    ],
+    "gloss": "derived or originating internally",
+    "source_record_sha256": "bde3913a5025950da018efb0d8379afa87b9c3095836e81e4d2b60bf4d8c23e3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "exogenous",
+    "item_id": "00873251-a",
+    "lemmas": [
+      "exogenous",
+      "exogenic"
+    ],
+    "gloss": "derived or originating externally",
+    "source_record_sha256": "027c2dcbc9d383121ba2c60effd10afa67e83f9810521d19ea74cfa68db81dab",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "expedite",
+    "item_id": "02548893-v",
+    "lemmas": [
+      "expedite",
+      "hasten"
+    ],
+    "gloss": "speed up the progress of; facilitate; \"This should expedite the process\"",
+    "source_record_sha256": "ceae0b45bf535ca21cc8a4448ddd386b0e79349b98c6f0c9a2752ec85ff7b420",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "expound",
+    "item_id": "00955601-v",
+    "lemmas": [
+      "elaborate",
+      "lucubrate",
+      "expatiate",
+      "exposit",
+      "enlarge",
+      "flesh_out",
+      "expand",
+      "expound",
+      "dilate"
+    ],
+    "gloss": "add details, as to an account or idea; clarify the meaning of and discourse in a learned way, usually in writing; \"She elaborated on the main ideas in her dissertation\"",
+    "source_record_sha256": "53a5d6a1755e0f1a6bbee01683b97b1245bdd12f5bfd8357bd99fc830455aa08",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "extrinsic",
+    "item_id": "01349041-a",
+    "lemmas": [
+      "extrinsic"
+    ],
+    "gloss": "not forming an essential part of a thing or arising or originating from the outside; \"extrinsic evidence\"; \"an extrinsic feature of the new building\"; \"that style is something extrinsic to the subject\"; \"looking for extrinsic aid\"",
+    "source_record_sha256": "b5848f354e7d893a56f4f869c186bdb8fa5a8eaad8414cc902b073b72dd59f23",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "fallacy",
+    "item_id": "05893916-n",
+    "lemmas": [
+      "fallacy",
+      "false_belief"
+    ],
+    "gloss": "a misconception resulting from incorrect reasoning",
+    "source_record_sha256": "f761236e5dab33fa1d026dff10dbefbe8031bef61ddc3a97778d2c75954fca53",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "germane",
+    "item_id": "01975671-s",
+    "lemmas": [
+      "germane(p)"
+    ],
+    "gloss": "relevant and appropriate; \"he asks questions that are germane and central to the issue\"",
+    "source_record_sha256": "b98e2cddaac2043db8a05922b226aa6c9e1cd8455c963482049f9e5507e5d709",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "hegemony",
+    "item_id": "08361924-n",
+    "lemmas": [
+      "hegemony"
+    ],
+    "gloss": "the dominance or leadership of one social group or nation over others; \"the hegemony of a single member state is not incompatible with a genuine confederation\"; \"to say they have priority is not to say they have complete hegemony\"; \"the consolidation of the United States' hegemony over a new international economic system\"",
+    "source_record_sha256": "3aa7af1d689199fbe5ed3efd2927157d2e602d201cb770391cf91293c78d63b9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "impetus",
+    "item_id": "11447851-n",
+    "lemmas": [
+      "drift",
+      "impetus",
+      "impulsion"
+    ],
+    "gloss": "a force that moves something along",
+    "source_record_sha256": "c6311c9de78414bb4c3a685c1f8f9fd238454c817e39f5f09536535fe5ba2942",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "impinge",
+    "item_id": "02569790-v",
+    "lemmas": [
+      "impinge",
+      "encroach",
+      "entrench",
+      "trench"
+    ],
+    "gloss": "impinge or infringe upon; \"This impinges on my rights as an individual\"; \"This matter entrenches on other domains\"",
+    "source_record_sha256": "89dc342a7a3ba2f88c40228d144f6a499db834efac203365a75cac77b3117561",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "incremental",
+    "item_id": "00049266-s",
+    "lemmas": [
+      "incremental"
+    ],
+    "gloss": "increasing gradually by regular degrees or additions; \"lecturers enjoy...steady incremental growth in salary\"",
+    "source_record_sha256": "954e52265bcbd8d34c356b86c67065263abd5aa4af707f5a21cb4031d1498a55",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "inertia",
+    "item_id": "04635631-n",
+    "lemmas": [
+      "inactiveness",
+      "inactivity",
+      "inertia"
+    ],
+    "gloss": "a disposition to remain inactive or inert; \"he had to overcome his inertia and get back to work\"",
+    "source_record_sha256": "e5586db3560f35502e8a23b4712141e95751940a80facd8691107916c78b2eb9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "instrumental",
+    "item_id": "01196775-s",
+    "lemmas": [
+      "implemental",
+      "instrumental",
+      "subservient"
+    ],
+    "gloss": "serving or acting as a means or aid; \"instrumental in solving the crime\"",
+    "source_record_sha256": "482b8ca31554fa2b69929253f86e67db6c5f787a5b6663b1f639639bcf30e4dd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "invariant",
+    "item_id": "02506408-s",
+    "lemmas": [
+      "invariant"
+    ],
+    "gloss": "unaffected by a designated operation or transformation",
+    "source_record_sha256": "cbbfa47625f68ad729addf0a92954dc43de32e02911e4be16bd326215969d81f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "longitudinal",
+    "item_id": "01440776-s",
+    "lemmas": [
+      "longitudinal"
+    ],
+    "gloss": "over an extended time; \"a longitudinal study of twins\"",
+    "source_record_sha256": "1ba6199b5f9e595c8912f28c196a09b933e5705b0f0e0d62af2506cc9661d5fb",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "magnitude",
+    "item_id": "05090441-n",
+    "lemmas": [
+      "magnitude"
+    ],
+    "gloss": "the property of relative size or extent (whether large or small); \"they tried to predict the magnitude of the explosion\"; \"about the magnitude of a small pea\"",
+    "source_record_sha256": "870e147b58be2b3030e81ee09f7a8cea7a29fa63d88f4b64949aacbed6684b38",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "malleable",
+    "item_id": "02451551-s",
+    "lemmas": [
+      "ductile",
+      "malleable"
+    ],
+    "gloss": "easily influenced",
+    "source_record_sha256": "d2ffda341ba80997cccbb08ff2bc24394f943ecf00c26807875263f2e98efea0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "meticulous",
+    "item_id": "00984879-s",
+    "lemmas": [
+      "meticulous"
+    ],
+    "gloss": "marked by extreme care in treatment of details; \"a meticulous craftsman\"; \"almost worryingly meticulous in his business formalities\"",
+    "source_record_sha256": "c268ed57109126f6e853830b89b3b4f2d994e76185c229cd5a5100db81ca11b0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "negligible",
+    "item_id": "01496462-s",
+    "lemmas": [
+      "negligible"
+    ],
+    "gloss": "so small as to be meaningless; insignificant; \"the effect was negligible\"",
+    "source_record_sha256": "071698ee8ce36456959445133d7456c676a49a36769b6eee5b3e68ea77afe6f8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "orthodox",
+    "item_id": "01689880-a",
+    "lemmas": [
+      "orthodox"
+    ],
+    "gloss": "adhering to what is commonly accepted; \"an orthodox view of the world\"",
+    "source_record_sha256": "655fe9a9108ab1deb3f3301a2163198654f1fc692bb89cd1dad5fe45d8a18c5c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "oscillate",
+    "item_id": "01878063-v",
+    "lemmas": [
+      "oscillate",
+      "vibrate"
+    ],
+    "gloss": "move or swing from side to side regularly; \"the needle on the meter was oscillating\"",
+    "source_record_sha256": "45b78aac7845a1f4da1e9ea74539158a1a6e81e4bb4879aa7e6437704ca8d303",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "paradox",
+    "item_id": "06724559-n",
+    "lemmas": [
+      "paradox"
+    ],
+    "gloss": "(logic) a statement that contradicts itself; \"`I always lie' is a paradox because if it is true it must be false\"",
+    "source_record_sha256": "81b5929d7af20c4330827730149fa8fa123321d5e9d31383565e5e3de2c0495c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "peripheral",
+    "item_id": "01857743-s",
+    "lemmas": [
+      "peripheral"
+    ],
+    "gloss": "related to the key issue but not of central importance; \"a peripheral interest\"; \"energy is far from a peripheral issue in the economy\"; \"peripheral issues\"",
+    "source_record_sha256": "c4cad33e12e283fa7d59730cd0aa435d4c59c18b3bd031d99e5329824bd98edf",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "permeable",
+    "item_id": "01772032-a",
+    "lemmas": [
+      "permeable"
+    ],
+    "gloss": "allowing fluids or gases to pass or diffuse through; \"permeable membranes\"; \"rock that is permeable by water\"",
+    "source_record_sha256": "d8467854983d9aeaa1f92e6b300c5ebaae60e21ba31a0fe1e039d9aaf4730e68",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "pertinent",
+    "item_id": "01975833-s",
+    "lemmas": [
+      "pertinent"
+    ],
+    "gloss": "having precise or logical relevance to the matter at hand; \"a list of articles pertinent to the discussion\"; \"remarks that were to the point\"",
+    "source_record_sha256": "4b57d5a01c5278fa1523dd0143fed3873e1dbd897d4cb57678d4510dc03d7ad8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "pivotal",
+    "item_id": "00656507-s",
+    "lemmas": [
+      "pivotal",
+      "polar"
+    ],
+    "gloss": "being of crucial importance; \"a pivotal event\"; \"Its pivotal location has also exposed it to periodic invasions\"- Henry Kissinger; \"the polar events of this study\"; \"a polar principal\"",
+    "source_record_sha256": "6a81286428723617f8f33d5e3bf7ec2f7c5b9ab8d2552f0b844d3ef6d603b2e1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "preclude",
+    "item_id": "02629390-v",
+    "lemmas": [
+      "preclude",
+      "rule_out",
+      "close_out"
+    ],
+    "gloss": "make impossible, especially beforehand",
+    "source_record_sha256": "c33ab12c08ac97b08d42c0f7af6acc214d958e32e21711fa51950bc9711bf5ad",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "prerequisite",
+    "item_id": "05892427-n",
+    "lemmas": [
+      "prerequisite",
+      "requirement"
+    ],
+    "gloss": "something that is required in advance; \"Latin was a prerequisite for admission\"",
+    "source_record_sha256": "ab18fa607a737ac5c73b5398ff21015bb0128a10717a1561ebe337ab88dbe5c1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "qualitative",
+    "item_id": "01914521-a",
+    "lemmas": [
+      "qualitative"
+    ],
+    "gloss": "involving distinctions based on qualities; \"qualitative change\"; \"qualitative data\"; \"qualitative analysis determines the chemical constituents of a substance or mixture\"",
+    "source_record_sha256": "d7f65778fda546c1ec6f6e3b0e0c135fdd4b7f6798a30f2cf4ae141b525c85cd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "quantitative",
+    "item_id": "01914930-a",
+    "lemmas": [
+      "quantitative"
+    ],
+    "gloss": "expressible as a quantity or relating to or susceptible of measurement; \"export wheat without quantitative limitations\"; \"quantitative analysis determines the amounts and proportions of the chemical constituents of a substance or mixture\"",
+    "source_record_sha256": "a4073db781ed0b9118e1f49bc35d506931510dc1cab811fb88ad417ea4685b33",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "rationale",
+    "item_id": "05793210-n",
+    "lemmas": [
+      "rationale",
+      "principle"
+    ],
+    "gloss": "(law) an explanation of the fundamental reasons (especially an explanation of the working of some device in terms of laws of nature); \"the rationale for capital punishment\"; \"the principles of internal-combustion engines\"",
+    "source_record_sha256": "c0856d3f78d16de22920afbf45f83c08612b0fab8b984c36544bd469f734ee31",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "rectify",
+    "item_id": "00199912-v",
+    "lemmas": [
+      "rectify",
+      "remediate",
+      "remedy",
+      "repair",
+      "amend"
+    ],
+    "gloss": "set straight or right; \"remedy these deficiencies\"; \"rectify the inequities in salaries\"; \"repair an oversight\"",
+    "source_record_sha256": "b63c7207204859b4d3a7271e3a0f171f72da0f072da58813442a146c1495c6f8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "stratify",
+    "item_id": "01308681-v",
+    "lemmas": [
+      "stratify"
+    ],
+    "gloss": "form, arrange, or deposit in layers; \"The fish are stratified in barrels\"; \"The rock was stratified by the force of the water\"; \"A statistician stratifies the list of names according to the addresses\"",
+    "source_record_sha256": "724e2e112a832facc3d6c8a9d5e899e6577a6353b9da613831d439ceecb14ae2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "tangible",
+    "item_id": "00013662-s",
+    "lemmas": [
+      "real",
+      "tangible"
+    ],
+    "gloss": "capable of being treated as fact; \"tangible evidence\"; \"his brief time as Prime Minister brought few real benefits to the poor\"",
+    "source_record_sha256": "705813fb4efecfaca507710ba0875987443bbcc23f0b56743b2b1fd2421a76a3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "transcend",
+    "item_id": "02669477-v",
+    "lemmas": [
+      "exceed",
+      "transcend",
+      "surpass"
+    ],
+    "gloss": "be greater in scope or size than some standard; \"Their loyalty exceeds their national bonds\"",
+    "source_record_sha256": "048f24ecc98bd2478c63f8b214081ed5e4f2a352019c6f30bb7d42903dfef3f8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

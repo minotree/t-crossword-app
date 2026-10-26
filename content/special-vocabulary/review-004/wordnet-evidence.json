@@ -1,0 +1,580 @@
+[
+  {
+    "word": "ancillary",
+    "item_id": "02354897-s",
+    "lemmas": [
+      "accessory",
+      "adjunct",
+      "ancillary",
+      "adjuvant",
+      "appurtenant",
+      "auxiliary"
+    ],
+    "gloss": "furnishing added support; \"an ancillary pump\"; \"an adjuvant discipline to forms of mysticism\"; \"The mind and emotions are auxiliary to each other\"",
+    "source_record_sha256": "3f964222fd73daecdfb9c1419c88f82968330d10c0f45abb491a68bcb874b906",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "antithesis",
+    "item_id": "13855230-n",
+    "lemmas": [
+      "antithesis"
+    ],
+    "gloss": "exact opposite; \"his theory is the antithesis of mine\"",
+    "source_record_sha256": "be88c9b46e7a42dbcd4303a88ca81ee11e30312431865221e39858171d4712f2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "arbitrate",
+    "item_id": "00760956-v",
+    "lemmas": [
+      "intercede",
+      "mediate",
+      "intermediate",
+      "liaise",
+      "arbitrate"
+    ],
+    "gloss": "act between parties with a view to reconciling differences; \"He interceded in the family dispute\"; \"He mediated a settlement\"",
+    "source_record_sha256": "7ca4a2ab8a5d656450bb86dfd769837e1a2822dc7b385116ef571723b1593e69",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "articulate",
+    "item_id": "00978369-v",
+    "lemmas": [
+      "articulate",
+      "enunciate",
+      "vocalize",
+      "vocalise"
+    ],
+    "gloss": "express or state clearly",
+    "source_record_sha256": "dd87eb8f245b884b0da379229a1acb133a91c2f947a4ccf6ec4bf76aff2df86c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "bilateral",
+    "item_id": "01946012-s",
+    "lemmas": [
+      "bilateral"
+    ],
+    "gloss": "affecting or undertaken by two parties; \"a bilateral agreement between the United States and Japan\"",
+    "source_record_sha256": "5daaf665a08678530dee5811e6c4b509e4aaeb971c2d1dcfbdcefa53362ecee8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "collate",
+    "item_id": "00661713-v",
+    "lemmas": [
+      "collate"
+    ],
+    "gloss": "compare critically; of texts",
+    "source_record_sha256": "2e2c866e668d236e2ad183c251f1503de48c0bb9f9ed2c2e434c71e220fc971f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "commensurate",
+    "item_id": "00481222-a",
+    "lemmas": [
+      "commensurate"
+    ],
+    "gloss": "corresponding in size or degree or extent; \"pay should be commensurate with the time worked\"",
+    "source_record_sha256": "8cec49ea6e921826493597ffeffdfccd84474a7651d1b7043d70737cb4236fd0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "consolidate",
+    "item_id": "00242747-v",
+    "lemmas": [
+      "consolidate"
+    ],
+    "gloss": "bring together into a single whole or system; \"The town and county schools are being consolidated\"",
+    "source_record_sha256": "e328847ce50ef83daf86bf261e2f6cf147a3065db87b75b97854b4b462f90876",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "contentious",
+    "item_id": "00602293-s",
+    "lemmas": [
+      "contentious"
+    ],
+    "gloss": "involving or likely to cause controversy; \"a central and contentious element of the book\"- Tim W.Ferfuson",
+    "source_record_sha256": "700b5a744ab6a41b5674b33885d8c60c25d105aee248ee4b96c5134d2bed559b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "continuum",
+    "item_id": "15123754-n",
+    "lemmas": [
+      "continuum"
+    ],
+    "gloss": "a continuous nonspatial whole or extent or succession in which no part or portion is distinct or distinguishable from adjacent parts",
+    "source_record_sha256": "1cb3dbb8d7f139d74ee867c9b737a8c4ce77f5b0e208da9d2fa3cc77bcf32958",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "counteract",
+    "item_id": "02543874-v",
+    "lemmas": [
+      "counteract",
+      "countervail",
+      "neutralize",
+      "counterbalance"
+    ],
+    "gloss": "oppose and mitigate the effects of by contrary actions; \"This will counteract the foolish actions of my colleagues\"",
+    "source_record_sha256": "573dec4987006f7a177b1bfae15a6e3de0d3a531bb139f25206651c68a8262d2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "curtail",
+    "item_id": "00236592-v",
+    "lemmas": [
+      "restrict",
+      "curtail",
+      "curb",
+      "cut_back"
+    ],
+    "gloss": "place restrictions on; \"curtail drinking in school\"",
+    "source_record_sha256": "0815ca1a1618869ac3c0f05289a745ffe0f953fc09d2efaccbc12016162143db",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deference",
+    "item_id": "04913839-n",
+    "lemmas": [
+      "deference",
+      "respect",
+      "respectfulness"
+    ],
+    "gloss": "courteous regard for people's feelings; \"in deference to your wishes\"; \"out of respect for his privacy\"",
+    "source_record_sha256": "3da4be2e03b356a752a142857b2f560f79ce53e937df68d5fbc3319541b56393",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "delimit",
+    "item_id": "00730301-v",
+    "lemmas": [
+      "demarcate",
+      "delimit",
+      "delimitate"
+    ],
+    "gloss": "set, mark, or draw the boundaries of something",
+    "source_record_sha256": "e40bccf502ae2d5c47675c13df033ed6de5803468a6dd41313df2891bee073ec",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "detriment",
+    "item_id": "07420538-n",
+    "lemmas": [
+      "detriment",
+      "hurt"
+    ],
+    "gloss": "a damage or loss",
+    "source_record_sha256": "1c0a1e9d3360e45763d984b3c37c605f6158ee7b7e95ec7f2086fbda162fe236",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "discredit",
+    "item_id": "00687738-v",
+    "lemmas": [
+      "discredit"
+    ],
+    "gloss": "cause to be distrusted or disbelieved; \"The paper discredited the politician with its nasty commentary\"",
+    "source_record_sha256": "78a14795702d561e233c803fb91dc1dc998c10d305079a4e50a390f1eb5bd0f7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "disparate",
+    "item_id": "02066836-s",
+    "lemmas": [
+      "disparate"
+    ],
+    "gloss": "fundamentally different or distinct in quality or kind; \"such disparate attractions as grand opera and game fishing\"; \"disparate ideas\"",
+    "source_record_sha256": "aaf7332bf0c06ed9559a587130200b2675d2b1fa77671d4e890c94649c1d9d82",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "espouse",
+    "item_id": "02346895-v",
+    "lemmas": [
+      "adopt",
+      "follow",
+      "espouse"
+    ],
+    "gloss": "choose and follow; as of theories, ideas, policies, strategies or plans; \"She followed the feminist movement\"; \"The candidate espouses Republican ideals\"",
+    "source_record_sha256": "11f126a57279b1158c1a094423b3818ef2a0f79f8ab8f1c13c5babcc8d9f496b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "evince",
+    "item_id": "00943837-v",
+    "lemmas": [
+      "express",
+      "show",
+      "evince"
+    ],
+    "gloss": "give expression to; \"She showed her disappointment\"",
+    "source_record_sha256": "e42080c0c0a40d85bcc1151044cbb2365bc49af39df03018efebafe631b28f7f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "exemplify",
+    "item_id": "01021128-v",
+    "lemmas": [
+      "exemplify",
+      "illustrate",
+      "instance"
+    ],
+    "gloss": "clarify by giving an example of",
+    "source_record_sha256": "c7112f65082ea8ee6743dc462356beb877c2ae0a7d05177de3d0a32af8c798b3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "exhaustive",
+    "item_id": "00522463-s",
+    "lemmas": [
+      "exhaustive",
+      "thorough",
+      "thoroughgoing"
+    ],
+    "gloss": "performed comprehensively and completely; \"an exhaustive study\"; \"made a thorough search\"; \"thoroughgoing research\"",
+    "source_record_sha256": "6b75e3099ff7d9006002247643cc079bfcc00899b2f25f1328838cb0864294d0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "fidelity",
+    "item_id": "04804306-n",
+    "lemmas": [
+      "fidelity"
+    ],
+    "gloss": "accuracy with which an electronic system reproduces the sound or image of its input signal",
+    "source_record_sha256": "c94d9bd2b14fb08eb099556ea1227f35f54a5a63fa6fc5a43bdeb3c939f0319d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "frugal",
+    "item_id": "02421364-s",
+    "lemmas": [
+      "economical",
+      "frugal",
+      "scotch",
+      "sparing",
+      "stinting"
+    ],
+    "gloss": "avoiding waste; \"an economical meal\"; \"an economical shopper\"; \"a frugal farmer\"; \"a frugal lunch\"; \"a sparing father and a spending son\"; \"sparing in their use of heat and light\"; \"stinting in bestowing gifts\"; \"thrifty because they remember the great Depression\"; \"`scotch' is used only informally\"",
+    "source_record_sha256": "17cf0a7f32b42e3e54867540207afb6ee2aeb43c8dc118bf03d06646723b7298",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "holistic",
+    "item_id": "01680689-a",
+    "lemmas": [
+      "holistic"
+    ],
+    "gloss": "emphasizing the organic or functional relation between parts and the whole",
+    "source_record_sha256": "89321eadfe4523785b4c944a5dd50ae2cb6355b0545d5286729df2fbfb7302ea",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "hypothetical",
+    "item_id": "00861216-s",
+    "lemmas": [
+      "conjectural",
+      "divinatory",
+      "hypothetical",
+      "hypothetic",
+      "supposed",
+      "suppositional",
+      "suppositious",
+      "supposititious"
+    ],
+    "gloss": "based primarily on surmise rather than adequate evidence; \"theories about the extinction of dinosaurs are still highly conjectural\"; \"the supposed reason for his absence\"; \"suppositious reconstructions of dead languages\"; \"hypothetical situation\"",
+    "source_record_sha256": "15d27219cab5e1c1753bb2507ba7710b16dfe20bbdb53bcd5262479ba890e2e8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "immutable",
+    "item_id": "00356648-a",
+    "lemmas": [
+      "immutable",
+      "changeless"
+    ],
+    "gloss": "not subject or susceptible to change or variation in form or quality or nature; \"the view of that time was that all species were immutable, created by God\"",
+    "source_record_sha256": "ccde1dab08d6a99138b735b445e69794fc82b50be632fd163347fd3f961cfa88",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "inconclusive",
+    "item_id": "00550777-a",
+    "lemmas": [
+      "inconclusive"
+    ],
+    "gloss": "not conclusive; not putting an end to doubt or question; \"an inconclusive reply\"; \"inconclusive evidence\"; \"the inconclusive committee vote\"",
+    "source_record_sha256": "34a36fa0a07ee4e69b28d4c999e825d9709eca47fe5257a75ccbde63bff34c63",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "insular",
+    "item_id": "00637267-s",
+    "lemmas": [
+      "insular",
+      "parochial"
+    ],
+    "gloss": "narrowly restricted in outlook or scope; \"little sympathy with parochial mentality\"; \"insular attitudes toward foreigners\"",
+    "source_record_sha256": "92b53c62ca8f51b6f96bf9d05ac7896d2e324018f1465d2be13b2f88837f0f57",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "judicious",
+    "item_id": "01898722-s",
+    "lemmas": [
+      "judicious",
+      "wise",
+      "heady"
+    ],
+    "gloss": "marked by the exercise of good judgment or common sense in practical matters; \"judicious use of one's money\"; \"a wise decision\"",
+    "source_record_sha256": "0c5d33fe33cc5d0ccbdbf81e633e43afccafafdd3695b877427c5f662c58821a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "lucid",
+    "item_id": "00429355-s",
+    "lemmas": [
+      "limpid",
+      "lucid",
+      "luculent",
+      "pellucid",
+      "crystal_clear",
+      "perspicuous"
+    ],
+    "gloss": "(of language) transparently clear; easily understandable; \"writes in a limpid style\"; \"lucid directions\"; \"a luculent oration\"- Robert Burton; \"pellucid prose\"; \"a crystal clear explanation\"; \"a perspicuous argument\"",
+    "source_record_sha256": "4dbccf4ae2261067c0771de6bf47c78712e15b3459b4f57b811fd3b4837ef6a4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "mandate",
+    "item_id": "00751389-v",
+    "lemmas": [
+      "mandate"
+    ],
+    "gloss": "make mandatory; \"the new director of the school board mandated regular tests\"",
+    "source_record_sha256": "0c431ac4017c1524eba047f19169fa6c060cf6e74e0cb87555248fe236125116",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "marginal",
+    "item_id": "02563466-s",
+    "lemmas": [
+      "bare(a)",
+      "marginal"
+    ],
+    "gloss": "just barely adequate or within a lower limit; \"a bare majority\"; \"a marginal victory\"",
+    "source_record_sha256": "3d3933b9210b171fb441c374ec0497aa99682e540356424cce3b015ef1558942",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "nascent",
+    "item_id": "00003356-a",
+    "lemmas": [
+      "nascent"
+    ],
+    "gloss": "being born or beginning; \"the nascent chicks\"; \"a nascent insurgency\"",
+    "source_record_sha256": "1c7ad24fbca6e9e651d0a64c8cdcc14d4eda42eb8e46e777b95430e8ccd5c6f0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "obviate",
+    "item_id": "02629256-v",
+    "lemmas": [
+      "obviate",
+      "rid_of",
+      "eliminate"
+    ],
+    "gloss": "do away with",
+    "source_record_sha256": "b3c569fe928ef3b8b90e629d8b6af24ffc277e67778f0dd56d4ddcd2d930fd4e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "opaque",
+    "item_id": "00535293-s",
+    "lemmas": [
+      "opaque",
+      "unintelligible"
+    ],
+    "gloss": "not clearly understood or expressed",
+    "source_record_sha256": "f59964be1ad69d1c0a4905282af57b57d018697f7adc9de327805b8a3fffc00f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "overt",
+    "item_id": "01704761-a",
+    "lemmas": [
+      "overt",
+      "open"
+    ],
+    "gloss": "open and observable; not secret or hidden; \"an overt lie\"; \"overt hostility\"; \"overt intelligence gathering\"; \"open ballots\"",
+    "source_record_sha256": "08aaa4da5e0b64aa6a131dfe4e259e529e76cbcfaa2a6d7da2d2d7b77dfe579c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "parity",
+    "item_id": "04748426-n",
+    "lemmas": [
+      "parity"
+    ],
+    "gloss": "functional equality",
+    "source_record_sha256": "509469ca433947e9b9a99ab99628f4299180a995a82718c1bc1c8f37c2e1e85a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "paucity",
+    "item_id": "05117140-n",
+    "lemmas": [
+      "dearth",
+      "paucity"
+    ],
+    "gloss": "an insufficient quantity or number",
+    "source_record_sha256": "9c3bf24b9825e8f5bd30c30c896038bba07e4f0fb6159748c1dff71be8b7e427",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "polarize",
+    "item_id": "00487350-v",
+    "lemmas": [
+      "polarize",
+      "polarise"
+    ],
+    "gloss": "cause to concentrate about two conflicting or contrasting positions",
+    "source_record_sha256": "db4342bfbe30717bcbf879ccd8205662132db65b1e09f5ecdb86899ee706fdad",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "prevalent",
+    "item_id": "01066787-s",
+    "lemmas": [
+      "prevailing",
+      "prevalent",
+      "predominant",
+      "dominant",
+      "rife"
+    ],
+    "gloss": "most frequent or common; \"prevailing winds\"",
+    "source_record_sha256": "2d4be95cec136f98afe2df766cc4330f7c0d044b3649f226e84c1a51f2499f78",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "proponent",
+    "item_id": "09774783-n",
+    "lemmas": [
+      "advocate",
+      "advocator",
+      "proponent",
+      "exponent"
+    ],
+    "gloss": "a person who pleads for a cause or propounds an idea",
+    "source_record_sha256": "bddc08206760ea455cf6eceaa138f0068fc6ac432acd2da6acecd3834687d755",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "prudent",
+    "item_id": "01898129-a",
+    "lemmas": [
+      "prudent"
+    ],
+    "gloss": "careful and sensible; marked by sound judgment; \"a prudent manager\"; \"prudent rulers\"; \"prudent hesitation\"; \"more prudent to hide than to fight\"",
+    "source_record_sha256": "3aad4ad917c6c59d6a5841aa4fd620b52692b12ff46f5d5cb663a96c9dbf6959",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "repudiate",
+    "item_id": "00816828-v",
+    "lemmas": [
+      "repudiate"
+    ],
+    "gloss": "reject as untrue, unfounded, or unjust; \"She repudiated the accusations\"",
+    "source_record_sha256": "b99488750437d13e9c5aa64ac7fa3c8b5d8e9a53d64eca8dd414c4d118bffc12",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "substantive",
+    "item_id": "00901969-s",
+    "lemmas": [
+      "substantial",
+      "substantive"
+    ],
+    "gloss": "having a firm basis in reality and being therefore important, meaningful, or considerable; \"substantial equivalents\"",
+    "source_record_sha256": "869206d1a026c2af50e2e0774b2877cbcc2debe0ba8b119a286e507bd4abe36a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "succinct",
+    "item_id": "00547317-s",
+    "lemmas": [
+      "compendious",
+      "compact",
+      "succinct",
+      "summary"
+    ],
+    "gloss": "briefly giving the gist of something; \"a short and compendious book\"; \"a compact style is brief and pithy\"; \"succinct comparisons\"; \"a summary formulation of a wide-ranging subject\"",
+    "source_record_sha256": "fef461eaeb4fb7df51ea3aa6600c63f4ff1bf59035a2a88403dd194ba95d04bd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "supersede",
+    "item_id": "02405390-v",
+    "lemmas": [
+      "supplant",
+      "replace",
+      "supersede",
+      "supervene_upon",
+      "supercede"
+    ],
+    "gloss": "take the place or move into the position of; \"Smith replaced Miller as CEO after Miller left\"; \"the computer has supplanted the slide rule\"; \"Mary replaced Susan as the team's captain and the highest-ranked player in the school\"",
+    "source_record_sha256": "cff5b745886c1c0ed2007f0f55250be487ae3958032d2a9c0410a1e75d220e81",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "tenable",
+    "item_id": "01944492-s",
+    "lemmas": [
+      "tenable",
+      "well-founded"
+    ],
+    "gloss": "based on sound reasoning or evidence; \"well-founded suspicions\"",
+    "source_record_sha256": "d03010a701bebae4fc45f5c1211834672421f5e54f2b00246bf0e10795f87ddc",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "tenuous",
+    "item_id": "02164913-s",
+    "lemmas": [
+      "flimsy",
+      "fragile",
+      "slight",
+      "tenuous",
+      "thin"
+    ],
+    "gloss": "lacking substance or significance; \"slight evidence\"; \"a tenuous argument\"; \"a thin plot\"; a fragile claim to fame\"",
+    "source_record_sha256": "0d0e50c2272d1b1805219feef5dc8dbb930604f4fb3e99f3a789ea3a285c4a63",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "variance",
+    "item_id": "06024936-n",
+    "lemmas": [
+      "variance"
+    ],
+    "gloss": "the second moment around the mean; the expected value of the square of the deviations of a random variable from its mean value",
+    "source_record_sha256": "25618d6a90df51f93108191d9bd3656a82a382404519430d40e5b87c7d8d1d23",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "veracity",
+    "item_id": "04872414-n",
+    "lemmas": [
+      "veracity"
+    ],
+    "gloss": "unwillingness to tell lies",
+    "source_record_sha256": "0eda7bb0b176353af17092a58ea8750a0f93af3b8cfa5d0ae9e58642ecdeff60",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

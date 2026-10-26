@@ -1,0 +1,8 @@
+{
+  "covariance_original": 0.22222222222222218,
+  "both_variables_doubled": 0.8888888888888887,
+  "scaling_factor": 4,
+  "entropy_equal_bits": 1.0,
+  "entropy_90_10_bits": 0.4689955935892812,
+  "inclusive_2_to_7_count": 6
+}

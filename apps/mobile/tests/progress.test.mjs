@@ -1,6 +1,6 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
-import { hideHintedWord, isNotebookWord, readProgress, recordHintedWord, writeProgress } from '../src/adapters/progress.ts';
+import { hideHintedWord, isNotebookWord, readProgress, recordHintedWord, recordMistake, resetCompletedProgress, writeProgress } from '../src/adapters/progress.ts';
 
 let values;
 beforeEach(() => {
@@ -14,6 +14,37 @@ test('starts empty without changing unrelated app storage', () => {
   values.set('web-learning', 'preserve');
   assert.deepEqual(readProgress(), { completed: [], bookmarks: [] });
   assert.equal(values.get('web-learning'), 'preserve');
+});
+
+test('reset persists only cleared completion and preserves bookmarks and notebook history', () => {
+  const original = { completed: ['one'], bookmarks: ['one'], hintedWords: ['one', 'two'], hiddenHintedWords: ['two'] };
+  writeProgress(original);
+  const next = resetCompletedProgress(readProgress());
+  assert.deepEqual(next, { ...original, completed: [] });
+  assert.deepEqual(readProgress(), next);
+  assert.deepEqual(original.completed, ['one']);
+  assert.equal(isNotebookWord(readProgress(), 'one'), true);
+  assert.equal(isNotebookWord(readProgress(), 'two'), false);
+});
+
+test('failed reset retains persisted completion and leaves caller state untouched', () => {
+  const original = { completed: ['one'], bookmarks: ['two'], hintedWords: ['one'], hiddenHintedWords: [] };
+  writeProgress(original);
+  const current = readProgress();
+  localStorage.setItem = () => { throw new Error('quota'); };
+  assert.throws(() => resetCompletedProgress(current), /quota/);
+  assert.deepEqual(current, original);
+  assert.deepEqual(readProgress(), original);
+});
+
+test('mistakes persist once and reappear after hiding while keeping completion and bookmarks', () => {
+  const original = { completed: ['one'], bookmarks: ['one'] };
+  writeProgress(recordMistake(recordMistake(original, 'one'), 'one'));
+  assert.equal(isNotebookWord(readProgress(), 'one'), true);
+  writeProgress(hideHintedWord(readProgress(), 'one'));
+  assert.equal(isNotebookWord(readProgress(), 'one'), false);
+  writeProgress(recordMistake(readProgress(), 'one'));
+  assert.deepEqual(readProgress(), { ...original, hintedWords: ['one'], hiddenHintedWords: [] });
 });
 test('restores and deduplicates completed words and bookmarks', () => {
   writeProgress({ completed: ['one', 'one'], bookmarks: ['two', 'two'] });

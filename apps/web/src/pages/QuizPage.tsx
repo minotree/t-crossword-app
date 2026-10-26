@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useCrosswordGame } from '../hooks/useCrosswordGame.js';
+import { wordProgressStore } from '../adapters/wordProgress.js';
 import { CrosswordBoard } from '../components/CrosswordBoard.js';
 import { HintListSection } from '../components/HintListSection.js';
 import { WordInputModal } from '../components/WordInputModal.js';
@@ -19,6 +20,7 @@ export function QuizPage() {
   }, [showHints]);
   const {
     wordProgressError,
+    learningProgress,
     level,
     gridSize,
     puzzle,
@@ -113,6 +115,7 @@ export function QuizPage() {
       </div>
 
       <div className="mx-auto mb-2 flex w-full max-w-4xl shrink-0 flex-wrap items-center justify-end gap-2 px-3 sm:px-4">
+        <span className="mr-auto text-xs font-bold text-indigo-700" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span>
         <div className="flex shrink-0 items-center gap-2 whitespace-nowrap">
           <span className="text-sm font-bold text-indigo-700" aria-live="polite" aria-label="전체 정답 진행">{solvedWordIds.length} / {puzzle?.words.length ?? 0}</span>
           <button type="button" onClick={() => { setShowHints(false); startNewGame(level, gridSize); }}
@@ -173,6 +176,7 @@ export function QuizPage() {
         currentLetters={selectedWordCurrentLetters}
         onClose={closeInputModal}
         onSubmit={submitWordAnswer}
+        onMistake={wordProgressStore.recordMistake}
       />
 
       {/* 퍼즐 완주 축하 모달 */}

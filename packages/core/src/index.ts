@@ -5,3 +5,4 @@ export * from './algorithms/crosswordGenerator.js';
 export * from './services/wordBankService.js';
 export * from './assets/defaultVocab.js';
 export * from './utils/parseCrosswordPuzzle.js';
+export * from './utils/levelLearningProgress.js';

@@ -91,7 +91,7 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
               return (
                 <div
                   key={`${row}-${col}`}
-                  className="min-h-0 min-w-0 bg-gray-800"
+                  className="min-h-0 min-w-0 bg-[#8b95a1]"
                   style={{ gridRow: row + 1, gridColumn: col + 1 }}
                 />
               );

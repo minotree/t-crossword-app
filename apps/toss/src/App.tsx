@@ -2,10 +2,11 @@ import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } f
 import { Button, TextField } from '@toss/tds-mobile';
 import {
   defaultVocabList,
+  levelLearningProgress,
   type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize,
 } from '@t-crossword/core';
 import { createPlatformStorage, subscribeBack } from './adapters/platform.js';
-import { createProgressRepository, dismissMistake, type Progress } from './adapters/progress.js';
+import { createProgressRepository, dismissMistake, recordMistake, type Progress } from './adapters/progress.js';
 import { AnswerModal } from './components/AnswerModal.js';
 import { Modal } from './components/Modal.js';
 import { QuizPanel, type QuizPanelHandle } from './components/QuizPanel.js';
@@ -95,6 +96,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
   }, [saveProgress]);
 
   const completedWords = useMemo(() => new Set(progress?.completedWordIds), [progress?.completedWordIds]);
+  const learningProgress = levelLearningProgress(defaultVocabList, level, progress?.completedWordIds ?? []);
   const bookmarkedWords = useMemo(() => new Set(progress?.bookmarkedWordIds), [progress?.bookmarkedWordIds]);
   const mistakeWords = useMemo(() => {
     const dismissed = new Set(progress?.dismissedMistakeWordIds);
@@ -186,6 +188,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
           <div role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map((value) => <Button key={value} size="small" variant={size === value ? 'fill' : 'weak'} aria-pressed={size === value} disabled={isGameBusy} onClick={() => { if (size !== value) void startPuzzle(level, value); }}>{value}×{value}</Button>)}</div>
         </section>
         <div className="quiz-summary">
+          <span className="quiz-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span>
           <div className="quiz-summary-actions">
             <strong aria-label="전체 단어 진행률" aria-live="polite">{solvedIds.length} / {puzzle.words.length}</strong>
             <Button size="small" variant="weak" disabled={isGameBusy} onClick={() => { void startPuzzle(); }}>새 퍼즐</Button>
@@ -199,7 +202,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         <div className="choices word-filters" aria-label="단어장 분류">{([{ key: 'all', label: '전체' }, { key: 'bookmarked', label: '즐겨찾기' }, { key: 'completed', label: '학습완료' }, { key: 'mistakes', label: '오답노트' }] as const).map((item) =>
           <Button key={item.key} size="small" variant={filter === item.key ? 'fill' : 'weak'} aria-pressed={filter === item.key} onClick={() => { setFilter(item.key); setVisibleCount(50); }}>{item.label}</Button>)}</div>
         <TextField variant="box" aria-label="단어 또는 뜻 검색" placeholder="단어 또는 뜻 검색" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(50); }} />
-        {filter === 'mistakes' && <p className="secondary">기존 오답노트 기록입니다. 삭제해도 단어와 학습 기록은 유지됩니다.</p>}
+        {filter === 'mistakes' && <p className="secondary">틀린 단어를 이 기기에 저장합니다. 삭제해도 단어와 학습 기록은 유지되며, 다시 틀리면 목록에 추가됩니다.</p>}
         <div className="word-list-scroll" role="region" aria-label="단어 목록" tabIndex={0}>
         {words.length === 0 && <p className="empty">{filter === 'mistakes' && !query.trim() ? '아직 오답노트에 등록된 단어가 없습니다.' : '표시할 단어가 없습니다.'}</p>}
         <WordList words={words} visibleCount={visibleCount} completed={completedWords} bookmarked={bookmarkedWords}
@@ -216,12 +219,30 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
           <p>영어 낱말을 더 가까이 두세요.</p>
           <p>오른쪽 위 <span className="shortcut-more" aria-label="더보기">···</span> 를 누르고<br /><strong>‘휴대폰 홈 화면에 추가’</strong>를 선택해 보세요.</p>
         </aside>
-        <h3>데이터 관리</h3>
+        <section className="settings-card" aria-labelledby="settings-data">
+        <h3 id="settings-data">데이터 관리</h3>
         {settingsMessage && <p role="status" className="secondary">{settingsMessage}</p>}
         <p>학습 완료 상태만 초기화합니다 (완료: {progress.completedWordIds.length}개)</p>
         <Button display="block" variant="weak" disabled={!progress.completedWordIds.length || isGameBusy} onClick={() => { setSettingsMessage(''); setConfirmReset(true); }}>학습 기록 초기화</Button>
-        <h3>앱 정보</h3><p>영어 단어 십자낱말 풀이 v{version}</p>
-        <p className="secondary">이 기기에 학습 기록을 저장합니다.</p>
+        </section>
+        <section className="settings-card" aria-labelledby="settings-app">
+        <h3 id="settings-app">앱 정보</h3>
+        <dl className="settings-app-details">
+          <div><dt>앱 이름</dt><dd>영어 단어 십자낱말 풀이</dd></div>
+          <div><dt>버전</dt><dd>v{version}</dd></div>
+          <div><dt>학습 기록 저장</dt><dd>이 기기에 학습 기록을 저장합니다.</dd></div>
+        </dl>
+        </section>
+        <section className="settings-card" aria-labelledby="settings-vocabulary">
+        <h3 id="settings-vocabulary">단어장 구성 안내</h3>
+        <p className="settings-word-count">총 {defaultVocabList.length.toLocaleString('ko-KR')}개 단어</p>
+        <p>2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다.</p>
+        <dl className="settings-levels">
+          <div><dt>초급</dt><dd>초등학교 권장 영어 어휘</dd></div>
+          <div><dt>중급</dt><dd>중학교·고등학교 영어 공통과목 권장 어휘</dd></div>
+          <div><dt>고급</dt><dd>고등학교 영어 외 과목 권장 어휘 및 9급 공무원 시험 영어 어휘</dd></div>
+        </dl>
+        </section>
       </section>}
     </main>
     <nav className="bottom-navigation" aria-label="하단 메뉴">
@@ -233,7 +254,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     </nav>
     <AdBanner enabled />
     <div className="bottom-safe-area" aria-hidden="true" />
-    {selected && puzzle && <AnswerModal key={selected.id} word={selected} currentLetters={getCurrentLetters(puzzle, solvedIds, selected)} onClose={() => setSelected(null)} onSubmit={submitAnswer} />}
+    {selected && puzzle && <AnswerModal key={selected.id} word={selected} currentLetters={getCurrentLetters(puzzle, solvedIds, selected)} onClose={() => setSelected(null)} onSubmit={submitAnswer} onMistake={(id) => { if (progressRef.current) saveProgress(recordMistake(progressRef.current, id)); }} />}
     {showCompletion && puzzle && <Modal title="퍼즐 완성! 축하해요" onClose={() => setShowCompletion(false)}>
       <CompletionConfetti />
       <div className="completion-icon" aria-hidden="true">🎉</div>

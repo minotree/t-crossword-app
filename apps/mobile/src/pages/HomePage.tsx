@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { homeOutline, gameControllerOutline, bookOutline, imageOutline, settingsOutline } from 'ionicons/icons';
-import { defaultVocabList, parseCrosswordPuzzle, type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize } from '@t-crossword/core';
-import { hideHintedWord, isNotebookWord, readProgress, writeProgress, type LearningProgress } from '../adapters/progress.js';
+import { defaultVocabList, levelLearningProgress, parseCrosswordPuzzle, type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { hideHintedWord, isNotebookWord, readProgress, recordMistake, resetCompletedProgress, writeProgress, type LearningProgress } from '../adapters/progress.js';
 import './mobile.css';
+import { version } from '../../package.json';
 import { PictureBooks } from '../components/PictureBooks.js';
 import { AnswerEntry } from '../components/AnswerEntry.js';
 import { followAnswerViewport } from '../adapters/answerViewport.js';
@@ -24,7 +25,11 @@ export function HomePage() {
   const [page, setPage] = useState<Page>('home');
   const [progress, setProgress] = useState<LearningProgress | null>(null);
   const [error, setError] = useState('');
+  const [confirmReset, setConfirmReset] = useState(false);
+  const [resetError, setResetError] = useState('');
+  const [settingsMessage, setSettingsMessage] = useState('');
   const [level, setLevel] = useState<DifficultyLevel>('beginner');
+  const learningProgress = levelLearningProgress(defaultVocabList, level, progress?.completed ?? []);
   const [size, setSize] = useState<GridSize>(8);
   const [puzzle, setPuzzle] = useState<CrosswordPuzzle | null>(null);
   const [solved, setSolved] = useState<string[]>([]);
@@ -54,6 +59,18 @@ export function HomePage() {
   const save = (next: LearningProgress) => {
     try { writeProgress(next); setProgress(next); setError(''); return true; }
     catch { setError('기록 저장에 실패했습니다. 다시 시도해 주세요.'); return false; }
+  };
+  const resetCompleted = () => {
+    if (!progress || generating.current || answerPending.current) return;
+    try {
+      const next = resetCompletedProgress(progress);
+      setProgress(next);
+      setPuzzle(null); setSolved([]); setSelected(null); setShowCompletion(false);
+      setConfirmReset(false); setResetError(''); setError('');
+      setSettingsMessage('학습 기록을 초기화했습니다.');
+    } catch {
+      setResetError('학습 기록을 저장하지 못했습니다. 기존 기록은 유지됩니다. 다시 시도해 주세요.');
+    }
   };
   const generate = (nextLevel: DifficultyLevel = level, nextSize: GridSize = size) => {
     if (!progress || busy || generating.current || answerPending.current) return;
@@ -86,6 +103,7 @@ export function HomePage() {
   const close = () => { if (!answerPending.current) { dialog.current?.close(); setSelected(null); } };
   useEffect(() => subscribeAndroidBack(async () => {
     try {
+      if (confirmReset) { setConfirmReset(false); return; }
       if (!answerPending.current && !selected && page === 'quiz') {
         if (showCompletion) { setShowCompletion(false); return; }
         if (quizPanel.current?.closeOverlay()) return;
@@ -97,7 +115,7 @@ export function HomePage() {
         exit: exitAndroidApp,
       });
     } catch { setError('뒤로가기를 처리하지 못했습니다. 다시 시도해 주세요.'); }
-  }, () => setError('Android 뒤로가기 연결을 처리하지 못했습니다. 앱을 다시 열어 주세요.')), [page, selected, showCompletion]);
+  }, () => setError('Android 뒤로가기 연결을 처리하지 못했습니다. 앱을 다시 열어 주세요.')), [page, selected, showCompletion, confirmReset]);
   const submit = async (answer: string) => {
     if (!selected || !progress || answerPending.current) return;
     answerPending.current = true; setAnswerBusy(true); setAnswerError('');
@@ -127,7 +145,7 @@ export function HomePage() {
             <div className="mobile-choice-row" role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced'] as const).map(value => <button key={value} disabled={busy} aria-pressed={level === value} onClick={() => { if (value !== level) generate(value, size); }}>{levels[value]}</button>)}</div>
             <div className="mobile-choice-row" role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map(value => <button key={value} disabled={busy} aria-pressed={size === value} onClick={() => { if (value !== size) generate(level, value); }}>{value}×{value}</button>)}</div>
           </div>
-          <div className="mobile-quiz-summary"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate()}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div>
+          <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate()}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
           {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solved} onSelectWord={choose} />}
 
         </section>}
@@ -135,7 +153,7 @@ export function HomePage() {
           <header className="mobile-word-heading"><h1>나의 단어장</h1><span>{visibleWords.length}개 단어</span></header>
           <div className="mobile-word-filters" role="group" aria-label="단어장 분류">{(['all', 'bookmarks', 'completed', 'mistakes'] as const).map(value => <button key={value} aria-pressed={wordFilter === value} onClick={() => setWordFilter(value)}>{({ all: '전체', bookmarks: '즐겨찾기', completed: '학습완료', mistakes: '오답노트' })[value]}</button>)}</div>
           <label className="mobile-word-search"><span className="mobile-sr-only">단어 또는 뜻 검색</span><input type="search" placeholder="단어 또는 뜻 검색" value={query} onChange={event => setQuery(event.target.value)} /></label>
-          {wordFilter === 'mistakes' && <p className="mobile-notebook-guide">기존 오답노트 기록입니다. 삭제하면 이 목록에서만 숨겨집니다.</p>}
+          {wordFilter === 'mistakes' && <p className="mobile-notebook-guide">틀린 단어를 이 기기에 저장합니다. 삭제하면 목록에서만 숨겨지며, 다시 틀리면 목록에 추가됩니다.</p>}
           <ul className="mobile-words">{visibleWords.slice(0, visibleCount).map(word => <li key={word.id}>
             <div className="mobile-word-body"><strong>{word.word}</strong><span className="mobile-word-meta">{levels[word.level]} · {word.partOfSpeech}{progress.completed.includes(word.id) ? ' · 학습 완료' : ''}</span><p>{word.meaning}</p>{word.synonym?.trim() && <p className="mobile-word-synonym">동의어: {word.synonym}</p>}<p className="mobile-word-example" lang="en">{word.example}</p><p className="mobile-word-example">{word.exampleMeaning}</p></div>
             <button aria-label={`${word.word} 즐겨찾기`} aria-pressed={progress.bookmarks.includes(word.id)} onClick={() => save({ ...progress, bookmarks: progress.bookmarks.includes(word.id) ? progress.bookmarks.filter(id => id !== word.id) : [...progress.bookmarks, word.id] })}>{progress.bookmarks.includes(word.id) ? '★' : '☆'}</button>
@@ -145,10 +163,46 @@ export function HomePage() {
           {!visibleWords.length && <p>{wordFilter === 'mistakes' && !query.trim() ? '아직 오답노트에 등록된 단어가 없습니다.' : '표시할 단어가 없습니다.'}</p>}
         </section>}
         <div className="mobile-book-host" hidden={page !== 'books'}><PictureBooks ref={bookNavigation} /></div>
-        {page === 'settings' && <section><h1>설정</h1><h2>학습 기록</h2><p>학습 완료 {progress.completed.length}개 · 즐겨찾기 {progress.bookmarks.length}개</p><p>기록은 현재 기기에 저장됩니다. 앱 데이터 삭제·재설치 시 사라질 수 있습니다.</p></section>}
+        {page === 'settings' && <section className="mobile-settings"><h1>설정</h1>
+          <section className="mobile-settings-card" aria-labelledby="mobile-settings-progress">
+            <h2 id="mobile-settings-progress">데이터 관리</h2>
+            {settingsMessage && <p role="status">{settingsMessage}</p>}
+            <dl className="mobile-settings-details">
+              <div><dt>학습 완료</dt><dd>{progress.completed.length}개</dd></div>
+              <div><dt>즐겨찾기</dt><dd>{progress.bookmarks.length}개</dd></div>
+            </dl>
+            <p>학습 완료 상태만 초기화합니다 (완료: {progress.completed.length}개)</p>
+            <IonButton expand="block" fill="outline" disabled={!progress.completed.length || busy || answerBusy}
+              onClick={() => { setResetError(''); setSettingsMessage(''); setConfirmReset(true); }}>학습 기록 초기화</IonButton>
+          </section>
+          <section className="mobile-settings-card" aria-labelledby="mobile-settings-app">
+            <h2 id="mobile-settings-app">앱 정보</h2>
+            <dl className="mobile-settings-details">
+              <div><dt>앱 이름</dt><dd>영어 단어 십자낱말 풀이</dd></div>
+              <div><dt>버전</dt><dd>v{version}</dd></div>
+              <div><dt>학습 기록 저장</dt><dd>기록은 현재 기기에 저장됩니다. 앱 데이터 삭제·재설치 시 사라질 수 있습니다.</dd></div>
+            </dl>
+          </section>
+          <section className="mobile-settings-card" aria-labelledby="mobile-settings-vocabulary">
+          <h2 id="mobile-settings-vocabulary">단어장 구성 안내</h2>
+          <p className="mobile-settings-word-count">총 {defaultVocabList.length.toLocaleString('ko-KR')}개 단어</p>
+          <p>2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다.</p>
+          <dl className="mobile-settings-levels">
+            <div><dt>초급</dt><dd>초등학교 권장 영어 어휘</dd></div>
+            <div><dt>중급</dt><dd>중학교·고등학교 영어 공통과목 권장 어휘</dd></div>
+            <div><dt>고급</dt><dd>고등학교 영어 외 과목 권장 어휘 및 9급 공무원 시험 영어 어휘</dd></div>
+          </dl>
+          </section>
+        </section>}
       </>}
     </div></IonContent>
     <IonFooter><IonToolbar><nav className="mobile-nav" aria-label="하단 메뉴">{(['home', 'quiz', 'words', 'books', 'settings'] as const).map(value => <button key={value} aria-current={page === value ? 'page' : undefined} onClick={() => { if (value === 'quiz') openQuiz(); else setPage(value); }}><IonIcon aria-hidden="true" icon={({ home: homeOutline, quiz: gameControllerOutline, words: bookOutline, books: imageOutline, settings: settingsOutline })[value]} /><span>{({ home: '홈', quiz: '퀴즈 풀기', words: '단어장', books: '그림책', settings: '설정' })[value]}</span></button>)}</nav><aside className="mobile-ad-preview" aria-label="가상 배너 광고 영역"><span>광고 영역</span></aside></IonToolbar></IonFooter>
+    {confirmReset && progress && <Modal title="학습 기록을 초기화할까요?" onClose={() => setConfirmReset(false)}>
+      <p>학습완료 기록 {progress.completed.length}개를 초기화하고 진행 중 퍼즐을 종료합니다. 초기화한 단어는 다시 출제됩니다.</p>
+      <p>즐겨찾기와 오답노트 기록은 유지됩니다.</p>
+      {resetError && <p role="alert" className="mobile-error">{resetError}</p>}
+      <div className="mobile-answer-actions"><IonButton fill="clear" onClick={() => setConfirmReset(false)}>취소</IonButton><IonButton disabled={busy || answerBusy} onClick={resetCompleted}>초기화하기</IonButton></div>
+    </Modal>}
     {showCompletion && puzzle && <Modal title="퍼즐 완성! 축하해요" onClose={() => setShowCompletion(false)}>
       <CompletionConfetti />
       <div className="mobile-completion-icon" aria-hidden="true">🎉</div>
@@ -161,6 +215,6 @@ export function HomePage() {
       const col = selected.startCol + (selected.orientation === 'across' ? index : 0);
       const crossingSolved = puzzle.words.some(word => solved.includes(word.id) && (word.orientation === 'across' ? word.startRow === row && col >= word.startCol && col < word.startCol + word.word.length : word.startCol === col && row >= word.startRow && row < word.startRow + word.word.length));
       return crossingSolved ? selected.word[index] : '';
-    })} error={answerError || error} busy={answerBusy} onSubmit={submit} onClose={close} />}</dialog>
+    })} error={answerError || error} busy={answerBusy} onSubmit={submit} onMistake={(id) => { if (progress) save(recordMistake(progress, id)); }} onClose={close} />}</dialog>
   </IonPage>;
 }

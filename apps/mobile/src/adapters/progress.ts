@@ -8,6 +8,9 @@ export function recordHintedWord(progress: LearningProgress, id: string): Learni
 export function isNotebookWord(progress: LearningProgress, id: string): boolean {
   return (progress.hintedWords ?? []).includes(id) && !(progress.hiddenHintedWords ?? []).includes(id);
 }
+
+// Keep legacy notebook records in the existing storage format.
+export const recordMistake = recordHintedWord;
 const key = 'mobile-learning-v1';
 export function readProgress(): LearningProgress {
   const raw = localStorage.getItem(key);
@@ -25,3 +28,10 @@ export function readProgress(): LearningProgress {
   return { completed: [...new Set<string>(value.completed)], bookmarks: [...new Set<string>(value.bookmarks)], ...(Array.isArray(hinted) ? { hintedWords: [...new Set<string>(hinted)] } : {}), ...(Array.isArray(hidden) ? { hiddenHintedWords: [...new Set<string>(hidden)] } : {}) };
 }
 export function writeProgress(value: LearningProgress): void { localStorage.setItem(key, JSON.stringify(value)); }
+
+/** Return new state only after persistence succeeds; retain all other learning records. */
+export function resetCompletedProgress(progress: LearningProgress): LearningProgress {
+  const next = { ...progress, completed: [] };
+  writeProgress(next);
+  return next;
+}

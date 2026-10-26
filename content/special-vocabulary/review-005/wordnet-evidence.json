@@ -1,0 +1,578 @@
+[
+  {
+    "word": "austere",
+    "item_id": "01792387-s",
+    "lemmas": [
+      "austere",
+      "severe",
+      "stark",
+      "stern"
+    ],
+    "gloss": "severely simple; \"a stark interior\"",
+    "source_record_sha256": "54a29c43abca2c66167021d8640cf828a4a49256167ab5589829997073948670",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "capricious",
+    "item_id": "00719442-s",
+    "lemmas": [
+      "capricious",
+      "impulsive",
+      "whimsical"
+    ],
+    "gloss": "determined by chance or impulse or whim rather than by necessity or reason; \"a capricious refusal\"; \"authoritarian rulers are frequently capricious\"; \"the victim of whimsical persecutions\"",
+    "source_record_sha256": "27960cf2aa87d499de7c3719629c41415ab9a3393600568934512cf9f88283b6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "categorical",
+    "item_id": "01913931-s",
+    "lemmas": [
+      "categoric",
+      "categorical",
+      "flat",
+      "unconditional"
+    ],
+    "gloss": "not modified or restricted by reservations; \"a categorical denial\"; \"a flat refusal\"",
+    "source_record_sha256": "bb6b81de987642b80419177cad6ce4928918ff7471f598460105d2646f2d4032",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "censure",
+    "item_id": "00823669-v",
+    "lemmas": [
+      "reprimand",
+      "censure",
+      "criminate"
+    ],
+    "gloss": "rebuke formally",
+    "source_record_sha256": "89a94d260a53f08d9110e4fb5b09ded1dc9c90685e508d08f85c5dc94ba27031",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "coalition",
+    "item_id": "08293982-n",
+    "lemmas": [
+      "alliance",
+      "coalition",
+      "alignment",
+      "alinement"
+    ],
+    "gloss": "an organization of people (or countries) involved in a pact or treaty",
+    "source_record_sha256": "d8ce22b4b9abdd532ba383c993d1c8c74539751df4a9d1ef871141f803855294",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "conducive",
+    "item_id": "00323426-s",
+    "lemmas": [
+      "conducive",
+      "contributing(a)",
+      "contributive",
+      "contributory",
+      "tributary"
+    ],
+    "gloss": "tending to bring about; being partly responsible for; \"working conditions are not conducive to productivity\"; \"the seaport was a contributing factor in the growth of the city\"; \"a contributory factor\"",
+    "source_record_sha256": "c227234fcbc0a7fd25ba5e3e668092b365d9c4203b759eed49043c585f6fb4ac",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "constituent",
+    "item_id": "05868954-n",
+    "lemmas": [
+      "component",
+      "constituent",
+      "element",
+      "factor",
+      "ingredient"
+    ],
+    "gloss": "an abstract part of something; \"jealousy was a component of his character\"; \"two constituents of a musical composition are melody and harmony\"; \"the grammatical elements of a sentence\"; \"a key factor in her success\"; \"humor: an effective ingredient of a speech\"",
+    "source_record_sha256": "0404fe6997d1de3b6a22295590c20b5d9774d75385cfbbfbed72f95f053cf234",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "contextual",
+    "item_id": "03002190-a",
+    "lemmas": [
+      "contextual"
+    ],
+    "gloss": "relating to or determined by or in context; \"contextual information\"",
+    "source_record_sha256": "17990c4e11047589f0463a329ef9da5a7672f54283ac36b3a755e0ef9bc406d1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "covariance",
+    "item_id": "06025287-n",
+    "lemmas": [
+      "covariance"
+    ],
+    "gloss": "(statistics) the mean value of the product of the deviations of two variates from their respective means",
+    "source_record_sha256": "24fde3a3034a7ee038ff8bf5b0ce8b0bb824b06fa8dd25aadfc82bd719d5f4d8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "critique",
+    "item_id": "05734018-n",
+    "lemmas": [
+      "criticism",
+      "critique"
+    ],
+    "gloss": "a serious examination and judgment of something; \"constructive criticism is always appreciated\"",
+    "source_record_sha256": "84206b963cff8139818b2b17486cd902d7cb496c9b0c992f33fe587aa8482533",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "culpable",
+    "item_id": "01321529-s",
+    "lemmas": [
+      "blameworthy",
+      "blamable",
+      "blameable",
+      "blameful",
+      "censurable",
+      "culpable"
+    ],
+    "gloss": "deserving blame or censure as being wrong or evil or injurious; \"blameworthy if not criminal behavior\"; \"censurable misconduct\"; \"culpable negligence\"",
+    "source_record_sha256": "1c894651a44a1884d3b1b405f8baf42cdfd1db0ea668065cb6823c4afd7bebf0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deductive",
+    "item_id": "01296474-a",
+    "lemmas": [
+      "deductive"
+    ],
+    "gloss": "involving inferences from general principles",
+    "source_record_sha256": "927a9cd5cecb0d4b8a815453eb0d6d31893f10fe2b89a8452cd05de48e4d1bbd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deficient",
+    "item_id": "02336449-a",
+    "lemmas": [
+      "insufficient",
+      "deficient"
+    ],
+    "gloss": "of a quantity not able to fulfill a need or requirement; \"insufficient funds\"",
+    "source_record_sha256": "2157574ab149e5834e8f4218af43dec4699933a1cc4136f9e1bf23e65128c0f8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deprivation",
+    "item_id": "01150200-n",
+    "lemmas": [
+      "privation",
+      "deprivation"
+    ],
+    "gloss": "act of depriving someone of food or money or rights; \"nutritional privation\"; \"deprivation of civil rights\"",
+    "source_record_sha256": "3b4dbcb881d98e0c155397c6c26a3dcaf9c0019c6221949af72fd7e174d095c9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deviate",
+    "item_id": "02661252-v",
+    "lemmas": [
+      "deviate",
+      "vary",
+      "diverge",
+      "depart"
+    ],
+    "gloss": "be at variance with; be out of line with",
+    "source_record_sha256": "036141edb74dadeceb08cadb5e56b8a9fbd078f80e2d3a5f835fa4b223b06ba6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dilemma",
+    "item_id": "05686086-n",
+    "lemmas": [
+      "dilemma",
+      "quandary"
+    ],
+    "gloss": "state of uncertainty or perplexity especially as requiring a choice between equally unfavorable options",
+    "source_record_sha256": "359a281a9ce7eefd2dfbd63d3ac648918014261ef56b115296c79d4753922506",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "disposition",
+    "item_id": "04942869-n",
+    "lemmas": [
+      "disposition"
+    ],
+    "gloss": "a natural or acquired habit or characteristic tendency in a person or thing; \"a swelling with a disposition to rupture\"",
+    "source_record_sha256": "f15a79b969b288f1a4767da249aee772551ee2b41f0022184ec3bd39e4152d34",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dissociate",
+    "item_id": "00714273-v",
+    "lemmas": [
+      "decouple",
+      "dissociate"
+    ],
+    "gloss": "regard as unconnected; \"you must dissociate these two events!\"; \"decouple our foreign policy from ideology\"",
+    "source_record_sha256": "36d86ea0a556c96e07bfb26c7e05b4139d7063f829d49719b5c725559d4aece0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dogmatic",
+    "item_id": "00288070-s",
+    "lemmas": [
+      "dogmatic",
+      "dogmatical"
+    ],
+    "gloss": "characterized by assertion of unproved or unprovable principles",
+    "source_record_sha256": "bfdaf8a69ca4b6915187c65a6f7b579a9343aaa5a5303b5db90311781fbcbe22",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "enact",
+    "item_id": "02427916-v",
+    "lemmas": [
+      "ordain",
+      "enact"
+    ],
+    "gloss": "order by virtue of superior authority; decree; \"The King ordained the persecution and expulsion of the Jews\"; \"the legislature enacted this law in 1985\"",
+    "source_record_sha256": "8b3e741a187bd7077ed1e4d5d65dd5e34c2d28141093cd1c530e483c5070f9fd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "entropy",
+    "item_id": "05091527-n",
+    "lemmas": [
+      "information",
+      "selective_information",
+      "entropy"
+    ],
+    "gloss": "(communication theory) a numerical measure of the uncertainty of an outcome; \"the signal contained thousands of bits of information\"",
+    "source_record_sha256": "ce34cb06596a3e11f94dd16b60efc4ff9c03371e644b498d922252cf8381669b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "erosion",
+    "item_id": "13475944-n",
+    "lemmas": [
+      "erosion"
+    ],
+    "gloss": "a gradual decline of something; \"after the accounting scandal there was an erosion of confidence in the auditors\"",
+    "source_record_sha256": "72699f5fad66ad84e5db7367bb5191a1e9f93f978584c216234bbdba6f3fee06",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "extraneous",
+    "item_id": "01976532-s",
+    "lemmas": [
+      "extraneous",
+      "immaterial",
+      "impertinent",
+      "orthogonal"
+    ],
+    "gloss": "not pertinent to the matter under consideration; \"an issue extraneous to the debate\"; \"the price was immaterial\"; \"mentioned several impertinent facts before finally coming to the point\"",
+    "source_record_sha256": "7c0b6bb0c7fa7a817b04dab4ba2238a64af55e5d4e3501ed08bf06d60067e9dd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "fabricate",
+    "item_id": "01634424-v",
+    "lemmas": [
+      "fabricate",
+      "manufacture",
+      "cook_up",
+      "make_up",
+      "invent"
+    ],
+    "gloss": "make up something artificial or untrue",
+    "source_record_sha256": "98e3a7f45ba9878426f02119219751ff1cd20afaac20c1c1d215047887d002af",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "forthcoming",
+    "item_id": "01732601-s",
+    "lemmas": [
+      "approaching",
+      "coming(a)",
+      "forthcoming",
+      "upcoming"
+    ],
+    "gloss": "of the relatively near future; \"the approaching election\"; \"this coming Thursday\"; \"the forthcoming holidays\"; \"the upcoming spring fashions\"",
+    "source_record_sha256": "efc5eb8f9204cb29e8803de07d9e998256e7a6896e512de9d551e06623b51793",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "gradient",
+    "item_id": "13859512-n",
+    "lemmas": [
+      "gradient"
+    ],
+    "gloss": "a graded change in the magnitude of some physical quantity or dimension",
+    "source_record_sha256": "7ee31cf332882764556ff04eea32e85eb104d1f50e5a9563ce7ea10470970f6c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "impede",
+    "item_id": "02451370-v",
+    "lemmas": [
+      "impede",
+      "hinder"
+    ],
+    "gloss": "be a hindrance or obstacle to; \"She is impeding the progress of our project\"",
+    "source_record_sha256": "830fd72f35c1728f4b926c223a59d21f5c6ac6b290b4bd19a2ec42aa32fee0ad",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "impute",
+    "item_id": "00726784-v",
+    "lemmas": [
+      "impute"
+    ],
+    "gloss": "attribute (responsibility or fault) to a cause or source; \"The teacher imputed the student's failure to his nervousness\"",
+    "source_record_sha256": "44ef51897d81121b46e5c9c827ead6dadd883002aa962b9b45460092898f5530",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "inclusive",
+    "item_id": "01863680-a",
+    "lemmas": [
+      "inclusive"
+    ],
+    "gloss": "including much or everything; and especially including stated limits; \"an inclusive art form\"; \"an inclusive fee\"; \"his concept of history is modern and inclusive\"; \"from Monday to Friday inclusive\"",
+    "source_record_sha256": "4d0c081e05373eace8c3c277463c885c8f7e5da39224166a2071decdbbcd30e2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "inequity",
+    "item_id": "04839676-n",
+    "lemmas": [
+      "unfairness",
+      "inequity"
+    ],
+    "gloss": "injustice by virtue of not conforming with rules or standards",
+    "source_record_sha256": "1857ff8c7213a3ffb79a508e72142cec5906e264e8ed2225a8b148c485e8c1cf",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "injunction",
+    "item_id": "06542830-n",
+    "lemmas": [
+      "injunction",
+      "enjoining",
+      "enjoinment",
+      "cease_and_desist_order"
+    ],
+    "gloss": "(law) a judicial remedy issued in order to prohibit a party from doing or continuing to do a certain activity; \"injunction were formerly obtained by writ but now by a judicial order\"",
+    "source_record_sha256": "cb0736d60368518b8ff0b5f583a81b651a399f075a223060fa89a8e476907eac",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "innovation",
+    "item_id": "03582658-n",
+    "lemmas": [
+      "invention",
+      "innovation"
+    ],
+    "gloss": "a creation (a new device or process) resulting from study and experimentation",
+    "source_record_sha256": "a4ff331d6eb69079c1e86667a0adb13a9e4cd9ada52d2f4e8164913ae54714ed",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "intelligible",
+    "item_id": "00533452-s",
+    "lemmas": [
+      "apprehensible",
+      "intelligible",
+      "graspable",
+      "perceivable",
+      "understandable"
+    ],
+    "gloss": "capable of being apprehended or understood",
+    "source_record_sha256": "6a304095f0b21dbcb273bc519e90c25c18c41ccb40450f958f11ff712fed7a33",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "linear",
+    "item_id": "01417451-a",
+    "lemmas": [
+      "linear",
+      "additive"
+    ],
+    "gloss": "designating or involving an equation whose terms are of the first degree",
+    "source_record_sha256": "626161b69764ed85ed3ccefc066a8522490b0c1fc4d4b79d5ad6d6c46d92cf58",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "nonlinear",
+    "item_id": "01417790-a",
+    "lemmas": [
+      "nonlinear"
+    ],
+    "gloss": "designating or involving an equation whose terms are not of the first degree",
+    "source_record_sha256": "4a1676cf8e777b44cd011c49179e53e39ae6be106b3d8d8f70a0d6a872c68945",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "optimize",
+    "item_id": "00124226-v",
+    "lemmas": [
+      "optimize",
+      "optimise"
+    ],
+    "gloss": "modify to achieve maximum efficiency in storage capacity or time or cost; \"optimize a computer program\"",
+    "source_record_sha256": "e86177a02cfe9c76359e40e1da887eae8edcccb6aceecc3c28d389cfd8751b2b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "presuppose",
+    "item_id": "00716531-v",
+    "lemmas": [
+      "presuppose",
+      "suppose"
+    ],
+    "gloss": "take for granted or as a given; suppose beforehand; \"I presuppose that you have done your work\"",
+    "source_record_sha256": "cd603604494e94e4d31c4136240724cc25e87da2f69b3e2759f8eba03f25f46a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "proxy",
+    "item_id": "10486909-n",
+    "lemmas": [
+      "proxy",
+      "placeholder",
+      "procurator"
+    ],
+    "gloss": "a person authorized to act for another",
+    "source_record_sha256": "6413e4e0c5b263bc5436c17abbc22388196bbdb5917e7d5ac6b7404817b611c2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "recurrent",
+    "item_id": "00592880-s",
+    "lemmas": [
+      "perennial",
+      "recurrent",
+      "repeated"
+    ],
+    "gloss": "recurring again and again; \"perennial efforts to stipulate the requirements\"",
+    "source_record_sha256": "e82e0753423eafe2aa0470cc0f1ac4b6769c9052820eada5f998d177c931f046",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "rigor",
+    "item_id": "04783567-n",
+    "lemmas": [
+      "cogency",
+      "validity",
+      "rigor",
+      "rigour"
+    ],
+    "gloss": "the quality of being valid and rigorous",
+    "source_record_sha256": "27641b3a186a14aa60ba1d3232d332b302780eda541d95f3fdd699919b1e48d8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "saturate",
+    "item_id": "00497705-v",
+    "lemmas": [
+      "impregnate",
+      "saturate"
+    ],
+    "gloss": "infuse or fill completely; \"Impregnate the cloth with alcohol\"",
+    "source_record_sha256": "9d6168be12b743be5264ab0e917dc9fbe41e3096d0ec83eb9a3cb088b036b71f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "sporadic",
+    "item_id": "00593374-a",
+    "lemmas": [
+      "sporadic"
+    ],
+    "gloss": "recurring in scattered and irregular or unpredictable instances; \"a city subjected to sporadic bombing raids\"",
+    "source_record_sha256": "394edb5a41a35054ede6b743428eacb6531380e2e0e32465dd0bcab2e6477cce",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "static",
+    "item_id": "00348018-s",
+    "lemmas": [
+      "static",
+      "stable",
+      "unchanging"
+    ],
+    "gloss": "showing little if any change; \"a static population\"",
+    "source_record_sha256": "b09cc0e64a24288d35f84d60184b07f960c4b14d767b34c2b40eb8ae18597eed",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "stochastic",
+    "item_id": "01925000-s",
+    "lemmas": [
+      "stochastic"
+    ],
+    "gloss": "being or having a random variable; \"a stochastic variable\"; \"stochastic processes\"",
+    "source_record_sha256": "5c8990d11c61c4885c59ec50b8d894d180a494a063965edc7802d30fca31b12c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "stringent",
+    "item_id": "00711059-s",
+    "lemmas": [
+      "rigorous",
+      "stringent",
+      "tight"
+    ],
+    "gloss": "demanding strict attention to rules and procedures; \"rigorous discipline\"; \"tight security\"; \"stringent safety measures\"",
+    "source_record_sha256": "ca0fa5746093516df74813b701cb034a6abe26a7e75649f401e533639fde87c0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "subordinate",
+    "item_id": "00792991-a",
+    "lemmas": [
+      "subordinate",
+      "low-level"
+    ],
+    "gloss": "lower in rank or importance",
+    "source_record_sha256": "9be7ba006906765f2d384996f2e8ee73ff512a5118a96dddad0f742e31d0e77d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "systemic",
+    "item_id": "01426273-s",
+    "lemmas": [
+      "systemic"
+    ],
+    "gloss": "affecting an entire system; \"a systemic poison\"",
+    "source_record_sha256": "830276746da5af4efa3c1fa14f8596b9da043d722fc7036e5cd4959bdbddb804",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "temporal",
+    "item_id": "02810882-a",
+    "lemmas": [
+      "temporal"
+    ],
+    "gloss": "of or relating to or limited by time; \"temporal processing\"; \"temporal dimensions\"; \"temporal and spacial boundaries\"; \"music is a temporal art\"",
+    "source_record_sha256": "cc80d65d7816cf22b9c2d442d1a371d57c657dc3d637061a1af86d43fed005e7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "theoretical",
+    "item_id": "00860611-a",
+    "lemmas": [
+      "theoretical",
+      "theoretic"
+    ],
+    "gloss": "concerned primarily with theories or hypotheses rather than practical considerations; \"theoretical science\"",
+    "source_record_sha256": "5d1e9a12c03fbb433ee3c58997ed8ccab7f11ea5fc8d9224b61aa390ffaeb54d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "vindicate",
+    "item_id": "00896141-v",
+    "lemmas": [
+      "justify",
+      "vindicate"
+    ],
+    "gloss": "show to be right by providing justification or proof; \"vindicate a claim\"",
+    "source_record_sha256": "1a9a43de6fd6d558b7dadc2b5ac2bb0b0580d0579ed2ec5b3287beffc0d0bc98",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

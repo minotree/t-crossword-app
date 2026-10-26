@@ -1,0 +1,40 @@
+{
+  "checked_date": "2026-10-26",
+  "existing_words": 3339,
+  "reviewed_candidates": 50,
+  "wordnet_pos_sense_links": 50,
+  "changed_words": 5,
+  "changed_fields": 6,
+  "status": "editorially-reviewed-release-pending",
+  "csv_encoding": "UTF-8 BOM",
+  "csv_and_xlsx_round_trip": "passed",
+  "wordnet_phrase_overlap_hits": 0,
+  "local_reports": [
+    {
+      "file": "gpt-oss-review-response.json",
+      "model": "gpt-oss:20b",
+      "done_reason": "length",
+      "coverage_complete": false,
+      "reviewed_words": 0
+    },
+    {
+      "file": "gpt-oss-review-retry-response.json",
+      "model": "gpt-oss:20b",
+      "done_reason": "stop",
+      "coverage_complete": true,
+      "reviewed_words": 50
+    },
+    {
+      "file": "qwen3-review-response.json",
+      "model": "qwen3:14b",
+      "done_reason": "stop",
+      "coverage_complete": true,
+      "reviewed_words": 50
+    }
+  ],
+  "original_sha256": {
+    "vocabulary-special-candidates-001.csv": "60c382d4f10dba5e75a943cda3fb6476763803ae7303f67b440603d2e1c61e5f",
+    "vocabulary-special-prompt-001.txt": "0cd28add3629a7c51f80ddcf93ab4fdb3782f561d93d5c5e451353b6eff78736",
+    "vocabulary-special-sources-001.csv": "95292d63c3d1a4352dbb844a93e36cfa7704ab3645b62db3dfcb041f7dbec8cc"
+  }
+}

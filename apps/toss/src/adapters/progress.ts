@@ -45,6 +45,9 @@ export function isMistakeVisible(progress: Progress, id: string): boolean {
   return progress.hintUsedWordIds.includes(id) && !progress.dismissedMistakeWordIds.includes(id);
 }
 
+// Keep legacy notebook records in the existing storage format.
+export const recordMistake = recordHintUsed;
+
 /** Keep writes in order even when a previous write fails. */
 export function createProgressRepository(storage: ProgressStorage) {
   let pending = Promise.resolve();

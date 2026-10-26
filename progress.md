@@ -1,5 +1,66 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## 즐겨찾기 전용 삭제 버튼 제거 (2026-10-26)
+
+- 최신 사용자 결정에 따라 PWA·토스·모바일에서 즐겨찾기 전용 삭제 버튼을 제거했다. 별 토글로 등록·해제하며 오답노트 삭제 버튼과 저장 기록은 유지한다. 토스의 불필요해진 `bookmarksOnly` prop도 제거했다.
+- 웹 build(타입 검사 포함)·lint, 토스 typecheck·lint, 모바일 typecheck 및 `git diff --check` 통과. 실제 화면 확인·토스 번들·APK·Capacitor 동기화는 미실행이다.
+
+## Android 학습 기록 초기화 추가 (2026-10-26)
+
+- 설정의 데이터 관리에 확인창·초기화 버튼을 추가했다. 성공 시 학습완료만 초기화하고 진행 중 퍼즐·선택·완성 축하를 종료한다. 즐겨찾기·오답 이력·오답 숨김 기록은 보존하며 저장 실패 시 기존 기록과 퍼즐을 유지하고 확인창에 오류를 표시한다. 생성·정답 처리 중에는 초기화를 막고 Android 뒤로가기는 확인창부터 닫는다.
+- 모바일 typecheck·테스트 29개(초기화 보존·저장 실패 회귀 포함)·`git diff --check` 통과. TTS를 제외한 이번 대화의 공통 변경은 세 앱 소스에 반영했다. 플랫폼별 광고·설치 안내·네이티브 연결 등 고유 차이는 남으며 전체 화면·플랫폼 기능의 완전 동일을 뜻하지 않는다. 빌드·APK·동기화·실기기 검증은 미실행이다.
+
+## Android 소스 누락분 반영 (2026-10-26)
+
+- 이번 대화의 토스 변경과 비교해 모바일에 즐겨찾기 탭 삭제 버튼과 문제 없는 칸의 회색(`#8b95a1`)을 반영했다. 삭제는 즐겨찾기 ID만 제거하며 학습완료·오답노트 기록을 보존한다. 오답 자동 등록·난이도별 현황·설정 카드·단어장 구성 안내는 이미 반영된 상태를 확인했다.
+- 모바일 typecheck·기존 테스트 27개·`git diff --check` 통과. 실제 Android 화면·조작 확인, 빌드·Capacitor 동기화·APK 생성은 미실행이다. TTS는 PWA 우선이라는 기존 선택에 따라 이번 범위에 포함하지 않았다.
+
+## 특급 005 ZIP 검수 (2026-10-26)
+
+- 사용자 ZIP 9개 원본 보존. 후보 50개는 앞선 3,539개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 대조 및 LICENSE 일치 확인.
+- 50개 직접 검수 후 covariance/entropy 뜻·culpable/deprivation 해석·dogmatic 변이 동의어 5필드 보완. 공분산·엔트로피·금지명령 의미는 NIST·SciPy·미 연방사법센터 공식 자료를 확인하고 수치 예문은 직접 계산했다. 로컬 LLM 추가 호출 없음.
+- `python scripts/review-special-vocabulary-batch.py --batch 005 --input-dir artifacts/vocabulary-review-005/input` 통과. WordNet gloss 연속 8토큰 일치 0건, CSV/XLSX 왕복 통과. 구문·공백·diff 검사 수행. 사람의 최종 검수·외부 문구 전수확인·토플 빈도·앱 고지 연결은 미실행이다.
+- 후보 누적 250개·추가 목표 250개. 사용자 요청에 따라 새 수집 프롬프트·첨부 ZIP은 만들지 않았다. 앱 변경·운영 병합·빌드·토스 번들·APK·동기화 없음.
+
+## 특급 004 ZIP 검수·005 수집 준비 (2026-10-26)
+
+- 사용자 ZIP의 9개 파일을 안전한 작업 경로로 복사·보존했다. 후보 50개는 앞선 3,489개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 일치, 제출 LICENSE와 공식 원자료 LICENSE 바이트 일치 확인.
+- 50개 직접 검수 후 judicious 뜻·exhaustive/tenable 해석·variance 뜻 4필드를 보완했다. variance는 WordNet 확률분포 정의와 NIST 표본 분산 설명을 구분했다. 로컬 LLM 추가 호출 없음. WordNet 전체 gloss 117,659개와 8토큰 비교 일치 0건이며 외부 전체 유사성 검증은 아니다.
+- `python scripts/review-special-vocabulary-batch.py --batch 004 --input-dir artifacts/vocabulary-review-004/input` 통과. Python 구문·공백·`git diff --check` 확인. 앱 코드 변경·빌드·운영 병합·토스 번들·APK·동기화 없음. 사람의 최종 검수·토플 빈도·외부 문구 전수검증·앱 고지 연결은 미실행이다.
+- 후보 누적 200개, 추가 목표 300개. 005 프롬프트와 3,539개 제외 목록을 `artifacts/vocabulary-review-004/`에 준비했다.
+
+## 특급 003 후보 검수·004 수집 준비 (2026-10-26)
+
+- 후보·출처 CSV와 XLSX 3개를 원본 보존하고 50개 전체를 직접 검수했다. 기존 3,339개와 앞선 후보 100개에 중복 없음, XLSX/CSV 일치, WordNet 의미 ID·품사·sense key 50개 확인. provenance 미제공으로 자체 확인 기록과 원문 행 해시를 별도 생성하고 원작성자의 provenance와 구분했다.
+- analogy·fallacy·peripheral 해석 3개 보완. 로컬 LLM 미사용. WordNet 형용사 `(p)` 문법 표식 처리를 공식 형식 문서로 확인해 검사기에 반영했다. `python scripts/review-special-vocabulary-batch.py --batch 003 --input-dir D:/Download` 및 002 회귀 확인, Python 구문·새 파일 공백 검사·`git diff --check` 통과. WordNet gloss 117,659개와 8토큰 일치 0건, 인터넷 전체 유사성 확인은 아니다.
+- 후보 누적 150개, 추가 목표 350개. 004 프롬프트·3,489개 제외 목록을 `artifacts/vocabulary-review-003/`에 준비했다. 운영 병합·앱 변경·빌드·토스 번들·APK·동기화 미실행. 사람의 최종 검수·토플 빈도·외부 전체 유사성·앱 고지 연결은 미실행이다.
+
+## 특급 002 후보 50개 검수·003 수집 준비 (2026-10-26)
+
+- 사용자 제공 CSV 2개·provenance JSON·XLSX를 원본 보존하고 검수했다. 기존 3,339개·001 후보 50개와 중복 없음. XLSX 두 시트와 CSV 일치, WordNet 3.0 선택 의미 ID·품사·sense key·끝 LF 포함 원문 행 해시 50개 일치. LICENSE는 공식 배포본에서 확보하고 provenance 해시와 일치 확인했다.
+- 50개 직접 검수 후 altruism 해석·offset/incidence 뜻·premise 철자 변이 동의어 4필드를 보완했다. 미해결 항목이 없어 이번에는 로컬 LLM 추가 검수를 실행하지 않았다. WordNet 전체 gloss 연속 8토큰 비교 일치 0건이며 외부 전체 유사성 검증은 아니다.
+- `python scripts/review-special-vocabulary-batch.py --batch 002 --input-dir D:/Download` 통과. 보정 CSV UTF-8 BOM·XLSX 왕복 검사 통과. 코드 형식 검사와 `git diff --check` 실행. 앱 실행 코드 변경·빌드·운영 병합·토스 번들·APK·동기화 없음. 사람의 최종 검수·토플 빈도·앱 고지 연결은 미실행이다.
+- 후보 누적 100개, 추가 목표 400개. 003 요청 프롬프트와 3,439개 제외 목록을 `artifacts/vocabulary-review-002/`에 준비했다. 상세는 `content/special-vocabulary/review-002/README.md`.
+
+## PWA 단어장 TTS 1차 구현 (2026-10-26)
+
+- 사용자 선택에 따라 PWA부터 단어·영어 예문 `듣기`/`느리게`를 구현했다. 재생 중지·단어/속도 교체·화면 숨김/이탈·검색/분류 변경 취소, 늦은 취소 이벤트 무시, 미지원/음성 없음/재생 시작 실패 안내와 접근성 상태를 추가했다. 웹 전용 어댑터이며 공유 core·토스·Android에는 브라우저 API를 넣지 않았다.
+- `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/wordSpeech.test.tsx`(apps/web에서 실행) 7개 통과. 웹 typecheck·lint·build 통과. 실제 브라우저 청취·PWA 설치 기기 검증은 미실행이다. 새 의존성·유료 서버·API 키 없음. 기기 음성이 네트워크를 사용할 수 있으므로 오프라인 재생은 보장하지 않는다.
+- 공식 호환성 자료와 토스 측 답변에서 Android WebView의 speechSynthesis 미지원을 확인했다. 토스는 사용자가 선택한 음성 파일 방식 검토 단계이며 Android는 네이티브 TTS 또는 음성 파일이 필요하다. `docs/word-audio.md`에 권리·품질·용량·재생 수명주기 검토 범위와 미실행 항목을 기록했다. 토스 번들·APK·Capacitor 동기화 미실행.
+
+## 특급 후보 50개 보완·검수 및 후속 수집 준비 (2026-10-26)
+
+- 원본 3개를 `content/special-vocabulary/review-001/`에 보존하고 5개 단어·6개 필드를 보정한 별도 CSV/XLSX와 수정 이력을 생성했다. 원본 WordNet 3.0에서 선택 의미·품사 50개를 연결하고 LICENSE 전문·원자료 해시·AI 제작/검수 기록을 보존했다.
+- Ollama Qwen3 14B와 GPT OSS 20B의 50개 보조 검수를 실제 실행했다. GPT OSS 첫 실행은 출력 한도 초과로 미완료, 낮은 추론 설정의 재실행은 완료. 모델 의견은 편집 검토를 대체하지 않으며 채택·미채택 이유를 기록했다.
+- `python scripts/review-special-vocabulary.py`, 로컬 검수 명령, `python scripts/finalize-special-vocabulary-review.py` 실행. 형식·기존/신규 중복·선택 의미 ID/품사·CSV/XLSX 왕복 검사 통과. WordNet 117,659개 gloss와 연속 8토큰 비교 일치 0건. 공식 이용 조건을 열어 확인하고 기록했다. 외부 문구 전체 유사성·사람의 최종 검수·토플 빈도 검증은 미실행이다.
+- 450개 추가 요청용 프롬프트와 운영 3,339개+후보 50개의 제외 목록 준비. ChatGPT 웹 요청은 사용자가 프롬프트·첨부 파일로 진행한다. 운영 단어장 병합·난이도/앱 변경·빌드·토스 번들·APK·Capacitor 동기화는 이번 작업에서 실행하지 않았다.
+
+## 오답 입력 즉시 오답노트 등록 (2026-10-26)
+
+- 웹/PWA에 이어 토스·모바일에도 틀린 영문 글자 표시 시 오답노트 저장을 연결했다. 답안이 미완성이어도 등록하며 중복은 제거한다. 삭제는 숨김이고 재오답 시 복귀하며 기존 학습완료·즐겨찾기·기존 오답노트는 보존한다. 기존 저장 형식을 재사용하며 힌트 기능이나 서버 호출을 추가하지 않았다. 목록 안내도 새 동작에 맞췄다.
+- 검증: 웹 입력 중 오답 재현·저장소 14개 테스트, 웹 lint/build 통과. 토스 `pnpm.cmd --filter @t-crossword/toss test` 79개, `lint`, `build:ait` 통과. 모바일 `pnpm.cmd --filter @t-crossword/mobile test` 27개 및 `build` 통과. Capacitor 동기화는 샌드박스 사용자 정보 조회 오류 후 권한 승인 재실행(`pnpm.cmd exec cap sync android`)으로 통과했다. JDK 21을 명령 환경에서 지정해 `gradlew.bat assembleDebug` 통과. 큰 JS 청크 경고는 남는다.
+- 산출물: `apps/toss/english-words.ait`, `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`. 토스 업로드·Android 설치·실제 기기 조작·iOS 검증은 미실행이다.
+
 ## 오늘 변경 최종 문서 정리·Git/배포 사용자 진행 (2026-10-25)
 
 - 사용자 결정: 오늘 변경의 최종 정리만 에이전트가 수행하고 스테이징·커밋·푸시·배포는 사용자가 직접 수행한다. `AGENTS.md`에 남은 현재 UI 명칭 두 곳을 문제로 정리하고 완성 🎉 아이콘 기준을 반영했다. 기존 진행 기록은 삭제하지 않는다.

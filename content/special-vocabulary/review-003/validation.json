@@ -1,0 +1,29 @@
+{
+  "batch": "003",
+  "checked_date": "2026-10-26",
+  "candidates": 50,
+  "previous_exclusions": 3439,
+  "duplicates": [],
+  "source_synset_pos_matches": 50,
+  "supplied_provenance": false,
+  "supplied_provenance_hash_matches": 0,
+  "independently_recorded_source_row_hashes": 50,
+  "source_hash_convention": "trailing LF included",
+  "original_xlsx_matches_csv": true,
+  "reviewed_csv_xlsx_round_trip": "passed",
+  "morphology_exception_flags": [],
+  "wordnet_8_token_overlap_hits": 0,
+  "wordnet_glosses_checked": 117659,
+  "changed_words": 3,
+  "changed_fields": 3,
+  "status": "editorially-reviewed-release-pending",
+  "local_llm_used": false,
+  "original_sha256": {
+    "vocabulary-special-candidates-003.csv": "44f797d185d74518b1b9fd4ecf773ac92211be06c08ff9ea074c5120f5705003",
+    "vocabulary-special-sources-003.csv": "38a7b624df6b8cd003e601df199f33dddeffec2809fe7ed079397b5fbeb53b94",
+    "vocabulary-special-003.xlsx": "6f5294332a33cbf6ed89e90f5ef78cd4ed74ec9cd30d339decf5d671a40200be"
+  },
+  "license_sha256": "7731175a77952e259390b496fab905e57118b8d19ad3a8383c67eee724ff443f",
+  "model_name": null,
+  "model_evidence": "author provenance not supplied; model unknown"
+}

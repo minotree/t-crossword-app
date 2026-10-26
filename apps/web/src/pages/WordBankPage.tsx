@@ -1,6 +1,8 @@
-import { useMemo, useState, useSyncExternalStore } from 'react';
+import { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { defaultVocabList } from '@t-crossword/core';
 import { wordProgressStore } from '../adapters/wordProgress.js';
+import { wordSpeechStore } from '../adapters/wordSpeech.js';
+import { WordSpeechButtons } from '../components/WordSpeechButtons.js';
 
 const tabs = [
   { key: 'all', label: '전체' },
@@ -12,8 +14,20 @@ const levels = { beginner: '초급', intermediate: '중급', advanced: '고급' 
 
 export function WordBankPage() {
   const progress = useSyncExternalStore(wordProgressStore.subscribe, wordProgressStore.getSnapshot);
+  const speech = useSyncExternalStore(wordSpeechStore.subscribe, wordSpeechStore.getSnapshot);
   const [tab, setTab] = useState<(typeof tabs)[number]['key']>('all');
   const [query, setQuery] = useState('');
+  useEffect(() => {
+    const onHidden = () => { if (document.hidden) wordSpeechStore.stop(); };
+    document.addEventListener('visibilitychange', onHidden);
+    window.addEventListener('pagehide', wordSpeechStore.stop);
+    return () => {
+      document.removeEventListener('visibilitychange', onHidden);
+      window.removeEventListener('pagehide', wordSpeechStore.stop);
+      wordSpeechStore.stop();
+    };
+  }, []);
+  useEffect(() => { wordSpeechStore.stop(); }, [tab, query]);
   const completed = useMemo(() => new Set(progress.completedWordIds), [progress.completedWordIds]);
   const bookmarked = useMemo(() => new Set(progress.bookmarkedWordIds), [progress.bookmarkedWordIds]);
   const hintUsed = useMemo(() => new Set(progress.hintUsedWordIds), [progress.hintUsedWordIds]);
@@ -44,7 +58,7 @@ export function WordBankPage() {
             </button>
           ))}
         </nav>
-        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">이 기기에 저장된 기존 오답노트 기록입니다. 삭제해도 단어와 학습 기록은 유지됩니다.</p>}
+        {tab === 'mistakes' && <p className="mt-3 text-sm text-slate-600">틀린 단어를 이 기기에 저장합니다. 삭제해도 단어와 학습 기록은 유지되며, 다시 틀리면 목록에 추가됩니다.</p>}
         <label className="block mt-4">
           <span className="sr-only">단어 또는 뜻 검색</span>
           <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="단어 또는 뜻 검색"
@@ -67,6 +81,8 @@ export function WordBankPage() {
                   <p className="mt-1 break-words text-sm text-indigo-700">동의어: {word.synonym}</p>
                 )}
                 {word.example && <p className="mt-2 text-sm text-slate-500">{word.example}<br />{word.exampleMeaning}</p>}
+                <WordSpeechButtons wordId={word.id} word={word.word} speech={speech}
+                  onSpeak={slow => wordSpeechStore.speak(word.id, word.word, word.example, slow)} />
               </div>
               <div className="flex shrink-0 flex-col items-center gap-2">
               <button type="button" aria-label={`${word.word} 즐겨찾기`} aria-pressed={bookmarked.has(word.id)}

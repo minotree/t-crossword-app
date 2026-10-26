@@ -8,6 +8,20 @@ function memoryStorage() {
 }
 
 describe('device word progress', () => {
+  it('persists mistakes once and restores dismissed words on another mistake', () => {
+    const storage = memoryStorage();
+    const store = createWordProgressStore(() => storage);
+    store.recordMistake('word-2');
+    store.recordMistake('word-2');
+    store.markCompleted('word-2');
+    store.toggleBookmark('word-2');
+    store.dismissMistake('word-2');
+    store.recordMistake('word-2');
+    expect(createWordProgressStore(() => storage).getSnapshot()).toEqual({
+      completedWordIds: ['word-2'], bookmarkedWordIds: ['word-2'],
+      hintUsedWordIds: ['word-2'], dismissedMistakeWordIds: [], error: null,
+    });
+  });
   it('dismisses mistakes durably without removing history, bookmarks or completion', () => {
     const storage = memoryStorage();
     const store = createWordProgressStore(() => storage);

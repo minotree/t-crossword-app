@@ -1,0 +1,19 @@
+{
+  "checked_date": "2026-10-26",
+  "status": "editorially-reviewed-release-pending",
+  "review_method": "Code checks followed by agent source and editorial review of all 50 records. Author provenance was not supplied; independent verification records are labelled separately. No unresolved linguistic item required local LLM assistance.",
+  "changes": {
+    "analogy": {
+      "reason": "used an analogy의 비유·유추 동작을 ‘유사성을 비교했다’보다 자연스럽고 분명하게 번역",
+      "fields": { "예문해석": "그 교사는 교통망을 혈액 순환에 빗대어 혼잡을 설명했다." }
+    },
+    "fallacy": {
+      "reason": "선택 의미가 잘못된 추론 자체가 아닌 그 추론에서 생긴 오해임을 해석에도 유지",
+      "fields": { "예문해석": "그 논증은 잘못된 추론에서 생긴 오해에 기반한다. 한 개인에 관한 증거로는 보편적 규칙을 확립할 수 없기 때문이다." }
+    },
+    "peripheral": {
+      "reason": "affordable의 비용 부담 의미와 양보 관계를 유지하면서 한국어 절 구조를 명확히 함",
+      "fields": { "예문해석": "저자는 교통비가 제안 실행에 드는 비용을 감당할 수 있을지를 좌우할 수도 있는데도 이를 주변적인 문제로 다룬다." }
+    }
+  }
+}

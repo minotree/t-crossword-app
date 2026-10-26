@@ -1,0 +1,1354 @@
+{
+  "encompass": [
+    {
+      "synset": "02629793-v",
+      "pos": "verb",
+      "lemmas": [
+        "embrace",
+        "encompass",
+        "comprehend",
+        "cover"
+      ],
+      "gloss": "include in scope; include as part of something broader; have as one's sphere or territory; \"This group encompasses a wide range of people from different backgrounds\"; \"this should cover everyone in the group\""
+    }
+  ],
+  "engender": [
+    {
+      "synset": "00054628-v",
+      "pos": "verb",
+      "lemmas": [
+        "beget",
+        "get",
+        "engender",
+        "father",
+        "mother",
+        "sire",
+        "generate",
+        "bring_forth"
+      ],
+      "gloss": "make children; \"Abraham begot Isaac\"; \"Men often father children but don't recognize them\""
+    },
+    {
+      "synset": "01649024-v",
+      "pos": "verb",
+      "lemmas": [
+        "engender",
+        "breed",
+        "spawn"
+      ],
+      "gloss": "call forth"
+    }
+  ],
+  "antecedent": [
+    {
+      "synset": "06603651-n",
+      "pos": "noun",
+      "lemmas": [
+        "antecedent"
+      ],
+      "gloss": "the referent of an anaphor; a phrase or clause that is referred to by an anaphoric pronoun"
+    },
+    {
+      "synset": "07326880-n",
+      "pos": "noun",
+      "lemmas": [
+        "antecedent"
+      ],
+      "gloss": "a preceding occurrence or cause or event"
+    },
+    {
+      "synset": "09792555-n",
+      "pos": "noun",
+      "lemmas": [
+        "ancestor",
+        "ascendant",
+        "ascendent",
+        "antecedent",
+        "root"
+      ],
+      "gloss": "someone from whom you are descended (but usually more remote than a grandparent)"
+    },
+    {
+      "synset": "13844923-n",
+      "pos": "noun",
+      "lemmas": [
+        "antecedent",
+        "forerunner"
+      ],
+      "gloss": "anything that precedes something similar in time; \"phrenology was an antecedent of modern neuroscience\""
+    },
+    {
+      "synset": "00121865-a",
+      "pos": "adj",
+      "lemmas": [
+        "antecedent"
+      ],
+      "gloss": "preceding in time or order"
+    }
+  ],
+  "connotation": [
+    {
+      "synset": "05923566-n",
+      "pos": "noun",
+      "lemmas": [
+        "connotation"
+      ],
+      "gloss": "an idea that is implied or suggested"
+    },
+    {
+      "synset": "06602935-n",
+      "pos": "noun",
+      "lemmas": [
+        "intension",
+        "connotation"
+      ],
+      "gloss": "what you must know in order to determine the reference of an expression"
+    }
+  ],
+  "autonomy": [
+    {
+      "synset": "13992514-n",
+      "pos": "noun",
+      "lemmas": [
+        "autonomy",
+        "liberty"
+      ],
+      "gloss": "immunity from arbitrary exercise of authority: political independence"
+    },
+    {
+      "synset": "14001031-n",
+      "pos": "noun",
+      "lemmas": [
+        "autonomy",
+        "self-direction",
+        "self-reliance",
+        "self-sufficiency"
+      ],
+      "gloss": "personal independence"
+    }
+  ],
+  "equivocal": [
+    {
+      "synset": "00551120-s",
+      "pos": "adj",
+      "lemmas": [
+        "equivocal"
+      ],
+      "gloss": "uncertain as a sign or indication; \"the evidence from bacteriologic analysis was equivocal\""
+    },
+    {
+      "synset": "00895442-a",
+      "pos": "adj",
+      "lemmas": [
+        "equivocal",
+        "ambiguous"
+      ],
+      "gloss": "open to two or more interpretations; or of uncertain nature or significance; or (often) intended to mislead; \"an equivocal statement\"; \"the polling had a complex and equivocal (or ambiguous) message for potential female candidates\"; \"the officer's equivocal behavior increased the victim's uneasiness\"; \"popularity is an equivocal crown\"; \"an equivocal response to an embarrassing question\""
+    },
+    {
+      "synset": "01917370-s",
+      "pos": "adj",
+      "lemmas": [
+        "equivocal"
+      ],
+      "gloss": "open to question; \"aliens of equivocal loyalty\"; \"his conscience reproached him with the equivocal character of the union into which he had forced his son\"-Anna Jameson"
+    }
+  ],
+  "heuristic": [
+    {
+      "synset": "05847956-n",
+      "pos": "noun",
+      "lemmas": [
+        "heuristic",
+        "heuristic_rule",
+        "heuristic_program"
+      ],
+      "gloss": "a commonsense rule (or set of rules) intended to increase the probability of solving some problem"
+    },
+    {
+      "synset": "00092933-a",
+      "pos": "adj",
+      "lemmas": [
+        "heuristic"
+      ],
+      "gloss": "of or relating to or using a general formulation that serves to guide investigation"
+    }
+  ],
+  "dissonance": [
+    {
+      "synset": "04984514-n",
+      "pos": "noun",
+      "lemmas": [
+        "dissonance"
+      ],
+      "gloss": "disagreeable sounds"
+    },
+    {
+      "synset": "05720248-n",
+      "pos": "noun",
+      "lemmas": [
+        "noise",
+        "dissonance",
+        "racket"
+      ],
+      "gloss": "the auditory experience of sound that lacks musical quality; sound that is a disagreeable auditory experience; \"modern music is just noise to me\""
+    },
+    {
+      "synset": "13982357-n",
+      "pos": "noun",
+      "lemmas": [
+        "disagreement",
+        "dissension",
+        "dissonance"
+      ],
+      "gloss": "a conflict of people's opinions or actions or characters"
+    }
+  ],
+  "accrue": [
+    {
+      "synset": "00155869-v",
+      "pos": "verb",
+      "lemmas": [
+        "accrue"
+      ],
+      "gloss": "grow by addition; \"The interest accrues\""
+    },
+    {
+      "synset": "02230056-v",
+      "pos": "verb",
+      "lemmas": [
+        "accrue",
+        "fall"
+      ],
+      "gloss": "come into the possession of; \"The house accrued to the oldest son\""
+    }
+  ],
+  "propensity": [
+    {
+      "synset": "04943154-n",
+      "pos": "noun",
+      "lemmas": [
+        "aptness",
+        "propensity"
+      ],
+      "gloss": "a disposition to behave in a certain way; \"the aptness of iron to rust\"; \"the propensity of disease to spread\""
+    },
+    {
+      "synset": "06199561-n",
+      "pos": "noun",
+      "lemmas": [
+        "proclivity",
+        "propensity",
+        "leaning"
+      ],
+      "gloss": "a natural inclination; \"he has a proclivity for exaggeration\""
+    },
+    {
+      "synset": "07499113-n",
+      "pos": "noun",
+      "lemmas": [
+        "leaning",
+        "propensity",
+        "tendency"
+      ],
+      "gloss": "an inclination to do something; \"he felt leanings toward frivolity\""
+    }
+  ],
+  "abstraction": [
+    {
+      "synset": "00002137-n",
+      "pos": "noun",
+      "lemmas": [
+        "abstraction",
+        "abstract_entity"
+      ],
+      "gloss": "a general concept formed by extracting common features from specific examples"
+    },
+    {
+      "synset": "00392848-n",
+      "pos": "noun",
+      "lemmas": [
+        "abstraction"
+      ],
+      "gloss": "the act of withdrawing or removing something"
+    },
+    {
+      "synset": "02669001-n",
+      "pos": "noun",
+      "lemmas": [
+        "abstraction"
+      ],
+      "gloss": "an abstract painting"
+    },
+    {
+      "synset": "05700625-n",
+      "pos": "noun",
+      "lemmas": [
+        "abstractedness",
+        "abstraction"
+      ],
+      "gloss": "preoccupation with something to the exclusion of all else"
+    },
+    {
+      "synset": "05780104-n",
+      "pos": "noun",
+      "lemmas": [
+        "abstraction",
+        "generalization",
+        "generalisation"
+      ],
+      "gloss": "the process of formulating general concepts by abstracting common properties of instances"
+    },
+    {
+      "synset": "05854150-n",
+      "pos": "noun",
+      "lemmas": [
+        "abstraction",
+        "abstract"
+      ],
+      "gloss": "a concept or idea not associated with any specific instance; \"he loved her only in the abstract--not in person\""
+    }
+  ],
+  "axiom": [
+    {
+      "synset": "06753550-n",
+      "pos": "noun",
+      "lemmas": [
+        "axiom"
+      ],
+      "gloss": "(logic) a proposition that is not susceptible of proof or disproof; its truth is assumed to be self-evident"
+    },
+    {
+      "synset": "07152948-n",
+      "pos": "noun",
+      "lemmas": [
+        "maxim",
+        "axiom"
+      ],
+      "gloss": "a saying that is widely accepted on its own merits"
+    }
+  ],
+  "ascertain": [
+    {
+      "synset": "00662589-v",
+      "pos": "verb",
+      "lemmas": [
+        "see",
+        "check",
+        "insure",
+        "see_to_it",
+        "ensure",
+        "control",
+        "ascertain",
+        "assure"
+      ],
+      "gloss": "be careful or certain to do something; make certain of something; \"He verified that the valves were closed\"; \"See that the curtains are closed\"; \"control the quality of the product\""
+    },
+    {
+      "synset": "00721302-v",
+      "pos": "verb",
+      "lemmas": [
+        "ascertain"
+      ],
+      "gloss": "learn or discover with certainty"
+    },
+    {
+      "synset": "00918872-v",
+      "pos": "verb",
+      "lemmas": [
+        "determine",
+        "find",
+        "find_out",
+        "ascertain"
+      ],
+      "gloss": "establish after a calculation, investigation, experiment, survey, or study; \"find the product of two numbers\"; \"The physicist who found the elusive particle won the Nobel Prize\""
+    },
+    {
+      "synset": "00920336-v",
+      "pos": "verb",
+      "lemmas": [
+        "determine",
+        "check",
+        "find_out",
+        "see",
+        "ascertain",
+        "watch",
+        "learn"
+      ],
+      "gloss": "find out, learn, or determine with certainty, usually by making an inquiry or other effort; \"I want to see whether she speaks French\"; \"See whether it works\"; \"find out if he speaks Russian\"; \"Check whether the train leaves on time\""
+    }
+  ],
+  "corroborate": [
+    {
+      "synset": "00665886-v",
+      "pos": "verb",
+      "lemmas": [
+        "confirm",
+        "corroborate",
+        "sustain",
+        "substantiate",
+        "support",
+        "affirm"
+      ],
+      "gloss": "establish or strengthen as with new evidence or facts; \"his story confirmed my doubts\"; \"The evidence supports the defendant\""
+    },
+    {
+      "synset": "01012561-v",
+      "pos": "verb",
+      "lemmas": [
+        "validate",
+        "corroborate"
+      ],
+      "gloss": "give evidence for"
+    },
+    {
+      "synset": "02663340-v",
+      "pos": "verb",
+      "lemmas": [
+        "corroborate",
+        "underpin",
+        "bear_out",
+        "support"
+      ],
+      "gloss": "support with evidence or authority or make more certain or confirm; \"The stories and claims were born out by the evidence\""
+    }
+  ],
+  "extrapolate": [
+    {
+      "synset": "00593669-v",
+      "pos": "verb",
+      "lemmas": [
+        "extrapolate"
+      ],
+      "gloss": "gain knowledge of (an area not known or experienced) by extrapolating"
+    },
+    {
+      "synset": "00642644-v",
+      "pos": "verb",
+      "lemmas": [
+        "interpolate",
+        "extrapolate"
+      ],
+      "gloss": "estimate the value of"
+    },
+    {
+      "synset": "01022420-v",
+      "pos": "verb",
+      "lemmas": [
+        "generalize",
+        "generalise",
+        "extrapolate",
+        "infer"
+      ],
+      "gloss": "draw from specific cases for more general cases"
+    }
+  ],
+  "empirical": [
+    {
+      "synset": "00858917-a",
+      "pos": "adj",
+      "lemmas": [
+        "empirical",
+        "empiric"
+      ],
+      "gloss": "derived from experiment and observation rather than theory; \"an empirical basis for an ethical theory\"; \"empirical laws\"; \"empirical data\"; \"an empirical treatment of a disease about which little is known\""
+    },
+    {
+      "synset": "03063305-a",
+      "pos": "adj",
+      "lemmas": [
+        "empiric",
+        "empirical"
+      ],
+      "gloss": "relying on medical quackery; \"empiric treatment\""
+    }
+  ],
+  "exacerbate": [
+    {
+      "synset": "00208210-v",
+      "pos": "verb",
+      "lemmas": [
+        "worsen",
+        "aggravate",
+        "exacerbate",
+        "exasperate"
+      ],
+      "gloss": "make worse; \"This drug aggravates the pain\""
+    },
+    {
+      "synset": "01820901-v",
+      "pos": "verb",
+      "lemmas": [
+        "exacerbate",
+        "exasperate",
+        "aggravate"
+      ],
+      "gloss": "exasperate or irritate"
+    }
+  ],
+  "attenuate": [
+    {
+      "synset": "00220701-v",
+      "pos": "verb",
+      "lemmas": [
+        "attenuate"
+      ],
+      "gloss": "become weaker, in strength, value, or magnitude"
+    },
+    {
+      "synset": "00226379-v",
+      "pos": "verb",
+      "lemmas": [
+        "rarefy",
+        "attenuate"
+      ],
+      "gloss": "weaken the consistency of (a chemical substance)"
+    },
+    {
+      "synset": "00882166-s",
+      "pos": "adj",
+      "lemmas": [
+        "attenuate",
+        "attenuated",
+        "faded",
+        "weakened"
+      ],
+      "gloss": "reduced in strength; \"the faded tones of an old recording\""
+    }
+  ],
+  "salient": [
+    {
+      "synset": "08594886-n",
+      "pos": "noun",
+      "lemmas": [
+        "salient"
+      ],
+      "gloss": "(military) the part of the line of battle that projects closest to the enemy"
+    },
+    {
+      "synset": "00580805-s",
+      "pos": "adj",
+      "lemmas": [
+        "outstanding",
+        "prominent",
+        "salient",
+        "spectacular",
+        "striking"
+      ],
+      "gloss": "having a quality that thrusts itself into attention; \"an outstanding fact of our time is that nations poisoned by anti semitism proved less fortunate in regard to their own freedom\"; \"a new theory is the most prominent feature of the book\"; \"salient traits\"; \"a spectacular rise in prices\"; \"a striking thing about Picadilly Circus is the statue of Eros in the center\"; \"a striking resemblance between parent and child\""
+    },
+    {
+      "synset": "02591896-a",
+      "pos": "adj",
+      "lemmas": [
+        "salient"
+      ],
+      "gloss": "(of angles) pointing outward at an angle of less than 180 degrees"
+    }
+  ],
+  "augment": [
+    {
+      "synset": "00154388-v",
+      "pos": "verb",
+      "lemmas": [
+        "augment"
+      ],
+      "gloss": "enlarge or increase; \"The recent speech of the president augmented tensions in the Near East\""
+    },
+    {
+      "synset": "00157950-v",
+      "pos": "verb",
+      "lemmas": [
+        "augment"
+      ],
+      "gloss": "grow or intensify; \"The pressure augmented\""
+    }
+  ],
+  "correlate": [
+    {
+      "synset": "05858407-n",
+      "pos": "noun",
+      "lemmas": [
+        "correlate",
+        "correlative"
+      ],
+      "gloss": "either of two or more related or complementary variables"
+    },
+    {
+      "synset": "00713996-v",
+      "pos": "verb",
+      "lemmas": [
+        "correlate"
+      ],
+      "gloss": "bring into a mutual, complementary, or reciprocal relation; \"I cannot correlate these two pieces of information\""
+    },
+    {
+      "synset": "02658979-v",
+      "pos": "verb",
+      "lemmas": [
+        "correlate"
+      ],
+      "gloss": "to bear a reciprocal or mutual relation; \"Do these facts correlate?\""
+    },
+    {
+      "synset": "01974298-s",
+      "pos": "adj",
+      "lemmas": [
+        "correlative",
+        "correlate",
+        "correlated"
+      ],
+      "gloss": "mutually related"
+    }
+  ],
+  "concurrent": [
+    {
+      "synset": "02378496-s",
+      "pos": "adj",
+      "lemmas": [
+        "coincident",
+        "coincidental",
+        "coinciding",
+        "concurrent",
+        "co-occurrent",
+        "cooccurring",
+        "simultaneous"
+      ],
+      "gloss": "occurring or operating at the same time; \"a series of coincident events\""
+    }
+  ],
+  "juxtapose": [
+    {
+      "synset": "01501960-v",
+      "pos": "verb",
+      "lemmas": [
+        "juxtapose"
+      ],
+      "gloss": "place side by side; \"The fauvists juxtaposed strong colors\""
+    }
+  ],
+  "dichotomy": [
+    {
+      "synset": "07939880-n",
+      "pos": "noun",
+      "lemmas": [
+        "dichotomy",
+        "duality"
+      ],
+      "gloss": "being twofold; a classification into two opposed parts or subclasses; \"the dichotomy between eastern and western culture\""
+    }
+  ],
+  "delineate": [
+    {
+      "synset": "00989084-v",
+      "pos": "verb",
+      "lemmas": [
+        "delineate"
+      ],
+      "gloss": "describe in vivid detail"
+    },
+    {
+      "synset": "01582645-v",
+      "pos": "verb",
+      "lemmas": [
+        "trace",
+        "draw",
+        "line",
+        "describe",
+        "delineate"
+      ],
+      "gloss": "make a mark or lines on a surface; \"draw a line\"; \"trace the outline of a figure in the sand\""
+    },
+    {
+      "synset": "01689379-v",
+      "pos": "verb",
+      "lemmas": [
+        "delineate",
+        "limn",
+        "outline"
+      ],
+      "gloss": "trace the shape of"
+    },
+    {
+      "synset": "02611630-v",
+      "pos": "verb",
+      "lemmas": [
+        "specify",
+        "define",
+        "delineate",
+        "delimit",
+        "delimitate"
+      ],
+      "gloss": "determine the essential quality of"
+    },
+    {
+      "synset": "02736778-v",
+      "pos": "verb",
+      "lemmas": [
+        "define",
+        "delineate"
+      ],
+      "gloss": "show the form or outline of; \"The tree was clearly defined by the light\"; \"The camera could define the smallest object\""
+    },
+    {
+      "synset": "01714985-a",
+      "pos": "adj",
+      "lemmas": [
+        "delineated",
+        "represented",
+        "delineate"
+      ],
+      "gloss": "represented accurately or precisely"
+    }
+  ],
+  "incongruous": [
+    {
+      "synset": "00562469-a",
+      "pos": "adj",
+      "lemmas": [
+        "incongruous"
+      ],
+      "gloss": "lacking in harmony or compatibility or appropriateness; \"a plan incongruous with reason\"; \"incongruous behavior\"; \"a joke that was incongruous with polite conversation\""
+    }
+  ],
+  "consensus": [
+    {
+      "synset": "13971901-n",
+      "pos": "noun",
+      "lemmas": [
+        "consensus"
+      ],
+      "gloss": "agreement in the judgment or opinion reached by a group as a whole; \"the lack of consensus reflected differences in theoretical positions\"; \"those rights and obligations are based on an unstated consensus\""
+    }
+  ],
+  "plausible": [
+    {
+      "synset": "01799457-a",
+      "pos": "adj",
+      "lemmas": [
+        "plausible"
+      ],
+      "gloss": "apparently reasonable and valid, and truthful; \"a plausible excuse\""
+    },
+    {
+      "synset": "02182728-s",
+      "pos": "adj",
+      "lemmas": [
+        "plausible"
+      ],
+      "gloss": "given to or characterized by presenting specious arguments; \"a plausible liar\""
+    }
+  ],
+  "anomaly": [
+    {
+      "synset": "08622763-n",
+      "pos": "noun",
+      "lemmas": [
+        "anomaly"
+      ],
+      "gloss": "(astronomy) position of a planet as defined by its angular distance from its perihelion (as observed from the sun)"
+    },
+    {
+      "synset": "09606527-n",
+      "pos": "noun",
+      "lemmas": [
+        "anomaly",
+        "unusual_person"
+      ],
+      "gloss": "a person who is unusual"
+    },
+    {
+      "synset": "14505821-n",
+      "pos": "noun",
+      "lemmas": [
+        "anomaly",
+        "anomalousness"
+      ],
+      "gloss": "deviation from the normal or common order or form or rule"
+    }
+  ],
+  "assimilate": [
+    {
+      "synset": "00159642-v",
+      "pos": "verb",
+      "lemmas": [
+        "assimilate"
+      ],
+      "gloss": "become similar to one's environment; \"Immigrants often want to assimilate quickly\""
+    },
+    {
+      "synset": "00160261-v",
+      "pos": "verb",
+      "lemmas": [
+        "assimilate"
+      ],
+      "gloss": "make similar; \"This country assimilates immigrants very quickly\""
+    },
+    {
+      "synset": "00160447-v",
+      "pos": "verb",
+      "lemmas": [
+        "assimilate"
+      ],
+      "gloss": "become similar in sound; \"The nasal assimilates to the following consonant\""
+    },
+    {
+      "synset": "00602255-v",
+      "pos": "verb",
+      "lemmas": [
+        "absorb",
+        "assimilate",
+        "ingest",
+        "take_in"
+      ],
+      "gloss": "take up mentally; \"he absorbed the knowledge or beliefs of his tribe\""
+    },
+    {
+      "synset": "01540042-v",
+      "pos": "verb",
+      "lemmas": [
+        "assimilate",
+        "imbibe"
+      ],
+      "gloss": "take (gas, light or heat) into a solution"
+    }
+  ],
+  "latent": [
+    {
+      "synset": "00038462-s",
+      "pos": "adj",
+      "lemmas": [
+        "latent"
+      ],
+      "gloss": "(pathology) not presently active; \"latent infection\"; \"latent diabetes\""
+    },
+    {
+      "synset": "00044608-s",
+      "pos": "adj",
+      "lemmas": [
+        "latent"
+      ],
+      "gloss": "potentially existing but not presently evident or realized; \"a latent fingerprint\"; \"latent talent\""
+    }
+  ],
+  "mitigate": [
+    {
+      "synset": "00198850-v",
+      "pos": "verb",
+      "lemmas": [
+        "mitigate"
+      ],
+      "gloss": "make less severe or harsh; \"mitigating circumstances\""
+    },
+    {
+      "synset": "00906037-v",
+      "pos": "verb",
+      "lemmas": [
+        "extenuate",
+        "palliate",
+        "mitigate"
+      ],
+      "gloss": "lessen or to try to lessen the seriousness or extent of; \"The circumstances extenuate the crime\""
+    }
+  ],
+  "nuance": [
+    {
+      "synset": "06606191-n",
+      "pos": "noun",
+      "lemmas": [
+        "nuance",
+        "nicety",
+        "shade",
+        "subtlety",
+        "refinement"
+      ],
+      "gloss": "a subtle difference in meaning or opinion or attitude; \"without understanding the finer nuances you can't enjoy the humor\"; \"don't argue about shades of meaning\""
+    }
+  ],
+  "intrinsic": [
+    {
+      "synset": "00949374-s",
+      "pos": "adj",
+      "lemmas": [
+        "intrinsic"
+      ],
+      "gloss": "situated within or belonging solely to the organ or body part on which it acts; \"intrinsic muscles\""
+    },
+    {
+      "synset": "01348258-a",
+      "pos": "adj",
+      "lemmas": [
+        "intrinsic",
+        "intrinsical"
+      ],
+      "gloss": "belonging to a thing by its very nature; \"form was treated as something intrinsic, as the very essence of the thing\"- John Dewey"
+    }
+  ],
+  "cumulative": [
+    {
+      "synset": "00048460-s",
+      "pos": "adj",
+      "lemmas": [
+        "accumulative",
+        "cumulative"
+      ],
+      "gloss": "increasing by successive addition; \"the benefits are cumulative\"; \"the eventual accumulative effect of these substances\""
+    }
+  ],
+  "discern": [
+    {
+      "synset": "02193194-v",
+      "pos": "verb",
+      "lemmas": [
+        "spot",
+        "recognize",
+        "recognise",
+        "distinguish",
+        "discern",
+        "pick_out",
+        "make_out",
+        "tell_apart"
+      ],
+      "gloss": "detect with the senses; \"The fleeing convicts were picked out of the darkness by the watchful prison guards\"; \"I can't make out the faces in this photograph\""
+    }
+  ],
+  "deduce": [
+    {
+      "synset": "00636574-v",
+      "pos": "verb",
+      "lemmas": [
+        "deduce",
+        "infer",
+        "deduct",
+        "derive"
+      ],
+      "gloss": "reason by deduction; establish by deduction"
+    },
+    {
+      "synset": "00944924-v",
+      "pos": "verb",
+      "lemmas": [
+        "deduce",
+        "infer"
+      ],
+      "gloss": "conclude by reasoning; in logic"
+    }
+  ],
+  "discrete": [
+    {
+      "synset": "02110778-s",
+      "pos": "adj",
+      "lemmas": [
+        "discrete",
+        "distinct"
+      ],
+      "gloss": "constituting a separate entity or part; \"a government with three discrete divisions\"; \"on two distinct occasions\""
+    }
+  ],
+  "converge": [
+    {
+      "synset": "00368847-v",
+      "pos": "verb",
+      "lemmas": [
+        "converge"
+      ],
+      "gloss": "come together so as to form a single product; \"Social forces converged to bring the Fascists back to power\""
+    },
+    {
+      "synset": "02032634-v",
+      "pos": "verb",
+      "lemmas": [
+        "converge"
+      ],
+      "gloss": "move or draw together at a certain location; \"The crowd converged on the movie star\""
+    },
+    {
+      "synset": "02710402-v",
+      "pos": "verb",
+      "lemmas": [
+        "converge",
+        "meet"
+      ],
+      "gloss": "be adjacent or come together; \"The lines converge at this point\""
+    },
+    {
+      "synset": "02732401-v",
+      "pos": "verb",
+      "lemmas": [
+        "converge"
+      ],
+      "gloss": "approach a limit as the number of terms increases without limit"
+    }
+  ],
+  "analogous": [
+    {
+      "synset": "01221290-a",
+      "pos": "adj",
+      "lemmas": [
+        "analogous"
+      ],
+      "gloss": "corresponding in function but not in evolutionary origin; \"the wings of a bee and those of a hummingbird are analogous\""
+    },
+    {
+      "synset": "02071973-s",
+      "pos": "adj",
+      "lemmas": [
+        "analogous",
+        "correspondent"
+      ],
+      "gloss": "similar or equivalent in some respects though otherwise dissimilar; \"brains and computers are often considered analogous\"; \"salmon roe is marketed as analogous to caviar\""
+    }
+  ],
+  "denote": [
+    {
+      "synset": "00931467-v",
+      "pos": "verb",
+      "lemmas": [
+        "denote",
+        "refer"
+      ],
+      "gloss": "have as a meaning; \"`multi-' denotes `many' \""
+    },
+    {
+      "synset": "00932161-v",
+      "pos": "verb",
+      "lemmas": [
+        "denote"
+      ],
+      "gloss": "be a sign or indication of; \"Her smile denoted that she agreed\""
+    },
+    {
+      "synset": "00974367-v",
+      "pos": "verb",
+      "lemmas": [
+        "announce",
+        "denote"
+      ],
+      "gloss": "make known; make an announcement; \"She denoted her feelings clearly\""
+    }
+  ],
+  "aggregate": [
+    {
+      "synset": "04353803-n",
+      "pos": "noun",
+      "lemmas": [
+        "sum",
+        "total",
+        "totality",
+        "aggregate"
+      ],
+      "gloss": "the whole amount"
+    },
+    {
+      "synset": "08418103-n",
+      "pos": "noun",
+      "lemmas": [
+        "aggregate",
+        "congeries",
+        "conglomeration"
+      ],
+      "gloss": "a sum total of many heterogenous things taken together"
+    },
+    {
+      "synset": "14594925-n",
+      "pos": "noun",
+      "lemmas": [
+        "aggregate"
+      ],
+      "gloss": "material such as sand or gravel used with cement and water to make concrete, mortar, or plaster"
+    },
+    {
+      "synset": "01385170-v",
+      "pos": "verb",
+      "lemmas": [
+        "aggregate",
+        "combine"
+      ],
+      "gloss": "gather in a mass, sum, or whole"
+    },
+    {
+      "synset": "02627555-v",
+      "pos": "verb",
+      "lemmas": [
+        "aggregate"
+      ],
+      "gloss": "amount in the aggregate to"
+    },
+    {
+      "synset": "00467240-s",
+      "pos": "adj",
+      "lemmas": [
+        "aggregate",
+        "aggregated",
+        "aggregative",
+        "mass"
+      ],
+      "gloss": "formed of separate units gathered into a mass or whole; \"aggregate expenses include expenses of all divisions combined for the entire year\"; \"the aggregated amount of indebtedness\""
+    },
+    {
+      "synset": "02216694-s",
+      "pos": "adj",
+      "lemmas": [
+        "aggregate"
+      ],
+      "gloss": "composed of a dense cluster of separate units such as carpels or florets or drupelets; \"raspberries are aggregate fruits\""
+    }
+  ],
+  "contingent": [
+    {
+      "synset": "07976420-n",
+      "pos": "noun",
+      "lemmas": [
+        "contingent"
+      ],
+      "gloss": "a gathering of persons representative of some larger group; \"each nation sent a contingent of athletes to the Olympics\""
+    },
+    {
+      "synset": "08404549-n",
+      "pos": "noun",
+      "lemmas": [
+        "contingent",
+        "detail"
+      ],
+      "gloss": "a temporary military unit; \"the peacekeeping force includes one British contingent\""
+    },
+    {
+      "synset": "00341933-s",
+      "pos": "adj",
+      "lemmas": [
+        "contingent"
+      ],
+      "gloss": "uncertain because of uncontrollable circumstances; \"the results of confession were not contingent, they were certain\"- George Eliot"
+    },
+    {
+      "synset": "00555859-s",
+      "pos": "adj",
+      "lemmas": [
+        "contingent",
+        "contingent_on(p)",
+        "contingent_upon(p)",
+        "dependent_on(p)",
+        "dependant_on(p)",
+        "dependent_upon(p)",
+        "dependant_upon(p)",
+        "depending_on(p)"
+      ],
+      "gloss": "determined by conditions or circumstances that follow; \"arms sales contingent on the approval of congress\""
+    },
+    {
+      "synset": "01822411-s",
+      "pos": "adj",
+      "lemmas": [
+        "contingent"
+      ],
+      "gloss": "possible but not certain to occur; \"they had to plan for contingent expenses\""
+    }
+  ],
+  "integral": [
+    {
+      "synset": "06015505-n",
+      "pos": "noun",
+      "lemmas": [
+        "integral"
+      ],
+      "gloss": "the result of a mathematical integration; F(x) is the integral of f(x) if dF/dx = f(x)"
+    },
+    {
+      "synset": "00515870-s",
+      "pos": "adj",
+      "lemmas": [
+        "integral",
+        "entire",
+        "intact"
+      ],
+      "gloss": "constituting the undiminished entirety; lacking nothing essential especially not damaged; \"a local motion keepeth bodies integral\"- Bacon; \"was able to keep the collection entire during his lifetime\"; \"fought to keep the union intact\""
+    },
+    {
+      "synset": "01348528-s",
+      "pos": "adj",
+      "lemmas": [
+        "built-in",
+        "constitutional",
+        "inbuilt",
+        "inherent",
+        "integral"
+      ],
+      "gloss": "existing as an essential constituent or characteristic; \"the Ptolemaic system with its built-in concept of periodicity\"; \"a constitutional inability to tell the truth\""
+    },
+    {
+      "synset": "02685703-a",
+      "pos": "adj",
+      "lemmas": [
+        "integral"
+      ],
+      "gloss": "of or denoted by an integer"
+    }
+  ],
+  "substantiate": [
+    {
+      "synset": "00221413-v",
+      "pos": "verb",
+      "lemmas": [
+        "substantiate"
+      ],
+      "gloss": "solidify, firm, or strengthen; \"The president's trip will substantiate good relations with the former enemy country\""
+    },
+    {
+      "synset": "00665886-v",
+      "pos": "verb",
+      "lemmas": [
+        "confirm",
+        "corroborate",
+        "sustain",
+        "substantiate",
+        "support",
+        "affirm"
+      ],
+      "gloss": "establish or strengthen as with new evidence or facts; \"his story confirmed my doubts\"; \"The evidence supports the defendant\""
+    },
+    {
+      "synset": "01644746-v",
+      "pos": "verb",
+      "lemmas": [
+        "realize",
+        "realise",
+        "actualize",
+        "actualise",
+        "substantiate"
+      ],
+      "gloss": "make real or concrete; give reality or substance to; \"our ideas must be substantiated into actions\""
+    },
+    {
+      "synset": "02698443-v",
+      "pos": "verb",
+      "lemmas": [
+        "incarnate",
+        "body_forth",
+        "embody",
+        "substantiate"
+      ],
+      "gloss": "represent in bodily form; \"He embodies all that is evil wrong with the system\"; \"The painting substantiates the feelings of the artist\""
+    }
+  ],
+  "homogeneous": [
+    {
+      "synset": "01199751-a",
+      "pos": "adj",
+      "lemmas": [
+        "homogeneous",
+        "homogenous"
+      ],
+      "gloss": "all of the same or similar kind or nature; \"a close-knit homogeneous group\""
+    }
+  ],
+  "paradigm": [
+    {
+      "synset": "05937524-n",
+      "pos": "noun",
+      "lemmas": [
+        "prototype",
+        "paradigm",
+        "epitome",
+        "image"
+      ],
+      "gloss": "a standard or typical example; \"he is the prototype of good breeding\"; \"he provided America with an image of the good father\""
+    },
+    {
+      "synset": "06210171-n",
+      "pos": "noun",
+      "lemmas": [
+        "paradigm"
+      ],
+      "gloss": "the generally accepted perspective of a particular discipline at a given time; \"he framed the problem within the psychoanalytic paradigm\""
+    },
+    {
+      "synset": "06309684-n",
+      "pos": "noun",
+      "lemmas": [
+        "substitution_class",
+        "paradigm"
+      ],
+      "gloss": "the class of all items that can be substituted into the same position (or slot) in a grammatical sentence (are in paradigmatic relation with one another)"
+    },
+    {
+      "synset": "13804375-n",
+      "pos": "noun",
+      "lemmas": [
+        "paradigm"
+      ],
+      "gloss": "systematic arrangement of all the inflected forms of a word"
+    }
+  ],
+  "implicit": [
+    {
+      "synset": "00005599-s",
+      "pos": "adj",
+      "lemmas": [
+        "implicit",
+        "unquestioning"
+      ],
+      "gloss": "being without doubt or reserve; \"implicit trust\""
+    },
+    {
+      "synset": "00941485-a",
+      "pos": "adj",
+      "lemmas": [
+        "implicit",
+        "inexplicit"
+      ],
+      "gloss": "implied though not directly expressed; inherent in the nature of something; \"an implicit agreement not to raise the subject\"; \"there was implicit criticism in his voice\"; \"anger was implicit in the argument\"; \"the oak is implicit in the acorn\""
+    }
+  ],
+  "tacit": [
+    {
+      "synset": "00942163-s",
+      "pos": "adj",
+      "lemmas": [
+        "silent",
+        "tacit",
+        "understood"
+      ],
+      "gloss": "implied by or inferred from actions or statements; \"gave silent consent\"; \"a tacit agreement\"; \"the understood provisos of a custody agreement\""
+    }
+  ],
+  "coherent": [
+    {
+      "synset": "00053384-s",
+      "pos": "adj",
+      "lemmas": [
+        "coherent",
+        "tenacious"
+      ],
+      "gloss": "sticking together; \"two coherent sheets\"; \"tenacious burrs\""
+    },
+    {
+      "synset": "00328528-a",
+      "pos": "adj",
+      "lemmas": [
+        "coherent"
+      ],
+      "gloss": "(physics) of waves having a constant phase relation"
+    },
+    {
+      "synset": "00464513-a",
+      "pos": "adj",
+      "lemmas": [
+        "coherent",
+        "consistent",
+        "logical",
+        "ordered"
+      ],
+      "gloss": "marked by an orderly, logical, and aesthetically consistent relation of parts; \"a coherent argument\""
+    },
+    {
+      "synset": "01925708-s",
+      "pos": "adj",
+      "lemmas": [
+        "coherent",
+        "logical",
+        "lucid"
+      ],
+      "gloss": "capable of thinking and expressing yourself in a clear and consistent manner; \"a lucid thinker\"; \"she was more coherent than she had been just after the accident\""
+    }
+  ]
+}

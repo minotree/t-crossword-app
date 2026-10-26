@@ -1,0 +1,15 @@
+{
+  "model": "qwen3:14b",
+  "details": {
+    "parent_model": "",
+    "format": "gguf",
+    "family": "qwen3",
+    "families": [
+      "qwen3"
+    ],
+    "parameter_size": "14.8B",
+    "quantization_level": "Q4_K_M"
+  },
+  "license_present": true,
+  "parameters": "repeat_penalty                 1\nstop                           \"<|im_start|>\"\nstop                           \"<|im_end|>\"\ntemperature                    0.6\ntop_k                          20\ntop_p                          0.95"
+}

@@ -3,10 +3,11 @@ import { Button } from '@toss/tds-mobile';
 import { maskWordInExample, type CrosswordWord } from '@t-crossword/core';
 import { Modal } from './Modal.js';
 
-export function AnswerModal({ word, currentLetters = [], onClose, onSubmit }: {
+export function AnswerModal({ word, currentLetters = [], onClose, onSubmit, onMistake }: {
   word: CrosswordWord;
   currentLetters?: string[];
   onClose: () => void;
+  onMistake?: (wordId: string) => void;
   onSubmit: (word: CrosswordWord, answer: string) => boolean | Promise<boolean>;
 }) {
   const length = word.word.length;
@@ -55,6 +56,7 @@ export function AnswerModal({ word, currentLetters = [], onClose, onSubmit }: {
     setError('');
     const next = [...letters]; next[index] = letter; setLetters(next);
     const incorrect = Boolean(letter && letter !== word.word[index]?.toUpperCase());
+    if (incorrect) onMistake?.(word.id);
     setIncorrectIndices((previous) => [...previous.filter((item) => item !== index), ...(incorrect ? [index] : [])]);
     if (letter) focus(index, 1);
     if (next.join('') === word.word.toUpperCase()) void submit(next);

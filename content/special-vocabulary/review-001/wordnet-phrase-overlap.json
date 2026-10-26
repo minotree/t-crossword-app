@@ -1,0 +1,7 @@
+{
+  "scope": "reviewed English examples vs all WordNet 3.0 gloss fields only",
+  "minimum_consecutive_tokens": 8,
+  "checked_glosses": 117659,
+  "hits": [],
+  "not_a_copyright_or_global_similarity_clearance": true
+}

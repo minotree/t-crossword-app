@@ -8,6 +8,7 @@ interface WordInputModalProps {
   currentLetters: string[];
   onClose: () => void;
   onSubmit: (wordId: string, answer: string) => boolean;
+  onMistake?: (wordId: string) => void;
 }
 
 export const WordInputModal: FC<WordInputModalProps> = (props) => {
@@ -24,6 +25,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
   currentLetters,
   onClose,
   onSubmit,
+  onMistake,
 }) => {
   const length = word.word.length;
   const [inputs, setInputs] = useState<string[]>(() =>
@@ -79,6 +81,7 @@ const ActiveWordInputModal: FC<ActiveWordInputModalProps> = ({
     nextInputs[index] = letter;
     setInputs(nextInputs);
     const showError = Boolean(letter && letter !== word.word[index]?.toUpperCase());
+    if (showError) onMistake?.(word.id);
     setIncorrectIndices((previous) => [
       ...previous.filter((item) => item !== index),
       ...(showError ? [index] : []),

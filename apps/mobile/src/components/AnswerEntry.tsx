@@ -3,9 +3,10 @@ import { IonButton } from '@ionic/react';
 import { maskWordInExample, type CrosswordWord } from '@t-crossword/core';
 import { letterFeedback, updateIncorrectCells } from '../adapters/letterFeedback.js';
 
-export function AnswerEntry({ word, known, error, onSubmit, onClose, busy = false }: {
+export function AnswerEntry({ word, known, error, onSubmit, onClose, onMistake, busy = false }: {
   word: CrosswordWord; known: string[]; error: string; onSubmit: (answer: string) => void; onClose: () => void;
   busy?: boolean;
+  onMistake?: (wordId: string) => void;
 }) {
   const [letters, setLetters] = useState(() => [...known]);
   const [wrong, setWrong] = useState<number[]>([]);
@@ -28,6 +29,7 @@ export function AnswerEntry({ word, known, error, onSubmit, onClose, busy = fals
     const next = letters.map((current, position) => position === index ? letter : current);
     setLetters(next); submitted.current = '';
     const feedback = letterFeedback(letter, word.word[index]);
+    if (feedback.highlight) onMistake?.(word.id);
     setWrong(previous => updateIncorrectCells(previous, index, feedback.highlight));
     if (letter) focus(index + 1);
     const answer = next.join('');

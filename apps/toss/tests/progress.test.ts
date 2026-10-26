@@ -1,9 +1,19 @@
 import { describe, expect, it, vi } from 'vitest';
-import { createProgressRepository, parseProgress, PROGRESS_KEY, dismissMistake, isMistakeVisible, recordHintUsed, type ProgressStorage } from '../src/adapters/progress.js';
+import { createProgressRepository, parseProgress, PROGRESS_KEY, dismissMistake, isMistakeVisible, recordHintUsed, recordMistake, type ProgressStorage } from '../src/adapters/progress.js';
 
 const emptyNotebook = { hintUsedWordIds: [], dismissedMistakeWordIds: [] };
 
 describe('Toss progress storage', () => {
+  it('deduplicates mistakes and restores dismissed entries while keeping other progress', () => {
+    const original = { completedWordIds: ['sea'], bookmarkedWordIds: ['sea'], ...emptyNotebook };
+    const recorded = recordMistake(recordMistake(original, 'sea'), 'sea');
+    expect(recorded.hintUsedWordIds).toEqual(['sea']);
+    expect(isMistakeVisible(recorded, 'sea')).toBe(true);
+    const hidden = dismissMistake(recorded, 'sea');
+    expect(isMistakeVisible(hidden, 'sea')).toBe(false);
+    const restored = parseProgress(JSON.stringify(recordMistake(hidden, 'sea')));
+    expect(restored).toEqual({ ...original, hintUsedWordIds: ['sea'] });
+  });
   it('restores a dismissed entry only after successful hint usage without altering other progress', () => {
     const original = parseProgress(JSON.stringify({ completedWordIds: ['sea'], bookmarkedWordIds: ['sea'], hintUsedWordIds: ['sea'], dismissedMistakeWordIds: ['sea'] }));
     const updated = recordHintUsed(original, 'sea');

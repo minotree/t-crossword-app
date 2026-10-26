@@ -1,0 +1,23 @@
+{
+  "checked_date": "2026-10-26",
+  "status": "editorially-reviewed-release-pending",
+  "review_method": "Code checks and direct agent editorial review of all 50 rows against official WordNet 3.0. No unresolved linguistic item required additional local LLM review. Scientific wording checked separately against NIST.",
+  "changes": {
+    "judicious": {
+      "reason": "‘판단이 분별 있는’의 부자연스러운 수식을 명확한 형용사 풀이로 개선",
+      "fields": { "뜻": "신중하고 분별력 있는" }
+    },
+    "exhaustive": {
+      "reason": "중복된 장소 표현과 부자연스러운 수식을 줄이면서 조사 범위와 기록 부재를 보존",
+      "fields": { "예문해석": "남아 있는 행정 문서를 빠짐없이 철저하게 조사했지만, 그 관행의 더 이른 기록은 발견되지 않았다." }
+    },
+    "tenable": {
+      "reason": "타당한 근거를 ‘유지한다’는 어색한 표현 대신 해석을 타당하다고 볼 수 있는 조건을 명확히 번역",
+      "fields": { "예문해석": "가장 이른 문서들에 부여된 연대가 충분히 정확해야만 그 해석을 타당하다고 볼 수 있다." }
+    },
+    "variance": {
+      "reason": "선택한 확률분포의 분산 의미를 기댓값으로 명시해 관측값의 단순 평균이나 불편 표본분산 추정식과 구별",
+      "fields": { "뜻": "평균에서 벗어난 정도의 제곱에 대한 기댓값" }
+    }
+  }
+}

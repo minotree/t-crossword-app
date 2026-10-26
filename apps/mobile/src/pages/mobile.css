@@ -1,6 +1,20 @@
 .mobile-screen { max-width: 960px; margin: auto; padding: 20px; color: #191f28; }
 .mobile-screen h1 { font-size: 26px; margin-top: 0; }
 .mobile-screen h2 { font-size: 18px; }
+.mobile-screen-settings { min-height: 100%; background: #f9fafb; box-sizing: border-box; }
+.mobile-settings { max-width: 640px; margin: auto; }
+.mobile-settings-card { margin-top: 20px; padding: 20px; border: 1px solid #e5e8eb; border-radius: 16px; background: #fff; }
+.mobile-settings-card h2 { margin: 0 0 12px; font-weight: 700; }
+.mobile-settings-card p, .mobile-settings-card dl { font-size: 14px; color: #4e5968; }
+.mobile-settings-card dl, .mobile-settings-card dd { margin: 0; }
+.mobile-settings-details > div { padding: 12px 0; }
+.mobile-settings-details > div + div { border-top: 1px solid #f2f4f6; }
+.mobile-settings-details dt { color: #6b7684; margin-bottom: 6px; }
+.mobile-settings-details dd { color: #191f28; line-height: 1.6; overflow-wrap: anywhere; }
+.mobile-settings-levels > div { display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid #e5e8eb; line-height: 1.6; }
+.mobile-settings-levels > div:last-child { padding-bottom: 0; }
+.mobile-settings-levels dt { color: #1b64da; font-weight: 700; }
+.mobile-settings-card .mobile-settings-word-count { display: inline-block; margin: 0; padding: 4px 12px; border-radius: 8px; background: #e8f3ff; color: #1b64da; font-weight: 700; }
 .mobile-screen p { line-height: 1.6; }
 :root { --ion-color-primary: #3182f6; --ion-color-primary-rgb: 49,130,246; --ion-color-primary-shade: #1b64da; --ion-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
 ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; letter-spacing: 0; }
@@ -127,11 +141,14 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-quiz { min-height: 100%; }
 .mobile-quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin: 4px 0 8px; flex-shrink: 0; color: #1b64da; font-weight: 700; }
 .mobile-quiz-summary ion-button { margin: 0; }
+.mobile-quiz-summary { flex-wrap: wrap; }
+.mobile-learning-progress { margin-right: auto; font-size: 12px; font-weight: 700; color: #1b64da; }
+.mobile-quiz-summary-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .mobile-puzzle-layout { display: flex; flex-direction: column; flex: none; width: 100%; gap: 8px; container-type: normal; }
 .mobile-board-area { position: relative; width: 100%; }
 .mobile-board { width: 100%; max-width: none; }
 .mobile-cell { position: relative; min-width: 0; min-height: 0; overflow: hidden; display: grid; place-items: center; background: white; color: #191f28; font-size: clamp(10px, 2.8vw, 18px); line-height: 1; font-weight: 700; }
-.mobile-cell.blocked { background: #1f2937; }
+.mobile-cell.blocked { background: #8b95a1; }
 .mobile-cell.solved { background: #e8f3ff; }
 .mobile-cell > span { padding-top: 5px; }
 .mobile-board .mobile-cell-number { position: absolute; inset: 0; z-index: 1; display: block; background: transparent; }

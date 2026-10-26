@@ -1,0 +1,15 @@
+{
+  "name": "vocabulary-special-batch-004.zip",
+  "sha256": "c0a5f2323f10959290713d2fec472ff95f542876cd41e55c8d2b13a6703b99d8",
+  "members": [
+    "WORDNET-3.0-LICENSE-004.txt",
+    "vocabulary-special-004.xlsx",
+    "vocabulary-special-candidates-004.csv",
+    "vocabulary-special-holds-004.json",
+    "vocabulary-special-prompt-004.txt",
+    "vocabulary-special-provenance-004.json",
+    "vocabulary-special-review-004.txt",
+    "vocabulary-special-sources-004.csv",
+    "vocabulary-special-validation-004.json"
+  ]
+}

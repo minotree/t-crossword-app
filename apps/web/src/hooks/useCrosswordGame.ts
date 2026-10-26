@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 
 import { wordProgressStore } from '../adapters/wordProgress.js';
 import {
   defaultVocabList,
+  levelLearningProgress,
   generateCrossword, vocabularyForProgress,
   WordBankService,
   type CrosswordPuzzle,
@@ -73,7 +74,9 @@ export function useCrosswordGame({
     (wordId: string, answer: string): boolean => {
       if (!puzzle) return false;
       const targetWord = puzzle.words.find((word) => word.id === wordId);
-      if (!targetWord || answer.trim().toUpperCase() !== targetWord.word.toUpperCase()) {
+      if (!targetWord) return false;
+      if (answer.trim().toUpperCase() !== targetWord.word.toUpperCase()) {
+        wordProgressStore.recordMistake(wordId);
         return false;
       }
 
@@ -130,6 +133,7 @@ export function useCrosswordGame({
 
   return {
     wordProgressError: progress.error,
+    learningProgress: levelLearningProgress(vocabList, level, progress.completedWordIds),
     level,
     gridSize,
     puzzle,

@@ -1,0 +1,37 @@
+{
+  "batch": "005",
+  "items": [
+    {
+      "word": "depletion",
+      "reason": "기존 deplete와 구별되는 독립적 의미·학습 가치가 이번 범위에서 충분하지 않아 단순 상태 명사 추가를 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "restrictive",
+      "reason": "기존 restrict와 구별되는 독립적 의미·학습 가치를 이번 범위에서 충분히 확보하지 않아 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "interpolate",
+      "reason": "WordNet 3.0의 선택 가능 의미는 일반적인 값 추정만 기술하여 후보의 내삽·외삽 범위 구별을 원자료에서 충분히 대조하지 못함",
+      "category": "선택 의미의 세부 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "item_id": "00642644-v",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ],
+  "rights_or_meaning_unconfirmed_items": [
+    {
+      "word": "interpolate",
+      "reason": "WordNet 3.0의 선택 가능 의미는 일반적인 값 추정만 기술하여 후보의 내삽·외삽 범위 구별을 원자료에서 충분히 대조하지 못함",
+      "category": "선택 의미의 세부 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "item_id": "00642644-v",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ]
+}

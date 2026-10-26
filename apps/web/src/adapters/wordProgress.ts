@@ -79,6 +79,11 @@ export function createWordProgressStore(getStorage: () => ProgressStorage) {
     markCompleted(id: string) {
       save({ ...snapshot, completedWordIds: [...new Set([...snapshot.completedWordIds, id])] });
     },
+    recordMistake(id: string) {
+      // Preserve the existing storage format so older notebook records remain visible.
+      save({ ...snapshot, hintUsedWordIds: [...new Set([...snapshot.hintUsedWordIds, id])],
+        dismissedMistakeWordIds: snapshot.dismissedMistakeWordIds.filter((value) => value !== id) });
+    },
     markHintUsed(id: string) {
       save({ ...snapshot, hintUsedWordIds: [...new Set([...snapshot.hintUsedWordIds, id])],
         dismissedMistakeWordIds: snapshot.dismissedMistakeWordIds.filter((value) => value !== id) });

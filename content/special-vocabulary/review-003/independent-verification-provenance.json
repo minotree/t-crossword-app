@@ -1,0 +1,663 @@
+{
+  "batch": "003",
+  "record_type": "independent verification; author provenance not supplied",
+  "source_archive": {
+    "sha256": "640db279c949a88f61f851dd54ebbb22d003f8b90b85267042ef85a3781d3a52"
+  },
+  "license": {
+    "sha256": "7731175a77952e259390b496fab905e57118b8d19ad3a8383c67eee724ff443f"
+  },
+  "model_name": null,
+  "records": [
+    {
+      "word": "analogy",
+      "item_id": "00651176-n",
+      "synset_offset": "00651176",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "유사점을 드러내기 위한 비교",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "364b94b225212af96238e918293a3fe5dc58e50f5f8bd2edff0d2940c13e2f05",
+      "sense_keys": [
+        "analogy%1:04:00::"
+      ]
+    },
+    {
+      "word": "catalyst",
+      "item_id": "09900711-n",
+      "synset_offset": "09900711",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "중요한 변화를 일으키는 계기",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "49f7a9b8ea55593263b2a6fae6ab3abb0f8ffad245a420a088ffc9983cc2592c",
+      "sense_keys": [
+        "catalyst%1:18:00::"
+      ]
+    },
+    {
+      "word": "circumscribe",
+      "item_id": "00235368-v",
+      "synset_offset": "00235368",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "범위나 권한을 제한하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "d0200e61e10ef76201755ef37e95e8251a4342cf804e556ec86fa99725c75646",
+      "sense_keys": [
+        "circumscribe%2:30:00::"
+      ]
+    },
+    {
+      "word": "circumvent",
+      "item_id": "00809654-v",
+      "synset_offset": "00809654",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "규정이나 의무를 교묘히 피하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "05e7bcdb81a1c1d3f0c2d8e4dfc8f920b880e92b2def1ac2e567402ad7020f8f",
+      "sense_keys": [
+        "circumvent%2:32:00::"
+      ]
+    },
+    {
+      "word": "cogent",
+      "item_id": "01770392-s",
+      "synset_offset": "01770392",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "설득력이 강한",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "5cb8f4e1878a6505f07f7e145c53a48ed3e2b1610ad2f50b7b8b84f6eddd3217",
+      "sense_keys": [
+        "cogent%5:00:00:persuasive:00"
+      ]
+    },
+    {
+      "word": "cohesive",
+      "item_id": "02477047-s",
+      "synset_offset": "02477047",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "요소들이 긴밀하게 결합된",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "4a02e4c80e1f3ca68c6d5eb4a502f61224b2a4b893b959993ffa55b26ce4a99d",
+      "sense_keys": [
+        "cohesive%5:00:00:united:00"
+      ]
+    },
+    {
+      "word": "congruent",
+      "item_id": "00562116-a",
+      "synset_offset": "00562116",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "성격이나 내용이 서로 부합하는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "37ada377fe263d485885a08f9e8da4be0fd7b8b301e8fea0fc9ecbed64668075",
+      "sense_keys": [
+        "congruent%3:00:04::"
+      ]
+    },
+    {
+      "word": "convoluted",
+      "item_id": "02176841-s",
+      "synset_offset": "02176841",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "지나치게 복잡하게 얽힌",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "957ee9249d19334a26473a46a482a7547aaedc6659f2bebe4c68d56c78d074b4",
+      "sense_keys": [
+        "convoluted%5:00:00:complex:00"
+      ]
+    },
+    {
+      "word": "diffuse",
+      "item_id": "00540487-s",
+      "synset_offset": "00540487",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "한곳에 집중되지 않고 분산된",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "aef6ddfaab80bdac01518d0ba053e7743da1f6195d6a9fdeb47fd1d4d82df46e",
+      "sense_keys": [
+        "diffuse%5:00:00:distributed:00"
+      ]
+    },
+    {
+      "word": "displace",
+      "item_id": "02406011-v",
+      "synset_offset": "02406011",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "다른 것의 자리를 차지하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "b3c9427a1f20568e735f342dcaf7b632c610ae1bdd4a86a2cc1e5d1935be6a33",
+      "sense_keys": [
+        "displace%2:41:02::"
+      ]
+    },
+    {
+      "word": "disseminate",
+      "item_id": "00968211-v",
+      "synset_offset": "00968211",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "정보를 널리 알리다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "dc3dbc9607403f352b6891a84f67a82cfffc164d26506ed94462a6e973cb2f09",
+      "sense_keys": [
+        "disseminate%2:32:00::"
+      ]
+    },
+    {
+      "word": "diverge",
+      "item_id": "02709906-v",
+      "synset_offset": "02709906",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "서로 다른 방향으로 나아가다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "df735a09bdc15dde5cd12ab739baca05e10d74efc0f18c293d6d764d5d809416",
+      "sense_keys": [
+        "diverge%2:42:00::"
+      ]
+    },
+    {
+      "word": "dormant",
+      "item_id": "00034032-s",
+      "synset_offset": "00034032",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "활동하지 않지만 다시 활성화될 수 있는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "3c54337f4bad26692727aa202ffc26445ab0a111aa24a686d12bdf52131dcf96",
+      "sense_keys": [
+        "dormant%5:00:00:inactive:01"
+      ]
+    },
+    {
+      "word": "elusive",
+      "item_id": "01717901-s",
+      "synset_offset": "01717901",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "쉽게 파악하거나 분석하기 어려운",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "f1c8113c36d46cbbdb3a6b10b7643ecaaa0f60f8d1f649112ccf0963d1e1b30d",
+      "sense_keys": [
+        "elusive%5:00:00:impalpable:00"
+      ]
+    },
+    {
+      "word": "emulate",
+      "item_id": "02675701-v",
+      "synset_offset": "02675701",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "모범을 따라 동등한 수준에 이르려 하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "09230aac5820d712b9fd15df5f1888d4af891e7f187254aa5a32054d71fb4218",
+      "sense_keys": [
+        "emulate%2:42:00::"
+      ]
+    },
+    {
+      "word": "endogenous",
+      "item_id": "00873113-a",
+      "synset_offset": "00873113",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "체계 내부에서 기원한",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "bde3913a5025950da018efb0d8379afa87b9c3095836e81e4d2b60bf4d8c23e3",
+      "sense_keys": [
+        "endogenous%3:00:00::"
+      ]
+    },
+    {
+      "word": "exogenous",
+      "item_id": "00873251-a",
+      "synset_offset": "00873251",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "체계 외부에서 기원한",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "027c2dcbc9d383121ba2c60effd10afa67e83f9810521d19ea74cfa68db81dab",
+      "sense_keys": [
+        "exogenous%3:00:00::"
+      ]
+    },
+    {
+      "word": "expedite",
+      "item_id": "02548893-v",
+      "synset_offset": "02548893",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "진행을 더 빠르게 하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "ceae0b45bf535ca21cc8a4448ddd386b0e79349b98c6f0c9a2752ec85ff7b420",
+      "sense_keys": [
+        "expedite%2:41:00::"
+      ]
+    },
+    {
+      "word": "expound",
+      "item_id": "00955601-v",
+      "synset_offset": "00955601",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "생각이나 이론을 상세히 설명하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "53a5d6a1755e0f1a6bbee01683b97b1245bdd12f5bfd8357bd99fc830455aa08",
+      "sense_keys": [
+        "expound%2:32:00::"
+      ]
+    },
+    {
+      "word": "extrinsic",
+      "item_id": "01349041-a",
+      "synset_offset": "01349041",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "대상 자체가 아닌 외부에서 비롯된",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "b5848f354e7d893a56f4f869c186bdb8fa5a8eaad8414cc902b073b72dd59f23",
+      "sense_keys": [
+        "extrinsic%3:00:00::"
+      ]
+    },
+    {
+      "word": "fallacy",
+      "item_id": "05893916-n",
+      "synset_offset": "05893916",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "잘못된 추론에서 생긴 오해",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "f761236e5dab33fa1d026dff10dbefbe8031bef61ddc3a97778d2c75954fca53",
+      "sense_keys": [
+        "fallacy%1:09:00::"
+      ]
+    },
+    {
+      "word": "germane",
+      "item_id": "01975671-s",
+      "synset_offset": "01975671",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "논의 중인 문제에 적절히 관련된",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "b98e2cddaac2043db8a05922b226aa6c9e1cd8455c963482049f9e5507e5d709",
+      "sense_keys": [
+        "germane%5:00:00:relevant:00"
+      ]
+    },
+    {
+      "word": "hegemony",
+      "item_id": "08361924-n",
+      "synset_offset": "08361924",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "한 집단이나 국가가 다른 쪽을 지배하는 우위",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "3aa7af1d689199fbe5ed3efd2927157d2e602d201cb770391cf91293c78d63b9",
+      "sense_keys": [
+        "hegemony%1:14:00::"
+      ]
+    },
+    {
+      "word": "impetus",
+      "item_id": "11447851-n",
+      "synset_offset": "11447851",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "일을 앞으로 나아가게 하는 추진력",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "c6311c9de78414bb4c3a685c1f8f9fd238454c817e39f5f09536535fe5ba2942",
+      "sense_keys": [
+        "impetus%1:19:00::"
+      ]
+    },
+    {
+      "word": "impinge",
+      "item_id": "02569790-v",
+      "synset_offset": "02569790",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "권리나 영역을 침해하다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "89dc342a7a3ba2f88c40228d144f6a499db834efac203365a75cac77b3117561",
+      "sense_keys": [
+        "impinge%2:41:10::"
+      ]
+    },
+    {
+      "word": "incremental",
+      "item_id": "00049266-s",
+      "synset_offset": "00049266",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "작은 증가분이 차례로 더해지는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "954e52265bcbd8d34c356b86c67065263abd5aa4af707f5a21cb4031d1498a55",
+      "sense_keys": [
+        "incremental%5:00:00:additive:00"
+      ]
+    },
+    {
+      "word": "inertia",
+      "item_id": "04635631-n",
+      "synset_offset": "04635631",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "변화나 활동을 시작하지 않으려는 성향",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "e5586db3560f35502e8a23b4712141e95751940a80facd8691107916c78b2eb9",
+      "sense_keys": [
+        "inertia%1:07:01::"
+      ]
+    },
+    {
+      "word": "instrumental",
+      "item_id": "01196775-s",
+      "synset_offset": "01196775",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "목적 달성의 수단으로 도움이 되는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "482b8ca31554fa2b69929253f86e67db6c5f787a5b6663b1f639639bcf30e4dd",
+      "sense_keys": [
+        "instrumental%5:00:00:helpful:00"
+      ]
+    },
+    {
+      "word": "invariant",
+      "item_id": "02506408-s",
+      "synset_offset": "02506408",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "특정 변환을 해도 변하지 않는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "cbbfa47625f68ad729addf0a92954dc43de32e02911e4be16bd326215969d81f",
+      "sense_keys": [
+        "invariant%5:00:02:invariable:00"
+      ]
+    },
+    {
+      "word": "longitudinal",
+      "item_id": "01440776-s",
+      "synset_offset": "01440776",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "긴 기간에 걸쳐 추적하는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "1ba6199b5f9e595c8912f28c196a09b933e5705b0f0e0d62af2506cc9661d5fb",
+      "sense_keys": [
+        "longitudinal%5:00:00:long:02"
+      ]
+    },
+    {
+      "word": "magnitude",
+      "item_id": "05090441-n",
+      "synset_offset": "05090441",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "크기나 정도",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "870e147b58be2b3030e81ee09f7a8cea7a29fa63d88f4b64949aacbed6684b38",
+      "sense_keys": [
+        "magnitude%1:07:00::"
+      ]
+    },
+    {
+      "word": "malleable",
+      "item_id": "02451551-s",
+      "synset_offset": "02451551",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "다른 영향에 쉽게 바뀌는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "d2ffda341ba80997cccbb08ff2bc24394f943ecf00c26807875263f2e98efea0",
+      "sense_keys": [
+        "malleable%5:00:00:tractable:00"
+      ]
+    },
+    {
+      "word": "meticulous",
+      "item_id": "00984879-s",
+      "synset_offset": "00984879",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "세부 사항까지 매우 꼼꼼한",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "c268ed57109126f6e853830b89b3b4f2d994e76185c229cd5a5100db81ca11b0",
+      "sense_keys": [
+        "meticulous%5:00:00:fastidious:00"
+      ]
+    },
+    {
+      "word": "negligible",
+      "item_id": "01496462-s",
+      "synset_offset": "01496462",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "의미가 없을 만큼 아주 작은",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "071698ee8ce36456959445133d7456c676a49a36769b6eee5b3e68ea77afe6f8",
+      "sense_keys": [
+        "negligible%5:00:00:minimal:00"
+      ]
+    },
+    {
+      "word": "orthodox",
+      "item_id": "01689880-a",
+      "synset_offset": "01689880",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "일반적으로 받아들여지는 견해를 따르는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "655fe9a9108ab1deb3f3301a2163198654f1fc692bb89cd1dad5fe45d8a18c5c",
+      "sense_keys": [
+        "orthodox%3:00:00::"
+      ]
+    },
+    {
+      "word": "oscillate",
+      "item_id": "01878063-v",
+      "synset_offset": "01878063",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "일정한 간격으로 앞뒤나 좌우로 움직이다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "45b78aac7845a1f4da1e9ea74539158a1a6e81e4bb4879aa7e6437704ca8d303",
+      "sense_keys": [
+        "oscillate%2:38:00::"
+      ]
+    },
+    {
+      "word": "paradox",
+      "item_id": "06724559-n",
+      "synset_offset": "06724559",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "논리적 자기모순을 담은 진술",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "81b5929d7af20c4330827730149fa8fa123321d5e9d31383565e5e3de2c0495c",
+      "sense_keys": [
+        "paradox%1:10:00::"
+      ]
+    },
+    {
+      "word": "peripheral",
+      "item_id": "01857743-s",
+      "synset_offset": "01857743",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "핵심 문제와 관련되지만 중심적이지 않은",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "c4cad33e12e283fa7d59730cd0aa435d4c59c18b3bd031d99e5329824bd98edf",
+      "sense_keys": [
+        "peripheral%5:00:00:incidental:00"
+      ]
+    },
+    {
+      "word": "permeable",
+      "item_id": "01772032-a",
+      "synset_offset": "01772032",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "액체나 기체가 통과할 수 있는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "d8467854983d9aeaa1f92e6b300c5ebaae60e21ba31a0fe1e039d9aaf4730e68",
+      "sense_keys": [
+        "permeable%3:00:00::"
+      ]
+    },
+    {
+      "word": "pertinent",
+      "item_id": "01975833-s",
+      "synset_offset": "01975833",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "당면한 문제에 정확히 관련된",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "4b57d5a01c5278fa1523dd0143fed3873e1dbd897d4cb57678d4510dc03d7ad8",
+      "sense_keys": [
+        "pertinent%5:00:00:relevant:00"
+      ]
+    },
+    {
+      "word": "pivotal",
+      "item_id": "00656507-s",
+      "synset_offset": "00656507",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "결정적으로 중요한",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "6a81286428723617f8f33d5e3bf7ec2f7c5b9ab8d2552f0b844d3ef6d603b2e1",
+      "sense_keys": [
+        "pivotal%5:00:00:crucial:00"
+      ]
+    },
+    {
+      "word": "preclude",
+      "item_id": "02629390-v",
+      "synset_offset": "02629390",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "어떤 일이 가능하지 않게 막다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "c33ab12c08ac97b08d42c0f7af6acc214d958e32e21711fa51950bc9711bf5ad",
+      "sense_keys": [
+        "preclude%2:42:00::"
+      ]
+    },
+    {
+      "word": "prerequisite",
+      "item_id": "05892427-n",
+      "synset_offset": "05892427",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "다른 일에 앞서 필요한 조건",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "ab18fa607a737ac5c73b5398ff21015bb0128a10717a1561ebe337ab88dbe5c1",
+      "sense_keys": [
+        "prerequisite%1:09:00::"
+      ]
+    },
+    {
+      "word": "qualitative",
+      "item_id": "01914521-a",
+      "synset_offset": "01914521",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "수량보다 성질의 차이에 초점을 둔",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "d7f65778fda546c1ec6f6e3b0e0c135fdd4b7f6798a30f2cf4ae141b525c85cd",
+      "sense_keys": [
+        "qualitative%3:00:00::"
+      ]
+    },
+    {
+      "word": "quantitative",
+      "item_id": "01914930-a",
+      "synset_offset": "01914930",
+      "synset_pos": "a",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "수량으로 표현하거나 측정할 수 있는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "a4073db781ed0b9118e1f49bc35d506931510dc1cab811fb88ad417ea4685b33",
+      "sense_keys": [
+        "quantitative%3:00:00::"
+      ]
+    },
+    {
+      "word": "rationale",
+      "item_id": "05793210-n",
+      "synset_offset": "05793210",
+      "synset_pos": "n",
+      "part_of_speech_ko": "명사",
+      "selected_meaning_summary_ko": "판단이나 방법의 근본적인 이유 설명",
+      "source_file": "WordNet-3.0/dict/data.noun",
+      "source_record_sha256": "c0856d3f78d16de22920afbf45f83c08612b0fab8b984c36544bd469f734ee31",
+      "sense_keys": [
+        "rationale%1:09:00::"
+      ]
+    },
+    {
+      "word": "rectify",
+      "item_id": "00199912-v",
+      "synset_offset": "00199912",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "잘못되거나 불공정한 상태를 바로잡다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "b63c7207204859b4d3a7271e3a0f171f72da0f072da58813442a146c1495c6f8",
+      "sense_keys": [
+        "rectify%2:30:00::"
+      ]
+    },
+    {
+      "word": "stratify",
+      "item_id": "01308681-v",
+      "synset_offset": "01308681",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "기준에 따라 여러 층으로 나누다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "724e2e112a832facc3d6c8a9d5e899e6577a6353b9da613831d439ceecb14ae2",
+      "sense_keys": [
+        "stratify%2:35:00::"
+      ]
+    },
+    {
+      "word": "tangible",
+      "item_id": "00013662-s",
+      "synset_offset": "00013662",
+      "synset_pos": "s",
+      "part_of_speech_ko": "형용사",
+      "selected_meaning_summary_ko": "실제로 확인할 수 있는",
+      "source_file": "WordNet-3.0/dict/data.adj",
+      "source_record_sha256": "705813fb4efecfaca507710ba0875987443bbcc23f0b56743b2b1fd2421a76a3",
+      "sense_keys": [
+        "tangible%5:00:00:concrete:00"
+      ]
+    },
+    {
+      "word": "transcend",
+      "item_id": "02669477-v",
+      "synset_offset": "02669477",
+      "synset_pos": "v",
+      "part_of_speech_ko": "동사",
+      "selected_meaning_summary_ko": "기존 범위나 규모를 넘어서다",
+      "source_file": "WordNet-3.0/dict/data.verb",
+      "source_record_sha256": "048f24ecc98bd2478c63f8b214081ed5e4f2a352019c6f30bb7d42903dfef3f8",
+      "sense_keys": [
+        "transcend%2:42:00::"
+      ]
+    }
+  ]
+}

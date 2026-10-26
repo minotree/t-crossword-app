@@ -1,0 +1,585 @@
+[
+  {
+    "word": "aberration",
+    "item_id": "14503665-n",
+    "lemmas": [
+      "aberrance",
+      "aberrancy",
+      "aberration",
+      "deviance"
+    ],
+    "gloss": "a state or condition markedly different from the norm",
+    "source_record_sha256": "f5dbf793c1a819dde4537a17f750c7edf1dcd861b4cfabe384267955e07630ec",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "altruism",
+    "item_id": "04833276-n",
+    "lemmas": [
+      "altruism",
+      "selflessness"
+    ],
+    "gloss": "the quality of unselfish concern for the welfare of others",
+    "source_record_sha256": "b0430a2e15fa6940399a55862ebadade776f3fce69af388899c71b584c852eed",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ameliorate",
+    "item_id": "00205885-v",
+    "lemmas": [
+      "better",
+      "improve",
+      "amend",
+      "ameliorate",
+      "meliorate"
+    ],
+    "gloss": "to make better; \"The editor improved the manuscript with his changes\"",
+    "source_record_sha256": "766ce8ba989dda82b656af40825f344b56bfddfcd09bd6c360184cb67fa6ea35",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "asymmetry",
+    "item_id": "05065717-n",
+    "lemmas": [
+      "asymmetry",
+      "dissymmetry",
+      "imbalance"
+    ],
+    "gloss": "(mathematics) a lack of symmetry",
+    "source_record_sha256": "45a2c3ed80190fbdaf70e870bd826532f7347151e8dd692b2cbd8c2645e911f2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "causal",
+    "item_id": "00323199-s",
+    "lemmas": [
+      "causal"
+    ],
+    "gloss": "involving or constituting a cause; causing; \"a causal relationship between scarcity and higher prices\"",
+    "source_record_sha256": "8ef5c8c056f2ef8b15389f0f4df01b48dbd0cb8825a742f917dd1e12ac653149",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "coercion",
+    "item_id": "00156812-n",
+    "lemmas": [
+      "compulsion",
+      "coercion"
+    ],
+    "gloss": "using force to cause something to occur; \"though pressed into rugby under compulsion I began to enjoy the game\"; \"they didn't have to use coercion\"",
+    "source_record_sha256": "3167ca1d7dfd69a647adc2e869bbcd15f6e15a56bf0e9b34bd5e784f3b0432ee",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cognitive",
+    "item_id": "02898584-a",
+    "lemmas": [
+      "cognitive"
+    ],
+    "gloss": "of or being or relating to or involving cognition; \"cognitive psychology\"; \"cognitive style\"",
+    "source_record_sha256": "360415fb2ea83f81ccf2409d0bf7bd9ba06b2849f2aea5d04471466a774df4f1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "confound",
+    "item_id": "00621734-v",
+    "lemmas": [
+      "confuse",
+      "throw",
+      "fox",
+      "befuddle",
+      "fuddle",
+      "bedevil",
+      "confound",
+      "discombobulate"
+    ],
+    "gloss": "be confusing or perplexing to; cause to be unable to think clearly; \"These questions confuse even the experts\"; \"This question completely threw me\"; \"This question befuddled even the teacher\"",
+    "source_record_sha256": "ee1ab6893bc20f0be5e9d6be40c192e3bc7b134efe12a47cd1f4899053f2bd1a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "conjecture",
+    "item_id": "06782680-n",
+    "lemmas": [
+      "guess",
+      "conjecture",
+      "supposition",
+      "surmise",
+      "surmisal",
+      "speculation",
+      "hypothesis"
+    ],
+    "gloss": "a message expressing an opinion based on incomplete evidence",
+    "source_record_sha256": "810b65023daca18e099563fd36d8f84c3fa45b10fe5d604a45ea196356a874e6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "construe",
+    "item_id": "00623151-v",
+    "lemmas": [
+      "interpret",
+      "construe",
+      "see"
+    ],
+    "gloss": "make sense of; assign a meaning to; \"What message do you see in this letter?\"; \"How do you interpret his behavior?\"",
+    "source_record_sha256": "9df841a14eb114f9f95d2280518a7af8aa6cc0346a392c5f175efb4dfa53a645",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "disparity",
+    "item_id": "04752530-n",
+    "lemmas": [
+      "disparity"
+    ],
+    "gloss": "inequality or difference in some respect",
+    "source_record_sha256": "0f3167cd5f5f8206c1921fc3cd8058e879630d4c78d23d1b011b0350384e28c7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dissent",
+    "item_id": "07181358-n",
+    "lemmas": [
+      "dissent"
+    ],
+    "gloss": "a difference of opinion",
+    "source_record_sha256": "ed9bd4d9ef35b460a3049a1e43ca2370a41c91784e8658b1047aa8663ead6cd4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "efficacy",
+    "item_id": "05199869-n",
+    "lemmas": [
+      "efficacy",
+      "efficaciousness"
+    ],
+    "gloss": "capacity or power to produce a desired effect; \"concern about the safety and efficacy of the vaccine\"",
+    "source_record_sha256": "c733ddafac849c96899a3b82fa493d2255ff818200451b79413c2356cf2982ca",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "elucidate",
+    "item_id": "00939857-v",
+    "lemmas": [
+      "clarify",
+      "clear_up",
+      "elucidate"
+    ],
+    "gloss": "make clear and (more) comprehensible; \"clarify the mystery surrounding her death\"",
+    "source_record_sha256": "28b43187f5538a8f86f0f327a23b48c0b9598a98ab6721e324e4e67ee80dffbc",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "emergent",
+    "item_id": "00003553-s",
+    "lemmas": [
+      "emergent",
+      "emerging"
+    ],
+    "gloss": "coming into existence; \"an emergent republic\"",
+    "source_record_sha256": "a5d99856a32c2349f14f0789e86cbe8d99320bea88f853a5d132b0817c6d302a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "enumerate",
+    "item_id": "00946105-v",
+    "lemmas": [
+      "enumerate",
+      "recite",
+      "itemize",
+      "itemise"
+    ],
+    "gloss": "specify individually; \"She enumerated the many obstacles she had encountered\"; \"The doctor recited the list of possible side effects of the drug\"",
+    "source_record_sha256": "8189e3e933da49b3b8fe45600c1c2b8b158bd38f64bfad477769a635afa51ab9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ephemeral",
+    "item_id": "01756292-s",
+    "lemmas": [
+      "ephemeral",
+      "passing",
+      "short-lived",
+      "transient",
+      "transitory",
+      "fugacious"
+    ],
+    "gloss": "lasting a very short time; \"the ephemeral joys of childhood\"; \"a passing fancy\"; \"youth's transient beauty\"; \"love is transitory but it is eternal\"; \"fugacious blossoms\"",
+    "source_record_sha256": "6ffbcf75239848d6ccdf321d7c86ce1ff4b2cfc2be7f396324809854d24862ce",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "equilibrium",
+    "item_id": "13934900-n",
+    "lemmas": [
+      "equilibrium"
+    ],
+    "gloss": "a stable situation in which forces cancel one another",
+    "source_record_sha256": "d20687e81d9403b83a38f9e60280d2b46f8a56c99c5ef04db3b5f2d4cf8c28ea",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "falsify",
+    "item_id": "00667942-v",
+    "lemmas": [
+      "falsify"
+    ],
+    "gloss": "prove false; \"Falsify a claim\"",
+    "source_record_sha256": "ca791171f3c02e6cd1003955c3b60f1819a9c6263cc59dbda76f678418d50aa9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "formulate",
+    "item_id": "01632411-v",
+    "lemmas": [
+      "invent",
+      "contrive",
+      "devise",
+      "excogitate",
+      "formulate",
+      "forge"
+    ],
+    "gloss": "come up with (an idea, plan, explanation, theory, or principle) after a mental effort; \"excogitate a way to measure the speed of light\"",
+    "source_record_sha256": "e8321256ed0011014074d00d80f3941867fdfa8d9e5806a500a374a93f894423",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "impartial",
+    "item_id": "00286214-a",
+    "lemmas": [
+      "unprejudiced",
+      "impartial"
+    ],
+    "gloss": "free from undue bias or preconceived opinions; \"an unprejudiced appraisal of the pros and cons\"; \"the impartial eye of a scientist\"",
+    "source_record_sha256": "c21f4234c21f305716c57eef8a619b362b66f74344e2e0e02a0a4f4ccc0b4fed",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "incidence",
+    "item_id": "13826959-n",
+    "lemmas": [
+      "incidence",
+      "relative_incidence"
+    ],
+    "gloss": "the relative frequency of occurrence of something",
+    "source_record_sha256": "6da5ebaec8b2e6dbdf31351c6cb6a7a20bd35dce7656a1930974d0aa5691b3e7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "indigenous",
+    "item_id": "01036383-s",
+    "lemmas": [
+      "autochthonal",
+      "autochthonic",
+      "autochthonous",
+      "endemic",
+      "indigenous"
+    ],
+    "gloss": "originating where it is found; \"the autochthonal fauna of Australia includes the kangaroo\"; \"autochthonous rocks and people and folktales\"; \"endemic folkways\"; \"the Ainu are indigenous to the northernmost islands of Japan\"",
+    "source_record_sha256": "f36ad5d98895775280e5a78e8537d66f7afc2e181c0286daf17d1ac5ccbd05d0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "normative",
+    "item_id": "00732456-a",
+    "lemmas": [
+      "prescriptive",
+      "normative"
+    ],
+    "gloss": "pertaining to giving directives or rules; \"prescriptive grammar is concerned with norms of or rules for correct usage\"",
+    "source_record_sha256": "dc69362aa7da569320c170c9cd8793ed60a6b5e3afee5f92ee61619a6d638f4b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "offset",
+    "item_id": "02718015-v",
+    "lemmas": [
+      "offset",
+      "countervail"
+    ],
+    "gloss": "compensate for or counterbalance; \"offset deposits and withdrawals\"",
+    "source_record_sha256": "e624e2f10502899a21879c27cd6847b7bfd05d207e1e5ad78a826441b20934b3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ostensibly",
+    "item_id": "00039941-r",
+    "lemmas": [
+      "apparently",
+      "seemingly",
+      "ostensibly",
+      "on_the_face_of_it"
+    ],
+    "gloss": "from appearances alone; \"irrigation often produces bumper crops from apparently desert land\"; \"the child is seemingly healthy but the doctor is concerned\"; \"had been ostensibly frank as to his purpose while really concealing it\"-Thomas Hardy; \"on the face of it the problem seems minor\"",
+    "source_record_sha256": "43e0b73b38855d53f967d7813304c9efb9f8bc5457e202931596f3bbddb6bd0b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "pervasive",
+    "item_id": "00468795-s",
+    "lemmas": [
+      "permeant",
+      "permeating",
+      "permeative",
+      "pervasive"
+    ],
+    "gloss": "spreading or spread throughout; \"armed with permeative irony...he punctures affectations\"; \"the pervasive odor of garlic\"; \"an error is pervasive if it is material to more than one conclusion\"",
+    "source_record_sha256": "a90b5eb40ef0e639d84c24661794f066f722ef6ae83564a2243a76f9dc17ef5a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "pluralism",
+    "item_id": "08367683-n",
+    "lemmas": [
+      "pluralism"
+    ],
+    "gloss": "a social organization in which diversity of racial or religious or ethnic or cultural groups is tolerated",
+    "source_record_sha256": "9e626ac4a3bdb07929e472512da5d02d5bba728667b8308098882c21752e98d6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "postulate",
+    "item_id": "00716758-v",
+    "lemmas": [
+      "postulate",
+      "posit"
+    ],
+    "gloss": "take as a given; assume as a postulate or axiom; \"He posited three basic laws of nature\"",
+    "source_record_sha256": "1901539535f31700dd15c37b933266ef29e1004109cf0d6f3024423596ca7d77",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "pragmatic",
+    "item_id": "01940651-s",
+    "lemmas": [
+      "hardheaded",
+      "hard-nosed",
+      "practical",
+      "pragmatic"
+    ],
+    "gloss": "guided by practical experience and observation rather than theory; \"a hardheaded appraisal of our position\"; \"a hard-nosed labor leader\"; \"completely practical in his approach to business\"; \"not ideology but pragmatic politics\"",
+    "source_record_sha256": "3039e22f6c11e52606fef5517d5a039155492615e81ee63cd927dee9513e6c78",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "premise",
+    "item_id": "06753800-n",
+    "lemmas": [
+      "premise",
+      "premiss",
+      "assumption"
+    ],
+    "gloss": "a statement that is assumed to be true and from which a conclusion can be drawn; \"on the assumption that he has been injured we can infer that he will not to play\"",
+    "source_record_sha256": "a89070e5da83fc2aeaf8dee88b35d64f933c3ac9ba20743286d588159a29b9e9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "reciprocity",
+    "item_id": "13841213-n",
+    "lemmas": [
+      "reciprocality",
+      "reciprocity"
+    ],
+    "gloss": "a relation of mutual dependence or action or influence",
+    "source_record_sha256": "d6990f8c979ecaf1cc38553d9d2cf1cc15e850feb501d351872d2050448c3b42",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "refute",
+    "item_id": "00667747-v",
+    "lemmas": [
+      "refute",
+      "rebut",
+      "controvert"
+    ],
+    "gloss": "prove to be false or incorrect",
+    "source_record_sha256": "b8610bebb7939c583fc2d240dcd25c23700aab86917ba4883e8e78ec9db86f0a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "replicate",
+    "item_id": "01734502-v",
+    "lemmas": [
+      "duplicate",
+      "reduplicate",
+      "double",
+      "repeat",
+      "replicate"
+    ],
+    "gloss": "make or do or perform again; \"He could never replicate his brilliant performance of the magic trick\"",
+    "source_record_sha256": "b96a6e3830dc8f26ec901262752e061f49aacd2760009b32402f45978c0c9b1b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "resilience",
+    "item_id": "05020697-n",
+    "lemmas": [
+      "resilience",
+      "resiliency"
+    ],
+    "gloss": "the physical property of a material that can return to its original shape or position after deformation that does not exceed its elastic limit",
+    "source_record_sha256": "68365344f3cbeae82f0c3d72e8f9d41d19cb8a43fa75ed9ca3e7a76183d369fb",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "rigorous",
+    "item_id": "00711059-s",
+    "lemmas": [
+      "rigorous",
+      "stringent",
+      "tight"
+    ],
+    "gloss": "demanding strict attention to rules and procedures; \"rigorous discipline\"; \"tight security\"; \"stringent safety measures\"",
+    "source_record_sha256": "ca0fa5746093516df74813b701cb034a6abe26a7e75649f401e533639fde87c0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "robust",
+    "item_id": "02323521-s",
+    "lemmas": [
+      "robust"
+    ],
+    "gloss": "strong enough to withstand or overcome intellectual challenges or adversity; \"the experiment yielded robust results\"; \"a robust faith\"",
+    "source_record_sha256": "344b405d6b23b6f874f8e1ac1fa3d026eee1bedb7fabd756f876c18b2420d8ff",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "scrutiny",
+    "item_id": "00635850-n",
+    "lemmas": [
+      "examination",
+      "scrutiny"
+    ],
+    "gloss": "the act of examining something closely (as for mistakes)",
+    "source_record_sha256": "50abdbeee6b1b3b4fa7a208dcf357f2c9dda774c93ceb13e90bb435b2dba75b1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "solidarity",
+    "item_id": "04765038-n",
+    "lemmas": [
+      "solidarity"
+    ],
+    "gloss": "a union of interests or purposes or sympathies among members of a group",
+    "source_record_sha256": "d431f4cac44fc0ecc1733eea4a4fad62af93184707297698c7e43a5435592c35",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "sovereignty",
+    "item_id": "13992935-n",
+    "lemmas": [
+      "sovereignty"
+    ],
+    "gloss": "government free from external control",
+    "source_record_sha256": "55fb4b23cf44fffc47984633db75ae978646c7fed183202c919df37347c44e71",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "susceptible",
+    "item_id": "02360448-a",
+    "lemmas": [
+      "susceptible"
+    ],
+    "gloss": "(often followed by `of' or `to') yielding readily to or capable of; \"susceptible to colds\"; \"susceptible of proof\"",
+    "source_record_sha256": "dac8c4baa88e65139c14b1b7ceffe44a786516150b2eb3fcc9a6f1532fdb0416",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "synthesize",
+    "item_id": "00644066-v",
+    "lemmas": [
+      "synthesize",
+      "synthesise"
+    ],
+    "gloss": "combine so as to form a more complex, product; \"his operas synthesize music and drama in perfect harmony\"; \"The liver synthesizes vitamins\"",
+    "source_record_sha256": "351dfc4ee1eea7feb35310d48722cf104ae1dbd468bd22993c28dd6002f36fcf",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "tentative",
+    "item_id": "00556318-s",
+    "lemmas": [
+      "probationary",
+      "provisional",
+      "provisionary",
+      "tentative"
+    ],
+    "gloss": "under terms not final or fully worked out or agreed upon; \"probationary employees\"; \"a provisional government\"; \"just a tentative schedule\"",
+    "source_record_sha256": "06bcfda97e86061233a9a39f5ad7c4f5e3835a83a98dc0cd29c72271592680b6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "threshold",
+    "item_id": "05712426-n",
+    "lemmas": [
+      "threshold",
+      "limen"
+    ],
+    "gloss": "the smallest detectable sensation",
+    "source_record_sha256": "391ecddef9e92bd02012dab47e91de54a31fb00bf74deff0e039f7741456bc59",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "trajectory",
+    "item_id": "11481334-n",
+    "lemmas": [
+      "trajectory",
+      "flight"
+    ],
+    "gloss": "the path followed by an object moving through space",
+    "source_record_sha256": "53acb0f383f0f2ed91d3d6169b9d728d80f09eb7e03aedcc4800ea5a5ed16e40",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ubiquitous",
+    "item_id": "01847515-s",
+    "lemmas": [
+      "omnipresent",
+      "ubiquitous"
+    ],
+    "gloss": "being present everywhere at once",
+    "source_record_sha256": "73ad52b40c17d8f36ac8cc1449599e5938919eeb757f25c64006321d83237d79",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "unilateral",
+    "item_id": "00236989-a",
+    "lemmas": [
+      "unilateral",
+      "one-sided"
+    ],
+    "gloss": "involving only one part or side; \"unilateral paralysis\"; \"a unilateral decision\"",
+    "source_record_sha256": "8083d14f641639196a64fcc641d80703758520683d52da2699dd6f2c496526f5",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "utilitarian",
+    "item_id": "02496857-s",
+    "lemmas": [
+      "utilitarian"
+    ],
+    "gloss": "having utility often to the exclusion of values; \"plain utilitarian kitchenware\"",
+    "source_record_sha256": "c1cd672cc19b7c20504bfb9bb6201942cd1efb2bdcf4f3b6f147bb45a2492596",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "validate",
+    "item_id": "00667224-v",
+    "lemmas": [
+      "validate"
+    ],
+    "gloss": "prove valid; show or confirm the validity of something",
+    "source_record_sha256": "6abf636442549fbfe1b6cf9097b49a6424213cbad1797bf0bf3b4e824f060d2a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "volatility",
+    "item_id": "04866671-n",
+    "lemmas": [
+      "volatility",
+      "unpredictability"
+    ],
+    "gloss": "the trait of being unpredictably irresolute; \"the volatility of the market drove many investors away\"",
+    "source_record_sha256": "3382a0c76095d2f7a8de32b8a996ac71db2b7eee8901290269d16e3bb884611e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]
