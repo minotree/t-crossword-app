@@ -1,0 +1,5 @@
+{
+  "reciprocal_4": "1/4",
+  "exact_product": "1",
+  "numeric_check": "Python fractions.Fraction; passed"
+}

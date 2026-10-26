@@ -10,7 +10,7 @@ const tabs = [
   { key: 'completed', label: '학습완료' },
   { key: 'mistakes', label: '오답노트' },
 ] as const;
-const levels = { beginner: '초급', intermediate: '중급', advanced: '고급' };
+const levels = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 
 export function WordBankPage() {
   const progress = useSyncExternalStore(wordProgressStore.subscribe, wordProgressStore.getSnapshot);

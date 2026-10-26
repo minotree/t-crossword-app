@@ -1,0 +1,627 @@
+[
+  {
+    "word": "abstain",
+    "item_id": "02463426-v",
+    "lemmas": [
+      "abstain"
+    ],
+    "gloss": "refrain from voting",
+    "source_record_sha256": "585a8535cf228357f350d51c397d3169680a0cfb19d469f7c019aa369650f1f1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "accede",
+    "item_id": "02381397-v",
+    "lemmas": [
+      "accede",
+      "enter"
+    ],
+    "gloss": "take on duties or office; \"accede to the throne\"",
+    "source_record_sha256": "7faf7aef739a26f2fd8a8ac32ecff51f8ce59df1e14f028c096bb0f95836d93d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "acclaim",
+    "item_id": "06691684-n",
+    "lemmas": [
+      "acclaim",
+      "acclamation",
+      "plaudits",
+      "plaudit",
+      "eclat"
+    ],
+    "gloss": "enthusiastic approval; \"the book met with modest acclaim\"; \"he acknowledged the plaudits of the crowd\"; \"they gave him more eclat than he really deserved\"",
+    "source_record_sha256": "9ee5cf6092983923a78a18189e250b94e4ce44d6d475006e1e48c58a0bfab309",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "adjudicate",
+    "item_id": "02501278-v",
+    "lemmas": [
+      "judge",
+      "adjudicate",
+      "try"
+    ],
+    "gloss": "put on trial or hear a case and sit as the judge at the trial of; \"The football star was tried for the murder of his wife\"; \"The judge tried both father and son in separate trials\"",
+    "source_record_sha256": "1dc0b617127a6ae7974af4b8939a8abc304fc0d5743ec72240e6f0bfe2c3aff2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "admissible",
+    "item_id": "01761871-a",
+    "lemmas": [
+      "admissible"
+    ],
+    "gloss": "deserving to be admitted; \"admissible evidence\"",
+    "source_record_sha256": "681989c65c693756f0b31706bcc38a4708ec10351db2d049cb8020fef332f682",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "axiomatic",
+    "item_id": "02653385-a",
+    "lemmas": [
+      "axiomatic",
+      "axiomatical",
+      "postulational"
+    ],
+    "gloss": "of or relating to or derived from axioms; \"axiomatic physics\"; \"the postulational method was applied to geometry\"- S.S.Stevens",
+    "source_record_sha256": "9a99b6c2b1f29531772ecbf40dbdad99fb9942a866cb3286f7b4bec14c1ee450",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "banal",
+    "item_id": "01688757-s",
+    "lemmas": [
+      "banal",
+      "commonplace",
+      "hackneyed",
+      "old-hat",
+      "shopworn",
+      "stock(a)",
+      "threadbare",
+      "timeworn",
+      "tired",
+      "trite",
+      "well-worn"
+    ],
+    "gloss": "repeated too often; overfamiliar through overuse; \"bromidic sermons\"; \"his remarks were trite and commonplace\"; \"hackneyed phrases\"; \"a stock answer\"; \"repeating threadbare jokes\"; \"parroting some timeworn axiom\"; \"the trite metaphor `hard as nails'\"",
+    "source_record_sha256": "b6ed1379d0b9d3186d89f4f6cfbae90648998127968395d47c5451f9b4fb9824",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "coalesce",
+    "item_id": "00394813-v",
+    "lemmas": [
+      "blend",
+      "flux",
+      "mix",
+      "conflate",
+      "commingle",
+      "immix",
+      "fuse",
+      "coalesce",
+      "meld",
+      "combine",
+      "merge"
+    ],
+    "gloss": "mix together different elements; \"The colors blend well\"",
+    "source_record_sha256": "c328fd432796a29454258511c2b5d123c844887fdaed9f63153340b3ba416cba",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "coexist",
+    "item_id": "02604477-v",
+    "lemmas": [
+      "coexist"
+    ],
+    "gloss": "exist together",
+    "source_record_sha256": "01ed39e3c8d8f129a9ef2f4939af18d2e7c70ad630b6ec8463340571241b819d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cognate",
+    "item_id": "06289074-n",
+    "lemmas": [
+      "cognate",
+      "cognate_word"
+    ],
+    "gloss": "a word is cognate with another if both derive from the same word in an ancestral language",
+    "source_record_sha256": "aa3c464d02038f445a5cca06d656aed60c2c38b9333e19acc257804441a54131",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cosmopolitan",
+    "item_id": "00635955-a",
+    "lemmas": [
+      "cosmopolitan"
+    ],
+    "gloss": "composed of people from or at home in many parts of the world; especially not provincial in attitudes or interests; \"his cosmopolitan benevolence impartially extended to all races and to all creeds\"- T.B. Macaulay; \"the ancient and cosmopolitan societies of Syria and Egypt\"; \"that queer, cosmopolitan, rather sinister crowd found around the Marseilles docks\"",
+    "source_record_sha256": "cb7a516d2dd5122d80f45d7f53d0442491522c9fb48a4d39272e4b16ededdba0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "decouple",
+    "item_id": "01297813-v",
+    "lemmas": [
+      "uncouple",
+      "decouple"
+    ],
+    "gloss": "disconnect or separate; \"uncouple the hounds\"",
+    "source_record_sha256": "9c74ebc11cfc2c6e7409e34743f144e4749e5b9256f9482b3321c11bf493a9f0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "denounce",
+    "item_id": "02508245-v",
+    "lemmas": [
+      "stigmatize",
+      "stigmatise",
+      "brand",
+      "denounce",
+      "mark"
+    ],
+    "gloss": "to accuse or condemn or openly or formally or brand as disgraceful; \"He denounced the government action\"; \"She was stigmatized by society because she had a child out of wedlock\"",
+    "source_record_sha256": "2fa01bd7eec4bd7b6593e2384ffa0b9aa01eea70d9aaddaa437355682f9fe2dd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "depose",
+    "item_id": "02405252-v",
+    "lemmas": [
+      "depose",
+      "force_out"
+    ],
+    "gloss": "force to leave (an office)",
+    "source_record_sha256": "674dc9c7d6a89cae0743d15d8ce28c383ca3215b94a4c25b0ab8d8a1b916e4d2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "derogatory",
+    "item_id": "00907032-s",
+    "lemmas": [
+      "derogative",
+      "derogatory",
+      "disparaging"
+    ],
+    "gloss": "expressive of low opinion; \"derogatory comments\"; \"disparaging remarks about the new house\"",
+    "source_record_sha256": "5c9d0a9e80734c5ee0e83514d6f0ad18437c3f576f8a577694e601ffc3176501",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "disavow",
+    "item_id": "00820075-v",
+    "lemmas": [
+      "disavow"
+    ],
+    "gloss": "refuse to acknowledge; disclaim knowledge of; responsibility for, or association with; \"Her husband disavowed her after 30 years of marriage and six children\"",
+    "source_record_sha256": "d3c3709ee6ba877260286c3a46168f05a05e14ebe1ff4c0daad1ce1aed651e9c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "elicit",
+    "item_id": "01759326-v",
+    "lemmas": [
+      "arouse",
+      "elicit",
+      "enkindle",
+      "kindle",
+      "evoke",
+      "fire",
+      "raise",
+      "provoke"
+    ],
+    "gloss": "call forth (emotions, feelings, and responses); \"arouse pity\"; \"raise a smile\"; \"evoke sympathy\"",
+    "source_record_sha256": "1925805412c0e44a966e8d2650cb2871f8afc4054ee1dd11ce39673ec2579ac0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "emancipate",
+    "item_id": "02496498-v",
+    "lemmas": [
+      "manumit",
+      "emancipate"
+    ],
+    "gloss": "free from slavery or servitude",
+    "source_record_sha256": "c4b4d8417de167a83052a7dd4dc387b758062498143d65a79aede5ded60e67e2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "encumber",
+    "item_id": "01301051-v",
+    "lemmas": [
+      "restrain",
+      "encumber",
+      "cumber",
+      "constrain"
+    ],
+    "gloss": "hold back",
+    "source_record_sha256": "30897b09d9bba0d9c4f7ad0a1422e0e022b8d4f38ab9097bf7b404ec4ffba3e7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "exonerate",
+    "item_id": "00904046-v",
+    "lemmas": [
+      "acquit",
+      "assoil",
+      "clear",
+      "discharge",
+      "exonerate",
+      "exculpate"
+    ],
+    "gloss": "pronounce not guilty of criminal charges; \"The suspect was cleared of the murder charges\"",
+    "source_record_sha256": "6714a72452da7f005372057aa43d0482771a663ef13c2c2175c72f86d1ab2ad7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "foreclose",
+    "item_id": "02452885-v",
+    "lemmas": [
+      "prevent",
+      "forestall",
+      "foreclose",
+      "preclude",
+      "forbid"
+    ],
+    "gloss": "keep from happening or arising; make impossible; \"My sense of tact forbids an honest answer\"; \"Your role in the projects precludes your involvement in the competitive project\"",
+    "source_record_sha256": "173da17416a1c8bb57c7c1c4872cc8388830d86d0bac059adf17afc0eee35562",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "generalize",
+    "item_id": "01022420-v",
+    "lemmas": [
+      "generalize",
+      "generalise",
+      "extrapolate",
+      "infer"
+    ],
+    "gloss": "draw from specific cases for more general cases",
+    "source_record_sha256": "a3fdd609b6693d508122289f91006306ec040b64c4539b12130a0a7b7bceaa6f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "illusory",
+    "item_id": "01937390-s",
+    "lemmas": [
+      "illusive",
+      "illusory"
+    ],
+    "gloss": "based on or having the nature of an illusion; \"illusive hopes of finding a better job\"; \"Secret activities offer presidents the alluring but often illusory promise that they can achieve foreign policy goals without the bothersome debate and open decision that are staples of democracy\"",
+    "source_record_sha256": "438d28818e2c1d729d89cac0ffe1e345f2ce88db3bbf6b998a8ee8255c96f1d3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "imminent",
+    "item_id": "00448314-s",
+    "lemmas": [
+      "at_hand(p)",
+      "close_at_hand(p)",
+      "imminent",
+      "impendent",
+      "impending"
+    ],
+    "gloss": "close in time; about to occur; \"retribution is at hand\"; \"some people believe the day of judgment is close at hand\"; \"in imminent danger\"; \"his impending retirement\"",
+    "source_record_sha256": "f5595773eb113f16d7f3984d808b656f024c98ed75c753f0abda6264e8eed522",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "inalienable",
+    "item_id": "00093810-a",
+    "lemmas": [
+      "inalienable",
+      "unalienable"
+    ],
+    "gloss": "incapable of being repudiated or transferred to another; \"endowed by their Creator with certain unalienable rights\"",
+    "source_record_sha256": "d138ff1549c20778e99a9aea97c218808d4f1863c2bf7d87aab0f8df912582f9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "incipient",
+    "item_id": "00818829-s",
+    "lemmas": [
+      "incipient",
+      "inchoate"
+    ],
+    "gloss": "only partly in existence; imperfectly formed; \"incipient civil disorder\"; \"an incipient tumor\"; \"a vague inchoate idea\"",
+    "source_record_sha256": "6501efc0c6369b90b76c565621617ff64c7ecc96e90f8ea136ae5ac5cc20f18d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ineffable",
+    "item_id": "00944111-s",
+    "lemmas": [
+      "indefinable",
+      "indescribable",
+      "ineffable",
+      "unspeakable",
+      "untellable",
+      "unutterable"
+    ],
+    "gloss": "defying expression or description; \"indefinable yearnings\"; \"indescribable beauty\"; \"ineffable ecstasy\"; \"inexpressible anguish\"; \"unspeakable happiness\"; \"unutterable contempt\"; \"a thing of untellable splendor\"",
+    "source_record_sha256": "ce3740c3eac30062a46e065103f7609a3ad5db8415b48c49d855ae87a7a4a43a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "intercede",
+    "item_id": "00760956-v",
+    "lemmas": [
+      "intercede",
+      "mediate",
+      "intermediate",
+      "liaise",
+      "arbitrate"
+    ],
+    "gloss": "act between parties with a view to reconciling differences; \"He interceded in the family dispute\"; \"He mediated a settlement\"",
+    "source_record_sha256": "7ca4a2ab8a5d656450bb86dfd769837e1a2822dc7b385116ef571723b1593e69",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "internalize",
+    "item_id": "00729781-v",
+    "lemmas": [
+      "internalize",
+      "internalise",
+      "interiorize",
+      "interiorise"
+    ],
+    "gloss": "incorporate within oneself; make subjective or personal; \"internalize a belief\"",
+    "source_record_sha256": "8763bab1b316dfc2d9e6d13d8010fe470ceaed9e5ab2a3157f078285f394dfbd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "invoke",
+    "item_id": "01024864-v",
+    "lemmas": [
+      "invoke",
+      "appeal"
+    ],
+    "gloss": "cite as an authority; resort to; \"He invoked the law that would save him\"; \"I appealed to the law of 1900\"; \"She invoked an ancient law\"",
+    "source_record_sha256": "85a4d70df8c1faa039cf2189a008d23b619ad1eef66499814ea2673eebf038f9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "iterate",
+    "item_id": "00958334-v",
+    "lemmas": [
+      "repeat",
+      "reiterate",
+      "ingeminate",
+      "iterate",
+      "restate",
+      "retell"
+    ],
+    "gloss": "to say, state, or perform again; \"She kept reiterating her request\"",
+    "source_record_sha256": "b8c623facc9fe3c91078622d91399c05fd67713a9e4dbf29fd318b508c3c903d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "monolithic",
+    "item_id": "00784037-s",
+    "lemmas": [
+      "monolithic"
+    ],
+    "gloss": "characterized by massiveness and rigidity and total uniformity; \"a monolithic society\"; \"a monolithic worldwide movement\"",
+    "source_record_sha256": "19eab81b12d12a41af3783dc130e63fd5d827c8389b4ccabdf58542d205d0923",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "nomenclature",
+    "item_id": "06304059-n",
+    "lemmas": [
+      "terminology",
+      "nomenclature",
+      "language"
+    ],
+    "gloss": "a system of words used to name things in a particular discipline; \"legal terminology\"; \"biological nomenclature\"; \"the language of sociology\"",
+    "source_record_sha256": "b7d6d85a305e25b071eec6701aef2ed4c30a8443e79e9bcd510a2ceb481fa04e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "nonpartisan",
+    "item_id": "00731292-a",
+    "lemmas": [
+      "nonpartisan",
+      "nonpartizan"
+    ],
+    "gloss": "free from party affiliation or bias",
+    "source_record_sha256": "d9ba36330425469b6afb1f6fe8394220c6ec68c3c393cbc2809320c2f2ecf489",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "nullify",
+    "item_id": "02478059-v",
+    "lemmas": [
+      "invalidate",
+      "annul",
+      "quash",
+      "void",
+      "avoid",
+      "nullify"
+    ],
+    "gloss": "declare invalid; \"The contract was annulled\"; \"void a plea\"",
+    "source_record_sha256": "c39023deba3b1469d852099e872aa415e6da4b81caee5a187c69195c0824ad52",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "oligarchy",
+    "item_id": "08362455-n",
+    "lemmas": [
+      "oligarchy"
+    ],
+    "gloss": "a political system governed by a few people; \"one of his cardinal convictions was that Britain was not run as a democracy but as an oligarchy\"; \"the big cities were notoriously in the hands of the oligarchy of local businessmen\"",
+    "source_record_sha256": "6c48cc0ed4adf2c7cb52b728b9e6ab0321d07ce8a7cf180047b20eabbf3362a9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "orthogonal",
+    "item_id": "01720642-s",
+    "lemmas": [
+      "orthogonal",
+      "rectangular"
+    ],
+    "gloss": "having a set of mutually perpendicular axes; meeting at right angles; \"wind and sea may displace the ship's center of gravity along three orthogonal axes\"; \"a rectangular Cartesian coordinate system\"",
+    "source_record_sha256": "6e84f47dc88f723bad79cb913e7532498a4082cf123caa195db06b171435e382",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "periphery",
+    "item_id": "13903576-n",
+    "lemmas": [
+      "periphery",
+      "fringe",
+      "outer_boundary"
+    ],
+    "gloss": "the outside boundary or surface of something",
+    "source_record_sha256": "83559c82db7f6928b88429474be94dfcde9dca765c444fc12f15688d3d932ec5",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "permeate",
+    "item_id": "01229071-v",
+    "lemmas": [
+      "permeate",
+      "pervade",
+      "penetrate",
+      "interpenetrate",
+      "diffuse",
+      "imbue",
+      "riddle"
+    ],
+    "gloss": "spread or diffuse through; \"An atmosphere of distrust has permeated this administration\"; \"music penetrated the entire building\"; \"His campaign was riddled with accusations and personal attacks\"",
+    "source_record_sha256": "fc8eede616d5916a88ab7dd91b1b8ea4d047b3c47340d2a780f90a9ea9ddf608",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "polemic",
+    "item_id": "07183660-n",
+    "lemmas": [
+      "polemic"
+    ],
+    "gloss": "a controversy (especially over a belief or dogma)",
+    "source_record_sha256": "09a1bb874f616f6ac98c16d6e105ed1eb879e03c2e1701daf7f5b5da45774a99",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "predicate",
+    "item_id": "06316626-n",
+    "lemmas": [
+      "predicate",
+      "verb_phrase"
+    ],
+    "gloss": "one of the two main constituents of a sentence; the predicate contains the verb and its complements",
+    "source_record_sha256": "eb790ef906255cbf70e458ba874c2f9b0d36cbeeabd9cbca8567d5a01f69314f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "predispose",
+    "item_id": "00680692-v",
+    "lemmas": [
+      "predispose"
+    ],
+    "gloss": "make susceptible; \"This illness predisposes you to gain weight\"",
+    "source_record_sha256": "71f3a13e30c692f880e36bd1386aeb9a6da80a38e8dd0dfbf28254f3aabe1f4e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "proscribe",
+    "item_id": "00795863-v",
+    "lemmas": [
+      "forbid",
+      "prohibit",
+      "interdict",
+      "proscribe",
+      "veto",
+      "disallow",
+      "nix"
+    ],
+    "gloss": "command against; \"I forbid you to call me late at night\"; \"Mother vetoed the trip to the chocolate store\"; \"Dad nixed our plans\"",
+    "source_record_sha256": "1024eb59ae7976e01ebff3829ca7e5f8781740ff24d72a949586c0cda94675a2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "reconstitute",
+    "item_id": "00404401-v",
+    "lemmas": [
+      "restructure",
+      "reconstitute"
+    ],
+    "gloss": "construct or form anew or provide with a new structure; \"After his accident, he had to restructure his life\"; \"The governing board was reconstituted\"",
+    "source_record_sha256": "78c16c5f7db746a059c2b26848710ad7a44f31f5e605bb2c53eb019e91bacee6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "residual",
+    "item_id": "02835654-a",
+    "lemmas": [
+      "residual",
+      "residuary"
+    ],
+    "gloss": "relating to or indicating a remainder; \"residual quantity\"",
+    "source_record_sha256": "a3807bc8317a3b3ff9e59715a28ff5bf2a6f5100c08ed6e45a0782035e4ed387",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "sophistry",
+    "item_id": "05895138-n",
+    "lemmas": [
+      "sophism",
+      "sophistry",
+      "sophistication"
+    ],
+    "gloss": "a deliberately invalid argument displaying ingenuity in reasoning in the hope of deceiving someone",
+    "source_record_sha256": "24d561bbdd2c29083e65af6011df51fdb0fcffffdb4bc784124782f75c0b76a3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "stipulate",
+    "item_id": "01018928-v",
+    "lemmas": [
+      "stipulate",
+      "qualify",
+      "condition",
+      "specify"
+    ],
+    "gloss": "specify as a condition or requirement in a contract or agreement; make an express demand or provision in an agreement; \"The will stipulates that she can live in the house for the rest of her life\"; \"The contract stipulates the dates of the payments\"",
+    "source_record_sha256": "cacc8481621372f02d8934c3bad87f6df0188f1da286350d6c3d25cabc53b129",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "subvert",
+    "item_id": "02402409-v",
+    "lemmas": [
+      "overthrow",
+      "subvert",
+      "overturn",
+      "bring_down"
+    ],
+    "gloss": "cause the downfall of; of rulers; \"The Czar was overthrown\"; \"subvert the ruling class\"",
+    "source_record_sha256": "371b054c79b00cb5445e9700243f2c04766b537b234915e84d7bf3b9c9508552",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "surrogate",
+    "item_id": "10680153-n",
+    "lemmas": [
+      "surrogate",
+      "alternate",
+      "replacement"
+    ],
+    "gloss": "someone who takes the place of another person",
+    "source_record_sha256": "0463cccefbaa976dda70f1d45ea1e6382e12c0598955a1fbe4603ddfac1ba7c4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "vestige",
+    "item_id": "06646628-n",
+    "lemmas": [
+      "trace",
+      "vestige",
+      "tincture",
+      "shadow"
+    ],
+    "gloss": "an indication that something has been present; \"there wasn't a trace of evidence for the claim\"; \"a tincture of condescension\"",
+    "source_record_sha256": "ad9fd2863a93ee92f9e9c0bfe5226c2942a7f86290dd8b5dbbb4efbd29b75c69",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

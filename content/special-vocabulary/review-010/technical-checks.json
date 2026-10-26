@@ -1,0 +1,9 @@
+{
+  "model_assumptions": "Z equally likely -1 or +1; structural equations X=Z and Y=Z; no X to Y arrow",
+  "observational_correlation": 1,
+  "covariance": "1",
+  "variance_x": "1",
+  "variance_y": "1",
+  "modeled_intervention": "replace X equation by X=3; Y=Z remains unchanged",
+  "interpretation": "construction showing correlation alone cannot identify an X-to-Y causal effect; not empirical causal inference"
+}

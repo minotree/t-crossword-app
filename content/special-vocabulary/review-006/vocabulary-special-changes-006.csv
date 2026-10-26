@@ -1,0 +1,6 @@
+﻿"영단어","항목","수정전","수정후","수정이유"
+"apathy","예문해석","그 면담들은 공청회에 거의 참석하지 않는 주민들 사이에 강한 찬성보다 정치적 무관심이 있음을 시사한다.","그 면담들은 공청회에 거의 참석하지 않는 주민들 사이에 강한 찬성이 아니라 정치적 무관심이 있음을 시사한다.","rather than의 태도 대조를 단순한 정도 비교 대신 명확한 대조로 표현"
+"intermediary","예문","An intermediary helped the residents and the company exchange proposals without requiring either side to accept immediate agreement.","An intermediary helped the residents and the company exchange proposals without requiring either side to agree immediately.","accept immediate agreement라는 어색한 결합을 agree immediately로 자연스럽게 수정"
+"specious","예문해석","그 주장은 인상적인 합계가 같은 참가자들을 서로 다른 사람인 것처럼 두 번 세었기 때문에 그럴듯하지만 거짓이다.","그 주장은 그럴듯해 보이지만 거짓이다. 인상적인 합계를 제시하면서 같은 참가자를 서로 다른 사람인 것처럼 두 번 세었기 때문이다.","합계 자체가 사람을 센다는 어색한 주어를 피하고 중복 집계와 거짓 주장 사이의 인과를 명확히 번역"
+"verifiable","예문","A verifiable claim allows observations that could support it or show it is mistaken under stated conditions.","A verifiable claim can be tested by observations that could support or contradict it under stated conditions.","claim allows observations라는 모호한 표현을 관찰로 주장을 시험할 수 있다는 구조로 바꾸고 해석을 함께 맞춤"
+"verifiable","예문해석","검증 가능한 주장은 명시된 조건에서 그 주장을 뒷받침하거나 잘못되었음을 보여 줄 수 있는 관찰을 허용한다.","검증 가능한 주장은 명시된 조건에서 이를 뒷받침하거나 반박할 수 있는 관찰로 시험할 수 있다.","claim allows observations라는 모호한 표현을 관찰로 주장을 시험할 수 있다는 구조로 바꾸고 해석을 함께 맞춤"

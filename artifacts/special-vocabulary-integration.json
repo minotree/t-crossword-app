@@ -1,0 +1,29 @@
+{
+  "status": "integrated-source-not-released",
+  "original_words": 3339,
+  "special_words": 500,
+  "total_words": 3839,
+  "old_identity_hash": "a88539457e21da73a7c0365c6d63c2bc306a35758f8fb4cea1e638abe37f5351",
+  "reviewed_input_sha256": {
+    "001": "c1b72c0680fa95dc9d5b98bf6fb8b7f9293153ed437793e99661ab36b254efa1",
+    "002": "a53da60ba1d517e63d019d0bdb6c73110f52b8a0ee6c971e3b678da70324466f",
+    "003": "9f5bba664b0f061ccb3d4974c7efd8ccc2e0b51a2384e8e2216d690790284d0b",
+    "004": "6aa02897d133a1b20968024169e4b10e13f3d361ccc9417dd64470ce730e3db3",
+    "005": "1ec4a5957282c7733b95d5999e635547be3808796985bc81faade3b1f43e6851",
+    "006": "4f6af56946769ece2f558db022a9f2f97e4cd52e7299f862e851cca949b30ce8",
+    "007": "a17986bfa74d3c6ab42f81e2a9ff503acbc4331078138b0592126d3a26841fac",
+    "008": "24b41623edc9f662fae4c8fec52ce1afac72a7ffb1d924e422c126066704d094",
+    "009": "d0f85a65c7c3bfd9a46b5991f5277b5438f8d94e3019e38c9fb3a33f4b84ee36",
+    "010": "10ae2a146c00b439c02a24a36eaf31c6004e3db3082464845828c41a48676b7b"
+  },
+  "source_csv_json_correspondence": "passed",
+  "full_license_export": "passed",
+  "built_apps_notice_markers": [
+    "web",
+    "toss",
+    "mobile"
+  ],
+  "human_final_review": "pending",
+  "global_phrase_similarity_review": "not-performed",
+  "toefl_frequency_validation": "not-performed"
+}

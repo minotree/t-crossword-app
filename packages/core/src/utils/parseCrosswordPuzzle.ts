@@ -16,7 +16,7 @@ function isWord(value: unknown): value is CrosswordWord {
 }
 export function parseCrosswordPuzzle(value: unknown): CrosswordPuzzle {
   if (!isRecord(value) || (value.size !== 8 && value.size !== 10 && value.size !== 12) ||
-      (value.level !== 'beginner' && value.level !== 'intermediate' && value.level !== 'advanced') ||
+      (value.level !== 'beginner' && value.level !== 'intermediate' && value.level !== 'advanced' && value.level !== 'special') ||
       !Array.isArray(value.words) || !value.words.every(isWord) || value.words.length > 144 ||
       !Array.isArray(value.grid) || value.grid.length !== value.size ||
       !value.grid.every((row): row is (CrosswordCell | null)[] => Array.isArray(row) && row.length === value.size && row.every(isCell))) {

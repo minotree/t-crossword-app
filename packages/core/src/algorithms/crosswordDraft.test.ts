@@ -8,7 +8,7 @@ const item = (word: string): WordItem => ({ id: word, word, level: 'beginner', m
 const words = [item('CAT'), item('TAP'), item('PEN')];
 const first = { id: 'CAT', orientation: 'across', startRow: 3, startCol: 2 };
 
-it.each(['beginner', 'intermediate', 'advanced'] as const)('rebuilds device-generated %s puzzles with canonical content', (level) => {
+it.each(['beginner', 'intermediate', 'advanced', 'special'] as const)('rebuilds device-generated %s puzzles with canonical content', (level) => {
   for (const size of [8, 10, 12] as const) {
     const puzzle = generateCrossword(defaultVocabList, level, size);
     expect(registerCrosswordDraft(defaultVocabList, level, size, crosswordPlacements(puzzle))).toEqual(puzzle);

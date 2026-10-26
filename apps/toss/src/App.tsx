@@ -2,6 +2,7 @@ import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } f
 import { Button, TextField } from '@toss/tds-mobile';
 import {
   defaultVocabList,
+  wordnetLicense,
   levelLearningProgress,
   type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize,
 } from '@t-crossword/core';
@@ -18,7 +19,7 @@ import { WordList } from './components/WordList.js';
 import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
 import { getCurrentLetters } from './puzzlePresentation.js';
-const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급' };
+const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 type WordFilter = 'all' | 'bookmarked' | 'completed' | 'mistakes';
 
@@ -30,7 +31,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
   const [saveError, setSaveError] = useState('');
   const [loadAttempt, setLoadAttempt] = useState(0);
   const [page, setPage] = useState<Page>('home');
-  const [bookLevel, setBookLevel] = useState<DifficultyLevel>('beginner');
+  const [bookLevel, setBookLevel] = useState<Exclude<DifficultyLevel, 'special'>>('beginner');
   const [bookId, setBookId] = useState<string | null>(null);
   const [bookPage, setBookPage] = useState(0);
   const [confirmReset, setConfirmReset] = useState(false);
@@ -115,7 +116,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     busy.current = true; setIsGameBusy(true); setGameError('');
     try {
     const completed = new Set(progressRef.current.completedWordIds);
-    setPuzzle(await generatePuzzle(nextLevel, nextSize, [...completed]));
+    setPuzzle(await generatePuzzle(nextLevel, nextSize, [...completed], progressRef.current.hintUsedWordIds, progressRef.current.dismissedMistakeWordIds));
     setPuzzleVersion(value => value + 1);
     setSolvedIds([]);
     setLevel(nextLevel); setSize(nextSize);
@@ -162,7 +163,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     {loadError ? <><p role="alert" className="error">{loadError}</p><Button onClick={() => setLoadAttempt((value) => value + 1)}>다시 불러오기</Button></> : <p role="status">학습 기록을 불러오고 있어요.</p>}
   </main>;
 
-  return <div className="app-shell">
+  return <div className={`app-shell${page === 'quiz' ? ' quiz-active' : ''}`}>
     <header className="app-heading"><h1>영어 낱말</h1><span>{progress.completedWordIds.length}개 학습</span></header>
     {gameError && <div role="alert" className="save-error"><p>{gameError}</p></div>}
     {saveError && <div role="alert" className="save-error"><p>{saveError}</p><Button size="small" variant="weak" onClick={() => { if (progressRef.current) saveProgress(progressRef.current); }}>다시 저장</Button></div>}
@@ -184,7 +185,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
 
       {page === 'quiz' && puzzle && <>
         <section className="quiz-controls" aria-label="퍼즐 설정">
-          <div role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced'] as const).map((value) => <Button key={value} size="small" variant={level === value ? 'fill' : 'weak'} aria-pressed={level === value} disabled={isGameBusy} onClick={() => { if (level !== value) void startPuzzle(value, size); }}>{levelNames[value]}</Button>)}</div>
+          <div role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map((value) => <Button key={value} size="small" variant={level === value ? 'fill' : 'weak'} aria-pressed={level === value} disabled={isGameBusy} onClick={() => { if (level !== value) void startPuzzle(value, size); }}>{levelNames[value]}</Button>)}</div>
           <div role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map((value) => <Button key={value} size="small" variant={size === value ? 'fill' : 'weak'} aria-pressed={size === value} disabled={isGameBusy} onClick={() => { if (size !== value) void startPuzzle(level, value); }}>{value}×{value}</Button>)}</div>
         </section>
         <div className="quiz-summary">
@@ -236,12 +237,19 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         <section className="settings-card" aria-labelledby="settings-vocabulary">
         <h3 id="settings-vocabulary">단어장 구성 안내</h3>
         <p className="settings-word-count">총 {defaultVocabList.length.toLocaleString('ko-KR')}개 단어</p>
-        <p>2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다.</p>
+        <p>초급·중급·고급 3,339개는 2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다. 특급에는 학술·심화 영어 어휘 500개를 추가했습니다.</p>
         <dl className="settings-levels">
           <div><dt>초급</dt><dd>초등학교 권장 영어 어휘</dd></div>
           <div><dt>중급</dt><dd>중학교·고등학교 영어 공통과목 권장 어휘</dd></div>
           <div><dt>고급</dt><dd>고등학교 영어 외 과목 권장 어휘 및 9급 공무원 시험 영어 어휘</dd></div>
+          <div><dt>특급</dt><dd>학술·심화 영어 어휘 500개. 공식 토플 어휘 목록이나 출제 빈도 순위는 아닙니다.</dd></div>
         </dl>
+        <p>퀴즈에는 선택한 난이도와 그 아래 난이도의 미완료 단어가 함께 출제됩니다. 학습완료한 단어도 오답노트에 표시 중이면 다시 출제됩니다. 오답노트에서 삭제하면 학습완료 단어는 출제 대상에서 제외됩니다. 학습완료 수는 선택한 난이도의 단어만 집계합니다.</p>
+        <p>특급의 뜻·예문·해석은 AI를 활용해 작성하고 편집 검수했습니다. 의미 검토에는 WordNet 3.0을 참고했습니다.</p>
+        </section>
+        <section className="settings-card" aria-labelledby="settings-notices">
+          <h3 id="settings-notices">콘텐츠 이용 고지</h3>
+          <details><summary>WordNet 3.0 이용 조건</summary><pre lang="en" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontSize: 12, lineHeight: 1.6 }}>{wordnetLicense}</pre></details>
         </section>
       </section>}
     </main>

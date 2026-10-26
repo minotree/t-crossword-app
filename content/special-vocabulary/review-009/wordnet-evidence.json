@@ -1,0 +1,572 @@
+[
+  {
+    "word": "aberrant",
+    "item_id": "01596122-s",
+    "lemmas": [
+      "aberrant",
+      "deviant",
+      "deviate"
+    ],
+    "gloss": "markedly different from an accepted norm; \"aberrant behavior\"; \"deviant ideas\"",
+    "source_record_sha256": "d979f1a11b6a59f5619cf1ad4c5e969e745bd69a6167476222800bdbeb2557d8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "abeyance",
+    "item_id": "14010636-n",
+    "lemmas": [
+      "abeyance",
+      "suspension"
+    ],
+    "gloss": "temporary cessation or suspension",
+    "source_record_sha256": "4dff8718f5e4dd2ab44a7b5a55a8e09e672e18f8a21ba7473fd23cd8c67ef8db",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "acuity",
+    "item_id": "05620468-n",
+    "lemmas": [
+      "acuteness",
+      "acuity",
+      "sharpness",
+      "keenness"
+    ],
+    "gloss": "a quick and penetrating intelligence; \"he argued with great acuteness\"; \"I admired the keenness of his mind\"",
+    "source_record_sha256": "d01e5b5d1dcf5fbc83a5645fa1405bf59ac1ae54e35e40154bb89af0b33ce4f6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "adduce",
+    "item_id": "01015866-v",
+    "lemmas": [
+      "adduce",
+      "abduce",
+      "cite"
+    ],
+    "gloss": "advance evidence for",
+    "source_record_sha256": "a78d610352efd3993d6046cc54adaa0851cb2e967239c9a18a03758233e4f697",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "allude",
+    "item_id": "01026728-v",
+    "lemmas": [
+      "allude",
+      "touch",
+      "advert"
+    ],
+    "gloss": "make a more or less disguised reference to; \"He alluded to the problem but did not mention it\"",
+    "source_record_sha256": "3885d80f81a36649258f3bd39e2f691964cea0d2c2c96fdde798bf50fcb7ce3c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "anachronism",
+    "item_id": "15180304-n",
+    "lemmas": [
+      "anachronism",
+      "mistiming",
+      "misdating"
+    ],
+    "gloss": "something located at a time when it could not have existed or occurred",
+    "source_record_sha256": "ac21642cd68a7b6080780cf944944259fe77c36c51d007b7cb768514e323974d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "animosity",
+    "item_id": "07548100-n",
+    "lemmas": [
+      "animosity",
+      "animus",
+      "bad_blood"
+    ],
+    "gloss": "a feeling of ill will arousing active hostility",
+    "source_record_sha256": "139243c25bf48d79e7081ff2c0213309bd7d92f6fa5720e8058e499182281c9e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "antithetical",
+    "item_id": "02065404-s",
+    "lemmas": [
+      "antithetic",
+      "antithetical"
+    ],
+    "gloss": "sharply contrasted in character or purpose; \"practices entirely antithetical to her professed beliefs\"; \"hope is antithetic to despair\"",
+    "source_record_sha256": "46c1c4f2cfec863a8fe2f894ce009a3887571d0761eaa1bd3def791e34ff3b1b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "apprehend",
+    "item_id": "00588221-v",
+    "lemmas": [
+      "grok",
+      "get_the_picture",
+      "comprehend",
+      "savvy",
+      "dig",
+      "grasp",
+      "compass",
+      "apprehend"
+    ],
+    "gloss": "get the meaning of something; \"Do you comprehend the meaning of this letter?\"",
+    "source_record_sha256": "96b37510b097a1d726bc7fbda60f9229be82063c8b812fc0b322242fbebe9fae",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "atrophy",
+    "item_id": "07427060-n",
+    "lemmas": [
+      "atrophy",
+      "withering"
+    ],
+    "gloss": "any weakening or degeneration (especially through lack of use)",
+    "source_record_sha256": "fda8069b89b7758143ef9199b6075417dde7fe7bbf57ec14a86f928a39946d3f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "attune",
+    "item_id": "00297780-v",
+    "lemmas": [
+      "attune"
+    ],
+    "gloss": "adjust or accustom to; bring into harmony with",
+    "source_record_sha256": "ad121ee41a5e11dc37cb91130f816be9dd0214ebb66a2595a9f1a23e3794e2df",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "authenticate",
+    "item_id": "00664276-v",
+    "lemmas": [
+      "authenticate"
+    ],
+    "gloss": "establish the authenticity of something",
+    "source_record_sha256": "3344278728938a4006c263df10cec3dcb8ddd07674a65752572027b032339daf",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "belligerent",
+    "item_id": "01244846-s",
+    "lemmas": [
+      "aggressive",
+      "belligerent"
+    ],
+    "gloss": "characteristic of an enemy or one eager to fight; \"aggressive acts against another country\"; \"a belligerent tone\"",
+    "source_record_sha256": "39bb8943b0bd92b007e0637628bec68960ddc6297b4f946a39cdbd24b5dde126",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "benign",
+    "item_id": "00226618-a",
+    "lemmas": [
+      "benign",
+      "benignant"
+    ],
+    "gloss": "pleasant and beneficial in nature or influence; \"a benign smile\"; \"the benign sky\"; \"the benign influence of pure air\"",
+    "source_record_sha256": "8c13a8945fdedc54adbc2875fa76fbceccbedcb87233908823e6cfc9cf6b7bad",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "brevity",
+    "item_id": "07089431-n",
+    "lemmas": [
+      "brevity"
+    ],
+    "gloss": "the use of brief expressions",
+    "source_record_sha256": "da631008a17c9d75197284c398ca200f84df8d2e149fec000c6151680943998d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cohere",
+    "item_id": "01220885-v",
+    "lemmas": [
+      "cling",
+      "cleave",
+      "adhere",
+      "stick",
+      "cohere"
+    ],
+    "gloss": "come or be in close contact with; stick or hold together and resist separation; \"The dress clings to her body\"; \"The label stuck to the box\"; \"The sushi rice grains cohere\"",
+    "source_record_sha256": "83b2c867a6d4e8bcf878f8aaa2cf6b75684407bd7b994fa8a9c9f83325e16329",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "congenial",
+    "item_id": "00560586-a",
+    "lemmas": [
+      "congenial"
+    ],
+    "gloss": "suitable to your needs; \"a congenial atmosphere to work in\"; \"two congenial spirits united...by mutual confidence and reciprocal virtues\"- T.L.Peacock",
+    "source_record_sha256": "dbd3d44a703c68c8e38633e630891041188e3d9109b99b97c6b9f4f684c47a22",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "conjoin",
+    "item_id": "01291069-v",
+    "lemmas": [
+      "join",
+      "conjoin"
+    ],
+    "gloss": "make contact or come together; \"The two roads join here\"",
+    "source_record_sha256": "9e1990ffca4bc9ca5313ecbdefb3320fc3482611e6fd245032786c97853c8cf2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "connote",
+    "item_id": "00929839-v",
+    "lemmas": [
+      "imply",
+      "connote"
+    ],
+    "gloss": "express or state indirectly",
+    "source_record_sha256": "cbe3cc8d7d5970173108dbd759b4967028d7968ba727e16a7621aa3f09ac1f5a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "contravene",
+    "item_id": "02567147-v",
+    "lemmas": [
+      "conflict",
+      "run_afoul",
+      "infringe",
+      "contravene"
+    ],
+    "gloss": "go against, as of rules and laws; \"He ran afoul of the law\"; \"This behavior conflicts with our rules\"",
+    "source_record_sha256": "86f9266541ab78ee877ca24d76472fe4a5d8f42d10c13b26c59fd99984a0129f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "corollary",
+    "item_id": "05780563-n",
+    "lemmas": [
+      "corollary"
+    ],
+    "gloss": "(logic) an inference that follows directly from the proof of another proposition",
+    "source_record_sha256": "1fcefb88d96de3596b4220197ac7472ecd2997191ad41a33f3d942b697748a50",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "crystallize",
+    "item_id": "00143704-v",
+    "lemmas": [
+      "crystallize",
+      "crystallise",
+      "crystalise",
+      "crystalize"
+    ],
+    "gloss": "cause to take on a definite and clear shape; \"He tried to crystallize his thoughts\"",
+    "source_record_sha256": "a37dcdf071c88b0def1ac2cd2a4e860d0984f5192de3c41a0541d774f8fbed63",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "debilitate",
+    "item_id": "00389638-v",
+    "lemmas": [
+      "enfeeble",
+      "debilitate",
+      "drain"
+    ],
+    "gloss": "make weak; \"Life in the camp drained him\"",
+    "source_record_sha256": "1cc60cded453c909feaf5e2420fb943e4ae1210002c712e0ba9ffe352248955d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "decorum",
+    "item_id": "04898804-n",
+    "lemmas": [
+      "decorum",
+      "decorousness"
+    ],
+    "gloss": "propriety in manners and conduct",
+    "source_record_sha256": "c5339c57184fd256d147e804900d0ac7e723219525ae1814ecfaecf38008bcee",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "detachment",
+    "item_id": "07506031-n",
+    "lemmas": [
+      "withdrawal",
+      "detachment"
+    ],
+    "gloss": "avoiding emotional involvement",
+    "source_record_sha256": "ac9bdaf0638d56078f22cc0b2b3fd61b3dcc11352aaf2e76ffc3ab0b36eb87b6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deterrent",
+    "item_id": "05689249-n",
+    "lemmas": [
+      "hindrance",
+      "hinderance",
+      "deterrent",
+      "impediment",
+      "balk",
+      "baulk",
+      "check",
+      "handicap"
+    ],
+    "gloss": "something immaterial that interferes with or delays action or progress",
+    "source_record_sha256": "7ab0cbeffb1cff038054fc1fd36cdb6a3adf0532d19554500e80bcac66fb7258",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dichotomous",
+    "item_id": "02480861-s",
+    "lemmas": [
+      "dichotomous"
+    ],
+    "gloss": "divided or dividing into two sharply distinguished parts or classifications",
+    "source_record_sha256": "3f4fac2b27c3f929a377d8ab25f3378e9a68023219d0ff086ab75f14d0d6036a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "edify",
+    "item_id": "00991385-v",
+    "lemmas": [
+      "enlighten",
+      "edify"
+    ],
+    "gloss": "make understand; \"Can you enlighten me--I don't understand this proposal\"",
+    "source_record_sha256": "e7453e278e501296cd7773142b75ecda4c5317bfeddd7cb292481426f282dfb2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "egalitarian",
+    "item_id": "00715677-s",
+    "lemmas": [
+      "classless",
+      "egalitarian"
+    ],
+    "gloss": "favoring social equality; \"a classless society\"",
+    "source_record_sha256": "0b5680f8402c3e77ae2ce44fe9a83925017e94181b4c3b51b43365526ba00410",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "evanescent",
+    "item_id": "01756940-s",
+    "lemmas": [
+      "evanescent"
+    ],
+    "gloss": "tending to vanish like vapor; \"evanescent beauty\"",
+    "source_record_sha256": "cc6fd8a041f508e0a961354f2503e2997d91381531735d022cf64f65effecb1e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "explicate",
+    "item_id": "00939277-v",
+    "lemmas": [
+      "explain",
+      "explicate"
+    ],
+    "gloss": "make plain and comprehensible; \"He explained the laws of physics to his students\"",
+    "source_record_sha256": "198be1f7496ba313b6f070ce259e2734793e19c979ac67cf61dc5f6db872fad9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "expository",
+    "item_id": "01324870-s",
+    "lemmas": [
+      "expository",
+      "expositive"
+    ],
+    "gloss": "serving to expound or set forth; \"clean expository writing\"",
+    "source_record_sha256": "74459ea3ed1090a753a2f425a61e46a3c6252ab94e5392a253cd68e1c4ab1445",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "extant",
+    "item_id": "00928525-a",
+    "lemmas": [
+      "extant"
+    ],
+    "gloss": "still in existence; not extinct or destroyed or lost; \"extant manuscripts\"; \"specimens of graphic art found among extant barbaric folk\"- Edward Clodd",
+    "source_record_sha256": "9970a6d8110f93882c76d6075fadb282896f826f204a6017639fdbc3aafd9814",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "flux",
+    "item_id": "00195938-n",
+    "lemmas": [
+      "flux"
+    ],
+    "gloss": "in constant change; \"his opinions are in flux\"; \"the newness and flux of the computer industry\"",
+    "source_record_sha256": "478c704d6f41b09449e908af43154c3b5708a322bad217a0439314db8c156950",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "homogenize",
+    "item_id": "00457100-v",
+    "lemmas": [
+      "homogenize",
+      "homogenise"
+    ],
+    "gloss": "cause to become equal or homogeneous as by mixing; \"homogenize the main ingredients\"",
+    "source_record_sha256": "9276f3d3a673854f25dbc912e2004d9ee3daf07870c2fb3ed9b93c4d0cb29834",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "impersonal",
+    "item_id": "01615625-s",
+    "lemmas": [
+      "impersonal",
+      "neutral"
+    ],
+    "gloss": "having no personal preference; \"impersonal criticism\"; \"a neutral observer\"",
+    "source_record_sha256": "195b6bf7813ca1ea761beca3c8503294fe46b45a28135d0375ed222e685bdd2a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "insinuate",
+    "item_id": "00927711-v",
+    "lemmas": [
+      "intimate",
+      "adumbrate",
+      "insinuate"
+    ],
+    "gloss": "give to understand; \"I insinuated that I did not like his wife\"",
+    "source_record_sha256": "723cefe26e69a6723b6f37b7527e7b65a2277b1cd5a6d48f5ef12fb0cfb0fd57",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "irreducible",
+    "item_id": "00883830-a",
+    "lemmas": [
+      "irreducible"
+    ],
+    "gloss": "incapable of being made smaller or simpler; \"an irreducible minimum\"; \"an irreducible formula\"; \"an irreducible hernia\"",
+    "source_record_sha256": "1387dbdfef6e3de1380036fd59e98339c37f9998c433fb8ed5af2de9e9d6c79c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "lacuna",
+    "item_id": "03632189-n",
+    "lemmas": [
+      "lacuna",
+      "blank"
+    ],
+    "gloss": "a blank gap or missing part",
+    "source_record_sha256": "98967eb6f6b6974606e132628cac843c6d11cb1ea756c6add7dcad98c40c82b2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "lexicon",
+    "item_id": "05651242-n",
+    "lemmas": [
+      "vocabulary",
+      "lexicon",
+      "mental_lexicon"
+    ],
+    "gloss": "a language user's knowledge of words",
+    "source_record_sha256": "5d8ea8a17c2ef3e62fa453c74d12eb5773e6e91129bbec9dc12f3fd4ff355d41",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "modular",
+    "item_id": "02296415-s",
+    "lemmas": [
+      "modular"
+    ],
+    "gloss": "constructed with standardized units or dimensions allowing flexibility and variety in use; \"modular furniture\"; \"modular homes\"",
+    "source_record_sha256": "d01551caec1e35c34c13652cdec448c5ffdec5c626f313e394bc3f07b35e35b1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "omnipresent",
+    "item_id": "01847515-s",
+    "lemmas": [
+      "omnipresent",
+      "ubiquitous"
+    ],
+    "gloss": "being present everywhere at once",
+    "source_record_sha256": "73ad52b40c17d8f36ac8cc1449599e5938919eeb757f25c64006321d83237d79",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "prescient",
+    "item_id": "00772137-s",
+    "lemmas": [
+      "prescient"
+    ],
+    "gloss": "perceiving the significance of events before they occur; \"extraordinarily prescient memoranda on the probable course of postwar relations\"-R.H.Rovere",
+    "source_record_sha256": "9acda8ea935f48cad26b335d938827f953c255863d1a0ded8910d55b0a1c0696",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "purposive",
+    "item_id": "01925242-s",
+    "lemmas": [
+      "purposive"
+    ],
+    "gloss": "having or showing or acting with a purpose or design; \"purposive behavior\"",
+    "source_record_sha256": "0326b1c9fc9ee43d00b8e070a74b06a6806458b5526a9354ab7a3c108eb82b48",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "reactive",
+    "item_id": "02105176-s",
+    "lemmas": [
+      "reactive",
+      "responsive"
+    ],
+    "gloss": "reacting to a stimulus; \"the skin of old persons is less reactive than that of younger persons\"",
+    "source_record_sha256": "f9e6291cc7a2561f9533bc0cb71cc32a6b2660873c6c60e1652f346204430cb9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "rebuff",
+    "item_id": "00798539-v",
+    "lemmas": [
+      "rebuff",
+      "snub",
+      "repel"
+    ],
+    "gloss": "reject outright and bluntly; \"She snubbed his proposal\"",
+    "source_record_sha256": "b62f31e8780229c165a33c1cb70ae90a4cd973ff20b2429c2426e45ca8f7bb46",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "remediate",
+    "item_id": "00199912-v",
+    "lemmas": [
+      "rectify",
+      "remediate",
+      "remedy",
+      "repair",
+      "amend"
+    ],
+    "gloss": "set straight or right; \"remedy these deficiencies\"; \"rectify the inequities in salaries\"; \"repair an oversight\"",
+    "source_record_sha256": "b63c7207204859b4d3a7271e3a0f171f72da0f072da58813442a146c1495c6f8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "tenet",
+    "item_id": "06790042-n",
+    "lemmas": [
+      "dogma",
+      "tenet"
+    ],
+    "gloss": "a religious doctrine that is proclaimed as true without proof",
+    "source_record_sha256": "1efcb953fe919f466b123d20e92b1d73768fa1beee1608393767de6fd6778741",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "typology",
+    "item_id": "01013971-n",
+    "lemmas": [
+      "typology"
+    ],
+    "gloss": "classification according to general type",
+    "source_record_sha256": "673687eaccb6ad37771d0b2983855eb28bf87f431c55acc23ae34e3a01b886c8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "unequivocal",
+    "item_id": "00896555-a",
+    "lemmas": [
+      "unequivocal",
+      "univocal",
+      "unambiguous"
+    ],
+    "gloss": "admitting of no doubt or misunderstanding; having only one meaning or interpretation and leading to only one conclusion; \"unequivocal evidence\"; \"took an unequivocal position\"; \"an unequivocal success\"; \"an unequivocal promise\"; \"an unequivocal (or univocal) statement\"",
+    "source_record_sha256": "76c5e836712138a8973fccaeb84afc5ffcd5bef2d53ccca346e5f7f6c8e62f18",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

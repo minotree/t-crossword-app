@@ -1,0 +1,30 @@
+{
+  "checked_date": "2026-10-26",
+  "status": "editorially-reviewed-release-pending",
+  "review_method": "Code checks followed by direct agent review of all 50 rows. Technical and legal definitions checked separately; no unresolved linguistic issue required local LLM assistance.",
+  "changes": {
+    "aversion": {
+      "reason": "rather than의 태도 대조를 단순 정도 비교 대신 명확하게 번역",
+      "fields": { "예문해석": "그 면담들은 다른 부서 동료들과 일하기를 꺼리는 태도가 아니라 예측하기 어려운 일정에 대한 거부감을 드러낸다." }
+    },
+    "canonical": {
+      "reason": "canonic은 같은 단어의 변이형이므로 별도 동의어 학습 항목에서 제외",
+      "fields": { "동의어": "" }
+    },
+    "dissident": {
+      "reason": "정부 방식에 대한 이의와 모든 정책 목표에 대한 반대를 구분하여 해석",
+      "fields": { "예문해석": "그 서술은 정부의 방식에 이의를 제기한 한 반대자를 따라간다. 그의 반대가 공식 성명의 모든 목표를 향한 것은 아니었다." }
+    },
+    "narrative": {
+      "reason": "맥락이 없는 the decisions를 위원회의 결정으로 명확하게 하고 해석을 자연스럽게 맞춤",
+      "fields": {
+        "예문": "The narrative follows the committee's decisions while showing how participants understood the same events differently at the time.",
+        "예문해석": "그 이야기는 위원회의 결정 과정을 따라가면서 당시 참가자들이 같은 사건을 서로 다르게 이해한 모습을 보여 준다."
+      }
+    },
+    "sequential": {
+      "reason": "단계를 사용한다는 부자연스러운 표현을 줄이고 단계 순서와 정보 제공 조건을 보존",
+      "fields": { "예문해석": "그 절차는 순차적 단계로 이루어지며, 각 단계는 다음 단계가 시작되기 전에 확보해야 할 정보를 제공한다." }
+    }
+  }
+}

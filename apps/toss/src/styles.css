@@ -13,6 +13,8 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .bottom-safe-area { flex-shrink: 0; height: var(--toss-safe-area-bottom, env(safe-area-inset-bottom, 0px)); }
 .app-heading { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; }
 .app-heading h1 { font-size: 19px; letter-spacing: -.5px; }
+.quiz-active .app-heading { padding-block: 6px; }
+.quiz-active .bottom-navigation { padding-top: 6px; }
 .app-heading > span, .secondary { color: #6b7684; font-size: 13px; line-height: 1.6; }
 .wallet-heading { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; font-size: 12px; color: #6b7684; }
 .wallet-heading strong { color: #8b4c00; padding: 6px 10px; background: #fff8df; border-radius: 16px; white-space: nowrap; }
@@ -48,19 +50,21 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .bottom-navigation > button:not(:disabled) { background: transparent; color: #6b7684; }
 .bottom-navigation > button[aria-current="page"] { color: #1b64da; }
 .navigation-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; white-space: nowrap; }
-.quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 12px 12px; }
-.quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; margin-bottom: 8px; }
+.quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 12px 6px; }
+.quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; margin-bottom: 4px; }
 .quiz-summary-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .quiz-summary { flex-wrap: wrap; }
 .quiz-learning-progress { margin-right: auto; font-size: 12px; font-weight: 700; color: #3182f6; }
 .quiz-summary-actions strong { color: #3182f6; font-size: 12px; white-space: nowrap; }
 .quiz-summary-actions > button { min-width: 0; min-height: 30px; height: 30px; padding: 0 8px; font-size: 11px; white-space: nowrap; }
-.quiz-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); flex-shrink: 0; gap: 8px; padding: 4px; margin-bottom: 8px; border: 1px solid #e5e8eb; border-radius: 12px; }
+.quiz-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); flex-shrink: 0; gap: 8px; padding: 4px; margin-bottom: 4px; border: 1px solid #e5e8eb; border-radius: 12px; }
 .quiz-controls > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; min-width: 0; }
+.quiz-controls > div:first-child { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .quiz-controls button { min-width: 0; min-height: 30px; height: 30px; padding: 0 3px; font-size: 11px; white-space: nowrap; }
 .completion-reward-guide { flex: 1; min-width: 0; color: #1b64da; font-size: 11px; line-height: 1.6; }
 .completion-reward-guide > span { color: #6b7684; }
-.puzzle-layout { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; width: 100%; }
+.puzzle-layout { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; width: 100%; }
+.puzzle-layout > .all-hints-button { flex-shrink: 0; }
 .board-area { position: relative; min-width: 0; }
 .board { display: grid; gap: 1px; padding: 4px; background: #d1d6db; border-radius: 8px; width: 100%; aspect-ratio: 1; margin: auto; }
 .cell { background: #fff; position: relative; display: flex; justify-content: center; align-items: center; aspect-ratio: 1; min-width: 0; min-height: 0; overflow: hidden; font-size: clamp(11px, 2.7vw, 18px); font-weight: 700; }

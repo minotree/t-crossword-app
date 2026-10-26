@@ -4,7 +4,7 @@ import type { WordItem, CrosswordCell, CrosswordWord, CrosswordPuzzle, Difficult
 
 type Direction = CrosswordWord['orientation'];
 const difficultyRank: Record<DifficultyLevel, number> = {
-  beginner: 0, intermediate: 1, advanced: 2,
+  beginner: 0, intermediate: 1, advanced: 2, special: 3,
 };
 interface PlacementCandidate {
   row: number;
@@ -60,9 +60,11 @@ function availableWords(vocabList: WordItem[], level: DifficultyLevel, gridSize:
 }
 
 /** Shared by device generation and server registration; completed IDs are local learning preferences. */
-export function vocabularyForProgress(vocabulary: WordItem[], completedWordIds: readonly string[]): WordItem[] {
+export function vocabularyForProgress(vocabulary: WordItem[], completedWordIds: readonly string[], mistakeWordIds: readonly string[] = [], dismissedMistakeWordIds: readonly string[] = []): WordItem[] {
   const completed = new Set(completedWordIds);
-  return vocabulary.map((word) => ({ ...word, isQuizUsed: completed.has(word.id) || word.isQuizUsed }));
+  const mistakes = new Set(mistakeWordIds);
+  const dismissed = new Set(dismissedMistakeWordIds);
+  return vocabulary.map((word) => ({ ...word, isQuizUsed: mistakes.has(word.id) && !dismissed.has(word.id) ? false : completed.has(word.id) || word.isQuizUsed }));
 }
 
 export interface CrosswordPlacement {

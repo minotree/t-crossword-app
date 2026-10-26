@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Button } from '@toss/tds-mobile';
 import type { defaultVocabList } from '@t-crossword/core';
 
-const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급' };
+const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 
 // Keep the existing cards out of urgent search-input and wallet updates.
 export const WordList = memo(function WordList({ words, visibleCount, completed, bookmarked, mistakes, onBookmark, onDismiss }: {

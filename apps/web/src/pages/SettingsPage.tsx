@@ -1,5 +1,5 @@
 import { useState, useSyncExternalStore } from 'react';
-import { defaultVocabList } from '@t-crossword/core';
+import { defaultVocabList, wordnetLicense } from '@t-crossword/core';
 import { wordProgressStore } from '../adapters/wordProgress.js';
 import { version } from '../../package.json';
 
@@ -43,12 +43,21 @@ export function SettingsPage() {
       <section aria-labelledby="vocabulary-guide" className="rounded-2xl border border-slate-200 bg-white p-5">
         <h2 id="vocabulary-guide" className="mb-3 text-lg font-bold">단어장 구성 안내</h2>
         <p className="mb-3 inline-block rounded-lg bg-blue-50 px-3 py-1 text-sm font-bold text-blue-700">총 {defaultVocabList.length.toLocaleString('ko-KR')}개 단어</p>
-        <p className="text-sm leading-relaxed text-slate-600">2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다.</p>
+        <p className="text-sm leading-relaxed text-slate-600">초급·중급·고급 3,339개는 2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다. 특급에는 학술·심화 영어 어휘 500개를 추가했습니다.</p>
         <dl className="mt-4 divide-y divide-slate-200 border-t border-slate-200 text-sm leading-relaxed">
           <div className="grid grid-cols-[3rem_minmax(0,1fr)] gap-3 py-4"><dt className="font-bold text-blue-700">초급</dt><dd className="text-slate-600">초등학교 권장 영어 어휘</dd></div>
           <div className="grid grid-cols-[3rem_minmax(0,1fr)] gap-3 py-4"><dt className="font-bold text-blue-700">중급</dt><dd className="text-slate-600">중학교·고등학교 영어 공통과목 권장 어휘</dd></div>
-          <div className="grid grid-cols-[3rem_minmax(0,1fr)] gap-3 pt-4"><dt className="font-bold text-blue-700">고급</dt><dd className="text-slate-600">고등학교 영어 외 과목 권장 어휘 및 9급 공무원 시험 영어 어휘</dd></div>
+          <div className="grid grid-cols-[3rem_minmax(0,1fr)] gap-3 py-4"><dt className="font-bold text-blue-700">고급</dt><dd className="text-slate-600">고등학교 영어 외 과목 권장 어휘 및 9급 공무원 시험 영어 어휘</dd></div>
+          <div className="grid grid-cols-[3rem_minmax(0,1fr)] gap-3 pt-4"><dt className="font-bold text-blue-700">특급</dt><dd className="text-slate-600">학술·심화 영어 어휘 500개. 공식 토플 어휘 목록이나 출제 빈도 순위는 아닙니다.</dd></div>
         </dl>
+        <p className="mt-4 text-sm leading-relaxed text-slate-600">퀴즈에는 선택한 난이도와 그 아래 난이도의 미완료 단어가 함께 출제됩니다. 학습완료한 단어도 오답노트에 표시 중이면 다시 출제됩니다. 오답노트에서 삭제하면 학습완료 단어는 출제 대상에서 제외됩니다. 학습완료 수는 선택한 난이도의 단어만 집계합니다.</p>
+        <p className="mt-3 text-sm leading-relaxed text-slate-600">특급의 뜻·예문·해석은 AI를 활용해 작성하고 편집 검수했습니다. 의미 검토에는 WordNet 3.0을 참고했습니다.</p>
+      </section>
+      <section aria-labelledby="content-notices" className="rounded-2xl border border-slate-200 bg-white p-5">
+        <h2 id="content-notices" className="mb-3 text-lg font-bold">콘텐츠 이용 고지</h2>
+        <details><summary className="cursor-pointer py-2 text-sm font-medium">WordNet 3.0 이용 조건</summary>
+          <pre lang="en" className="mt-3 whitespace-pre-wrap break-words text-xs leading-relaxed text-slate-600">{wordnetLicense}</pre>
+        </details>
       </section>
     </main>
   </div>;

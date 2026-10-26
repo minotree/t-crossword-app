@@ -1,0 +1,35 @@
+{
+  "batch": "007",
+  "items": [
+    {
+      "word": "efficacious",
+      "reason": "002 efficacy와 구별되는 별도 의미·학습 가치를 이번 범위에서 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "incompatible",
+      "reason": "기존 compatible의 직접적인 부정형과 구별되는 별도 학습 가치를 이번 구성에서 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "adversarial",
+      "reason": "확인한 Princeton WordNet 3.0의 index 및 data 파일에서 표제어 항목을 찾지 못해 이 자료로 개별 의미 ID를 기록할 수 없었음. 영어 단어가 존재하지 않는다는 판정은 아님",
+      "category": "원자료 항목 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ],
+  "rights_or_meaning_unconfirmed_items": [
+    {
+      "word": "adversarial",
+      "reason": "확인한 Princeton WordNet 3.0의 index 및 data 파일에서 표제어 항목을 찾지 못해 이 자료로 개별 의미 ID를 기록할 수 없었음. 영어 단어가 존재하지 않는다는 판정은 아님",
+      "category": "원자료 항목 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ]
+}

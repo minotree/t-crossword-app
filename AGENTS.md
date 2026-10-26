@@ -104,6 +104,10 @@ scripts/
 
 ## 5. Shared Business Logic
 
+- 학습완료한 단어도 현재 오답노트에 표시 중이면 다시 출제 대상으로 삼는다. 기존 오답 이력만 있고 목록에서 숨긴 단어는 이 예외에 포함하지 않는다. 학습완료 기록·집계는 유지하며 난이도·격자 크기 제약을 우회하지 않는다. 이 판정은 공통 `vocabularyForProgress`에서 처리하고 각 앱과 Worker는 오답·숨김 ID를 전달한다.
+
+- 어휘·퀴즈는 초급·중급·고급·특급(`special`) 4단계다. 선택 수준 이하의 미완료 어휘를 누적 출제하되 학습완료 집계는 선택 수준만 대상으로 한다. 특급 500개는 학술·심화 어휘이며 공식 토플 목록·출제 빈도 인증으로 표시하지 않는다. 그림책은 기존 3단계로 구분한다. 단어를 추가할 때 기존 CSV 행 순서·ID를 보존하고 WordNet 등 필수 고지의 앱 내 열람·배포 포함을 확인한다. 특급 제작·검수 기록은 `content/special-vocabulary/README.md`를 따른다.
+
 - 웹/PWA·토스·하이브리드 앱의 문제 출제는 `packages/core` 공통 엔진을 기기에서 실행한다. 플랫폼별로 출제 규칙을 복제하지 않는다. 힌트 제거 후 정답 확인·완료 기록도 기기에서 처리한다. 기존 서버의 배치 검증·힌트·보상은 구버전 호환 이력이며 `docs/decisions/20261019-device-puzzle-generation.md`를 따른다.
 
 - Keep business rules as pure TypeScript functions/classes where practical.

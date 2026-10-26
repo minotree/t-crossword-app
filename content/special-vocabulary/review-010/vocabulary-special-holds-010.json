@@ -1,0 +1,47 @@
+{
+  "batch": "010",
+  "items": [
+    {
+      "word": "autonomous",
+      "reason": "001 autonomy와 구별되는 별도 의미·학습 가치를 이번 구성에서 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "liminal",
+      "reason": "확인한 WordNet 3.0 index와 data에서 표제어 항목을 찾지 못해 개별 의미 ID를 제시하지 못함. 영어에 단어가 없다는 판정은 아님",
+      "category": "원자료 항목 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    },
+    {
+      "word": "desist",
+      "reason": "확인한 원자료에서는 섭취를 삼가는 의미만 제시되어 이번에 고려한 일반적 행동 중단 의미를 해당 자료로 확인하지 못함",
+      "category": "선택 의미 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "checked_other_sense_id": "01196037-v",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ],
+  "rights_or_meaning_unconfirmed_items": [
+    {
+      "word": "liminal",
+      "reason": "확인한 WordNet 3.0 index와 data에서 표제어 항목을 찾지 못해 개별 의미 ID를 제시하지 못함. 영어에 단어가 없다는 판정은 아님",
+      "category": "원자료 항목 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    },
+    {
+      "word": "desist",
+      "reason": "확인한 원자료에서는 섭취를 삼가는 의미만 제시되어 이번에 고려한 일반적 행동 중단 의미를 해당 자료로 확인하지 못함",
+      "category": "선택 의미 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "checked_other_sense_id": "01196037-v",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ]
+}

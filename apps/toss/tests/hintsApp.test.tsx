@@ -41,6 +41,23 @@ async function type(input: HTMLInputElement, value: string) {
   });
 }
 
+it('selects special difficulty, counts only its words, and exposes the content notice', async () => {
+  const { puzzle } = fixture();
+  const special = defaultVocabList.find(word => word.level === 'special');
+  if (!special) throw new Error('Special fixture missing');
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify({ completedWordIds: [special.id], bookmarkedWordIds: [], hintUsedWordIds: [] }));
+  const generatePuzzle = vi.fn().mockImplementation(async (level, size) => ({ ...puzzle, level, size }));
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
+  await click('퀴즈 시작');
+  await click('특급');
+  expect(generatePuzzle.mock.calls.at(-1)?.slice(0, 2)).toEqual(['special', 10]);
+  expect(container.querySelector('.quiz-learning-progress')?.textContent).toBe('학습완료 1 / 500');
+  await click('설정');
+  expect(container.textContent).toContain('3,839');
+  expect(container.textContent).toContain('학술·심화 영어 어휘 500개');
+  expect(container.querySelector('details pre')?.textContent).toContain('WordNet 3.0 Copyright 2006 by Princeton University.');
+});
+
 it('searches and filters a large word bank while preserving notebook and bookmark changes', async () => {
   const { word } = fixture();
   localStorage.setItem(PROGRESS_KEY, JSON.stringify({
@@ -107,15 +124,15 @@ it('keeps the PWA welcome flow and changes puzzle settings inside the quiz witho
   const home = container.querySelectorAll('nav button')[0] as HTMLButtonElement;
   await act(async () => home.click());
   await click('퀴즈 시작');
-  expect(generatePuzzle).toHaveBeenCalledExactlyOnceWith('beginner', 10, []);
+  expect(generatePuzzle).toHaveBeenCalledExactlyOnceWith('beginner', 10, [], [], []);
   expect(container.querySelector('.quiz-heading')).toBeNull();
   expect(container.querySelector('.quiz-summary [aria-label="전체 단어 진행률"]')?.textContent).toBe(`0 / ${puzzle.words.length}`);
   expect(container.querySelector('.quiz-summary')?.textContent).toContain('새 퍼즐');
   expect(container.querySelector('[aria-label="퍼즐 설정"]')).not.toBeNull();
   await click('중급');
-  expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 10, []);
+  expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 10, [], [], []);
   await click('8×8');
-  expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 8, []);
+  expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 8, [], [], []);
   await act(async () => home.click());
   await click('퀴즈 시작');
   expect(generatePuzzle).toHaveBeenCalledTimes(3);

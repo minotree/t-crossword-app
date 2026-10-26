@@ -1,0 +1,30 @@
+{
+  "batch": "006",
+  "items": [
+    {
+      "word": "viability",
+      "reason": "기존 viable의 성질 명사로서 이번 범위에서 별도의 의미·학습 가치를 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "cessation",
+      "reason": "기존 cease의 중단 행위를 명사로 바꾼 것과 구별되는 별도 의미를 이번 범위에서 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "discernible",
+      "reason": "001 discern과 구별되는 별도 의미·학습 가치를 이번 구성에서 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "erroneous",
+      "reason": "기존 error와 구별되는 별도 의미·학습 가치를 이번 구성에서 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    }
+  ],
+  "rights_or_meaning_unconfirmed_items": []
+}

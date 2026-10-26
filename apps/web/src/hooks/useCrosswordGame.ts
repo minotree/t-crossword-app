@@ -40,7 +40,8 @@ export function useCrosswordGame({
   const [isCompletionModalOpen, setIsCompletionModalOpen] = useState(false);
   const startNewGame = useCallback(
     (newLevel: DifficultyLevel = level, newSize: GridSize = gridSize) => {
-      const words = vocabularyForProgress(wordBank.getAllWords(), wordProgressStore.getSnapshot().completedWordIds);
+      const latest = wordProgressStore.getSnapshot();
+      const words = vocabularyForProgress(wordBank.getAllWords(), latest.completedWordIds, latest.hintUsedWordIds, latest.dismissedMistakeWordIds);
       const newPuzzle = generateCrossword(words, newLevel, newSize);
       setPuzzle(newPuzzle);
       setLevel(newLevel);

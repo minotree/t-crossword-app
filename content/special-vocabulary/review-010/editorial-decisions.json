@@ -1,0 +1,14 @@
+{
+  "checked_date": "2026-10-26",
+  "status": "editorially-reviewed-release-pending",
+  "review_method": "50개 전체의 뜻·품사·동의어·영문·해석을 직접 읽고 WordNet 선택 의미와 대조. 추가 모델 의견이 필요한 미해결 항목이 없어 로컬 LLM 미사용.",
+  "changes": {
+    "atypical": {"reason": "동일 의미의 변이형 untypical을 학습용 동의어에서 제외한다.", "fields": {"동의어": ""}},
+    "bifurcate": {"reason": "둘의 갈래라는 어색한 표현을 자연스럽게 수정한다.", "fields": {"뜻": "두 갈래로 나뉘다"}},
+    "conciliatory": {"reason": "동일 의미의 변이형 conciliative를 학습용 동의어에서 제외한다.", "fields": {"동의어": ""}},
+    "conclusive": {"reason": "transfer date의 이전 날짜가 앞선 날짜로 읽히지 않도록 이관 날짜로 명확화한다.", "fields": {"예문해석": "그 기록들은 이관 날짜를 확정해 주었지만, 이관의 동기에는 추가 해석의 여지가 남아 있었다."}},
+    "fortuitous": {"reason": "우연히 이루어진 유리한 발견이라는 직역을 자연스럽게 다듬되 선택 의미의 행운을 유지한다.", "fields": {"예문해석": "연구자들은 한 기록 보관소에서 뜻밖의 행운으로 자료를 발견해, 조사 중 찾으리라 예상하지 못했던 증거를 얻었다."}},
+    "indicative": {"reason": "동일 의미의 변이형 indicatory를 학습용 동의어에서 제외한다.", "fields": {"동의어": ""}},
+    "replete": {"reason": "무엇으로 깊이 가득이라는 어색한 직역을 고친다.", "fields": {"뜻": "어떤 것으로 가득 찬"}}
+  }
+}

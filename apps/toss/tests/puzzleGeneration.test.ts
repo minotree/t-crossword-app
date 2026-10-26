@@ -2,6 +2,15 @@ import { afterEach, expect, it, vi } from 'vitest';
 import { defaultVocabList, generateCrossword } from '@t-crossword/core';
 import { generateDevicePuzzle } from '../src/adapters/puzzleGeneration.js';
 
+it('passes visible notebook exceptions through the main-thread generation path', async () => {
+  vi.stubGlobal('Worker', undefined);
+  const word = defaultVocabList.find(word => word.level === 'beginner' && word.word.length <= 8);
+  if (!word) throw new Error('Missing fixture');
+  const completed = defaultVocabList.map(word => word.id);
+  expect((await generateDevicePuzzle('beginner', 8, completed, [word.id])).words.map(word => word.id)).toEqual([word.id]);
+  expect((await generateDevicePuzzle('beginner', 8, completed, [word.id], [word.id])).words).toEqual([]);
+});
+
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
 
 function workerFixture() {
@@ -22,9 +31,9 @@ it('runs the common engine locally without Worker and honors completed words', a
 
 it('sends generation preferences to a module Worker and releases it after a valid result', async () => {
   const { worker, constructor } = workerFixture();
-  const pending = generateDevicePuzzle('beginner', 8, ['completed']);
+  const pending = generateDevicePuzzle('beginner', 8, ['completed'], ['mistake'], ['hidden']);
   expect(constructor.mock.calls[0][1]).toEqual({ type: 'module' });
-  expect(worker.postMessage).toHaveBeenCalledWith({ level: 'beginner', size: 8, completedWordIds: ['completed'] });
+  expect(worker.postMessage).toHaveBeenCalledWith({ level: 'beginner', size: 8, completedWordIds: ['completed'], mistakeWordIds: ['mistake'], dismissedMistakeWordIds: ['hidden'] });
   const puzzle = generateCrossword([], 'beginner', 8);
   worker.onmessage?.({ data: puzzle });
   expect(await pending).toEqual(puzzle);

@@ -1,5 +1,68 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## 토스 보드 스크롤 철회·퀴즈 여백 축소 (2026-10-26)
+
+- 사용자 요청으로 직전 보드 내부 스크롤·최소 높이·overlay 표시 영역 변경을 철회했다. 보드 전체와 아래 `문제 전체 보기`가 본문에 함께 놓이는 구조를 유지한다.
+- 퀴즈에서만 앱 제목 상하 padding 12→6px, 하단 메뉴 위 padding 12→6px. 퀴즈 본문 아래 12→6px, 난이도/진행 아래 간격 각각 8→4px, 보드-버튼 간격 8→6px로 조정했다. 직전 스크롤 도입 전 기준 약 34 CSS px를 확보하며 보드 너비·버튼 높이·광고·Safe Area는 유지했다. 극히 낮은 화면의 본문 스크롤은 유지한다.
+- 수정: 토스 `App.tsx`, `QuizPanel.tsx`, `styles.css`, `quizPanel.test.tsx`. `pnpm.cmd --filter @t-crossword/toss test` 82개, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build` 및 `git diff --check` 통과. 실제 토스 기기 잘림 해소는 미검증이며 `.ait` 생성·업로드는 하지 않았다. 아래 내부 스크롤 항목은 철회한 구현 이력이다.
+
+## 토스 문제 전체 보기 버튼 잘림 대응 (2026-10-26)
+
+- 사용자 이전 배포본 캡처에서 `문제 전체 보기`가 하단 메뉴 경계에 일부 가려짐을 확인했다. 너비 기준 정사각형 보드와 버튼 전체를 스크롤 본문에 배치하던 구조를 바꿔, 토스 소유 `QuizPanel`의 보드만 별도 스크롤하고 버튼 공간을 확보한다. 보드 가로 너비는 유지하고 메뉴·광고·Safe Area 치수는 변경하지 않았다. 매우 낮은 화면은 최소 보드 조작 공간 때문에 본문 스크롤도 허용한다.
+- 문제 목록을 열 때 보드 스크롤을 맨 위로 돌리고 표시 영역에 맞춰 overlay 높이를 제한한다. 가로/세로 제목·진행은 고정하고 2열 목록만 스크롤하며 닫기·Escape·뒤로가기 흐름은 유지한다.
+- 수정: `apps/toss/src/components/QuizPanel.tsx`, `apps/toss/src/styles.css`, `apps/toss/tests/quizPanel.test.tsx`. `pnpm.cmd --filter @t-crossword/toss test` 82개, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build` 및 `git diff --check` 통과. 빌드에 포함된 타입 검사도 통과. 기존 큰 청크 경고는 유지된다.
+- DOM 회귀 검사에서 버튼이 보드 스크롤 밖에 있는지·overlay 열기 시 스크롤 위치와 상태 전환을 확인했다. 실제 브라우저 치수·토스 기기에서 잘림 해소·광고 유무·가로 화면 확인은 미실행이다. `.ait` 생성·업로드는 사용자 담당이며 실행하지 않았다.
+
+## 학습완료·오답노트 단어 재출제 (2026-10-26)
+
+- 공통 `vocabularyForProgress`에 오답·숨김 ID를 선택 인자로 추가했다. 학습완료했더라도 현재 오답노트에 표시 중이면 `isQuizUsed`를 출제 가능 상태로 적용한다. 저장된 완료 기록·집계·원본 객체는 유지한다. 오답노트에서 숨긴 완료 단어는 기존처럼 제외하고 미완료 단어는 숨김 여부와 무관하게 출제한다. 난이도·격자 크기 제한도 유지한다.
+- PWA `useCrosswordGame`, 토스 생성 adapter·Worker, 모바일 생성 요청·Worker에 최신 오답·숨김 기록을 전달했다. 기존 두 인자 호출과 구버전 서버 경로의 기본 동작은 유지한다. 세 앱 설정 안내도 수정했다. 오답 단어를 다시 맞혀도 목록에서 삭제하기 전까지는 재출제될 수 있다.
+- `pnpm.cmd typecheck`, `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/toss lint` 통과. `pnpm.cmd --filter @t-crossword/core test` 60개, `pnpm.cmd --filter @t-crossword/toss test` 81개, `pnpm.cmd --filter @t-crossword/mobile test` 29개 통과. `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests` 52개 통과. 신규 검사는 완료+오답 재출제·숨김 제외·기록 보존·난이도/격자 제한·토스 Worker 전달 및 Worker 미지원 경로를 확인했다. 토스 기존 호출 인자 기대값은 추가된 오답·숨김 배열에 맞춰 수정 후 통과했다.
+- `pnpm.cmd --filter @t-crossword/web build`, `pnpm.cmd --filter @t-crossword/toss build`, `pnpm.cmd --filter @t-crossword/mobile build`, `git diff --check` 통과. 큰 JS 청크 경고는 유지된다. 실제 브라우저·토스·Android/iOS 확인은 미실행. `.ait`·APK·Capacitor sync·배포는 실행하지 않았다.
+
+## 특급 500개 앱 소스 반영 (2026-10-26)
+
+- 사용자 승인으로 001~010 검수본을 CSV 뒤에 추가하고 변환했다. 총 3,839개(초급 775·중급 1,199·고급 1,365·특급 500). 기존 3,339개 JSON 객체 전체 일치와 ID/철자/난이도 해시 보존 확인. 원본·검수 자료는 보존하고 운영 배포는 하지 않았다.
+- 공통 `DifficultyLevel`·출제 순위·파서·단어장 서비스·CSV 변환기에 `special` 추가. 하위 수준 누적 출제 유지. PWA·토스·모바일에 특급 선택·단어장 표시·선택 수준 집계를 반영하고, 토스 난이도 버튼을 4열로 배치했다. 그림책 타입과 선택은 3단계를 유지한다.
+- 설정에 특급 학술·심화 500개, AI 작성·편집검수, 누적 출제/집계 설명 및 WordNet 전문을 추가했다. 공식 토플 목록·빈도 순위라고 안내하지 않는다. [WordNet 공식 이용 조건](https://wordnet.princeton.edu/license-and-commercial-use)을 재조회했고 고지 전체를 공통 순수 데이터로 보존했다. `python scripts/check-special-vocabulary-integration.py --builds`로 검수본/CSV/JSON 일치·기존 ID·개수·중복·고지 및 세 앱 일반 빌드의 고지 표지를 확인했다.
+- `pnpm.cmd typecheck`, `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/toss lint` 통과. `pnpm.cmd --filter @t-crossword/core test` 58개, `pnpm.cmd --filter @t-crossword/toss test` 80개, `pnpm.cmd --filter @t-crossword/mobile test` 29개 통과. `apps/web`에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests` 52개 통과. `pnpm.cmd --filter @t-crossword/toss-api test` 구버전 회귀 68개 통과·프로파일 1개 기본 건너뜀. 구버전 서버에 특급 API 지원을 추가하거나 배포하지 않았다.
+- 특급은 8/10/12 격자·하위 수준 완료 후 출제·전체 완료 시 빈 출제까지 검사했다. 최초 타입 검사에서 그림책 콜백의 확장된 타입 오류를 발견해 그림책 타입을 3단계로 제한했고 재검사 통과. 신규 웹 검사의 잘못된 CSS 선택자는 접근성 이름 선택자로 고쳐 재검사 통과.
+- `pnpm.cmd --filter @t-crossword/web build`, `pnpm.cmd --filter @t-crossword/toss build`, `pnpm.cmd --filter @t-crossword/mobile build` 통과. 큰 JS 청크 경고는 남아 있다. PWA shell 캐시는 새 빌드 해시로 생성됐다. 자동 UI 검사와 실제 브라우저·설치 업데이트·키보드·토스·Android/iOS 기기 검증은 구분하며 후자는 미실행.
+- 사람의 최종 영어·한국어 검수·외부 문구 유사성 전수검색·토플 빈도 검증은 미실행. 이번에는 `.ait`·APK·Capacitor sync·업로드·커밋·푸시를 실행하지 않았다.
+
+## 특급 010 ZIP 검수·후보 500개 수집 완료 (2026-10-26)
+
+- ZIP 9개 원본 보존. 50개는 운영 3,339개·이전 후보 450개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 및 LICENSE 일치 확인.
+- 전체 직접 검수 후 atypical·bifurcate·conciliatory·conclusive·fortuitous·indicative·replete의 7필드 보완. 미해결 추가 모델 판단 항목이 없어 로컬 LLM 미사용.
+- `python scripts/review-special-vocabulary-batch.py --batch 010 --input-dir artifacts/vocabulary-review-010/input` 통과. 파일 왕복·WordNet gloss 8토큰 비교·공통 원인 구성 계산·누적 후보 중복/필수값·구문·공백·diff 검사 통과.
+- 후보 총 500개로 수집 목표 달성. 사람 최종 검수·외부 문구 전수검증·토플 빈도·앱 고지 연결은 미실행. 운영 미병합. 앱 변경·빌드·토스 번들·APK·동기화 없음.
+
+## 특급 009 ZIP 검수 (2026-10-26)
+
+- 중복 첨부는 한 번만 처리하고 9개 원본을 보존했다. 후보 50개는 운영 3,339개·이전 후보 400개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 및 LICENSE 일치 확인.
+- 전체 직접 검수 후 anachronism·antithetical·expository·homogenize·impersonal의 5필드 보완. 추가 모델 판단이 필요한 미해결 항목이 없어 로컬 LLM 미사용.
+- `python scripts/review-special-vocabulary-batch.py --batch 009 --input-dir artifacts/vocabulary-review-009/input` 통과. 파일 왕복·WordNet gloss 8토큰 비교·구문·공백·diff 검사 통과. 사람 최종 검수·외부 문구 전수검증·토플 빈도·앱 고지 연결은 미실행.
+- 누적 후보 450개·500개 목표까지 50개 남음. 새 프롬프트·첨부 ZIP·앱 변경·운영 병합·빌드·토스 번들·APK·동기화 없음.
+
+## 특급 008 ZIP 검수 (2026-10-26)
+
+- 9개 원본 보존. 후보 50개는 기존 3,339개·이전 후보 350개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 확인 및 LICENSE 일치.
+- 50개 직접 검수 후 axiomatic·cognate·denounce·ineffable·exonerate의 8필드 보완. exonerate는 혐의 해소와 무죄 판결을 구분해 법률 근거를 대조했다. 추가 미해결 언어 항목이 없어 로컬 LLM 미사용.
+- `python scripts/review-special-vocabulary-batch.py --batch 008 --input-dir artifacts/vocabulary-review-008/input` 및 파일 왕복·WordNet gloss 8토큰 비교·정확한 유리수 계산·구문·공백·diff 검사 통과. 외부 문구 전수검증·사람 최종 검수·토플 빈도·앱 고지 연결은 미실행이다.
+- 누적 후보 400개·추가 목표 100개. 새 요청 프롬프트·첨부 ZIP·앱 코드 변경·운영 병합·빌드·토스 번들·APK·동기화 없음.
+
+## 특급 007 ZIP 검수 (2026-10-26)
+
+- 입력 9개 원본 보존. 후보 50개는 기존 3,339개·이전 후보 300개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 대조 및 LICENSE 일치. 50개 직접 검수 후 aversion·canonical·dissident·narrative·sequential의 6필드 보완. 로컬 LLM 추가 호출 없음.
+- `python scripts/review-special-vocabulary-batch.py --batch 007 --input-dir artifacts/vocabulary-review-007/input` 통과. 보정 파일 왕복·WordNet gloss 8토큰 비교·분수 유리수 계산·구문·공백·diff 검사 통과. 모수·표본 평균·소송 반대 청구·관할권은 근거 자료를 대조했다. 사람의 최종 검수·외부 전체 문구 유사성·토플 빈도·앱 고지 연결은 미실행이다.
+- 후보 누적 350개·추가 목표 150개. 새 요청 프롬프트·첨부 ZIP 없음. 운영 병합·앱 변경·빌드·토스 번들·APK·동기화 미실행.
+
+## 특급 006 ZIP 검수 (2026-10-26)
+
+- 입력 ZIP 9개 원본 보존. 후보 50개는 기존 3,339개·이전 후보 250개와 중복 없음. CSV/XLSX 일치, WordNet 의미·품사·sense key·원문 행 해시 50개 확인, 공식 LICENSE 일치. 50개 직접 검수 후 apathy·intermediary·specious·verifiable의 5필드를 보완했다. 로컬 LLM 추가 호출 없음.
+- `python scripts/review-special-vocabulary-batch.py --batch 006 --input-dir artifacts/vocabulary-review-006/input` 통과. 보정 CSV/XLSX 왕복·WordNet gloss 8토큰 비교·유리수 계산·구문·공백·diff 검사 통과. 명목 임금·역수·순서형 개념은 공식 자료를 대조했다. 사람의 최종 검수·인터넷 전체 유사성·토플 빈도·앱 고지 연결은 미실행이다.
+- 후보 누적 300개·추가 목표 200개. 새 요청 프롬프트·첨부 ZIP 없음. 앱 변경·운영 병합·빌드·토스 번들·APK·동기화 미실행.
+
 ## 즐겨찾기 전용 삭제 버튼 제거 (2026-10-26)
 
 - 최신 사용자 결정에 따라 PWA·토스·모바일에서 즐겨찾기 전용 삭제 버튼을 제거했다. 별 토글로 등록·해제하며 오답노트 삭제 버튼과 저장 기록은 유지한다. 토스의 불필요해진 `bookmarksOnly` prop도 제거했다.

@@ -14,7 +14,7 @@ export interface ReadingPage {
 
 export interface ReadingBook {
   id: string;
-  level: DifficultyLevel;
+  level: Exclude<DifficultyLevel, 'special'>;
   genre: ReadingGenre;
   subgenre?: string;
   title: string;

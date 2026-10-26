@@ -1,0 +1,10 @@
+{
+  "batches": 10,
+  "candidate_rows": 500,
+  "unique_candidates": 500,
+  "operational_words": 3339,
+  "duplicates": [],
+  "operational_overlap": [],
+  "required_fields": "passed",
+  "scope": "spelling and required values; not global editorial or rights clearance"
+}

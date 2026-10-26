@@ -39,6 +39,19 @@ it('opens two direction clues and selects the requested answer', async () => {
   expect(onSelect).toHaveBeenCalledExactlyOnceWith(down);
   expect(container.querySelector('dialog')).toBeNull();
 });
+
+it('keeps the full-width board and list action together without an internal board scroller', async () => {
+  await render();
+  const board = container.querySelector('.board-area');
+  const action = container.querySelector('.all-hints-button');
+  if (!board || !action) throw new Error('Missing board or action');
+  expect(container.querySelector('.board-scroll')).toBeNull();
+  expect(board.parentElement).toBe(action.parentElement);
+  await click('.all-hints-button');
+  expect(board.querySelector('.clues')).not.toBeNull();
+  await click('.hint-overlay-heading button');
+  expect(board.querySelector('.clues')).toBeNull();
+});
 it.each([['across', down], ['down', across]] as const)('opens only the unsolved direction after %s is solved', async (solved, expected) => {
   await render([solved]); await click('.cell-number');
   expect(onSelect).toHaveBeenCalledExactlyOnceWith(expected);

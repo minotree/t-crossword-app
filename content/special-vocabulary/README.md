@@ -1,6 +1,6 @@
 # 특급 학술·심화 어휘 후보
 
-이 디렉터리는 운영 단어장과 분리된 검수 자료다. WordNet 존재 확인이나 LLM 검토는 토플 출제 빈도·공식 난이도 인증을 뜻하지 않는다.
+이 디렉터리는 원본·검수 기록을 보존한다. 2026-10-26 사용자 승인에 따라 001~010의 보정본 500개를 앱 소스 단어장에 반영했다(아직 출시하지 않음). WordNet 존재 확인이나 LLM 검토는 토플 출제 빈도·공식 난이도 인증을 뜻하지 않는다.
 
 ## 1차 50개
 
@@ -21,7 +21,7 @@ Excel용 `.xlsx`, BOM CSV, 다음 묶음 제외 목록은 `artifacts/vocabulary-
 
 ## 재현
 
-002~005 묶음은 각 `review-002/README.md`~`review-005/README.md`를 따른다. 후보 누적 250개이며 최신 로컬 검수용 제외 목록은 `artifacts/vocabulary-review-005/vocabulary-exclusions-for-next-batch.csv`의 3,589개다. 사용자는 같은 ChatGPT 웹 대화의 기존 프롬프트로 계속 수집하므로 005부터 새로운 수집 프롬프트·첨부 ZIP을 만들지 않는다. 후속 묶음 검사에는 다음 명령을 사용한다. provenance가 없는 입력은 자체 원자료 확인 기록과 구분해 처리한다.
+002~010 묶음은 각 `review-002/README.md`~`review-010/README.md`를 따른다. 후보 누적 500개로 수집 목표를 달성했으며 최신 로컬 검수용 제외 목록은 `artifacts/vocabulary-review-010/vocabulary-exclusions-for-next-batch.csv`의 3,839개다. 사용자는 같은 ChatGPT 웹 대화의 기존 프롬프트로 계속 수집하므로 005부터 새로운 수집 프롬프트·첨부 ZIP을 만들지 않았다. 후속 묶음 검사에는 다음 명령을 사용한다. provenance가 없는 입력은 자체 원자료 확인 기록과 구분해 처리한다.
 
 ```powershell
 python scripts/review-special-vocabulary-batch.py --batch 002 --input-dir D:/Download
@@ -47,6 +47,15 @@ python scripts/finalize-special-vocabulary-review.py
 
 편집검수 상태와 출시 상태를 구분한다. 현재 사람의 최종 편집 검수·외부 문구 유사성 전수검색·토플 빈도 검증은 미실행이다. 이 중 어떤 검토를 했고 하지 않았는지 기록하며 비침해를 보장하지 않는다.
 
-특급 지원을 구현할 때 기존 CSV 행 순서·ID를 유지하고 타입·변환기·출제 규칙·세 앱 난이도 UI와 검사 범위를 함께 변경한다. WordNet 전문 고지를 저장소뿐 아니라 배포 대상 앱의 열람 가능한 고지에도 포함시키고 패키지에 보존되었는지 확인한다. 현재 앱에는 후보를 반영하지 않았으므로 이 앱 내 고지 연결도 미실행이다.
+특급 500개는 기존 CSV 뒤에 추가했으며 앞선 3,339개 항목의 내용과 ID를 그대로 보존했다. 원본·보정 CSV는 이 디렉터리에 별도로 유지한다. 공통 타입·변환기·출제 순위와 세 앱의 퀴즈 선택·단어장·설정을 함께 반영했다. 누적 출제 규칙은 유지하고 특급의 학습완료 집계는 500개만 대상으로 한다. 그림책은 기존 3단계를 유지한다.
+
+WordNet 전문은 `packages/core/src/assets/wordnetLicense.ts`의 순수 문자열로 보존하고 세 앱 설정에서 열람할 수 있다. 일반 웹 빌드의 고지 포함 검사까지 수행했으며 `.ait`·APK 내부 확인과 실제 기기 확인은 아직 하지 않았다. 공식 이용 조건은 2026-10-26 병합 시점에 다시 조회했다. 과거 묶음 README의 ‘운영 미병합’은 각 묶음 검수 당시의 기록이다.
+
+```powershell
+node scripts/convert-vocab.mjs words_completed.csv
+python scripts/check-special-vocabulary-integration.py --builds
+```
+
+두 번째 명령은 세 앱 일반 빌드를 먼저 실행한 뒤 사용한다. 검수본 500개와 CSV/JSON 대응·기존 ID·중복·수준별 개수·고지 문자열 및 빌드 내 고지 표지를 검사하고 `artifacts/special-vocabulary-integration.json`에 결과를 저장한다. 전체 영어·한국어의 사람 최종 검수나 인터넷 전체 문구 검색을 대신하지 않는다.
 
 이 대화의 사용자 지시에 따라 토스 `.ait`·Android APK 생성 및 Capacitor 동기화는 별도 요청 전 실행하지 않는다.

@@ -3,7 +3,7 @@ import { IonButton } from '@ionic/react';
 import type { DifficultyLevel } from '@t-crossword/core';
 import books from '../data/picture-books.json';
 
-const levelNames: Record<DifficultyLevel, string> = { beginner: '초급', intermediate: '중급', advanced: '고급' };
+const levelNames: Record<Exclude<DifficultyLevel, 'special'>, string> = { beginner: '초급', intermediate: '중급', advanced: '고급' };
 type Book = (typeof books)[number];
 
 function ReadingPage({ page, number, count, onPrevious, onNext, onBackToList }: { page: Book['pages'][number]; number: number; count: number; onPrevious(): void; onNext(): void; onBackToList(): void }) {
@@ -33,7 +33,7 @@ function ReadingPage({ page, number, count, onPrevious, onNext, onBackToList }: 
 
 export interface PictureBooksNavigation { backToList(): boolean }
 export function PictureBooks({ ref }: { ref?: Ref<PictureBooksNavigation> }) {
-  const [level, setLevel] = useState<DifficultyLevel>('beginner');
+  const [level, setLevel] = useState<Exclude<DifficultyLevel, 'special'>>('beginner');
   const [selected, setSelected] = useState<Book | null>(null);
   const [pageIndex, setPageIndex] = useState(0);
   const list = useRef<HTMLDivElement>(null);

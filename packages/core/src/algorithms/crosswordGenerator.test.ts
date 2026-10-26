@@ -101,16 +101,16 @@ describe('generateCrossword', () => {
     expect(puzzle.grid.flat().every((cell) => cell === null)).toBe(true);
   });
 
-  for (const level of ['beginner', 'intermediate', 'advanced'] satisfies DifficultyLevel[]) {
+  for (const level of ['beginner', 'intermediate', 'advanced', 'special'] satisfies DifficultyLevel[]) {
     it(`includes lower levels when selecting ${level}`, () => {
-      const levels: DifficultyLevel[] = ['beginner', 'intermediate', 'advanced'];
+      const levels: DifficultyLevel[] = ['beginner', 'intermediate', 'advanced', 'special'];
       // Run each source level separately to prove eligibility independently of placement.
       for (const entryLevel of levels) {
         const entries = ['cat', 'cow'].map((word) => ({ ...item(word), level: entryLevel }));
         const puzzle = generateCrossword(entries, level, 10);
         expect(puzzle.words.length).toBe(levels.indexOf(entryLevel) <= levels.indexOf(level) ? 2 : 0);
       }
-      const mixed = (['beginner', 'intermediate', 'advanced'] satisfies DifficultyLevel[])
+      const mixed = (['beginner', 'intermediate', 'advanced', 'special'] satisfies DifficultyLevel[])
         .flatMap((entryLevel) => ['cat', 'cow'].map((word) => ({
           ...item(word, `${entryLevel}-${word}`), level: entryLevel,
         })));
@@ -133,8 +133,8 @@ describe('generateCrossword', () => {
           expect(puzzle.level).toBe(level);
           for (const word of puzzle.words) {
             const source = vocab.find((entry) => entry.id === word.id);
-            expect(['beginner', 'intermediate', 'advanced'].indexOf(source?.level ?? '')).toBeLessThanOrEqual(
-              ['beginner', 'intermediate', 'advanced'].indexOf(level)
+            expect(['beginner', 'intermediate', 'advanced', 'special'].indexOf(source?.level ?? '')).toBeLessThanOrEqual(
+              ['beginner', 'intermediate', 'advanced', 'special'].indexOf(level)
             );
             expect(source?.isQuizUsed).toBe(false);
             expect(source?.word.trim().toUpperCase()).toBe(word.word);

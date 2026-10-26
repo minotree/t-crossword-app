@@ -5,7 +5,7 @@ import { isRecord } from '@t-crossword/contracts';
 import preparedBooks from '../data/picture-books.json';
 
 export interface PictureBook {
-  id: string; level: DifficultyLevel; title: string; koreanTitle: string; genre: string;
+  id: string; level: Exclude<DifficultyLevel, 'special'>; title: string; koreanTitle: string; genre: string;
   pages: { title: string; text: string; translation: string; image: string }[];
 }
 function isPictureBook(value: unknown): value is PictureBook {
@@ -72,7 +72,7 @@ function BookImage({ image, title, nextImage }: { image: string; title: string; 
 }
 
 export function PictureBooks({ level, onLevelChange, selectedId, pageIndex, onSelect, onPageChange, books = pictureBooks }: {
-  level: DifficultyLevel; onLevelChange: (level: DifficultyLevel) => void;
+  level: PictureBook['level']; onLevelChange: (level: PictureBook['level']) => void;
   selectedId: string | null; pageIndex: number; onSelect: (id: string | null) => void;
   onPageChange: (index: number) => void; books?: PictureBook[];
 }) {

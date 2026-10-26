@@ -15,6 +15,7 @@ const LEVEL_MAP = {
   초급: 'beginner',
   중급: 'intermediate',
   고급: 'advanced',
+  특급: 'special',
 };
 
 function parseCsv(content) {

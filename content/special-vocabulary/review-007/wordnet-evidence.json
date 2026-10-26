@@ -1,0 +1,576 @@
+[
+  {
+    "word": "accretion",
+    "item_id": "13424865-n",
+    "lemmas": [
+      "accretion",
+      "accumulation"
+    ],
+    "gloss": "an increase by natural growth or addition",
+    "source_record_sha256": "7710b12ce4a903c9ae41cedec34bff79d6f4facaa5e28b83154e4cf2e430b844",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "affinity",
+    "item_id": "13811410-n",
+    "lemmas": [
+      "affinity",
+      "kinship"
+    ],
+    "gloss": "a close connection marked by community of interests or similarity in nature or character; \"found a natural affinity with the immigrants\"; \"felt a deep kinship with the other students\"; \"anthropology's kinship with the humanities\"",
+    "source_record_sha256": "ff5555774708f536a7b97744a20ef8d161df7c116727b33cbef25b2faeaa8ad5",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "allegiance",
+    "item_id": "04877938-n",
+    "lemmas": [
+      "allegiance",
+      "fealty"
+    ],
+    "gloss": "the loyalty that citizens owe to their country (or subjects to their sovereign)",
+    "source_record_sha256": "77ac96b3a48918298926d7cb8f9a840958b0014a2ca742b2d31c374781027645",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ambivalent",
+    "item_id": "00337841-s",
+    "lemmas": [
+      "ambivalent"
+    ],
+    "gloss": "uncertain or unable to decide about what course to follow; \"was ambivalent about having children\"",
+    "source_record_sha256": "e8cd6c45586903e594895925b948097191146606f43f021913fbfcf7662e7085",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "amorphous",
+    "item_id": "02151837-s",
+    "lemmas": [
+      "amorphous",
+      "formless",
+      "shapeless"
+    ],
+    "gloss": "having no definite form or distinct shape; \"amorphous clouds of insects\"; \"an aggregate of formless particles\"; \"a shapeless mass of protoplasm\"",
+    "source_record_sha256": "aba0122316e5825d7eda0c22ea1a28741e91b197d0b91db21b1fcd3dbb49522a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "annotate",
+    "item_id": "01704953-v",
+    "lemmas": [
+      "annotate",
+      "footnote"
+    ],
+    "gloss": "add explanatory notes to or supply with critical comments; \"The scholar annotated the early edition of a famous novel\"",
+    "source_record_sha256": "b3ce42db0864ad63e1276b147eef984d8f7a44081ebdc8766be3c3f61fa3e839",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "antidote",
+    "item_id": "02719588-n",
+    "lemmas": [
+      "antidote",
+      "counterpoison"
+    ],
+    "gloss": "a remedy that stops or controls the effects of a poison",
+    "source_record_sha256": "e281ee1df75716fe48bfd386d3dce962afaff0461ffbb8976cbab2038873b79d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "appease",
+    "item_id": "01765392-v",
+    "lemmas": [
+      "pacify",
+      "lenify",
+      "conciliate",
+      "assuage",
+      "appease",
+      "mollify",
+      "placate",
+      "gentle",
+      "gruntle"
+    ],
+    "gloss": "cause to be more favorably inclined; gain the good will of; \"She managed to mollify the angry customer\"",
+    "source_record_sha256": "6fb610361a41ec179977f105c9e7f616385eaffef9c1c6b66375cb38adc64612",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "appraise",
+    "item_id": "00681429-v",
+    "lemmas": [
+      "measure",
+      "evaluate",
+      "valuate",
+      "assess",
+      "appraise",
+      "value"
+    ],
+    "gloss": "evaluate or estimate the nature, quality, ability, extent, or significance of; \"I will have the family jewels appraised by a professional\"; \"access all the factors when taking a risk\"",
+    "source_record_sha256": "927b7ce0945a9b77941c7448788ad8de9e0ba3853c52c2e6b966a5571d020839",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "aversion",
+    "item_id": "07502669-n",
+    "lemmas": [
+      "antipathy",
+      "aversion",
+      "distaste"
+    ],
+    "gloss": "a feeling of intense dislike",
+    "source_record_sha256": "3af2048391ca5ae0768527a93f25bcd311d2632de74963a9d0e118eb1d3c2111",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "benchmark",
+    "item_id": "07261143-n",
+    "lemmas": [
+      "benchmark"
+    ],
+    "gloss": "a standard by which something can be measured or judged; \"his painting sets the benchmark of quality\"",
+    "source_record_sha256": "8a66b28f37bbb910f070af8cefd451d41f4e91ad76bce4c39f670b2befac8c02",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "canonical",
+    "item_id": "01690244-s",
+    "lemmas": [
+      "canonic",
+      "canonical",
+      "sanctioned"
+    ],
+    "gloss": "conforming to orthodox or recognized rules; \"the drinking of cocktails was as canonical a rite as the mixing\"- Sinclair Lewis",
+    "source_record_sha256": "560bb3d44c8a11e9ecd973857072d77f403d2db1053062dad627cac53cf33af8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "circumspect",
+    "item_id": "01898490-s",
+    "lemmas": [
+      "circumspect",
+      "discreet"
+    ],
+    "gloss": "heedful of potential consequences; \"circumspect actions\"; \"physicians are now more circumspect about recommending its use\"; \"a discreet investor\"",
+    "source_record_sha256": "9b1451d44107aa9d9f835035b79405e76c42160500cae68bf9a4ef66774a81c7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "codify",
+    "item_id": "00481739-v",
+    "lemmas": [
+      "codify"
+    ],
+    "gloss": "organize into a code or system, such as a body of law; \"Hammurabi codified the laws\"",
+    "source_record_sha256": "9adc146ddf8c3dd68a20c19775f40182fb872fe18c787995ca5b93eebfa3f8bc",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "collateral",
+    "item_id": "13352865-n",
+    "lemmas": [
+      "collateral"
+    ],
+    "gloss": "a security pledged for the repayment of a loan",
+    "source_record_sha256": "14d82b8f1404037b4eb6fac2021fd38a2b38414de47a2b60a6766019e1c2a473",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "complacent",
+    "item_id": "00589067-s",
+    "lemmas": [
+      "complacent",
+      "self-satisfied",
+      "self-complacent"
+    ],
+    "gloss": "contented to a fault with oneself or one's actions; \"he had become complacent after years of success\"; \"his self-satisfied dignity\"",
+    "source_record_sha256": "368b54c3ae3314fe0822ce4dff30132222822ea54cf7f6df5b8c93096beeee0b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "concise",
+    "item_id": "00546646-a",
+    "lemmas": [
+      "concise"
+    ],
+    "gloss": "expressing much in few words; \"a concise explanation\"",
+    "source_record_sha256": "210feea5a19b2462cfb183c24c4df4fac13aaddce4ced140d9f19977b536746d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "counterclaim",
+    "item_id": "01184407-n",
+    "lemmas": [
+      "counterclaim"
+    ],
+    "gloss": "a claim filed in opposition to another claim in a legal action",
+    "source_record_sha256": "676682d90a8a32491fec3f7bf39aceec984a9c5371f0bc821623a3ca119e2261",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "decompose",
+    "item_id": "00209174-v",
+    "lemmas": [
+      "decompose",
+      "break_up",
+      "break_down"
+    ],
+    "gloss": "separate (substances) into constituent elements or parts",
+    "source_record_sha256": "ad12a6d6727f1e529e062104ede52f3131f75041a6451e20cb8856bd0346b308",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "deflect",
+    "item_id": "02033805-v",
+    "lemmas": [
+      "deflect"
+    ],
+    "gloss": "turn aside and away from an initial or intended course",
+    "source_record_sha256": "1fc072134f4034f7c722ecb81f5536ed1a9812e93f9bd00c46966b639b500e60",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "demarcate",
+    "item_id": "00730301-v",
+    "lemmas": [
+      "demarcate",
+      "delimit",
+      "delimitate"
+    ],
+    "gloss": "set, mark, or draw the boundaries of something",
+    "source_record_sha256": "e40bccf502ae2d5c47675c13df033ed6de5803468a6dd41313df2891bee073ec",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "denominator",
+    "item_id": "13733066-n",
+    "lemmas": [
+      "denominator"
+    ],
+    "gloss": "the divisor of a fraction",
+    "source_record_sha256": "dc8a44f20f7b0aa4fd10a793db79d9412624c164ecf3c42b1c7d93a6306f19cc",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "diagnostic",
+    "item_id": "02975538-a",
+    "lemmas": [
+      "diagnostic"
+    ],
+    "gloss": "concerned with diagnosis; used for furthering diagnosis; \"a diagnostic reading test\"",
+    "source_record_sha256": "df9231a820e15adf1eb00e09167675763e2c39200751d24c1fa1c586235c1bb8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dissident",
+    "item_id": "10018021-n",
+    "lemmas": [
+      "dissenter",
+      "dissident",
+      "protester",
+      "objector",
+      "contestant"
+    ],
+    "gloss": "a person who dissents from some established policy",
+    "source_record_sha256": "69618da67733c782bdce922c0877a23d8bb9fb7b243e70cbc4601da020613cf5",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "dubious",
+    "item_id": "01916979-s",
+    "lemmas": [
+      "doubtful",
+      "dubious",
+      "dubitable",
+      "in_question(p)"
+    ],
+    "gloss": "open to doubt or suspicion; \"the candidate's doubtful past\"; \"he has a dubious record indeed\"; \"what one found uncertain the other found dubious or downright false\"; \"it was more than dubitable whether the friend was as influential as she thought\"- Karen Horney",
+    "source_record_sha256": "4817b04f6786306a8678663d600424ccd2731e01d738d05e38242fe350ab57b9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "eclectic",
+    "item_id": "00775486-s",
+    "lemmas": [
+      "eclectic"
+    ],
+    "gloss": "selecting what seems best of various styles or ideas",
+    "source_record_sha256": "39fc71f2692de98e88fa76863266ff7566f5ca1eef62e1fb1331b4c89286087e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "fallacious",
+    "item_id": "02500179-s",
+    "lemmas": [
+      "fallacious",
+      "unsound"
+    ],
+    "gloss": "containing or based on a fallacy; \"fallacious reasoning\"; \"an unsound argument\"",
+    "source_record_sha256": "40dff2e6c984c4df78377367e781f7c4a6f301f65fc908df96082f1ba6117a45",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "granular",
+    "item_id": "02231502-s",
+    "lemmas": [
+      "farinaceous",
+      "coarse-grained",
+      "grainy",
+      "granular",
+      "granulose",
+      "gritty",
+      "mealy"
+    ],
+    "gloss": "composed of or covered with particles resembling meal in texture or consistency; \"granular sugar\"; \"the photographs were grainy and indistinct\"; \"it left a mealy residue\"",
+    "source_record_sha256": "bad8cc53d882fb6780233f46db65dd0c8d45e01234ba6be889a72bcfeb3060e4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "incidental",
+    "item_id": "00903264-s",
+    "lemmas": [
+      "incidental",
+      "nonessential"
+    ],
+    "gloss": "not of prime or central importance; \"nonessential to the integral meanings of poetry\"- Pubs.MLA",
+    "source_record_sha256": "0d0cbd23b8622ac56c4b4f64ffce3b3f691149cf1d597406aa78382d38b97aaf",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "inductive",
+    "item_id": "01296270-a",
+    "lemmas": [
+      "inductive"
+    ],
+    "gloss": "of reasoning; proceeding from particular facts to a general conclusion; \"inductive reasoning\"",
+    "source_record_sha256": "fc56f66cd3cba5e9028b25cfb337abde81ae3be2efbb99a7808e8db2bff0d6e8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "jurisdiction",
+    "item_id": "05198427-n",
+    "lemmas": [
+      "legal_power",
+      "jurisdiction"
+    ],
+    "gloss": "(law) the right and power to interpret and apply the law; \"courts having jurisdiction in this district\"",
+    "source_record_sha256": "c5ca27804ce2632941f5ef69a04a6c06f39ffe3fee7f3d71d518443d548ec3b9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "marginalize",
+    "item_id": "02377520-v",
+    "lemmas": [
+      "marginalize",
+      "marginalise"
+    ],
+    "gloss": "relegate to a lower or outer edge, as of specific groups of people; \"We must not marginalize the poor in our society\"",
+    "source_record_sha256": "2ba3c61ede4890736ab961715328040725c13c4cd14a332ae9802ce776dd330c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "metaphor",
+    "item_id": "07106800-n",
+    "lemmas": [
+      "metaphor"
+    ],
+    "gloss": "a figure of speech in which an expression is used to refer to something that it does not literally denote in order to suggest a similarity",
+    "source_record_sha256": "febb33e9802c8a115613f0ea03c5540c1e3b5a12e08e7353bee182f1894d4ebd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "methodology",
+    "item_id": "05661400-n",
+    "lemmas": [
+      "methodology"
+    ],
+    "gloss": "the system of methods followed in a particular discipline",
+    "source_record_sha256": "61a1e3d916e43b47e1070e88040be5dc19271de6b6b81fa83dbfec4423f9e08e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "motif",
+    "item_id": "05920272-n",
+    "lemmas": [
+      "theme",
+      "motif"
+    ],
+    "gloss": "a unifying idea that is a recurrent element in literary or artistic work; \"it was the usual `boy gets girl' theme\"",
+    "source_record_sha256": "f346c6e154860f9c1231a5466b48896bea0ac0dea7aa16888a908dd8b642b44a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "narrative",
+    "item_id": "07221094-n",
+    "lemmas": [
+      "narrative",
+      "narration",
+      "story",
+      "tale"
+    ],
+    "gloss": "a message that tells the particulars of an act or occurrence or course of events; presented in writing or drama or cinema or as a radio or television program; \"his narrative was interesting\"; \"Disney's stories entertain adults as well as children\"",
+    "source_record_sha256": "ea69b4add86d3670f4afa937a9ff208bfb986ad25e07baca38792700a63d1088",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "parameter",
+    "item_id": "05859277-n",
+    "lemmas": [
+      "parameter"
+    ],
+    "gloss": "a quantity (such as the mean or variance) that characterizes a statistical population and that can be estimated by calculations from sample data",
+    "source_record_sha256": "54c34d2ecd5acffdfb1f6794f030e7819e2c12e5b4ff4e57e7bcd5b49d476ff7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "precedent",
+    "item_id": "05821486-n",
+    "lemmas": [
+      "precedent",
+      "case_in_point"
+    ],
+    "gloss": "an example that is used to justify similar occurrences at a later time",
+    "source_record_sha256": "0acc16858d27642602a7fecbcc705ffdfc9fd856df6adc82bb5c9a44987af09f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "recant",
+    "item_id": "00798717-v",
+    "lemmas": [
+      "abjure",
+      "recant",
+      "forswear",
+      "retract",
+      "resile"
+    ],
+    "gloss": "formally reject or disavow a formerly held belief, usually under pressure; \"He retracted his earlier statements about his religion\"; \"She abjured her beliefs\"",
+    "source_record_sha256": "d6edfc90b9fbf5db412c487ec491dbc05abf57dea9b6daa26ca99ecf6a1f66cc",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "reductive",
+    "item_id": "00050446-s",
+    "lemmas": [
+      "reductive"
+    ],
+    "gloss": "characterized by or causing diminution or curtailment; \"their views of life were reductive and depreciatory\" - R.H.Rovere",
+    "source_record_sha256": "4eb907d2af7d8648ea7056febfbb8230b4e9a159aa63440491efec70fdb7d108",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "referent",
+    "item_id": "06603494-n",
+    "lemmas": [
+      "referent"
+    ],
+    "gloss": "something referred to; the object of a reference",
+    "source_record_sha256": "a28c1c74f6c5d533da502261d16b1ceba883bbfdc468add420a2f6444267c3c1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "remnant",
+    "item_id": "13811184-n",
+    "lemmas": [
+      "leftover",
+      "remnant"
+    ],
+    "gloss": "a small part or portion that remains after the main part no longer exists",
+    "source_record_sha256": "c8c2003d30d6a6b3b3a1a3328581a6c2f6cb957d541108af43b0e8b6c72026bb",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "requisite",
+    "item_id": "09367203-n",
+    "lemmas": [
+      "necessity",
+      "essential",
+      "requirement",
+      "requisite",
+      "necessary"
+    ],
+    "gloss": "anything indispensable; \"food and shelter are necessities of life\"; \"the essentials of the good life\"; \"allow farmers to buy their requirements under favorable conditions\"; \"a place where the requisites of water fuel and fodder can be obtained\"",
+    "source_record_sha256": "dc4c8ba8807e1c425b9929272d12756e457c78bc26ef9dbdb9f126e2e7ce3fe2",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "schematic",
+    "item_id": "01980796-s",
+    "lemmas": [
+      "conventional",
+      "formal",
+      "schematic"
+    ],
+    "gloss": "represented in simplified or symbolic form",
+    "source_record_sha256": "75c9d2ade6da7dea761e3532a771e5e294151d28ef6eef381a2643e1fdba9469",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "sequential",
+    "item_id": "01667729-s",
+    "lemmas": [
+      "consecutive",
+      "sequent",
+      "sequential",
+      "serial",
+      "successive"
+    ],
+    "gloss": "in regular succession without gaps; \"serial concerts\"",
+    "source_record_sha256": "c8a9cbf8d3f7f8116c3655bb570f1f2f6474d4787c53b7462a74a3319203847c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "thematic",
+    "item_id": "02813680-a",
+    "lemmas": [
+      "thematic"
+    ],
+    "gloss": "relating to or constituting a topic of discourse",
+    "source_record_sha256": "60c0ff1f88eaa91bbbb29f21d3e6888d7021fdd0f7bbc4b0588784c7c53b9812",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "unorthodox",
+    "item_id": "01691073-a",
+    "lemmas": [
+      "unorthodox"
+    ],
+    "gloss": "breaking with convention or tradition; \"an unorthodox lifestyle\"",
+    "source_record_sha256": "83611a75bf7ae25455a57c10fd29dd828162341235f9cc760cd482e2fe9da9f3",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "unsound",
+    "item_id": "02500179-s",
+    "lemmas": [
+      "fallacious",
+      "unsound"
+    ],
+    "gloss": "containing or based on a fallacy; \"fallacious reasoning\"; \"an unsound argument\"",
+    "source_record_sha256": "40dff2e6c984c4df78377367e781f7c4a6f301f65fc908df96082f1ba6117a45",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "variability",
+    "item_id": "04735233-n",
+    "lemmas": [
+      "variability",
+      "variableness",
+      "variance"
+    ],
+    "gloss": "the quality of being subject to variation",
+    "source_record_sha256": "0d2e40442d4163d429ad87a56482af850e09c9d3cc4ecc1508a9329f4c967dc1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "variant",
+    "item_id": "05840650-n",
+    "lemmas": [
+      "version",
+      "variant",
+      "variation",
+      "edition"
+    ],
+    "gloss": "something a little different from others of the same type; \"an experimental version of the night fighter\"; \"a variant of the same word\"; \"an emery wheel is the modern variation of a grindstone\"; \"the boy is a younger edition of his father\"",
+    "source_record_sha256": "8e6112379960dc5c9cce9034d05f6fa4a32c17042f5f973192a4f7955937bfde",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

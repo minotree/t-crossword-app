@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { homeOutline, gameControllerOutline, bookOutline, imageOutline, settingsOutline } from 'ionicons/icons';
-import { defaultVocabList, levelLearningProgress, parseCrosswordPuzzle, type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { defaultVocabList, levelLearningProgress, parseCrosswordPuzzle, wordnetLicense, type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize } from '@t-crossword/core';
 import { hideHintedWord, isNotebookWord, readProgress, recordMistake, resetCompletedProgress, writeProgress, type LearningProgress } from '../adapters/progress.js';
 import './mobile.css';
 import { version } from '../../package.json';
@@ -16,7 +16,7 @@ import { Modal } from '../components/Modal.js';
 import { CompletionConfetti } from '../components/CompletionConfetti.js';
 
 
-const levels: Record<DifficultyLevel, string> = { beginner: '초급', intermediate: '중급', advanced: '고급' };
+const levels: Record<DifficultyLevel, string> = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 export function HomePage() {
   const quizPanel = useRef<QuizPanelHandle>(null);
@@ -92,7 +92,7 @@ export function HomePage() {
       };
       task.onerror = () => { setError('문제 생성에 실패했습니다. 다시 시도해 주세요.'); finish(); };
       timeout.current = setTimeout(() => { setError('문제 생성 시간이 초과되었습니다. 다시 시도해 주세요.'); finish(); }, 30_000);
-      task.postMessage({ level: nextLevel, size: nextSize, completed: progress.completed });
+      task.postMessage({ level: nextLevel, size: nextSize, completed: progress.completed, mistakes: progress.hintedWords ?? [], dismissed: progress.hiddenHintedWords ?? [] });
     } catch { setError('이 환경에서 문제를 만들 수 없습니다. 앱을 다시 열어 주세요.'); finish(); }
   };
   const openQuiz = () => {
@@ -142,7 +142,7 @@ export function HomePage() {
         </section>}
         {page === 'quiz' && <section className="mobile-quiz">
           <div className="mobile-quiz-options">
-            <div className="mobile-choice-row" role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced'] as const).map(value => <button key={value} disabled={busy} aria-pressed={level === value} onClick={() => { if (value !== level) generate(value, size); }}>{levels[value]}</button>)}</div>
+            <div className="mobile-choice-row" role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map(value => <button key={value} disabled={busy} aria-pressed={level === value} onClick={() => { if (value !== level) generate(value, size); }}>{levels[value]}</button>)}</div>
             <div className="mobile-choice-row" role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map(value => <button key={value} disabled={busy} aria-pressed={size === value} onClick={() => { if (value !== size) generate(level, value); }}>{value}×{value}</button>)}</div>
           </div>
           <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate()}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
@@ -186,12 +186,19 @@ export function HomePage() {
           <section className="mobile-settings-card" aria-labelledby="mobile-settings-vocabulary">
           <h2 id="mobile-settings-vocabulary">단어장 구성 안내</h2>
           <p className="mobile-settings-word-count">총 {defaultVocabList.length.toLocaleString('ko-KR')}개 단어</p>
-          <p>2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다.</p>
+          <p>초급·중급·고급 3,339개는 2022 개정 교육과정의 교육부 지정 기본 어휘와 9급 공무원 시험 영어 어휘를 바탕으로 선별했습니다. 특급에는 학술·심화 영어 어휘 500개를 추가했습니다.</p>
           <dl className="mobile-settings-levels">
             <div><dt>초급</dt><dd>초등학교 권장 영어 어휘</dd></div>
             <div><dt>중급</dt><dd>중학교·고등학교 영어 공통과목 권장 어휘</dd></div>
             <div><dt>고급</dt><dd>고등학교 영어 외 과목 권장 어휘 및 9급 공무원 시험 영어 어휘</dd></div>
+            <div><dt>특급</dt><dd>학술·심화 영어 어휘 500개. 공식 토플 어휘 목록이나 출제 빈도 순위는 아닙니다.</dd></div>
           </dl>
+          <p>퀴즈에는 선택한 난이도와 그 아래 난이도의 미완료 단어가 함께 출제됩니다. 학습완료한 단어도 오답노트에 표시 중이면 다시 출제됩니다. 오답노트에서 삭제하면 학습완료 단어는 출제 대상에서 제외됩니다. 학습완료 수는 선택한 난이도의 단어만 집계합니다.</p>
+          <p>특급의 뜻·예문·해석은 AI를 활용해 작성하고 편집 검수했습니다. 의미 검토에는 WordNet 3.0을 참고했습니다.</p>
+          </section>
+          <section className="mobile-settings-card" aria-labelledby="mobile-settings-notices">
+            <h2 id="mobile-settings-notices">콘텐츠 이용 고지</h2>
+            <details><summary>WordNet 3.0 이용 조건</summary><pre lang="en" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontSize: 12, lineHeight: 1.6 }}>{wordnetLicense}</pre></details>
           </section>
         </section>}
       </>}

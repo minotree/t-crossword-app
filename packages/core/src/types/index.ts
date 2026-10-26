@@ -1,4 +1,4 @@
-export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced';
+export type DifficultyLevel = 'beginner' | 'intermediate' | 'advanced' | 'special';
 export type GridSize = 8 | 10 | 12;
 
 export interface WordItem {

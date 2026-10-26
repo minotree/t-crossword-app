@@ -1,0 +1,9 @@
+{
+  "axes_dot_product": 0,
+  "distribution": "P(X=0,Y=0)=1/2; P(X=1,Y=1)=1/2",
+  "E_X": "1/2",
+  "E_Y": "1/2",
+  "E_XY": "1/2",
+  "E_X_times_E_Y": "1/4",
+  "not_independent": true
+}

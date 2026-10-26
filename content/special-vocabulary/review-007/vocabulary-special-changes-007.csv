@@ -1,0 +1,7 @@
+﻿"영단어","항목","수정전","수정후","수정이유"
+"aversion","예문해석","그 면담들은 다른 부서 동료들과 일하기를 꺼리는 태도보다 예측하기 어려운 일정에 대한 거부감을 드러낸다.","그 면담들은 다른 부서 동료들과 일하기를 꺼리는 태도가 아니라 예측하기 어려운 일정에 대한 거부감을 드러낸다.","rather than의 태도 대조를 단순 정도 비교 대신 명확하게 번역"
+"canonical","동의어","canonic","","canonic은 같은 단어의 변이형이므로 별도 동의어 학습 항목에서 제외"
+"dissident","예문해석","그 서술은 공식 성명에서 밝힌 모든 목표보다 정부의 방법에 이의를 제기한 한 반대자를 따라간다.","그 서술은 정부의 방식에 이의를 제기한 한 반대자를 따라간다. 그의 반대가 공식 성명의 모든 목표를 향한 것은 아니었다.","정부 방식에 대한 이의와 모든 정책 목표에 대한 반대를 구분하여 해석"
+"narrative","예문","The narrative follows the decisions while showing how participants understood the same events differently at the time.","The narrative follows the committee's decisions while showing how participants understood the same events differently at the time.","맥락이 없는 the decisions를 위원회의 결정으로 명확하게 하고 해석을 자연스럽게 맞춤"
+"narrative","예문해석","그 이야기는 당시 참가자들이 같은 사건들을 어떻게 다르게 이해했는지 보여 주면서 결정들을 따라간다.","그 이야기는 위원회의 결정 과정을 따라가면서 당시 참가자들이 같은 사건을 서로 다르게 이해한 모습을 보여 준다.","맥락이 없는 the decisions를 위원회의 결정으로 명확하게 하고 해석을 자연스럽게 맞춤"
+"sequential","예문해석","그 절차는 다음 단계가 시작되기 전에 확보되어야 할 정보를 각 단계가 제공하는 순차적 단계를 사용한다.","그 절차는 순차적 단계로 이루어지며, 각 단계는 다음 단계가 시작되기 전에 확보해야 할 정보를 제공한다.","단계를 사용한다는 부자연스러운 표현을 줄이고 단계 순서와 정보 제공 조건을 보존"

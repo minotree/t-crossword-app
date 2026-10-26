@@ -1,4 +1,4 @@
-import type { WordItem } from '../types/index.js';
+import type { DifficultyLevel, WordItem } from '../types/index.js';
 
 export class WordBankService {
   private vocabList: WordItem[] = [];
@@ -13,7 +13,7 @@ export class WordBankService {
     return this.vocabList;
   }
 
-  getWordsByLevel(level: 'beginner' | 'intermediate' | 'advanced'): WordItem[] {
+  getWordsByLevel(level: DifficultyLevel): WordItem[] {
     return this.vocabList.filter((word) => word.level === level);
   }
 

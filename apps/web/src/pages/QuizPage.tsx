@@ -59,7 +59,7 @@ export function QuizPage() {
                 십자낱말 영단어
               </h1>
               <p className="text-[11px] font-medium text-slate-500 hidden sm:block">
-                초·중·고급 단어로 완성하는 영어 퍼즐
+                초급부터 특급까지, 단어로 완성하는 영어 퍼즐
               </p>
             </div>
           </div>
@@ -77,6 +77,7 @@ export function QuizPage() {
                 { key: 'beginner', label: '초급' },
                 { key: 'intermediate', label: '중급' },
                 { key: 'advanced', label: '고급' },
+                { key: 'special', label: '특급' },
               ] as const
             ).map((item) => (
               <button

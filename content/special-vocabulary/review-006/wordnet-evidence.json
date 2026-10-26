@@ -1,0 +1,616 @@
+[
+  {
+    "word": "abrogate",
+    "item_id": "02478584-v",
+    "lemmas": [
+      "abrogate"
+    ],
+    "gloss": "revoke formally",
+    "source_record_sha256": "aa6ca67216a9776f808c5b5bb24ac93ce9d244d4da1d82621f5c8eea0824616a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "acquiesce",
+    "item_id": "00804139-v",
+    "lemmas": [
+      "assent",
+      "accede",
+      "acquiesce"
+    ],
+    "gloss": "to agree or express agreement; \"The Maestro assented to the request for an encore\"",
+    "source_record_sha256": "1dd50773ac14b2db60c3a5398e290f795af5a3018c514725daf64f8ee2ace302",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "antagonism",
+    "item_id": "13860548-n",
+    "lemmas": [
+      "antagonism"
+    ],
+    "gloss": "the relation between opposing principles or forces or factors; \"the inherent antagonism of capitalism and socialism\"",
+    "source_record_sha256": "9625db8750b1fd90159903fbc52dc41a5c8f6b92bf7211429b4f64ba0c93772a",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "apathy",
+    "item_id": "04636610-n",
+    "lemmas": [
+      "apathy",
+      "indifference",
+      "numbness",
+      "spiritlessness"
+    ],
+    "gloss": "the trait of lacking enthusiasm for or interest in things generally",
+    "source_record_sha256": "66983a3afc38b681d7d0c0f23d2e78f0005ed9604cb41b6a645070f6ebec3aee",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "assiduous",
+    "item_id": "00754393-s",
+    "lemmas": [
+      "assiduous",
+      "sedulous"
+    ],
+    "gloss": "marked by care and persistent effort; \"her assiduous attempts to learn French\"; \"assiduous research\"; \"sedulous pursuit of legal and moral principles\"",
+    "source_record_sha256": "39040d0f8154819d983023cf5ea5f51c47e040dd6c73f03a9c7f2a17ae08bb6e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "benevolent",
+    "item_id": "01111312-s",
+    "lemmas": [
+      "benevolent",
+      "freehearted"
+    ],
+    "gloss": "generous in providing aid to others",
+    "source_record_sha256": "4d459af527d17ec011c596155d731de1939e9a41f42f9a15589d0f282985490c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "candid",
+    "item_id": "00764484-s",
+    "lemmas": [
+      "blunt",
+      "candid",
+      "forthright",
+      "frank",
+      "free-spoken",
+      "outspoken",
+      "plainspoken",
+      "point-blank",
+      "straight-from-the-shoulder"
+    ],
+    "gloss": "characterized by directness in manner or speech; without subtlety or evasion; \"blunt talking and straight shooting\"; \"a blunt New England farmer\"; \"I gave them my candid opinion\"; \"forthright criticism\"; \"a forthright approach to the problem\"; \"tell me what you think--and you may just as well be frank\"; \"it is possible to be outspoken without being rude\"; \"plainspoken and to the point\"; \"a point-blank accusation\"",
+    "source_record_sha256": "5e3079859e7685d5245d9488256a7a2bb7e14f4b3df768168327b39ba1a805d0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "clandestine",
+    "item_id": "01706465-s",
+    "lemmas": [
+      "clandestine",
+      "cloak-and-dagger",
+      "hole-and-corner(a)",
+      "hugger-mugger",
+      "hush-hush",
+      "secret",
+      "surreptitious",
+      "undercover",
+      "underground"
+    ],
+    "gloss": "conducted with or marked by hidden aims or methods; \"clandestine intelligence operations\"; \"cloak-and-dagger activities behind enemy lines\"; \"hole-and-corner intrigue\"; \"secret missions\"; \"a secret agent\"; \"secret sales of arms\"; \"surreptitious mobilization of troops\"; \"an undercover investigation\"; \"underground resistance\"",
+    "source_record_sha256": "2b08dd1ef27add665ea73970dd64e769286c8197af02afc562e080b942bf824e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "cognizant",
+    "item_id": "00190115-a",
+    "lemmas": [
+      "aware(p)",
+      "cognizant",
+      "cognisant"
+    ],
+    "gloss": "(sometimes followed by `of') having or showing knowledge or understanding or realization or perception; \"was aware of his opponent's hostility\"; \"became aware of her surroundings\"; \"aware that he had exceeded the speed limit\"",
+    "source_record_sha256": "c6c6b48d786dc6d910ed74f8c3d201f74eaf271cf25637d2ce96dca6eb3b24e6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "consonant",
+    "item_id": "00577122-s",
+    "lemmas": [
+      "accordant",
+      "agreeable",
+      "conformable",
+      "consonant",
+      "concordant"
+    ],
+    "gloss": "in keeping; \"salaries agreeable with current trends\"; \"plans conformable with your wishes\"; \"expressed views concordant with his background\"",
+    "source_record_sha256": "b934f116aea6f28307b2eba0290a4600e62b2f78b6cb83c3ceba3816596a1056",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "contrive",
+    "item_id": "01632411-v",
+    "lemmas": [
+      "invent",
+      "contrive",
+      "devise",
+      "excogitate",
+      "formulate",
+      "forge"
+    ],
+    "gloss": "come up with (an idea, plan, explanation, theory, or principle) after a mental effort; \"excogitate a way to measure the speed of light\"",
+    "source_record_sha256": "e8321256ed0011014074d00d80f3941867fdfa8d9e5806a500a374a93f894423",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "defer",
+    "item_id": "02642814-v",
+    "lemmas": [
+      "postpone",
+      "prorogue",
+      "hold_over",
+      "put_over",
+      "table",
+      "shelve",
+      "set_back",
+      "defer",
+      "remit",
+      "put_off"
+    ],
+    "gloss": "hold back to a later time; \"let's postpone the exam\"",
+    "source_record_sha256": "a96eb91c0a51dd2f10b39e3f518f5adf30ee10cfae7a2609088814e272d75744",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "divulge",
+    "item_id": "00933821-v",
+    "lemmas": [
+      "unwrap",
+      "disclose",
+      "let_on",
+      "bring_out",
+      "reveal",
+      "discover",
+      "expose",
+      "divulge",
+      "break",
+      "give_away",
+      "let_out"
+    ],
+    "gloss": "make known to the public information that was previously known only to a few people or that was meant to be kept a secret; \"The auction house would not disclose the price at which the van Gogh had sold\"; \"The actress won't reveal how old she is\"; \"bring out the truth\"; \"he broke the news to her\"; \"unwrap the evidence in the murder case\"",
+    "source_record_sha256": "b1997b4280a57504f7ab7eb854b6f93879bf643f05059467e929e8e32387756f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "encroach",
+    "item_id": "01993352-v",
+    "lemmas": [
+      "encroach",
+      "infringe",
+      "impinge"
+    ],
+    "gloss": "advance beyond the usual limit",
+    "source_record_sha256": "41bca680df8cc7f8739396b8f25b1175afe7124469b27e08188be0327de8c1e1",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "endorse",
+    "item_id": "02556817-v",
+    "lemmas": [
+      "second",
+      "back",
+      "endorse",
+      "indorse"
+    ],
+    "gloss": "give support or one's approval to; \"I'll second that motion\"; \"I can't back this plan\"; \"endorse a new project\"",
+    "source_record_sha256": "e7aa0b98b3e2a41e1ea8fc794626309047889b1d8cd083ea3cfa9fa1fa7e0041",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "envisage",
+    "item_id": "01636397-v",
+    "lemmas": [
+      "imagine",
+      "conceive_of",
+      "ideate",
+      "envisage"
+    ],
+    "gloss": "form a mental image of something that is not present or that is not the case; \"Can you conceive of him as the president?\"",
+    "source_record_sha256": "49d29294a8657557dd1020037cbd3bd7156189f6e342725d7917785212679b88",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "equitable",
+    "item_id": "00958151-a",
+    "lemmas": [
+      "equitable",
+      "just"
+    ],
+    "gloss": "fair to all parties as dictated by reason and conscience; \"equitable treatment of all citizens\"; \"an equitable distribution of gifts among the children\"",
+    "source_record_sha256": "cd496cc1ddcc81a5121d5a5fd550545e2b7faf1b950836376677e5eaf9daa179",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "esoteric",
+    "item_id": "00898963-a",
+    "lemmas": [
+      "esoteric"
+    ],
+    "gloss": "confined to and understandable by only an enlightened inner circle; \"a compilation of esoteric philosophical theories\"",
+    "source_record_sha256": "c76ef8d5df7b4022764ec5ced0f809e9df55c28e29dce69bceaca2527459c1d0",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "exigent",
+    "item_id": "00712877-s",
+    "lemmas": [
+      "clamant",
+      "crying",
+      "exigent",
+      "insistent",
+      "instant"
+    ],
+    "gloss": "demanding attention; \"clamant needs\"; \"a crying need\"; \"regarded literary questions as exigent and momentous\"- H.L.Mencken; \"insistent hunger\"; \"an instant need\"",
+    "source_record_sha256": "1c153c79ee1a6d87eada9f89f5d6b26316d56c1ffc2f35c77309dbf07579a822",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "exorbitant",
+    "item_id": "01534282-s",
+    "lemmas": [
+      "exorbitant",
+      "extortionate",
+      "outrageous",
+      "steep",
+      "unconscionable",
+      "usurious"
+    ],
+    "gloss": "greatly exceeding bounds of reason or moderation; \"exorbitant rent\"; \"extortionate prices\"; \"spends an outrageous amount on entertainment\"; \"usurious interest rate\"; \"unconscionable spending\"",
+    "source_record_sha256": "e1632fd95428f88e1a9e026cf7b7c5eff275973442f334502bd862a4b15d3113",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "forgo",
+    "item_id": "02534062-v",
+    "lemmas": [
+      "waive",
+      "relinquish",
+      "forgo",
+      "forego",
+      "foreswear",
+      "dispense_with"
+    ],
+    "gloss": "do without or cease to hold or adhere to; \"We are dispensing with formalities\"; \"relinquish the old ideas\"",
+    "source_record_sha256": "58b927de168730da6fa61c10979cc1b38ee3b1702e77e689413d2fce7e04494e",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "fortify",
+    "item_id": "00220869-v",
+    "lemmas": [
+      "strengthen",
+      "beef_up",
+      "fortify"
+    ],
+    "gloss": "make strong or stronger; \"This exercise will strengthen your upper body\"; \"strengthen the relations between the two countries\"",
+    "source_record_sha256": "324af0fccab5492c3a3ce6b155bb639689dd4955cd5909abc7a4cd2b3f62acf9",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "harmonize",
+    "item_id": "00482473-v",
+    "lemmas": [
+      "harmonize",
+      "harmonise",
+      "reconcile"
+    ],
+    "gloss": "bring into consonance or accord; \"harmonize one's goals with one's abilities\"",
+    "source_record_sha256": "3b13d18df1ed8cf21866d933d9a8adcf44c480e622c611b1db7ed909f2538e6c",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "intangible",
+    "item_id": "00627643-s",
+    "lemmas": [
+      "intangible",
+      "nonphysical"
+    ],
+    "gloss": "lacking substance or reality; incapable of being touched or seen; \"that intangible thing--the soul\"",
+    "source_record_sha256": "2dbcd90bfbca8f608837052dc690bd6b62bb07906d1f4b5ed3334485353f76ab",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "intermediary",
+    "item_id": "09624559-n",
+    "lemmas": [
+      "mediator",
+      "go-between",
+      "intermediator",
+      "intermediary",
+      "intercessor"
+    ],
+    "gloss": "a negotiator who acts as a link between parties",
+    "source_record_sha256": "ff2f24b83c261eaba2cec2acaff57598be818aa329a3d7a391fe6f961f9c5639",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "intersect",
+    "item_id": "02023396-v",
+    "lemmas": [
+      "intersect",
+      "cross"
+    ],
+    "gloss": "meet at a point",
+    "source_record_sha256": "ac7505220188ae980d18619716a3fafe8bf00bf97abfa5e23e5b11f1617c3c9f",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "multifaceted",
+    "item_id": "02506922-s",
+    "lemmas": [
+      "many-sided",
+      "multifaceted",
+      "miscellaneous",
+      "multifarious"
+    ],
+    "gloss": "having many aspects; \"a many-sided subject\"; \"a multifaceted undertaking\"; \"multifarious interests\"; \"the multifarious noise of a great city\"; \"a miscellaneous crowd\"",
+    "source_record_sha256": "884fe05564490ebd2339e2af3b0eb2e661e0520d098732be70280680db682eab",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "nominal",
+    "item_id": "01939784-a",
+    "lemmas": [
+      "nominal"
+    ],
+    "gloss": "of, relating to, or characteristic of an amount that is not adjusted for inflation; \"the nominal GDP\"; \"nominal interest rates\"",
+    "source_record_sha256": "f84952c6f684209f2ece00936bbb54ad2a23d582fa26059899dc2b4120439972",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "ordinal",
+    "item_id": "02200035-a",
+    "lemmas": [
+      "ordinal"
+    ],
+    "gloss": "being or denoting a numerical order in a series; \"ordinal numbers\"; \"held an ordinal rank of seventh\"",
+    "source_record_sha256": "65db5e1a04ed513d14d0838baa07bf6f84dea7535d3984b3fd439c14471bea06",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "partisan",
+    "item_id": "00730731-a",
+    "lemmas": [
+      "partisan",
+      "partizan"
+    ],
+    "gloss": "devoted to a cause or party",
+    "source_record_sha256": "8111d19d307f1011c3f00b2b6f43fb20ed41798fe8a5a0b3d16b39b8d79ae487",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "perceptible",
+    "item_id": "01746605-a",
+    "lemmas": [
+      "perceptible"
+    ],
+    "gloss": "capable of being perceived by the mind or senses; \"a perceptible limp\"; \"easily perceptible sounds\"; \"perceptible changes in behavior\"",
+    "source_record_sha256": "5e4ac702d0e75e6ecb0943955a91e84c55bc32ce0d0106d916ca7c890b5668dd",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "prescriptive",
+    "item_id": "00732456-a",
+    "lemmas": [
+      "prescriptive",
+      "normative"
+    ],
+    "gloss": "pertaining to giving directives or rules; \"prescriptive grammar is concerned with norms of or rules for correct usage\"",
+    "source_record_sha256": "dc69362aa7da569320c170c9cd8793ed60a6b5e3afee5f92ee61619a6d638f4b",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "prospective",
+    "item_id": "01883898-a",
+    "lemmas": [
+      "prospective"
+    ],
+    "gloss": "of or concerned with or related to the future; \"prospective earnings\"; \"a prospective mother\"; \"a prospective bride\"; \"the statute is solely prospective in operation\"",
+    "source_record_sha256": "ba215083d7441a1f603cac69bb766663bedba25c1ec333b6f2c8b77e252d11bc",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "provisional",
+    "item_id": "00556318-s",
+    "lemmas": [
+      "probationary",
+      "provisional",
+      "provisionary",
+      "tentative"
+    ],
+    "gloss": "under terms not final or fully worked out or agreed upon; \"probationary employees\"; \"a provisional government\"; \"just a tentative schedule\"",
+    "source_record_sha256": "06bcfda97e86061233a9a39f5ad7c4f5e3835a83a98dc0cd29c72271592680b6",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "rebuttal",
+    "item_id": "07201220-n",
+    "lemmas": [
+      "rebuttal"
+    ],
+    "gloss": "the speech act of refuting by offering a contrary contention or argument",
+    "source_record_sha256": "d8bec9fbb0de90f114dec966c15b9069573ca32e70e0d81e38e8b9de05c63627",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "reciprocal",
+    "item_id": "13843173-n",
+    "lemmas": [
+      "multiplicative_inverse",
+      "reciprocal"
+    ],
+    "gloss": "(mathematics) one of a pair of numbers whose product is 1: the reciprocal of 2/3 is 3/2; the multiplicative inverse of 7 is 1/7",
+    "source_record_sha256": "83cdf9893c8875818f952a14b280cdfd6c8cf088a045fbfb8e0656b798a9c1bf",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "redundancy",
+    "item_id": "05730163-n",
+    "lemmas": [
+      "redundancy"
+    ],
+    "gloss": "(electronics) a system design that duplicates components to provide alternatives in case one component fails",
+    "source_record_sha256": "952f7aa6ffbe9c4829ee65172fc67222d53be9c8a449f2d146f5e2c4e52bb3b8",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "regime",
+    "item_id": "08050678-n",
+    "lemmas": [
+      "government",
+      "authorities",
+      "regime"
+    ],
+    "gloss": "the organization that is the governing authority of a political unit; \"the government reduced taxes\"; \"the matter was referred to higher authorities\"",
+    "source_record_sha256": "cffde81d7a98af2827deac00059279d1f9de4ae81565ca85274ab9ab62ae0b62",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "renounce",
+    "item_id": "02379198-v",
+    "lemmas": [
+      "abdicate",
+      "renounce"
+    ],
+    "gloss": "give up, such as power, as of monarchs and emperors, or duties and obligations; \"The King abdicated when he married a divorcee\"",
+    "source_record_sha256": "0242e2e45550a772dbda88302bef17bce06505f20863f6d19d2f807dc925e4d7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "resilient",
+    "item_id": "02280566-s",
+    "lemmas": [
+      "resilient"
+    ],
+    "gloss": "recovering readily from adversity, depression, or the like",
+    "source_record_sha256": "074f75ea109d7c49c10fa71df9054b8342b3f88b24ce0517e6331b5e5e52ce1d",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "respondent",
+    "item_id": "10524413-n",
+    "lemmas": [
+      "respondent",
+      "responder",
+      "answerer"
+    ],
+    "gloss": "someone who responds",
+    "source_record_sha256": "703a703221463e3aab322654ef8fd1aac0279d0997174d5266c6a146ff5664c4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "reticent",
+    "item_id": "02383709-s",
+    "lemmas": [
+      "reticent",
+      "untalkative"
+    ],
+    "gloss": "temperamentally disinclined to talk",
+    "source_record_sha256": "cdf4889444ee60eff7909f5039be12e8a585e3dad4a23908ea7f070a5c0eaf25",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "semantic",
+    "item_id": "02842042-a",
+    "lemmas": [
+      "semantic"
+    ],
+    "gloss": "of or relating to meaning or the study of meaning; \"semantic analysis\"",
+    "source_record_sha256": "b164e557dd8a4398972841d9cf163f9e5949cf4a6e4134f51ed2d16a1df206ec",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "spatial",
+    "item_id": "02841066-a",
+    "lemmas": [
+      "spatial",
+      "spacial"
+    ],
+    "gloss": "pertaining to or involving or having the nature of space; \"the first dimension to concentrate on is the spatial one\"; \"spatial ability\"; \"spatial awareness\"; \"the spatial distribution of the population\"",
+    "source_record_sha256": "d6ab550c233f701033553c352f6063a353e478c7042fac0d84b95b4ef82d5a12",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "specious",
+    "item_id": "02462210-s",
+    "lemmas": [
+      "specious",
+      "spurious"
+    ],
+    "gloss": "plausible but false; \"a specious claim\"; \"spurious inferences\"",
+    "source_record_sha256": "7cd640b4140dd4181669f92a5cb3a5d24c92b0cb5b1907812eca810d27ea20b7",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "subsidiary",
+    "item_id": "08003935-n",
+    "lemmas": [
+      "subsidiary_company",
+      "subsidiary"
+    ],
+    "gloss": "a company that is completely controlled by another company",
+    "source_record_sha256": "cc2a75dc37ae593d46a677db8c8002000764f5e43fed916f825963efab475e63",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "taxonomy",
+    "item_id": "08378356-n",
+    "lemmas": [
+      "taxonomy"
+    ],
+    "gloss": "a classification of organisms into groups based on similarities of structure or origin etc",
+    "source_record_sha256": "b77586235ad5c2cf507b0288a434bf5557c9aae17949b6a996162ed9c1fcaca4",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "transient",
+    "item_id": "01756292-s",
+    "lemmas": [
+      "ephemeral",
+      "passing",
+      "short-lived",
+      "transient",
+      "transitory",
+      "fugacious"
+    ],
+    "gloss": "lasting a very short time; \"the ephemeral joys of childhood\"; \"a passing fancy\"; \"youth's transient beauty\"; \"love is transitory but it is eternal\"; \"fugacious blossoms\"",
+    "source_record_sha256": "6ffbcf75239848d6ccdf321d7c86ce1ff4b2cfc2be7f396324809854d24862ce",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "vacillate",
+    "item_id": "02706046-v",
+    "lemmas": [
+      "hover",
+      "vibrate",
+      "vacillate",
+      "oscillate"
+    ],
+    "gloss": "be undecided about something; waver between conflicting positions or courses of action; \"He oscillates between accepting the new position and retirement\"",
+    "source_record_sha256": "aafc0cf0e0654d8b297e55305ac6fff0208153d48182180295266f77a854a1aa",
+    "hash_convention": "exact source row bytes including trailing LF"
+  },
+  {
+    "word": "verifiable",
+    "item_id": "00859453-s",
+    "lemmas": [
+      "confirmable",
+      "verifiable",
+      "falsifiable"
+    ],
+    "gloss": "capable of being tested (verified or falsified) by experiment or observation",
+    "source_record_sha256": "5df1a0bdde580a47f8c40c83d3427f7b7002bf9f40e3afe2fc016cc80981dcbb",
+    "hash_convention": "exact source row bytes including trailing LF"
+  }
+]

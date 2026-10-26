@@ -1,0 +1,59 @@
+{
+  "batch": "009",
+  "items": [
+    {
+      "word": "reappraise",
+      "reason": "007 appraise의 평가를 다시 수행한다는 차이 외에 이번 범위에서 별도 의미·학습 가치를 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "dissonant",
+      "reason": "001 dissonance와 구별되는 별도 의미·학습 가치를 이번 분야 구성에서 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "incongruent",
+      "reason": "003 congruent와 대비되는 직접 부정형 외에 이번 분야 구성에 포함할 별도 학습 가치를 충분히 확보하지 못해 보류",
+      "category": "파생어 선정 조건",
+      "status": "보류"
+    },
+    {
+      "word": "disaggregate",
+      "reason": "확인한 WordNet 3.0 index와 data에서 표제어 항목을 찾지 못해 개별 의미 ID를 제시하지 못함. 영어에 단어가 없다는 판정은 아님",
+      "category": "원자료 항목 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    },
+    {
+      "word": "epiphany",
+      "reason": "원자료에서 신의 현현 의미만 확인되어 이번에 고려한 갑작스러운 깨달음 의미를 해당 자료로 확인하지 못함",
+      "category": "선택 의미 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "checked_other_sense_id": "07323605-n",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ],
+  "rights_or_meaning_unconfirmed_items": [
+    {
+      "word": "disaggregate",
+      "reason": "확인한 WordNet 3.0 index와 data에서 표제어 항목을 찾지 못해 개별 의미 ID를 제시하지 못함. 영어에 단어가 없다는 판정은 아님",
+      "category": "원자료 항목 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    },
+    {
+      "word": "epiphany",
+      "reason": "원자료에서 신의 현현 의미만 확인되어 이번에 고려한 갑작스러운 깨달음 의미를 해당 자료로 확인하지 못함",
+      "category": "선택 의미 확인 부족",
+      "status": "보류",
+      "source_version": "WordNet 3.0",
+      "checked_other_sense_id": "07323605-n",
+      "source_url": "https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz"
+    }
+  ]
+}
