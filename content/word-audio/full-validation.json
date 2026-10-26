@@ -1,0 +1,25 @@
+{
+  "checkedDate": "2026-10-26",
+  "words": 3839,
+  "pauseMs": 500,
+  "levelCounts": {
+    "beginner": 775,
+    "intermediate": 1199,
+    "advanced": 1365,
+    "special": 500
+  },
+  "audioBytes": 163234176,
+  "audioSeconds": 20176.1,
+  "retainedSampleFiles": 20,
+  "publicFileCount": 3866,
+  "publicBytes": 165239078,
+  "zipBytes": 117485166,
+  "runtimeManifestCount": 3839,
+  "allHashesAndDecodedAudio": "passed",
+  "allPauseCentralSilence": "passed",
+  "allPhonemeTokensPresent": "passed",
+  "publicManifestCorrespondence": "passed",
+  "sourceCsvWordAndExampleCorrespondence": "passed",
+  "humanFullListeningReview": "not-performed",
+  "cloudflareFullDeployment": "pending-user-upload"
+}

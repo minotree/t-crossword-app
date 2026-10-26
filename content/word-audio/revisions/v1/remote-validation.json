@@ -1,0 +1,91 @@
+{
+  "base_url": "https://crossword-word-audio.minotree0902.workers.dev/",
+  "checked_date": "2026-10-26",
+  "page_status": 200,
+  "method": "curl.exe; urllib returned 403 but curl succeeded",
+  "files": [
+    {
+      "id": "word-2",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-402",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-149",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-531",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-477",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-1244",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-3078",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-3341",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-3799",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    },
+    {
+      "id": "word-3811",
+      "status": 200,
+      "content_type": "audio/mpeg",
+      "cors": "*",
+      "cache_control": "public, max-age=31536000, immutable",
+      "sha256_matches": true
+    }
+  ],
+  "range_status": 200,
+  "range_handling": "server returned complete MP3; partial content not verified",
+  "listening": "not-performed-by-agent"
+}

@@ -6,7 +6,7 @@ export default defineConfig(({ command, mode }) => ({
   plugins: [react(), ...(command === 'serve' && mode !== 'test' ? [aitDevtools.vite({
     initialState: {
       brand: { displayName: '영어 낱말' },
-      viewport: { preset: 'iphone-17-pro', frame: true, aitNavBar: true, aitNavBarType: 'partner' },
+      viewport: { preset: 'galaxy-s26', frame: true, aitNavBar: true, aitNavBarType: 'partner' },
     },
   })] : [])],
   server: { host: '0.0.0.0', port: 5174, strictPort: true },

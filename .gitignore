@@ -7,6 +7,10 @@
 node_modules/
 .pnpm-store/
 tmp/lint-tools/
+artifacts/tts-venv/
+artifacts/tts-cache/
+artifacts/toss-word-audio-full/
+artifacts/toss-word-audio-full.zip
 
 # Build outputs
 supabase/.temp/

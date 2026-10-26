@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>영어 낱말 음성</title>
+<style>
+body{font:16px/1.6 system-ui,sans-serif;max-width:760px;margin:auto;padding:20px;color:#191f28;background:#f9fafb}
+h1{font-size:24px}input{box-sizing:border-box;width:100%;padding:14px;border:1px solid #d1d6db;border-radius:12px;font:inherit}
+article{padding:16px 0;border-bottom:1px solid #d1d6db}h2{margin:0;font-size:20px}p{margin:8px 0}audio{display:block;width:100%;margin-block:8px}
+button{padding:10px 16px;min-height:44px;margin:4px;border:1px solid #c7ddfa;border-radius:10px;color:#1b64da;background:white;font:inherit}
+button:focus-visible,input:focus-visible{outline:3px solid #3182f6;outline-offset:2px}.error{color:#c13939}footer{margin-top:24px;font-size:13px}
+</style>
+<h1>영어 낱말 음성</h1>
+<p>AI 생성 영어 음성 · 단어와 예문 사이 0.5초 쉼</p>
+<label for="search">영단어 또는 예문 검색</label><input id="search" type="search" autocomplete="off">
+<p id="status" role="status">음성 목록을 불러오고 있습니다.</p>
+<main id="list"></main><button id="more" type="button" hidden>더 보기</button>
+<footer><a href="manifest.json">다른 앱용 음성 목록</a> · <a href="NOTICE.txt">제작·이용 고지</a> · <a href="KOKORO-APACHE-2.0.txt">Kokoro 고지</a> · <a href="WORDNET-LICENSE.txt">WordNet 고지</a></footer>
+<script src="audio-preview.js"></script>
+</html>

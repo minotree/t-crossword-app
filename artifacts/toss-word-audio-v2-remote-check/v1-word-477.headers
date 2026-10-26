@@ -1,0 +1,16 @@
+HTTP/1.1 200 OK
+Date: Mon, 26 Oct 2026 11:47:19 GMT
+Content-Type: audio/mpeg
+Content-Length: 22080
+Connection: keep-alive
+CF-Cache-Status: HIT
+Access-Control-Allow-Origin: *
+Cache-Control: public, max-age=31536000, immutable
+ETag: "299363415b366e61fe54ac1a16a197ef"
+x-content-type-options: nosniff
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=bRd%2FuKbpG%2Fq1CdUHpiWPvcL3wjAaD%2B4Nnfs8qq07jwKsvyD19pEP%2BBhwfDZjYnMDvz1AJb61xk47GaUsQjwDUFcXC9uDcx6ruQ9BhkKlBvVZNULKFmkUCkeagDHElo%2BR7DuK7hVQw0NVamGz4XYREfXWcIGzFi1Yc3KhLtx9D8k%3D"}]}
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Server: cloudflare
+CF-RAY: a50939bbba1109dc-HKG
+alt-svc: h3=":443"; ma=86400
+

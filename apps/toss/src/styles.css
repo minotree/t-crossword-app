@@ -8,12 +8,11 @@ button { cursor: pointer; }
 h1, h2, h3, p { margin: 0; }
 button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px solid #3182f6; outline-offset: 2px; }
 /* The non-game host reserves its navigation area; do not add its top inset again. */
-.app-shell { height: 100%; display: flex; flex-direction: column; overflow: hidden; max-width: 960px; margin: auto; padding-top: env(safe-area-inset-top, 0px); }
+.app-shell { height: 100%; display: flex; flex-direction: column; overflow: hidden; max-width: 960px; margin: auto; padding-top: 0; }
 /* Apply the host inset once, including a valid zero. Never add the browser inset. */
 .bottom-safe-area { flex-shrink: 0; height: var(--toss-safe-area-bottom, env(safe-area-inset-bottom, 0px)); }
-.app-heading { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; }
+.app-heading { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 20px; }
 .app-heading h1 { font-size: 19px; letter-spacing: -.5px; }
-.quiz-active .app-heading { padding-block: 6px; }
 .quiz-active .bottom-navigation { padding-top: 6px; }
 .app-heading > span, .secondary { color: #6b7684; font-size: 13px; line-height: 1.6; }
 .wallet-heading { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; font-size: 12px; color: #6b7684; }
@@ -50,7 +49,9 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .bottom-navigation > button:not(:disabled) { background: transparent; color: #6b7684; }
 .bottom-navigation > button[aria-current="page"] { color: #1b64da; }
 .navigation-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; white-space: nowrap; }
-.quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 0 12px 6px; }
+.quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px; }
+/* Keep difficulty controls close to the heading; spare height stays below the quiz. */
+.quiz-content { flex: 0 0 auto; width: 100%; margin: 0; }
 .quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; margin-bottom: 4px; }
 .quiz-summary-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .quiz-summary { flex-wrap: wrap; }
@@ -105,8 +106,8 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .word-bank .word-filters { margin-bottom: 8px; }
 .word-list-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding-bottom: 16px; }
 .word-list-scroll:focus-visible { outline: 2px solid #3182f6; outline-offset: -2px; }
-.word-bank-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0 12px; }
-.word-bank-heading h2 { padding: 0; }
+.word-bank-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0 12px; }
+.word-bank-heading h2 { padding: 0; font-size: 20px; }
 .word-bank-heading > span { flex-shrink: 0; white-space: nowrap; }
 .word-bank > .secondary { margin: 14px 0; }
 .word-list { list-style: none; padding: 0; margin: 0; }
@@ -116,6 +117,9 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .word-list small { color: #6b7684; font-size: 12px; }
 .word-list p { margin-top: 4px; line-height: 1.45; }
 .word-synonym { color: #6d28d9; overflow-wrap: anywhere; }
+.word-audio { margin-top: 10px; }
+.word-audio-actions { display: flex; gap: 8px; }
+.word-audio > [role="alert"] { color: #c13939; font-size: 13px; }
 .example { color: #6b7684; line-height: 1.7; font-size: 14px; margin-top: 16px; }
 .modal { border: 0; border-radius: 24px; padding: 24px; width: min(480px, calc(100% - 32px)); max-height: 85dvh; overflow-y: auto; color: #191f28; }
 .modal::backdrop { background: #0009; }

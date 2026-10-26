@@ -1,0 +1,78 @@
+{
+  "decoded_files": [
+    {
+      "id": "word-2",
+      "word": "YOU",
+      "bytes": 16128,
+      "decodedSeconds": 2.016,
+      "peak": 0.2298
+    },
+    {
+      "id": "word-402",
+      "word": "SEA",
+      "bytes": 18432,
+      "decodedSeconds": 2.304,
+      "peak": 0.2831
+    },
+    {
+      "id": "word-149",
+      "word": "SAME",
+      "bytes": 18816,
+      "decodedSeconds": 2.352,
+      "peak": 0.5247
+    },
+    {
+      "id": "word-531",
+      "word": "APPLE",
+      "bytes": 22080,
+      "decodedSeconds": 2.76,
+      "peak": 0.3599
+    },
+    {
+      "id": "word-477",
+      "word": "SCIENCE",
+      "bytes": 22080,
+      "decodedSeconds": 2.76,
+      "peak": 0.3942
+    },
+    {
+      "id": "word-1244",
+      "word": "KNOWLEDGE",
+      "bytes": 26688,
+      "decodedSeconds": 3.336,
+      "peak": 0.3392
+    },
+    {
+      "id": "word-3078",
+      "word": "ENVIRONMENT",
+      "bytes": 28992,
+      "decodedSeconds": 3.624,
+      "peak": 0.3675
+    },
+    {
+      "id": "word-3341",
+      "word": "ABSTRACTION",
+      "bytes": 55680,
+      "decodedSeconds": 6.96,
+      "peak": 0.435
+    },
+    {
+      "id": "word-3799",
+      "word": "CORRELATION",
+      "bytes": 62592,
+      "decodedSeconds": 7.824,
+      "peak": 0.4629
+    },
+    {
+      "id": "word-3811",
+      "word": "EPISTEMOLOGY",
+      "bytes": 73152,
+      "decodedSeconds": 9.144,
+      "peak": 0.4675
+    }
+  ],
+  "source_and_runtime_manifest_match": true,
+  "hashes_match": true,
+  "listening_review": "pending",
+  "toss_device_review": "pending"
+}

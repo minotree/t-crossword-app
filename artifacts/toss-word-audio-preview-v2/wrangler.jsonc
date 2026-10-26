@@ -1,0 +1,7 @@
+{
+  "name": "crossword-word-audio",
+  "compatibility_date": "2026-10-26",
+  "assets": {
+    "directory": "./public"
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "word-2": {
+    "word": "YOU",
+    "example": "You can sit here.",
+    "file": "word-2-40e737189032bea2.mp3",
+    "sha256": "40e737189032bea2db437acddb70e54a97b3d5393dd42d0838c1bc4f595bd86c",
+    "textSha256": "1d2e3ee25f09c67dd0019657b0881ee9caf25a57890b0be482e605be3e834b8c",
+    "seconds": 3.7,
+    "bytes": 30144,
+    "phonemes": [
+      "ju.",
+      "jˌu kæn sˈɪt hˈɪɹ."
+    ],
+    "segments": [
+      "you.",
+      "You can sit here."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 30000
+  },
+  "word-402": {
+    "word": "SEA",
+    "example": "The sea is calm today.",
+    "file": "word-402-9391f9b8192f1b80.mp3",
+    "sha256": "9391f9b8192f1b802cba908513bac5d9fdff129bd86bcf754d0f470837012016",
+    "textSha256": "9a5619afc16c3921dafe1c1d6baaaf7f3b5180ce77ef7904b40c1369772fa46b",
+    "seconds": 3.95,
+    "bytes": 32064,
+    "phonemes": [
+      "sˈi.",
+      "ðə sˈi ɪz kˈɑm tədˈA."
+    ],
+    "segments": [
+      "sea.",
+      "The sea is calm today."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 30600
+  },
+  "word-149": {
+    "word": "SAME",
+    "example": "We have the same idea.",
+    "file": "word-149-480987808993c62c.mp3",
+    "sha256": "480987808993c62cd26c47ab3c832dc7e2ca5bea0bca700f16e79b7431c72f1b",
+    "textSha256": "11c4a42399f860700c6309fd4c995c8fb7608ffae6ea0b67205952931d198ed0",
+    "seconds": 3.975,
+    "bytes": 32256,
+    "phonemes": [
+      "sˈAm.",
+      "wˌi hæv ðə sˈAm Idˈiə."
+    ],
+    "segments": [
+      "same.",
+      "We have the same idea."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 32400
+  },
+  "word-531": {
+    "word": "APPLE",
+    "example": "She ate an apple after lunch.",
+    "file": "word-531-7d8071131e7f8d79.mp3",
+    "sha256": "7d8071131e7f8d79eb7002be0975c976a1e7f2deeebb5604835ca9f9d1eeee38",
+    "textSha256": "4a8af03a02e4fb35126c09e7dfe70293367df2d29295794cd14e34c646b5267b",
+    "seconds": 4.45,
+    "bytes": 36096,
+    "phonemes": [
+      "ˈæpᵊl.",
+      "ʃˌi ˈAt ɐn ˈæpᵊl ˈæftəɹ lˈʌnʧ."
+    ],
+    "segments": [
+      "apple.",
+      "She ate an apple after lunch."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 33000
+  },
+  "word-477": {
+    "word": "SCIENCE",
+    "example": "She enjoys studying science.",
+    "file": "word-477-d2090532a5356402.mp3",
+    "sha256": "d2090532a5356402b2acf7e2f518a027863fb160dc98cd04fccfc789404f6fce",
+    "textSha256": "e0d85807f119dad7713c1f2b4060efec06e600fc01c404112c08bd4b87a5e92b",
+    "seconds": 4.425,
+    "bytes": 35904,
+    "phonemes": [
+      "sˈIəns.",
+      "ʃˌi ɪnʤˈYz stˈʌdiɪŋ sˈIəns."
+    ],
+    "segments": [
+      "science.",
+      "She enjoys studying science."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 34200
+  },
+  "word-1244": {
+    "word": "KNOWLEDGE",
+    "example": "She has extensive knowledge of history.",
+    "file": "word-1244-224836c6fd911ecc.mp3",
+    "sha256": "224836c6fd911ecc38bcff7c0e5d7ba4b95f3657e12cb1a64697a39be6da8e59",
+    "textSha256": "c7d32a929b5558e2af1afe33fceedc8145efde1ad9e337052dddb11d704eeb75",
+    "seconds": 5.0,
+    "bytes": 40512,
+    "phonemes": [
+      "nˈɑləʤ.",
+      "ʃˌi hæz ɪkstˈɛnsɪv nˈɑləʤ ʌv hˈɪstəɹi."
+    ],
+    "segments": [
+      "knowledge.",
+      "She has extensive knowledge of history."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 34800
+  },
+  "word-3078": {
+    "word": "ENVIRONMENT",
+    "example": "We should protect the natural environment.",
+    "file": "word-3078-3546fffb8be504e3.mp3",
+    "sha256": "3546fffb8be504e333c673b663759a39aafbadb792ed44916bfd6aa811e6e785",
+    "textSha256": "2806f0fe0ca2f23efbf1519670168950c6df630d07e10b961d3ca79ded609fed",
+    "seconds": 5.1,
+    "bytes": 41280,
+    "phonemes": [
+      "ənvˈIɹənmᵊnt.",
+      "wˌi ʃˌʊd pɹətˈɛkt ðə nˈæʧəɹᵊl ənvˈIɹənmᵊnt."
+    ],
+    "segments": [
+      "environment.",
+      "We should protect the natural environment."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 38400
+  },
+  "word-3341": {
+    "word": "ABSTRACTION",
+    "example": "Abstraction helps researchers compare systems that differ greatly in their physical details.",
+    "file": "word-3341-1a35af396f646417.mp3",
+    "sha256": "1a35af396f64641728827875840212a16c2e729d8d256225e96a1c2658420c77",
+    "textSha256": "46cfc13c56f4c7254524d189ed38a201bab76394fea923dcfdf595a678d10b04",
+    "seconds": 8.375,
+    "bytes": 67392,
+    "phonemes": [
+      "əbstɹˈækʃən.",
+      "əbstɹˈækʃən hˈɛlps ɹəsˈɜɹʧəɹz kəmpˈɛɹ sˈɪstəmz ðæt dˈɪfəɹ ɡɹˈAtli ɪn ðɛɹ fˈɪzəkᵊl dətˈAlz."
+    ],
+    "segments": [
+      "abstraction.",
+      "Abstraction helps researchers compare systems that differ greatly in their physical details."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 39000
+  },
+  "word-3799": {
+    "word": "CORRELATION",
+    "example": "A high positive correlation does not establish that changing one variable will directly change the other.",
+    "file": "word-3799-0bd7b095644686c9.mp3",
+    "sha256": "0bd7b095644686c97bb843696b742650e61906aeb6bd8b2185226722d1d8d4a9",
+    "textSha256": "5527343d99c0d3e473f018d6be9bef4c1e8e7f8311a1d674b2892a8fe2958706",
+    "seconds": 9.4,
+    "bytes": 75648,
+    "phonemes": [
+      "kˌɔɹəlˈAʃən.",
+      "ɐ hˈI pˈɑzəTɪv kˌɔɹəlˈAʃən dˈʌz nˌɑt əstˈæblɪʃ ðæt ʧˈAnʤɪŋ wˈʌn vˈɛɹiəbᵊl wɪl dəɹˈɛktli ʧˈAnʤ ði ˈʌðəɹ."
+    ],
+    "segments": [
+      "correlation.",
+      "A high positive correlation does not establish that changing one variable will directly change the other."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 39600
+  },
+  "word-3811": {
+    "word": "EPISTEMOLOGY",
+    "example": "Epistemology asks what counts as knowledge and how claims can be justified rather than repeated with greater confidence.",
+    "file": "word-3811-5713877b0f165140.mp3",
+    "sha256": "5713877b0f165140223853d72e21b8a46c57092eea47fb778159ff437c4f381c",
+    "textSha256": "5225ddd5767772a120434f509836476a56b7f527c44da980ecaecc94d3e59022",
+    "seconds": 10.55,
+    "bytes": 84864,
+    "phonemes": [
+      "əpˌɪstəmˈɑləʤi.",
+      "əpˌɪstəmˈɑləʤi ˈæsks wˌʌt kˈWnts æz nˈɑləʤ ænd hˌW klˈAmz kæn bi ʤˈʌstəfˌId ɹˈæðəɹ ðən ɹəpˈiTᵻd wɪð ɡɹˈATəɹ kˈɑnfədᵊns."
+    ],
+    "segments": [
+      "epistemology.",
+      "Epistemology asks what counts as knowledge and how claims can be justified rather than repeated with greater confidence."
+    ],
+    "pauseMs": 800,
+    "pauseStartSample": 41400
+  }
+}

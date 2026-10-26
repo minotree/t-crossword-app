@@ -1,4 +1,4 @@
-import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { Button, TextField } from '@toss/tds-mobile';
 import {
   defaultVocabList,
@@ -16,6 +16,8 @@ import { NavigationIcon } from './components/NavigationIcon.js';
 import { PictureBooks } from './components/PictureBooks.js';
 import { AdBanner } from './components/Ads.js';
 import { WordList } from './components/WordList.js';
+import { createWordAudio } from './adapters/wordAudio.js';
+import audioManifest from './data/word-audio.json';
 import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
 import { getCurrentLetters } from './puzzlePresentation.js';
@@ -24,6 +26,8 @@ type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 type WordFilter = 'all' | 'bookmarked' | 'completed' | 'mistakes';
 
 export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?: typeof generateDevicePuzzle } = {}) {
+  const audio = useMemo(() => createWordAudio(import.meta.env.VITE_TOSS_WORD_AUDIO_BASE_URL ?? '', audioManifest), []);
+  const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const repository = useMemo(() => createProgressRepository(createPlatformStorage()), []);
   const [progress, setProgress] = useState<Progress | null>(null);
   const progressRef = useRef<Progress | null>(null);
@@ -47,6 +51,13 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
   const [showCompletion, setShowCompletion] = useState(false);
   const [filter, setFilter] = useState<WordFilter>('all');
   const [query, setQuery] = useState('');
+  useEffect(() => { audio.stop(); }, [audio, page, query, filter]);
+  useEffect(() => {
+    const hide = () => { if (document.hidden) audio.stop(); };
+    document.addEventListener('visibilitychange', hide);
+    window.addEventListener('pagehide', audio.stop);
+    return () => { document.removeEventListener('visibilitychange', hide); window.removeEventListener('pagehide', audio.stop); audio.stop(); };
+  }, [audio]);
   const [visibleCount, setVisibleCount] = useState(50);
   const [gameError, setGameError] = useState('');
   const [isGameBusy, setIsGameBusy] = useState(false);
@@ -183,7 +194,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         </section>
       </>}
 
-      {page === 'quiz' && puzzle && <>
+      {page === 'quiz' && puzzle && <div className="quiz-content">
         <section className="quiz-controls" aria-label="퍼즐 설정">
           <div role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map((value) => <Button key={value} size="small" variant={level === value ? 'fill' : 'weak'} aria-pressed={level === value} disabled={isGameBusy} onClick={() => { if (level !== value) void startPuzzle(value, size); }}>{levelNames[value]}</Button>)}</div>
           <div role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map((value) => <Button key={value} size="small" variant={size === value ? 'fill' : 'weak'} aria-pressed={size === value} disabled={isGameBusy} onClick={() => { if (size !== value) void startPuzzle(level, value); }}>{value}×{value}</Button>)}</div>
@@ -196,7 +207,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
           </div>
         </div>
         {puzzle.words.length === 0 ? <section className="empty"><h2>학습할 단어를 모두 풀었어요</h2><p>다른 난이도를 선택해 보세요.</p><Button onClick={() => setPage('home')}>난이도 선택</Button></section> : <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solvedIds} onSelectWord={setSelected} />}
-      </>}
+      </div>}
 
       {page === 'words' && <section className="word-bank">
         <div className="word-bank-heading"><h2>나의 단어장</h2><span className="secondary" aria-live="polite">{words.length}개 단어</span></div>
@@ -207,6 +218,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         <div className="word-list-scroll" role="region" aria-label="단어 목록" tabIndex={0}>
         {words.length === 0 && <p className="empty">{filter === 'mistakes' && !query.trim() ? '아직 오답노트에 등록된 단어가 없습니다.' : '표시할 단어가 없습니다.'}</p>}
         <WordList words={words} visibleCount={visibleCount} completed={completedWords} bookmarked={bookmarkedWords}
+          audio={audio} audioState={audioState}
           mistakes={filter === 'mistakes'} onBookmark={toggleBookmark} onDismiss={dismissWord} />
         {visibleCount < words.length && <Button display="block" variant="weak" onClick={() => setVisibleCount((value) => value + 50)}>단어 더 보기</Button>}
         </div>
@@ -249,6 +261,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         </section>
         <section className="settings-card" aria-labelledby="settings-notices">
           <h3 id="settings-notices">콘텐츠 이용 고지</h3>
+          {audio.configured && <p>영어 음성은 AI로 생성했으며 단어와 예문을 함께 읽습니다. 최초 재생에는 인터넷 연결이 필요합니다.</p>}
           <details><summary>WordNet 3.0 이용 조건</summary><pre lang="en" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontSize: 12, lineHeight: 1.6 }}>{wordnetLicense}</pre></details>
         </section>
       </section>}

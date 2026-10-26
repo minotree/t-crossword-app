@@ -1,0 +1,100 @@
+{
+  "revision": 2,
+  "decoded_files": [
+    {
+      "id": "word-2",
+      "word": "YOU",
+      "bytes": 30144,
+      "decodedSeconds": 3.768,
+      "peak": 0.2943,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-402",
+      "word": "SEA",
+      "bytes": 32064,
+      "decodedSeconds": 4.008,
+      "peak": 0.365,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-149",
+      "word": "SAME",
+      "bytes": 32256,
+      "decodedSeconds": 4.032,
+      "peak": 0.4554,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-531",
+      "word": "APPLE",
+      "bytes": 36096,
+      "decodedSeconds": 4.512,
+      "peak": 0.537,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-477",
+      "word": "SCIENCE",
+      "bytes": 35904,
+      "decodedSeconds": 4.488,
+      "peak": 0.4195,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-1244",
+      "word": "KNOWLEDGE",
+      "bytes": 40512,
+      "decodedSeconds": 5.064,
+      "peak": 0.3303,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-3078",
+      "word": "ENVIRONMENT",
+      "bytes": 41280,
+      "decodedSeconds": 5.16,
+      "peak": 0.364,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-3341",
+      "word": "ABSTRACTION",
+      "bytes": 67392,
+      "decodedSeconds": 8.424,
+      "peak": 0.416,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-3799",
+      "word": "CORRELATION",
+      "bytes": 75648,
+      "decodedSeconds": 9.456,
+      "peak": 0.3544,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    },
+    {
+      "id": "word-3811",
+      "word": "EPISTEMOLOGY",
+      "bytes": 84864,
+      "decodedSeconds": 10.608,
+      "peak": 0.4473,
+      "insertedPauseMs": 800,
+      "centralPausePeak": 0.0
+    }
+  ],
+  "source_and_runtime_manifest_match": true,
+  "hashes_match": true,
+  "retained_v1_files": 10,
+  "listening_review": "pending",
+  "toss_device_review": "pending"
+}

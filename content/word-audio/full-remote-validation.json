@@ -1,0 +1,43 @@
+{
+  "checkedDate": "2026-10-26",
+  "baseUrl": "https://crossword-word-audio.minotree0902.workers.dev/",
+  "manifestEntries": 3839,
+  "manifestExactMatch": true,
+  "pauseMs": 500,
+  "audioSamples": [
+    {
+      "id": "word-2",
+      "word": "YOU",
+      "level": "beginner",
+      "hashMatch": true,
+      "http": 200,
+      "mimeAndCorsAndCache": "passed"
+    },
+    {
+      "id": "word-777",
+      "word": "LET",
+      "level": "intermediate",
+      "hashMatch": true,
+      "http": 200,
+      "mimeAndCorsAndCache": "passed"
+    },
+    {
+      "id": "word-1976",
+      "word": "MINE",
+      "level": "advanced",
+      "hashMatch": true,
+      "http": 200,
+      "mimeAndCorsAndCache": "passed"
+    },
+    {
+      "id": "word-3341",
+      "word": "ABSTRACTION",
+      "level": "special",
+      "hashMatch": true,
+      "http": 200,
+      "mimeAndCorsAndCache": "passed"
+    }
+  ],
+  "allRemoteAudioDownloaded": false,
+  "actualTossDevicePlayback": "pending-user-test"
+}

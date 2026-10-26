@@ -1,0 +1,24 @@
+{
+  "created_date": "2026-10-26",
+  "config": {
+    "model": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "voiceSha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+    "pauseMs": 500,
+    "sampleRate": 24000,
+    "bitrateKbps": 64,
+    "speed": 1,
+    "wordCase": "lower",
+    "modelMode": "eval",
+    "generatorVersion": 1
+  },
+  "workers": 6,
+  "threadsPerWorker": 1,
+  "target": 3839,
+  "completed": 3839,
+  "failures": [],
+  "elapsedSeconds": 2493.6,
+  "vocabularySha256": "c6f6418311fbb8563fc1dc3cb6b4d3fd44ad3c1140ca5cda970c5cb0f16c5881",
+  "generatorSha256": "83fdcd4fa6a54e36a4afc2926f0b2a63023d89fdd3f849546fe39eaef0af82b4",
+  "listeningReview": "sample-v2-approved; full-v3-not-listened",
+  "deployment": "not-performed"
+}

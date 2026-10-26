@@ -265,3 +265,36 @@ it('removes hint balances and rewarded-ad entry points from the release', async 
   expect(container.textContent).not.toContain('광고 보고 힌트');
   expect(container.textContent).toContain('v1.0.1');
 });
+
+it('plays a prepared word on click and stops audio on search, page hide and menu changes', async () => {
+  vi.stubEnv('VITE_TOSS_WORD_AUDIO_BASE_URL', 'https://audio.example.com/word-audio/');
+  const elements: HTMLAudioElement[] = [];
+  vi.stubGlobal('Audio', vi.fn(function () {
+    const audio = document.createElement('audio');
+    vi.spyOn(audio, 'play').mockResolvedValue();
+    vi.spyOn(audio, 'pause').mockImplementation(() => {});
+    vi.spyOn(audio, 'load').mockImplementation(() => {});
+    elements.push(audio); return audio;
+  }));
+  try {
+    await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App /></TDSMobileAITProvider>));
+    await click('단어장 보기');
+    expect(elements).toHaveLength(0);
+    await click('YOU 듣기');
+    expect(elements).toHaveLength(1);
+    await act(async () => elements[0].dispatchEvent(new Event('playing')));
+    expect(container.querySelector('button[aria-label="YOU 듣기 중지"]')?.getAttribute('aria-pressed')).toBe('true');
+    const input = container.querySelector('input');
+    if (!(input instanceof HTMLInputElement)) throw new Error('Search missing');
+    await type(input, 'sea');
+    expect(elements[0].pause).toHaveBeenCalled();
+    await type(input, '');
+    await click('YOU 느리게 듣기');
+    expect(elements[1].playbackRate).toBe(0.7);
+    await act(async () => window.dispatchEvent(new Event('pagehide')));
+    expect(elements[1].pause).toHaveBeenCalled();
+    await click('YOU 듣기');
+    await click('홈');
+    expect(elements[2].pause).toHaveBeenCalled();
+  } finally { vi.unstubAllGlobals(); vi.unstubAllEnvs(); }
+});

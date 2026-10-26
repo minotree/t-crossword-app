@@ -1,5 +1,95 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## 토스 난이도 위 중앙 정렬 여백 제거 (2026-10-26)
+
+- 제목 복원 후 사용자가 난이도 위 여백이 넓다고 지적해 `.quiz-content`의 `margin-block: auto`를 제거하고 상단 정렬로 변경했다(`apps/toss/src/styles.css`). 이전 중앙 정렬 요구보다 최신 여백 축소 요청을 우선한다. 공통 제목은 유지하고 본문 상단 padding 6px 뒤에 난이도가 배치되며 남는 공간은 하단에 둔다. 절대 위치·음수 여백 없이 화면 크기에 따라 본문 높이가 변하고 부족하면 본문 전체가 스크롤된다.
+- `pnpm.cmd --filter @t-crossword/toss build`(타입 포함) 통과. 기존 큰 청크 경고 유지. 실제 Android/iPhone 확인 및 번들 생성·업로드 미실행.
+
+## 토스 퀴즈 공통 제목 복원 (2026-10-26)
+
+- 사용자가 퀴즈의 `영어 낱말 · N개 학습` 줄을 유지하도록 정정했다. `apps/toss/src/App.tsx`에서 퀴즈 제외 조건을 제거해 공통 제목을 복원했다. 이후 버튼 노출을 위한 공간 조정에서도 해당 제목을 삭제하지 않는다. 공통 헤더의 상하 6px 여백·기존 반응형 퀴즈 중앙 정렬·Android 미리보기 기본값은 유지한다.
+- `pnpm.cmd --filter @t-crossword/toss typecheck` 통과. 실제 기기 배치 재확인은 미실행이며 번들 생성·업로드는 하지 않았다.
+
+## 토스 로컬 미리보기 Android 기본값 (2026-10-26)
+
+- 사용자 요청으로 `apps/toss/vite.config.ts`의 devtools 기본 viewport를 `iphone-17-pro`에서 설치된 패키지가 제공하는 `galaxy-s26`으로 변경했다. `http://localhost:5174/` 개발 미리보기 전용이며 실제 Android WebView나 배포 앱의 기기 설정을 바꾸는 작업은 아니다.
+- 설치된 devtools 프리셋 타입 확인 및 `pnpm.cmd --filter @t-crossword/toss typecheck`, `git diff --check` 통과. 브라우저 시각 확인은 미실행. 일반 빌드·번들·APK 생성·업로드는 하지 않았다.
+
+## 토스 퀴즈 상단 중복 제목 생략 (2026-10-26)
+
+- Android 캡처에서 `문제 전체 보기`가 하단 메뉴에 일부 가려 보이는 피드백에 따라 퀴즈에서만 앱 내부 `영어 낱말 · N개 학습` 헤더를 생략했다(`apps/toss/src/App.tsx`). 토스 기본 상단 제목과 난이도별 학습완료 표시는 유지한다. 헤더가 차지하던 본문 높이를 확보해 난이도·진행·보드·하단 버튼 묶음을 위로 배치할 수 있게 했다. 보드 너비·버튼 높이·광고 크기는 변경하지 않았다.
+- 충분한 높이에서는 기존 auto margin 중앙 정렬, 낮은 화면에서는 위에서부터 배치하고 본문 전체 스크롤을 유지한다. 절대 위치·음수 여백·보드 내부 스크롤을 추가하지 않았다. 모든 화면에서 스크롤 없이 맞는다고 보장하지 않는다.
+- `pnpm.cmd --filter @t-crossword/toss test` 90개·`lint`·`build`(타입 포함) 통과. 큰 청크 경고 유지. 실제 Android/iPhone 버튼 노출 확인은 사용자 재배포 후 대기. `.ait` 생성·업로드 미실행.
+
+## 토스 화면 공통 상단 여백 통일·TTS 기기 피드백 (2026-10-26)
+
+- 사용자가 Android·iPhone 토스에서 음성이 잘 나온다고 확인했다. 에이전트의 직접 기기 검증이나 전화/광고 오디오 포커스 전수 검증과 구분한다.
+- Android 캡처에서 퀴즈와 홈/단어장의 공통 제목 위치가 달랐다. `.quiz-active .app-heading`만 6px, 나머지는 12px이던 분기를 제거하고 공통 헤더 상하 padding을 6px로 통일했다. 단어장 별도 제목은 24→20px, 제목 영역 상단 padding은 8→6px로 줄여 중복 제목의 시각적 비중과 필터까지 간격을 줄였다.
+- 수정 파일: `apps/toss/src/styles.css`. 퀴즈 묶음의 남은 본문 높이 기준 중앙 정렬과 짧은 화면의 본문 스크롤을 유지한다. 공통 헤더 아래의 홈·퀴즈·단어장 자체 콘텐츠 구성은 서로 다르다.
+- `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build`(타입 포함) 통과. 기존 큰 청크 경고 유지. CSS 변경으로 단위 테스트는 반복하지 않았다. 실제 Android/iPhone 제목 위치 재확인은 사용자 배포 후 대기이며 `.ait`·APK 생성 및 업로드는 하지 않았다.
+
+## 전체 음성 Cloudflare 업로드 확인 (2026-10-26)
+
+- 콘솔은 ZIP 25MiB·파일 1,000개 제한으로 실패했다. 사용자가 Wrangler로 기존 `crossword-word-audio`에 배포를 완료했다. CLI의 3,865개 업로드는 정적 응답 설정인 `_headers`를 제외한 수이며 로컬 public 3,866개와 구분한다.
+- 공개 manifest 3,839개가 로컬 원본과 완전히 일치하고 `pauseMs: 500`임을 확인했다. 난이도별 대표 음성 YOU·LET·MINE·ABSTRACTION 4개를 내려받아 원본 SHA-256·HTTP 200·audio/mpeg·CORS·immutable 캐시를 확인했다. 전체 3,839개 원격 MP3 재다운로드 검사는 수행하지 않았다. 기록: `content/word-audio/full-remote-validation.json`.
+- 아래 전체 업로드 대기는 업로드 전 이력이다. 이제 사용자 토스 번들 생성·업로드 및 실제 iPhone/Android 재생 확인이 남아 있다. 에이전트는 배포·번들 생성을 실행하지 않았다.
+
+## 전체 3,839개 TTS 생성·소스 연결 완료 (2026-10-26)
+
+- 사용자 선택으로 삽입 쉼 0.5초를 적용하고 전체 생성을 완료했다(실패 0). 기존 v2 음질 확인은 일반 사용자 청취 피드백으로 기록했다. 오프라인 Kokoro 모델/음성 해시는 기존 검증본을 사용한다. 전체 사람 청취 검사는 수행하지 않았다.
+- `scripts/generate-all-word-audio.py`는 각 항목의 MP3 디코딩·해시·0.5초 무음·발음 기호 누락을 확인하고 체크포인트를 남긴다. 처음 4개 작업에서 6개로 늘릴 때 완료 체크포인트를 보존해 재시작했다. 재개 명령: `artifacts/tts-venv/Scripts/python.exe scripts/generate-all-word-audio.py --workers 6 --threads 1`. 현황은 `artifacts/toss-word-audio-full/progress.json`이다.
+- `python scripts/package-all-word-audio.py`로 전체 CSV 대응·해시·디코딩·무음·발음 기호 누락 검사를 통과했다. 공개 영단어 키 manifest·다른 앱용 BOM URL CSV·검색/청취 화면·v1/v2 URL 보존 패키지를 준비한 후 토스 manifest 3,839개를 갱신했다. 전체 MP3/ZIP/체크포인트는 Git에서 제외하고 제작·검증 기록과 앱 manifest를 소스에 보존한다.
+- 전체 음성 163,234,176 bytes, 이전 표본 20개 포함 정적 파일 3,866개, ZIP 117,485,166 bytes. `artifacts/toss-word-audio-full.zip`을 기존 Cloudflare에 먼저 업로드한 후 사용자 토스 번들을 생성한다. 다른 앱용 주소표는 `artifacts/toss-word-audio-full/word-audio-links.csv`다. 전체 사용 안내는 `content/word-audio/FULL.md`다.
+- `pnpm.cmd --filter @t-crossword/toss test` 90개·`lint`·`build`(타입 포함) 통과. 기존 큰 청크 경고는 유지. 새 스크립트 구문 검사와 전체 manifest 대응 회귀 검사를 추가했다. 전체 Cloudflare 원격 검사·토스 iPhone/Android 실제 청취·광고/전화 포커스는 미실행이며 공개 배포·`.ait`·APK 생성은 하지 않았다. 퀴즈 묶음의 비례적 중앙 배치는 기존 소스 수정을 유지한다.
+- 최종 ZIP CRC·파일 3,866개·공개 manifest 3,839개·일반 빌드의 전체 파일명/Cloudflare 주소 포함·MP3 번들 미포함 검사 및 `git diff --check` 통과. Git의 기존 LF/CRLF 변환 안내는 오류와 구분한다.
+
+## Android 토스 중앙 정렬 추가 점검 (2026-10-26)
+
+- 토스 퀴즈의 `.quiz-page` flex 본문·`.quiz-content` 세로 auto margin은 OS별 분기 없이 iPhone/Android에 공통 적용됨을 소스로 확인했다. 남는 본문 공간에 중앙 정렬하며 공간 부족 시 묶음 전체가 스크롤되고 보드 내부 스크롤은 없다. 하단 메뉴·광고·안전 영역은 flex 일반 흐름으로 분리된다. 개발용 54px 미리보기 보정은 DEV에서만 로드한다.
+- 기본 Android SDK 경로의 adb로 `devices -l` 확인. 최초 샌드박스 실행은 `.android` 디렉터리 권한 오류였고 권한 승인 후 정상 조회했으나 연결된 기기 목록은 비어 있었다. 따라서 실제 Android 토스 화면·키보드·광고 유무·가로 배치 검증은 수행하지 못했다. 직전 89개 테스트/lint/빌드 통과와 구분한다. 소스 변경이 없어 전체 검사는 반복하지 않았으며 이번 변경은 점검 문서뿐이다.
+
+## 토스 퀴즈 묶음 반응형 세로 중앙 정렬 (2026-10-26)
+
+- 사용자 iPhone 16 Pro 캡처 피드백에 따라 난이도/격자 선택·학습/퍼즐 진행·보드·문제 전체 보기를 `.quiz-content` 한 묶음으로 감쌌다. 앱 제목과 하단 메뉴/광고/Safe Area를 제외한 본문에서 `margin-block: auto`로 남는 높이를 위아래에 균등 분배한다. 본문 상하 padding도 대칭으로 맞췄다.
+- 고정 top/height·위치 오프셋·기기별 좌표를 추가하지 않았다. 화면 높이·가로세로 전환·광고 높이에 따라 flex 본문 높이로 정렬한다. 공간이 부족하면 auto margin이 0이 되어 본문 전체를 스크롤하며 보드 내부 스크롤은 없다. 보드 가로 너비·하단 버튼·광고·Safe Area 유지.
+- 수정 파일: `apps/toss/src/App.tsx`, `apps/toss/src/styles.css`. `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build`(타입 포함), `pnpm.cmd --filter @t-crossword/toss test` 89개, `git diff --check` 통과. 큰 청크 경고는 유지. 실제 iPhone/Android 중앙 위치·가로 화면 확인은 대기이며 번들 생성·업로드는 하지 않았다.
+
+## 토스 음성 v2 사용자 배포 확인 (2026-10-26)
+
+- 사용자가 같은 Cloudflare 프로젝트에 v2 ZIP을 배포했다. 공개 페이지의 v2 표기와 새 MP3 10개·기존 URL 보존용 v1 MP3 10개 모두 HTTP 정상 응답·원본 SHA-256 일치·audio/mpeg·CORS를 curl 읽기 검사로 확인했다. `content/word-audio/remote-validation.json`을 실제 결과로 갱신했다.
+- 토스 소스 manifest는 이미 v2를 가리키므로 추가 코드 수정·빌드 반복은 하지 않았다. 사용자가 새 토스 번들을 생성/업로드한 뒤 실제 단어/예문 간격을 확인해야 한다. 이번에 에이전트의 배포·`.ait`·APK 생성·업로드는 없었다.
+
+## 토스 음성 단어·예문 간격 확대 v2 (2026-10-26)
+
+- 사용자 ‘단어와 예문 간격이 좁다’ 피드백을 음성 간격으로 해석해 단어/예문을 별도 합성하고 24kHz PCM 무음 19,200샘플(0.8초)을 삽입했다. 느린 0.7배속에서는 삽입 쉼도 약 1.14초로 늘어난다. 표본 10개 새 MP3 476,160 bytes·전체 단순 추정 182,797,824 bytes. 현재 manifest는 v2 파일명을 사용한다.
+- `scripts/prepare-word-audio.py`, `scripts/check-word-audio.py` 갱신. v1 제작/검사/청취/원격 기록과 스크립트는 `content/word-audio/revisions/v1/`에 보존했다. v2 청취·원격 검사는 대기로 구분했다.
+- 현재 로컬 미리보기 `artifacts/toss-word-audio-preview-v2/public/index.html`, 업로드 ZIP `artifacts/toss-word-audio-preview-v2.zip`(625,438 bytes). ZIP에는 새 음성 10개와 기존 토스 URL을 보존하는 v1 음성 10개를 함께 넣었다. Cloudflare ZIP 갱신 후 새 토스 번들을 사용해야 한다. 공개 업로드·번들 생성은 하지 않았다.
+- 로컬 생성·`python scripts/check-word-audio.py`로 10개 디코딩/해시/본문 대응·삽입 구간 중앙 0.6초 peak<0.001·v1 보존 파일 해시 검사 통과. `pnpm.cmd --filter @t-crossword/toss build`(타입 포함) 및 `git diff --check` 통과. 재생 코드 변경 없이 데이터·제작 스크립트만 변경했으므로 기존 89개 테스트는 반복하지 않았다. 실제 청취·기기는 미검증이다.
+
+## 토스 TTS 표본 Cloudflare 주소 연결 (2026-10-26)
+
+- 사용자가 표본 로컬 청취를 긍정 확인하고 Cloudflare Workers 정적 파일 업로드를 완료했다. 공개 기본 주소 `https://crossword-word-audio.minotree0902.workers.dev/word-audio/`를 `apps/toss/.env.production`에 추가했다. 기존 광고 설정은 유지했다. 현재 표본 10개에만 재생 버튼을 제공한다.
+- curl 검사에서 페이지 200, MP3 10개 각각 200·원본 SHA-256 일치·`audio/mpeg`·CORS `*`·장기 immutable 캐시 확인. 기록은 `content/word-audio/remote-validation.json`이다. urllib는 403이었으며 curl로 실제 응답을 확인했다. Range는 206 대신 전체 파일 200으로 응답했으므로 부분 응답 지원을 검증했다고 하지 않는다.
+- `pnpm.cmd --filter @t-crossword/toss build`(타입 포함)·빌드 JS의 실제 음성 주소 포함 검사·`git diff --check` 통과. 기존 큰 청크 경고 유지. 코드/출제 규칙 변경이 없는 공개 주소 설정 작업이라 이미 통과한 89개 테스트는 반복하지 않았다. 일반 표본 청취 피드백은 별도 JSON으로 기록했고 토스 Android/iPhone 청취·느린 재생·배경 전환 검증은 대기다.
+- 이번 Cloudflare 배포는 사용자가 수행했다. 에이전트는 읽기 검사·로컬 주소 연결만 진행했으며 `.ait`·APK 생성·토스 업로드·전체 음성 생성은 하지 않았다.
+
+## 토스 TTS 표본·플레이어 준비 (2026-10-26)
+
+- 사용자 요청으로 로컬 Kokoro 0.9.4 / Kokoro-82M v1.0 / af_heart 표본 10개를 생성했다. YOU·SEA·SAME·APPLE·SCIENCE·KNOWLEDGE·ENVIRONMENT·ABSTRACTION·CORRELATION·EPISTEMOLOGY의 단어+영어 예문을 읽는다. 24kHz mono·64kbps MP3 총 344,640 bytes. 전체 3,839개 단순 추정 132,307,296 bytes(표본 평균 기반이며 실제 전체 용량 미측정).
+- 모델 카드·선택 음성 목록·Apache-2.0 전문 및 모델 리비전/해시·입력 텍스트·환경·파일 해시를 `content/word-audio/`에 보존했다. 생성 가중치/도구는 로컬 `artifacts/tts-cache`, `tts-venv`에 두고 Git에서 제외했다. 앱 런타임 의존성 추가 없음. 미등록 BEAUTIFUL은 현재 어휘에 있는 SCIENCE로 표본 교체 후 생성했다.
+- 토스 소유 `adapters/wordAudio.ts`, `components/WordAudioButtons.tsx`, `data/word-audio.json`, App/WordList 연결로 클릭 재생·일반/0.7배속·중지·교체·이전 이벤트 무시·오류/시간초과·화면 숨김/메뉴/검색/분류 전환 중지를 구현했다. 원본 단어/예문 대응을 검사하고 실제 MP3 바이트 해시를 URL에 사용한다. 저장소와 로컬 미리보기는 별개이며 처음부터 음원을 내려받지 않는다.
+- `VITE_TOSS_WORD_AUDIO_BASE_URL` 공개 HTTPS 주소를 쓰며 실제 주소는 미설정이다. 미설정 시 버튼을 숨긴다. 현재 표본 10개만 지원하며 전체 어휘 음성 생성·주소 설정·토스 기기 검증은 대기다. PWA TTS·Android 소스는 변경하지 않았다.
+- `artifacts/tts-word-audio` 같은 별도 경로가 아니라 **`artifacts/toss-word-audio-preview/public/index.html`**이 현재 미리보기다. 업로드 ZIP은 **`artifacts/toss-word-audio-preview.zip`**(298,642 bytes). Cloudflare Workers Static Assets용 public 폴더·_headers·CLI용 wrangler.jsonc를 준비했다. 이전 `toss-word-audio-sample` 폴더는 초기 제작 이력이다.
+- `python scripts/check-word-audio.py`로 10개 MP3 디코딩·24kHz·길이·유한값/비무음·해시·단어장/manifest 대응 검사 통과. `pnpm.cmd --filter @t-crossword/toss test` 89개, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build`(타입 포함) 및 `git diff --check` 통과. 큰 청크 경고는 유지된다.
+- 사람 청취·발음 검수·Cloudflare HTTP 응답·실제 토스 Android/iPhone에서 무음 모드·음량·전화/음악/광고 오디오 포커스·앱 전환은 미검증이다. 사용자 청취 후 표본 채택→Cloudflare 업로드→실제 주소 연결→토스 확인→전체 생성 순서로 진행한다. 이번에 공개 배포·토스 `.ait`·APK·동기화·커밋·푸시는 하지 않았다.
+
+## 토스 Android 상단 빈 공간 대응 (2026-10-26)
+
+- 사용자 Android 캡처에서 토스 기본 상단 바와 앱 제목 사이의 큰 여백을 확인했다. 현재 비게임·기본 내비게이션 바 구성에서 `.app-shell`이 추가 적용하던 `env(safe-area-inset-top)`을 0으로 변경했다. 중복 보정 가능성을 제거한 수정이며 기기의 실제 원인·해소 여부를 자동 검사만으로 확정하지 않는다. 하단 Safe Area·광고·보드 크기는 유지했다.
+- 설치 TDS AIT 2.5.1 소스는 Safe Area CSS 변수를 제공하지만 자체 상단 padding은 추가하지 않음을 확인했다. [공식 Safe Area 설명](https://developers-apps-in-toss.toss.im/documentation/common/screen/safe-area)은 시스템 UI 보호용 일반 inset 안내이며 특정 기기에서 여백이 중복됐다는 직접 증거로 취급하지 않았다.
+- 기존 opt-in `layoutDiagnostics.ts`에 상단 SDK/env 값·앱 padding·앱/제목 시작 좌표를 추가했다. 일반 빌드에서 진단은 비활성화한다. 수정 파일은 토스 `styles.css`, `adapters/layoutDiagnostics.ts`다.
+- `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build`(타입 검사 포함), `pnpm.cmd --filter @t-crossword/toss test` 82개 및 `git diff --check` 통과. 큰 청크 경고는 기존 상태다. 실제 Android/iOS 토스에서 상단 여백·겹침 확인은 대기다. `.ait` 생성·업로드는 실행하지 않았다.
+
 ## 토스 보드 스크롤 철회·퀴즈 여백 축소 (2026-10-26)
 
 - 사용자 요청으로 직전 보드 내부 스크롤·최소 높이·overlay 표시 영역 변경을 철회했다. 보드 전체와 아래 `문제 전체 보기`가 본문에 함께 놓이는 구조를 유지한다.

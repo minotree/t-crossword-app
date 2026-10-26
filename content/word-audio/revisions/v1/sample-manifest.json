@@ -1,0 +1,122 @@
+{
+  "word-2": {
+    "word": "YOU",
+    "example": "You can sit here.",
+    "file": "word-2-ca3579ed5c956586.mp3",
+    "sha256": "ca3579ed5c95658665fadf2f92bde6e39827388e1ca2aef0e783c6a08a24d573",
+    "textSha256": "1d2e3ee25f09c67dd0019657b0881ee9caf25a57890b0be482e605be3e834b8c",
+    "seconds": 1.95,
+    "bytes": 16128,
+    "phonemes": [
+      "ju. jˌu kæn sˈɪt hˈɪɹ."
+    ]
+  },
+  "word-402": {
+    "word": "SEA",
+    "example": "The sea is calm today.",
+    "file": "word-402-1e5c624dcfe74f93.mp3",
+    "sha256": "1e5c624dcfe74f93e63cc72c53502b18f50acec520b03fed5786bdfac4f14617",
+    "textSha256": "9a5619afc16c3921dafe1c1d6baaaf7f3b5180ce77ef7904b40c1369772fa46b",
+    "seconds": 2.25,
+    "bytes": 18432,
+    "phonemes": [
+      "sˈi. ðə sˈi ɪz kˈɑm tədˈA."
+    ]
+  },
+  "word-149": {
+    "word": "SAME",
+    "example": "We have the same idea.",
+    "file": "word-149-717473cab2367195.mp3",
+    "sha256": "717473cab23671955e77d54d7929b1554766484b0065376aa187e2d5a9de346b",
+    "textSha256": "11c4a42399f860700c6309fd4c995c8fb7608ffae6ea0b67205952931d198ed0",
+    "seconds": 2.3,
+    "bytes": 18816,
+    "phonemes": [
+      "sˈAm. wˌi hæv ðə sˈAm Idˈiə."
+    ]
+  },
+  "word-531": {
+    "word": "APPLE",
+    "example": "She ate an apple after lunch.",
+    "file": "word-531-7296004da9b0acb1.mp3",
+    "sha256": "7296004da9b0acb1025ff2c0be3232e90b76f467ab863e0aa3acda47a4118fbb",
+    "textSha256": "4a8af03a02e4fb35126c09e7dfe70293367df2d29295794cd14e34c646b5267b",
+    "seconds": 2.7,
+    "bytes": 22080,
+    "phonemes": [
+      "ˈæpᵊl. ʃˌi ˈAt ɐn ˈæpᵊl ˈæftəɹ lˈʌnʧ."
+    ]
+  },
+  "word-477": {
+    "word": "SCIENCE",
+    "example": "She enjoys studying science.",
+    "file": "word-477-7358efc37dc4f9ab.mp3",
+    "sha256": "7358efc37dc4f9abf957c9b8acd3bc4b93929b78d6ab52c2c6200fe1eaba0453",
+    "textSha256": "e0d85807f119dad7713c1f2b4060efec06e600fc01c404112c08bd4b87a5e92b",
+    "seconds": 2.7,
+    "bytes": 22080,
+    "phonemes": [
+      "sˈIəns. ʃˌi ɪnʤˈYz stˈʌdiɪŋ sˈIəns."
+    ]
+  },
+  "word-1244": {
+    "word": "KNOWLEDGE",
+    "example": "She has extensive knowledge of history.",
+    "file": "word-1244-8f0dcdadd0e6f388.mp3",
+    "sha256": "8f0dcdadd0e6f388dfbb12f7b0d4388083f1a6702851c66d073420134abf9405",
+    "textSha256": "c7d32a929b5558e2af1afe33fceedc8145efde1ad9e337052dddb11d704eeb75",
+    "seconds": 3.275,
+    "bytes": 26688,
+    "phonemes": [
+      "nˈɑləʤ. ʃˌi hæz ɪkstˈɛnsɪv nˈɑləʤ ʌv hˈɪstəɹi."
+    ]
+  },
+  "word-3078": {
+    "word": "ENVIRONMENT",
+    "example": "We should protect the natural environment.",
+    "file": "word-3078-4d5b6fa15c62ffee.mp3",
+    "sha256": "4d5b6fa15c62ffee84a5eb7bd342d7fb91a82874e20f4271ffd5685b45b88050",
+    "textSha256": "2806f0fe0ca2f23efbf1519670168950c6df630d07e10b961d3ca79ded609fed",
+    "seconds": 3.575,
+    "bytes": 28992,
+    "phonemes": [
+      "ənvˈIɹənmᵊnt. wˌi ʃˌʊd pɹətˈɛkt ðə nˈæʧəɹᵊl ənvˈIɹənmᵊnt."
+    ]
+  },
+  "word-3341": {
+    "word": "ABSTRACTION",
+    "example": "Abstraction helps researchers compare systems that differ greatly in their physical details.",
+    "file": "word-3341-7cc29e60ad422fd6.mp3",
+    "sha256": "7cc29e60ad422fd6b57bdf71a61626996eda90e0522afe609a28efc88eb6d2c2",
+    "textSha256": "46cfc13c56f4c7254524d189ed38a201bab76394fea923dcfdf595a678d10b04",
+    "seconds": 6.9,
+    "bytes": 55680,
+    "phonemes": [
+      "əbstɹˈækʃən. əbstɹˈækʃən hˈɛlps ɹəsˈɜɹʧəɹz kəmpˈɛɹ sˈɪstəmz ðæt dˈɪfəɹ ɡɹˈAtli ɪn ðɛɹ fˈɪzəkᵊl dətˈAlz."
+    ]
+  },
+  "word-3799": {
+    "word": "CORRELATION",
+    "example": "A high positive correlation does not establish that changing one variable will directly change the other.",
+    "file": "word-3799-7bcc5452325d110b.mp3",
+    "sha256": "7bcc5452325d110b350a76606fb00240c0ec1223a3fdaf9284c4e77c57accc28",
+    "textSha256": "5527343d99c0d3e473f018d6be9bef4c1e8e7f8311a1d674b2892a8fe2958706",
+    "seconds": 7.775,
+    "bytes": 62592,
+    "phonemes": [
+      "kˌɔɹəlˈAʃən. ɐ hˈI pˈɑzəTɪv kˌɔɹəlˈAʃən dˈʌz nˌɑt əstˈæblɪʃ ðæt ʧˈAnʤɪŋ wˈʌn vˈɛɹiəbᵊl wɪl dəɹˈɛktli ʧˈAnʤ ði ˈʌðəɹ."
+    ]
+  },
+  "word-3811": {
+    "word": "EPISTEMOLOGY",
+    "example": "Epistemology asks what counts as knowledge and how claims can be justified rather than repeated with greater confidence.",
+    "file": "word-3811-0b57b7b0ca2dd982.mp3",
+    "sha256": "0b57b7b0ca2dd982b4349fe9665f87e425807b7470e1282f58d6eb0a099a40b8",
+    "textSha256": "5225ddd5767772a120434f509836476a56b7f527c44da980ecaecc94d3e59022",
+    "seconds": 9.075,
+    "bytes": 73152,
+    "phonemes": [
+      "əpˌɪstəmˈɑləʤi. əpˌɪstəmˈɑləʤi ˈæsks wˌʌt kˈWnts æz nˈɑləʤ ænd hˌW klˈAmz kæn bi ʤˈʌstəfˌId ɹˈæðəɹ ðən ɹəpˈiTᵻd wɪð ɡɹˈATəɹ kˈɑnfədᵊns."
+    ]
+  }
+}
