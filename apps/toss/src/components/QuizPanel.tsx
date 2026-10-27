@@ -6,8 +6,8 @@ import { Modal } from './Modal.js';
 
 export interface QuizPanelHandle { closeOverlay(): boolean }
 export const QuizPanel = forwardRef<QuizPanelHandle, {
-  puzzle: CrosswordPuzzle; solvedIds: string[]; onSelectWord(word: CrosswordWord): void;
-}>(function QuizPanel({ puzzle, solvedIds, onSelectWord }, ref) {
+  puzzle: CrosswordPuzzle; solvedIds: string[]; hintedCells?: Record<string, string>; onSelectWord(word: CrosswordWord): void;
+}>(function QuizPanel({ puzzle, solvedIds, hintedCells = {}, onSelectWord }, ref) {
   const [showHints, setShowHints] = useState(false);
   const [choices, setChoices] = useState<CrosswordWord[]>([]);
   const openButton = useRef<HTMLButtonElement>(null);
@@ -25,7 +25,7 @@ export const QuizPanel = forwardRef<QuizPanelHandle, {
   };
   return <div className="puzzle-layout">
     <div className="board-area">
-      <PuzzleBoard puzzle={puzzle} solvedIds={solvedIds} onSelectNumber={words => {
+      <PuzzleBoard puzzle={puzzle} solvedIds={solvedIds} hintedCells={hintedCells} onSelectNumber={words => {
         if (words.length === 1) choose(words[0]);
         else if (words.length > 1) setChoices(words);
       }} />

@@ -40,6 +40,8 @@ npx.cmd wrangler deploy --config artifacts/toss-word-audio-full/wrangler.jsonc
 
 ## 다른 앱에서 사용
 
+2026-10-27 후속: 이 저장소의 Web/PWA·토스·모바일도 공개 manifest를 직접 조회해 영단어+예문으로 연결한다. 아래 및 모바일 재사용 절의 로컬 manifest 생성 도구는 제작/기술 검사 이력으로 보존하며 현재 런타임 연결은 공개 목록을 기준으로 한다. 구현·검증 범위는 `docs/word-audio.md`를 따른다.
+
 공개 목록 주소: `https://crossword-word-audio.minotree0902.workers.dev/manifest.json` (전체 패키지 업로드 후 사용 가능).
 
 스키마는 `schemaVersion: 1`, `pauseMs: 500`, `audioPath: "word-audio/"`, `entries`의 영단어 대문자 키다. 각 항목에는 원 단어 ID·영단어·예문·파일명·파일 SHA-256·초 단위 길이가 있다. `sourceCsvSha256`로 동일 CSV인지도 확인할 수 있다.
@@ -49,3 +51,9 @@ npx.cmd wrangler deploy --config artifacts/toss-word-audio-full/wrangler.jsonc
 MP3는 사용자의 듣기 클릭에서 재생하며 일괄 미리 다운로드하지 않는다. 주소는 공개 파일 경로이고 사용자 정보·API 키·토큰을 붙이지 않는다. 최초 재생의 네트워크 연결·기기 음량·무음 모드·앱 전환·전화/음악/광고 오디오 포커스는 실제 대상 환경에서 확인한다.
 
 모델·라이선스 확인 범위는 [제작 README](README.md)를 따른다. 사용자가 승인한 표본 일반 음질과 모든 단어의 전문적인 발음 감사를 구분한다. 기본·특급 의미가 다의어의 특정 발음을 요구하는 경우는 사람이 별도로 청취 검토해야 한다.
+
+## 모바일 재사용 (2026-10-27)
+
+기존 3,839개 공개 MP3를 Android 하이브리드 단어장의 일반/0.7배속 재생에 연결했다. 새 음성 생성·파일 변경·Cloudflare 재배포는 하지 않았다. 제작·권리 기록과 미전수 청취 범위는 기존 문서를 유지한다. scripts/prepare-mobile-word-audio.mjs가 content 원본에서 모바일 런타임 manifest를 준비하므로 토스 앱 소스를 가져오지 않는다.
+
+mobile-remote-validation.json은 공개 manifest 3,839개 대응과 난이도별 MP3 4개 해시·HTTP/MIME/CORS/immutable 캐시의 읽기 검사 결과다. 모바일 APK는 MP3/모델을 포함하지 않고 인터넷으로 재생한다. 실제 Android 음량·출력·오디오 포커스·네트워크 전환은 아직 검증하지 않았다.

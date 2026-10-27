@@ -129,14 +129,17 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .modal form { margin-top: 20px; }
 .form-action { margin-top: 20px; }
 .answer-modal { text-align: center; padding: 16px 20px; }
-.answer-modal .modal-heading { position: relative; justify-content: center; min-height: 32px; padding: 0 44px; margin-bottom: 8px; }
+.answer-modal[open] { display: flex; flex-direction: column; }
+.answer-modal .modal-heading { flex-shrink: 0; position: relative; justify-content: center; min-height: 32px; padding: 0 44px; margin-bottom: 8px; }
 .answer-modal .modal-heading h2 { color: #6d28d9; font-size: 15px; }
 .answer-modal .modal-heading > button { position: absolute; right: 0; }
-.answer-modal > .meaning { line-height: 1.4; margin-bottom: 4px; }
-.answer-modal > .example { margin-top: 8px; line-height: 1.45; }
-.answer-modal form { margin-top: 10px; }
+.answer-clue { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; overflow-wrap: anywhere; padding: 2px 4px 4px; }
+.answer-clue > .meaning { line-height: 1.4; margin-bottom: 4px; }
+.answer-clue > .example { margin-top: 8px; line-height: 1.45; }
+/* Keep inputs and actions visible; the dialog itself can still scroll in extremely short viewports. */
+.answer-modal form { flex-shrink: 0; margin-top: 10px; }
 .answer-synonym { margin-top: 4px; color: #6d28d9; font-size: 14px; overflow-wrap: anywhere; }
-.answer-modal > .answer-synonym { line-height: 1.45; }
+.answer-clue > .answer-synonym { line-height: 1.45; }
 .answer-cells { display: grid; width: 100%; gap: 4px; margin: 0 auto 8px; }
 .answer-cell { width: 100%; min-width: 0; height: 48px; border: 2px solid #e5e8eb; border-radius: 8px; background: #f9fafb; text-align: center; padding: 0; font-size: clamp(16px, 4vw, 24px); font-weight: 700; color: #191f28; }
 .answer-cell:focus { outline: none; border-color: #6d28d9; }

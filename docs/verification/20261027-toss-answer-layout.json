@@ -1,0 +1,103 @@
+{
+    "checkedDate":  "2026-10-27",
+    "environment":  "Headless Chrome, actual React AnswerModal/TDS/CSS, synthetic visualViewport keyboard height",
+    "scope":  "Long meaning/synonym plus repeated example; controls inside viewport before and after clue scroll",
+    "results":  {
+                    "value":  [
+                                  {
+                                      "width":  390,
+                                      "available":  380,
+                                      "modal":  {
+                                                    "top":  8,
+                                                    "bottom":  372,
+                                                    "scroll":  false
+                                                },
+                                      "clue":  {
+                                                   "height":  147,
+                                                   "fullHeight":  277
+                                               },
+                                      "buttons":  [
+                                                      {
+                                                          "label":  "힌트 2회",
+                                                          "top":  300,
+                                                          "bottom":  356,
+                                                          "left":  39,
+                                                          "right":  190
+                                                      },
+                                                      {
+                                                          "label":  "정답입력",
+                                                          "top":  300,
+                                                          "bottom":  356,
+                                                          "left":  200,
+                                                          "right":  351
+                                                      }
+                                                  ],
+                                      "formBottom":  356
+                                  },
+                                  {
+                                      "width":  320,
+                                      "available":  280,
+                                      "modal":  {
+                                                    "top":  8,
+                                                    "bottom":  272,
+                                                    "scroll":  false
+                                                },
+                                      "clue":  {
+                                                   "height":  30,
+                                                   "fullHeight":  366
+                                               },
+                                      "buttons":  [
+                                                      {
+                                                          "label":  "힌트 2회",
+                                                          "top":  183.4375,
+                                                          "bottom":  256,
+                                                          "left":  39,
+                                                          "right":  155
+                                                      },
+                                                      {
+                                                          "label":  "정답입력",
+                                                          "top":  183.4375,
+                                                          "bottom":  256,
+                                                          "left":  165,
+                                                          "right":  281
+                                                      }
+                                                  ],
+                                      "formBottom":  256
+                                  },
+                                  {
+                                      "width":  844,
+                                      "available":  270,
+                                      "modal":  {
+                                                    "top":  8,
+                                                    "bottom":  262,
+                                                    "scroll":  false
+                                                },
+                                      "clue":  {
+                                                   "height":  37,
+                                                   "fullHeight":  216
+                                               },
+                                      "buttons":  [
+                                                      {
+                                                          "label":  "힌트 2회",
+                                                          "top":  190,
+                                                          "bottom":  246,
+                                                          "left":  202,
+                                                          "right":  417
+                                                      },
+                                                      {
+                                                          "label":  "정답입력",
+                                                          "top":  190,
+                                                          "bottom":  246,
+                                                          "left":  427,
+                                                          "right":  642
+                                                      }
+                                                  ],
+                                      "formBottom":  246
+                                  }
+                              ],
+                    "Count":  3
+                },
+    "actualTossDevice":  "not-performed",
+    "screenshots":  "Ignored local tmp/lint-tools/answer-layout-*.png",
+    "temporaryFixture":  "Removed after verification"
+}

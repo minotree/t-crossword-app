@@ -1,88 +1,93 @@
 // @vitest-environment jsdom
-import { afterEach, beforeEach, expect, it, vi } from 'vitest';
+import { afterEach, expect, it, vi } from 'vitest';
 import { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createWordSpeechStore } from '../src/adapters/wordSpeech.js';
+import { createWordAudio } from '../src/adapters/wordAudio.js';
 import { WordSpeechButtons } from '../src/components/WordSpeechButtons.js';
 
-class FakeUtterance {
-  lang = '';
-  rate = 1;
-  voice: { lang: string } | null = null;
-  onstart: (() => void) | null = null;
-  onend: (() => void) | null = null;
-  onerror: ((event: { error: string }) => void) | null = null;
-  constructor(public text: string) {}
+const entry = { id: 'external', word: 'YOU', example: 'You can sit here.',
+  file: 'word-2-aaaaaaaaaaaaaaaa.mp3', sha256: 'a'.repeat(64), seconds: 3.4 };
+const manifest = { schemaVersion: 1, pauseMs: 500, audioPath: 'word-audio/', sourceCsvSha256: 'a'.repeat(64), entries: { YOU: entry } };
+function fixture() {
+  const elements: HTMLAudioElement[] = [];
+  const fetcher = vi.fn().mockResolvedValue({ ok: true, json: async () => manifest });
+  vi.stubGlobal('fetch', fetcher);
+  const audio = createWordAudio('https://audio.example.com/word-audio/', undefined, () => {
+    const element = document.createElement('audio');
+    vi.spyOn(element, 'play').mockResolvedValue();
+    vi.spyOn(element, 'pause').mockImplementation(() => {});
+    vi.spyOn(element, 'load').mockImplementation(() => {});
+    elements.push(element); return element;
+  });
+  return { store: createWordSpeechStore(audio), elements, fetcher };
 }
-let spoken: FakeUtterance[];
-let cancel: ReturnType<typeof vi.fn>;
-beforeEach(() => {
-  spoken = [];
-  cancel = vi.fn();
-  vi.useFakeTimers();
-  vi.stubGlobal('SpeechSynthesisUtterance', FakeUtterance);
-  vi.stubGlobal('speechSynthesis', { cancel, speak: (utterance: FakeUtterance) => { spoken.push(utterance); },
-    getVoices: () => [{ lang: 'ko-KR' }, { lang: 'en-GB' }, { lang: 'en-US' }] });
-});
-afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
+afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
 
-it('reads only the English word and example with an English voice and the selected speed', () => {
-  const store = createWordSpeechStore();
-  store.speak('you', 'YOU', 'You can sit here.', true);
-  expect(spoken[0]).toMatchObject({ text: 'you. You can sit here.', lang: 'en-US', rate: 0.7, voice: { lang: 'en-US' } });
-  spoken[0].onstart?.();
-  vi.advanceTimersByTime(9000);
-  expect(store.getSnapshot().playing).toBe(true);
-  spoken[0].onend?.();
-  expect(store.getSnapshot().playing).toBe(false);
-});
-
-it('replaces current speech and ignores late cancellation events from the previous word', () => {
-  const store = createWordSpeechStore();
-  store.speak('one', 'ONE', undefined);
-  store.speak('two', 'TWO', 'There are two books.');
-  expect(cancel).toHaveBeenCalledTimes(2);
-  spoken[0].onerror?.({ error: 'canceled' });
-  spoken[0].onend?.();
-  expect(store.getSnapshot()).toMatchObject({ wordId: 'two', playing: true, error: null });
-  store.speak('two', 'TWO', undefined);
-  expect(store.getSnapshot().playing).toBe(false);
-  expect(spoken).toHaveLength(2);
-});
-
-it('switches speeds by replacing speech and exposes missing English voice errors', () => {
-  const store = createWordSpeechStore();
-  store.speak('one', 'ONE', undefined);
-  store.speak('one', 'ONE', undefined, true);
-  expect(spoken[1].rate).toBe(0.7);
-  spoken[1].onerror?.({ error: 'language-unavailable' });
-  expect(store.getSnapshot()).toMatchObject({ playing: false, error: expect.stringContaining('영어 음성') });
-  store.speak('one', 'ONE', undefined);
-  expect(store.getSnapshot().error).toBeNull();
-});
-
-it('handles unsupported environments without throwing or pretending to play', () => {
-  vi.stubGlobal('speechSynthesis', undefined);
-  const store = createWordSpeechStore();
-  store.speak('one', 'ONE', undefined);
-  expect(store.getSnapshot()).toMatchObject({ playing: false, error: expect.stringContaining('지원하지 않습니다') });
-});
-
-it('uses the requested English language while the browser voice list is still loading', () => {
-  vi.stubGlobal('speechSynthesis', { cancel, speak: (utterance: FakeUtterance) => { spoken.push(utterance); }, getVoices: () => [] });
-  const store = createWordSpeechStore();
-  store.speak('one', 'ONE', undefined);
-  expect(spoken[0]).toMatchObject({ lang: 'en-US', voice: null });
-  vi.advanceTimersByTime(8000);
-  expect(store.getSnapshot()).toMatchObject({ playing: false, error: expect.stringContaining('시작되지 않았습니다') });
-});
-
-it('explicitly stops speech and clears the playback watchdog for navigation cleanup', () => {
-  const store = createWordSpeechStore();
-  store.speak('one', 'ONE', undefined);
+it('loads the manifest once and resolves the word independently of the app ID', async () => {
+  const { store, elements, fetcher } = fixture();
+  expect(fetcher).not.toHaveBeenCalled();
+  await store.speak('different-id', 'you', entry.example, true);
+  expect(fetcher).toHaveBeenCalledWith(new URL('https://audio.example.com/manifest.json'), expect.objectContaining({ credentials: 'omit' }));
+  expect(elements[0].src).toBe('https://audio.example.com/word-audio/' + entry.file);
+  expect(elements[0].preload).toBe('none');
+  expect(elements[0].playbackRate).toBe(0.7);
+  expect(store.getSnapshot()).toMatchObject({ loading: true, playing: false });
+  elements[0].dispatchEvent(new Event('playing'));
+  expect(store.getSnapshot()).toMatchObject({ loading: false, playing: true });
+  await store.speak('different-id', 'YOU', entry.example, true);
+  expect(elements[0].pause).toHaveBeenCalled();
+  await store.speak('another-id', 'YOU', entry.example);
+  expect(fetcher).toHaveBeenCalledTimes(1);
   store.stop();
-  vi.advanceTimersByTime(9000);
-  expect(store.getSnapshot()).toMatchObject({ wordId: null, playing: false, error: null });
+});
+
+it('rejects missing words and changed examples without requesting MP3', async () => {
+  const { store, elements } = fixture();
+  await store.speak('x', 'MISSING', entry.example);
+  expect(store.getSnapshot().error).toBeTruthy();
+  await store.speak('x', 'YOU', 'Different example.');
+  expect(store.getSnapshot().error).toBeTruthy();
+  expect(elements).toHaveLength(0);
+});
+
+it('allows a failed manifest request to be retried', async () => {
+  const { store, fetcher, elements } = fixture();
+  fetcher.mockRejectedValueOnce(new Error('offline'));
+  await store.speak('x', 'YOU', entry.example);
+  expect(store.getSnapshot()).toMatchObject({ playing: false, loading: false, error: expect.any(String) });
+  await store.speak('x', 'YOU', entry.example);
+  expect(elements).toHaveLength(1);
+  store.stop();
+});
+
+it('does not start playback if navigation stops a pending manifest load', async () => {
+  const { store, fetcher, elements } = fixture();
+  let resolve!: (value: unknown) => void;
+  fetcher.mockReturnValueOnce(new Promise(done => { resolve = done; }));
+  const pending = store.speak('x', 'YOU', entry.example);
+  store.stop();
+  resolve({ ok: true, json: async () => manifest });
+  await pending;
+  expect(elements).toHaveLength(0);
+  expect(store.getSnapshot().wordId).toBeNull();
+});
+
+it('ignores late media events and reports playback failures and timeouts', async () => {
+  vi.useFakeTimers();
+  const { store, elements } = fixture();
+  await store.speak('one', 'YOU', entry.example);
+  const oldError = elements[0].onerror;
+  await store.speak('two', 'YOU', entry.example);
+  oldError?.call(elements[0], new Event('error'));
+  expect(store.getSnapshot().wordId).toBe('two');
+  vi.advanceTimersByTime(15000);
+  expect(store.getSnapshot()).toMatchObject({ playing: false, loading: false, error: expect.any(String) });
+  expect(elements[1].pause).toHaveBeenCalled();
+  await store.speak('three', 'YOU', entry.example);
+  elements[2].dispatchEvent(new Event('error'));
+  expect(store.getSnapshot().error).toBeTruthy();
+  store.stop();
 });
 
 it('provides keyboard-operable listen, slow and stop buttons with accessible state', async () => {

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { numberChoices } from '../src/adapters/puzzlePresentation.ts';
+import { knownWordLetters, numberChoices, visiblePuzzleCells } from '../src/adapters/puzzlePresentation.ts';
 
 const across = { id: 'across', orientation: 'across', startRow: 1, startCol: 1 };
 const down = { id: 'down', orientation: 'down', startRow: 1, startCol: 1 };
@@ -16,4 +16,14 @@ test('a solved across word leaves the down input available and vice versa', () =
 test('fully solved numbers and unnumbered cells have no action', () => {
   assert.deepEqual(numberChoices(words, ['across', 'down'], 1, 1), []);
   assert.deepEqual(numberChoices(words, [], 2, 1), []);
+});
+
+test('revealed letters remain available when reopening and in crossing words', () => {
+  const horizontal = { ...across, word: 'BEAR' };
+  const vertical = { ...down, word: 'BIRD' };
+  const puzzle = { words: [horizontal, vertical] };
+  assert.deepEqual(knownWordLetters(puzzle, [], horizontal, { '1:1': 'B', '1:2': 'E' }), ['B', 'E', '', '']);
+  assert.deepEqual(knownWordLetters(puzzle, [], vertical, { '1:1': 'B', '1:2': 'E' }), ['B', '', '', '']);
+  assert.deepEqual([...visiblePuzzleCells(puzzle, ['across'])], ['1:1', '1:2', '1:3', '1:4']);
+  assert.deepEqual(knownWordLetters(puzzle, [], horizontal, {}), ['', '', '', '']);
 });

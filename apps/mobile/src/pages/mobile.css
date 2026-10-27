@@ -91,10 +91,19 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-word-body .mobile-word-meta { display: block; margin-top: 10px; font-size: 12px; }
 .mobile-word-body .mobile-word-synonym { color: #6d28d9; font-size: 12px; }
 .mobile-word-body .mobile-word-example { color: #6b7684; font-size: 13px; }
+.mobile-audio-guide { margin: 4px 0 8px; color: #6b7684; font-size: 12px; line-height: 1.5; }
+.mobile-word-audio-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.mobile-words .mobile-word-audio-actions button { min-height: 44px; padding: 8px 12px; font-size: 13px; }
+.mobile-word-audio-actions button[aria-pressed=true] { background: #3182f6; color: white; }
+.mobile-word-body .mobile-word-audio [role=alert] { color: #b91c1c; }
 .mobile-error { background: #fff0f0; color: #b42318; padding: 12px; border-radius: 10px; }
 .mobile-answer { box-sizing: border-box; width: min(440px, calc(100% - 32px)); max-height: 80%; overflow: auto; overscroll-behavior: contain; border: 0; border-radius: 16px; padding: 16px; }
 .mobile-answer::backdrop { background: #0008; }
 .mobile-answer { text-align: center; color: #191f28; }
+.mobile-answer[open] { display: flex; flex-direction: column; }
+.mobile-answer > form { display: flex; flex-direction: column; min-height: 0; }
+.mobile-answer > form > h2, .mobile-answer-controls { flex-shrink: 0; }
+.mobile-answer-clue { flex: 0 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior-y: contain; overflow-wrap: anywhere; padding-inline: 4px; }
 .mobile-answer h2 { margin: 0 0 8px; font-size: 20px; }
 .mobile-answer p { margin: 8px 0; line-height: 1.4; }
 .mobile-synonym { color: #6d28d9; }
@@ -103,6 +112,7 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-letter-inputs input[readonly] { background: #e8f3ff; color: #1b64da; }
 .mobile-letter-inputs input[aria-invalid=true] { color: #d92d20; border-color: #d92d20; }
 .mobile-answer-actions { display: flex; justify-content: center; gap: 8px; }
+.mobile-answer-actions > ion-button { flex: 1; min-width: 0; min-height: 44px; margin-inline: 0; white-space: nowrap; --padding-start: 8px; --padding-end: 8px; }
 .mobile-screen-quiz, .mobile-screen-words { height: 100%; box-sizing: border-box; display: flex; flex-direction: column; }
 .mobile-quiz, .mobile-word-page { display: flex; flex: 1; min-height: 0; flex-direction: column; }
 .mobile-puzzle-layout { display: flex; flex-direction: column; flex: 1; min-height: 0; gap: 12px; container-type: size; }

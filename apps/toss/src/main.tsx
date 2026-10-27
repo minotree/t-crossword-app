@@ -21,8 +21,12 @@ if (import.meta.env.DEV) {
   syncPreviewHeight();
   import.meta.hot?.dispose(() => observer.disconnect());
 }
+let Screen = App;
+if (import.meta.env.DEV && new URLSearchParams(window.location.search).get('answer-layout') === 'long') {
+  Screen = (await import('./dev/AnswerLayoutPreview.js')).AnswerLayoutPreview;
+}
 createRoot(root).render(<StrictMode>
   <TDSMobileAITProvider brandPrimaryColor="#3182f6">
-    <App />
+    <Screen />
   </TDSMobileAITProvider>
 </StrictMode>);

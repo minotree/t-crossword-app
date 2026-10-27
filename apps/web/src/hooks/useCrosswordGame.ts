@@ -71,6 +71,19 @@ export function useCrosswordGame({
     setSelectedWord(null);
   }, []);
 
+  const revealWordLetter = useCallback((wordId: string, index: number) => {
+    const word = puzzle?.words.find(item => item.id === wordId);
+    if (!word || !Number.isInteger(index) || index < 0 || index >= word.word.length) return;
+    const row = word.startRow + (word.orientation === 'down' ? index : 0);
+    const col = word.startCol + (word.orientation === 'across' ? index : 0);
+    setUserGrid(previous => {
+      const next = previous.map(cells => [...cells]);
+      next[row][col] = word.word[index].toUpperCase();
+      return next;
+    });
+    wordProgressStore.markHintUsed(wordId);
+  }, [puzzle]);
+
   const submitWordAnswer = useCallback(
     (wordId: string, answer: string): boolean => {
       if (!puzzle) return false;
@@ -148,6 +161,7 @@ export function useCrosswordGame({
     selectWord,
     closeInputModal,
     submitWordAnswer,
+    revealWordLetter,
     closeCompletionModal,
     setLevel,
     setGridSize,

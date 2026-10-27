@@ -1,14 +1,10 @@
 import type { CrosswordPuzzle, CrosswordWord } from '@t-crossword/core';
-import { numberChoices } from '../adapters/puzzlePresentation.js';
+import { numberChoices, visiblePuzzleCells } from '../adapters/puzzlePresentation.js';
 
-export function PuzzleBoard({ puzzle, solvedIds, onSelectNumber }: {
-  puzzle: CrosswordPuzzle; solvedIds: string[]; onSelectNumber(words: CrosswordWord[]): void;
+export function PuzzleBoard({ puzzle, solvedIds, hintedCells = {}, onSelectNumber }: {
+  puzzle: CrosswordPuzzle; solvedIds: string[]; hintedCells?: Record<string, string>; onSelectNumber(words: CrosswordWord[]): void;
 }) {
-  const visible = new Set<string>();
-  for (const word of puzzle.words) {
-    if (!solvedIds.includes(word.id)) continue;
-    for (let index = 0; index < word.word.length; index++) visible.add(`${word.startRow + (word.orientation === 'down' ? index : 0)}:${word.startCol + (word.orientation === 'across' ? index : 0)}`);
-  }
+  const visible = visiblePuzzleCells(puzzle, solvedIds, hintedCells);
   return <div className="mobile-board" role="group" aria-label="십자낱말 보드" style={{ gridTemplateColumns: `repeat(${puzzle.size}, minmax(0, 1fr))`, gridTemplateRows: `repeat(${puzzle.size}, minmax(0, 1fr))` }}>
     {puzzle.grid.flatMap((row, r) => row.map((cell, c) => {
       const number = cell?.acrossNumber || cell?.downNumber;

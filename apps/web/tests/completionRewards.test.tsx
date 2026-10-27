@@ -22,7 +22,7 @@ describe('completion without server rewards', () => {
     expect(render(false)).toBe('');
   });
 
-  it('keeps the word meaning and answer entry without a letter-reveal button', () => {
+  it('keeps the word meaning and offers a free letter hint before answer entry', () => {
     const markup = renderToStaticMarkup(<WordInputModal isOpen word={{
       id: 'sea', word: 'SEA', meaning: '바다', orientation: 'across',
       startRow: 0, startCol: 0, number: 1, hintLimit: 1, hintUsedCount: 0,
@@ -30,6 +30,7 @@ describe('completion without server rewards', () => {
     expect(markup).toContain('바다');
     expect(markup).toContain('정답입력');
     expect(markup).toContain('readOnly=""');
-    expect(markup).not.toContain('힌트');
+    expect(markup).toMatch(/힌트.*1.*회/);
+    expect(markup.indexOf('힌트')).toBeLessThan(markup.indexOf('정답입력'));
   });
 });

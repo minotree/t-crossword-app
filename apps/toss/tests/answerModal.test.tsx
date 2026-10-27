@@ -4,6 +4,7 @@ import { act } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import { TDSMobileAITProvider } from '@toss/tds-mobile-ait';
 import { AnswerModal } from '../src/components/AnswerModal.js';
+import { AnswerLayoutPreview } from '../src/dev/AnswerLayoutPreview.js';
 
 const word = { id: 'sea', word: 'SEA', meaning: '바다', synonym: 'ocean', orientation: 'down' as const,
   startRow: 0, startCol: 0, number: 2, hintLimit: 1, hintUsedCount: 0 };
@@ -27,7 +28,7 @@ beforeEach(() => {
   onSubmit.mockReset().mockReturnValue(false);
   onMistake.mockReset();
 });
-afterEach(async () => { await act(async () => root.unmount()); container.remove(); });
+afterEach(async () => { await act(async () => root.unmount()); container.remove(); vi.useRealTimers(); });
 
 async function render(currentLetters: string[] = []) {
   await act(async () => {
@@ -83,6 +84,36 @@ it('fits the dialog into the keyboard viewport and restores centering when close
     await act(async () => { viewport.dispatchEvent(new Event('resize')); });
     expect(dialog?.getAttribute('style')).toBeNull();
   } finally { vi.unstubAllGlobals(); }
+});
+
+it('keeps long explanations in a scroll region separate from the heading, inputs and action buttons', async () => {
+  const longWord = { ...word, meaning: '덩어리; 질량; 다량; 대중; 대량의; 모이다; 모으다; 미사',
+    synonym: 'bulk (큰 양); assemble (모이다); gather (모으다)',
+    example: 'The scientist measured the sea and described the results in a long report. '.repeat(8) };
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerModal word={longWord}
+    onClose={() => {}} onSubmit={onSubmit} /></TDSMobileAITProvider>));
+  const region = container.querySelector('[aria-label="문제 설명"]');
+  expect(region?.getAttribute('tabindex')).toBe('0');
+  expect(region?.textContent).toContain(longWord.meaning);
+  expect(region?.textContent).toContain(longWord.synonym);
+  expect(region?.querySelector('input, button, form')).toBeNull();
+  expect(container.querySelector('.modal-heading')?.parentElement).toBe(region?.parentElement);
+  expect(container.querySelector('form')?.parentElement).toBe(region?.parentElement);
+  expect(Array.from(container.querySelectorAll('.answer-actions button'), button => button.textContent)).toEqual(['힌트 1회', '정답입력']);
+});
+
+it('opens the development long-answer scenario immediately and can reopen it with fresh hints', async () => {
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerLayoutPreview /></TDSMobileAITProvider>));
+  expect(container.querySelector('dialog')?.open).toBe(true);
+  expect(container.querySelector('.answer-clue .example')?.textContent?.length).toBeGreaterThan(150);
+  const hint = container.querySelector<HTMLButtonElement>('.answer-actions button');
+  await act(async () => hint?.click());
+  expect(hint?.textContent).toBe('힌트 1회');
+  await act(async () => container.querySelector<HTMLButtonElement>('[aria-label="창 닫기"]')?.click());
+  expect(container.querySelector('dialog')).toBeNull();
+  const reopen = Array.from(container.querySelectorAll('button')).find(button => button.textContent === '다시 열기');
+  await act(async () => reopen?.click());
+  expect(container.querySelector('.answer-actions button')?.textContent).toBe('힌트 2회');
 });
 
 describe('Toss letter input', () => {
@@ -146,11 +177,73 @@ describe('Toss letter input', () => {
     expect(reopened[0].getAttribute('aria-invalid')).toBe('false');
   });
 
-  it('reports missing cells and offers no letter-reveal control', async () => {
+  it('reports missing cells and places the hint before submission', async () => {
     await render();
     await act(async () => { container.querySelector('form')?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })); });
     expect(container.textContent).toContain('모든 칸에 글자를 입력해 주세요.');
-    expect(container.querySelectorAll('.answer-actions button')).toHaveLength(1);
+    expect(Array.from(container.querySelectorAll('.answer-actions button'), button => button.textContent)).toEqual(['힌트 1회', '정답입력']);
+    expect(container.textContent).not.toContain('앞에서부터 정답이 아닌 한 칸을 공개합니다');
     expect(onSubmit).not.toHaveBeenCalled();
   });
+});
+
+async function hint() {
+  const button = container.querySelector<HTMLButtonElement>('.answer-actions button');
+  if (!button) throw new Error('Hint missing');
+  await act(async () => button.click());
+  return button;
+}
+
+it('keeps the revealed letter after two seconds and clears only its feedback', async () => {
+  const inputs = await render();
+  vi.useFakeTimers();
+  await type(inputs[0], 'X'); await type(inputs[1], 'Y');
+  const button = await hint();
+  expect(inputs[0].value).toBe('S');
+  expect(inputs[0].getAttribute('aria-invalid')).toBe('false');
+  expect(inputs[1].getAttribute('aria-invalid')).toBe('true');
+  expect(inputs[0].readOnly).toBe(true);
+  expect(button.disabled).toBe(true);
+  expect(document.activeElement).toBe(inputs[1]);
+  await act(async () => vi.advanceTimersByTime(3000));
+  expect(inputs[0].value).toBe('S');
+  await type(inputs[0], 'X');
+  expect(inputs[0].value).toBe('S');
+  await type(inputs[1], '');
+  await act(async () => inputs[1].dispatchEvent(new KeyboardEvent('keydown', { key: 'Backspace', bubbles: true, cancelable: true })));
+  expect(inputs[0].value).toBe('S');
+});
+
+it('skips correct letters and completes only once when a hint fills the final incorrect cell', async () => {
+  onSubmit.mockReturnValue(true);
+  const inputs = await render();
+  await type(inputs[0], 'S'); await type(inputs[2], 'A');
+  await hint();
+  expect(inputs[1].value).toBe('E');
+  expect(onSubmit).toHaveBeenCalledExactlyOnceWith(word, 'SEA');
+  await hint();
+  expect(onSubmit).toHaveBeenCalledTimes(1);
+});
+it('starts with no hints when only one blank remains', async () => {
+  const inputs = await render(['S', 'E', '']);
+  expect(container.textContent).toContain('힌트 0회');
+  expect((await hint()).disabled).toBe(true);
+  expect(inputs[2].value).toBe('');
+});
+
+it('recalculates twelve blanks to six hints and eight blanks to four only on a new modal', async () => {
+  const longWord = { ...word, word: 'ABCDEFGHIJKL' };
+  const show = async (currentLetters: string[]) => act(async () => root.render(
+    <TDSMobileAITProvider brandPrimaryColor="#3182f6"><AnswerModal word={longWord} currentLetters={currentLetters} onClose={() => {}} onSubmit={onSubmit} /></TDSMobileAITProvider>,
+  ));
+  await show([]);
+  expect(container.textContent).toContain('힌트 6회');
+  await type(container.querySelectorAll('input')[0], 'A');
+  expect(container.textContent).toContain('힌트 6회');
+  await hint();
+  expect(container.querySelectorAll('input')[1].value).toBe('B');
+  expect(container.textContent).toContain('힌트 5회');
+  await act(async () => root.render(null));
+  await show(['A', 'B', 'C', 'D']);
+  expect(container.textContent).toContain('힌트 4회');
 });

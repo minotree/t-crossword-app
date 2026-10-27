@@ -17,7 +17,6 @@ import { PictureBooks } from './components/PictureBooks.js';
 import { AdBanner } from './components/Ads.js';
 import { WordList } from './components/WordList.js';
 import { createWordAudio } from './adapters/wordAudio.js';
-import audioManifest from './data/word-audio.json';
 import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
 import { getCurrentLetters } from './puzzlePresentation.js';
@@ -26,7 +25,7 @@ type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 type WordFilter = 'all' | 'bookmarked' | 'completed' | 'mistakes';
 
 export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?: typeof generateDevicePuzzle } = {}) {
-  const audio = useMemo(() => createWordAudio(import.meta.env.VITE_TOSS_WORD_AUDIO_BASE_URL ?? '', audioManifest), []);
+  const audio = useMemo(() => createWordAudio(import.meta.env.VITE_TOSS_WORD_AUDIO_BASE_URL ?? 'https://crossword-word-audio.minotree0902.workers.dev/word-audio/'), []);
   const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const repository = useMemo(() => createProgressRepository(createPlatformStorage()), []);
   const [progress, setProgress] = useState<Progress | null>(null);
@@ -45,6 +44,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
   const [size, setSize] = useState<GridSize>(10);
   const [puzzle, setPuzzle] = useState<CrosswordPuzzle | null>(null);
   const [solvedIds, setSolvedIds] = useState<string[]>([]);
+  const [hintedCells, setHintedCells] = useState<Record<string, string>>({});
   const [puzzleVersion, setPuzzleVersion] = useState(0);
   const quizPanel = useRef<QuizPanelHandle>(null);
   const [selected, setSelected] = useState<CrosswordWord | null>(null);
@@ -130,6 +130,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     setPuzzle(await generatePuzzle(nextLevel, nextSize, [...completed], progressRef.current.hintUsedWordIds, progressRef.current.dismissedMistakeWordIds));
     setPuzzleVersion(value => value + 1);
     setSolvedIds([]);
+    setHintedCells({});
     setLevel(nextLevel); setSize(nextSize);
     setSelected(null);
     setShowCompletion(false);
@@ -147,7 +148,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     try {
       await repository.save(next);
       progressRef.current = next; setProgress(next);
-      setPuzzle(null); setSolvedIds([]); setSelected(null); setShowCompletion(false);
+      setPuzzle(null); setSolvedIds([]); setHintedCells({}); setSelected(null); setShowCompletion(false);
       setConfirmReset(false); setSaveError(''); setSettingsMessage('학습 기록을 초기화했습니다.');
     } catch { setSettingsMessage('학습 기록을 저장하지 못했습니다. 기존 기록은 유지됩니다. 다시 시도해 주세요.'); }
     finally { busy.current = false; setResetPending(false); }
@@ -167,6 +168,14 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     if (nextIds.length === puzzle.words.length) setShowCompletion(true);
     return true;
     } finally { busy.current = false; setIsGameBusy(false); }
+  };
+
+  const revealSelectedLetter = (index: number) => {
+    if (!selected) return;
+    const row = selected.startRow + (selected.orientation === 'down' ? index : 0);
+    const col = selected.startCol + (selected.orientation === 'across' ? index : 0);
+    setHintedCells(cells => ({ ...cells, [`${row}-${col}`]: selected.word[index].toUpperCase() }));
+    if (progressRef.current) saveProgress(recordMistake(progressRef.current, selected.id));
   };
 
   if (!progress) return <main className="startup" aria-busy={!loadError}>
@@ -206,7 +215,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
             <Button size="small" variant="weak" disabled={isGameBusy} onClick={() => { void startPuzzle(); }}>새 퍼즐</Button>
           </div>
         </div>
-        {puzzle.words.length === 0 ? <section className="empty"><h2>학습할 단어를 모두 풀었어요</h2><p>다른 난이도를 선택해 보세요.</p><Button onClick={() => setPage('home')}>난이도 선택</Button></section> : <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solvedIds} onSelectWord={setSelected} />}
+        {puzzle.words.length === 0 ? <section className="empty"><h2>학습할 단어를 모두 풀었어요</h2><p>다른 난이도를 선택해 보세요.</p><Button onClick={() => setPage('home')}>난이도 선택</Button></section> : <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solvedIds} hintedCells={hintedCells} onSelectWord={setSelected} />}
       </div>}
 
       {page === 'words' && <section className="word-bank">
@@ -275,7 +284,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     </nav>
     <AdBanner enabled />
     <div className="bottom-safe-area" aria-hidden="true" />
-    {selected && puzzle && <AnswerModal key={selected.id} word={selected} currentLetters={getCurrentLetters(puzzle, solvedIds, selected)} onClose={() => setSelected(null)} onSubmit={submitAnswer} onMistake={(id) => { if (progressRef.current) saveProgress(recordMistake(progressRef.current, id)); }} />}
+    {selected && puzzle && <AnswerModal key={selected.id} word={selected} currentLetters={getCurrentLetters(puzzle, solvedIds, selected, hintedCells)} onReveal={revealSelectedLetter} onClose={() => setSelected(null)} onSubmit={submitAnswer} onMistake={(id) => { if (progressRef.current) saveProgress(recordMistake(progressRef.current, id)); }} />}
     {showCompletion && puzzle && <Modal title="퍼즐 완성! 축하해요" onClose={() => setShowCompletion(false)}>
       <CompletionConfetti />
       <div className="completion-icon" aria-hidden="true">🎉</div>

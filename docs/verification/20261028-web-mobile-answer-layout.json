@@ -1,0 +1,232 @@
+{
+    "checkedDate":  "2026-10-28",
+    "environment":  "Headless Chrome with actual React/Tailwind and Ionic components; synthetic visualViewport",
+    "scope":  "Long meaning, synonym, repeated example; controls inside viewport before/after clue scroll",
+    "results":  [
+                    {
+                        "app":  "web",
+                        "width":  390,
+                        "available":  380,
+                        "modal":  {
+                                      "top":  8,
+                                      "bottom":  372,
+                                      "scroll":  false
+                                  },
+                        "clue":  {
+                                     "height":  158,
+                                     "fullHeight":  383
+                                 },
+                        "buttons":  [
+                                        {
+                                            "label":  "×",
+                                            "top":  25,
+                                            "bottom":  57,
+                                            "left":  333,
+                                            "right":  365
+                                        },
+                                        {
+                                            "label":  "힌트 2회",
+                                            "top":  311,
+                                            "bottom":  355,
+                                            "left":  25,
+                                            "right":  190
+                                        },
+                                        {
+                                            "label":  "정답입력",
+                                            "top":  311,
+                                            "bottom":  355,
+                                            "left":  200,
+                                            "right":  365
+                                        }
+                                    ]
+                    },
+                    {
+                        "app":  "web",
+                        "width":  320,
+                        "available":  280,
+                        "modal":  {
+                                      "top":  8,
+                                      "bottom":  272,
+                                      "scroll":  false
+                                  },
+                        "clue":  {
+                                     "height":  58,
+                                     "fullHeight":  409
+                                 },
+                        "buttons":  [
+                                        {
+                                            "label":  "×",
+                                            "top":  25,
+                                            "bottom":  57,
+                                            "left":  263,
+                                            "right":  295
+                                        },
+                                        {
+                                            "label":  "힌트 2회",
+                                            "top":  211,
+                                            "bottom":  255,
+                                            "left":  25,
+                                            "right":  155
+                                        },
+                                        {
+                                            "label":  "정답입력",
+                                            "top":  211,
+                                            "bottom":  255,
+                                            "left":  165,
+                                            "right":  295
+                                        }
+                                    ]
+                    },
+                    {
+                        "app":  "web",
+                        "width":  844,
+                        "available":  270,
+                        "modal":  {
+                                      "top":  8,
+                                      "bottom":  262,
+                                      "scroll":  false
+                                  },
+                        "clue":  {
+                                     "height":  48,
+                                     "fullHeight":  294
+                                 },
+                        "buttons":  [
+                                        {
+                                            "label":  "×",
+                                            "top":  25,
+                                            "bottom":  57,
+                                            "left":  661,
+                                            "right":  693
+                                        },
+                                        {
+                                            "label":  "힌트 2회",
+                                            "top":  201,
+                                            "bottom":  245,
+                                            "left":  151,
+                                            "right":  417
+                                        },
+                                        {
+                                            "label":  "정답입력",
+                                            "top":  201,
+                                            "bottom":  245,
+                                            "left":  427,
+                                            "right":  693
+                                        }
+                                    ]
+                    },
+                    {
+                        "app":  "mobile",
+                        "width":  390,
+                        "available":  380,
+                        "modal":  {
+                                      "top":  8,
+                                      "bottom":  372,
+                                      "scroll":  false
+                                  },
+                        "clue":  {
+                                     "height":  188,
+                                     "fullHeight":  345
+                                 },
+                        "buttons":  [
+                                        {
+                                            "label":  "힌트 2회",
+                                            "top":  308,
+                                            "bottom":  352,
+                                            "left":  35,
+                                            "right":  136.328125
+                                        },
+                                        {
+                                            "label":  "정답입력",
+                                            "top":  308,
+                                            "bottom":  352,
+                                            "left":  144.328125,
+                                            "right":  245.671875
+                                        },
+                                        {
+                                            "label":  "닫기",
+                                            "top":  308,
+                                            "bottom":  352,
+                                            "left":  253.671875,
+                                            "right":  355
+                                        }
+                                    ]
+                    },
+                    {
+                        "app":  "mobile",
+                        "width":  320,
+                        "available":  280,
+                        "modal":  {
+                                      "top":  8,
+                                      "bottom":  272,
+                                      "scroll":  false
+                                  },
+                        "clue":  {
+                                     "height":  88,
+                                     "fullHeight":  390
+                                 },
+                        "buttons":  [
+                                        {
+                                            "label":  "힌트 2회",
+                                            "top":  208,
+                                            "bottom":  252,
+                                            "left":  35,
+                                            "right":  113
+                                        },
+                                        {
+                                            "label":  "정답입력",
+                                            "top":  208,
+                                            "bottom":  252,
+                                            "left":  121,
+                                            "right":  199
+                                        },
+                                        {
+                                            "label":  "닫기",
+                                            "top":  208,
+                                            "bottom":  252,
+                                            "left":  207,
+                                            "right":  285
+                                        }
+                                    ]
+                    },
+                    {
+                        "app":  "mobile",
+                        "width":  844,
+                        "available":  270,
+                        "modal":  {
+                                      "top":  8,
+                                      "bottom":  262,
+                                      "scroll":  false
+                                  },
+                        "clue":  {
+                                     "height":  78,
+                                     "fullHeight":  234
+                                 },
+                        "buttons":  [
+                                        {
+                                            "label":  "힌트 2회",
+                                            "top":  198,
+                                            "bottom":  242,
+                                            "left":  218,
+                                            "right":  348.65625
+                                        },
+                                        {
+                                            "label":  "정답입력",
+                                            "top":  198,
+                                            "bottom":  242,
+                                            "left":  356.65625,
+                                            "right":  487.328125
+                                        },
+                                        {
+                                            "label":  "닫기",
+                                            "top":  198,
+                                            "bottom":  242,
+                                            "left":  495.328125,
+                                            "right":  626
+                                        }
+                                    ]
+                    }
+                ],
+    "actualInstalledPwaAndAndroidIos":  "not-performed",
+    "screenshots":  "Ignored local tmp/lint-tools/*-answer-layout-*.png",
+    "temporaryFixtures":  "Removed after verification"
+}

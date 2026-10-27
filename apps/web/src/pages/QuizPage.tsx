@@ -34,6 +34,7 @@ export function QuizPage() {
     selectWord,
     closeInputModal,
     submitWordAnswer,
+    revealWordLetter,
     closeCompletionModal,
   } = useCrosswordGame({});
 
@@ -178,6 +179,7 @@ export function QuizPage() {
         onClose={closeInputModal}
         onSubmit={submitWordAnswer}
         onMistake={wordProgressStore.recordMistake}
+        onReveal={revealWordLetter}
       />
 
       {/* 퍼즐 완주 축하 모달 */}

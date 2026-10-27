@@ -2,7 +2,7 @@ import { Button } from '@toss/tds-mobile';
 import type { WordAudio, AudioState } from '../adapters/wordAudio.js';
 
 export function WordAudioButtons({ id, word, example, audio, state }: { id: string; word: string; example: string; audio: WordAudio; state: AudioState }) {
-  if (!audio.configured || !audio.hasAudio(id, word, example)) return null;
+  if (!audio.configured) return null;
   return <div className="word-audio">
     <div className="word-audio-actions">{[false, true].map(slow => {
       const active = state.wordId === id && state.slow === slow && (state.status === 'playing' || state.status === 'loading');

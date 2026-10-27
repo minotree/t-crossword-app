@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { homeOutline, gameControllerOutline, bookOutline, imageOutline, settingsOutline } from 'ionicons/icons';
 import { defaultVocabList, levelLearningProgress, parseCrosswordPuzzle, wordnetLicense, type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize } from '@t-crossword/core';
@@ -14,16 +14,23 @@ import { navigateBack } from '../adapters/backNavigation.js';
 import { QuizPanel, type QuizPanelHandle } from '../components/QuizPanel.js';
 import { Modal } from '../components/Modal.js';
 import { CompletionConfetti } from '../components/CompletionConfetti.js';
+import { knownWordLetters } from '../adapters/puzzlePresentation.js';
+import { createMobileWordAudio, DEFAULT_WORD_AUDIO_BASE_URL } from '../adapters/wordAudio.js';
+import { subscribeWordAudioLifecycle } from '../adapters/wordAudioLifecycle.js';
+import { WordAudioButtons } from '../components/WordAudioButtons.js';
 
 
 const levels: Record<DifficultyLevel, string> = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 export function HomePage() {
+  const audio = useMemo(() => createMobileWordAudio(import.meta.env.VITE_MOBILE_WORD_AUDIO_BASE_URL ?? DEFAULT_WORD_AUDIO_BASE_URL), []);
+  const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const quizPanel = useRef<QuizPanelHandle>(null);
   const [showCompletion, setShowCompletion] = useState(false);
   const [puzzleVersion, setPuzzleVersion] = useState(0);
   const [page, setPage] = useState<Page>('home');
   const [progress, setProgress] = useState<LearningProgress | null>(null);
+  const progressRef = useRef<LearningProgress | null>(null);
   const [error, setError] = useState('');
   const [confirmReset, setConfirmReset] = useState(false);
   const [resetError, setResetError] = useState('');
@@ -33,10 +40,13 @@ export function HomePage() {
   const [size, setSize] = useState<GridSize>(8);
   const [puzzle, setPuzzle] = useState<CrosswordPuzzle | null>(null);
   const [solved, setSolved] = useState<string[]>([]);
+  const [hintedCells, setHintedCells] = useState<Record<string, string>>({});
   const [selected, setSelected] = useState<CrosswordWord | null>(null);
   const [answerError, setAnswerError] = useState('');
   const [query, setQuery] = useState('');
   const [wordFilter, setWordFilter] = useState<'all' | 'bookmarks' | 'completed' | 'mistakes'>('all');
+  useEffect(() => { audio.stop(); }, [audio, page, query, wordFilter]);
+  useEffect(() => subscribeWordAudioLifecycle(audio.stop, () => setError('앱 상태에 따른 음성 중지 연결에 실패했습니다. 음성 재생 시 중지 버튼을 이용해 주세요.')), [audio]);
   const [visibleCount, setVisibleCount] = useState(100);
   const [busy, setBusy] = useState(false);
   const [answerBusy, setAnswerBusy] = useState(false);
@@ -46,7 +56,7 @@ export function HomePage() {
   const timeout = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const dialog = useRef<HTMLDialogElement>(null);
   const bookNavigation = useRef<PictureBooksNavigation>(null);
-  const load = () => { try { setProgress(readProgress()); setError(''); } catch { setError('학습 기록을 읽지 못했습니다. 기록을 덮어쓰지 않고 다시 시도해 주세요.'); } };
+  const load = () => { try { const next = readProgress(); progressRef.current = next; setProgress(next); setError(''); } catch { setError('학습 기록을 읽지 못했습니다. 기록을 덮어쓰지 않고 다시 시도해 주세요.'); } };
   useEffect(() => { load(); return () => { worker.current?.terminate(); clearTimeout(timeout.current); }; }, []);
   useEffect(() => {
     const element = dialog.current;
@@ -57,15 +67,16 @@ export function HomePage() {
   }, [selected]);
   useEffect(() => { setVisibleCount(100); }, [query, wordFilter]);
   const save = (next: LearningProgress) => {
-    try { writeProgress(next); setProgress(next); setError(''); return true; }
+    try { writeProgress(next); progressRef.current = next; setProgress(next); setError(''); return true; }
     catch { setError('기록 저장에 실패했습니다. 다시 시도해 주세요.'); return false; }
   };
   const resetCompleted = () => {
     if (!progress || generating.current || answerPending.current) return;
     try {
       const next = resetCompletedProgress(progress);
+      progressRef.current = next;
       setProgress(next);
-      setPuzzle(null); setSolved([]); setSelected(null); setShowCompletion(false);
+      setPuzzle(null); setSolved([]); setHintedCells({}); setSelected(null); setShowCompletion(false);
       setConfirmReset(false); setResetError(''); setError('');
       setSettingsMessage('학습 기록을 초기화했습니다.');
     } catch {
@@ -86,7 +97,7 @@ export function HomePage() {
           const next = parseCrosswordPuzzle(data.puzzle);
           if (!next.words.length) throw new Error();
           clearTimeout(timeout.current);
-          setPuzzle(next); setLevel(next.level); setSize(next.size); setSolved([]); setSelected(null); setShowCompletion(false); setPuzzleVersion(value => value + 1);
+          setPuzzle(next); setLevel(next.level); setSize(next.size); setSolved([]); setHintedCells({}); setSelected(null); setShowCompletion(false); setPuzzleVersion(value => value + 1);
         } catch { setError('새 문제를 만들지 못했습니다. 난이도나 크기를 바꾸거나 학습 기록을 확인해 주세요.'); }
         finally { finish(); }
       };
@@ -121,9 +132,20 @@ export function HomePage() {
     answerPending.current = true; setAnswerBusy(true); setAnswerError('');
     try {
       if (answer.trim().toUpperCase() !== selected.word.toUpperCase()) { setAnswerError('정답이 아닙니다. 다시 입력해 주세요.'); return; }
-      if (save({ ...progress, completed: [...new Set([...progress.completed, selected.id])] })) { setSolved(previous => [...new Set([...previous, selected.id])]); if (puzzle && new Set([...solved, selected.id]).size === puzzle.words.length) setShowCompletion(true); dialog.current?.close(); setSelected(null); }
+      const latest = progressRef.current ?? progress;
+      if (save({ ...latest, completed: [...new Set([...latest.completed, selected.id])] })) { setSolved(previous => [...new Set([...previous, selected.id])]); if (puzzle && new Set([...solved, selected.id]).size === puzzle.words.length) setShowCompletion(true); dialog.current?.close(); setSelected(null); }
     } catch { setAnswerError('정답 확인에 실패했습니다. 다시 제출해 주세요.'); }
     finally { answerPending.current = false; setAnswerBusy(false); }
+  };
+  const revealSelectedLetter = (index: number): boolean => {
+    const latest = progressRef.current;
+    if (!selected || !latest || answerPending.current) return false;
+    if (!save(recordMistake(latest, selected.id))) return false;
+    const row = selected.startRow + (selected.orientation === 'down' ? index : 0);
+    const col = selected.startCol + (selected.orientation === 'across' ? index : 0);
+    setHintedCells(cells => ({ ...cells, [`${row}:${col}`]: selected.word[index].toUpperCase() }));
+    setAnswerError('');
+    return true;
   };
   const visibleWords = defaultVocabList.filter(word => (wordFilter === 'all' || (wordFilter === 'bookmarks' && progress?.bookmarks.includes(word.id)) || (wordFilter === 'completed' && progress?.completed.includes(word.id)) || (wordFilter === 'mistakes' && progress && isNotebookWord(progress, word.id))) && `${word.word} ${word.meaning}`.toLowerCase().includes(query.toLowerCase()));
   return <IonPage>
@@ -146,16 +168,17 @@ export function HomePage() {
             <div className="mobile-choice-row" role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map(value => <button key={value} disabled={busy} aria-pressed={size === value} onClick={() => { if (value !== size) generate(level, value); }}>{value}×{value}</button>)}</div>
           </div>
           <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate()}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
-          {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solved} onSelectWord={choose} />}
+          {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solved} hintedCells={hintedCells} onSelectWord={choose} />}
 
         </section>}
         {page === 'words' && <section className="mobile-word-page">
           <header className="mobile-word-heading"><h1>나의 단어장</h1><span>{visibleWords.length}개 단어</span></header>
           <div className="mobile-word-filters" role="group" aria-label="단어장 분류">{(['all', 'bookmarks', 'completed', 'mistakes'] as const).map(value => <button key={value} aria-pressed={wordFilter === value} onClick={() => setWordFilter(value)}>{({ all: '전체', bookmarks: '즐겨찾기', completed: '학습완료', mistakes: '오답노트' })[value]}</button>)}</div>
           <label className="mobile-word-search"><span className="mobile-sr-only">단어 또는 뜻 검색</span><input type="search" placeholder="단어 또는 뜻 검색" value={query} onChange={event => setQuery(event.target.value)} /></label>
+          <p className="mobile-audio-guide">단어와 예문을 함께 듣습니다. AI 생성 음성이며 인터넷 연결이 필요합니다.</p>
           {wordFilter === 'mistakes' && <p className="mobile-notebook-guide">틀린 단어를 이 기기에 저장합니다. 삭제하면 목록에서만 숨겨지며, 다시 틀리면 목록에 추가됩니다.</p>}
           <ul className="mobile-words">{visibleWords.slice(0, visibleCount).map(word => <li key={word.id}>
-            <div className="mobile-word-body"><strong>{word.word}</strong><span className="mobile-word-meta">{levels[word.level]} · {word.partOfSpeech}{progress.completed.includes(word.id) ? ' · 학습 완료' : ''}</span><p>{word.meaning}</p>{word.synonym?.trim() && <p className="mobile-word-synonym">동의어: {word.synonym}</p>}<p className="mobile-word-example" lang="en">{word.example}</p><p className="mobile-word-example">{word.exampleMeaning}</p></div>
+            <div className="mobile-word-body"><strong>{word.word}</strong><span className="mobile-word-meta">{levels[word.level]} · {word.partOfSpeech}{progress.completed.includes(word.id) ? ' · 학습 완료' : ''}</span><p>{word.meaning}</p>{word.synonym?.trim() && <p className="mobile-word-synonym">동의어: {word.synonym}</p>}<p className="mobile-word-example" lang="en">{word.example}</p><p className="mobile-word-example">{word.exampleMeaning}</p><WordAudioButtons id={word.id} word={word.word} example={word.example} audio={audio} state={audioState} /></div>
             <button aria-label={`${word.word} 즐겨찾기`} aria-pressed={progress.bookmarks.includes(word.id)} onClick={() => save({ ...progress, bookmarks: progress.bookmarks.includes(word.id) ? progress.bookmarks.filter(id => id !== word.id) : [...progress.bookmarks, word.id] })}>{progress.bookmarks.includes(word.id) ? '★' : '☆'}</button>
             {wordFilter === 'mistakes' && <button aria-label={`${word.word} 오답노트에서 삭제`} onClick={() => save(hideHintedWord(progress, word.id))}>삭제</button>}
           </li>)}</ul>
@@ -217,11 +240,6 @@ export function HomePage() {
       <ul className="mobile-review">{puzzle.words.map(word => <li key={word.id}><strong>{word.word}</strong><span>{word.meaning}</span></li>)}</ul>
       <IonButton expand="block" disabled={busy} onClick={() => generate()}>다음 퍼즐 풀기</IonButton>
     </Modal>}
-    <dialog ref={dialog} className="mobile-answer" onCancel={event => { event.preventDefault(); close(); }}>{selected && puzzle && <AnswerEntry key={selected.id} word={selected} known={Array.from(selected.word, (_, index) => {
-      const row = selected.startRow + (selected.orientation === 'down' ? index : 0);
-      const col = selected.startCol + (selected.orientation === 'across' ? index : 0);
-      const crossingSolved = puzzle.words.some(word => solved.includes(word.id) && (word.orientation === 'across' ? word.startRow === row && col >= word.startCol && col < word.startCol + word.word.length : word.startCol === col && row >= word.startRow && row < word.startRow + word.word.length));
-      return crossingSolved ? selected.word[index] : '';
-    })} error={answerError || error} busy={answerBusy} onSubmit={submit} onMistake={(id) => { if (progress) save(recordMistake(progress, id)); }} onClose={close} />}</dialog>
+    <dialog ref={dialog} className="mobile-answer" onCancel={event => { event.preventDefault(); close(); }}>{selected && puzzle && <AnswerEntry key={selected.id} word={selected} known={knownWordLetters(puzzle, solved, selected, hintedCells)} error={answerError || error} busy={answerBusy} onSubmit={submit} onReveal={revealSelectedLetter} onMistake={(id) => { if (progressRef.current) save(recordMistake(progressRef.current, id)); }} onClose={close} />}</dialog>
   </IonPage>;
 }

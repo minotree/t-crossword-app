@@ -1,5 +1,93 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## PWA·하이브리드 긴 설명 스크롤·정답 버튼 유지 적용 (2026-10-28)
+
+- 사용자 요청으로 토스 방식의 긴 설명 스크롤을 PWA와 모바일에 각각 적용했다. WordInputModal은 제목/닫기와 입력·버튼 영역을 분리하고 뜻·동의어·예문만 스크롤한다. 웹 전용 answerViewport 어댑터로 키보드 위 실제 영역을 따라 높이/위치를 제한하며 focus preventScroll을 적용했다. 작은 화면에서 설명 영역이 지나치게 작아지지 않도록 간격·입력칸 48px·동일 의미의 짧은 오답 안내를 조정했다.
+- 모바일 AnswerEntry는 문제 설명과 입력/버튼 영역을 분리하고 기존 visualViewport 처리와 dialog 세로 flex를 연결했다. 320px 실제 Ionic 렌더링에서 버튼 줄바꿈을 발견해 padding·flex·nowrap·최소 높이 44px을 보완했다. 긴 원문은 생략하지 않고 극도로 낮은 화면의 바깥 모달 스크롤을 유지한다. 힌트·음성·완료·오답노트 정책은 변경하지 않았다.
+- 검증 통과: apps/web에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests` 61개, `pnpm.cmd --filter @t-crossword/web lint`·`build`(타입 포함); 모바일 `pnpm.cmd --filter @t-crossword/mobile test` 30개·`build`(타입 포함), apps/mobile에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/letterHints.test.tsx tests/wordAudio.test.ts tests/wordAudioLifecycle.test.ts tests/wordAudioManifest.test.ts` 19개. 설명 영역 분리와 웹 viewport resize/리스너 해제를 검사했다. 기존 큰 청크 경고 유지.
+- 실제 React/Tailwind·Ionic 컴포넌트와 CSS를 Headless Chrome에서 폭 390/320/844px·가용 높이 380/280/270px로 모사했다. 설명 스크롤 전후 버튼이 화면 안에 유지됨을 좌표·320px 캡처로 확인했다. PWA는 낮은 영역의 여백을 추가 조정한 뒤 재검사했다. docs/verification/20261028-web-mobile-answer-layout.json에 최종 결과를 보존했다. 임시 HTML/TSX fixture·전용 검사 서버·브라우저는 정리했고 로컬 캡처는 Git 제외 tmp/lint-tools에 있다.
+- 권한 승인 후 `pnpm.cmd exec cap sync android`, JDK 21을 해당 명령 환경에 지정한 `gradlew.bat assembleDebug --console=plain` 통과. APK: apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk, 34,850,410 bytes, SHA-256 D76E6686A7F48939CB896EC348712DAEB66863E72453433281C03FD4DEF8FDBB. APK/dist 자산 131개 해시 일치. 기존 Gradle flatDir 경고 유지. git diff --check 통과.
+- 사용자가 Git 작업·토스 빌드·업로드를 직접 진행한다고 결정했다. 이번 작업에서 커밋·푸시·토스 .ait 생성·업로드·공개 배포는 하지 않았다. 설치 PWA 갱신·실제 Android/iOS 키보드·가로 회전·기기 조작은 미실행이다. 이전 토스 재현용 5174 개발 서버는 사용자 확인용으로 유지하며 기존 작업의 변경은 보존했다.
+
+## 토스 로컬 긴 설명 모달 강제 재현 주소 (2026-10-27)
+
+- 사용자 요청으로 `http://localhost:5174/?answer-layout=long` 개발용 시나리오를 추가했다. 실제 MASS 뜻·동의어와 6회 반복 예문으로 모달을 즉시 열고 기본 360px 최대 높이로 좁은 영역을 재현한다. height 쿼리로 180~600px 지정 가능하다. 닫기·다시 열기·일반 앱 복귀를 제공하며 학습/오답 기록은 저장하지 않는다.
+- main.tsx는 DEV와 쿼리를 모두 확인해 dev/AnswerLayoutPreview.tsx를 동적 로드한다. 일반 주소·프로덕션 경로는 기존 App이다. 타입 포함 build·lint, 토스 테스트 100개·git diff --check 통과. 개발용 장문 fixture가 production JS에 포함되지 않는 것을 검사했다. 시나리오 즉시 열기·힌트 사용·재열기 초기화도 검사했다.
+- `pnpm.cmd --filter @t-crossword/toss dev`로 5174 서버를 시작해 사용자 확인용으로 유지했다. 재현 주소·TSX 모듈 HTTP 200을 확인했다. 이전 별도 Headless Chrome 좌표 검사와 이번 실제 토스/사용자 브라우저 조작 여부는 구분하며 후자는 미실행이다. .ait 생성·업로드·배포는 하지 않았다.
+
+## 토스 긴 뜻·동의어·예문으로 정답 버튼 가림 수정 (2026-10-27)
+
+- 사용자 Android 토스 캡처에서 긴 설명과 키보드 표시로 모달 하단 버튼이 가려졌다. AnswerModal에 문제 설명 스크롤 영역을 추가하고 styles.css에서 열린 정답 dialog를 세로 flex로 구성해 제목/닫기·입력칸·힌트/정답입력을 축소 없이 유지한다. 설명만 남은 높이에 맞춰 스크롤하며 뜻·동의어·예문을 생략하지 않는다. 극도로 낮은 영역에서는 기존 dialog 스크롤도 유지한다. 모달 위치/키보드 anchor·TDS 버튼·힌트 정책은 유지했다.
+- `pnpm.cmd --filter @t-crossword/toss test` 99개·`lint`·`build`(타입 포함), `git diff --check` 통과. 설명 영역과 입력/버튼 영역 분리 회귀 검사를 추가했다. 기존 큰 청크 경고 유지.
+- 별도 임시 프로필의 Headless Chrome과 실제 React AnswerModal/TDS/CSS로 폭 390/320/844px, visualViewport 가용 높이 380/280/270px를 모사했다. 긴 설명에 스크롤이 생기고 전후 힌트/정답입력이 표시 영역에 유지됨을 좌표로 확인했다. 결과: docs/verification/20261027-toss-answer-layout.json. 390px 화면 캡처도 시각 확인했다. 임시 HTML/TSX fixture는 제거하고 전용 브라우저·검사 서버를 종료했다. 로컬 캡처/검사 도구는 Git 제외 tmp/lint-tools 아래에 있다.
+- 실제 토스 Android/iPhone 키보드·가로 회전·화면 조작 재검증은 미실행이다. 이번 수정은 토스 모달에 한정하며 PWA·하이브리드 수정·.ait 생성·업로드·배포·커밋·푸시는 수행하지 않았다. 다른 작업의 기존 변경은 보존했다.
+
+## 세 앱의 공개 음성 manifest 공유 연결 (2026-10-27)
+
+- Web/PWA의 브라우저 TTS를 기존 Cloudflare MP3로 교체하고 토스·모바일도 공개 manifest를 조회하도록 연결했다. 기존 미커밋 힌트·모바일 작업은 보존했다. core는 플랫폼 중립의 manifest 검사와 전송 함수 주입형 요청 재사용만 담당하며 각 앱은 자체 재생 어댑터·UI·수명주기를 유지한다.
+- 앱 ID 대신 대문자 영단어와 정확히 같은 예문으로 연결한다. 해시 포함 파일명·500ms 쉼·스키마·경로를 검증하고 누락·예문 불일치·목록/음성 실패를 카드에 표시한다. 클릭 재생·1.0/0.7배속·중복 재생 방지·화면 이탈 중지·늦은 응답 방어·실패 후 재시도를 처리한다. MP3 일괄 다운로드/precache·새 음성 생성·Cloudflare 변경은 하지 않았다.
+- 공개 manifest를 curl로 실제 조회해 HTTP 200·JSON·CORS `*`를 확인했다. 현재 CSV SHA-256은 `d26ad70a72847dba259086c849c9ddb4da971d9696e28b87af98afdc5af36e2a`로 manifest와 바이트 단위 일치한다. `python scripts/check-shared-word-audio.py artifacts/shared-word-audio-manifest.json` 및 실제 공개 파일의 core parser 검사 통과: 3,839개, 누락·추가·예문 불일치 0개. 줄바꿈/인코딩 차이도 없다.
+- 자동 검사 통과: `pnpm.cmd --config.verifyDepsBeforeRun=false -r run typecheck`, 같은 옵션의 `-r run build`, `--filter @t-crossword/web --filter @t-crossword/toss lint`, `--filter @t-crossword/core test`(79개), `--filter @t-crossword/toss test`(98개). 웹 디렉터리에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests`(59개), 모바일 디렉터리에서 같은 Vitest 경로로 `run tests/wordAudio.test.ts tests/letterHints.test.tsx`(14개) 및 `pnpm.cmd --config.verifyDepsBeforeRun=false test`(30개) 통과. 기존 대형 청크 경고는 남는다. `git diff --check` 통과.
+- 실제 브라우저·설치 PWA·토스·Android/iOS 재생, 최초 클릭의 재생 정책·무음 모드·앱 전환·전화/음악/광고 오디오 포커스는 미검증이다. 이번 변경으로 APK/ait 생성·Capacitor sync·커밋·푸시·배포는 실행하지 않았다. 아래 기존 Android APK 기록은 해당 생성 시점의 결과이며 이번 공개 manifest 연결을 포함하는 새 APK 검증으로 해석하지 않는다.
+- 모바일 추가 확인: Vitest에 `run tests`를 전달하면 Node test runner 전용 `.mjs` 6개를 Vitest 스위트로 인식하지 못해 실패했다. 실행기를 구분해 모바일 Vitest 명령은 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/wordAudio.test.ts tests/wordAudioLifecycle.test.ts tests/wordAudioManifest.test.ts tests/letterHints.test.tsx`로 실행했고 18개 통과했다. Node 전용 30개는 위 `pnpm.cmd ... test`로 별도 통과했다.
+
+## Android 단어·예문 Cloudflare MP3 듣기 연결 (2026-10-27)
+
+- 사용자 요청으로 모바일 단어장에 듣기·느리게(0.7배속)·중지와 로딩/오류/재시도를 연결했다. 기존 3,839개 단어+예문 MP3(삽입 쉼 0.5초)를 재사용하며 MP3/모델은 APK에 넣지 않는다. 인터넷 필요·AI 생성 음성 안내를 표시한다. 검색·필터·메뉴·document 숨김/pagehide·Capacitor appStateChange 비활성 전환·컴포넌트 해제 시 중지한다. 네이티브 호출은 모바일 lifecycle 어댑터로 분리했다.
+- scripts/prepare-mobile-word-audio.mjs로 content 제작 원본·vocab/예문·제작 보고서·해시 파일명·0.5초 대응을 검사해 모바일 manifest를 준비한다. dev/typecheck/build에 연결했다. 기존 공개 Cloudflare 주소가 기본이며 VITE_MOBILE_WORD_AUDIO_BASE_URL로 변경 가능하다. 앱 간 소스 import·새 의존성·음성 재생성·Cloudflare 재배포·권한 추가는 없다. 기존 제작/권리 기록을 재사용하며 새 라이선스 확인이나 전수 청취를 수행한 것은 아니다.
+- 검증 통과: `pnpm.cmd --filter @t-crossword/mobile test` 30개, `pnpm.cmd --filter @t-crossword/mobile build`(타입·그림책·음성 대응 포함), apps/mobile에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/letterHints.test.tsx tests/wordAudio.test.ts tests/wordAudioLifecycle.test.ts tests/wordAudioManifest.test.ts` 18개. 재생은 탭 이후만 수행·속도/단어 전환·중지·지연/실패·늦은 콜백·앱 상태 리스너 정리·모든 어휘 대응을 검사했다. 모사 검사는 실제 기기 재생과 구분한다.
+- `node scripts/check-mobile-word-audio-remote.mjs`는 최초 외부 연결 EACCES 후 권한 승인 재실행으로 통과했다. 공개 manifest 3,839개 원본 대응과 대표 MP3 YOU/LET/MINE/ABSTRACTION 4개 해시·HTTP 200·audio/mpeg·https://localhost 요청 CORS·immutable 캐시 확인. content/word-audio/mobile-remote-validation.json에 범위를 기록했다. 원격 MP3 전수 다운로드·실제 WebView 재생은 미실행이다.
+- 웹 빌드 후 권한 승인된 `pnpm.cmd exec cap sync android`, 설치 JDK 21을 명령 환경에만 지정한 `gradlew.bat assembleDebug --console=plain` 통과. APK: apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk, 34,861,997 bytes, SHA-256 1C89E09D1840507347BA922AB64FC2F19155B94C9E8F2E19859084B52D614162. APK/dist 자산 131개 해시 일치·공개 HTTPS 주소 포함·MP3/모델 미포함 확인. `git diff --check` 통과. 기존 큰 청크/flatDir 경고 유지.
+- 실제 Android 설치·일반/느리게 재생·음량/무음/블루투스·전화/음악/광고 오디오 포커스·백그라운드/복귀·오프라인 오류 조작은 미실행이다. iOS·실제 광고 SDK·공개 배포·커밋·푸시는 하지 않았다. 작업 중 별도로 나타난 토스/PWA 음성 및 core manifest 관련 변경은 덮어쓰지 않고 보존했다.
+
+## Android 하이브리드에 토스 최신 힌트 정책 적용·APK 재생성 (2026-10-27)
+
+- 사용자 요청으로 모바일 AnswerEntry에 core 공통 규칙의 단어별 무료 글자 공개를 적용했다. 모달 생성 시 빈칸 절반 내림·사용 차감·재열기 재계산, 앞쪽 미정답 공개·글자 유지·읽기 전용·오답 표시 개별 해제를 처리한다. 하단 버튼은 `힌트 N회` → `정답입력` → `닫기`다. 2초 미리보기는 적용하지 않는다.
+- HomePage·모바일 퍼즐 표시 adapter/Board/QuizPanel에서 공개 글자 유지·교차 반영·새 퍼즐/학습 초기화 시 제거를 연결했다. 힌트 사용 즉시 오답노트 중복 방지·숨김 복귀를 처리하고 최신 progressRef로 힌트 등록과 같은 클릭의 정답 완료가 서로 덮어쓰지 않게 했다. 모바일 저장 실패는 공개·차감하지 않고 재시도한다. 힌트로 완성해도 정상 학습완료하며 기존 완료·즐겨찾기를 유지한다.
+- 검증: `pnpm.cmd --filter @t-crossword/mobile typecheck`, `pnpm.cmd --filter @t-crossword/mobile test` 30개, apps/mobile에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/letterHints.test.tsx` 7개, `pnpm.cmd --filter @t-crossword/mobile sync:android`의 웹 빌드(타입 포함) 통과. 통합 테스트 최초에는 jsdom ResizeObserver 부재로 2개 실패해 테스트 환경 모사를 보완한 뒤 통과했다. Ionic·Worker·뷰포트 모사 검사이며 기기 검증과 구분한다.
+- Android sync는 최초 샌드박스 사용자 정보 조회 오류(uv_os_get_passwd ENOMEM)로 실패했다. 권한 승인 후 apps/mobile에서 `pnpm.cmd exec cap sync android` 재실행 통과. 설치 JDK 21을 해당 명령의 JAVA_HOME에만 지정한 `gradlew.bat assembleDebug` 통과. 기존 큰 JS 청크·Gradle flatDir 경고 유지. 개인 JDK 경로는 프로젝트 설정에 고정하지 않았다.
+- 산출물: `apps/mobile/android/app/build/outputs/apk/debug/app-debug.apk`, 34,850,410 bytes, SHA-256 `996CA4B0E5F8B0AC6C6B9A0E40E000283C00DD9BE4B7EEF831DCCA3908ED3DE5`. APK 내 웹 자산 131개의 SHA-256을 최신 dist와 대조해 모두 일치했다. `git diff --check` 통과.
+- AGENTS.md·사양서·플랫폼 README를 최신 적용 범위로 갱신했다. 토스·PWA의 기존 작업은 보존했다. 실제 Android 설치/에뮬레이터/기기의 키보드·뒤로가기·회전·광고 영역·저장 실패 조작 검증, iOS 프로젝트 생성·검증, 정적 MP3 음성·실제 광고 SDK 연동은 미실행이다. 배포·커밋·푸시는 하지 않았다.
+
+## PWA에 무료 단어별 힌트·오답노트 등록 적용 (2026-10-27)
+
+- 사용자 요청으로 토스의 최신 힌트 정책을 PWA에 적용했다. WordInputModal은 core의 getModalHintLimit/firstIncorrectLetterIndex를 재사용해 모달 생성 시 빈칸 절반 내림·재열기 재계산·앞쪽 미정답 공개를 처리한다. `힌트 N회` 버튼은 정답입력 왼쪽에 두고 공개 글자는 계속 유지·읽기 전용·개별 오답 표시 해제·다음 칸 이동을 적용했다.
+- useCrosswordGame/QuizPage에서 공개 글자를 현재 userGrid에 저장해 모달 재열기·교차 단어에 반영하고 markHintUsed로 즉시 오답노트 등록·숨김 복귀·중복 방지·기존 완료/즐겨찾기 보존을 처리한다. 힌트로 마지막 칸을 채워도 기존 250ms 성공 표시 후 학습완료한다. 완료 중 중복 제출 방지와 모달 닫기 시 완료 타이머 취소도 처리했다. 잔액·인증·보상 API나 DB는 변경하지 않았다.
+- 검증 통과: apps/web에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests` 60개, 루트에서 `pnpm.cmd --filter @t-crossword/web lint`, `pnpm.cmd --filter @t-crossword/web build`(타입 포함), `git diff --check`. 12/8/5/1칸 한도·공개 유지·재열기·오답 상태·교차 반영·새 퍼즐 초기화·힌트 즉시 오답노트 등록·숨김 복귀·힌트 완료·완료 타이머 취소·네트워크 무호출을 검사했다. 빌드의 기존 큰 청크 경고 유지, PWA precache 16개 생성.
+- AGENTS.md·사양서·토스 README·docs/vercel-pwa.md의 적용 범위를 갱신했다. 기존 토스 수정은 보존했다. 실제 브라우저·설치 PWA 업데이트·오프라인·iOS/Android 확인은 미실행이다. 하이브리드 적용·배포·커밋·푸시도 미실행이다.
+
+## 토스 힌트 사용 단어도 오답노트 등록 (2026-10-27)
+
+- 사용자 추가 요청으로 힌트 공개 시 App에서 기존 recordMistake를 호출해 즉시 기기 오답노트에 중복 없이 등록한다. 숨겼던 단어는 복귀시키며 학습완료·즐겨찾기·기존 이력을 유지한다. 정답 제출 전에도 등록하고 힌트로 완성한 뒤에도 기록을 보존한다. 이전의 '힌트만으로 등록하지 않음' 정책은 이 결정으로 대체한다.
+- App·관련 앱 테스트 및 AGENTS.md·사양서·토스 README를 갱신했다. `pnpm.cmd --filter @t-crossword/toss test` 98개·`lint`·`build`(타입 포함), `git diff --check` 통과. 즉시 등록·숨김 복귀·중복 방지·완료/즐겨찾기 보존·완료 후 기록 유지를 검증했다. 기존 큰 청크 경고 유지.
+- 실제 Devtools·토스 기기 검증, PWA·하이브리드 적용, 번들 생성·업로드는 미실행이다.
+
+## 토스 힌트 2초 미리보기 철회·정답 유지 복원 (2026-10-27)
+
+- 사용자가 테스트 후 사라지는 동작 제거를 요청했다. AnswerModal의 2초 타이머·임시 표시·입력 대기를 제거하고 힌트 정답이 계속 유지되는 방식으로 복원했다. 공개 칸은 읽기 전용이며 다음 수정 가능한 칸으로 이동한다. App/QuizPanel의 현재 퍼즐 공개 상태와 교차 반영, 모달 재열기 유지, 새 퍼즐·학습 초기화 시 초기화를 복원했다. 힌트로 마지막 칸을 채워도 정상 학습완료한다. `힌트 N회`와 빈칸 절반 내림·재열기 재계산은 유지한다.
+- 테스트를 최신 정책으로 변경했다. 첫 실행에서 재열기 후 빈칸 1개의 이전 기대값 1회가 실패해 0회로 수정했다. 최종 `pnpm.cmd --filter @t-crossword/toss test` 97개·`lint`·`build`(타입 포함), `git diff --check` 통과. 3초 후에도 공개 글자 유지·오답 표시 해제·읽기 전용·자동 완료·교차 반영을 확인했다. 기존 큰 청크 경고 유지.
+- AGENTS.md·사양서·토스 README를 최신 정책으로 맞췄다. 아래 2초 미리보기 기록은 철회된 시험 이력이다. 사용자 테스트 피드백은 미리보기 선호에 대한 확인이며 전체 기기 검증 완료를 뜻하지 않는다. 최신 유지 동작의 Devtools·실제 토스 기기 재확인, PWA·하이브리드 적용·번들 생성·업로드는 미실행이다.
+
+## 토스 힌트 2초 미리보기·직접 입력으로 변경 (2026-10-27)
+
+- 사용자 후속 결정으로 앞선 영구 공개·교차 반영·힌트 자동 완료를 대체한다. AnswerModal에서 정답을 2초만 표시한 뒤 빈칸으로 되돌리고 같은 칸에 커서를 유지한다. 오답 칸도 같은 방식이며 해당 오류 표시만 해제한다. 표시 중 해당 칸 읽기 전용·힌트/제출 비활성화, 모달 닫기 시 타이머 정리를 적용했다. 모달 생성 시 빈칸 절반 내림과 `힌트 N회` 표시는 유지한다.
+- 힌트는 답안이 아닌 미리보기이므로 App/QuizPanel의 공개 글자 저장·교차 반영을 제거했다. 사용자가 직접 정답을 입력한 뒤 정상 학습완료한다. 힌트만으로 오답노트에 추가하지 않는다. AGENTS.md·사양서·토스 README를 최신 정책으로 갱신했다.
+- 검증: 최초 토스 테스트에서 이전 영구 공개 정책을 기대한 앱 테스트 2개가 실패해 기대값을 수정했다. 최종 `pnpm.cmd --filter @t-crossword/toss test` 98개·`lint`·`build`(타입 포함), `git diff --check` 통과. 1.999초 유지·2초 후 삭제/포커스/입력 복귀·타이머 취소·직접 입력 후 완료·교차 미반영을 검사했다. 기존 큰 청크 경고 유지.
+- 실제 Devtools·토스 기기 확인, PWA·하이브리드 적용, 번들 생성·업로드는 미실행이다. 토스 사용자 확인 후 후속 플랫폼으로 진행한다.
+
+## 토스 힌트 횟수를 버튼 안에 표시 (2026-10-27)
+
+- 정답 모달의 긴 힌트 설명 문구를 제거하고 `힌트 N회` 버튼으로 남은 횟수를 표시했다. 횟수 계산·공개·완료 정책은 유지했다. 수정: AnswerModal과 관련 모달·앱 테스트.
+- `pnpm.cmd --filter @t-crossword/toss test` 97개·`lint`·`build`(타입 포함), `git diff --check` 통과. 기존 큰 청크 경고 유지. 실제 Devtools·토스 기기 확인은 미실행이며 PWA·하이브리드는 토스 사용자 확인 후 적용한다.
+
+## 단어별 무료 글자 힌트 복원 — 토스 우선 (2026-10-27)
+
+- 사용자 정책 변경: 정답 모달 생성 시 현재 빈칸의 절반을 내림해 힌트 횟수를 만들며, 재열기는 현재 빈칸으로 재계산하고 이전 사용 횟수를 차감하지 않는다. 앞에서부터 정답이 아닌 첫 칸(오답 포함)을 공개한다. 정답입력 왼쪽에 힌트 버튼과 남은 횟수를 표시한다.
+- `packages/core/src/utils/letterHints.ts`에 순수 계산·위치 선택 규칙을 추가했다. 기존 구버전 서버의 `getWordHintLimit`·계약·DB는 유지했다. 토스 AnswerModal은 공개 칸 읽기 전용·개별 오답 표시 해제·횟수 소진·정답 자동 제출을 처리하며 App/QuizPanel에서 공개 글자를 현재 퍼즐에 유지·교차 반영한다. 모달 닫기·홈 왕복은 유지하고 새 퍼즐·학습 초기화는 초기화한다. 앱 종료 후 퍼즐 복원은 범위 밖이다.
+- 힌트로 완성해도 학습완료·축하 처리하며 힌트만으로 오답노트에 등록하지 않는다. 실제 오답 기록은 보존한다. 서버 잔액·충전·보상·인증·판 등록 API는 복원하지 않았다. AGENTS.md·사양서·토스 README에 최신 정책과 순차 적용 범위를 기록했다.
+- 검증 통과: `pnpm.cmd --filter @t-crossword/core test` 69개, `pnpm.cmd --filter @t-crossword/core typecheck`, `pnpm.cmd --filter @t-crossword/toss test` 97개, `pnpm.cmd --filter @t-crossword/toss lint`, `pnpm.cmd --filter @t-crossword/toss build`(타입 검사 포함). 12→6·8→4·홀수/1칸 계산, 재열기, 오답 교체, 교차 반영, 새 퍼즐 초기화, 힌트로 완료·네트워크 무호출을 검사했다. `git diff --check` 통과. 기존 큰 청크 경고 유지.
+- 남은 작업: 사용자의 AIT Devtools·실제 토스 Android/iPhone 확인 후 PWA·하이브리드에 같은 공통 규칙을 적용한다. 현재 두 앱은 수정하지 않았고 번들 생성·업로드·배포·커밋·푸시는 수행하지 않았다.
+
 ## 토스 난이도 위 중앙 정렬 여백 제거 (2026-10-26)
 
 - 제목 복원 후 사용자가 난이도 위 여백이 넓다고 지적해 `.quiz-content`의 `margin-block: auto`를 제거하고 상단 정렬로 변경했다(`apps/toss/src/styles.css`). 이전 중앙 정렬 요구보다 최신 여백 축소 요청을 우선한다. 공통 제목은 유지하고 본문 상단 padding 6px 뒤에 난이도가 배치되며 남는 공간은 하단에 둔다. 절대 위치·음수 여백 없이 화면 크기에 따라 본문 높이가 변하고 부족하면 본문 전체가 스크롤된다.

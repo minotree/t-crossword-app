@@ -1,5 +1,37 @@
 # 영어 낱말 · Android / Ionic
 
+## 긴 정답 설명 스크롤·하단 버튼 유지 (2026-10-28)
+
+토스와 같은 사용 흐름으로 뜻·동의어·예문만 별도 문제 설명 영역에서 스크롤하고 제목·입력칸·힌트/정답입력/닫기를 유지한다. 긴 설명을 생략하지 않는다. 기존 visualViewport 위치/높이 처리를 사용하고 극도로 낮은 화면에서는 dialog 자체 스크롤도 허용한다. 320px에서도 버튼 글자가 한 줄로 유지되도록 Ionic 버튼 여백과 최소 44px 높이를 조정했다.
+
+모바일 Node 테스트 30개·React/음성 통합 검사 19개·build(타입 포함)·Android sync·JDK 21 assembleDebug 통과. 실제 Ionic 렌더링을 Headless Chrome에서 폭 390/320/844px·가용 높이 380/280/270px로 모사해 설명 스크롤 전후 버튼 좌표와 화면을 확인했다. ../../docs/verification/20261028-web-mobile-answer-layout.json 참고. 실제 Android/iOS 키보드·기기 조작은 미실행이다.
+
+최신 APK: android/app/build/outputs/apk/debug/app-debug.apk, 34,850,410 bytes, SHA-256 D76E6686A7F48939CB896EC348712DAEB66863E72453433281C03FD4DEF8FDBB. APK/dist 자산 131개 해시 일치. Git 작업과 토스 빌드·업로드는 사용자가 직접 진행한다.
+
+## 단어·예문 음성 듣기 (2026-10-27 최신)
+
+- 단어장의 각 카드에 듣기·느리게(0.7배속)·중지를 제공한다. 토스에서 사용하던 Cloudflare 공개 MP3 3,839개를 재사용하며 단어+예문 사이 삽입 쉼은 0.5초다. 모델 자체의 앞뒤 무음은 별도로 남을 수 있고 느리게 재생하면 삽입 쉼도 길어진다. 새 음성을 생성하지 않았다.
+- MP3는 버튼을 누를 때 HTTPS로 재생한다. APK에 MP3·모델을 넣지 않으며 음성에는 인터넷이 필요하다. 오프라인 다운로드·백그라운드 재생·브라우저 TTS는 추가하지 않았다.
+- 별도 환경 설정 없이 기존 공개 주소를 기본 사용한다. 필요하면 앱의 환경변수 VITE_MOBILE_WORD_AUDIO_BASE_URL로 공개 음성 디렉터리를 변경한다. 명시적 빈 값은 버튼을 숨긴다. .env.example은 자리표시자이며 기존 Supabase 힌트 변수는 구버전 이력이다.
+- src/adapters/wordAudio.ts가 모바일 HTML media 상태를 관리한다. 동시에 하나만 재생하고 재선택·속도/단어 변경 시 이전 음성을 중지한다. 로딩·재생 실패·15초 지연을 안내하고 재시도할 수 있다. src/adapters/wordAudioLifecycle.ts는 visibilitychange/pagehide와 기존 Capacitor App의 appStateChange로 중지·리스너 정리를 처리하며 자동 재개하지 않는다. 검색·필터·메뉴 이동에도 중지한다. 새 네이티브 플러그인·권한은 추가하지 않았다.
+- pnpm run prepare:audio는 content/word-audio/full-manifest.json과 제작 보고서·현재 vocab 해시·표제어·예문·바이트 해시 파일명·0.5초 설정을 검사해 src/data/word-audio.json을 준비한다. dev/typecheck/build에서 실행한다. 앱 간 UI·소스 import는 없고 생성 도구는 런타임에 포함하지 않는다.
+- 제작·권리 검토 이력은 ../../content/word-audio/README.md 및 FULL.md를 따른다. 기존 생성물 재사용이며 이번에 라이선스 재확인·사람 전수 청취·발음 품질 전수검사를 수행하지 않았다.
+- 원격 검사: 루트에서 `node scripts/check-mobile-word-audio-remote.mjs`. 공개 manifest 3,839개 전체 대응·대표 MP3 4개 해시/HTTP/MIME/CORS/캐시 검사 통과. 결과는 content/word-audio/mobile-remote-validation.json에 기록했다. https://localhost Origin 요청을 검사했으며 실제 WebView 재생 검증과 구분한다.
+- 자동 검사: 모바일 test 30개·build(타입 포함), apps/mobile에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/letterHints.test.tsx tests/wordAudio.test.ts tests/wordAudioLifecycle.test.ts tests/wordAudioManifest.test.ts` 18개 통과. Ionic·Audio·네이티브 이벤트를 모사한 검사이며 기기 검증을 대신하지 않는다.
+- Android sync·JDK 21 assembleDebug 통과. 최신 APK는 android/app/build/outputs/apk/debug/app-debug.apk (34,861,997 bytes), SHA-256 1C89E09D1840507347BA922AB64FC2F19155B94C9E8F2E19859084B52D614162. dist 자산 131개가 APK와 일치하고 음원·모델이 미포함임을 확인했다.
+- 실제 Android의 일반/느리게 재생·출력 음량·무음/블루투스·전화/음악/광고 오디오 포커스·앱 전환·네트워크 실패 확인은 미실행이다. iOS 네이티브 프로젝트도 아직 없다.
+
+## 토스 기준 무료 글자 힌트 적용 (2026-10-27 최신)
+
+- 정답 입력창 하단을 `힌트 N회` → `정답입력` → `닫기` 순서로 구성했다. Ionic UI·Android 뒤로가기 등 플랫폼 연동은 모바일 앱이 소유한다.
+- 모달 생성 시 현재 빈칸 수의 절반을 내림해 횟수를 만든다. 닫았다 다시 열면 현재 빈칸으로 재계산하며 이전 사용 횟수는 추가 차감하지 않는다. 공통 core의 getModalHintLimit/firstIncorrectLetterIndex를 사용한다.
+- 앞에서부터 정답이 아닌 첫 칸을 공개하고 오답 표시는 해당 칸만 해제한다. 공개 글자는 읽기 전용으로 유지하며 다음 수정 가능한 칸으로 이동한다. 보드·교차 문제·모달 재열기·홈 왕복에 반영하고 새 퍼즐·학습 초기화 시 초기화한다. 2초 미리보기는 적용하지 않는다.
+- 힌트 사용 즉시 오답노트에 중복 없이 등록하고 숨긴 항목은 복귀시킨다. 학습완료·즐겨찾기를 유지하고 힌트로 완성해도 학습완료한다. 최신 진행 기록 참조를 사용해 힌트와 정답 완료가 같은 클릭에서 일어나도 오답노트 등록을 보존한다.
+- 모바일 저장 실패 시 공개·횟수 차감 없이 오류를 표시하고 재시도를 허용한다. 잔액·충전·보상·판 등록·힌트 인증 API는 복원하지 않는다. 아래 과거 서버 힌트 연결·운영 설정 설명은 현재 앱의 필수 작업이 아니다.
+- 모바일 typecheck·Node 테스트 30개·React 상태 통합 테스트 7개·웹 빌드·Android sync·JDK 21 assembleDebug 통과. 최신 APK: `android/app/build/outputs/apk/debug/app-debug.apk` (34,850,410 bytes). APK 내 웹 자산 131개가 dist와 SHA-256 일치한다. 실제 설치·키보드·뒤로가기·화면 가독성 확인은 미실행이다.
+- Node 검사는 루트에서 `pnpm.cmd --filter @t-crossword/mobile test`. React 통합 검사는 기존 설치 환경의 apps/mobile에서 `node ../../packages/core/node_modules/vitest/vitest.mjs run tests/letterHints.test.tsx`로 실행했다. Ionic 컴포넌트와 Worker/뷰포트 API를 모사한 상태 검사이며 실제 Ionic 렌더링·네이티브 검증을 대신하지 않는다. 새 의존성은 추가하지 않았다.
+- 해당 힌트 수정에서는 iOS 프로젝트·광고 SDK·토스 정적 MP3 음성 연결을 포함하지 않았다. 이후 모바일 MP3 연결은 위 최신 음성 항목을 따른다. 모바일 고유 광고 가상 영역과 기존 기능은 유지한다.
+
 2026-10-26: 특급 학술·심화 500개를 추가해 퀴즈는 4단계·전체 단어는 3,839개다. 특급 선택·단어장 표시·선택 수준 학습 집계·설정 설명과 WordNet 전문 고지를 모바일 소스에 반영했다. 그림책은 3단계를 유지한다. 일반 웹 빌드 검증과 Capacitor sync·APK·실제 Android/iOS 검증은 별개이며 이번에는 sync·APK를 생성하지 않았다.
 
 2026-10-25 PWA 퀴즈 흐름 반영: 모바일 소유 `QuizPanel`·`PuzzleBoard`·방향 선택/완성 `Modal`로 보드를 가로 너비에 맞추고 아래 `문제 전체 보기`로 보드 위에 2열 목록을 연다. 제목·진행은 고정하고 목록만 함께 스크롤한다. 번호는 미완료 방향만 입력 대상으로 삼으며 모두 완료하면 클릭할 수 없다. 진행/새 퍼즐은 오른쪽 정렬한다. 완성 모달에는 복습·다음 퍼즐·하단 발사 색종이 효과를 제공하며 동작 줄이기 설정을 따른다. Android 뒤로가기는 선택창/목록/완성창을 먼저 닫는다. 실제 Android/iOS 조작·키보드·작은 화면 검증은 별도다.

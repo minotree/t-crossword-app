@@ -19,7 +19,7 @@ beforeAll(() => {
   HTMLDialogElement.prototype.close = function () { this.open = false; };
 });
 beforeEach(() => { localStorage.clear(); container = document.createElement('div'); document.body.append(container); root = createRoot(container); });
-afterEach(async () => { await act(async () => root.unmount()); container.remove(); });
+afterEach(async () => { await act(async () => root.unmount()); container.remove(); vi.useRealTimers(); });
 
 function fixture() {
   const vocabulary = defaultVocabList.find((word) => word.word.toUpperCase() === 'SEA');
@@ -101,7 +101,7 @@ it('completes a device puzzle without hint APIs, balance or reward controls', as
     const clue = container.querySelector<HTMLButtonElement>('.cell-number');
     if (!clue) throw new Error('Clue missing');
     await act(async () => clue.click());
-    expect(container.querySelectorAll('.answer-actions button')).toHaveLength(1);
+    expect(container.querySelectorAll('.answer-actions button')).toHaveLength(2);
     const inputs = Array.from(container.querySelectorAll<HTMLInputElement>('dialog input'));
     await type(inputs[0], 'S'); await type(inputs[1], 'E'); await type(inputs[2], 'A');
     expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([word.id]);
@@ -111,6 +111,97 @@ it('completes a device puzzle without hint APIs, balance or reward controls', as
     expect(container.querySelector('.completion-reward-guide')).toBeNull();
     expect(fetcher).not.toHaveBeenCalled();
   } finally { fetcher.mockRestore(); }
+});
+
+it('keeps revealed letters on the board and recalculates hints on reopening without server calls', async () => {
+  const { word, puzzle } = fixture();
+  const generatePuzzle = vi.fn().mockResolvedValue(puzzle);
+  const fetcher = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('Unexpected network call'));
+  try {
+    await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
+    await click('퀴즈 시작');
+    const openWord = async () => {
+      const button = container.querySelector<HTMLButtonElement>('.cell-number');
+      if (!button) throw new Error('Clue missing');
+      await act(async () => button.click());
+    };
+    await openWord();
+    await click('힌트');
+    expect(container.querySelector('.cell span')?.textContent).toBe('S');
+    expect(container.querySelector('.answer-actions button')?.textContent).toContain('힌트 0회');
+    await click('닫기'); await openWord();
+    expect(container.querySelector('dialog input')?.getAttribute('readonly')).not.toBeNull();
+    expect(container.querySelector('.answer-actions button')?.textContent).toContain('힌트 1회');
+    // 공개 후 남은 빈칸으로 재계산하고 이전 사용 횟수는 차감하지 않는다.
+    await click('힌트'); await click('닫기'); await openWord();
+    expect(container.querySelector('.answer-actions button')?.textContent).toContain('힌트 0회');
+    const inputs = container.querySelectorAll<HTMLInputElement>('dialog input');
+    expect(Array.from(inputs, input => input.value)).toEqual(['S', 'E', '']);
+    await type(inputs[0], 'S'); await type(inputs[1], 'E'); await type(inputs[2], 'A');
+    expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([word.id]);
+    expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).hintUsedWordIds).toEqual([word.id]);
+    expect(container.querySelector('.review')).not.toBeNull();
+    expect(fetcher).not.toHaveBeenCalled();
+    await click('새 퍼즐'); await openWord();
+    expect(Array.from(container.querySelectorAll<HTMLInputElement>('dialog input'), input => input.value)).toEqual(['', '', '']);
+  } finally { fetcher.mockRestore(); }
+});
+
+it('records learning completion when a hint fills the final incorrect letter', async () => {
+  const { word, puzzle } = fixture();
+  const generatePuzzle = vi.fn().mockResolvedValue(puzzle);
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
+  await click('퀴즈 시작');
+  const clue = container.querySelector<HTMLButtonElement>('.cell-number');
+  await act(async () => clue?.click());
+  const inputs = container.querySelectorAll<HTMLInputElement>('dialog input');
+await type(inputs[1], 'E'); await type(inputs[2], 'A'); await click('힌트');
+  expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([word.id]);
+  expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).hintUsedWordIds).toEqual([word.id]);
+  expect(container.querySelector('.review')).not.toBeNull();
+});
+
+it('shares the revealed cell with a crossing word', async () => {
+  const { word, puzzle } = fixture();
+  const down: CrosswordWord = { ...word, id: 'sun', word: 'SUN', orientation: 'down', meaning: '태양' };
+  puzzle.grid[1][0] = { row: 1, col: 0, letter: 'U' };
+  puzzle.grid[2][0] = { row: 2, col: 0, letter: 'N' };
+  const generatePuzzle = vi.fn().mockResolvedValue({ ...puzzle, words: [word, down] });
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
+  await click('퀴즈 시작');
+  const openChoice = async (meaning: string) => {
+    const clue = container.querySelector<HTMLButtonElement>('.cell-number');
+    await act(async () => clue?.click());
+    await click(meaning);
+  };
+  await openChoice(word.meaning); await click('힌트'); await click('닫기');
+  await openChoice('태양');
+  const inputs = container.querySelectorAll<HTMLInputElement>('dialog input');
+  expect(inputs[0].value).toBe('S');
+  expect(inputs[0].readOnly).toBe(true);
+  expect(container.querySelector('.answer-actions button')?.textContent).toContain('힌트 1회');
+  expect(parseProgress(localStorage.getItem(PROGRESS_KEY)).completedWordIds).toEqual([]);
+});
+
+it('restores a dismissed notebook word immediately on hint use without duplicating or losing other records', async () => {
+  const { word, puzzle } = fixture();
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify({
+    completedWordIds: [word.id], bookmarkedWordIds: [word.id],
+    hintUsedWordIds: [word.id], dismissedMistakeWordIds: [word.id],
+  }));
+  const generatePuzzle = vi.fn().mockResolvedValue(puzzle);
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
+  await click('퀴즈 시작');
+  const clue = container.querySelector<HTMLButtonElement>('.cell-number');
+  await act(async () => clue?.click());
+  await click('힌트');
+  expect(parseProgress(localStorage.getItem(PROGRESS_KEY))).toEqual({
+    completedWordIds: [word.id], bookmarkedWordIds: [word.id],
+    hintUsedWordIds: [word.id], dismissedMistakeWordIds: [],
+  });
+  expect(container.querySelector('.review')).toBeNull();
+  await click('닫기'); await click('단어장'); await click('오답노트');
+  expect(container.querySelector('.word-list')?.textContent).toContain('SEA');
 });
 
 it('keeps the PWA welcome flow and changes puzzle settings inside the quiz without losing a round on home navigation', async () => {
@@ -267,6 +358,11 @@ it('removes hint balances and rewarded-ad entry points from the release', async 
 });
 
 it('plays a prepared word on click and stops audio on search, page hide and menu changes', async () => {
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => ({
+    schemaVersion: 1, pauseMs: 500, audioPath: 'word-audio/', sourceCsvSha256: 'a'.repeat(64),
+    entries: { YOU: { id: 'external-id', word: 'YOU', example: 'You can sit here.',
+      file: 'word-2-aaaaaaaaaaaaaaaa.mp3', sha256: 'a'.repeat(64), seconds: 3.4 } },
+  }) }));
   vi.stubEnv('VITE_TOSS_WORD_AUDIO_BASE_URL', 'https://audio.example.com/word-audio/');
   const elements: HTMLAudioElement[] = [];
   vi.stubGlobal('Audio', vi.fn(function () {

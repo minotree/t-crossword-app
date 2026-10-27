@@ -6,7 +6,7 @@ export function WordSpeechButtons({ wordId, word, speech, onSpeak }: {
   speech: WordSpeechState;
   onSpeak: (slow: boolean) => void;
 }) {
-  const active = speech.playing && speech.wordId === wordId;
+  const active = (speech.playing || speech.loading) && speech.wordId === wordId;
   return <><div className="mt-3 flex flex-wrap gap-2" role="group" aria-label={`${word} 영어 단어와 예문 듣기`}>
     {[{ slow: false, label: '듣기', rate: 1 }, { slow: true, label: '느리게', rate: 0.7 }].map(item => {
       const playing = active && speech.rate === item.rate;
@@ -18,6 +18,7 @@ export function WordSpeechButtons({ wordId, word, speech, onSpeak }: {
       </button>;
     })}
   </div>
+    {speech.wordId === wordId && speech.loading && <p role="status" className="mt-2 text-sm text-slate-600">음성을 불러오는 중입니다.</p>}
     {speech.wordId === wordId && speech.error && <p role="alert" className="mt-2 text-sm text-rose-700">{speech.error}</p>}
   </>;
 }
