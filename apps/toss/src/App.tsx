@@ -22,6 +22,7 @@ import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
 import { getCurrentLetters } from './puzzlePresentation.js';
 import encouragements from './data/encouragements.json';
+import { EncouragementAudio } from './components/EncouragementAudio.js';
 const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 const encouragementColors = ['#1b64da', '#8b95a1'];
 type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
@@ -29,6 +30,7 @@ type WordFilter = 'all' | 'bookmarked' | 'completed' | 'mistakes';
 
 export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?: typeof generateDevicePuzzle } = {}) {
   const interstitialAd = useInterstitialAd();
+  const newPuzzleCount = useRef(0);
   const audio = useMemo(() => createWordAudio(import.meta.env.VITE_TOSS_WORD_AUDIO_BASE_URL ?? 'https://crossword-word-audio.minotree0902.workers.dev/word-audio/'), []);
   const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const repository = useMemo(() => createProgressRepository(createPlatformStorage()), []);
@@ -51,6 +53,17 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
   const [hintedCells, setHintedCells] = useState<Record<string, string>>({});
   const [puzzleVersion, setPuzzleVersion] = useState(0);
   const [encouragementColor, setEncouragementColor] = useState('');
+  const [showEncouragementTranslation, setShowEncouragementTranslation] = useState(false);
+  const contentScroller = useRef<HTMLElement>(null);
+  const encouragementScroll = useRef<'top' | 'bottom' | null>(null);
+  useEffect(() => {
+    const target = encouragementScroll.current;
+    encouragementScroll.current = null;
+    if (!target || page !== 'quiz' || !contentScroller.current) return;
+    const scroller = contentScroller.current;
+    scroller.scrollTo({ top: target === 'bottom' ? scroller.scrollHeight : 0,
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  }, [showEncouragementTranslation, page]);
   const encouragement = encouragements[(Math.max(1, puzzleVersion) - 1) % encouragements.length];
   const quizPanel = useRef<QuizPanelHandle>(null);
   const [selected, setSelected] = useState<CrosswordWord | null>(null);
@@ -81,6 +94,8 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
 
   const back = useCallback(() => {
     if (resetPending || busy.current) return;
+    const readingDialog = page === 'books' ? document.querySelector<HTMLDialogElement>('.picture-books dialog[open]') : null;
+    if (readingDialog) { readingDialog.dispatchEvent(new Event('cancel', { cancelable: true })); return; }
     if (confirmReset) setConfirmReset(false);
     else if (page === 'books' && bookId) { setBookId(null); setBookPage(0); }
     else if (selected) setSelected(null);
@@ -132,10 +147,16 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     if (!progressRef.current || busy.current) return;
     busy.current = true; setIsGameBusy(true); setGameError('');
     try {
-    if (showAd) await interstitialAd.show();
     const completed = new Set(progressRef.current.completedWordIds);
-    setPuzzle(await generatePuzzle(nextLevel, nextSize, [...completed], progressRef.current.hintUsedWordIds, progressRef.current.dismissedMistakeWordIds));
+    const nextPuzzle = await generatePuzzle(nextLevel, nextSize, [...completed], progressRef.current.hintUsedWordIds, progressRef.current.dismissedMistakeWordIds);
+    if (showAd) {
+      const nextCount = newPuzzleCount.current + 1;
+      if (nextCount % 2 === 0) await interstitialAd.show();
+      newPuzzleCount.current = nextCount;
+    }
+    setPuzzle(nextPuzzle);
     setPuzzleVersion(value => value + 1);
+    setShowEncouragementTranslation(false);
     setEncouragementColor(encouragementColors[Math.floor(Math.random() * encouragementColors.length)] ?? encouragementColors[0]);
     setSolvedIds([]);
     setHintedCells({});
@@ -196,7 +217,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     <header className="app-heading"><h1>영어 낱말</h1><span>{progress.completedWordIds.length}개 학습</span></header>
     {gameError && <div role="alert" className="save-error"><p>{gameError}</p></div>}
     {saveError && <div role="alert" className="save-error"><p>{saveError}</p><Button size="small" variant="weak" onClick={() => { if (progressRef.current) saveProgress(progressRef.current); }}>다시 저장</Button></div>}
-    <main className={page === 'home' ? 'scroll-page home-page' : page === 'quiz' ? 'quiz-page' : page === 'words' ? 'words-page' : page === 'books' && !bookId ? 'books-list-page' : 'scroll-page'}>
+    <main ref={contentScroller} className={page === 'home' ? 'scroll-page home-page' : page === 'quiz' ? 'quiz-page' : page === 'words' ? 'words-page' : page === 'books' && !bookId ? 'books-list-page' : 'scroll-page'}>
       {page === 'home' && <>
         <section className="home-welcome" aria-labelledby="welcome-title">
           <p className="home-title">영어 단어 십자낱말 풀이</p>
@@ -227,7 +248,9 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         {puzzle.words.length === 0 ? <section className="empty"><h2>학습할 단어를 모두 풀었어요</h2><p>다른 난이도를 선택해 보세요.</p><Button onClick={() => setPage('home')}>난이도 선택</Button></section> : <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solvedIds} hintedCells={hintedCells} onSelectWord={setSelected} />}
         {puzzle.words.length > 0 && encouragement && <aside className="quiz-encouragement" aria-label="학습 응원 문구" style={{ color: encouragementColor }}>
           <p lang="en">{encouragement.english}</p>
-          <p lang="ko">{encouragement.korean}</p>
+          <Button size="small" variant="weak" aria-expanded={showEncouragementTranslation} aria-controls="encouragement-translation" onClick={() => { encouragementScroll.current = showEncouragementTranslation ? 'top' : 'bottom'; setShowEncouragementTranslation(value => !value); }}>{showEncouragementTranslation ? '해석 닫기' : '해석 보기'}</Button>
+          <EncouragementAudio key={encouragement.english} english={encouragement.english} />
+          <p id="encouragement-translation" lang="ko" hidden={!showEncouragementTranslation}>{encouragement.korean}</p>
         </aside>}
       </div>}
 
@@ -284,6 +307,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
         <section className="settings-card" aria-labelledby="settings-notices">
           <h3 id="settings-notices">콘텐츠 이용 고지</h3>
           {audio.configured && <p>영어 음성은 AI로 생성했으며 단어와 예문을 함께 읽습니다. 최초 재생에는 인터넷 연결이 필요합니다.</p>}
+          <p>퀴즈 응원 문구의 영어 듣기는 AI로 생성한 음성을 사용합니다.</p>
           <details><summary>WordNet 3.0 이용 조건</summary><pre lang="en" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontSize: 12, lineHeight: 1.6 }}>{wordnetLicense}</pre></details>
         </section>
       </section>}

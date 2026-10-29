@@ -2,6 +2,7 @@ import { useImperativeHandle, useRef, useState, type Ref } from 'react';
 import { IonButton } from '@ionic/react';
 import type { DifficultyLevel } from '@t-crossword/core';
 import books from '../data/picture-books.json';
+import { PictureBookAudio } from './PictureBookAudio.js';
 
 const levelNames: Record<Exclude<DifficultyLevel, 'special'>, string> = { beginner: '초급', intermediate: '중급', advanced: '고급' };
 type Book = (typeof books)[number];
@@ -56,6 +57,7 @@ export function PictureBooks({ ref }: { ref?: Ref<PictureBooksNavigation> }) {
     {selected && page ? <>
       <h2>{selected.koreanTitle || selected.title}</h2>
       <div className="mobile-reading-scroll" ref={reader} tabIndex={0} aria-label="그림책 본문">
+        <PictureBookAudio key={`audio-${selected.id}-${pageIndex}`} id={`${selected.id}-${String(pageIndex + 1).padStart(2, '0')}`} text={page.text} />
         <ReadingPage key={`${selected.id}-${pageIndex}`} page={page} number={pageIndex + 1} count={selected.pages.length} onPrevious={() => move(pageIndex - 1)} onNext={() => move(pageIndex + 1)} onBackToList={backToList} />
       </div>
     </> : <>

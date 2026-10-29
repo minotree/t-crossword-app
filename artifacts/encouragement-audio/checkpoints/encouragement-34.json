@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-34",
+  "text": "That word may be easier next time.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-34-7c2b703cf2f313bc.mp3",
+  "sha256": "7c2b703cf2f313bcb196eede67d2ae7e17d78b9643c7c6ada6b4b5fa58f4bbf7",
+  "textSha256": "fb1035202a604c23919fe68f60e989b23254dcad6702742fcfedd0b454f5e23e",
+  "bytes": 20544,
+  "seconds": 2.568,
+  "inputKey": "bf0cdb7431984f1cba088001d51a5994d7f2f2db5922a7cac0432a72ca7bf0b6",
+  "phonemes": [
+    "ðˈæt wˈɜɹd mˈA bi ˈiziəɹ nˈɛkst tˈIm."
+  ],
+  "missingPhonemeTokens": []
+}

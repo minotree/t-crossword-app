@@ -1,0 +1,6 @@
+/*
+  Access-Control-Allow-Origin: *
+/picture-book-audio/*.mp3
+  Cache-Control: public, max-age=31536000, immutable
+/encouragement-audio/*.mp3
+  Cache-Control: public, max-age=31536000, immutable

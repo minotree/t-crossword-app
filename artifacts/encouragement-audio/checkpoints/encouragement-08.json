@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-08",
+  "text": "You can use this word in a sentence now.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-08-b52d64843bb1d2f9.mp3",
+  "sha256": "b52d64843bb1d2f9913bde95c14dcc89ecc774e3bc2f49a01de91ddfe4dde966",
+  "textSha256": "e3b7bcbcceace3ae5968f118a02433169e7515474b381e64d26ce68c5ed2a212",
+  "bytes": 22848,
+  "seconds": 2.856,
+  "inputKey": "2f22797e49c5caf79c38829fdf084256072b16dbdaf3ee24ab2111032f6ee6e3",
+  "phonemes": [
+    "jˌu kæn jˈuz ðɪs wˈɜɹd ɪn ɐ sˈɛntᵊns nˈW."
+  ],
+  "missingPhonemeTokens": []
+}

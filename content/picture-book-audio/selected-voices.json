@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29",
+  "voices": {
+    "beginner": {
+      "sourceFile": "audio_12.wav",
+      "text": "Little bird, sing with me. Come and play under the sky.",
+      "designPrompt": "A youthful voice around 12 years old with a low-mid speaking pitch and a soft, grounded tone. Read clear American English slowly, like a student calmly reading aloud in a quiet classroom. Use restrained emotion, minimal pitch variation, and natural pauses between sentences. Avoid a cute, squeaky, breathy, high-pitched, cheerful, or cartoon-like voice.",
+      "file": "references/beginner.wav",
+      "sha256": "dc2ba0f66e6e2f8b5af5ff32c103610b48ae0b1afd7c77deb5350fc35515df3b",
+      "origin": "user-generated Qwen3-TTS VoiceDesign; user approved in conversation",
+      "transcriptSource": "test text supplied in conversation; listening verification pending"
+    },
+    "intermediate": {
+      "sourceFile": "audio_17.wav",
+      "text": "The garden does not keep a clock. One flower opens; others wait. Beneath the soil, a quiet root can grow without a single cheer.",
+      "designPrompt": "A natural youthful voice around 16 to 17 years old, with a comfortable low-mid speaking pitch and a clear, grounded tone. Read American English calmly, like a college student thoughtfully reading a story aloud. Speak at a relaxed, moderately slow pace, with natural pauses between phrases and sentences. Use subtle expression and restrained emotion. Avoid a high-pitched, squeaky, overly cheerful, theatrical, or sing-song delivery. Sound youthful rather than like a mature adult announcer.",
+      "file": "references/intermediate.wav",
+      "sha256": "ef0e72e8b915af0902a7935c29d43e74341062dcb2dca365e85c237cd0b90019",
+      "origin": "user-generated Qwen3-TTS VoiceDesign; user approved in conversation",
+      "transcriptSource": "test text supplied in conversation; listening verification pending"
+    }
+  },
+  "advanced": "existing Kokoro af_heart unchanged"
+}

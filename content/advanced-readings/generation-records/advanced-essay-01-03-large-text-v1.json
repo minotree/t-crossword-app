@@ -1,0 +1,27 @@
+{
+  "id": "advanced-essay-01-03",
+  "bookId": "advanced-essay-01",
+  "page": 3,
+  "target": "images/advanced-essay-01-03-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Reflective adult editorial illustration. Same Korean man in his forties, short dark hair, gray shirt, understated realistic proportions. The man sharing a homemade meal at a small gathering, relaxed eye contact with another adult, an open doorway behind them, gentle evening colors. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"Without a Job Title\", smaller page heading \"A Longer Introduction\" (omit duplicate heading if identical), page indicator \"3 / 3\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nWork remains important to me. I want fair payment, responsibility, and the chance to acquire expertise. But ambition need not occupy every room. At the next gathering, I offered my name and mentioned the meals I was learning to cook. The conversation continued. An introduction, I discovered, could open a door without displaying a rank.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-e491acc7-ce2b-4c91-b47e-1f0641b4da6c.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Work remains important to me. I want fair payment, responsibility, and the chance to acquire expertise. But ambition need not occupy every room. At the next gathering, I offered my name and mentioned the meals I was learning to cook. The conversation continued. An introduction, I discovered, could open a door without displaying a rank.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-essay-01-03.json",
+  "originalGenerationRecordSha256": "cfc08232ebb157872135b1d107677b1cc85cf5280d11710f68449e3286cf0e27",
+  "originalImage": "content/advanced-readings/images/advanced-essay-01-03.png",
+  "originalImageSha256": "defb8162d0b963bbebb9498162274784e908d18a2c526002106e4d60a23ff9c2",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 714,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "advanced-courtroom-01-08",
+  "bookId": "advanced-courtroom-01",
+  "page": 8,
+  "target": "images/advanced-courtroom-01-08-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. Owner's counsel delivering a restrained final argument from beside her table, two sets of documents aligned, buyer's counsel across the room, judge listening in soft daylight. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"Final Arguments\" (omit duplicate heading if identical), page indicator \"8 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nIn her final argument, counsel distinguished the disputed penalty from the admitted delay. She asked the court to evaluate the documents and conduct together, and to recognize the buyer's demonstrated loss. Across the room, the buyer's counsel defended the earlier schedule. Neither argument could restore the trust that hurried meetings and incomplete records had already damaged.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-4743217d-4ab1-4b07-8a06-65277e1b362e.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "In her final argument, counsel distinguished the disputed penalty from the admitted delay. She asked the court to evaluate the documents and conduct together, and to recognize the buyer's demonstrated loss. Across the room, the buyer's counsel defended the earlier schedule. Neither argument could restore the trust that hurried meetings and incomplete records had already damaged.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-08.json",
+  "originalGenerationRecordSha256": "b1c61624e75e0cc49252118530c1943927aa5f9119503ccf441762cb0cf0a4cb",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-08.png",
+  "originalImageSha256": "0b60a31746296c8dd5d84d176cac0cec6bff407ba9ca5a1b2e15637ca85b7b20",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 707,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

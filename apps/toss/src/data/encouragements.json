@@ -1,52 +1,202 @@
 [
-  { "english": "Every new word makes your world a little bigger.", "korean": "새로운 단어 하나하나가 너의 세상을 조금씩 넓혀 줘요." },
-  { "english": "You learned something today that you missed yesterday.", "korean": "어제는 몰랐던 것을 오늘 하나 배웠어요." },
-  { "english": "Small steps can take you somewhere wonderful.", "korean": "작은 걸음들이 멋진 곳으로 데려다줄 수 있어요." },
-  { "english": "Your effort today is worth celebrating.", "korean": "오늘의 노력은 충분히 축하받을 만해요." },
-  { "english": "One more word is one more thing you know.", "korean": "단어 하나를 더 알게 된 것도 소중한 성장이에요." },
-  { "english": "Take your time and enjoy each new discovery.", "korean": "서두르지 말고 새로운 발견을 하나씩 즐겨요." },
-  { "english": "Your curious mind is doing great work.", "korean": "호기심 가득한 마음이 멋진 일을 하고 있어요." },
-  { "english": "A little practice can make tomorrow feel easier.", "korean": "조금만 연습해도 내일은 더 쉽게 느껴질 거예요." },
-  { "english": "You found another reason to smile today.", "korean": "오늘도 웃을 이유를 하나 더 찾았어요." },
-  { "english": "Each question gives your mind room to grow.", "korean": "질문 하나하나가 생각을 키울 기회를 줘요." },
-  { "english": "Learning feels better when you follow your own pace.", "korean": "자신의 속도로 배울 때 공부가 더 즐거워져요." },
-  { "english": "That tricky word is becoming your friend.", "korean": "어렵던 단어가 조금씩 친근해지고 있어요." },
-  { "english": "You turned a quiet moment into something useful.", "korean": "짧은 시간을 알차게 활용했어요." },
-  { "english": "Your next favorite word might be waiting nearby.", "korean": "다음에 좋아하게 될 단어가 가까이서 기다릴지도 몰라요." },
-  { "english": "A fresh start is always ready for you.", "korean": "언제든 새로운 마음으로 다시 시작할 수 있어요." },
-  { "english": "You gave your brain a lovely little workout.", "korean": "오늘 머리를 기분 좋게 움직여 주었네요." },
-  { "english": "Some words need time to feel familiar.", "korean": "어떤 단어는 익숙해지는 데 시간이 필요해요." },
-  { "english": "Your patience is helping new ideas settle in.", "korean": "차분히 기다리는 마음이 새로운 배움을 자리 잡게 해요." },
-  { "english": "A good guess can lead to a new lesson.", "korean": "좋은 추측 하나가 새로운 배움으로 이어질 수 있어요." },
-  { "english": "You are collecting words for future conversations.", "korean": "앞으로 나눌 대화를 위해 단어를 모으고 있어요." },
-  { "english": "Even a short study session has value.", "korean": "짧게 공부한 시간도 충분히 가치 있어요." },
-  { "english": "Your memory grows stronger with each friendly review.", "korean": "부담 없이 복습할 때마다 기억이 더 튼튼해져요." },
-  { "english": "You noticed something new, and that matters.", "korean": "새로운 것을 발견했다는 사실만으로도 의미 있어요." },
-  { "english": "There is no need to rush your learning.", "korean": "배움의 속도를 서두를 필요는 없어요." },
-  { "english": "A mistake can show you what to try next.", "korean": "실수는 다음에 무엇을 시도할지 알려 줄 수 있어요." },
-  { "english": "Your word collection has a new member today.", "korean": "오늘 너의 단어 모음에 새 친구가 생겼어요." },
-  { "english": "You made space for learning in your day.", "korean": "오늘 하루에 배움을 위한 시간을 마련했어요." },
-  { "english": "Every review brings an old word closer.", "korean": "복습할 때마다 예전에 배운 단어가 더 친숙해져요." },
-  { "english": "Your questions are welcome on this learning journey.", "korean": "배우는 과정에서는 어떤 질문도 좋아요." },
-  { "english": "A new word can open an unexpected conversation.", "korean": "새로운 단어 하나가 뜻밖의 대화를 열어 줄 수 있어요." },
-  { "english": "You can be proud of showing up again.", "korean": "오늘도 다시 공부하러 온 자신을 자랑스러워해도 좋아요." },
-  { "english": "Your attention helped you catch a small detail.", "korean": "집중한 덕분에 작은 차이를 알아챘어요." },
-  { "english": "Some days are for learning, others for remembering.", "korean": "어떤 날은 새로 배우고, 어떤 날은 기억을 다지는 날이에요." },
-  { "english": "You are giving new words a place to stay.", "korean": "새로운 단어들이 기억에 머물 자리를 만들어 주고 있어요." },
-  { "english": "It feels nice when a word finally clicks.", "korean": "단어가 마침내 이해되는 순간은 참 기분 좋아요." },
-  { "english": "You tried a new path through a familiar puzzle.", "korean": "익숙한 문제에서 새로운 풀이 방법을 시도했어요." },
-  { "english": "Your imagination can make new words easier to remember.", "korean": "상상력을 활용하면 새로운 단어를 더 쉽게 기억할 수 있어요." },
-  { "english": "One careful answer shows how much you noticed.", "korean": "신중한 답 하나에도 꼼꼼히 살핀 흔적이 보여요." },
-  { "english": "You have more words to share than before.", "korean": "이제 전보다 더 많은 단어로 생각을 나눌 수 있어요." },
-  { "english": "A calm mind can enjoy a difficult question.", "korean": "차분한 마음으로 어려운 문제도 즐길 수 있어요." },
-  { "english": "Your learning story has another page today.", "korean": "오늘 너의 배움 이야기에 새로운 한 페이지가 더해졌어요." },
-  { "english": "You are building a habit that fits your life.", "korean": "자신의 생활에 맞는 공부 습관을 만들어 가고 있어요." },
-  { "english": "That little moment of understanding belongs to you.", "korean": "방금 깨달은 그 작은 순간은 온전히 너의 것이에요." },
-  { "english": "A familiar word can feel like meeting an old friend.", "korean": "익숙한 단어를 만나면 오랜 친구를 만난 듯 반가워요." },
-  { "english": "You gave a difficult clue another chance.", "korean": "어려운 힌트에도 한 번 더 도전했어요." },
-  { "english": "Your growing vocabulary gives you more ways to express yourself.", "korean": "늘어나는 어휘가 자신의 생각을 표현할 방법을 넓혀 줘요." },
-  { "english": "Today you explored a new corner of English.", "korean": "오늘 영어의 새로운 영역을 하나 탐험했어요." },
-  { "english": "You can enjoy progress without counting every step.", "korean": "모든 걸음을 세지 않아도 성장하는 기쁨을 누릴 수 있어요." },
-  { "english": "Your next discovery begins with a simple question.", "korean": "다음 발견은 작은 질문 하나에서 시작돼요." },
-  { "english": "You finished this round with something new to keep.", "korean": "이번 학습을 마치며 새로운 배움 하나를 얻었어요." }
+  {
+    "english": "You added a new word to your vocabulary today.",
+    "korean": "오늘 새로운 단어 하나를 어휘 목록에 추가했어요."
+  },
+  {
+    "english": "Now you know something you didn't know before.",
+    "korean": "이제 전에는 몰랐던 것을 알게 되었어요."
+  },
+  {
+    "english": "This word might be useful someday.",
+    "korean": "이 단어가 언젠가 유용하게 쓰일지도 몰라요."
+  },
+  {
+    "english": "You found a new way to express yourself.",
+    "korean": "자신의 생각을 표현할 새로운 방법을 찾았어요."
+  },
+  {
+    "english": "Another English word is starting to feel familiar.",
+    "korean": "또 하나의 영어 단어가 익숙해지기 시작했어요."
+  },
+  {
+    "english": "You learned more than just a word today.",
+    "korean": "오늘은 단어 하나 이상의 것을 배웠어요."
+  },
+  {
+    "english": "Your vocabulary is growing with every new lesson.",
+    "korean": "새로운 학습을 할 때마다 어휘력이 늘고 있어요."
+  },
+  {
+    "english": "You can use this word in a sentence now.",
+    "korean": "이제 이 단어를 문장에서 사용할 수 있어요."
+  },
+  {
+    "english": "This new word gives you another way to communicate.",
+    "korean": "이 새 단어로 소통할 방법이 하나 더 생겼어요."
+  },
+  {
+    "english": "You made room for another word in your memory.",
+    "korean": "새로운 단어 하나를 기억할 자리를 만들었어요."
+  },
+  {
+    "english": "You made time to learn something today.",
+    "korean": "오늘 새로운 것을 배우기 위해 시간을 냈어요."
+  },
+  {
+    "english": "A short lesson can still be useful.",
+    "korean": "짧은 학습도 도움이 될 수 있어요."
+  },
+  {
+    "english": "You came back to practice again today.",
+    "korean": "오늘도 다시 연습하러 왔어요."
+  },
+  {
+    "english": "Learning at your own pace is perfectly fine.",
+    "korean": "자신의 속도에 맞춰 배워도 괜찮아요."
+  },
+  {
+    "english": "You don't have to learn everything at once.",
+    "korean": "모든 것을 한 번에 배울 필요는 없어요."
+  },
+  {
+    "english": "A few minutes of practice can make a difference.",
+    "korean": "몇 분의 연습도 변화를 만들어 낼 수 있어요."
+  },
+  {
+    "english": "You are finding a study routine that works for you.",
+    "korean": "자신에게 맞는 공부 습관을 찾아가고 있어요."
+  },
+  {
+    "english": "You can always pick up where you left off.",
+    "korean": "언제든 공부를 멈췄던 곳에서 다시 시작할 수 있어요."
+  },
+  {
+    "english": "Each time you return, you get more practice.",
+    "korean": "다시 돌아올 때마다 연습할 기회가 더 생겨요."
+  },
+  {
+    "english": "You kept learning even on a busy day.",
+    "korean": "바쁜 하루에도 배움을 이어 갔어요."
+  },
+  {
+    "english": "You got that answer right all by yourself.",
+    "korean": "스스로 정답을 맞혔어요."
+  },
+  {
+    "english": "You remembered the word at just the right moment.",
+    "korean": "딱 필요한 순간에 그 단어를 기억해 냈어요."
+  },
+  {
+    "english": "Your careful thinking helped you find the answer.",
+    "korean": "신중하게 생각한 덕분에 답을 찾았어요."
+  },
+  {
+    "english": "You solved a puzzle that looked difficult at first.",
+    "korean": "처음에는 어려워 보였던 퍼즐을 풀었어요."
+  },
+  {
+    "english": "That was a nice little win for today.",
+    "korean": "오늘의 작지만 기분 좋은 성취였어요."
+  },
+  {
+    "english": "You spotted the clue you needed.",
+    "korean": "필요한 단서를 찾아냈어요."
+  },
+  {
+    "english": "You worked through that tricky question.",
+    "korean": "까다로운 문제를 끝까지 풀어냈어요."
+  },
+  {
+    "english": "You finished another round of word practice.",
+    "korean": "단어 연습 한 회차를 또 마쳤어요."
+  },
+  {
+    "english": "You found the right word for this puzzle.",
+    "korean": "이 퍼즐에 맞는 단어를 찾아냈어요."
+  },
+  {
+    "english": "Your practice helped you remember the correct spelling.",
+    "korean": "연습한 덕분에 정확한 철자를 기억해 냈어요."
+  },
+  {
+    "english": "It's okay to try the same question again.",
+    "korean": "같은 문제에 다시 도전해도 괜찮아요."
+  },
+  {
+    "english": "A wrong answer can help you learn.",
+    "korean": "틀린 답에서도 배울 수 있어요."
+  },
+  {
+    "english": "Take another look at the letters.",
+    "korean": "글자들을 다시 한번 살펴보세요."
+  },
+  {
+    "english": "That word may be easier next time.",
+    "korean": "다음번에는 그 단어가 더 쉬울지도 몰라요."
+  },
+  {
+    "english": "You can learn a lot from one mistake.",
+    "korean": "하나의 실수에서도 많은 것을 배울 수 있어요."
+  },
+  {
+    "english": "Some words take more practice to remember.",
+    "korean": "어떤 단어는 기억하려면 연습이 더 필요해요."
+  },
+  {
+    "english": "You noticed what went wrong this time.",
+    "korean": "이번에는 무엇이 잘못됐는지 알아챘어요."
+  },
+  {
+    "english": "You can try a different answer now.",
+    "korean": "이제 다른 답을 시도해 볼 수 있어요."
+  },
+  {
+    "english": "Give yourself time to think it through.",
+    "korean": "충분히 시간을 갖고 생각해 보세요."
+  },
+  {
+    "english": "The next try is another chance to learn.",
+    "korean": "다음 시도도 배울 수 있는 또 하나의 기회예요."
+  },
+  {
+    "english": "Have you ever seen this word before?",
+    "korean": "이 단어를 전에 본 적이 있나요?"
+  },
+  {
+    "english": "You might discover a favorite word today.",
+    "korean": "오늘 마음에 드는 단어를 발견할지도 몰라요."
+  },
+  {
+    "english": "Try saying this new word out loud.",
+    "korean": "이 새로운 단어를 소리 내어 말해 보세요."
+  },
+  {
+    "english": "What other words can you make with these letters?",
+    "korean": "이 글자들로 또 어떤 단어를 만들 수 있을까요?"
+  },
+  {
+    "english": "Every word has something interesting to explore.",
+    "korean": "모든 단어에는 탐구해 볼 만한 흥미로운 점이 있어요."
+  },
+  {
+    "english": "You might hear this word in a conversation someday.",
+    "korean": "언젠가 대화 중에 이 단어를 듣게 될지도 몰라요."
+  },
+  {
+    "english": "Try using your new word in a short sentence.",
+    "korean": "새로 배운 단어로 짧은 문장을 만들어 보세요."
+  },
+  {
+    "english": "You can find new words in everyday life.",
+    "korean": "일상생활에서도 새로운 단어를 발견할 수 있어요."
+  },
+  {
+    "english": "Your curiosity led you to another discovery.",
+    "korean": "호기심 덕분에 또 하나의 새로운 것을 발견했어요."
+  },
+  {
+    "english": "There's always another interesting word to explore.",
+    "korean": "언제나 새롭게 알아볼 흥미로운 단어가 있어요."
+  }
 ]

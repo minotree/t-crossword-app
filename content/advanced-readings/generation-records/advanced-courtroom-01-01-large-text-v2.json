@@ -1,0 +1,30 @@
+{
+  "id": "advanced-courtroom-01-01",
+  "bookId": "advanced-courtroom-01",
+  "page": 1,
+  "target": "images/advanced-courtroom-01-01-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. The owner and her counsel seated at a courtroom table with two document folders, buyer represented across the room, neutral judge listening. Quiet civil dispute, no handcuffs. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"The Claim\" (omit duplicate heading if identical), page indicator \"1 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nIn an imaginary city, a small printing company faced a claim for a severe contract penalty. The owner had signed a delivery schedule she believed included a revision. The buyer produced a copy without it. Her signature appeared genuine on both versions. At the first hearing, the judge asked which document had governed the agreement, not which company seemed more sympathetic.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-16005e1c-2d4a-4acb-8299-f4cb443f2a73.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "In an imaginary city, a small printing company faced a claim for a severe contract penalty. The owner had signed a delivery schedule she believed included a revision. The buyer produced a copy without it. Her signature appeared genuine on both versions. At the first hearing, the judge asked which document had governed the agreement, not which company seemed more sympathetic.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-01.json",
+  "originalGenerationRecordSha256": "884fb9de8e9b3f9f5a9ea7f7686287f32a065b1ba48a95e59b6ff3ed4430efa2",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-01.png",
+  "originalImageSha256": "f5725023180a175cdbe234710d95bfcec925fed801d27733a3b3ecf5b69827dd",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 651,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

@@ -28,7 +28,8 @@ for level, directory, filename in [
             target = DEST / name
             with Image.open(original) as image:
                 image = ImageOps.exif_transpose(image).convert('RGB')
-                image.thumbnail((1200, 1600), Image.Resampling.LANCZOS)
+                height_limit = max(1600, image.height) if original.stem.endswith(('-large-text-v1', '-large-text-v2', '-large-text-v3')) else 1600
+                image.thumbnail((1200, height_limit), Image.Resampling.LANCZOS)
                 image.save(target, 'WEBP', quality=85, method=6)
             manifest[name] = {
                 'sourceSha256': hashlib.sha256(original.read_bytes()).hexdigest(),

@@ -1,0 +1,27 @@
+{
+  "id": "advanced-mystery-01-02",
+  "bookId": "advanced-mystery-01",
+  "page": 2,
+  "target": "images/advanced-mystery-01-02-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The woman comparing a faded receipt with an old ledger under a brass desk lamp, young man waiting nearby, small boxed mark visible but no readable invented words. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"The Wrong Number\" (omit duplicate heading if identical), page indicator \"2 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe receipt recorded a deposit larger than the clock's value. The shopkeeper suspected an error. Her father had kept precise accounts, even when the business declined. She found the old journal in a lower box. Beside the payment stood a number that did not correspond to any repair. Someone had drawn a small square around it.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-262e1e49-3471-4ad0-b0ae-c6936c618207.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The receipt recorded a deposit larger than the clock's value. The shopkeeper suspected an error. Her father had kept precise accounts, even when the business declined. She found the old journal in a lower box. Beside the payment stood a number that did not correspond to any repair. Someone had drawn a small square around it.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-02.json",
+  "originalGenerationRecordSha256": "d09130010596985e676a5e511c8af872a3e6308ead8100cfc529d5f4a103a2ac",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-02.png",
+  "originalImageSha256": "533ef4e8dc0672421ea8a46b16ca60785a4ac506f82392adf1b67a6cf787722a",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 744,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

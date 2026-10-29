@@ -243,6 +243,10 @@ Respect tool/system safety requirements first. Within project guidance, prioriti
 
 ### 원본과 웹용 파일
 
+- 2026-10-30 최종 사용자 결정으로 중급·고급 글자 확대를 철회하고 원래 이미지/단락 배치로 복원했다. 앱은 원본 이미지를 사용하며 듣기·연속듣기를 유지한다. 아래 확대본 규칙과 검수 갤러리는 이전 제작 이력이다.
+
+- 2026-10-30 본문 확대본 `-large-text-v1.png`와 후속 `-large-text-v3.png`는 중급·고급 원본 삽화를 보존하고 64px 본문을 별도 조판한 세로 확장 이미지다. 현재 v3는 제목 88px > 소제목 72px > 본문 64px 순서를 따른다. 앱별 이미지 준비 시 이 버전의 높이를 기존 1536/1600px 제한으로 다시 축소하지 않는다. 검수·폰트 권리·원본 기록·복원 조건은 `content/picture-book-large-text-2026-10-29/README.md`를 따른다.
+
 - 초급 원본은 `content/beginner-poems/poems.json`, 중급·고급 원본은 각각 `content/intermediate-readings/books.json`, `content/advanced-readings/books.json`에서 관리한다. 이미지·페이지별 제작 기록·검수 자료는 해당 콘텐츠 디렉터리에 둔다.
 - `apps/web/src/data/`의 그림책 JSON과 `apps/web/public/picture-books/`의 WebP는 `python scripts/prepare-picture-books.py`로 갱신한다(Python/Pillow 필요). 파생 파일만 직접 고쳐 원본과 불일치하게 만들지 않는다. 생성된 웹용 파일을 배포 소스에 포함하며 Vercel 빌드에 Python이 있다고 가정하지 않는다.
 - 작품 ID와 페이지 순서·이미지 경로를 안정적으로 관리한다. 이미지 보정본은 버전이 있는 별도 파일로 저장하고 원본·이전 제작 기록을 보존한다. 실제 사용하는 경로와 제작 기록을 함께 갱신한다.

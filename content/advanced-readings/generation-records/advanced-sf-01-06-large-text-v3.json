@@ -1,0 +1,35 @@
+{
+  "id": "advanced-sf-01-06-v2",
+  "bookId": "advanced-sf-01",
+  "page": 6,
+  "target": "images/advanced-sf-01-06-large-text-v3.png",
+  "prompt": "Use case: precise-object-edit. Edit this finished English reading card. Keep the woman technician on the LEFT and the older man on the RIGHT identical. Add the older man's SISTER, a Korean woman aged sixty with clearly GRAY chin-length bobbed hair, mature facial lines, plain GREEN coat, seated alongside him at the table. Three distinct adult people total: young woman technician, older brother, older sister. They are calmly talking. Preserve ALL English typography, every word, spelling, title, heading, page number, reading panel and its layout PIXEL-IDENTICALLY where possible. Preserve the existing original watercolor/gouache illustration style, colors, setting, and all other elements. Do not add any new text or labels. Only the upper illustration changes as specified.",
+  "creationPrompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older woman speaking steadily while her brother listens, a small sealed memory vessel on a side table, warm light on both faces. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"An Incomplete Record\" (omit duplicate heading if identical), page indicator \"6 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nHis sister did not offer immediate forgiveness. She described the years in which she had built a life elsewhere. Some were difficult; some were joyful. None appeared in the fragment he wished to recover. A stored memory, the operator said, preserved a perspective. It could not supply the whole truth about another person's life.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-67275855-f650-48ec-b57a-fe4831120f4f.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [
+    "images/advanced-sf-01-06.png"
+  ],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "His sister did not offer immediate forgiveness. She described the years in which she had built a life elsewhere. Some were difficult; some were joyful. None appeared in the fragment he wished to recover. A stored memory, the operator said, preserved a perspective. It could not supply the whole truth about another person's life.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-sf-01-06-v2.json",
+  "originalGenerationRecordSha256": "fc52f895e371a89b1b2f27a974518e6dd82acadc914c674f6c1ee12ad98f5167",
+  "originalImage": "content/advanced-readings/images/advanced-sf-01-06-v2.png",
+  "originalImageSha256": "b1e8bc519893d39dda82904de90d67d25b599c37a75a6cac5756430e71fc63b9",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 656,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

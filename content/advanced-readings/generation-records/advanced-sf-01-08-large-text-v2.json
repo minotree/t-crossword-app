@@ -1,0 +1,32 @@
+{
+  "id": "advanced-sf-01-08-v2",
+  "bookId": "advanced-sf-01",
+  "page": 8,
+  "target": "images/advanced-sf-01-08-large-text-v2.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"The Memory Deposit\". Preserve heading \"Before the Light\" and page indicator \"8 / 10\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nDuring the waiting period, he wrote the letter. He described what he remembered and acknowledged what he could not know. He did not claim a right to a renewed relationship merely because he had suffered. When he returned, the restriction had been lifted through the shop's examination. The operator asked whether he still wished to proceed. He said yes.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-a3819271-645b-45dc-ac60-2eb4d303620d.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/advanced-sf-01-08.png"
+  ],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "During the waiting period, he wrote the letter. He described what he remembered and acknowledged what he could not know. He did not claim a right to a renewed relationship merely because he had suffered. When he returned, the restriction had been lifted through the shop's examination. The operator asked whether he still wished to proceed. He said yes.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-sf-01-08-v2.json",
+  "originalGenerationRecordSha256": "1e13551bce0e537a47bd5ee3630e03d9c9c9ca0e7cef59a4f1d15440cd8c43af",
+  "originalImage": "content/advanced-readings/images/advanced-sf-01-08-v2.png",
+  "originalImageSha256": "ea787de9323adb92031fe49c903d59794a1e4e4d07a0479f6a8a4f5477652c17",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 656,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

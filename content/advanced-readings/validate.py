@@ -140,7 +140,7 @@ def audit():
         assert len(book['pages']) == {'poem': 1, 'essay': 3, 'novel': 10}[book['genre']]
         for i, page in enumerate(book['pages'], 1):
             stem = f'{book["id"]}-{i:02}'
-            assert re.fullmatch(rf'images/{re.escape(stem)}(?:-v[1-9]\d*)?\.png', page['image'])
+            assert re.fullmatch(rf'images/{re.escape(stem)}(?:-v[1-9]\d*|-large-text-v[1-9]\d*)?\.png', page['image'])
             assert page['title'].strip() and page['scene'].strip()
             text = (book['title'] + ' ' + page['title'] + ' ' + page['text']).replace("'s", '')
             tokens = re.findall(r'[a-z]+', text.lower())

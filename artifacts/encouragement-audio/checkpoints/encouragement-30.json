@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-30",
+  "text": "Your practice helped you remember the correct spelling.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-30-f148571fdb053130.mp3",
+  "sha256": "f148571fdb053130d8e231dcf2fba3355e2b7c35332a42c735c4bb6d972a8642",
+  "textSha256": "d483be217ac332861935ea62729c61d0fe10be6444457f6f962126a47f576a37",
+  "bytes": 26688,
+  "seconds": 3.336,
+  "inputKey": "5d9635e3d318503c46276b9a8865af61ec43936cbb70463c7da4c52086229fd0",
+  "phonemes": [
+    "jˌʊɹ pɹˈæktəs hˈɛlpt ju ɹəmˈɛmbəɹ ðə kəɹˈɛkt spˈɛlɪŋ."
+  ],
+  "missingPhonemeTokens": []
+}

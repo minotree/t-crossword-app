@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-29T21:52:05.395519+09:00",
+  "model": {
+    "repo": "hexgrad/Kokoro-82M",
+    "revision": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "voice": "af_heart",
+    "files": {
+      "config.json": {
+        "sha256": "5abb01e2403b072bf03d04fde160443e209d7a0dad49a423be15196b9b43c17f",
+        "bytes": 2351
+      },
+      "kokoro-v1_0.pth": {
+        "sha256": "496dba118d1a58f5f3db2efc88dbdc216e0483fc89fe6e47ee1f2c53f18ad1e4",
+        "bytes": 327212226
+      },
+      "voices/af_heart.pt": {
+        "sha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+        "bytes": 523425
+      },
+      "README.md": {
+        "sha256": "91dcabced89db6f109b8786642f50402d3ee87450e8189589b6f85520e7f4d78",
+        "bytes": 6348
+      },
+      "VOICES.md": {
+        "sha256": "ec7e4941ad7e194af61e3455928528a9ff5360c7c505e412efab27d6a69ea106",
+        "bytes": 7625
+      }
+    }
+  },
+  "config": {
+    "model": "f3ff3571791e39611d31c381e3a41a3af07b4987",
+    "voiceSha256": "0ab5709b8ffab19bfd849cd11d98f75b60af7733253ad0d67b12382a102cb4ff",
+    "pauseMs": 0,
+    "sampleRate": 24000,
+    "bitrateKbps": 64,
+    "speed": 1,
+    "wordCase": "source",
+    "modelMode": "eval",
+    "generatorVersion": "picture-book-1",
+    "narration": "page body only; original line breaks; no added silence"
+  },
+  "sourceSha256": {
+    "content/beginner-poems/poems.json": "f9dd12d1dab69ecc1544da1ae71b86801b687ae842fff8bfacae15096ff1f910",
+    "content/intermediate-readings/books.json": "a873b203b10e5001e14c0845fe23f6dc03079581a3679b50cf92d06e50e35566",
+    "content/advanced-readings/books.json": "bb01501f4f0ac9e4d1c5e3936c5d487599b815da450465c6b66d592bea77e764"
+  },
+  "generatorSha256": "9391b2daa0e1e6c9642d694473a00a82e4720efe07822be39dc554cfc1009b11",
+  "completed": 119,
+  "target": 119,
+  "failures": [],
+  "elapsedSeconds": 449.7,
+  "listeningReview": "pending",
+  "deviceReview": "pending",
+  "deployment": "not-performed",
+  "totalBytes": 16368000,
+  "totalSeconds": 2045.999999999999
+}

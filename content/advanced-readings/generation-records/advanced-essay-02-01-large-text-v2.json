@@ -1,0 +1,30 @@
+{
+  "id": "advanced-essay-02-01",
+  "bookId": "advanced-essay-02",
+  "page": 1,
+  "target": "images/advanced-essay-02-01-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Mature reflective editorial illustration. Same Korean woman in her late thirties, chin-length black hair, rust cardigan. The woman at her kitchen table looking at a small photograph of an unfamiliar city, the actual room warm and modest, imagined station platforms faintly reflected in the window. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Life I Did Not Choose\", smaller page heading \"The Other Platform\" (omit duplicate heading if identical), page indicator \"1 / 3\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nAn old friend sent a photograph from abroad. For a moment, I inhabited the life I had once considered: another city, another language, a different version of myself. My actual kitchen seemed smaller. Regret is a persuasive editor. It can preserve every attractive detail of an alternative while quietly deleting its uncertain cost.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-e2af57e8-2998-4cdb-9461-8285ed6837d0.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "An old friend sent a photograph from abroad. For a moment, I inhabited the life I had once considered: another city, another language, a different version of myself. My actual kitchen seemed smaller. Regret is a persuasive editor. It can preserve every attractive detail of an alternative while quietly deleting its uncertain cost.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-essay-02-01.json",
+  "originalGenerationRecordSha256": "c4235ce5b341e62ff25451981d8467e221c15a7550a0f2ba3ecd0106188a68fa",
+  "originalImage": "content/advanced-readings/images/advanced-essay-02-01.png",
+  "originalImageSha256": "2970da56e0a7c58e4faf7db2140b2a11e9104cb010f348fcd7762213825ed731",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 748,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

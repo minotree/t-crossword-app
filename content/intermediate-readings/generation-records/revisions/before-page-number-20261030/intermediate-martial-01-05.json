@@ -1,0 +1,30 @@
+{
+  "id": "intermediate-martial-01-05",
+  "bookId": "intermediate-martial-01",
+  "page": 5,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Entirely original historical martial-arts fantasy for teenage readers, cinematic literary gouache, misty jade mountains and warm gold light, no references to existing franchises. Recurring protagonist: an East Asian teenage boy with black hair tied low, indigo training robes, gray cloth belt and a plain wooden staff. His master: an elderly East Asian woman with white hair, dark green outer robe and a wooden cane. Rival: an East Asian teenage girl with braided black hair and ivory training robes. Non-graphic martial arts, no gore, no recognizable emblems. Scene: Adults helping move the stranded cart while teenage boy and girl keep two children safely near the shelter, distant mountain school bell tower visible through rain. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"The Quiet Bridge\". Under it print smaller page heading \"The Other Match\" (omit it if identical to book title), and page indicator \"5 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nWe called the village people from the shelter. Together, the adults freed the wheel while we kept the children away from the broken boards. Across the valley, the contest bell rang. I knew my match was starting without me. The girl heard it too. She looked toward the school, then turned back to the child who was afraid beside her.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-4a5d588d-d2a2-4736-9bef-38d8fdd6f3ae.png",
+  "target": "images/intermediate-martial-01-05-large-text-v2.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "We called the village people from the shelter. Together, the adults freed the wheel while we kept the children away from the broken boards. Across the valley, the contest bell rang. I knew my match was starting without me. The girl heard it too. She looked toward the school, then turned back to the child who was afraid beside her.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-martial-01-05.json",
+  "originalGenerationRecordSha256": "8e88af2afd1aabd27bcb9ec43fca4aea95952f55148dfdc27529f5540967ca80",
+  "originalImage": "content/intermediate-readings/images/intermediate-martial-01-05.png",
+  "originalImageSha256": "a6e5f52e215490fa76332ad39eb0d1ef7b7ef5cc00526333719c521ae01ab072",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 764,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

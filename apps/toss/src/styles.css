@@ -13,7 +13,8 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .bottom-safe-area { flex-shrink: 0; height: var(--toss-safe-area-bottom, env(safe-area-inset-bottom, 0px)); }
 .app-heading { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 20px; }
 .app-heading h1 { font-size: 19px; letter-spacing: -.5px; }
-.quiz-active .bottom-navigation { padding-top: 6px; }
+.quiz-active .app-heading { padding-block: 4px; }
+.quiz-active .bottom-navigation { padding-top: 4px; padding-bottom: 2px; }
 .app-heading > span, .secondary { color: #6b7684; font-size: 13px; line-height: 1.6; }
 .wallet-heading { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: 8px; font-size: 12px; color: #6b7684; }
 .wallet-heading strong { color: #8b4c00; padding: 6px 10px; background: #fff8df; border-radius: 16px; white-space: nowrap; }
@@ -49,25 +50,27 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .bottom-navigation > button:not(:disabled) { background: transparent; color: #6b7684; }
 .bottom-navigation > button[aria-current="page"] { color: #1b64da; }
 .navigation-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; white-space: nowrap; }
-.quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px; }
+.quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px 12px; }
 /* Anchor settings below the heading and keep the full quiz scrollable on short screens. */
-.quiz-content { flex: 0 0 auto; width: 100%; margin: 0; padding-bottom: 12px; }
-.quiz-encouragement { flex-shrink: 0; padding: 4px 4px 6px; text-align: center; overflow-wrap: anywhere; }
-.quiz-encouragement > p[lang="en"] { font-size: 14px; font-weight: 600; line-height: 1.6; }
-.quiz-encouragement > p[lang="ko"] { margin-top: 2px; font-size: 12px; line-height: 1.6; }
-.quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; margin-bottom: 12px; }
+.quiz-content { flex: 0 0 auto; width: 100%; margin: 0; padding-bottom: 8px; }
+.quiz-encouragement { flex-shrink: 0; padding: 2px 4px 4px; text-align: center; overflow-wrap: anywhere; }
+.quiz-encouragement > p[lang="en"] { font-size: 16px; font-weight: 600; line-height: 1.5; }
+.quiz-encouragement > button { margin-top: 2px; min-height: 32px; height: 32px; padding: 0 10px; font-size: 12px; }
+.quiz-encouragement > button + button { margin-left: 6px; }
+.quiz-encouragement > p[lang="ko"] { margin-top: 4px; font-size: 14px; line-height: 1.6; }
+.quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; margin-bottom: 8px; }
 .quiz-summary-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .quiz-summary { flex-wrap: wrap; }
 .quiz-learning-progress { margin-right: auto; font-size: 12px; font-weight: 700; color: #3182f6; }
 .quiz-summary-actions strong { color: #3182f6; font-size: 12px; white-space: nowrap; }
 .quiz-summary-actions > button { min-width: 0; min-height: 30px; height: 30px; padding: 0 8px; font-size: 11px; white-space: nowrap; }
-.quiz-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); flex-shrink: 0; gap: 8px; padding: 4px; margin-bottom: 12px; border: 1px solid #e5e8eb; border-radius: 12px; }
+.quiz-controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); flex-shrink: 0; gap: 8px; padding: 3px; margin-bottom: 8px; border: 1px solid #e5e8eb; border-radius: 12px; }
 .quiz-controls > div { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; min-width: 0; }
 .quiz-controls > div:first-child { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .quiz-controls button { min-width: 0; min-height: 30px; height: 30px; padding: 0 3px; font-size: 11px; white-space: nowrap; }
 .completion-reward-guide { flex: 1; min-width: 0; color: #1b64da; font-size: 11px; line-height: 1.6; }
 .completion-reward-guide > span { color: #6b7684; }
-.puzzle-layout { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; width: 100%; }
+.puzzle-layout { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; width: 100%; }
 .puzzle-layout > .all-hints-button { flex-shrink: 0; }
 /* Let the list cover the board and use spare content height above the bottom navigation. */
 .quiz-content:has(.hints-open) { display: flex; flex-direction: column; min-height: 100%; }
@@ -183,6 +186,10 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .picture-books details p { white-space: pre-line; line-height: 1.8; margin-top: 12px; }
 .reading-actions { display: flex; justify-content: space-between; gap: 12px; margin: 20px 0; }
 .picture-books .reading-actions > button { flex: 1; min-width: 0; white-space: nowrap; }
+.picture-book-audio-controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) 6ch; align-items: center; column-gap: 8px; row-gap: 4px; margin: 20px 0; }
+.picture-book-audio-controls > button { min-width: 0; padding-inline: 8px; white-space: nowrap; }
+.picture-book-audio-count { text-align: right; white-space: nowrap; font-size: 13px; font-variant-numeric: tabular-nums; }
+.picture-book-audio-status { grid-column: 1 / -1; min-height: 20px; font-size: 12px; line-height: 20px; overflow-wrap: anywhere; }
 .book-list { list-style: none; padding: 0; display: grid; gap: 12px; }
 .book-list button { white-space: normal; }
 .books-list-page { display: flex; flex: 1; min-height: 0; overflow: hidden; padding: 0 20px; }

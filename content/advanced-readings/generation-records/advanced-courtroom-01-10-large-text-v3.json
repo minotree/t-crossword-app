@@ -1,0 +1,32 @@
+{
+  "id": "advanced-courtroom-01-10",
+  "bookId": "advanced-courtroom-01",
+  "page": 10,
+  "target": "images/advanced-courtroom-01-10-large-text-v3.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. The owner at her printing-workshop desk pausing with a pen above a new agreement, clear organized page tabs, printing equipment softly in background, quiet responsible ending. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"The Next Signature\" (omit duplicate heading if identical), page indicator \"10 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nBack at the workshop, she changed the contract examination process. Revised pages would carry clear dates; approval would be recorded before work began. She also paid the wages still owed to her former colleague. On the next agreement, her hand paused above the signature line. The pen was ordinary. What it committed other people to endure was not.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-06bccf95-fa61-4868-8a8b-fc9dd903289f.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Back at the workshop, she changed the contract examination process. Revised pages would carry clear dates; approval would be recorded before work began. She also paid the wages still owed to her former colleague. On the next agreement, her hand paused above the signature line. The pen was ordinary. What it committed other people to endure was not.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-10.json",
+  "originalGenerationRecordSha256": "130fa7caab9bb5c8411b38c0b607a093999aa28edbd9ce72bba3cd02b9115b83",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-10.png",
+  "originalImageSha256": "7b1a89b9747a27d43469fb1b6cd30a35556dd64e1eeb9d9b5a79850d286d67a0",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 794,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

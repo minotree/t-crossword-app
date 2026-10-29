@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-martial-01-06",
+  "bookId": "intermediate-martial-01",
+  "page": 6,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Entirely original historical martial-arts fantasy for teenage readers, cinematic literary gouache, misty jade mountains and warm gold light, no references to existing franchises. Recurring protagonist: an East Asian teenage boy with black hair tied low, indigo training robes, gray cloth belt and a plain wooden staff. His master: an elderly East Asian woman with white hair, dark green outer robe and a wooden cane. Rival: an East Asian teenage girl with braided black hair and ivory training robes. Non-graphic martial arts, no gore, no recognizable emblems. Scene: Elderly woman master in green robe bringing dry clothes to the village shelter after rain, muddy indigo-robed boy and ivory-robed girl checking a list with villagers, gentle lamplight. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"The Quiet Bridge\". Under it print smaller page heading \"After the Rain\" (omit it if identical to book title), and page indicator \"6 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nBy evening, everyone had reached the village. My staff was covered in mud, and there was no prize waiting for either of us. My master arrived carrying a basket of dry clothes. She had been helping families along the river. She did not ask who had won. She asked whether anyone was still away, and we checked the village list together.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-3a7f45c4-3386-4b7d-9e62-945b0f4d92cf.png",
+  "target": "images/intermediate-martial-01-06-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "By evening, everyone had reached the village. My staff was covered in mud, and there was no prize waiting for either of us. My master arrived carrying a basket of dry clothes. She had been helping families along the river. She did not ask who had won. She asked whether anyone was still away, and we checked the village list together.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-martial-01-06.json",
+  "originalGenerationRecordSha256": "55f8c157147d2712d39170ed1be99188eda533a8ec6c044a4c73f2d291932867",
+  "originalImage": "content/intermediate-readings/images/intermediate-martial-01-06.png",
+  "originalImageSha256": "be6c7c80deb812bd0d0355a4d735c680035e4ac4e07cf0caf4aa102e36875dd4",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 714,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

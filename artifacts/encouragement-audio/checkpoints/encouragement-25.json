@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-25",
+  "text": "That was a nice little win for today.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-25-31e7e55582fe4e90.mp3",
+  "sha256": "31e7e55582fe4e90b95e585c5e8ac661cd3f380900220f3d559db75f4c959e68",
+  "textSha256": "7be77b42c51ecbe4e012d969cf28b138a17bb51cdbbdfb9a7d7e06b99be3a4c4",
+  "bytes": 20160,
+  "seconds": 2.52,
+  "inputKey": "b05242949c65d517c9afcdc1310fb0a8d2b20544831f310324f5d25d5acdc766",
+  "phonemes": [
+    "ðˈæt wʌz ɐ nˈIs lˈɪTᵊl wˈɪn fɔɹ tədˈA."
+  ],
+  "missingPhonemeTokens": []
+}

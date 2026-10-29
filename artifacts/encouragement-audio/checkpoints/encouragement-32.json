@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-32",
+  "text": "A wrong answer can help you learn.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-32-31609f405a24f769.mp3",
+  "sha256": "31609f405a24f76977efc62d1318d6691e30243ac0896e177cc35f18e59a8ea9",
+  "textSha256": "4676309f9cf962c7f9fc80a43508b12c32191465230881b5c717807dd363f8d2",
+  "bytes": 19200,
+  "seconds": 2.4,
+  "inputKey": "9bb25ad3b5685caec7194ae72385974b52e5529cb7d8f156f9ef8d60fa81fa74",
+  "phonemes": [
+    "ɐ ɹˈɔŋ ˈænsəɹ kæn hˈɛlp ju lˈɜɹn."
+  ],
+  "missingPhonemeTokens": []
+}

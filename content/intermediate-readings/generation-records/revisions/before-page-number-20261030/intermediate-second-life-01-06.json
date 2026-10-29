@@ -1,0 +1,30 @@
+{
+  "id": "intermediate-second-life-01-06",
+  "bookId": "intermediate-second-life-01",
+  "page": 6,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original coming-of-age second-life fantasy for teenagers, literary gouache, copper, sage and warm cream palette, invented historical setting with no existing franchise references. Recurring narrator: East Asian teenage prince with black hair half tied using a dark green ribbon, simple pale gold robe, carrying a small red notebook. Recurring clerk: older East Asian woman with gray-streaked hair in a dark blue robe. Grounded compassionate story, no violence or copied costumes or emblems. Scene: Prince with red notebook and blue-robed clerk waiting by city gate as a cart full of food returns, driver holding a small letter, sunny hopeful historical city, no grand ceremony. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"A Second Life, A Small Choice\". Under it print smaller page heading \"One Small Test\" (omit it if identical to book title), and page indicator \"6 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nThe clerk did not suggest a grand new system. We changed one route, checked one address, and asked a driver to report what happened. I wanted to announce success at once. She shook her head. 'First, wait for the cart to return.' That afternoon, it came back full. The driver also carried a letter from the village, asking when the next visit would be.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-2a22b73f-ed34-4102-82ef-ef7ce8ab4d15.png",
+  "target": "images/intermediate-second-life-01-06-large-text-v2.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The clerk did not suggest a grand new system. We changed one route, checked one address, and asked a driver to report what happened. I wanted to announce success at once. She shook her head. 'First, wait for the cart to return.' That afternoon, it came back full. The driver also carried a letter from the village, asking when the next visit would be.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-second-life-01-06.json",
+  "originalGenerationRecordSha256": "42aea62e8114d96d97966862e2967f37cb8be733c118b96c2433affcdc29e4ef",
+  "originalImage": "content/intermediate-readings/images/intermediate-second-life-01-06.png",
+  "originalImageSha256": "906f52082fc08541a896193620486daf0eb55f46eb1f5dee5efbf7cabfe1c77c",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 784,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

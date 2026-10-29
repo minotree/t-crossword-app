@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-07",
+  "text": "Your vocabulary is growing with every new lesson.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-07-8bde33d4c289c31a.mp3",
+  "sha256": "8bde33d4c289c31a3d08223c9e71f4a06dc470218430fe37356ccb499d23b32a",
+  "textSha256": "377fe3b53d66e2588a36a0fee248c208ce1acb34e600a13eb192459bca6e60bb",
+  "bytes": 27840,
+  "seconds": 3.48,
+  "inputKey": "ca3f92a6467f9335896857539b92a3b352c732ff5dfc8812e933e2b5203add7d",
+  "phonemes": [
+    "jˌʊɹ vOkˈæbjəlˌɛɹi ɪz ɡɹˈOɪŋ wɪð ˈɛvəɹi nˈu lˈɛsən."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "advanced-mystery-01-09-v2",
+  "bookId": "advanced-mystery-01",
+  "page": 9,
+  "target": "images/advanced-mystery-01-09-large-text-v1.png",
+  "prompt": "Use case: precise-object-edit. Correct ONLY the final sentence of the English paragraph on this reading card. Replace \"He paid, and the clock marked the hour without an event.\" with \"He paid, and the clock marked the hour once more.\" Preserve the illustration, title, subtitle, page number, all other text, fonts, colors and layout unchanged. For absolute clarity, the complete final paragraph must read EXACTLY:\nBefore the tools were packed again, the shopkeeper repaired the clock. A loose connection, not a ruined mechanism, had stopped it. The young man asked what he owed. She showed him a new receipt with the ordinary charge. Neither charity nor guilt needed to conceal the price. He paid, and the clock marked the hour once more.\nNo other changes, no extra words or labels.",
+  "creationPrompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The woman using a small hand tool to finish the brass clock repair while the young man waits, fresh receipt beside the clock, warm clear lamplight. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"One More Repair\" (omit duplicate heading if identical), page indicator \"9 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nBefore the tools were packed again, the shopkeeper repaired the clock. A loose connection, not a ruined mechanism, had stopped it. The young man asked what he owed. She showed him a new receipt with the ordinary charge. Neither charity nor guilt needed to conceal the price. He paid, and the clock marked the hour without an event.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-af4d4d0c-1f46-4c12-8e12-8df80e741114.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [
+    "images/advanced-mystery-01-09.png"
+  ],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Before the tools were packed again, the shopkeeper repaired the clock. A loose connection, not a ruined mechanism, had stopped it. The young man asked what he owed. She showed him a new receipt with the ordinary charge. Neither charity nor guilt needed to conceal the price. He paid, and the clock marked the hour once more.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-09-v2.json",
+  "originalGenerationRecordSha256": "4653bac42233731b30f7057baa5297d8a19cfd308d2122c73bf5a95c5268d8c2",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-09-v2.png",
+  "originalImageSha256": "72f4fe22993f4766355afeb4e9b8d2b54e3c28a78d51881c31d2a149abdebc7a",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 774,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

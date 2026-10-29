@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-44",
+  "text": "What other words can you make with these letters?",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-44-e2ce3ba3d88dd5cf.mp3",
+  "sha256": "e2ce3ba3d88dd5cf92f025ab8b3cdfe6c90fd31730242526561e2a09b901a937",
+  "textSha256": "915648a3f421cfd19eb0e54f11d4a9ecaa73c7d1ada2bdbb47a979f8fe64823d",
+  "bytes": 23232,
+  "seconds": 2.904,
+  "inputKey": "6602bc4dd8c5176049fc971180b8f44e5b5293bd29848908f27c7ad3939ef608",
+  "phonemes": [
+    "wˌʌt ˈʌðəɹ wˈɜɹdz kæn ju mˌAk wɪð ðiz lˈɛTəɹz?"
+  ],
+  "missingPhonemeTokens": []
+}

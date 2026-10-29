@@ -1,0 +1,27 @@
+{
+  "id": "advanced-mystery-01-10",
+  "bookId": "advanced-mystery-01",
+  "page": 10,
+  "target": "images/advanced-mystery-01-10-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The shopkeeper without apron in her new modest kitchen, old closed ledger on a shelf, a different simple wall clock, opening a window toward morning, quiet resolution. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"After the Door\" (omit duplicate heading if identical), page indicator \"10 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nA month later, the mother confirmed that the account had been settled. By then, the shop was empty. The shopkeeper kept the old journal, but not as proof that her father had been flawless. It reminded her how easily an incomplete record could become an accusation. In her new kitchen, a modest clock continued its work. She listened, then opened the window.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-78794429-e307-472f-a0e6-7416c6e55c3b.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "A month later, the mother confirmed that the account had been settled. By then, the shop was empty. The shopkeeper kept the old journal, but not as proof that her father had been flawless. It reminded her how easily an incomplete record could become an accusation. In her new kitchen, a modest clock continued its work. She listened, then opened the window.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-10.json",
+  "originalGenerationRecordSha256": "f92192ab9fe794bd05fbd2b5bf4beaa9bfe6d0d4e583c1b985d9670d3537bc1d",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-10.png",
+  "originalImageSha256": "dde7ad4be911d4b3082bfa6ece6d35ad32b5156f3988f239b5b62df16cf0c470",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 641,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

@@ -1,0 +1,1054 @@
+{
+  "date": "2026-10-30T02:07:57.112891+09:00",
+  "baseUrl": "https://crossword-content-audio.minotree0902.workers.dev/",
+  "mp3Count": 169,
+  "files": [
+    {
+      "file": "encouragement-audio/encouragement-01-d09e28d8172e1d33.mp3",
+      "bytes": 26688,
+      "sha256": "d09e28d8172e1d338029f5fbe41e6f475aa8d6ad2a4dd7f514ef36174e0ff04f",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-02-d2e8b14207ee5cce.mp3",
+      "bytes": 22080,
+      "sha256": "d2e8b14207ee5cceb9907c196b8cda54a652dc15ef452006f91c94dc194cae5d",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-03-00e527423dde6e1a.mp3",
+      "bytes": 20544,
+      "sha256": "00e527423dde6e1a8c65d6fe37dc348f6d92804dc2b07a5c06af3eaaa03772a8",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-04-13c163e0c6fcfb24.mp3",
+      "bytes": 21504,
+      "sha256": "13c163e0c6fcfb2455479689fb4722faa3f01b44b77a4385b96462867b2bb9f9",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-05-b3b4b74fe8137aec.mp3",
+      "bytes": 28032,
+      "sha256": "b3b4b74fe8137aec034647f10bd4ba4db3700be5c7403c31cd64b6e38a1b3914",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-06-f887fbdab87f7d74.mp3",
+      "bytes": 21312,
+      "sha256": "f887fbdab87f7d743206b358a2c1552c3a0cbcce05149b6752bd9071e2c4e3aa",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-07-8bde33d4c289c31a.mp3",
+      "bytes": 27840,
+      "sha256": "8bde33d4c289c31a3d08223c9e71f4a06dc470218430fe37356ccb499d23b32a",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-08-b52d64843bb1d2f9.mp3",
+      "bytes": 22848,
+      "sha256": "b52d64843bb1d2f9913bde95c14dcc89ecc774e3bc2f49a01de91ddfe4dde966",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-09-8eb234cc9f28ced2.mp3",
+      "bytes": 28800,
+      "sha256": "8eb234cc9f28ced2448dc7e8bcd1344ef7082b4517f02785ea3c8e58a647925c",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-10-f3aa1e1e98e108fc.mp3",
+      "bytes": 23040,
+      "sha256": "f3aa1e1e98e108fcf08dda0137deb4081611a446c118430a11c10a788ca1f88d",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-11-af1fe19d09376c3c.mp3",
+      "bytes": 20160,
+      "sha256": "af1fe19d09376c3cd707786f76e4b660474d7f176d3dabc4c9264360ba3c59a2",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-12-4c99986e3b1df019.mp3",
+      "bytes": 20160,
+      "sha256": "4c99986e3b1df019320d9e181854ed4dd47e1c3b535b7cc2ac99d616eb308336",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-13-ee670586499714da.mp3",
+      "bytes": 21504,
+      "sha256": "ee670586499714daeddbec4e82bf23b5f7e79e6e8dc7f75225ace0f9aebd5412",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-14-a7125328f6669d44.mp3",
+      "bytes": 24960,
+      "sha256": "a7125328f6669d445d75872eb3018d1c1c7edb664a069b7a0ed25369d462f40b",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-15-ca24f9b2c9c549f3.mp3",
+      "bytes": 21120,
+      "sha256": "ca24f9b2c9c549f3f114ff433b95d42fdafbf421d7db6d5d5350822eefff8ee7",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-16-cfbb9820a004c161.mp3",
+      "bytes": 24000,
+      "sha256": "cfbb9820a004c161e3c1ced67271040550b9c191f1db4e84e78ea93d1ed90f46",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-17-ccaf31d4be127158.mp3",
+      "bytes": 26112,
+      "sha256": "ccaf31d4be1271586c22fb372ce4e0ade408f8d3329ed529276419e6d4ec3c96",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-18-69cab9ce7a5b1c21.mp3",
+      "bytes": 20928,
+      "sha256": "69cab9ce7a5b1c21eee0c2be4057ed786fb1a479a88541519edabd2e8e315fa2",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-19-860afe4ea2692932.mp3",
+      "bytes": 23616,
+      "sha256": "860afe4ea2692932c174e824bf7c7d773e2c3222a687b6e1a890391d08f30897",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-20-073c33abee9dc3c6.mp3",
+      "bytes": 22080,
+      "sha256": "073c33abee9dc3c69f63cce28ce95a233b0788b2e9b499232f96ec6a6d52b328",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-21-b78df106095d77ba.mp3",
+      "bytes": 22080,
+      "sha256": "b78df106095d77ba04d2ded2b4946e835a0dc03aab0022e752e64abc3bc3c840",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-22-917e3c6f4705a414.mp3",
+      "bytes": 24000,
+      "sha256": "917e3c6f4705a414433c7fa858b1e41d1eb33a6d6caa64afeba8a167fe5088f2",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-23-df6b42efb0f622a6.mp3",
+      "bytes": 25344,
+      "sha256": "df6b42efb0f622a606d36ad387290648e233219b9799f483e9506142a67b719c",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-24-48674ca61ffc3efe.mp3",
+      "bytes": 25728,
+      "sha256": "48674ca61ffc3efee2087d4ee0b246e74f7a238db1125dd909424935a4e40925",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-25-31e7e55582fe4e90.mp3",
+      "bytes": 20160,
+      "sha256": "31e7e55582fe4e90b95e585c5e8ac661cd3f380900220f3d559db75f4c959e68",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-26-34db93847980fdd7.mp3",
+      "bytes": 17664,
+      "sha256": "34db93847980fdd74def7ae61bec5e7bb68148c72170e299535f2e9cc50c4fb8",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-27-2242a8b453cfdde5.mp3",
+      "bytes": 19200,
+      "sha256": "2242a8b453cfdde5f57974a075fec358b2e8d51d173b68ad8d12cd1891518e7e",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-28-908bfbddbed14111.mp3",
+      "bytes": 24192,
+      "sha256": "908bfbddbed14111afb47959f070e922636f7e34327c23d23f97e3b7d77b5dc1",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-29-b0343e6c25ead7f7.mp3",
+      "bytes": 20928,
+      "sha256": "b0343e6c25ead7f7659eda0a95bae249771a95b98ef4614af98c7ccfe4e74195",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-30-f148571fdb053130.mp3",
+      "bytes": 26688,
+      "sha256": "f148571fdb053130d8e231dcf2fba3355e2b7c35332a42c735c4bb6d972a8642",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-31-d62f7a761b8d4cc6.mp3",
+      "bytes": 23616,
+      "sha256": "d62f7a761b8d4cc640af3845c260c15d2a2f5ce238e293334d44447e6d27c62f",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-32-31609f405a24f769.mp3",
+      "bytes": 19200,
+      "sha256": "31609f405a24f76977efc62d1318d6691e30243ac0896e177cc35f18e59a8ea9",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-33-1cb497fb0eed96e0.mp3",
+      "bytes": 17856,
+      "sha256": "1cb497fb0eed96e0a9a5068ac2abf1dd42d7f3d810ca90fa8d8b2d358a762667",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-34-7c2b703cf2f313bc.mp3",
+      "bytes": 20544,
+      "sha256": "7c2b703cf2f313bcb196eede67d2ae7e17d78b9643c7c6ada6b4b5fa58f4bbf7",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-35-9cc4c0513b981ef9.mp3",
+      "bytes": 20544,
+      "sha256": "9cc4c0513b981ef93b5ba379e4ec8b773ba64732e00b719b8705c53e2594b24f",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-36-99764c58038c5364.mp3",
+      "bytes": 23424,
+      "sha256": "99764c58038c53647b548506bfeecd127c10a4dce53bd401a336ee14e04ea43a",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-37-6c318778c5b6272f.mp3",
+      "bytes": 19008,
+      "sha256": "6c318778c5b6272f8d28903872ff71a5159a1aa841bb309cc7b2e2e78a96c07a",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-38-03c4d16730248b39.mp3",
+      "bytes": 20160,
+      "sha256": "03c4d16730248b390d15e73069372c79e575bcb41447605a0bfb346ee24313ad",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-39-3b0404a1bdb94de3.mp3",
+      "bytes": 19584,
+      "sha256": "3b0404a1bdb94de391dcc6b8ded5074a5d8b46c56bea490d3029d00db682da55",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-40-47f2a3bd346031e1.mp3",
+      "bytes": 22656,
+      "sha256": "47f2a3bd346031e130ee456a424240ef1d1eba9a7f7d7b0a4b5ac2995e861b47",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-41-1bedf2bfe24f94e7.mp3",
+      "bytes": 20352,
+      "sha256": "1bedf2bfe24f94e7446a126d4846b779ecee686473dce591521842d08eb56b72",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-42-a6918c7e81eee62e.mp3",
+      "bytes": 21888,
+      "sha256": "a6918c7e81eee62e88dc7fa8c2e8d3b66ccb5ba616a51de5c445c90ce781354a",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-43-d599c528ffbb2511.mp3",
+      "bytes": 20736,
+      "sha256": "d599c528ffbb251134394d4b09d066eae10c3ff65b2d085ebee1b7fdb6b5e7a2",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-44-e2ce3ba3d88dd5cf.mp3",
+      "bytes": 23232,
+      "sha256": "e2ce3ba3d88dd5cf92f025ab8b3cdfe6c90fd31730242526561e2a09b901a937",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-45-f78c690e1545ce97.mp3",
+      "bytes": 26496,
+      "sha256": "f78c690e1545ce973965bb15323a83b74dc3960f70b35f5d639e7102e2692ef9",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-46-9f3c693a9660dac9.mp3",
+      "bytes": 27840,
+      "sha256": "9f3c693a9660dac9fb46dc637c168d1ffb7bfe1e61f9b2e2fcafeea7be95b816",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-47-a6c62218c68d0fa5.mp3",
+      "bytes": 24192,
+      "sha256": "a6c62218c68d0fa55ef6c0f96384ca1add9be4b5bf586b8962efe0591bcadd01",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-48-5084bd220c28a2e7.mp3",
+      "bytes": 23232,
+      "sha256": "5084bd220c28a2e7552dde5594678bbe2ea7deceeba447c64717be39acb78609",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-49-0f457b5493ae91ab.mp3",
+      "bytes": 28224,
+      "sha256": "0f457b5493ae91ab78d0ed152166a733d69a2137e8c92eb82ae8fd2ed1918569",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/encouragement-50-300fea3c8ac197bf.mp3",
+      "bytes": 28032,
+      "sha256": "300fea3c8ac197bf170e4d282a21d4bf7c920c478b2c81753208676326ad810e",
+      "status": 200
+    },
+    {
+      "file": "encouragement-audio/manifest.json",
+      "bytes": 32023,
+      "sha256": "01e87c19ab5e047b005892cefc4d4e9a256188fa99a207f98a6114b4109c5e40",
+      "status": 200
+    },
+    {
+      "file": "index.html",
+      "bytes": 61389,
+      "sha256": "28fa0fd5f31d38df8435f203338d99deb58a0a82880395997b36017cc74f87b9",
+      "status": 200
+    },
+    {
+      "file": "KOKORO-APACHE-2.0.txt",
+      "bytes": 11357,
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-01-0e3694c71175f753.mp3",
+      "bytes": 185856,
+      "sha256": "0e3694c71175f753ef4b4c94fac6733da366c4b3a784f68ca5ce796f5bc7b459",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-02-34e7bdaec31dda88.mp3",
+      "bytes": 183168,
+      "sha256": "34e7bdaec31dda88522426a19bf9ed48b8ba8067cdd92b7da1bfcba077c9cf4a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-03-649dc90ac164e02c.mp3",
+      "bytes": 170304,
+      "sha256": "649dc90ac164e02c62fbcea2d3ce4930c498dd083cde8cd25bbf8047006068a5",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-04-28419b7236af3895.mp3",
+      "bytes": 168960,
+      "sha256": "28419b7236af389573a8ee518efc39b5062cab5b61543afd9f99ebcbbe2774be",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-05-f943e619c316eff4.mp3",
+      "bytes": 188160,
+      "sha256": "f943e619c316eff4fd909f73bcc8a3c39ab3a66f31914209bd74e929bccd13d0",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-06-17377e31964fb919.mp3",
+      "bytes": 161472,
+      "sha256": "17377e31964fb919b7132e2c800876c6f844fcb7e279b97caa7358c861d3b721",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-07-6fd03ab7a139a062.mp3",
+      "bytes": 198336,
+      "sha256": "6fd03ab7a139a0624578c622ba2e6c6ab26cd64ca4e1ab0359626875694f3c5a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-08-85dd176c3ab01de3.mp3",
+      "bytes": 184512,
+      "sha256": "85dd176c3ab01de3120a8bd37c95b726041b4c2b0761ec7574623334a1915ac4",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-09-548d8227fab96838.mp3",
+      "bytes": 172416,
+      "sha256": "548d8227fab96838c4faf36765523c33358e10055228c3e03f8080294a25b5ac",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-courtroom-01-10-5209447bd36524be.mp3",
+      "bytes": 176064,
+      "sha256": "5209447bd36524be279b32677ca77ca40ad3e5ee12f188c2216093be5ae7a9d4",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-essay-01-01-96911bdb32036b92.mp3",
+      "bytes": 149952,
+      "sha256": "96911bdb32036b92579db648342f0a6f334d5214761607b21b511684c383385f",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-essay-01-02-32d987d26bb13174.mp3",
+      "bytes": 158592,
+      "sha256": "32d987d26bb13174e88699c93ba70124fded4207e1b4602c8ffed4652f342deb",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-essay-01-03-f11bbff6cc658ed1.mp3",
+      "bytes": 173952,
+      "sha256": "f11bbff6cc658ed18737deb24d27b0bf3544abbc836c9f706ffa499a53be5516",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-essay-02-01-8cada0346138e9a1.mp3",
+      "bytes": 170112,
+      "sha256": "8cada0346138e9a13b2c366acc9f6fe74c60b3f9eca1e67080026d9897c039a2",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-essay-02-02-6e4943abc0b95f33.mp3",
+      "bytes": 165888,
+      "sha256": "6e4943abc0b95f33ceed5a7dff87b79dc79c91a95d66da0764f7e69bca51ecd5",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-essay-02-03-c30c5d5c4df1c016.mp3",
+      "bytes": 180480,
+      "sha256": "c30c5d5c4df1c01645a4296df9eba6d5c644b79e1abb2d0c61884d41ab404096",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-01-1a0257e0969a1d17.mp3",
+      "bytes": 155520,
+      "sha256": "1a0257e0969a1d17a20e2f66316c2333ee7068f7e7d7426419fd4464344a36e4",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-02-ea1a41b64cb68c48.mp3",
+      "bytes": 160704,
+      "sha256": "ea1a41b64cb68c48fc4444ce9e4b13128f9d4ef955dd8d51aa35f78caa51e919",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-03-082c28007e1f24c6.mp3",
+      "bytes": 154944,
+      "sha256": "082c28007e1f24c6a8d984db237102c340074e75f9aa3c80e3d012ceaa760211",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-04-14b9dfbde07fcf21.mp3",
+      "bytes": 169728,
+      "sha256": "14b9dfbde07fcf2168b1294836104054d2b3522080e40dbd6d9a25e9ba78bd9c",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-05-5081c921ddf65823.mp3",
+      "bytes": 170112,
+      "sha256": "5081c921ddf65823988f308e087206c3d01320ef7c7ca731ba9dc0e4a6f3a87e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-06-ece26efc25c59fdf.mp3",
+      "bytes": 178752,
+      "sha256": "ece26efc25c59fdf7a01cc5c87846f8ea0620fd52c1c04ea611be9258c4f4240",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-07-ab36f5e301d5d7e2.mp3",
+      "bytes": 170112,
+      "sha256": "ab36f5e301d5d7e2c29f124c1356101034542b4db305006d5a99db58905b02f7",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-08-b8167c600159c07b.mp3",
+      "bytes": 174912,
+      "sha256": "b8167c600159c07b3c25779cc430980b7b0d938daf1b22d157bc6dd68340617d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-09-0ca4583937493075.mp3",
+      "bytes": 153408,
+      "sha256": "0ca4583937493075b3e5dc82def1b710d9b3357e37dddf5f6e354bb91c468cb6",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-mystery-01-10-4c786b4ac2258749.mp3",
+      "bytes": 175296,
+      "sha256": "4c786b4ac22587490ad4a3e2761d709d80cc6221f77a9b2abf3df7d3738cd50f",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-poem-01-01-b051399f0e9871fb.mp3",
+      "bytes": 157248,
+      "sha256": "b051399f0e9871fb2f31780b4894658e4c76680620689669601e31a2aa28f0b0",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-poem-02-01-f21636ecd61b048d.mp3",
+      "bytes": 158784,
+      "sha256": "f21636ecd61b048dd61d9cc85af912afccf1078fe5edb4869bda72bdac20bb94",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-01-f4827bf3d629a063.mp3",
+      "bytes": 155136,
+      "sha256": "f4827bf3d629a0632f8e865d2e820dca84e6f636277faa3222fad36177654152",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-02-d7520927443e6212.mp3",
+      "bytes": 179328,
+      "sha256": "d7520927443e62124a75dc6485e550ddc8c675eca3e48b2fabacd03077292a34",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-03-0d3929d7b91b5a6a.mp3",
+      "bytes": 177408,
+      "sha256": "0d3929d7b91b5a6af5f27b53b5c2be6eb93d4ed861a9ddc688a356fe72a7eadb",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-04-1472d5a7aeecc315.mp3",
+      "bytes": 145920,
+      "sha256": "1472d5a7aeecc315c71484accaca31c176fe7c1707e3660de843ce1c77dc4cc3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-05-d8610b371823675a.mp3",
+      "bytes": 150912,
+      "sha256": "d8610b371823675a1d5e28cc2dd0f97ef35b0987a7eeae8006eaf48092869e12",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-06-dc47fb518975de67.mp3",
+      "bytes": 157440,
+      "sha256": "dc47fb518975de673fd34d2095ad8041c459b892cea2c0c5e2b77bef80716d21",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-07-46e85f928c414e76.mp3",
+      "bytes": 176832,
+      "sha256": "46e85f928c414e761f98bb295df80593ed5d3293da27e19dbd8ff112300d751e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-08-e9bef3034806b8bb.mp3",
+      "bytes": 163008,
+      "sha256": "e9bef3034806b8bbcf2ca08747ae97733b186a77c5990c9c34bb72902ebde4ee",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-09-da3db287819e0901.mp3",
+      "bytes": 163200,
+      "sha256": "da3db287819e09013f5627b9e329e00576df7b5b32cd26957b5537492e59b352",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/advanced-sf-01-10-69bb6515feb6e546.mp3",
+      "bytes": 147648,
+      "sha256": "69bb6515feb6e5464625a0f30f5457d780f1af6008f237adf305996dc9105b5b",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-01-01-0aff529d972d2055.mp3",
+      "bytes": 74688,
+      "sha256": "0aff529d972d20556cebc713d84f62c0d3a6460f12db0dd0007ee5c9888b3218",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-02-01-d771992a334370c2.mp3",
+      "bytes": 61824,
+      "sha256": "d771992a334370c29d0f70adca25cbf6e31a01dba3cdd4a749b58d795287dd8f",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-03-01-29d168ff544243d6.mp3",
+      "bytes": 65664,
+      "sha256": "29d168ff544243d6fdbda9cc8fadb6005b31b3d35bc7120daf293bc582750ccf",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-04-01-ba3661f93aedc57a.mp3",
+      "bytes": 61824,
+      "sha256": "ba3661f93aedc57a91ebdf0af2285500b943b6b4d3d751cad833c48f868bdd6a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-05-01-14584ad09073e0ff.mp3",
+      "bytes": 67008,
+      "sha256": "14584ad09073e0ffa8603a65ba9aa767363b3a16cea9651803000a97fca08daa",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-06-01-45f8db690266ad67.mp3",
+      "bytes": 74688,
+      "sha256": "45f8db690266ad67858d030d47ab429e8483a2b4b49caea5ee35ce22242133ea",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-07-01-53b79a08557ac85f.mp3",
+      "bytes": 56832,
+      "sha256": "53b79a08557ac85ff5d9a0455880e538a9185b65a6cddafe9cf3af29d06e189e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-08-01-ab022fecd115863a.mp3",
+      "bytes": 53568,
+      "sha256": "ab022fecd115863a0ecc210d9dce016ccef45d74b3f7ead437560bd2c592f54b",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-09-01-8d9890c044afe320.mp3",
+      "bytes": 59328,
+      "sha256": "8d9890c044afe320906b3262bb9d9c81966e30d7587f411681f88d976d418801",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-10-01-5147834a3417bdd6.mp3",
+      "bytes": 65664,
+      "sha256": "5147834a3417bdd6a88942843f8b847a97c59604a1f75b1d9d7af140bd2cc93d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-11-01-c2f3c401b69a5425.mp3",
+      "bytes": 80448,
+      "sha256": "c2f3c401b69a542503301c6c27f6ecd89b6e46ac8e5a890b97bd495ee6280373",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-12-01-88ec6ec7da6d1c03.mp3",
+      "bytes": 85632,
+      "sha256": "88ec6ec7da6d1c031d11648d0fa07f873a83910f109eaa17027abc53f4f1411a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-13-01-1efca9953590ad5e.mp3",
+      "bytes": 106752,
+      "sha256": "1efca9953590ad5e46bf38a4f0d87914925c92c7be415b193b7702d8a2cd284a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-14-01-ed1c28018b4a7e93.mp3",
+      "bytes": 89472,
+      "sha256": "ed1c28018b4a7e93c72eca92fbb592e7e1e1fe4be0ad01d3b7fceee043d80c6b",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-15-01-a1730cc7e193ce8c.mp3",
+      "bytes": 75264,
+      "sha256": "a1730cc7e193ce8ced9b2130897e3c8362f896d8cf1338f8af84d0b16cdc253d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-16-01-8d5735d526eabf1a.mp3",
+      "bytes": 59328,
+      "sha256": "8d5735d526eabf1ae7e71750aebb509cb27a910eaf0dc2a4adbb790ec9b6978d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-17-01-2d0347b908d6e629.mp3",
+      "bytes": 57984,
+      "sha256": "2d0347b908d6e62988a9d985b20a00d364dc1640dcd7dd7d486e3554232287e8",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-18-01-430384569a679b86.mp3",
+      "bytes": 72192,
+      "sha256": "430384569a679b86bafe026b7764b5dab0faaa766e2bfd740f96d653d81c11ef",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-19-01-7a6718d550074ccf.mp3",
+      "bytes": 83712,
+      "sha256": "7a6718d550074ccf9d4ff196be24d41a9132cae8c7707f0d57983479e99151a3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-20-01-cbac6af9128f4e58.mp3",
+      "bytes": 54144,
+      "sha256": "cbac6af9128f4e5835c0d19be227bf0fd34d1b7c2bd7fe782537d398b80d05f3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-21-01-0096653802e18b75.mp3",
+      "bytes": 132288,
+      "sha256": "0096653802e18b755c41065d460331e5a329c6bcba52da40225d9165165b31fc",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-22-01-bb0a86f6fecb4dcf.mp3",
+      "bytes": 131712,
+      "sha256": "bb0a86f6fecb4dcf53d5a2d10f3358ebb1b95078d6c0398d93eafdcbac05410d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-23-01-239d8e6406f06274.mp3",
+      "bytes": 129024,
+      "sha256": "239d8e6406f0627414fd3047c66016ab5d63afce0e236c752fffea4018347e4e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-24-01-fb4891f492333a5e.mp3",
+      "bytes": 122688,
+      "sha256": "fb4891f492333a5e7821e32e82ab7fb233f90bec44e11f45f81c4d3a1bf79f41",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-25-01-0f5152165c74150f.mp3",
+      "bytes": 127872,
+      "sha256": "0f5152165c74150f4b29502a02c580fa2cab8c6c5d1423464e8ad6a3132f634e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-26-01-c2307f3363963798.mp3",
+      "bytes": 117504,
+      "sha256": "c2307f3363963798739e97412fac84fc4e2d8251de2a526f6c223f68143c3465",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-27-01-13c7d80c61ec7769.mp3",
+      "bytes": 135552,
+      "sha256": "13c7d80c61ec7769b2e84e80aff7aba830c5f862212a143488b39f038c6ceb19",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-28-01-834f2e676d23f26c.mp3",
+      "bytes": 113664,
+      "sha256": "834f2e676d23f26cd3c58bb170dd2f270bfa80aa8769be342bc766348042fd0c",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-29-01-2878ab1f7269b01d.mp3",
+      "bytes": 124608,
+      "sha256": "2878ab1f7269b01d57b4ff96b2cfd6bebd1e3c046b52129bffdfd32f9b94bde9",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-30-01-bf9a20fd64d1d4e5.mp3",
+      "bytes": 132288,
+      "sha256": "bf9a20fd64d1d4e543587c2c88e7fd9101e17e6c3d26164dee51b3534f31f986",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-31-01-8171061b3a1c9413.mp3",
+      "bytes": 145728,
+      "sha256": "8171061b3a1c9413a5c80b13573744108c9cdbb105d62e21639def27f4622e11",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-32-01-257f2bce1a1987f1.mp3",
+      "bytes": 131712,
+      "sha256": "257f2bce1a1987f111ad47daddfe72bfdebbd7e53ccc645420a02cf51e06d6bd",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-33-01-778e8958a9074ea2.mp3",
+      "bytes": 141888,
+      "sha256": "778e8958a9074ea2314343feca63af0264e455b72f61fc1fa1c80583ed6f371c",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-34-01-2ed17291126ec90e.mp3",
+      "bytes": 147648,
+      "sha256": "2ed17291126ec90e3893f783e019608ca84305bdc81446b4b2f95d2bff1d2768",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-35-01-3381bf4bc8d8d161.mp3",
+      "bytes": 147648,
+      "sha256": "3381bf4bc8d8d16182ff7242fa29e918ff9686acee2d400b4285c8dc6321b235",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-36-01-6c5c0741ef005bad.mp3",
+      "bytes": 129792,
+      "sha256": "6c5c0741ef005bad313086fe0396963eb4d3a6b9c858613dae55f9a377d8ccf5",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-37-01-8942dba6a208bc3c.mp3",
+      "bytes": 126528,
+      "sha256": "8942dba6a208bc3ca6d402cccdcd22e6d41d23dac0413062fc7961bfb3ed5ea2",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-38-01-3fd36b672649213f.mp3",
+      "bytes": 122688,
+      "sha256": "3fd36b672649213f1f20bb6fa97781b029a512a868494afffe2d7cd5de5309f0",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-39-01-1825ff2306458cc0.mp3",
+      "bytes": 122688,
+      "sha256": "1825ff2306458cc047fec800cdf955c97241f2b5ebb9777ef6129cc83765a84c",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-40-01-0d25a00380d1274c.mp3",
+      "bytes": 125184,
+      "sha256": "0d25a00380d1274c222dd94fb178d13aba49021b499f8ef879cf8f87d1dca65b",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-41-01-b996208ab5422d60.mp3",
+      "bytes": 130944,
+      "sha256": "b996208ab5422d60a584bc8228edd97207d004b6ed1d7898bba215c5d80db7b6",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-42-01-5357bc4ea01691f2.mp3",
+      "bytes": 150144,
+      "sha256": "5357bc4ea01691f2db292f5c39b27074f53e345cc86fd3994c05fc9d31a06567",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-43-01-80f3a8c2988b790c.mp3",
+      "bytes": 154752,
+      "sha256": "80f3a8c2988b790cf1be5cee9405728e5afedccc9b890a6a019897144c9879f5",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-44-01-de2105254214d80e.mp3",
+      "bytes": 151488,
+      "sha256": "de2105254214d80e737e286bf0c63653bc03ce6f45c1b5a05ac654829913ec8a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/beginner-45-01-8ebf4b5c1fab3295.mp3",
+      "bytes": 150144,
+      "sha256": "8ebf4b5c1fab329534c721b161f628b312932510304bd56cff2b47691150a8e0",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-01-01-75b62eefed2caec7.mp3",
+      "bytes": 155904,
+      "sha256": "75b62eefed2caec736a4d4fe1b9a53a9e42ea7f1780568b444e40b5f19da3414",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-01-02-489bbba9b41452aa.mp3",
+      "bytes": 165504,
+      "sha256": "489bbba9b41452aa1a5e48ccbd911013ea60b5273cf295884f1ffc6b0d7022a3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-01-03-bb5e505dc3eff234.mp3",
+      "bytes": 179712,
+      "sha256": "bb5e505dc3eff2347ea93b0ff15eb414d91a019cc07fa8d6869b84d58e0a9b2f",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-02-01-f40e26a0e26d3186.mp3",
+      "bytes": 152064,
+      "sha256": "f40e26a0e26d3186523ec7ad5b0cfe4a986fc8d54881b1f905a765f4c121e6e3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-02-02-6f2a3aab2afb084c.mp3",
+      "bytes": 168768,
+      "sha256": "6f2a3aab2afb084c9f91730a8ef97631297cb98914b3571b8b5b6ac1db0b26c1",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-02-03-46ac197c02656cd6.mp3",
+      "bytes": 151488,
+      "sha256": "46ac197c02656cd67df2b43c39456594119c036b8c44ae7b843b8ca3aa71cac3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-03-01-3251f6c51a787128.mp3",
+      "bytes": 157248,
+      "sha256": "3251f6c51a787128750f93043c10126a804ce4a2393ddc1687edddc77559257e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-03-02-e49917bbdec91318.mp3",
+      "bytes": 171264,
+      "sha256": "e49917bbdec91318603947977e67e1ec72439bf117cdf4b11a03f4975ad512ae",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-essay-03-03-6ef24d8e64f76005.mp3",
+      "bytes": 164928,
+      "sha256": "6ef24d8e64f760055f0c17c5bd7db5c83da3e618f0d5cf1bb664020fd3d37efd",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-01-b0dc0f77f791324c.mp3",
+      "bytes": 173952,
+      "sha256": "b0dc0f77f791324c98bc4c8527e5f2a47187d97a5d919550b022be86909ef084",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-02-68f8c167354ed8b6.mp3",
+      "bytes": 164928,
+      "sha256": "68f8c167354ed8b657e3827e46309547b0fcdf0ca69044757997da5b0dd42a3d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-03-a4603152b8a5ac37.mp3",
+      "bytes": 173952,
+      "sha256": "a4603152b8a5ac37d4fbfc8f4c33e44e967740dc3911876a0062491a4ddeb8ad",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-04-a99059bd5e90003d.mp3",
+      "bytes": 190464,
+      "sha256": "a99059bd5e90003dc1725b8e763af6249cd92d0e51de76eefe30090a11f6df20",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-05-446b47176e592960.mp3",
+      "bytes": 169344,
+      "sha256": "446b47176e5929602caf6dbbf073daa7f063f1f4b5c92d87833a36af6370872a",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-06-6331bcf397fd9290.mp3",
+      "bytes": 173184,
+      "sha256": "6331bcf397fd929047121231113a798fd2f7f43b613ff9aa8779155c2aebb5dc",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-07-fc5003e62a95ac3a.mp3",
+      "bytes": 164352,
+      "sha256": "fc5003e62a95ac3a8fbfc9586bb755d19b82d1457a58fff2364d7d2f0713db52",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-martial-01-08-7fdd33e057c6a343.mp3",
+      "bytes": 173952,
+      "sha256": "7fdd33e057c6a34346a233b6d8b317d89af51d15ea76a8e7e2b673cf0371d16b",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-poem-01-01-ced8c049161c798d.mp3",
+      "bytes": 166848,
+      "sha256": "ced8c049161c798da0db934f14b127c1cd3237cef32afc01d090c5b4d8713cd5",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-poem-02-01-c8979ca8a74bdce4.mp3",
+      "bytes": 154752,
+      "sha256": "c8979ca8a74bdce49971c82478cdec9e9c384d1cffac9ca7e664b00a6f163c31",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-poem-03-01-9bbf311ebbf22e12.mp3",
+      "bytes": 169344,
+      "sha256": "9bbf311ebbf22e12dce07e870b845c10d8a8afebf1da13a0d9f3e1ef24e505a2",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-01-901d35ef511422f5.mp3",
+      "bytes": 189312,
+      "sha256": "901d35ef511422f55d64c8ac4a82189d34cb7263f3dcad27c1109f2a4e2ec4f8",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-02-ba2c34cb6c9d545e.mp3",
+      "bytes": 165504,
+      "sha256": "ba2c34cb6c9d545ef09e91d530afce873278e98e4b87e39b35d68355804c4ce4",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-03-d5a582af6023e60f.mp3",
+      "bytes": 170688,
+      "sha256": "d5a582af6023e60f9732c1aead854f1056a358bf1aaadf61f311d9233c086f5d",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-04-2682eeee4e42f100.mp3",
+      "bytes": 178944,
+      "sha256": "2682eeee4e42f100ccddef1bbe8bad9302aa10dde3121fff2cbfde0c55dac237",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-05-ffead1768139b533.mp3",
+      "bytes": 175872,
+      "sha256": "ffead1768139b533f5f64c01843263b89d00210d1c7aa40c3706feae57c68f07",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-06-07dbbc23ea2e6319.mp3",
+      "bytes": 196992,
+      "sha256": "07dbbc23ea2e63192c6ce536b7847d96752d174e9ef9bba2bfdd53fcfaa6d921",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-07-6e59d844a1d6c866.mp3",
+      "bytes": 178944,
+      "sha256": "6e59d844a1d6c86672207b7dd6ca03cb047d0dec2c9d0dd339b174613fb7707c",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-second-life-01-08-6a06c9059fc2c5e2.mp3",
+      "bytes": 178944,
+      "sha256": "6a06c9059fc2c5e2616ae90aa1aade308a6fc0a155c38d64e314a61521439d27",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-01-d6629dfe77181bd4.mp3",
+      "bytes": 173184,
+      "sha256": "d6629dfe77181bd47955e3f705345ae46564f7dad6b6c513aa99a2d3b1734a61",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-02-005a92391a4a47a4.mp3",
+      "bytes": 172608,
+      "sha256": "005a92391a4a47a419e5ade7d6405ad49beaa5f1246feaa22554efed05d5acc3",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-03-57c2a4bd04e9b433.mp3",
+      "bytes": 162432,
+      "sha256": "57c2a4bd04e9b4331d953c004f9b53eda8e103d14b6bec41e3f85966656db10e",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-04-16630179eafeb14d.mp3",
+      "bytes": 186624,
+      "sha256": "16630179eafeb14d2703f92b37629ef3b21a0c209f55f45a7d623bdcbeb99f67",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-05-6a7f853355e9a336.mp3",
+      "bytes": 206592,
+      "sha256": "6a7f853355e9a336b95f86af42ce46e01bd824aecb59a1f1623b04e0aa865177",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-06-6ccef6ecd7099c87.mp3",
+      "bytes": 186624,
+      "sha256": "6ccef6ecd7099c87e7a9704ca8ef77dff07eec3aceccaa3741d57de8c82f3669",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-07-773b5d57fa7109ac.mp3",
+      "bytes": 201984,
+      "sha256": "773b5d57fa7109acc04bc04743a168bb633461b0bfb4ed21b564679b8c4a8114",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/intermediate-sf-01-08-2703c65ce62c29b0.mp3",
+      "bytes": 201984,
+      "sha256": "2703c65ce62c29b0b06f1505bc6705b75896191bde960a4d6aba338e833e99a0",
+      "status": 200
+    },
+    {
+      "file": "picture-book-audio/manifest.json",
+      "bytes": 156698,
+      "sha256": "dfee8a12be052d30c65c4ee6ac522f166e127ca9bdbbd30fbf0fea6f06f2fa0a",
+      "status": 200
+    },
+    {
+      "file": "QWEN-APACHE-2.0.txt",
+      "bytes": 11343,
+      "sha256": "a44a6081c73ad75f0255bb2bb5cab74ef1829565a895a24e53a4f11290ab7655",
+      "status": 200
+    }
+  ],
+  "checks": "HTTP 200; all bytes/hash; MP3 MIME/CORS/immutable; manifest CORS",
+  "listeningReview": "pending",
+  "deviceReview": "pending"
+}

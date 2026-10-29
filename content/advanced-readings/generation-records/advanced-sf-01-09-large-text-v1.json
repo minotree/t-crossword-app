@@ -1,0 +1,27 @@
+{
+  "id": "advanced-sf-01-09",
+  "bookId": "advanced-sf-01",
+  "page": 9,
+  "target": "images/advanced-sf-01-09-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older man seated safely after a memory session, a glass of water offered by the technician, faint abstract rain and doorway light in background, no literal duplicate characters. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"The Afternoon\" (omit duplicate heading if identical), page indicator \"9 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe memory returned in fragments: a travel bag, rain against a window, his own voice demanding loyalty. Then came a detail he had forgotten. His sister had waited at the door, giving him time to change his words. He had turned away. The device fell silent. He asked for water, and no one tried to interpret his tears.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-0e49e22a-087c-46a7-ba8c-3b791363fd1f.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The memory returned in fragments: a travel bag, rain against a window, his own voice demanding loyalty. Then came a detail he had forgotten. His sister had waited at the door, giving him time to change his words. He had turned away. The device fell silent. He asked for water, and no one tried to interpret his tears.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-sf-01-09.json",
+  "originalGenerationRecordSha256": "93804f8a54d98968431c61d3df3d44b18b4ff87df35655625984f79870aac2ab",
+  "originalImage": "content/advanced-readings/images/advanced-sf-01-09.png",
+  "originalImageSha256": "55f297129380f944808a3ae6b415cc366c2a8a30c732c85251ac3fe2c4a35b58",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 606,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

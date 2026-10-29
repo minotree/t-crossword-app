@@ -1,0 +1,32 @@
+{
+  "id": "advanced-courtroom-01-03",
+  "bookId": "advanced-courtroom-01",
+  "page": 3,
+  "target": "images/advanced-courtroom-01-03-large-text-v3.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. The witness standing at a simple witness desk, speaking thoughtfully to the judge while counsel listens, owner seated in background, no dramatic pointing. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"The Witness\" (omit duplicate heading if identical), page indicator \"3 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe colleague agreed to give evidence. He recalled receiving an updated file before the meeting. Yet he had left the company after a dispute about wages. The buyer's counsel questioned his motive. He admitted his resentment but refused to claim certainty he lacked. He remembered printing the file. He could not remember who had carried the pages into the room.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-d5620a7f-f832-4088-b2a2-4c1cecbcb16e.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The colleague agreed to give evidence. He recalled receiving an updated file before the meeting. Yet he had left the company after a dispute about wages. The buyer's counsel questioned his motive. He admitted his resentment but refused to claim certainty he lacked. He remembered printing the file. He could not remember who had carried the pages into the room.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-03.json",
+  "originalGenerationRecordSha256": "a54da390c8b10562c2eaa6ca8c542851e834c3b2bcc9c9b14d8e4a5876af5fee",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-03.png",
+  "originalImageSha256": "07f5d8bc8ad81849b13a1f692552dd9c19dfefd033abf423d60af826ebb0ad98",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 620,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

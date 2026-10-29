@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-poem-01-01",
+  "bookId": "intermediate-poem-01",
+  "page": 1,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: An original editorial watercolor and gouache illustration for teenagers: a quiet school garden at dawn, one open flower and several closed buds, subtle cutaway soil showing strong growing roots. A thoughtful Korean teenager with short black hair watches from a bench. Muted sage green, dusty rose and warm cream. Mature, poetic, no cute mascots. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"Not Yet in Bloom\", smaller page heading \"Not Yet in Bloom\" (omit repeated heading if identical), and page indicator \"1 / 1\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nThe garden does not keep a clock.\nOne flower opens; others wait.\nBeneath the soil, a quiet root\ncan grow without a single cheer.\n\nI need not race the morning light\nor borrow someone else's spring.\nMy steady effort has a place.\nNot yet in bloom is still alive.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-4baa09a5-7f7a-4827-9f05-815a33b33152.png",
+  "target": "images/intermediate-poem-01-01.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

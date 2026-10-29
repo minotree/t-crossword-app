@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-39",
+  "text": "Give yourself time to think it through.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-39-3b0404a1bdb94de3.mp3",
+  "sha256": "3b0404a1bdb94de391dcc6b8ded5074a5d8b46c56bea490d3029d00db682da55",
+  "textSha256": "1ed8fddf18c901689892c9d8e8207cefc5cf623efbb2585e77d89571d40eb5d1",
+  "bytes": 19584,
+  "seconds": 2.448,
+  "inputKey": "6cce5c56d48e3d26064f06276ad84dc0dd88178fdd374bfd4a1df079705e90e3",
+  "phonemes": [
+    "ɡˈɪv jəɹsˈɛlf tˈIm tə θˈɪŋk ɪt θɹˈu."
+  ],
+  "missingPhonemeTokens": []
+}

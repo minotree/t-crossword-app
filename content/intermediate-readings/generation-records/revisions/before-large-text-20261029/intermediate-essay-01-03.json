@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-essay-01-03",
+  "bookId": "intermediate-essay-01",
+  "page": 3,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same Korean teenage girl with chin-length black hair and a plain navy cardigan, working together with a teenage friend over a science notebook in a bright school library. Mature editorial gouache with soft daylight, indigo, sage and warm cream, hopeful and respectful, no childish mascots and no readable text. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"More Than a Grade\", smaller page heading \"What Remained\" (omit repeated heading if identical), and page indicator \"3 / 3\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nThe next day, I asked for advice and worked through one difficult problem with a friend. My grade did not change, but my attitude did. A result can show where I need practice; it cannot measure my entire future. Now I keep that test beside my notes. It reminds me to value progress, accept help, and continue learning.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-f469dc72-2273-483c-a0f4-a340acc407ea.png",
+  "target": "images/intermediate-essay-01-03.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

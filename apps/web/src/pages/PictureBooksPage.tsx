@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { pictureBooks } from '../data/pictureBooks.js';
+import { PictureBookAudio } from '../components/PictureBookAudio.js';
 
 const levels = [
   { key: 'beginner', label: '초급' },
@@ -71,6 +72,7 @@ export function PictureBooksPage() {
           <BookImage key={selectedPage.image} image={selectedPage.image} title={selectedPage.title} />
           <p lang="en" className="sr-only">{selectedPage.text}</p>
         </div>
+        <PictureBookAudio key={`${selectedBook.id}-${pageIndex}`} id={`${selectedBook.id}-${String(pageIndex + 1).padStart(2, '0')}`} text={selectedPage.text} />
         <details key={selectedPage.image} className="mt-4 rounded-xl border border-slate-200 bg-white p-4">
           <summary className="cursor-pointer text-sm font-bold">해석 보기</summary>
           <p lang="ko" className="mt-3 whitespace-pre-line text-base leading-loose">{selectedPage.translation}</p>

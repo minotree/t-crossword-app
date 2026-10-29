@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-23",
+  "text": "Your careful thinking helped you find the answer.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-23-df6b42efb0f622a6.mp3",
+  "sha256": "df6b42efb0f622a606d36ad387290648e233219b9799f483e9506142a67b719c",
+  "textSha256": "37d7c8523cd3b50aa5c3bf160030ed94c79e5162ac46e0e0bdc90db6ff957029",
+  "bytes": 25344,
+  "seconds": 3.168,
+  "inputKey": "4a132667241ae193b2c7deaca1b5dc7f8757283c704ad3b10f1028f69db9c398",
+  "phonemes": [
+    "jˌʊɹ kˈɛɹfᵊl θˈɪŋkɪŋ hˈɛlpt ju fˈInd ði ˈænsəɹ."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-05",
+  "text": "Another English word is starting to feel familiar.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-05-b3b4b74fe8137aec.mp3",
+  "sha256": "b3b4b74fe8137aec034647f10bd4ba4db3700be5c7403c31cd64b6e38a1b3914",
+  "textSha256": "373cbee2a6d5ea0bd7106362e938f889af982d251a310efc126fc7b56b63810f",
+  "bytes": 28032,
+  "seconds": 3.504,
+  "inputKey": "c10f5343042d4796c909a249336e3aa69ff3dad6eea2470e55a573ce9a484624",
+  "phonemes": [
+    "ənˈʌðəɹ ˈɪŋɡlɪʃ wˈɜɹd ɪz stˈɑɹTɪŋ tə fˈil fəmˈɪljəɹ."
+  ],
+  "missingPhonemeTokens": []
+}

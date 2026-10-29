@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-46",
+  "text": "You might hear this word in a conversation someday.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-46-9f3c693a9660dac9.mp3",
+  "sha256": "9f3c693a9660dac9fb46dc637c168d1ffb7bfe1e61f9b2e2fcafeea7be95b816",
+  "textSha256": "3370a42be6d3f564212a103c66fa93e74b530bbeb03b8ccea968afa8fc504b66",
+  "bytes": 27840,
+  "seconds": 3.48,
+  "inputKey": "b23e7fc10e14cda1a3bb9f51a48be9dd45aff659ab6856475197416d1cbd45f9",
+  "phonemes": [
+    "jˌu mˌIt hˈɪɹ ðɪs wˈɜɹd ɪn ɐ kˌɑnvəɹsˈAʃən sˈʌmdˌA."
+  ],
+  "missingPhonemeTokens": []
+}

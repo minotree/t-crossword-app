@@ -3,6 +3,7 @@ import { Button } from '@toss/tds-mobile';
 import type { DifficultyLevel } from '@t-crossword/core';
 import { isRecord } from '@t-crossword/contracts';
 import preparedBooks from '../data/picture-books.json';
+import { PictureBookAudio } from './PictureBookAudio.js';
 
 export interface PictureBook {
   id: string; level: Exclude<DifficultyLevel, 'special'>; title: string; koreanTitle: string; genre: string;
@@ -162,6 +163,7 @@ export function PictureBooks({ level, onLevelChange, selectedId, pageIndex, onSe
         </nav>}
       </div>
       <p className="sr-only" lang="en">{page.text}</p>
+      <PictureBookAudio key={`${selected.id}-${pageIndex}`} id={`${selected.id}-${String(pageIndex + 1).padStart(2, '0')}`} text={page.text} />
       <details key={pageIndex}><summary>해석 보기</summary><p lang="ko">{page.translation}</p></details>
       <div className="reading-actions">
         <Button size="small" variant="weak" onClick={() => onSelect(null)}>목록으로</Button>

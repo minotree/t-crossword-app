@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-20",
+  "text": "You kept learning even on a busy day.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-20-073c33abee9dc3c6.mp3",
+  "sha256": "073c33abee9dc3c69f63cce28ce95a233b0788b2e9b499232f96ec6a6d52b328",
+  "textSha256": "c07f294792d5826d251ac9544861c3b5d559a0170e5ffa1354e4736a5e2bbdde",
+  "bytes": 22080,
+  "seconds": 2.76,
+  "inputKey": "738ca3cd6575ad5ebc8db83ee37d323ee9f09155cbf697eb7b4bd3b1b007c94e",
+  "phonemes": [
+    "jˌu kˈɛpt lˈɜɹnɪŋ ˈivən ˌɔn ɐ bˈɪzi dˈA."
+  ],
+  "missingPhonemeTokens": []
+}

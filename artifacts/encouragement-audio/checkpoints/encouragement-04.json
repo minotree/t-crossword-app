@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-04",
+  "text": "You found a new way to express yourself.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-04-13c163e0c6fcfb24.mp3",
+  "sha256": "13c163e0c6fcfb2455479689fb4722faa3f01b44b77a4385b96462867b2bb9f9",
+  "textSha256": "152f0b6646017cd0b5b38c41c7839eed904efa5353a1eceb9509ddd128ec8ac2",
+  "bytes": 21504,
+  "seconds": 2.688,
+  "inputKey": "71e1c38b30064df15ed10aabeeb61974cb103df8ce29313f80f9cf6180a4aa6c",
+  "phonemes": [
+    "jˌu fˈWnd ɐ nˈu wˈA tʊ ɪkspɹˈɛs jəɹsˈɛlf."
+  ],
+  "missingPhonemeTokens": []
+}

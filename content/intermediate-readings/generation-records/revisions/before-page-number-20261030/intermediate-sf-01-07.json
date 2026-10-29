@@ -1,0 +1,30 @@
+{
+  "id": "intermediate-sf-01-07",
+  "bookId": "intermediate-sf-01",
+  "page": 7,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same woman teacher in rust cardigan, same teenage boy in navy blazer and silver watch, and ponytailed girl in gray cardigan in a bright school lab the next morning. Large oval gate visibly disconnected and dark, small brass-and-teal receiver alone on a separate desk beside a blank paper and pen. Original young-adult scientific mystery gouache, optimistic teal and amber, no readable labels. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"The Return Message\" (omit repeated heading if identical), and page indicator \"7 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nThe next morning, our science coach invited us back. The gate remained without power. Only the small machine was running, without any risk on a separate system. During the night, it had recorded a message moving toward yesterday. 'We cannot send a person,' she explained. 'But perhaps we can send a picture.' Beside the machine lay a blank sheet of paper and a pen.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-29fd453c-17b1-43e6-921d-b8e2814d1def.png",
+  "target": "images/intermediate-sf-01-07-large-text-v2.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The next morning, our science coach invited us back. The gate remained without power. Only the small machine was running, without any risk on a separate system. During the night, it had recorded a message moving toward yesterday. 'We cannot send a person,' she explained. 'But perhaps we can send a picture.' Beside the machine lay a blank sheet of paper and a pen.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-sf-01-07.json",
+  "originalGenerationRecordSha256": "1795ae3783472a57b0692990733155f8c6c755a375726456f2a6598ed7208d16",
+  "originalImage": "content/intermediate-readings/images/intermediate-sf-01-07.png",
+  "originalImageSha256": "5a066725c8115016cc5618e84571c70ca25a120ad2e01715d14d1a1b3b220fe5",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 730,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

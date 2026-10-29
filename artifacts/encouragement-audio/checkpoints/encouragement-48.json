@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-48",
+  "text": "You can find new words in everyday life.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-48-5084bd220c28a2e7.mp3",
+  "sha256": "5084bd220c28a2e7552dde5594678bbe2ea7deceeba447c64717be39acb78609",
+  "textSha256": "51d5e27abe77d582a275f679dc0d31a16e98553e64962dd546990d79c979857b",
+  "bytes": 23232,
+  "seconds": 2.904,
+  "inputKey": "7d3c746af26836fe3eb75a430609ca33c3770fe0517f8661776e5c948e140fad",
+  "phonemes": [
+    "jˌu kæn fˈInd nˈu wˈɜɹdz ɪn ˈɛvɹidˌA lˈIf."
+  ],
+  "missingPhonemeTokens": []
+}

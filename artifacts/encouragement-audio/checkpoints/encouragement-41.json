@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-41",
+  "text": "Have you ever seen this word before?",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-41-1bedf2bfe24f94e7.mp3",
+  "sha256": "1bedf2bfe24f94e7446a126d4846b779ecee686473dce591521842d08eb56b72",
+  "textSha256": "39ff0cb212a49faaed39b5190308d1570f1c05431e34a9754697613a70174c75",
+  "bytes": 20352,
+  "seconds": 2.544,
+  "inputKey": "d6b27b3c0edb29d138b818867e25af5c8959af157c33b8e1bca652e2e9a01fed",
+  "phonemes": [
+    "hˌæv ju ˈɛvəɹ sˈin ðɪs wˈɜɹd bəfˈɔɹ?"
+  ],
+  "missingPhonemeTokens": []
+}

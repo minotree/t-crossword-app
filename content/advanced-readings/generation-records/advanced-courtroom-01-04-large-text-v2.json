@@ -1,0 +1,30 @@
+{
+  "id": "advanced-courtroom-01-04",
+  "bookId": "advanced-courtroom-01",
+  "page": 4,
+  "target": "images/advanced-courtroom-01-04-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. Witness acknowledging uncertainty with a calm open hand, counsel studying a printer log in a folder, owner concerned but composed, judge attentive. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"The Question\" (omit duplicate heading if identical), page indicator \"4 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nUnder further questioning, the witness conceded that the printer's clock had been inaccurate. A time recorded on the print log could not settle the sequence. The owner felt her case collapse. Her counsel asked for the original records rather than a convenient conclusion. An error could weaken one inference without making every other piece of evidence false.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-82b0484a-87cf-4d9e-a24c-8c94adc1f5c3.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Under further questioning, the witness conceded that the printer's clock had been inaccurate. A time recorded on the print log could not settle the sequence. The owner felt her case collapse. Her counsel asked for the original records rather than a convenient conclusion. An error could weaken one inference without making every other piece of evidence false.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-04.json",
+  "originalGenerationRecordSha256": "0f3edbe616831e78ddbccd68b7cae3400d806a20ef4c297b4a39d960fafb8cfd",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-04.png",
+  "originalImageSha256": "c36638692819eae4c8f631366ef95d4f7caea7f6126204c71b21f333a648f1bf",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 643,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

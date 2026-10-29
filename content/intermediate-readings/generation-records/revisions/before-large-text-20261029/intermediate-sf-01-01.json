@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-sf-01-01",
+  "bookId": "intermediate-sf-01",
+  "page": 1,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Original young-adult science-fiction gouache illustration, atmospheric teal and amber: a Korean teenage boy with short black hair, navy school blazer and a simple silver wristwatch holds a freshly printed photograph beside a compact brass-and-teal signal receiver. Behind him is a dormant oval experimental gate made of two metal arcs in a realistic school laboratory. Printed photo has indistinct handwriting, no legible extra text. Tense but not horror. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"The Message\" (omit repeated heading if identical), and page indicator \"1 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nAt eleven, the machine in our school laboratory produced a photograph. Our science coach had built it to receive messages, not pictures. The photograph showed a note in my own writing: 'Do not open the gate at noon. Ask for help.' Below it was tomorrow's date. I checked my watch. We had one hour before the first test of the gate.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-507e1640-060a-445e-a9ac-7075ed739576.png",
+  "target": "images/intermediate-sf-01-01.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

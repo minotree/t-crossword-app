@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-45",
+  "text": "Every word has something interesting to explore.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-45-f78c690e1545ce97.mp3",
+  "sha256": "f78c690e1545ce973965bb15323a83b74dc3960f70b35f5d639e7102e2692ef9",
+  "textSha256": "e5cc9258200277cfaf0ff6f4e4fa1098030e59ed536a45a613a4432a74e4c5bf",
+  "bytes": 26496,
+  "seconds": 3.312,
+  "inputKey": "e3bfc737cb6b104122f87bf1cd68d0d1cad31fdf8f186fd893e9db0e0bc30efa",
+  "phonemes": [
+    "ˈɛvəɹi wˈɜɹd hæz sˈʌmθˌɪŋ ˈɪntɹəstɪŋ tʊ ɪksplˈɔɹ."
+  ],
+  "missingPhonemeTokens": []
+}

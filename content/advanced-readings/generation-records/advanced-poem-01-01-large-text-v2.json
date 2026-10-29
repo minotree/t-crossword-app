@@ -1,0 +1,30 @@
+{
+  "id": "advanced-poem-01-01",
+  "bookId": "advanced-poem-01",
+  "page": 1,
+  "target": "images/advanced-poem-01-01-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Adult literary illustration, a Korean woman in her forties with short dark hair and a plain blue shirt. A quiet kitchen at night, one folded handwritten letter beneath a ceramic plate, blank paper beside it, the woman pausing without posting anything. Indigo shadows and warm amber light. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Letter I Did Not Send\", smaller page heading \"The Letter I Did Not Send\" (omit duplicate heading if identical), page indicator \"1 / 1\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nI kept your letter beneath a plate,\nas though its weight could settle mine.\nThe seasons altered; neither name\ngrew less familiar on the page.\n\nTonight I write no grand defense,\nno verdict on our separate grief.\nI leave a margin for your silence\nand fold my need to be forgiven.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-13cd3d9c-acf0-4227-a3f7-c39ac4bd2feb.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "I kept your letter beneath a plate,\nas though its weight could settle mine.\nThe seasons altered; neither name\ngrew less familiar on the page.\n\nTonight I write no grand defense,\nno verdict on our separate grief.\nI leave a margin for your silence\nand fold my need to be forgiven.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-poem-01-01.json",
+  "originalGenerationRecordSha256": "80104e04c54c73fb9d89f05102c9f5e2a5230527c2b319d6865ed5d1e0847c48",
+  "originalImage": "content/advanced-readings/images/advanced-poem-01-01.png",
+  "originalImageSha256": "0ab7b84ec5db062ca9234eac1068a1422d5c40ec53be98ef64b923fb36c18001",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 688,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

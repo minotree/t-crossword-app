@@ -21,7 +21,13 @@ for book in books:
         evidence = json.loads(record.read_text(encoding='utf-8'))
         assert evidence['target'] == page['image']
         assert evidence['bookId'] == book['id'] and evidence['page'] == number
-        assert evidence['prompt'] and evidence['tool'] == 'ImageGen'
+        assert evidence['prompt'] and evidence['tool'] in ('ImageGen', 'Pillow typography reflow')
+        if evidence['tool'] == 'Pillow typography reflow':
+            import hashlib
+            original_record = ROOT.parents[1] / evidence['originalGenerationRecord']
+            assert original_record.resolve().is_relative_to(ROOT.resolve())
+            assert hashlib.sha256(original_record.read_bytes()).hexdigest() == evidence['originalGenerationRecordSha256']
+            assert evidence['renderedText'] == page['text']
         creation_prompt = evidence.get('creationPrompt', evidence['prompt'])
         assert any(page['text'] in prompt for prompt in (creation_prompt, evidence['prompt']))
         assert book['title'] in creation_prompt

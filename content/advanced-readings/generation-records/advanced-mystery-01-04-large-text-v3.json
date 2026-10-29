@@ -1,0 +1,32 @@
+{
+  "id": "advanced-mystery-01-04",
+  "bookId": "advanced-mystery-01",
+  "page": 4,
+  "target": "images/advanced-mystery-01-04-large-text-v3.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. An elderly manager presenting a small wooden storage box, letters and a faded photograph inside, the shopkeeper and young man together in a modest sitting room. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"What Remained\" (omit duplicate heading if identical), page indicator \"4 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe building had been removed, but its former manager still lived nearby. With the mother's permission, they asked about the boxes. The manager had preserved several unclaimed items during the move. One box matched the key. Inside lay a bundle of letters and a photograph of the shopkeeper's father standing beside a woman she did not recognize.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-f169097e-45fa-4175-a289-f9399ac5490b.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The building had been removed, but its former manager still lived nearby. With the mother's permission, they asked about the boxes. The manager had preserved several unclaimed items during the move. One box matched the key. Inside lay a bundle of letters and a photograph of the shopkeeper's father standing beside a woman she did not recognize.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-04.json",
+  "originalGenerationRecordSha256": "b93f06490183a60cbb48ca13618bfdaeb739f798f96782c36c04e3ef319bf83a",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-04.png",
+  "originalImageSha256": "d13d470902da1dda5e254a53c69f7e09f54ffb93440535e44d48eacd867b8110",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 653,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

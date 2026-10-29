@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-martial-01-04",
+  "bookId": "intermediate-martial-01",
+  "page": 4,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Entirely original historical martial-arts fantasy for teenage readers, cinematic literary gouache, misty jade mountains and warm gold light, no references to existing franchises. Recurring protagonist: an East Asian teenage boy with black hair tied low, indigo training robes, gray cloth belt and a plain wooden staff. His master: an elderly East Asian woman with white hair, dark green outer robe and a wooden cane. Rival: an East Asian teenage girl with braided black hair and ivory training robes. Non-graphic martial arts, no gore, no recognizable emblems. Scene: A cart wheel caught at a gap on the bridge, boy in indigo and girl in ivory assessing the situation together, farmer keeping children safely on the bank, no dangerous acrobatics. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"The Quiet Bridge\". Under it print smaller page heading \"A Change of Plan\" (omit it if identical to book title), and page indicator \"4 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nOne wheel caught between two boards. The cart stopped, and a child began to cry. I could not move the weight alone. The girl in white had returned for her forgotten bag. Without another word, she put it down and joined me. Our training had taught us balance, but now we needed something less grand: a plan and another pair of hands.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-727e02d8-78da-4fc9-8a32-e5afbcab9abe.png",
+  "target": "images/intermediate-martial-01-04-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "One wheel caught between two boards. The cart stopped, and a child began to cry. I could not move the weight alone. The girl in white had returned for her forgotten bag. Without another word, she put it down and joined me. Our training had taught us balance, but now we needed something less grand: a plan and another pair of hands.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-martial-01-04.json",
+  "originalGenerationRecordSha256": "17bef652794fd929e7d97af79c8443889645d3121a8c6e4203c8c281a88fc27f",
+  "originalImage": "content/intermediate-readings/images/intermediate-martial-01-04.png",
+  "originalImageSha256": "a5b42a7b7a7407314684d56d8fc5abd91ebe671515ce5dee70c9188208febde2",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 822,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

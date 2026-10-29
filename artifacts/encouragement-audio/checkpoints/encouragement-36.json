@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-36",
+  "text": "Some words take more practice to remember.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-36-99764c58038c5364.mp3",
+  "sha256": "99764c58038c53647b548506bfeecd127c10a4dce53bd401a336ee14e04ea43a",
+  "textSha256": "e68df8fb8f6b84fa6db5844a353e11bab006e48047f45ace2018042c156e845e",
+  "bytes": 23424,
+  "seconds": 2.928,
+  "inputKey": "1123c73976ff449b8dd702fcb3f6aeac9b1db121ecc81d16e478715a6406a207",
+  "phonemes": [
+    "sˌʌm wˈɜɹdz tˈAk mˈɔɹ pɹˈæktəs tə ɹəmˈɛmbəɹ."
+  ],
+  "missingPhonemeTokens": []
+}

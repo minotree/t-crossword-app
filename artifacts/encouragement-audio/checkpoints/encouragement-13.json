@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-13",
+  "text": "You came back to practice again today.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-13-ee670586499714da.mp3",
+  "sha256": "ee670586499714daeddbec4e82bf23b5f7e79e6e8dc7f75225ace0f9aebd5412",
+  "textSha256": "d1ac263d9a7fef5f4aa4eb7747330e6a76ac5e4ea2ced8ef5fe7eded94019693",
+  "bytes": 21504,
+  "seconds": 2.688,
+  "inputKey": "84ad4da9eaa788175dec064136c2a5ea1bc9bdf5a802bb4b60d2a3ffe3179b11",
+  "phonemes": [
+    "jˌu kˈAm bˈæk tə pɹˈæktəs əɡˈɛn tədˈA."
+  ],
+  "missingPhonemeTokens": []
+}

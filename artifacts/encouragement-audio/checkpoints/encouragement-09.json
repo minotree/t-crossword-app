@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-09",
+  "text": "This new word gives you another way to communicate.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-09-8eb234cc9f28ced2.mp3",
+  "sha256": "8eb234cc9f28ced2448dc7e8bcd1344ef7082b4517f02785ea3c8e58a647925c",
+  "textSha256": "87534ebf5fbb2b9279169fc2db266120f6374792157591faa7cde3c3f36ba693",
+  "bytes": 28800,
+  "seconds": 3.6,
+  "inputKey": "a61e285d386d13bd43875d09cdb3536afcf59653cbb7c7ab59baca133c660d34",
+  "phonemes": [
+    "ðˌɪs nˈu wˈɜɹd ɡˈɪvz ju ənˈʌðəɹ wˈA tə kəmjˈunəkˌAt."
+  ],
+  "missingPhonemeTokens": []
+}

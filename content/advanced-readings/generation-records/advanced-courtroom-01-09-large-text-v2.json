@@ -1,0 +1,30 @@
+{
+  "id": "advanced-courtroom-01-09",
+  "bookId": "advanced-courtroom-01",
+  "page": 9,
+  "target": "images/advanced-courtroom-01-09-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. The owner and former colleague outside the generic courthouse on ordinary stone steps, each holding a folder, reflective rather than celebrating, no national architecture or press crowd. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"The Decision\" (omit duplicate heading if identical), page indicator \"9 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe judge concluded that the parties had adopted the revised schedule through their documented conduct. The severe penalty claim failed, but the printing company remained liable for the loss caused by its later delay. The owner heard both parts. Outside, her colleague asked whether she called that a victory. She said she needed time to decide what the word meant.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-d2c9f1d2-0451-4943-9e87-cf6e32f5dad8.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The judge concluded that the parties had adopted the revised schedule through their documented conduct. The severe penalty claim failed, but the printing company remained liable for the loss caused by its later delay. The owner heard both parts. Outside, her colleague asked whether she called that a victory. She said she needed time to decide what the word meant.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-09.json",
+  "originalGenerationRecordSha256": "8a2ee926f74e8b9c2577f6716dbf2518dd6a2674174ebad1e33a871045a4e6b3",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-09.png",
+  "originalImageSha256": "0a79d87ac96af11e63f2d9318295ba2d54019b3b96169a3e7872e140fc42090a",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 685,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

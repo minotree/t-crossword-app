@@ -1,0 +1,30 @@
+{
+  "id": "intermediate-essay-01-02",
+  "bookId": "intermediate-essay-01",
+  "page": 2,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same Korean teenage girl, chin-length straight black hair and plain navy cardigan, at her bedroom desk in evening lamplight, studying a notebook with a simple chart and science sketches. Mature young-adult editorial gouache, indigo blue, amber and warm cream, thoughtful hopeful expression, no readable lettering. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"More Than a Grade\", smaller page heading \"A New Question\" (omit repeated heading if identical), and page indicator \"2 / 3\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nThat evening, I opened my notebook again. I found a clear chart, a clear record of an experiment, and a question I had once been afraid to ask. None of these appeared in the final grade. Instead of asking why I was not perfect, I asked what I could understand better. The question gave me a way forward.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-3ae9561a-af78-42d6-8742-201c8aef083c.png",
+  "target": "images/intermediate-essay-01-02-large-text-v2.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "That evening, I opened my notebook again. I found a clear chart, a clear record of an experiment, and a question I had once been afraid to ask. None of these appeared in the final grade. Instead of asking why I was not perfect, I asked what I could understand better. The question gave me a way forward.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-essay-01-02.json",
+  "originalGenerationRecordSha256": "a1dbbcd69997c939b23b14a3a70caff41d9707e7d68813bde5b78c715da9787f",
+  "originalImage": "content/intermediate-readings/images/intermediate-essay-01-02.png",
+  "originalImageSha256": "3d47b4794e0ad60a0419665bd30bffa24d0e6560394e0e3d911ef2715f8c9131",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 781,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-30T01:30:53.120477+09:00",
+  "config": {
+    "model": "Qwen/Qwen3-TTS-12Hz-1.7B-Base",
+    "modelRevision": "fd4b254389122332181a7c3db7f27e918eec64e3",
+    "device": "cpu",
+    "dtype": "float32",
+    "attention": "sdpa",
+    "language": "English",
+    "seed": 20261029,
+    "maxNewTokens": 4096,
+    "generatorVersion": 1,
+    "qwenTtsVersion": "0.1.1",
+    "torchVersion": "2.15.0+cpu",
+    "sampleRate": 24000,
+    "bitrateKbps": 64
+  },
+  "generatorSha256": "2c3a10049476edcb944fed749632b8aa75c2d403171fcfa376edc809957db74d",
+  "sourceSha256": {
+    "content/beginner-poems/poems.json": "f9dd12d1dab69ecc1544da1ae71b86801b687ae842fff8bfacae15096ff1f910",
+    "content/intermediate-readings/books.json": "cb7b50d848b9e3ba0d36eddcef647cf61f5c109b9760bcf0f3debf20e85d7ef1",
+    "content/advanced-readings/books.json": "a476eb443e490f639fe7c5186edcf9390ca49ecef715f0d7136b87665f2c03ba"
+  },
+  "completedQwenPages": 81,
+  "elapsedSeconds": 8110.95,
+  "listeningReview": "pending",
+  "deviceReview": "pending",
+  "deployment": "not-performed",
+  "pages": 119,
+  "totalBytes": 17405952,
+  "totalSeconds": 2175.744
+}

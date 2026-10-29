@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-18",
+  "text": "You can always pick up where you left off.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-18-69cab9ce7a5b1c21.mp3",
+  "sha256": "69cab9ce7a5b1c21eee0c2be4057ed786fb1a479a88541519edabd2e8e315fa2",
+  "textSha256": "88ac591a5f40e09540a31fba0a68ea8be16a84c63b5d1225ba427b49ba8b8d06",
+  "bytes": 20928,
+  "seconds": 2.616,
+  "inputKey": "2ca535ecee9e9601262badb2851b861c2297b909302f6c6bf493658794e13995",
+  "phonemes": [
+    "jˌu kæn ˈɔlwˌAz pˈɪk ˌʌp wˌɛɹ ju lˈɛft ˈɔf."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,32 @@
+{
+  "id": "advanced-courtroom-01-05",
+  "bookId": "advanced-courtroom-01",
+  "page": 5,
+  "target": "images/advanced-courtroom-01-05-large-text-v3.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. Both counsel examining a digital record displayed privately on a laptop at the courtroom table, judge in background, no readable screen or jurisdictional symbols. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"A Separate Record\" (omit duplicate heading if identical), page indicator \"5 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe original message records contained an attachment with the revised clause. A reply from the buyer's office acknowledged receipt, but receipt was not necessarily consent. The judge permitted both sides to examine the record under the city's fictional procedure. The buyer's counsel pointed out that the reply had come from an assistant without permission to approve contract changes.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-cd3a0ee7-941f-4f8e-a3fc-1e1a63441dfa.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The original message records contained an attachment with the revised clause. A reply from the buyer's office acknowledged receipt, but receipt was not necessarily consent. The judge permitted both sides to examine the record under the city's fictional procedure. The buyer's counsel pointed out that the reply had come from an assistant without permission to approve contract changes.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-05.json",
+  "originalGenerationRecordSha256": "bc17be6e6621dccdf216e405a39fba559e4f7d0f383c7342ba4c06a868345e5e",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-05.png",
+  "originalImageSha256": "5fcef4fe4c2e05a88e4f86d48d67dee72505c160e462ac868833188da92645e9",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 612,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

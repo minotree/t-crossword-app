@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-11",
+  "text": "You made time to learn something today.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-11-af1fe19d09376c3c.mp3",
+  "sha256": "af1fe19d09376c3cd707786f76e4b660474d7f176d3dabc4c9264360ba3c59a2",
+  "textSha256": "6c8aa0d7e3cd1a79ec0676702dd12f5e2379b6df59d4f0379f0afccf9b334628",
+  "bytes": 20160,
+  "seconds": 2.52,
+  "inputKey": "6e4d14c5a6d3c783d91737670276fe065d18a2a385c920cd2379fff4e2b1a90b",
+  "phonemes": [
+    "jˌu mˌAd tˈIm tə lˈɜɹn sˈʌmθˌɪŋ tədˈA."
+  ],
+  "missingPhonemeTokens": []
+}

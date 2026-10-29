@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-17",
+  "text": "You are finding a study routine that works for you.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-17-ccaf31d4be127158.mp3",
+  "sha256": "ccaf31d4be1271586c22fb372ce4e0ade408f8d3329ed529276419e6d4ec3c96",
+  "textSha256": "cc61d265860c3acc48147b4539209644d2aafc882f139d0820ffd925dfdd9ca5",
+  "bytes": 26112,
+  "seconds": 3.264,
+  "inputKey": "9ccbaab91f29903dcbd6bc8c412d7209393f6fe370c434a107c8489090e3f0d3",
+  "phonemes": [
+    "jˌu ɑɹ fˈIndɪŋ ɐ stˈʌdi ɹutˈin ðæt wˈɜɹks fɔɹ ju."
+  ],
+  "missingPhonemeTokens": []
+}

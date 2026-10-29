@@ -44,6 +44,39 @@ async function type(input: HTMLInputElement, value: string) {
   });
 }
 
+it('toggles encouragement translation and collapses it for the next puzzle', async () => {
+  const { puzzle } = fixture();
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={async () => puzzle} /></TDSMobileAITProvider>));
+  await click('퀴즈 시작');
+  const aside = () => container.querySelector('.quiz-encouragement');
+  const scroller = container.querySelector<HTMLElement>('.quiz-page');
+  if (!scroller) throw new Error('Quiz scroller missing');
+  Object.defineProperty(scroller, 'scrollHeight', { configurable: true, value: 700 });
+  const scroll = vi.fn();
+  scroller.scrollTo = scroll;
+  expect(aside()?.querySelector('[lang="en"]')?.textContent).toBe('You added a new word to your vocabulary today.');
+  const translation = () => aside()?.querySelector<HTMLParagraphElement>('[lang="ko"]');
+  expect(translation()?.hidden).toBe(true);
+  expect(aside()?.querySelector('button')?.getAttribute('aria-expanded')).toBe('false');
+  await click('해석 보기');
+  expect(scroll).toHaveBeenLastCalledWith({ top: 700, behavior: 'smooth' });
+  expect(translation()?.hidden).toBe(false);
+  expect(translation()?.textContent).toBe('오늘 새로운 단어 하나를 어휘 목록에 추가했어요.');
+  expect(aside()?.querySelector('button')?.getAttribute('aria-controls')).toBe(translation()?.id);
+  await click('해석 닫기');
+  expect(scroll).toHaveBeenLastCalledWith({ top: 0, behavior: 'smooth' });
+  expect(translation()?.hidden).toBe(true);
+  vi.mocked(window.matchMedia).mockReturnValueOnce({ ...window.matchMedia('(prefers-reduced-motion: reduce)'), matches: true });
+  await click('해석 보기');
+  expect(scroll).toHaveBeenLastCalledWith({ top: 700, behavior: 'auto' });
+  scroll.mockClear();
+  await click('새 퍼즐');
+  expect(scroll).not.toHaveBeenCalled();
+  expect(aside()?.querySelector('[lang="en"]')?.textContent).toBe("Now you know something you didn't know before.");
+  expect(translation()?.hidden).toBe(true);
+  expect(aside()?.querySelector('button')?.getAttribute('aria-expanded')).toBe('false');
+});
+
 it('selects special difficulty, counts only its words, and exposes the content notice', async () => {
   const { puzzle } = fixture();
   const special = defaultVocabList.find(word => word.level === 'special');
@@ -226,20 +259,39 @@ it('keeps the PWA welcome flow and changes puzzle settings inside the quiz witho
   expect(container.querySelector('.quiz-summary')?.textContent).toContain('새 퍼즐');
   expect(container.querySelector('[aria-label="퍼즐 설정"]')).not.toBeNull();
   await click('중급');
-  expect(interstitial.show).toHaveBeenCalledTimes(1);
+  expect(interstitial.show).not.toHaveBeenCalled();
   expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 10, [], [], []);
   await click('8×8');
-  expect(interstitial.show).toHaveBeenCalledTimes(2);
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
   expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 8, [], [], []);
   await click('중급');
   await click('8×8');
-  expect(interstitial.show).toHaveBeenCalledTimes(2);
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
   expect(generatePuzzle).toHaveBeenCalledTimes(3);
   await act(async () => home.click());
   await click('퀴즈 시작');
   expect(generatePuzzle).toHaveBeenCalledTimes(3);
-  expect(interstitial.show).toHaveBeenCalledTimes(2);
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
   expect(container.querySelector('nav [aria-current="page"]')?.textContent).toContain('퀴즈 풀기');
+  await click('새 퍼즐');
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
+  await click('새 퍼즐');
+  expect(interstitial.show).toHaveBeenCalledTimes(2);
+});
+
+it('does not count failed puzzle generation toward the two-puzzle ad interval', async () => {
+  interstitial.show.mockClear();
+  const { puzzle } = fixture();
+  const generatePuzzle = vi.fn().mockResolvedValue(puzzle);
+  await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
+  await click('퀴즈 시작');
+  generatePuzzle.mockRejectedValueOnce(new Error('generation failed'));
+  await click('새 퍼즐');
+  expect(interstitial.show).not.toHaveBeenCalled();
+  await click('새 퍼즐');
+  expect(interstitial.show).not.toHaveBeenCalled();
+  await click('새 퍼즐');
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
 });
 
 it('confirms learning reset, preserves unrelated records, and leaves records intact when saving fails', async () => {
@@ -345,7 +397,7 @@ it.each(['beginner', 'intermediate', 'advanced'] as const)('restores the %s list
   titleRect.mockRestore();
   scrollerRect.mockRestore();
   scroller.scrollTop = 1100;
-  const listButton = container.querySelector<HTMLButtonElement>('.reading-actions button');
+  const listButton = Array.from(container.querySelectorAll<HTMLButtonElement>('.reading-actions button')).find(button => button.textContent === '목록으로');
   if (!listButton) throw new Error('List action missing');
   await act(async () => listButton.click());
   expect(container.querySelector('.book-list')).not.toBeNull();

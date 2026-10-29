@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-sf-01-04",
+  "bookId": "intermediate-sf-01",
+  "page": 4,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same teen boy with short black hair, navy blazer and silver watch, his ponytailed friend in gray cardigan holding his hand back in the school corridor, both watching through a lab window as blue light grows between twin metal arcs of an oval gate. Adult teacher nearby. Clear physical separation from danger, suspenseful young-adult SF gouache, teal and amber, no readable text. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"The Last Minute\" (omit repeated heading if identical), and page indicator \"4 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nDuring the last minute before noon, an alarm sounded inside the laboratory. The gate had its own battery. Its automatic test was still on the schedule. Through the window, we watched a blue light grow between the metal arms. I wanted to run inside. My friend caught my hand. 'Help is coming,' she said. 'Do not become another person who needs it.'\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-6033cf7f-7d7b-400c-b0e8-9d7638b75e71.png",
+  "target": "images/intermediate-sf-01-04-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "During the last minute before noon, an alarm sounded inside the laboratory. The gate had its own battery. Its automatic test was still on the schedule. Through the window, we watched a blue light grow between the metal arms. I wanted to run inside. My friend caught my hand. 'Help is coming,' she said. 'Do not become another person who needs it.'",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-sf-01-04.json",
+  "originalGenerationRecordSha256": "27e7e763a1783e29b851f6c8ff5a00d988cc89c608384718800f3b57f4d1b6c6",
+  "originalImage": "content/intermediate-readings/images/intermediate-sf-01-04.png",
+  "originalImageSha256": "028d47bd85cb1e93685cb3b0d1407490d439c337a546072ad1c957633fe75fcd",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 716,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

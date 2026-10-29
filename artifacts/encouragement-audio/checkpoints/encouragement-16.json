@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-16",
+  "text": "A few minutes of practice can make a difference.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-16-cfbb9820a004c161.mp3",
+  "sha256": "cfbb9820a004c161e3c1ced67271040550b9c191f1db4e84e78ea93d1ed90f46",
+  "textSha256": "8117e5e92dc6c07f40821468bad9e70c91f9bcabc1c2e46dd8957bcb914bbdaa",
+  "bytes": 24000,
+  "seconds": 3.0,
+  "inputKey": "bb2baead0ccce39358af059e5234e919505c23948f06474892cb1f29a70abfea",
+  "phonemes": [
+    "ɐ fjˈu mˈɪnəts ʌv pɹˈæktəs kæn mˌAk ɐ dˈɪfəɹəns."
+  ],
+  "missingPhonemeTokens": []
+}

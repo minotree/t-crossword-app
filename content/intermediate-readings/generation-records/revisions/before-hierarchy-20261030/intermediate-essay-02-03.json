@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-essay-02-03",
+  "bookId": "intermediate-essay-02",
+  "page": 3,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original teenage editorial gouache, natural sage and warm amber palette. A Korean teenage girl with a black ponytail, cream sweatshirt and dark green backpack. Contemporary everyday life, mature restrained illustration. Scene: Same girl walking home through a small green park at sunset, closed backpack, relaxed expression, no phone in hand. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"An Hour Without a Screen\". Under it print smaller page heading \"A Choice, Not a Rule\" (omit it if identical to book title), and page indicator \"3 / 3\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nI still like films and messages from friends. I do not need to fight technology. I need to choose how I use it. Now I leave my phone inside my bag during one short walk each day. Some days I notice very little. Even then, the quiet is mine, and I return home with room for another thought.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-4e6f5b2b-b3db-439e-a513-a3c4e38e5722.png",
+  "target": "images/intermediate-essay-02-03-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "I still like films and messages from friends. I do not need to fight technology. I need to choose how I use it. Now I leave my phone inside my bag during one short walk each day. Some days I notice very little. Even then, the quiet is mine, and I return home with room for another thought.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-essay-02-03.json",
+  "originalGenerationRecordSha256": "6b9cf3323c73b9002d849e26fbcfee31318b0b189cb17332699d71f211b32fc9",
+  "originalImage": "content/intermediate-readings/images/intermediate-essay-02-03.png",
+  "originalImageSha256": "1099d021aba860499dc88e2384d6937a120fb3c10e1e2d27e80837757efb8822",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 775,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

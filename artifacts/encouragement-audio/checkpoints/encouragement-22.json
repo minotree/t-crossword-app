@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-22",
+  "text": "You remembered the word at just the right moment.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-22-917e3c6f4705a414.mp3",
+  "sha256": "917e3c6f4705a414433c7fa858b1e41d1eb33a6d6caa64afeba8a167fe5088f2",
+  "textSha256": "197bdec987369a1249da7eafc13e794ed3a72a5cfbd03cce1c303409de3ecb02",
+  "bytes": 24000,
+  "seconds": 3.0,
+  "inputKey": "5c701594a328993bda40cb6b4c51119e6f3d2b405f43c4a9829da7da627107eb",
+  "phonemes": [
+    "jˌu ɹəmˈɛmbəɹd ðə wˈɜɹd æt ʤˈʌst ðə ɹˈIt mˈOmᵊnt."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-second-life-01-04",
+  "bookId": "intermediate-second-life-01",
+  "page": 4,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original coming-of-age second-life fantasy for teenagers, literary gouache, copper, sage and warm cream palette, invented historical setting with no existing franchise references. Recurring narrator: East Asian teenage prince with black hair half tied using a dark green ribbon, simple pale gold robe, carrying a small red notebook. Recurring clerk: older East Asian woman with gray-streaked hair in a dark blue robe. Grounded compassionate story, no violence or copied costumes or emblems. Scene: Older clerk and young prince comparing an old paper map and records at a simple market table, an empty field sketched on map, red notebook and small wooden markers, no readable labels. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"A Second Life, A Small Choice\". Under it print smaller page heading \"The Old Map\" (omit it if identical to book title), and page indicator \"4 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nThe clerk spread the map across a table. Its date was several years old. After a flood, the village had moved to higher ground. The new address had reached one office but not another. The driver had traveled to an empty field. I had imagined a secret enemy. Instead, we had found a lost message between two ordinary rooms.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-c5b0d008-ba4a-40ad-a3fe-4e2b9753f262.png",
+  "target": "images/intermediate-second-life-01-04-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The clerk spread the map across a table. Its date was several years old. After a flood, the village had moved to higher ground. The new address had reached one office but not another. The driver had traveled to an empty field. I had imagined a secret enemy. Instead, we had found a lost message between two ordinary rooms.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-second-life-01-04.json",
+  "originalGenerationRecordSha256": "fe0a8d98370327134c91a18e81dd721842094dcfd0ef1562eb29151a21ad5510",
+  "originalImage": "content/intermediate-readings/images/intermediate-second-life-01-04.png",
+  "originalImageSha256": "b76e85d91a12ab4c66fee656f7d5e14c8f0d399139f8c2fc55e87b3311b29d97",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 754,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

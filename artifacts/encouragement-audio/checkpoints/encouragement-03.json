@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-03",
+  "text": "This word might be useful someday.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-03-00e527423dde6e1a.mp3",
+  "sha256": "00e527423dde6e1a8c65d6fe37dc348f6d92804dc2b07a5c06af3eaaa03772a8",
+  "textSha256": "a9de7554665dd82f916e271fd0df6d41d79040d8ef988502255eb83d2ad73bd2",
+  "bytes": 20544,
+  "seconds": 2.568,
+  "inputKey": "54e3cefb7020e7b7e3265643c889c3445ef454fba52ea64167db861346572b62",
+  "phonemes": [
+    "ðˌɪs wˈɜɹd mˌIt bi jˈusfᵊl sˈʌmdˌA."
+  ],
+  "missingPhonemeTokens": []
+}

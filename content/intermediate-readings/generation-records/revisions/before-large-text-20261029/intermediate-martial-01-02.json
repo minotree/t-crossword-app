@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-martial-01-02",
+  "bookId": "intermediate-martial-01",
+  "page": 2,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Entirely original historical martial-arts fantasy for teenage readers, cinematic literary gouache, misty jade mountains and warm gold light, no references to existing franchises. Recurring protagonist: an East Asian teenage boy with black hair tied low, indigo training robes, gray cloth belt and a plain wooden staff. His master: an elderly East Asian woman with white hair, dark green outer robe and a wooden cane. Rival: an East Asian teenage girl with braided black hair and ivory training robes. Non-graphic martial arts, no gore, no recognizable emblems. Scene: Indigo-robed boy and ivory-robed braided teenage girl meeting at a mountain bridge, each with a plain wooden staff, restrained tension, no fighting or injury. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"The Quiet Bridge\". Under it print smaller page heading \"The Other Guard\" (omit it if identical to book title), and page indicator \"2 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nA girl in white passed the bridge with a training staff. Last spring, her quick turn had stopped my attack before I could move again. 'Still guarding the road?' she asked. I heard a challenge in her voice, although she was only asking a question. Pride can turn an ordinary sentence into a battle before anyone raises a hand.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-2306750a-84d6-42e4-bcd1-86f26b88316c.png",
+  "target": "images/intermediate-martial-01-02.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

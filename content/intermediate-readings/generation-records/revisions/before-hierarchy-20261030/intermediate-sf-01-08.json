@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-sf-01-08",
+  "bookId": "intermediate-sf-01",
+  "page": 8,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same teen boy with short black hair, navy blazer and silver wristwatch writes a short note at a school lab desk, ponytailed friend in gray cardigan beside him, woman teacher in rust cardigan supervising. Compact brass-and-teal receiver gives one gentle amber pulse; disconnected oval gate remains dark in background. Hopeful original young-adult SF gouache, sunrise light, no legible note lettering beyond the poem-card text. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"Tomorrow Begins Here\" (omit repeated heading if identical), and page indicator \"8 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nI wrote the words I had received: 'Do not open the gate at noon. Ask for help.' My friend added the date. Under our science coach's close watch, the machine sent a photograph. For a second, I imagined yesterday's version of me waiting beside it. Then the screen became dark. We had not learned to control the future. We had learned to care for someone inside it.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-68d21a92-859f-4e2d-aeab-7384bca99e5d.png",
+  "target": "images/intermediate-sf-01-08-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "I wrote the words I had received: 'Do not open the gate at noon. Ask for help.' My friend added the date. Under our science coach's close watch, the machine sent a photograph. For a second, I imagined yesterday's version of me waiting beside it. Then the screen became dark. We had not learned to control the future. We had learned to care for someone inside it.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-sf-01-08.json",
+  "originalGenerationRecordSha256": "95f55b7b3dcfa4fdf4e74e3b51885ea703674e00821faff514b2247bf3d3eb0c",
+  "originalImage": "content/intermediate-readings/images/intermediate-sf-01-08.png",
+  "originalImageSha256": "f35722389e2bd47466571465d5f77d930dbd6df4453f1d73ff65023591c9539a",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 643,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

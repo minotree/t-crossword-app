@@ -1,0 +1,27 @@
+{
+  "id": "advanced-sf-01-01",
+  "bookId": "advanced-sf-01",
+  "page": 1,
+  "target": "images/advanced-sf-01-01-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original restrained adult science fiction. Same Korean woman technician, forty, short black hair, charcoal jacket; same older Korean man, sixty, gray hair, brown coat. Small municipal memory-storage shop, analog drawers and subtle translucent light, no familiar franchise designs. The older man placing a faded receipt on the counter, the woman technician studying a small terminal, rows of subtle glowing storage drawers. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Memory Deposit\", smaller page heading \"A Different Request\" (omit duplicate heading if identical), page indicator \"1 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe shop stored painful memories for a fee. Most clients wanted relief; the older man wanted a withdrawal. He placed a receipt on the table and asked for the afternoon he had surrendered twelve years before. The operator noticed that the account carried a permanent restriction. Beneath it was his own signature.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-3a60c508-510c-4f58-8d6a-54afb2897db5.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The shop stored painful memories for a fee. Most clients wanted relief; the older man wanted a withdrawal. He placed a receipt on the table and asked for the afternoon he had surrendered twelve years before. The operator noticed that the account carried a permanent restriction. Beneath it was his own signature.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-sf-01-01.json",
+  "originalGenerationRecordSha256": "87d22ebb54164604f938438ddd86cb9e7c931e49adfec76e09116f72d596fa1b",
+  "originalImage": "content/advanced-readings/images/advanced-sf-01-01.png",
+  "originalImageSha256": "5999bfdcd99629479502d85df3841d4c3e7547b7d6fcfb9c100ad07ca76b25ef",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 694,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

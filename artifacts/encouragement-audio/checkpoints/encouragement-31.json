@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-31",
+  "text": "It's okay to try the same question again.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-31-d62f7a761b8d4cc6.mp3",
+  "sha256": "d62f7a761b8d4cc640af3845c260c15d2a2f5ce238e293334d44447e6d27c62f",
+  "textSha256": "ffa22cffe545046cebe8f18fe9f0aa8747c29ef718a4f0164663e325c85d893a",
+  "bytes": 23616,
+  "seconds": 2.952,
+  "inputKey": "09961fcfdc8b9cf1fff7248f29a13f9d07ed0522669407cfada2c8382b51ba04",
+  "phonemes": [
+    "ˌɪts ˌOkˈA tə tɹˈI ðə sˈAm kwˈɛsʧᵊn əɡˈɛn."
+  ],
+  "missingPhonemeTokens": []
+}

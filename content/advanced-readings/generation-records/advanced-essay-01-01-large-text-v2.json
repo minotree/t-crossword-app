@@ -1,0 +1,30 @@
+{
+  "id": "advanced-essay-01-01",
+  "bookId": "advanced-essay-01",
+  "page": 1,
+  "target": "images/advanced-essay-01-01-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Reflective adult editorial illustration. Same Korean man in his forties, short dark hair, gray shirt, understated realistic proportions. The man at a small social gathering, holding a plain blank card, listening while other adults converse softly in the background. No visible logos. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"Without a Job Title\", smaller page heading \"An Empty Line\" (omit duplicate heading if identical), page indicator \"1 / 3\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nAt a gathering, someone asked what I did. My former title rose before my name. I had left the company three months earlier, yet its language still occupied my introduction. Without that familiar status, I felt strangely absent, as though an empty line on a card could erase the person holding it.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-ad71d09c-64a8-46b6-bc5c-08890f9e39de.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "At a gathering, someone asked what I did. My former title rose before my name. I had left the company three months earlier, yet its language still occupied my introduction. Without that familiar status, I felt strangely absent, as though an empty line on a card could erase the person holding it.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-essay-01-01.json",
+  "originalGenerationRecordSha256": "06d79344d276afa232f67011006c3c3c9398cc7131e6c79b7c47750280ca61ec",
+  "originalImage": "content/advanced-readings/images/advanced-essay-01-01.png",
+  "originalImageSha256": "ba131f6fd7152829fb049b71b2d87b702e1073be68803d311f8ee3ff61d863c7",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 717,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

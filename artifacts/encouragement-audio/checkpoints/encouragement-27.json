@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-27",
+  "text": "You worked through that tricky question.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-27-2242a8b453cfdde5.mp3",
+  "sha256": "2242a8b453cfdde5f57974a075fec358b2e8d51d173b68ad8d12cd1891518e7e",
+  "textSha256": "fed8ea42d6c469008af2f8c0a6aa03fb1ff676ed851d1314771b450e1ad260d3",
+  "bytes": 19200,
+  "seconds": 2.4,
+  "inputKey": "fefab05a3dc370d0d34e6e3279fa02bd7b9bda2dcf7e5c1ced40a161f529b89b",
+  "phonemes": [
+    "jˌu wˈɜɹkt θɹu ðˈæt tɹˈɪki kwˈɛsʧᵊn."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,30 @@
+{
+  "id": "advanced-mystery-01-07",
+  "bookId": "advanced-mystery-01",
+  "page": 7,
+  "target": "images/advanced-mystery-01-07-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The shopkeeper listening with lowered eyes and a thoughtful expression, the older woman calmly holding the recovered receipt, young man seated between them, no exaggerated emotion. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"A Different Debt\" (omit duplicate heading if identical), page indicator \"7 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe shopkeeper asked why no one had claimed the money later. The mother explained that a relative had managed her affairs during a long illness. She had only recently found the receipt among returned papers. The shopkeeper felt relief, then embarrassment. She had been ready to invent a scandal before asking the person whose life the papers concerned.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-70f3986f-fa95-4c1d-9f05-8084645c0d74.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The shopkeeper asked why no one had claimed the money later. The mother explained that a relative had managed her affairs during a long illness. She had only recently found the receipt among returned papers. The shopkeeper felt relief, then embarrassment. She had been ready to invent a scandal before asking the person whose life the papers concerned.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-07.json",
+  "originalGenerationRecordSha256": "127871eb524b8c80075fdca229c6a671e6004c9cfea8f1850459a6fec15caf7a",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-07.png",
+  "originalImageSha256": "648ce06a488c3f35c6a224b89292d111efced3827183d66ef70aec1e7806905d",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 684,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

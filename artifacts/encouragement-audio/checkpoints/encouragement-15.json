@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-15",
+  "text": "You don't have to learn everything at once.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-15-ca24f9b2c9c549f3.mp3",
+  "sha256": "ca24f9b2c9c549f3f114ff433b95d42fdafbf421d7db6d5d5350822eefff8ee7",
+  "textSha256": "f230d11a24ab6ca37c325a7461616768f45a3480a6d0fa64e2f1ae190212c169",
+  "bytes": 21120,
+  "seconds": 2.64,
+  "inputKey": "26414c49a5d89a8435275502b7826dd993c22c185bc630c4eafab5386cbb78d4",
+  "phonemes": [
+    "jˌu dˈOnt hæv tə lˈɜɹn ˈɛvəɹiθˌɪŋ æt wˈʌns."
+  ],
+  "missingPhonemeTokens": []
+}

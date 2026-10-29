@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-sf-01-06",
+  "bookId": "intermediate-sf-01",
+  "page": 6,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same short-black-haired teenage boy in navy blazer with silver wristwatch and ponytailed friend in gray cardigan sitting on a quiet school bench at amber sunset. He studies his own hand and an indistinct printed note. Closed laboratory windows behind them. Reflective original young-adult SF gouache, restrained emotion, teal shadows, no readable writing. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"An Empty Future\" (omit repeated heading if identical), and page indicator \"6 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nThat afternoon, the laboratory stayed closed. I kept thinking about the date on the photograph. If tomorrow had already happened, why could we change anything? My friend had another question. 'Who wrote the note?' I looked at my hand. The writing was mine, but I had never written those words together. Tomorrow, perhaps, I would have a reason.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-7c087386-20d4-4fb2-8dcd-2f0da2478c92.png",
+  "target": "images/intermediate-sf-01-06-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "That afternoon, the laboratory stayed closed. I kept thinking about the date on the photograph. If tomorrow had already happened, why could we change anything? My friend had another question. 'Who wrote the note?' I looked at my hand. The writing was mine, but I had never written those words together. Tomorrow, perhaps, I would have a reason.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-sf-01-06.json",
+  "originalGenerationRecordSha256": "db9c74f000595d475418c3e863b91bddd66b6ee198d3d0f288060127bc20f098",
+  "originalImage": "content/intermediate-readings/images/intermediate-sf-01-06.png",
+  "originalImageSha256": "ce12e276178ab2382170980cb2c540a08226fda2baf364c6500fe0ab517d7278",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 691,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

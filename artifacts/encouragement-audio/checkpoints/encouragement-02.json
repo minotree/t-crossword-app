@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-02",
+  "text": "Now you know something you didn't know before.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-02-d2e8b14207ee5cce.mp3",
+  "sha256": "d2e8b14207ee5cceb9907c196b8cda54a652dc15ef452006f91c94dc194cae5d",
+  "textSha256": "535a092ce6841d0e900894427ad11f727057ac7484f873d54e7a36dd20178d7e",
+  "bytes": 22080,
+  "seconds": 2.76,
+  "inputKey": "490c4e4482bc5af5860679b99a4d7f112908ef19e25c0ebdc6c004c97b4b9d50",
+  "phonemes": [
+    "nˈW ju nˈO sˈʌmθˌɪŋ ju dˈɪdᵊnt nˈO bəfˈɔɹ."
+  ],
+  "missingPhonemeTokens": []
+}

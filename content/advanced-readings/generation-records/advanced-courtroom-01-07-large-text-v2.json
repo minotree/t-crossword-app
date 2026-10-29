@@ -1,0 +1,30 @@
+{
+  "id": "advanced-courtroom-01-07",
+  "bookId": "advanced-courtroom-01",
+  "page": 7,
+  "target": "images/advanced-courtroom-01-07-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult courtroom drama in an explicitly imaginary city, invented civil procedure. Same Korean woman small-business owner forty-five, shoulder-length black hair, navy suit; her counsel Korean woman forty, short hair, gray suit; witness Korean man thirty-five, glasses, brown jacket. Generic modest courtroom with single judge, no jury, no national flags, no real legal insignia or readable legal text. A new employee witness, Korean woman thirty in a plain cream blouse, explaining a delivery receipt, both counsel with orderly folders, generic courtroom continuity. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Weight of a Signature\", smaller page heading \"The Relevant Detail\" (omit duplicate heading if identical), page indicator \"7 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nA delivery receipt revealed a further detail. The buyer had accepted an initial portion of the order after the original agreed date and requested the remainder on the revised date. That conduct supported the owner's account, although it did not explain every conversation. Both sides questioned the employee who had sent the request. The employee confirmed the instruction came from the buyer's manager.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-57a4f399-6c8d-4919-a1cd-ca70edd6cf92.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "A delivery receipt revealed a further detail. The buyer had accepted an initial portion of the order after the original agreed date and requested the remainder on the revised date. That conduct supported the owner's account, although it did not explain every conversation. Both sides questioned the employee who had sent the request. The employee confirmed the instruction came from the buyer's manager.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-courtroom-01-07.json",
+  "originalGenerationRecordSha256": "4b8eccbebe03c503b587d302243087a16bec4858fc05148769428a3fb8a76c93",
+  "originalImage": "content/advanced-readings/images/advanced-courtroom-01-07.png",
+  "originalImageSha256": "fec51e118eaaba2dec7eb7df290e801ea45c19b056ad072a2bfabb7bdb689924",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 578,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

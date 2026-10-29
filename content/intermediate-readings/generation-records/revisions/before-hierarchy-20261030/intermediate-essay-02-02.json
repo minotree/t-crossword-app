@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-essay-02-02",
+  "bookId": "intermediate-essay-02",
+  "page": 2,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original teenage editorial gouache, natural sage and warm amber palette. A Korean teenage girl with a black ponytail, cream sweatshirt and dark green backpack. Contemporary everyday life, mature restrained illustration. Scene: Same girl talking with an older woman neighbor beside a garden gate, a small bird carrying grass and textured wall nearby, phone away. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"An Hour Without a Screen\". Under it print smaller page heading \"Small Details\" (omit it if identical to book title), and page indicator \"2 / 3\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nI noticed a crack in the wall, a bird carrying a piece of grass, and a neighbor whose name I had never asked. We talked beside the gate. Nothing grand happened, yet the walk felt longer and richer. My attention was no longer moving from one bright picture to the next. It had time to stay somewhere.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-51aa0be1-d6c6-4a90-88de-3ee5719c101e.png",
+  "target": "images/intermediate-essay-02-02-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "I noticed a crack in the wall, a bird carrying a piece of grass, and a neighbor whose name I had never asked. We talked beside the gate. Nothing grand happened, yet the walk felt longer and richer. My attention was no longer moving from one bright picture to the next. It had time to stay somewhere.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-essay-02-02.json",
+  "originalGenerationRecordSha256": "ca94fb0fd1d9953d4b5bfca0f07d0244ca86533a5697e6de11cdd5c488fc1ead",
+  "originalImage": "content/intermediate-readings/images/intermediate-essay-02-02.png",
+  "originalImageSha256": "26a95352d7670b2de5907445108510f33f25db7c905b71d59db4ac9e15b1efca",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 772,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

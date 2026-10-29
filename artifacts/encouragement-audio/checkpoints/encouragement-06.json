@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-06",
+  "text": "You learned more than just a word today.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-06-f887fbdab87f7d74.mp3",
+  "sha256": "f887fbdab87f7d743206b358a2c1552c3a0cbcce05149b6752bd9071e2c4e3aa",
+  "textSha256": "6ff16c1effe38095aac365f4cf6285227454ed099fabff440b8f6955981f0d1c",
+  "bytes": 21312,
+  "seconds": 2.664,
+  "inputKey": "61d4a636b5fbab0724f06954459bb9979f2a0180418ad965754c8b126c454f74",
+  "phonemes": [
+    "jˌu lˈɜɹnd mˈɔɹ ðən ʤˈʌst ɐ wˈɜɹd tədˈA."
+  ],
+  "missingPhonemeTokens": []
+}

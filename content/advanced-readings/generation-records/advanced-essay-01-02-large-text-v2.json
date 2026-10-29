@@ -1,0 +1,30 @@
+{
+  "id": "advanced-essay-01-02",
+  "bookId": "advanced-essay-01",
+  "page": 2,
+  "target": "images/advanced-essay-01-02-large-text-v2.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Reflective adult editorial illustration. Same Korean man in his forties, short dark hair, gray shirt, understated realistic proportions. The man carefully repairing a modest wooden shelf while his elderly father sits nearby with a clinic appointment envelope. Quiet daylight, no medical procedures. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"Without a Job Title\", smaller page heading \"Other Evidence\" (omit duplicate heading if identical), page indicator \"2 / 3\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nDuring that interval, I learned to repair a loose shelf and accompany my father to the clinic. Neither task appeared in my professional profile. Both required patience I had rarely practiced at work. I began to question the narrow criteria through which I had measured a useful life, including the lives of people around me.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-8b4b40b1-0056-4c03-a249-ae57b7ec6bd7.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "During that interval, I learned to repair a loose shelf and accompany my father to the clinic. Neither task appeared in my professional profile. Both required patience I had rarely practiced at work. I began to question the narrow criteria through which I had measured a useful life, including the lives of people around me.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-essay-01-02.json",
+  "originalGenerationRecordSha256": "569e307b5fe1653e5a46d90f417576113f6752fbb9fffa3ba98426c342955895",
+  "originalImage": "content/advanced-readings/images/advanced-essay-01-02.png",
+  "originalImageSha256": "1de750f07fad71379c72b0e5cbe090f5507150a789b985b91e74ad95e5d31e91",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 678,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

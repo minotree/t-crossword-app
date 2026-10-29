@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-12",
+  "text": "A short lesson can still be useful.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-12-4c99986e3b1df019.mp3",
+  "sha256": "4c99986e3b1df019320d9e181854ed4dd47e1c3b535b7cc2ac99d616eb308336",
+  "textSha256": "a2d746eda6dabe804d06a0f354e21abfa2ebccabbd0fcce8dc626f93e12342b6",
+  "bytes": 20160,
+  "seconds": 2.52,
+  "inputKey": "9ac27ec53b7fd853c5227035ca1df3c6d14e3405520eaa32b66094daeafc41ed",
+  "phonemes": [
+    "ɐ ʃˈɔɹt lˈɛsən kæn stˈɪl bi jˈusfᵊl."
+  ],
+  "missingPhonemeTokens": []
+}

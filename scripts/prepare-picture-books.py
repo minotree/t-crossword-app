@@ -23,7 +23,8 @@ def prepare_image(source, filename):
     if not destination.exists() or destination.stat().st_mtime < source.stat().st_mtime:
         with Image.open(source) as image:
             image = image.convert('RGB')
-            image.thumbnail((1024, 1536))
+            height_limit = max(1536, image.height) if source.stem.endswith(('-large-text-v1', '-large-text-v2', '-large-text-v3')) else 1536
+            image.thumbnail((1024, height_limit))
             image.save(destination, 'WEBP', quality=85, method=6)
     return 'picture-books/' + filename
 

@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-37",
+  "text": "You noticed what went wrong this time.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-37-6c318778c5b6272f.mp3",
+  "sha256": "6c318778c5b6272f8d28903872ff71a5159a1aa841bb309cc7b2e2e78a96c07a",
+  "textSha256": "3dd3bec3b000dc8f98228b77aeb898f1ee1a706d6f05a42ca56df102d071e7b7",
+  "bytes": 19008,
+  "seconds": 2.376,
+  "inputKey": "4004867a123d462c9d954e16c2241a065709027000a9c35abb5ab4fa62151d36",
+  "phonemes": [
+    "jˌu nˈOTəst wˌʌt wˈɛnt ɹˈɔŋ ðɪs tˈIm."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-35",
+  "text": "You can learn a lot from one mistake.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-35-9cc4c0513b981ef9.mp3",
+  "sha256": "9cc4c0513b981ef93b5ba379e4ec8b773ba64732e00b719b8705c53e2594b24f",
+  "textSha256": "2c627c030f6e0d3e1b5485bf3b41ade790973cea75f3317db73a785add87aded",
+  "bytes": 20544,
+  "seconds": 2.568,
+  "inputKey": "adfd30e115175123e301bd07314e3438909b6a0d2ea815e6125dc19c95ee1789",
+  "phonemes": [
+    "jˌu kæn lˈɜɹn ɐ lˈɑt fɹʌm wˈʌn məstˈAk."
+  ],
+  "missingPhonemeTokens": []
+}

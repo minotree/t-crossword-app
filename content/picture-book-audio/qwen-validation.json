@@ -1,0 +1,13 @@
+{
+  "pages": 119,
+  "books": 61,
+  "verifiedImagePathOnlyChanges": [
+    "content/intermediate-readings/books.json",
+    "content/advanced-readings/books.json"
+  ],
+  "totalBytes": 17405952,
+  "totalSeconds": 2175.744,
+  "sourceTextHashDecodeZip": "passed",
+  "listeningReview": "pending",
+  "deviceReview": "pending"
+}

@@ -28,7 +28,8 @@ for level, directory, filename in (
             destination = DEST / name
             with Image.open(original) as image:
                 image = image.convert('RGB')
-                image.thumbnail((1024, 1536))
+                height_limit = max(1536, image.height) if original.stem.endswith(('-large-text-v1', '-large-text-v2', '-large-text-v3')) else 1536
+                image.thumbnail((1024, height_limit))
                 image.save(destination, 'WEBP', quality=85, method=6)
             images[name] = {
                 'sourceSha256': hashlib.sha256(original.read_bytes()).hexdigest(),

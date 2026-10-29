@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-sf-01-02",
+  "bookId": "intermediate-sf-01",
+  "page": 2,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same original Korean teenage boy with short black hair, navy blazer, silver wristwatch, and his friend, a Korean teenage girl with a black ponytail and gray cardigan, examining a photograph while using a school laboratory wall telephone. Brass-and-teal receiver and dormant twin-arc oval gate in background. Young-adult SF gouache, teal shadows and amber daylight, no logos or extra text. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"A Simple Trick?\" (omit repeated heading if identical), and page indicator \"2 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nMy friend studied the photograph. 'Someone knows your writing,' she said. 'It could be a trick.' She was right. A strange message was not evidence of the future. Still, I could not ignore it. We called our science coach, who was preparing the test in another room. She asked us to bring the photograph and leave every switch alone.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-50462e5f-62d8-452b-83cd-cb041b5a4444.png",
+  "target": "images/intermediate-sf-01-02-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "My friend studied the photograph. 'Someone knows your writing,' she said. 'It could be a trick.' She was right. A strange message was not evidence of the future. Still, I could not ignore it. We called our science coach, who was preparing the test in another room. She asked us to bring the photograph and leave every switch alone.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-sf-01-02.json",
+  "originalGenerationRecordSha256": "afcaaaf7c44a069c28a8f0e90949024a1275fea7c51f498abb781d8f3d367223",
+  "originalImage": "content/intermediate-readings/images/intermediate-sf-01-02.png",
+  "originalImageSha256": "fbc88eb05b53f2d81f7bdfefb1eb24b4d2875265c44ee975e52fa7ffb53be8d7",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 740,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

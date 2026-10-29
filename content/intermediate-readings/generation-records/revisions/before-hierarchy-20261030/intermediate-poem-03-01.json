@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-poem-03-01",
+  "bookId": "intermediate-poem-03",
+  "page": 1,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original young-adult literary gouache in indigo, dusty rose and cream. A Korean teenage boy with round glasses, straight black hair and a gray sweater. Sensitive confident growth, simple school stage, no logos. Scene: Teen boy with round glasses standing at a small school stage microphone, hands lightly shaking, warm spotlight and a listening audience in soft focus. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"A Place for My Voice\". Under it print smaller page heading \"A Place for My Voice\" (omit it if identical to book title), and page indicator \"1 / 1\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nMy voice was once a folded note,\na quiet thought inside a book.\nI feared the space before a crowd,\nthe sudden turn of every look.\n\nToday I speak one simple truth.\nMy hands still shake; my words are small.\nA voice need not become a shout\nto have a place among us all.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-e650c80a-bf5d-4470-999e-65409f1cb968.png",
+  "target": "images/intermediate-poem-03-01-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "My voice was once a folded note,\na quiet thought inside a book.\nI feared the space before a crowd,\nthe sudden turn of every look.\n\nToday I speak one simple truth.\nMy hands still shake; my words are small.\nA voice need not become a shout\nto have a place among us all.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-poem-03-01.json",
+  "originalGenerationRecordSha256": "637eed13a495236504e3ad5a9d47beaa40550202de146804e583b3d52fc74a3e",
+  "originalImage": "content/intermediate-readings/images/intermediate-poem-03-01.png",
+  "originalImageSha256": "7e06e63572c3c964ffb0b23db1ce5bf714ac4ab23cd305e649471abee376d538",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 723,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

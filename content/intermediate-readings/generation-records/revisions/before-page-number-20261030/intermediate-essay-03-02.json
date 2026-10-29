@@ -1,0 +1,30 @@
+{
+  "id": "intermediate-essay-03-02",
+  "bookId": "intermediate-essay-03",
+  "page": 2,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original young-adult editorial gouache, muted lavender, navy and warm cream. A Korean teenage boy with short slightly curly black hair and a rust sweater, and a friend with straight black hair and navy cardigan. Respectful everyday school atmosphere. Scene: Same two teenage boys having an honest calm conversation over a poster at a school club table, dividing work with simple sketches. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"Learning to Say No\". Under it print smaller page heading \"An Honest Talk\" (omit it if identical to book title), and page indicator \"2 / 3\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nThe next day, I explained that I could not finish the whole poster. My voice shook because I expected a fight. My friend was quiet for a moment. Then he asked which part I could manage. We divided the work. I would draw one picture; another member would prepare the text. An honest answer gave us a practical plan.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-753fb3ca-cc1b-4a32-bea2-5e26ac83648f.png",
+  "target": "images/intermediate-essay-03-02-large-text-v2.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The next day, I explained that I could not finish the whole poster. My voice shook because I expected a fight. My friend was quiet for a moment. Then he asked which part I could manage. We divided the work. I would draw one picture; another member would prepare the text. An honest answer gave us a practical plan.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-essay-03-02.json",
+  "originalGenerationRecordSha256": "9beef678109f07761a8237e4bb4ad4ffdcc33f3e368ade8af0926e857f5cf1af",
+  "originalImage": "content/intermediate-readings/images/intermediate-essay-03-02.png",
+  "originalImageSha256": "7b9fd0835e7fb81bcf68085c50daf6decc04172561d1e34b3b8564251a50442e",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 665,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30"
+  }
+}

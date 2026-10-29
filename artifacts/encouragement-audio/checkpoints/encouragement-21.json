@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-21",
+  "text": "You got that answer right all by yourself.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-21-b78df106095d77ba.mp3",
+  "sha256": "b78df106095d77ba04d2ded2b4946e835a0dc03aab0022e752e64abc3bc3c840",
+  "textSha256": "c0c20be0fe8d0f09a3cc4ed72bc563d622a11f18c4dd6651fc0a1718a7529a95",
+  "bytes": 22080,
+  "seconds": 2.76,
+  "inputKey": "3b3ad441ffb24b0dea0be0cb51427f53f3a8b9c77c5ecfdca4855e470f15d08e",
+  "phonemes": [
+    "jˌu ɡɑt ðˈæt ˈænsəɹ ɹˈIt ˈɔl bI jəɹsˈɛlf."
+  ],
+  "missingPhonemeTokens": []
+}

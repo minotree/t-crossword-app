@@ -1,0 +1,13 @@
+{
+  "id": "intermediate-sf-01-03",
+  "bookId": "intermediate-sf-01",
+  "page": 3,
+  "prompt": "Create one finished portrait English reading card for middle- and high-school readers. Sophisticated original literary gouache and watercolor editorial illustration, subtle paper grain, refined typography, NOT a preschool picture book. Upper 45% full illustration: Same teen boy, short black hair, navy blazer, silver watch, and ponytailed teen girl in gray cardigan, seen safely from a school laboratory doorway. An adult woman teacher in a rust cardigan guides them into the hall. Far inside the lab a tiny wisp of smoke rises below a heavy metal box under the dormant oval gate. No flames, no injury. Mature suspenseful teal-and-amber gouache. Lower 55% warm cream reading panel. Clearly printed dark navy serif typography, generous margins, large enough for comfortable reading. Print exact book title \"A Message from Tomorrow\", smaller page heading \"Beneath the Table\" (omit repeated heading if identical), and page indicator \"3 / 8\". Then print this exact English text verbatim, preserving stanza breaks for the poem and using comfortable line wrapping for prose:\nOn the way out, my friend stopped. A thin line of smoke rose beneath the gate's table. We did not touch anything. From the door, we could see a cable pressed under a heavy metal box. Our science coach arrived, moved us into the hall, and called an engineer. The photograph might be wrong. The smoke was real.\nAll text must fit fully and remain exceptionally legible. No Korean text, no other captions, no brands, no existing fictional characters, no imitation of named artists, no copied compositions. For SF maintain the same original characters: boy short black hair, navy blazer, silver watch; girl black ponytail, gray cardigan; woman science coach rust cardigan. Oval lab gate uses twin metal arcs, separate small brass-and-teal message machine.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-2823870b-c42c-43b5-86c0-d8405bbd0df0.png",
+  "target": "images/intermediate-sf-01-03.png",
+  "tool": "ImageGen",
+  "model": "not exposed by tool",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed"
+}

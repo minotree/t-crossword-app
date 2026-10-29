@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-47",
+  "text": "Try using your new word in a short sentence.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-47-a6c62218c68d0fa5.mp3",
+  "sha256": "a6c62218c68d0fa55ef6c0f96384ca1add9be4b5bf586b8962efe0591bcadd01",
+  "textSha256": "eac0459ef6381620873aa9f04a360e37dc317a1150e471488972c27f7299126f",
+  "bytes": 24192,
+  "seconds": 3.024,
+  "inputKey": "b1a601df892764a427386607cb78ab1952467aab7691150a1bd1e2343972bf10",
+  "phonemes": [
+    "tɹˈI jˈuzɪŋ jʊɹ nˈu wˈɜɹd ɪn ɐ ʃˈɔɹt sˈɛntᵊns."
+  ],
+  "missingPhonemeTokens": []
+}

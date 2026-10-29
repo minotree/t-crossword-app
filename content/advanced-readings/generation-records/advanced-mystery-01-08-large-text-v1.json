@@ -1,0 +1,27 @@
+{
+  "id": "advanced-mystery-01-08",
+  "bookId": "advanced-mystery-01",
+  "page": 8,
+  "target": "images/advanced-mystery-01-08-large-text-v1.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The shopkeeper and older mother together at the repair-shop counter making a bank call with open ledger and receipt, orderly paperwork, no readable account numbers. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"The Next Page\" (omit duplicate heading if identical), page indicator \"8 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nBack at the shop, the journal's next page resolved the payment. Her father had transferred the money to a separate account and recorded the reference. The deposit remained there. She contacted the bank with the mother rather than promising an immediate payment she could not approve. The process would take time. For once, delay protected someone instead of dismissing them.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-cfbea8f5-3d77-42c4-983f-0462e9730a57.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Back at the shop, the journal's next page resolved the payment. Her father had transferred the money to a separate account and recorded the reference. The deposit remained there. She contacted the bank with the mother rather than promising an immediate payment she could not approve. The process would take time. For once, delay protected someone instead of dismissing them.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-08.json",
+  "originalGenerationRecordSha256": "80fd87275bc12eea11257a35e4edec2869303fdcb041d254d95ae23260ea1b3c",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-08.png",
+  "originalImageSha256": "edabd55de4a2a0679048508eef2dbba937a5b27f3d985bc86caa45839d4a2d21",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 671,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

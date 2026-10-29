@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-14",
+  "text": "Learning at your own pace is perfectly fine.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-14-a7125328f6669d44.mp3",
+  "sha256": "a7125328f6669d445d75872eb3018d1c1c7edb664a069b7a0ed25369d462f40b",
+  "textSha256": "8e9bae7c9215f7e048ccd9b21584d9cad3b61810468c603a45cb2e20499568b2",
+  "bytes": 24960,
+  "seconds": 3.12,
+  "inputKey": "993ea957a3787d36a646aad1d9815ee1ba40037d0d5880533d35026b199af6f6",
+  "phonemes": [
+    "lˈɜɹnɪŋ æt jʊɹ ˈOn pˈAs ɪz pˈɜɹfəktli fˈIn."
+  ],
+  "missingPhonemeTokens": []
+}

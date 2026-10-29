@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-33",
+  "text": "Take another look at the letters.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-33-1cb497fb0eed96e0.mp3",
+  "sha256": "1cb497fb0eed96e0a9a5068ac2abf1dd42d7f3d810ca90fa8d8b2d358a762667",
+  "textSha256": "5a5f84c1de29c276410ac6f98d7a950ee8954482597065410ded75d2c13d8055",
+  "bytes": 17856,
+  "seconds": 2.232,
+  "inputKey": "5a1f008d34af34a7af3fcf98a3fa71d07eac4de8f2d1accc25b8b42acd135552",
+  "phonemes": [
+    "tˈAk ənˈʌðəɹ lˈʊk æt ðə lˈɛTəɹz."
+  ],
+  "missingPhonemeTokens": []
+}

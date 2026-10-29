@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-10",
+  "text": "You made room for another word in your memory.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-10-f3aa1e1e98e108fc.mp3",
+  "sha256": "f3aa1e1e98e108fcf08dda0137deb4081611a446c118430a11c10a788ca1f88d",
+  "textSha256": "4a9f29787f8ee00922b6b76671b32b5355c01cc3986a20d77a8e6284a35b2ec6",
+  "bytes": 23040,
+  "seconds": 2.88,
+  "inputKey": "1abfba74c1131bfb5d17aca64d539abf48ab27b5f344b932f2d1411b1c84d646",
+  "phonemes": [
+    "jˌu mˌAd ɹˈum fɔɹ ənˈʌðəɹ wˈɜɹd ɪn jʊɹ mˈɛməɹi."
+  ],
+  "missingPhonemeTokens": []
+}

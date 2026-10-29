@@ -1,0 +1,32 @@
+{
+  "id": "advanced-mystery-01-05",
+  "bookId": "advanced-mystery-01",
+  "page": 5,
+  "target": "images/advanced-mystery-01-05-large-text-v3.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Original adult realistic mystery, no violence. Same Korean shopkeeper woman fifty, wavy dark hair, beige apron; same young adult Korean man twenty-eight, short black hair, navy coat. Old neighborhood repair shop, brass lamp and wooden counter. The woman looking at an old photograph then handing sealed letters back to the young man, who makes a phone call near the window. Respectful tension, no sinister shadows. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Last Customer\", smaller page heading \"A Familiar Face\" (omit duplicate heading if identical), page indicator \"5 / 10\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nThe young man identified the woman as his mother. The shopkeeper studied her father's expression and felt an unwelcome suspicion. Had the deposit concealed a secret relationship? The letters might answer, but they were addressed to the mother. She returned them unopened. The young man called home and asked whether they could come by the following morning.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-7c19e75f-d3f8-4e38-848c-b0ae213e0bc0.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "The young man identified the woman as his mother. The shopkeeper studied her father's expression and felt an unwelcome suspicion. Had the deposit concealed a secret relationship? The letters might answer, but they were addressed to the mother. She returned them unopened. The young man called home and asked whether they could come by the following morning.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-05.json",
+  "originalGenerationRecordSha256": "528d2e1d51713fb61738ae9744ddfc9c1a5a796c26b865c0e2f3ec35a5a52cb7",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-05.png",
+  "originalImageSha256": "f060b23a65f44865eceeb6f1fe40302fbb8636fb65971d6366214e98c249f9b0",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 672,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

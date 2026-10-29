@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-43",
+  "text": "Try saying this new word out loud.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-43-d599c528ffbb2511.mp3",
+  "sha256": "d599c528ffbb251134394d4b09d066eae10c3ff65b2d085ebee1b7fdb6b5e7a2",
+  "textSha256": "84f11611dbf6164d9c992ce45d222cf20df11d27cb6bb077413aef1911f3c8d9",
+  "bytes": 20736,
+  "seconds": 2.592,
+  "inputKey": "be529689f10a57e43932c3b1a36a7ec729952289e0b89e82ba0e6e19bf9b9937",
+  "phonemes": [
+    "tɹˈI sˈAɪŋ ðɪs nˈu wˈɜɹd ˈWt lˈWd."
+  ],
+  "missingPhonemeTokens": []
+}

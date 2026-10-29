@@ -112,3 +112,6 @@ TDS AIT 2.5.1 Provider 소스는 SDK 안전영역을 CSS 변수로 전달하며 
 - [광고 소개·정책·콘솔 등록](https://developers-apps-in-toss.toss.im/guide/monetization/in-app-ad.md)
 - [보상형 API·완료 이벤트·테스트 ID·동시 로드 이슈](https://developers-apps-in-toss.toss.im/documentation/common/monetization/iaa/interstitial-rewarded-ad.md)
 - [배너 API·표준 UI·크기·자동 갱신·정리](https://developers-apps-in-toss.toss.im/documentation/common/monetization/iaa/web-banner.md)
+# 2026-10-30 새 퍼즐 전면광고 간격 변경
+
+최신 사용자 결정으로 퀴즈 새 퍼즐은 2회마다 전면광고를 요청한다(1회째 없음, 2회째 요청, 3회째 없음, 4회째 요청). 새 퍼즐 버튼·완성 화면 새 퍼즐·난이도/격자 크기 변경은 App의 같은 카운터를 사용한다. 첫 진입·기존 퍼즐 복귀·같은 설정 재선택·퍼즐 생성 실패는 집계하지 않는다. 먼저 기기에서 출제에 성공한 뒤 해당 회차의 광고 처리를 기다리고 새 판을 표시한다. 카운터는 현재 앱 실행 중에 유지하며 앱 재실행 시 초기화한다. 광고 미준비·미지원·실패 시 기존처럼 진행하고 별도 광고 재시도를 강제하지 않는다. 그림책 연속듣기 광고에는 이 카운터를 적용하지 않는다. 아래 매번 노출 설명은 이전 정책이다.

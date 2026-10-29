@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-28",
+  "text": "You finished another round of word practice.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-28-908bfbddbed14111.mp3",
+  "sha256": "908bfbddbed14111afb47959f070e922636f7e34327c23d23f97e3b7d77b5dc1",
+  "textSha256": "ba229a33de5ddc7268f6dee6637858233cccecde9860fe09bad6fd1da934c661",
+  "bytes": 24192,
+  "seconds": 3.024,
+  "inputKey": "c6bc9fc72506e230535ffd0d74a72b5ae26b259afb21ce5d867e9089fae71ced",
+  "phonemes": [
+    "jˌu fˈɪnəʃt ənˈʌðəɹ ɹˈWnd ʌv wˈɜɹd pɹˈæktəs."
+  ],
+  "missingPhonemeTokens": []
+}

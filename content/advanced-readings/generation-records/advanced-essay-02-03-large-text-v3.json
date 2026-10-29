@@ -1,0 +1,32 @@
+{
+  "id": "advanced-essay-02-03",
+  "bookId": "advanced-essay-02",
+  "page": 3,
+  "target": "images/advanced-essay-02-03-large-text-v3.png",
+  "prompt": "Use case: illustration-story. Create one FINISHED portrait English reading card, 1024x1536, for ADULT literature learners. Original sophisticated watercolor and gouache editorial illustration, restrained rich colors, subtle paper texture, realistic adult proportions, no cute mascots. Upper 43% illustration: Mature reflective editorial illustration. Same Korean woman in her late thirties, chin-length black hair, rust cardigan. The woman beginning a language lesson beside an open window, a modest travel map folded nearby, dawn light and quiet resolve, no fantasy doorway. Lower 57% warm cream reading panel with refined DARK NAVY serif typography, generous margins and comfortable LARGE text. Print exact book title \"The Life I Did Not Choose\", smaller page heading \"Room for a Choice\" (omit duplicate heading if identical), page indicator \"3 / 3\". Then print the following English text EXACTLY VERBATIM, all words, preserving poem line/stanza breaks and wrapping prose naturally:\nReconciliation did not arrive as a sudden revelation. I still wondered about that distant city. Yet I could learn its language here, or plan a brief visit when circumstances allowed. Some doors were closed; others required a smaller step. I stopped asking the present to justify every past decision and began asking what remained possible today.\nAll text must fit fully, exceptionally readable. No Korean or other captions, logos, watermarks, recognizable existing characters, real brands, or artist imitation. Only one complete card, no mockup or border cropping.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-5069cd62-c324-4507-84c8-2473233e37e1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Reconciliation did not arrive as a sudden revelation. I still wondered about that distant city. Yet I could learn its language here, or plan a brief visit when circumstances allowed. Some doors were closed; others required a smaller step. I stopped asking the present to justify every past decision and began asking what remained possible today.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-essay-02-03.json",
+  "originalGenerationRecordSha256": "350fd2b044045ad934797178fc1f8928bf4826ec44994a5174cf916508bf17da",
+  "originalImage": "content/advanced-readings/images/advanced-essay-02-03.png",
+  "originalImageSha256": "8ab8cc4ca9d8151f6b61060d91b349ab607fc68cb66f4fadf2f384b113c03171",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 708,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

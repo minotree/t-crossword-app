@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-29",
+  "text": "You found the right word for this puzzle.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-29-b0343e6c25ead7f7.mp3",
+  "sha256": "b0343e6c25ead7f7659eda0a95bae249771a95b98ef4614af98c7ccfe4e74195",
+  "textSha256": "6e4158eab6da26915b345c2086a957fc774cb8a04ba4b4ccbd6e6877768eb1f3",
+  "bytes": 20928,
+  "seconds": 2.616,
+  "inputKey": "47501f06beafead532066a7ce756d0c8c4d7b207a09f352d70140bcf26741b47",
+  "phonemes": [
+    "jˌu fˈWnd ðə ɹˈIt wˈɜɹd fɔɹ ðɪs pˈʌzᵊl."
+  ],
+  "missingPhonemeTokens": []
+}

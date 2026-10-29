@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-49",
+  "text": "Your curiosity led you to another discovery.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-49-0f457b5493ae91ab.mp3",
+  "sha256": "0f457b5493ae91ab78d0ed152166a733d69a2137e8c92eb82ae8fd2ed1918569",
+  "textSha256": "d0d8aceeaafc5359a8beebd9cbcfa1af5ad56fa34479cd54c0ed99bf4b283175",
+  "bytes": 28224,
+  "seconds": 3.528,
+  "inputKey": "6fd1f5e5cde126b3c9299a6e7ced192539f1b976bb72962cc55ed503f58a007f",
+  "phonemes": [
+    "jˌʊɹ kjˌʊɹiˈɑsəTi lˈɛd ju tʊ ənˈʌðəɹ dəskˈʌvəɹi."
+  ],
+  "missingPhonemeTokens": []
+}

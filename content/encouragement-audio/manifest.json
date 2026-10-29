@@ -1,0 +1,752 @@
+[
+  {
+    "id": "encouragement-01",
+    "text": "You added a new word to your vocabulary today.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-01-d09e28d8172e1d33.mp3",
+    "sha256": "d09e28d8172e1d338029f5fbe41e6f475aa8d6ad2a4dd7f514ef36174e0ff04f",
+    "textSha256": "c1a3cd59a5138fb2dffefcc2e3ddba12d678f3e4c84384de516d136a7e8a0bfd",
+    "bytes": 26688,
+    "seconds": 3.336,
+    "inputKey": "b060fe321653f9013a8168a7f23124be88cb78eab99fee17d8759cbb61ed43a1",
+    "phonemes": [
+      "jˌu ˈædᵻd ɐ nˈu wˈɜɹd tə jʊɹ vOkˈæbjəlˌɛɹi tədˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-02",
+    "text": "Now you know something you didn't know before.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-02-d2e8b14207ee5cce.mp3",
+    "sha256": "d2e8b14207ee5cceb9907c196b8cda54a652dc15ef452006f91c94dc194cae5d",
+    "textSha256": "535a092ce6841d0e900894427ad11f727057ac7484f873d54e7a36dd20178d7e",
+    "bytes": 22080,
+    "seconds": 2.76,
+    "inputKey": "490c4e4482bc5af5860679b99a4d7f112908ef19e25c0ebdc6c004c97b4b9d50",
+    "phonemes": [
+      "nˈW ju nˈO sˈʌmθˌɪŋ ju dˈɪdᵊnt nˈO bəfˈɔɹ."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-03",
+    "text": "This word might be useful someday.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-03-00e527423dde6e1a.mp3",
+    "sha256": "00e527423dde6e1a8c65d6fe37dc348f6d92804dc2b07a5c06af3eaaa03772a8",
+    "textSha256": "a9de7554665dd82f916e271fd0df6d41d79040d8ef988502255eb83d2ad73bd2",
+    "bytes": 20544,
+    "seconds": 2.568,
+    "inputKey": "54e3cefb7020e7b7e3265643c889c3445ef454fba52ea64167db861346572b62",
+    "phonemes": [
+      "ðˌɪs wˈɜɹd mˌIt bi jˈusfᵊl sˈʌmdˌA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-04",
+    "text": "You found a new way to express yourself.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-04-13c163e0c6fcfb24.mp3",
+    "sha256": "13c163e0c6fcfb2455479689fb4722faa3f01b44b77a4385b96462867b2bb9f9",
+    "textSha256": "152f0b6646017cd0b5b38c41c7839eed904efa5353a1eceb9509ddd128ec8ac2",
+    "bytes": 21504,
+    "seconds": 2.688,
+    "inputKey": "71e1c38b30064df15ed10aabeeb61974cb103df8ce29313f80f9cf6180a4aa6c",
+    "phonemes": [
+      "jˌu fˈWnd ɐ nˈu wˈA tʊ ɪkspɹˈɛs jəɹsˈɛlf."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-05",
+    "text": "Another English word is starting to feel familiar.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-05-b3b4b74fe8137aec.mp3",
+    "sha256": "b3b4b74fe8137aec034647f10bd4ba4db3700be5c7403c31cd64b6e38a1b3914",
+    "textSha256": "373cbee2a6d5ea0bd7106362e938f889af982d251a310efc126fc7b56b63810f",
+    "bytes": 28032,
+    "seconds": 3.504,
+    "inputKey": "c10f5343042d4796c909a249336e3aa69ff3dad6eea2470e55a573ce9a484624",
+    "phonemes": [
+      "ənˈʌðəɹ ˈɪŋɡlɪʃ wˈɜɹd ɪz stˈɑɹTɪŋ tə fˈil fəmˈɪljəɹ."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-06",
+    "text": "You learned more than just a word today.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-06-f887fbdab87f7d74.mp3",
+    "sha256": "f887fbdab87f7d743206b358a2c1552c3a0cbcce05149b6752bd9071e2c4e3aa",
+    "textSha256": "6ff16c1effe38095aac365f4cf6285227454ed099fabff440b8f6955981f0d1c",
+    "bytes": 21312,
+    "seconds": 2.664,
+    "inputKey": "61d4a636b5fbab0724f06954459bb9979f2a0180418ad965754c8b126c454f74",
+    "phonemes": [
+      "jˌu lˈɜɹnd mˈɔɹ ðən ʤˈʌst ɐ wˈɜɹd tədˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-07",
+    "text": "Your vocabulary is growing with every new lesson.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-07-8bde33d4c289c31a.mp3",
+    "sha256": "8bde33d4c289c31a3d08223c9e71f4a06dc470218430fe37356ccb499d23b32a",
+    "textSha256": "377fe3b53d66e2588a36a0fee248c208ce1acb34e600a13eb192459bca6e60bb",
+    "bytes": 27840,
+    "seconds": 3.48,
+    "inputKey": "ca3f92a6467f9335896857539b92a3b352c732ff5dfc8812e933e2b5203add7d",
+    "phonemes": [
+      "jˌʊɹ vOkˈæbjəlˌɛɹi ɪz ɡɹˈOɪŋ wɪð ˈɛvəɹi nˈu lˈɛsən."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-08",
+    "text": "You can use this word in a sentence now.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-08-b52d64843bb1d2f9.mp3",
+    "sha256": "b52d64843bb1d2f9913bde95c14dcc89ecc774e3bc2f49a01de91ddfe4dde966",
+    "textSha256": "e3b7bcbcceace3ae5968f118a02433169e7515474b381e64d26ce68c5ed2a212",
+    "bytes": 22848,
+    "seconds": 2.856,
+    "inputKey": "2f22797e49c5caf79c38829fdf084256072b16dbdaf3ee24ab2111032f6ee6e3",
+    "phonemes": [
+      "jˌu kæn jˈuz ðɪs wˈɜɹd ɪn ɐ sˈɛntᵊns nˈW."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-09",
+    "text": "This new word gives you another way to communicate.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-09-8eb234cc9f28ced2.mp3",
+    "sha256": "8eb234cc9f28ced2448dc7e8bcd1344ef7082b4517f02785ea3c8e58a647925c",
+    "textSha256": "87534ebf5fbb2b9279169fc2db266120f6374792157591faa7cde3c3f36ba693",
+    "bytes": 28800,
+    "seconds": 3.6,
+    "inputKey": "a61e285d386d13bd43875d09cdb3536afcf59653cbb7c7ab59baca133c660d34",
+    "phonemes": [
+      "ðˌɪs nˈu wˈɜɹd ɡˈɪvz ju ənˈʌðəɹ wˈA tə kəmjˈunəkˌAt."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-10",
+    "text": "You made room for another word in your memory.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-10-f3aa1e1e98e108fc.mp3",
+    "sha256": "f3aa1e1e98e108fcf08dda0137deb4081611a446c118430a11c10a788ca1f88d",
+    "textSha256": "4a9f29787f8ee00922b6b76671b32b5355c01cc3986a20d77a8e6284a35b2ec6",
+    "bytes": 23040,
+    "seconds": 2.88,
+    "inputKey": "1abfba74c1131bfb5d17aca64d539abf48ab27b5f344b932f2d1411b1c84d646",
+    "phonemes": [
+      "jˌu mˌAd ɹˈum fɔɹ ənˈʌðəɹ wˈɜɹd ɪn jʊɹ mˈɛməɹi."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-11",
+    "text": "You made time to learn something today.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-11-af1fe19d09376c3c.mp3",
+    "sha256": "af1fe19d09376c3cd707786f76e4b660474d7f176d3dabc4c9264360ba3c59a2",
+    "textSha256": "6c8aa0d7e3cd1a79ec0676702dd12f5e2379b6df59d4f0379f0afccf9b334628",
+    "bytes": 20160,
+    "seconds": 2.52,
+    "inputKey": "6e4d14c5a6d3c783d91737670276fe065d18a2a385c920cd2379fff4e2b1a90b",
+    "phonemes": [
+      "jˌu mˌAd tˈIm tə lˈɜɹn sˈʌmθˌɪŋ tədˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-12",
+    "text": "A short lesson can still be useful.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-12-4c99986e3b1df019.mp3",
+    "sha256": "4c99986e3b1df019320d9e181854ed4dd47e1c3b535b7cc2ac99d616eb308336",
+    "textSha256": "a2d746eda6dabe804d06a0f354e21abfa2ebccabbd0fcce8dc626f93e12342b6",
+    "bytes": 20160,
+    "seconds": 2.52,
+    "inputKey": "9ac27ec53b7fd853c5227035ca1df3c6d14e3405520eaa32b66094daeafc41ed",
+    "phonemes": [
+      "ɐ ʃˈɔɹt lˈɛsən kæn stˈɪl bi jˈusfᵊl."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-13",
+    "text": "You came back to practice again today.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-13-ee670586499714da.mp3",
+    "sha256": "ee670586499714daeddbec4e82bf23b5f7e79e6e8dc7f75225ace0f9aebd5412",
+    "textSha256": "d1ac263d9a7fef5f4aa4eb7747330e6a76ac5e4ea2ced8ef5fe7eded94019693",
+    "bytes": 21504,
+    "seconds": 2.688,
+    "inputKey": "84ad4da9eaa788175dec064136c2a5ea1bc9bdf5a802bb4b60d2a3ffe3179b11",
+    "phonemes": [
+      "jˌu kˈAm bˈæk tə pɹˈæktəs əɡˈɛn tədˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-14",
+    "text": "Learning at your own pace is perfectly fine.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-14-a7125328f6669d44.mp3",
+    "sha256": "a7125328f6669d445d75872eb3018d1c1c7edb664a069b7a0ed25369d462f40b",
+    "textSha256": "8e9bae7c9215f7e048ccd9b21584d9cad3b61810468c603a45cb2e20499568b2",
+    "bytes": 24960,
+    "seconds": 3.12,
+    "inputKey": "993ea957a3787d36a646aad1d9815ee1ba40037d0d5880533d35026b199af6f6",
+    "phonemes": [
+      "lˈɜɹnɪŋ æt jʊɹ ˈOn pˈAs ɪz pˈɜɹfəktli fˈIn."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-15",
+    "text": "You don't have to learn everything at once.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-15-ca24f9b2c9c549f3.mp3",
+    "sha256": "ca24f9b2c9c549f3f114ff433b95d42fdafbf421d7db6d5d5350822eefff8ee7",
+    "textSha256": "f230d11a24ab6ca37c325a7461616768f45a3480a6d0fa64e2f1ae190212c169",
+    "bytes": 21120,
+    "seconds": 2.64,
+    "inputKey": "26414c49a5d89a8435275502b7826dd993c22c185bc630c4eafab5386cbb78d4",
+    "phonemes": [
+      "jˌu dˈOnt hæv tə lˈɜɹn ˈɛvəɹiθˌɪŋ æt wˈʌns."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-16",
+    "text": "A few minutes of practice can make a difference.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-16-cfbb9820a004c161.mp3",
+    "sha256": "cfbb9820a004c161e3c1ced67271040550b9c191f1db4e84e78ea93d1ed90f46",
+    "textSha256": "8117e5e92dc6c07f40821468bad9e70c91f9bcabc1c2e46dd8957bcb914bbdaa",
+    "bytes": 24000,
+    "seconds": 3.0,
+    "inputKey": "bb2baead0ccce39358af059e5234e919505c23948f06474892cb1f29a70abfea",
+    "phonemes": [
+      "ɐ fjˈu mˈɪnəts ʌv pɹˈæktəs kæn mˌAk ɐ dˈɪfəɹəns."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-17",
+    "text": "You are finding a study routine that works for you.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-17-ccaf31d4be127158.mp3",
+    "sha256": "ccaf31d4be1271586c22fb372ce4e0ade408f8d3329ed529276419e6d4ec3c96",
+    "textSha256": "cc61d265860c3acc48147b4539209644d2aafc882f139d0820ffd925dfdd9ca5",
+    "bytes": 26112,
+    "seconds": 3.264,
+    "inputKey": "9ccbaab91f29903dcbd6bc8c412d7209393f6fe370c434a107c8489090e3f0d3",
+    "phonemes": [
+      "jˌu ɑɹ fˈIndɪŋ ɐ stˈʌdi ɹutˈin ðæt wˈɜɹks fɔɹ ju."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-18",
+    "text": "You can always pick up where you left off.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-18-69cab9ce7a5b1c21.mp3",
+    "sha256": "69cab9ce7a5b1c21eee0c2be4057ed786fb1a479a88541519edabd2e8e315fa2",
+    "textSha256": "88ac591a5f40e09540a31fba0a68ea8be16a84c63b5d1225ba427b49ba8b8d06",
+    "bytes": 20928,
+    "seconds": 2.616,
+    "inputKey": "2ca535ecee9e9601262badb2851b861c2297b909302f6c6bf493658794e13995",
+    "phonemes": [
+      "jˌu kæn ˈɔlwˌAz pˈɪk ˌʌp wˌɛɹ ju lˈɛft ˈɔf."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-19",
+    "text": "Each time you return, you get more practice.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-19-860afe4ea2692932.mp3",
+    "sha256": "860afe4ea2692932c174e824bf7c7d773e2c3222a687b6e1a890391d08f30897",
+    "textSha256": "8940572a135c47747be74ee894d001e1283438bc6adc9415be6f1905b6edf076",
+    "bytes": 23616,
+    "seconds": 2.952,
+    "inputKey": "8972b212eb19ec707c398311ed259f83d67cadb176a15283832f47f315eb8119",
+    "phonemes": [
+      "ˈiʧ tˈIm ju ɹətˈɜɹn, ju ɡɛt mˈɔɹ pɹˈæktəs."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-20",
+    "text": "You kept learning even on a busy day.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-20-073c33abee9dc3c6.mp3",
+    "sha256": "073c33abee9dc3c69f63cce28ce95a233b0788b2e9b499232f96ec6a6d52b328",
+    "textSha256": "c07f294792d5826d251ac9544861c3b5d559a0170e5ffa1354e4736a5e2bbdde",
+    "bytes": 22080,
+    "seconds": 2.76,
+    "inputKey": "738ca3cd6575ad5ebc8db83ee37d323ee9f09155cbf697eb7b4bd3b1b007c94e",
+    "phonemes": [
+      "jˌu kˈɛpt lˈɜɹnɪŋ ˈivən ˌɔn ɐ bˈɪzi dˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-21",
+    "text": "You got that answer right all by yourself.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-21-b78df106095d77ba.mp3",
+    "sha256": "b78df106095d77ba04d2ded2b4946e835a0dc03aab0022e752e64abc3bc3c840",
+    "textSha256": "c0c20be0fe8d0f09a3cc4ed72bc563d622a11f18c4dd6651fc0a1718a7529a95",
+    "bytes": 22080,
+    "seconds": 2.76,
+    "inputKey": "3b3ad441ffb24b0dea0be0cb51427f53f3a8b9c77c5ecfdca4855e470f15d08e",
+    "phonemes": [
+      "jˌu ɡɑt ðˈæt ˈænsəɹ ɹˈIt ˈɔl bI jəɹsˈɛlf."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-22",
+    "text": "You remembered the word at just the right moment.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-22-917e3c6f4705a414.mp3",
+    "sha256": "917e3c6f4705a414433c7fa858b1e41d1eb33a6d6caa64afeba8a167fe5088f2",
+    "textSha256": "197bdec987369a1249da7eafc13e794ed3a72a5cfbd03cce1c303409de3ecb02",
+    "bytes": 24000,
+    "seconds": 3.0,
+    "inputKey": "5c701594a328993bda40cb6b4c51119e6f3d2b405f43c4a9829da7da627107eb",
+    "phonemes": [
+      "jˌu ɹəmˈɛmbəɹd ðə wˈɜɹd æt ʤˈʌst ðə ɹˈIt mˈOmᵊnt."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-23",
+    "text": "Your careful thinking helped you find the answer.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-23-df6b42efb0f622a6.mp3",
+    "sha256": "df6b42efb0f622a606d36ad387290648e233219b9799f483e9506142a67b719c",
+    "textSha256": "37d7c8523cd3b50aa5c3bf160030ed94c79e5162ac46e0e0bdc90db6ff957029",
+    "bytes": 25344,
+    "seconds": 3.168,
+    "inputKey": "4a132667241ae193b2c7deaca1b5dc7f8757283c704ad3b10f1028f69db9c398",
+    "phonemes": [
+      "jˌʊɹ kˈɛɹfᵊl θˈɪŋkɪŋ hˈɛlpt ju fˈInd ði ˈænsəɹ."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-24",
+    "text": "You solved a puzzle that looked difficult at first.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-24-48674ca61ffc3efe.mp3",
+    "sha256": "48674ca61ffc3efee2087d4ee0b246e74f7a238db1125dd909424935a4e40925",
+    "textSha256": "c798e6a9e1f213434918b8138cc14808ce084942bc3880364362003ccbf6f4d8",
+    "bytes": 25728,
+    "seconds": 3.216,
+    "inputKey": "e7505990e3f4d83886a4bdff5720f5d1c2e9b9bdb285645bdbd60b960bbfff7c",
+    "phonemes": [
+      "jˌu sˈɑlvd ɐ pˈʌzᵊl ðæt lˈʊkt dˈɪfəkəlt æt fˈɜɹst."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-25",
+    "text": "That was a nice little win for today.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-25-31e7e55582fe4e90.mp3",
+    "sha256": "31e7e55582fe4e90b95e585c5e8ac661cd3f380900220f3d559db75f4c959e68",
+    "textSha256": "7be77b42c51ecbe4e012d969cf28b138a17bb51cdbbdfb9a7d7e06b99be3a4c4",
+    "bytes": 20160,
+    "seconds": 2.52,
+    "inputKey": "b05242949c65d517c9afcdc1310fb0a8d2b20544831f310324f5d25d5acdc766",
+    "phonemes": [
+      "ðˈæt wʌz ɐ nˈIs lˈɪTᵊl wˈɪn fɔɹ tədˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-26",
+    "text": "You spotted the clue you needed.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-26-34db93847980fdd7.mp3",
+    "sha256": "34db93847980fdd74def7ae61bec5e7bb68148c72170e299535f2e9cc50c4fb8",
+    "textSha256": "ab649ea7ffae719b029de1c323c98eb44032c91b4e8f58cf45100a5788306d3c",
+    "bytes": 17664,
+    "seconds": 2.208,
+    "inputKey": "03496edc8c12435d480c4c8a3f5a57b3b086a9070f2edda2b5bb554fbd4da4a5",
+    "phonemes": [
+      "jˌu spˈɑTᵻd ðə klˈu ju nˈidᵻd."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-27",
+    "text": "You worked through that tricky question.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-27-2242a8b453cfdde5.mp3",
+    "sha256": "2242a8b453cfdde5f57974a075fec358b2e8d51d173b68ad8d12cd1891518e7e",
+    "textSha256": "fed8ea42d6c469008af2f8c0a6aa03fb1ff676ed851d1314771b450e1ad260d3",
+    "bytes": 19200,
+    "seconds": 2.4,
+    "inputKey": "fefab05a3dc370d0d34e6e3279fa02bd7b9bda2dcf7e5c1ced40a161f529b89b",
+    "phonemes": [
+      "jˌu wˈɜɹkt θɹu ðˈæt tɹˈɪki kwˈɛsʧᵊn."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-28",
+    "text": "You finished another round of word practice.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-28-908bfbddbed14111.mp3",
+    "sha256": "908bfbddbed14111afb47959f070e922636f7e34327c23d23f97e3b7d77b5dc1",
+    "textSha256": "ba229a33de5ddc7268f6dee6637858233cccecde9860fe09bad6fd1da934c661",
+    "bytes": 24192,
+    "seconds": 3.024,
+    "inputKey": "c6bc9fc72506e230535ffd0d74a72b5ae26b259afb21ce5d867e9089fae71ced",
+    "phonemes": [
+      "jˌu fˈɪnəʃt ənˈʌðəɹ ɹˈWnd ʌv wˈɜɹd pɹˈæktəs."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-29",
+    "text": "You found the right word for this puzzle.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-29-b0343e6c25ead7f7.mp3",
+    "sha256": "b0343e6c25ead7f7659eda0a95bae249771a95b98ef4614af98c7ccfe4e74195",
+    "textSha256": "6e4158eab6da26915b345c2086a957fc774cb8a04ba4b4ccbd6e6877768eb1f3",
+    "bytes": 20928,
+    "seconds": 2.616,
+    "inputKey": "47501f06beafead532066a7ce756d0c8c4d7b207a09f352d70140bcf26741b47",
+    "phonemes": [
+      "jˌu fˈWnd ðə ɹˈIt wˈɜɹd fɔɹ ðɪs pˈʌzᵊl."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-30",
+    "text": "Your practice helped you remember the correct spelling.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-30-f148571fdb053130.mp3",
+    "sha256": "f148571fdb053130d8e231dcf2fba3355e2b7c35332a42c735c4bb6d972a8642",
+    "textSha256": "d483be217ac332861935ea62729c61d0fe10be6444457f6f962126a47f576a37",
+    "bytes": 26688,
+    "seconds": 3.336,
+    "inputKey": "5d9635e3d318503c46276b9a8865af61ec43936cbb70463c7da4c52086229fd0",
+    "phonemes": [
+      "jˌʊɹ pɹˈæktəs hˈɛlpt ju ɹəmˈɛmbəɹ ðə kəɹˈɛkt spˈɛlɪŋ."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-31",
+    "text": "It's okay to try the same question again.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-31-d62f7a761b8d4cc6.mp3",
+    "sha256": "d62f7a761b8d4cc640af3845c260c15d2a2f5ce238e293334d44447e6d27c62f",
+    "textSha256": "ffa22cffe545046cebe8f18fe9f0aa8747c29ef718a4f0164663e325c85d893a",
+    "bytes": 23616,
+    "seconds": 2.952,
+    "inputKey": "09961fcfdc8b9cf1fff7248f29a13f9d07ed0522669407cfada2c8382b51ba04",
+    "phonemes": [
+      "ˌɪts ˌOkˈA tə tɹˈI ðə sˈAm kwˈɛsʧᵊn əɡˈɛn."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-32",
+    "text": "A wrong answer can help you learn.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-32-31609f405a24f769.mp3",
+    "sha256": "31609f405a24f76977efc62d1318d6691e30243ac0896e177cc35f18e59a8ea9",
+    "textSha256": "4676309f9cf962c7f9fc80a43508b12c32191465230881b5c717807dd363f8d2",
+    "bytes": 19200,
+    "seconds": 2.4,
+    "inputKey": "9bb25ad3b5685caec7194ae72385974b52e5529cb7d8f156f9ef8d60fa81fa74",
+    "phonemes": [
+      "ɐ ɹˈɔŋ ˈænsəɹ kæn hˈɛlp ju lˈɜɹn."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-33",
+    "text": "Take another look at the letters.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-33-1cb497fb0eed96e0.mp3",
+    "sha256": "1cb497fb0eed96e0a9a5068ac2abf1dd42d7f3d810ca90fa8d8b2d358a762667",
+    "textSha256": "5a5f84c1de29c276410ac6f98d7a950ee8954482597065410ded75d2c13d8055",
+    "bytes": 17856,
+    "seconds": 2.232,
+    "inputKey": "5a1f008d34af34a7af3fcf98a3fa71d07eac4de8f2d1accc25b8b42acd135552",
+    "phonemes": [
+      "tˈAk ənˈʌðəɹ lˈʊk æt ðə lˈɛTəɹz."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-34",
+    "text": "That word may be easier next time.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-34-7c2b703cf2f313bc.mp3",
+    "sha256": "7c2b703cf2f313bcb196eede67d2ae7e17d78b9643c7c6ada6b4b5fa58f4bbf7",
+    "textSha256": "fb1035202a604c23919fe68f60e989b23254dcad6702742fcfedd0b454f5e23e",
+    "bytes": 20544,
+    "seconds": 2.568,
+    "inputKey": "bf0cdb7431984f1cba088001d51a5994d7f2f2db5922a7cac0432a72ca7bf0b6",
+    "phonemes": [
+      "ðˈæt wˈɜɹd mˈA bi ˈiziəɹ nˈɛkst tˈIm."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-35",
+    "text": "You can learn a lot from one mistake.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-35-9cc4c0513b981ef9.mp3",
+    "sha256": "9cc4c0513b981ef93b5ba379e4ec8b773ba64732e00b719b8705c53e2594b24f",
+    "textSha256": "2c627c030f6e0d3e1b5485bf3b41ade790973cea75f3317db73a785add87aded",
+    "bytes": 20544,
+    "seconds": 2.568,
+    "inputKey": "adfd30e115175123e301bd07314e3438909b6a0d2ea815e6125dc19c95ee1789",
+    "phonemes": [
+      "jˌu kæn lˈɜɹn ɐ lˈɑt fɹʌm wˈʌn məstˈAk."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-36",
+    "text": "Some words take more practice to remember.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-36-99764c58038c5364.mp3",
+    "sha256": "99764c58038c53647b548506bfeecd127c10a4dce53bd401a336ee14e04ea43a",
+    "textSha256": "e68df8fb8f6b84fa6db5844a353e11bab006e48047f45ace2018042c156e845e",
+    "bytes": 23424,
+    "seconds": 2.928,
+    "inputKey": "1123c73976ff449b8dd702fcb3f6aeac9b1db121ecc81d16e478715a6406a207",
+    "phonemes": [
+      "sˌʌm wˈɜɹdz tˈAk mˈɔɹ pɹˈæktəs tə ɹəmˈɛmbəɹ."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-37",
+    "text": "You noticed what went wrong this time.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-37-6c318778c5b6272f.mp3",
+    "sha256": "6c318778c5b6272f8d28903872ff71a5159a1aa841bb309cc7b2e2e78a96c07a",
+    "textSha256": "3dd3bec3b000dc8f98228b77aeb898f1ee1a706d6f05a42ca56df102d071e7b7",
+    "bytes": 19008,
+    "seconds": 2.376,
+    "inputKey": "4004867a123d462c9d954e16c2241a065709027000a9c35abb5ab4fa62151d36",
+    "phonemes": [
+      "jˌu nˈOTəst wˌʌt wˈɛnt ɹˈɔŋ ðɪs tˈIm."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-38",
+    "text": "You can try a different answer now.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-38-03c4d16730248b39.mp3",
+    "sha256": "03c4d16730248b390d15e73069372c79e575bcb41447605a0bfb346ee24313ad",
+    "textSha256": "dba6d4e9b6c308c8d2accf56654919016ecc8796ab025d731d7b80fbebedbef3",
+    "bytes": 20160,
+    "seconds": 2.52,
+    "inputKey": "16e586019f39cb3f90e83f3da8d519d7b7e75238a642feec46f7bf6467b47735",
+    "phonemes": [
+      "jˌu kæn tɹˈI ɐ dˈɪfəɹənt ˈænsəɹ nˈW."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-39",
+    "text": "Give yourself time to think it through.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-39-3b0404a1bdb94de3.mp3",
+    "sha256": "3b0404a1bdb94de391dcc6b8ded5074a5d8b46c56bea490d3029d00db682da55",
+    "textSha256": "1ed8fddf18c901689892c9d8e8207cefc5cf623efbb2585e77d89571d40eb5d1",
+    "bytes": 19584,
+    "seconds": 2.448,
+    "inputKey": "6cce5c56d48e3d26064f06276ad84dc0dd88178fdd374bfd4a1df079705e90e3",
+    "phonemes": [
+      "ɡˈɪv jəɹsˈɛlf tˈIm tə θˈɪŋk ɪt θɹˈu."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-40",
+    "text": "The next try is another chance to learn.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-40-47f2a3bd346031e1.mp3",
+    "sha256": "47f2a3bd346031e130ee456a424240ef1d1eba9a7f7d7b0a4b5ac2995e861b47",
+    "textSha256": "48770c0012466e54d54303928dd7b9f27fb8a832365693e03d5ee90b8686cdf9",
+    "bytes": 22656,
+    "seconds": 2.832,
+    "inputKey": "21b788c0b0fa2c11f816f135f3aadf621f65b44b0742ded346c13c56ce4612f5",
+    "phonemes": [
+      "ðə nˈɛkst tɹˈI ɪz ənˈʌðəɹ ʧˈæns tə lˈɜɹn."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-41",
+    "text": "Have you ever seen this word before?",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-41-1bedf2bfe24f94e7.mp3",
+    "sha256": "1bedf2bfe24f94e7446a126d4846b779ecee686473dce591521842d08eb56b72",
+    "textSha256": "39ff0cb212a49faaed39b5190308d1570f1c05431e34a9754697613a70174c75",
+    "bytes": 20352,
+    "seconds": 2.544,
+    "inputKey": "d6b27b3c0edb29d138b818867e25af5c8959af157c33b8e1bca652e2e9a01fed",
+    "phonemes": [
+      "hˌæv ju ˈɛvəɹ sˈin ðɪs wˈɜɹd bəfˈɔɹ?"
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-42",
+    "text": "You might discover a favorite word today.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-42-a6918c7e81eee62e.mp3",
+    "sha256": "a6918c7e81eee62e88dc7fa8c2e8d3b66ccb5ba616a51de5c445c90ce781354a",
+    "textSha256": "f75f867bd89260ce57e89f4801c9cc54d541d754d868d2eee3aa8addc3341558",
+    "bytes": 21888,
+    "seconds": 2.736,
+    "inputKey": "ee036ed2d789ce4ebfc57aa411f53456662ef88cd6cb71480595e7ddf3683278",
+    "phonemes": [
+      "jˌu mˌIt dəskˈʌvəɹ ɐ fˈAvəɹət wˈɜɹd tədˈA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-43",
+    "text": "Try saying this new word out loud.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-43-d599c528ffbb2511.mp3",
+    "sha256": "d599c528ffbb251134394d4b09d066eae10c3ff65b2d085ebee1b7fdb6b5e7a2",
+    "textSha256": "84f11611dbf6164d9c992ce45d222cf20df11d27cb6bb077413aef1911f3c8d9",
+    "bytes": 20736,
+    "seconds": 2.592,
+    "inputKey": "be529689f10a57e43932c3b1a36a7ec729952289e0b89e82ba0e6e19bf9b9937",
+    "phonemes": [
+      "tɹˈI sˈAɪŋ ðɪs nˈu wˈɜɹd ˈWt lˈWd."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-44",
+    "text": "What other words can you make with these letters?",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-44-e2ce3ba3d88dd5cf.mp3",
+    "sha256": "e2ce3ba3d88dd5cf92f025ab8b3cdfe6c90fd31730242526561e2a09b901a937",
+    "textSha256": "915648a3f421cfd19eb0e54f11d4a9ecaa73c7d1ada2bdbb47a979f8fe64823d",
+    "bytes": 23232,
+    "seconds": 2.904,
+    "inputKey": "6602bc4dd8c5176049fc971180b8f44e5b5293bd29848908f27c7ad3939ef608",
+    "phonemes": [
+      "wˌʌt ˈʌðəɹ wˈɜɹdz kæn ju mˌAk wɪð ðiz lˈɛTəɹz?"
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-45",
+    "text": "Every word has something interesting to explore.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-45-f78c690e1545ce97.mp3",
+    "sha256": "f78c690e1545ce973965bb15323a83b74dc3960f70b35f5d639e7102e2692ef9",
+    "textSha256": "e5cc9258200277cfaf0ff6f4e4fa1098030e59ed536a45a613a4432a74e4c5bf",
+    "bytes": 26496,
+    "seconds": 3.312,
+    "inputKey": "e3bfc737cb6b104122f87bf1cd68d0d1cad31fdf8f186fd893e9db0e0bc30efa",
+    "phonemes": [
+      "ˈɛvəɹi wˈɜɹd hæz sˈʌmθˌɪŋ ˈɪntɹəstɪŋ tʊ ɪksplˈɔɹ."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-46",
+    "text": "You might hear this word in a conversation someday.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-46-9f3c693a9660dac9.mp3",
+    "sha256": "9f3c693a9660dac9fb46dc637c168d1ffb7bfe1e61f9b2e2fcafeea7be95b816",
+    "textSha256": "3370a42be6d3f564212a103c66fa93e74b530bbeb03b8ccea968afa8fc504b66",
+    "bytes": 27840,
+    "seconds": 3.48,
+    "inputKey": "b23e7fc10e14cda1a3bb9f51a48be9dd45aff659ab6856475197416d1cbd45f9",
+    "phonemes": [
+      "jˌu mˌIt hˈɪɹ ðɪs wˈɜɹd ɪn ɐ kˌɑnvəɹsˈAʃən sˈʌmdˌA."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-47",
+    "text": "Try using your new word in a short sentence.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-47-a6c62218c68d0fa5.mp3",
+    "sha256": "a6c62218c68d0fa55ef6c0f96384ca1add9be4b5bf586b8962efe0591bcadd01",
+    "textSha256": "eac0459ef6381620873aa9f04a360e37dc317a1150e471488972c27f7299126f",
+    "bytes": 24192,
+    "seconds": 3.024,
+    "inputKey": "b1a601df892764a427386607cb78ab1952467aab7691150a1bd1e2343972bf10",
+    "phonemes": [
+      "tɹˈI jˈuzɪŋ jʊɹ nˈu wˈɜɹd ɪn ɐ ʃˈɔɹt sˈɛntᵊns."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-48",
+    "text": "You can find new words in everyday life.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-48-5084bd220c28a2e7.mp3",
+    "sha256": "5084bd220c28a2e7552dde5594678bbe2ea7deceeba447c64717be39acb78609",
+    "textSha256": "51d5e27abe77d582a275f679dc0d31a16e98553e64962dd546990d79c979857b",
+    "bytes": 23232,
+    "seconds": 2.904,
+    "inputKey": "7d3c746af26836fe3eb75a430609ca33c3770fe0517f8661776e5c948e140fad",
+    "phonemes": [
+      "jˌu kæn fˈInd nˈu wˈɜɹdz ɪn ˈɛvɹidˌA lˈIf."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-49",
+    "text": "Your curiosity led you to another discovery.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-49-0f457b5493ae91ab.mp3",
+    "sha256": "0f457b5493ae91ab78d0ed152166a733d69a2137e8c92eb82ae8fd2ed1918569",
+    "textSha256": "d0d8aceeaafc5359a8beebd9cbcfa1af5ad56fa34479cd54c0ed99bf4b283175",
+    "bytes": 28224,
+    "seconds": 3.528,
+    "inputKey": "6fd1f5e5cde126b3c9299a6e7ced192539f1b976bb72962cc55ed503f58a007f",
+    "phonemes": [
+      "jˌʊɹ kjˌʊɹiˈɑsəTi lˈɛd ju tʊ ənˈʌðəɹ dəskˈʌvəɹi."
+    ],
+    "missingPhonemeTokens": []
+  },
+  {
+    "id": "encouragement-50",
+    "text": "There's always another interesting word to explore.",
+    "source": "apps/toss/src/data/encouragements.json",
+    "file": "encouragement-50-300fea3c8ac197bf.mp3",
+    "sha256": "300fea3c8ac197bf170e4d282a21d4bf7c920c478b2c81753208676326ad810e",
+    "textSha256": "b420851140baa7d9385e490cee300c367707358387bd6fbf5bdf5ed8fd840298",
+    "bytes": 28032,
+    "seconds": 3.504,
+    "inputKey": "d9b60fe89c6209c61f617404b65ce4467f0d581da09e65cf181caf912f7de019",
+    "phonemes": [
+      "ðˌɛɹz ˈɔlwˌAz ənˈʌðəɹ ˈɪntɹəstɪŋ wˈɜɹd tʊ ɪksplˈɔɹ."
+    ],
+    "missingPhonemeTokens": []
+  }
+]

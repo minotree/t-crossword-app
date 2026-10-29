@@ -1,0 +1,27 @@
+{
+  "id": "intermediate-second-life-01-07",
+  "bookId": "intermediate-second-life-01",
+  "page": 7,
+  "prompt": "One finished portrait English reading card for middle/high-school teenagers, polished original literary gouache illustration and sophisticated serif typography on subtle warm cream paper, visually consistent with a mature educational reading series. Upper 45 percent illustration: Original coming-of-age second-life fantasy for teenagers, literary gouache, copper, sage and warm cream palette, invented historical setting with no existing franchise references. Recurring narrator: East Asian teenage prince with black hair half tied using a dark green ribbon, simple pale gold robe, carrying a small red notebook. Recurring clerk: older East Asian woman with gray-streaked hair in a dark blue robe. Grounded compassionate story, no violence or copied costumes or emblems. Scene: Young prince in pale gold robe at palace council giving credit to the older blue-robed clerk and humble cart driver beside him, red notebook open, honest restrained mood, no heroic coronation. Lower 55 percent cream reading panel. Large clear dark navy serif text. At the top of this panel print exact main book title \"A Second Life, A Small Choice\". Under it print smaller page heading \"The Wrong Kind of Prize\" (omit it if identical to book title), and page indicator \"7 / 8\". Below, typeset this EXACT English text verbatim, respecting stanza breaks for poetry and wrapping prose comfortably:\nBack at the palace, an officer admired my brilliant plan. I felt the old desire to seem great. Then I looked at the clerk, the driver, and the people waiting beyond the gate. 'It was not only my plan,' I said. I explained who had asked, listened, checked, and carried the food. The story sounded less like a tale and more like work.\nAll English text must fit fully and be legible; do not omit, rewrite, or add words. No Korean lettering, brands, recognizable existing characters, copied art, or imitation of named artists. Original scenes, no gore. Keep recurring character appearances and clothing consistent with the illustration description above.",
+  "source": "C:\\Users\\Administrator\\.codex\\generated_images\\01a14287-7aac-7582-ac89-bb1952bb8ccd\\exec-a2f11e58-35be-45ab-aa78-fbd1a7f59451.png",
+  "target": "images/intermediate-second-life-01-07-large-text-v1.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-16",
+  "referenceImages": [],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "Back at the palace, an officer admired my brilliant plan. I felt the old desire to seem great. Then I looked at the clerk, the driver, and the people waiting beyond the gate. 'It was not only my plan,' I said. I explained who had asked, listened, checked, and carried the food. The story sounded less like a tale and more like work.",
+  "originalGenerationRecord": "content/intermediate-readings/generation-records/revisions/before-large-text-20261029/intermediate-second-life-01-07.json",
+  "originalGenerationRecordSha256": "76c914c40926d9b1ca6bdfa626805dbec0f1164d0923380d9bb6c0590e7ab425",
+  "originalImage": "content/intermediate-readings/images/intermediate-second-life-01-07.png",
+  "originalImageSha256": "3b7324105b6d7b75f9b15b6d9dac3da8da1a21efc64fcb436b47f9972c09a03c",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 746,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json"
+  }
+}

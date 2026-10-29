@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-40",
+  "text": "The next try is another chance to learn.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-40-47f2a3bd346031e1.mp3",
+  "sha256": "47f2a3bd346031e130ee456a424240ef1d1eba9a7f7d7b0a4b5ac2995e861b47",
+  "textSha256": "48770c0012466e54d54303928dd7b9f27fb8a832365693e03d5ee90b8686cdf9",
+  "bytes": 22656,
+  "seconds": 2.832,
+  "inputKey": "21b788c0b0fa2c11f816f135f3aadf621f65b44b0742ded346c13c56ce4612f5",
+  "phonemes": [
+    "ðə nˈɛkst tɹˈI ɪz ənˈʌðəɹ ʧˈæns tə lˈɜɹn."
+  ],
+  "missingPhonemeTokens": []
+}

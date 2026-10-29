@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-24",
+  "text": "You solved a puzzle that looked difficult at first.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-24-48674ca61ffc3efe.mp3",
+  "sha256": "48674ca61ffc3efee2087d4ee0b246e74f7a238db1125dd909424935a4e40925",
+  "textSha256": "c798e6a9e1f213434918b8138cc14808ce084942bc3880364362003ccbf6f4d8",
+  "bytes": 25728,
+  "seconds": 3.216,
+  "inputKey": "e7505990e3f4d83886a4bdff5720f5d1c2e9b9bdb285645bdbd60b960bbfff7c",
+  "phonemes": [
+    "jˌu sˈɑlvd ɐ pˈʌzᵊl ðæt lˈʊkt dˈɪfəkəlt æt fˈɜɹst."
+  ],
+  "missingPhonemeTokens": []
+}

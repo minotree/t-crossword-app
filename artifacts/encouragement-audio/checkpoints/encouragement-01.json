@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-01",
+  "text": "You added a new word to your vocabulary today.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-01-d09e28d8172e1d33.mp3",
+  "sha256": "d09e28d8172e1d338029f5fbe41e6f475aa8d6ad2a4dd7f514ef36174e0ff04f",
+  "textSha256": "c1a3cd59a5138fb2dffefcc2e3ddba12d678f3e4c84384de516d136a7e8a0bfd",
+  "bytes": 26688,
+  "seconds": 3.336,
+  "inputKey": "b060fe321653f9013a8168a7f23124be88cb78eab99fee17d8759cbb61ed43a1",
+  "phonemes": [
+    "jˌu ˈædᵻd ɐ nˈu wˈɜɹd tə jʊɹ vOkˈæbjəlˌɛɹi tədˈA."
+  ],
+  "missingPhonemeTokens": []
+}

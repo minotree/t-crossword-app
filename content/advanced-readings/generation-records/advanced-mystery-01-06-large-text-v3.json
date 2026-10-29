@@ -1,0 +1,34 @@
+{
+  "id": "advanced-mystery-01-06-v2",
+  "bookId": "advanced-mystery-01",
+  "page": 6,
+  "target": "images/advanced-mystery-01-06-large-text-v3.png",
+  "prompt": "Use case: text-localization. Edit target: the attached existing English reading card. Preserve the illustration, people, scene, colors, paper, composition and title. Replace ONLY the reading-panel body with the exact corrected English text below. Keep a readable dark serif font, full words, comfortable margins, and every line fully inside the card. Preserve title exactly: \"The Last Customer\". Preserve heading \"The Account\" and page indicator \"6 / 10\". No Korean, logos, watermarks or added captions. Preserve poem line breaks.\nCorrected body (verbatim):\nHis mother read the letters before they arrived. Years earlier, she had helped the father organize deliveries while recovering from an injury. The money recorded as a deposit was payment he owed her, held at her request while she lacked a safe place to keep it. The clock was their private reminder. Then illness had interrupted their contact, leaving the account unresolved.",
+  "source": "C:\\Users\\kyung\\.codex\\generated_images\\01a14fc2-ef30-77b2-8174-d489d0e53bf4\\exec-8e3a71ed-880d-4fc2-865f-fa5a98ce5a0d.png",
+  "tool": "Pillow typography reflow",
+  "model": "not applicable",
+  "generatedDate": "2026-10-19",
+  "referenceImages": [
+    "images/advanced-mystery-01-06.png"
+  ],
+  "reviewStatus": "draft-unreviewed",
+  "renderedText": "His mother read the letters before they arrived. Years earlier, she had helped the father organize deliveries while recovering from an injury. The money recorded as a deposit was payment he owed her, held at her request while she lacked a safe place to keep it. The clock was their private reminder. Then illness had interrupted their contact, leaving the account unresolved.",
+  "originalGenerationRecord": "content/advanced-readings/generation-records/advanced-mystery-01-06-v2.json",
+  "originalGenerationRecordSha256": "05e5439f149cdf6f94e90010d6cdfd3785e74752ad6aea1a567a13e800562b8b",
+  "originalImage": "content/advanced-readings/images/advanced-mystery-01-06-v2.png",
+  "originalImageSha256": "b5525f634e869bc7cd555cd3532bb4bd4ad4c5e633fd8c2f482157cf8dc75da0",
+  "postProcessing": {
+    "date": "2026-10-29",
+    "method": "preserved art + new larger text panel",
+    "bodyFontPx": 64,
+    "linePx": 88,
+    "artCropBottom": 613,
+    "imageGenerationCalls": 0,
+    "evidence": "content/picture-book-large-text-2026-10-29/visual-review.json",
+    "titleFontPx": 88,
+    "subtitleFontPx": 72,
+    "hierarchyRevisionDate": "2026-10-30",
+    "pageNumberPosition": "header-right",
+    "pageNumberRevisionDate": "2026-10-30"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-19",
+  "text": "Each time you return, you get more practice.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-19-860afe4ea2692932.mp3",
+  "sha256": "860afe4ea2692932c174e824bf7c7d773e2c3222a687b6e1a890391d08f30897",
+  "textSha256": "8940572a135c47747be74ee894d001e1283438bc6adc9415be6f1905b6edf076",
+  "bytes": 23616,
+  "seconds": 2.952,
+  "inputKey": "8972b212eb19ec707c398311ed259f83d67cadb176a15283832f47f315eb8119",
+  "phonemes": [
+    "ˈiʧ tˈIm ju ɹətˈɜɹn, ju ɡɛt mˈɔɹ pɹˈæktəs."
+  ],
+  "missingPhonemeTokens": []
+}

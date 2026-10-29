@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-42",
+  "text": "You might discover a favorite word today.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-42-a6918c7e81eee62e.mp3",
+  "sha256": "a6918c7e81eee62e88dc7fa8c2e8d3b66ccb5ba616a51de5c445c90ce781354a",
+  "textSha256": "f75f867bd89260ce57e89f4801c9cc54d541d754d868d2eee3aa8addc3341558",
+  "bytes": 21888,
+  "seconds": 2.736,
+  "inputKey": "ee036ed2d789ce4ebfc57aa411f53456662ef88cd6cb71480595e7ddf3683278",
+  "phonemes": [
+    "jˌu mˌIt dəskˈʌvəɹ ɐ fˈAvəɹət wˈɜɹd tədˈA."
+  ],
+  "missingPhonemeTokens": []
+}

@@ -1,0 +1,15 @@
+{
+  "id": "encouragement-26",
+  "text": "You spotted the clue you needed.",
+  "source": "apps/toss/src/data/encouragements.json",
+  "file": "encouragement-26-34db93847980fdd7.mp3",
+  "sha256": "34db93847980fdd74def7ae61bec5e7bb68148c72170e299535f2e9cc50c4fb8",
+  "textSha256": "ab649ea7ffae719b029de1c323c98eb44032c91b4e8f58cf45100a5788306d3c",
+  "bytes": 17664,
+  "seconds": 2.208,
+  "inputKey": "03496edc8c12435d480c4c8a3f5a57b3b086a9070f2edda2b5bb554fbd4da4a5",
+  "phonemes": [
+    "jˌu spˈɑTᵻd ðə klˈu ju nˈidᵻd."
+  ],
+  "missingPhonemeTokens": []
+}

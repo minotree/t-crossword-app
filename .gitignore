@@ -4,11 +4,24 @@
 .aider.tags.cache.v4/
 
 # Dependencies
+__pycache__/
 node_modules/
 .pnpm-store/
 tmp/lint-tools/
 artifacts/tts-venv/
 artifacts/tts-cache/
+artifacts/picture-book-audio/
+artifacts/picture-book-audio.zip
+artifacts/picture-book-voice-preview/
+artifacts/qwen-tts-cache/
+artifacts/picture-book-audio-qwen/
+artifacts/picture-book-audio-qwen.zip
+artifacts/picture-book-layout-backup-20261029/
+artifacts/picture-book-hierarchy-backup-20261030/
+artifacts/hierarchy-v2-review.jpg
+artifacts/picture-book-page-number-backup-20261030/
+artifacts/picture-book-before-original-layout-20261030.zip
+artifacts/page-number-v3-review.png
 artifacts/toss-word-audio-full/
 artifacts/toss-word-audio-full.zip
 
