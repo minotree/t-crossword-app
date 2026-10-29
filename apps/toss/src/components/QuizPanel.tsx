@@ -23,7 +23,7 @@ export const QuizPanel = forwardRef<QuizPanelHandle, {
     if (solvedIds.includes(word.id)) return;
     setChoices([]); closeHints(); onSelectWord(word);
   };
-  return <div className="puzzle-layout">
+  return <div className={`puzzle-layout${showHints ? ' hints-open' : ''}`}>
     <div className="board-area">
       <PuzzleBoard puzzle={puzzle} solvedIds={solvedIds} hintedCells={hintedCells} onSelectNumber={words => {
         if (words.length === 1) choose(words[0]);

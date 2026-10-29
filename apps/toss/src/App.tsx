@@ -15,16 +15,20 @@ import { CompletionConfetti } from './components/CompletionConfetti.js';
 import { NavigationIcon } from './components/NavigationIcon.js';
 import { PictureBooks } from './components/PictureBooks.js';
 import { AdBanner } from './components/Ads.js';
+import { useInterstitialAd } from './adapters/interstitialAd.js';
 import { WordList } from './components/WordList.js';
 import { createWordAudio } from './adapters/wordAudio.js';
 import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
 import { getCurrentLetters } from './puzzlePresentation.js';
+import encouragements from './data/encouragements.json';
 const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
+const encouragementColors = ['#1b64da', '#8b95a1'];
 type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 type WordFilter = 'all' | 'bookmarked' | 'completed' | 'mistakes';
 
 export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?: typeof generateDevicePuzzle } = {}) {
+  const interstitialAd = useInterstitialAd();
   const audio = useMemo(() => createWordAudio(import.meta.env.VITE_TOSS_WORD_AUDIO_BASE_URL ?? 'https://crossword-word-audio.minotree0902.workers.dev/word-audio/'), []);
   const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const repository = useMemo(() => createProgressRepository(createPlatformStorage()), []);
@@ -46,6 +50,8 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
   const [solvedIds, setSolvedIds] = useState<string[]>([]);
   const [hintedCells, setHintedCells] = useState<Record<string, string>>({});
   const [puzzleVersion, setPuzzleVersion] = useState(0);
+  const [encouragementColor, setEncouragementColor] = useState('');
+  const encouragement = encouragements[(Math.max(1, puzzleVersion) - 1) % encouragements.length];
   const quizPanel = useRef<QuizPanelHandle>(null);
   const [selected, setSelected] = useState<CrosswordWord | null>(null);
   const [showCompletion, setShowCompletion] = useState(false);
@@ -122,13 +128,15 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     return word.word.toLowerCase().includes(search) || word.meaning.toLowerCase().includes(search);
   }), [page, filter, search, completedWords, bookmarkedWords, mistakeWords]);
 
-  const startPuzzle = async (nextLevel = level, nextSize = size) => {
+  const startPuzzle = async (nextLevel = level, nextSize = size, showAd = false) => {
     if (!progressRef.current || busy.current) return;
     busy.current = true; setIsGameBusy(true); setGameError('');
     try {
+    if (showAd) await interstitialAd.show();
     const completed = new Set(progressRef.current.completedWordIds);
     setPuzzle(await generatePuzzle(nextLevel, nextSize, [...completed], progressRef.current.hintUsedWordIds, progressRef.current.dismissedMistakeWordIds));
     setPuzzleVersion(value => value + 1);
+    setEncouragementColor(encouragementColors[Math.floor(Math.random() * encouragementColors.length)] ?? encouragementColors[0]);
     setSolvedIds([]);
     setHintedCells({});
     setLevel(nextLevel); setSize(nextSize);
@@ -139,6 +147,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     finally { busy.current = false; setIsGameBusy(false); }
   };
 
+  const requestNewPuzzle = () => { void startPuzzle(level, size, true); };
   const openQuiz = () => { if (puzzle) setPage('quiz'); else void startPuzzle(); };
 
   const resetCompleted = async () => {
@@ -205,17 +214,21 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
 
       {page === 'quiz' && puzzle && <div className="quiz-content">
         <section className="quiz-controls" aria-label="퍼즐 설정">
-          <div role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map((value) => <Button key={value} size="small" variant={level === value ? 'fill' : 'weak'} aria-pressed={level === value} disabled={isGameBusy} onClick={() => { if (level !== value) void startPuzzle(value, size); }}>{levelNames[value]}</Button>)}</div>
-          <div role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map((value) => <Button key={value} size="small" variant={size === value ? 'fill' : 'weak'} aria-pressed={size === value} disabled={isGameBusy} onClick={() => { if (size !== value) void startPuzzle(level, value); }}>{value}×{value}</Button>)}</div>
+          <div role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map((value) => <Button key={value} size="small" variant={level === value ? 'fill' : 'weak'} aria-pressed={level === value} disabled={isGameBusy} onClick={() => { if (level !== value) void startPuzzle(value, size, true); }}>{levelNames[value]}</Button>)}</div>
+          <div role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map((value) => <Button key={value} size="small" variant={size === value ? 'fill' : 'weak'} aria-pressed={size === value} disabled={isGameBusy} onClick={() => { if (size !== value) void startPuzzle(level, value, true); }}>{value}×{value}</Button>)}</div>
         </section>
         <div className="quiz-summary">
           <span className="quiz-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span>
           <div className="quiz-summary-actions">
             <strong aria-label="전체 단어 진행률" aria-live="polite">{solvedIds.length} / {puzzle.words.length}</strong>
-            <Button size="small" variant="weak" disabled={isGameBusy} onClick={() => { void startPuzzle(); }}>새 퍼즐</Button>
+            <Button size="small" variant="weak" disabled={isGameBusy} onClick={requestNewPuzzle}>새 퍼즐</Button>
           </div>
         </div>
         {puzzle.words.length === 0 ? <section className="empty"><h2>학습할 단어를 모두 풀었어요</h2><p>다른 난이도를 선택해 보세요.</p><Button onClick={() => setPage('home')}>난이도 선택</Button></section> : <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solvedIds} hintedCells={hintedCells} onSelectWord={setSelected} />}
+        {puzzle.words.length > 0 && encouragement && <aside className="quiz-encouragement" aria-label="학습 응원 문구" style={{ color: encouragementColor }}>
+          <p lang="en">{encouragement.english}</p>
+          <p lang="ko">{encouragement.korean}</p>
+        </aside>}
       </div>}
 
       {page === 'words' && <section className="word-bank">
@@ -282,7 +295,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
       <Button size="medium" variant="weak" aria-current={page === 'books' ? 'page' : undefined} onClick={() => setPage('books')}><span className="navigation-item"><NavigationIcon name="books" />그림책</span></Button>
       <Button size="medium" variant="weak" aria-current={page === 'settings' ? 'page' : undefined} onClick={() => setPage('settings')}><span className="navigation-item"><NavigationIcon name="settings" />설정</span></Button>
     </nav>
-    <AdBanner enabled />
+    <AdBanner enabled={page !== 'quiz'} />
     <div className="bottom-safe-area" aria-hidden="true" />
     {selected && puzzle && <AnswerModal key={selected.id} word={selected} currentLetters={getCurrentLetters(puzzle, solvedIds, selected, hintedCells)} onReveal={revealSelectedLetter} onClose={() => setSelected(null)} onSubmit={submitAnswer} onMistake={(id) => { if (progressRef.current) saveProgress(recordMistake(progressRef.current, id)); }} />}
     {showCompletion && puzzle && <Modal title="퍼즐 완성! 축하해요" onClose={() => setShowCompletion(false)}>
@@ -290,7 +303,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
       <div className="completion-icon" aria-hidden="true">🎉</div>
       <p>{puzzle.words.length}개 단어를 모두 맞혔어요. 단어장에서 다시 복습할 수 있어요.</p>
       <ul className="review">{puzzle.words.map((word) => <li key={word.id}><strong lang="en">{word.word}</strong><span>{word.meaning}</span></li>)}</ul>
-      <Button display="block" disabled={isGameBusy} onClick={() => { void startPuzzle(); }}>다음 퍼즐 풀기</Button>
+      <Button display="block" disabled={isGameBusy} onClick={requestNewPuzzle}>새 퍼즐</Button>
     </Modal>}
     {confirmReset && <Modal title="학습 기록을 초기화할까요?" onClose={() => { if (!resetPending) setConfirmReset(false); }}>
       <p>학습완료 기록 {progress.completedWordIds.length}개를 초기화하고 진행 중 퍼즐을 종료합니다. 초기화한 단어는 다시 출제됩니다.</p>

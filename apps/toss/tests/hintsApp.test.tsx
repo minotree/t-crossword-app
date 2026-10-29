@@ -8,6 +8,9 @@ import { App } from '../src/App.js';
 import { PictureBooks, type PictureBook } from '../src/components/PictureBooks.js';
 import { PROGRESS_KEY, parseProgress } from '../src/adapters/progress.js';
 
+const interstitial = vi.hoisted(() => ({ show: vi.fn(async () => {}) }));
+vi.mock('../src/adapters/interstitialAd.js', () => ({ useInterstitialAd: () => interstitial }));
+
 let root: Root;
 let container: HTMLDivElement;
 beforeAll(() => {
@@ -205,6 +208,7 @@ it('restores a dismissed notebook word immediately on hint use without duplicati
 });
 
 it('keeps the PWA welcome flow and changes puzzle settings inside the quiz without losing a round on home navigation', async () => {
+  interstitial.show.mockClear();
   const { puzzle } = fixture();
   const generatePuzzle = vi.fn().mockImplementation(async (level, size) => ({ ...puzzle, level, size }));
   await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
@@ -216,17 +220,25 @@ it('keeps the PWA welcome flow and changes puzzle settings inside the quiz witho
   await act(async () => home.click());
   await click('퀴즈 시작');
   expect(generatePuzzle).toHaveBeenCalledExactlyOnceWith('beginner', 10, [], [], []);
+  expect(interstitial.show).not.toHaveBeenCalled();
   expect(container.querySelector('.quiz-heading')).toBeNull();
   expect(container.querySelector('.quiz-summary [aria-label="전체 단어 진행률"]')?.textContent).toBe(`0 / ${puzzle.words.length}`);
   expect(container.querySelector('.quiz-summary')?.textContent).toContain('새 퍼즐');
   expect(container.querySelector('[aria-label="퍼즐 설정"]')).not.toBeNull();
   await click('중급');
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
   expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 10, [], [], []);
   await click('8×8');
+  expect(interstitial.show).toHaveBeenCalledTimes(2);
   expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 8, [], [], []);
+  await click('중급');
+  await click('8×8');
+  expect(interstitial.show).toHaveBeenCalledTimes(2);
+  expect(generatePuzzle).toHaveBeenCalledTimes(3);
   await act(async () => home.click());
   await click('퀴즈 시작');
   expect(generatePuzzle).toHaveBeenCalledTimes(3);
+  expect(interstitial.show).toHaveBeenCalledTimes(2);
   expect(container.querySelector('nav [aria-current="page"]')?.textContent).toContain('퀴즈 풀기');
 });
 

@@ -40,3 +40,17 @@ it('uses the configured production banner and destroys it on no fill', async () 
   expect(container.querySelector('aside')).toBeNull();
   expect(sdk.destroy).toHaveBeenCalledTimes(1);
 });
+
+it('destroys the banner when disabled and attaches it again when enabled', async () => {
+  vi.stubEnv('VITE_TOSS_BANNER_AD_GROUP_ID', 'ait-ad-production-example');
+  sdk.initialize.mockImplementation(options => options.callbacks.onInitialized());
+  sdk.attach.mockReturnValue({ destroy: sdk.destroy });
+  await act(async () => root.render(<AdBanner enabled />));
+  expect(container.querySelector('aside')).not.toBeNull();
+  await act(async () => root.render(<AdBanner enabled={false} />));
+  expect(container.querySelector('aside')).toBeNull();
+  expect(sdk.destroy).toHaveBeenCalledTimes(1);
+  await act(async () => root.render(<AdBanner enabled />));
+  expect(container.querySelector('aside')).not.toBeNull();
+  expect(sdk.attach).toHaveBeenCalledTimes(2);
+});

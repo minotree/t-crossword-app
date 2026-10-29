@@ -10,6 +10,14 @@
 
 ## 프로젝트 설정
 
+### 웹 변경이 없는 push의 빌드 생략 (2026-10-29)
+
+루트 `vercel.json`의 `ignoreCommand`는 `node scripts/vercel-ignore-build.mjs`를 실행한다. 직전 성공 배포의 `VERCEL_GIT_PREVIOUS_SHA`부터 현재 HEAD까지 비교하며 토스·모바일·데스크톱·toss-api 앱, `docs/`, 루트 Markdown, `content/quiz-encouragements/`만 바뀌면 웹/PWA 빌드를 생략한다. 웹·공통 패키지·lockfile·워크스페이스 설정·스크립트와 분류되지 않은 파일이 하나라도 바뀌면 빌드한다. 따라서 토스 의존성 변경으로 공통 lockfile도 바뀐 경우에는 빌드한다.
+
+최초 배포, 비교 SHA 부재, shallow clone으로 이전 커밋을 읽을 수 없는 경우나 Git 오류는 업데이트 누락을 막기 위해 빌드를 진행한다. 여러 커밋을 한 번에 push해도 전체 변경을 비교하며 삭제·이동된 웹 파일도 감지한다. 이 설정 자체를 추가하는 첫 push에는 웹 빌드가 실행될 수 있다. 로컬 검증은 `node --test scripts/vercel-ignore-build.test.mjs`로 수행한다. Vercel 실배포는 미실행이며 설정은 커밋·push 이후 적용된다.
+
+공식 기준: [ignoreCommand의 종료 코드](https://vercel.com/docs/project-configuration/vercel-json#ignorecommand), [직전 성공 배포 SHA](https://vercel.com/docs/environment-variables/system-environment-variables#vercel_git_previous_sha). 종료 코드 0은 빌드 생략, 1은 빌드 진행이다.
+
 - 저장소 루트에서 배포한다. Root Directory는 `.`이며 `apps/web`로 바꾸지 않는다.
 - Framework Preset: Vite
 - Install Command: `pnpm install --frozen-lockfile`
