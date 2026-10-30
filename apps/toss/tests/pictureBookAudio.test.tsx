@@ -50,3 +50,36 @@ it('does not open a late ad dialog on a different page',async()=>{
   await act(async()=>root.render(<PictureBookAudio id={id} text={text}/>));await click(1);
   await act(async()=>root.render(<p>Other page</p>));await act(async()=>finish?.());expect(host.querySelector('dialog')).toBeNull();
 });
+it('shows chant only for beginner pages and stops narration when switching',async()=>{
+  await act(async()=>root.render(<PictureBookAudio id={id} text={text}/>));
+  expect(host.textContent).toContain('챈트 듣기');
+  await click(0);
+  await act(async()=>{elements[0].dispatchEvent(new Event('playing'));});
+  const chantButton=Array.from(host.querySelectorAll('button')).find(button=>button.textContent==='챈트 듣기');
+  expect(chantButton).toBeDefined();
+  await act(async()=>{chantButton?.click();});
+  expect(elements[0].pause).toHaveBeenCalled();
+  expect(elements[0].hasAttribute('src')).toBe(false);
+  expect(elements[1].src).toContain('/beginner-chants/');
+  await act(async()=>root.render(<PictureBookAudio id="advanced-01-01" text={text}/>));
+  expect(host.textContent).not.toContain('챈트 듣기');
+  expect(elements[1].pause).toHaveBeenCalled();
+});
+it('stops a playing chant when narration starts',async()=>{
+  await act(async()=>root.render(<PictureBookAudio id={id} text={text}/>));
+  const chantButton=Array.from(host.querySelectorAll('button')).find(button=>button.textContent==='챈트 듣기');
+  await act(async()=>{chantButton?.click();});
+  await act(async()=>{elements[0].dispatchEvent(new Event('playing'));});
+  await click(0);
+  expect(elements[0].pause).toHaveBeenCalled();
+  expect(elements[0].hasAttribute('src')).toBe(false);
+  expect(elements[1].src).toContain('/picture-book-audio/');
+});
+it('rejects a chant manifest whose text differs from the current page',async()=>{
+  vi.stubGlobal('fetch',vi.fn(async()=>({ok:true,json:async()=>[{id,text:'다른 본문',sha256:hash,file:`${id}-${hash.slice(0,16)}.mp3`}]})));
+  await act(async()=>root.render(<PictureBookAudio id={id} text={text}/>));
+  const chantButton=Array.from(host.querySelectorAll('button')).find(button=>button.textContent==='챈트 듣기');
+  await act(async()=>{chantButton?.click();});
+  expect(elements).toHaveLength(0);
+  expect(host.textContent).toContain('챈트를 재생하지 못했어요');
+});

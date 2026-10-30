@@ -9,6 +9,17 @@ node_modules/
 .pnpm-store/
 tmp/lint-tools/
 artifacts/tts-venv/
+artifacts/ace-step-local/
+artifacts/chant-tools/
+artifacts/chant-python/
+artifacts/chant-venv/
+artifacts/chant-cache/
+artifacts/beginner-chants/
+artifacts/crossword-content-audio-with-chants/
+artifacts/crossword-content-audio-with-chants.zip
+artifacts/crossword-content-audio-with-chants-v2/
+artifacts/crossword-content-audio-with-chants-v2.zip
+.cache/acestep/
 artifacts/tts-cache/
 artifacts/picture-book-audio/
 artifacts/picture-book-audio.zip

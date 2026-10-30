@@ -1,0 +1,32 @@
+# 초급 그림책 챈트 시안
+
+2026-10-30 사용자 요청으로 초급 그림책 45편을 빠른 Good Morning 시안의 어린 합성 목소리·경쾌한 캐럴 분위기로 로컬 생성한다. 4행 20편은 36초, 6행 25편은 51초, 모두 96 BPM을 요청한다. 작품마다 원문 각 행을 두 번 반복하고 원문을 한 번 더 반복하도록 가사를 입력한다. 실제 결과에서 가사·발음·리듬과 곡의 유사성은 별도 청취 검수가 필요하다.
+
+45편 생성 및 기술 검사 완료: WAV 합계 383,041,980바이트, 45개 작품 ID·입력 가사·원문·SHA-256·형식·길이·비무음 측정 확인. 생성 완료는 청취 또는 배포 승인이 아니다.
+
+- 원본: `../beginner-poems/poems.json`. Good Morning은 사용자가 들었던 빠른 시안 그대로 사용한다. 나머지는 같은 지시로 각각 새로 생성하므로 동일한 목소리나 선율이 보장되지 않는다.
+- 모델·제작 조건·권리 검토: [Good Morning 시안](good-morning-v1.md)과 [Little Bird 시안](little-bird-v1.md). 실제 아동이나 외부 참조 음성은 사용하지 않는다. 기존 곡을 모방하지 않도록 지시했으며, 결과의 비침해 여부는 아직 검토하지 않았다.
+- 실행기: `generate-all.py`. 프로젝트 밖에 설정을 강제하지 않는 별도의 로컬 Python·ACE-Step 환경을 이용한다. 도구와 모델은 앱에 넣지 않는다. 한 번에 한 곡씩 생성하며 작품별 입력·모델 리비전·파일 해시·기술 검사 결과를 기록한다. 이미 완료된 파일은 입력과 해시를 확인한 뒤 재사용하며 불일치나 미완성 파일은 덮어쓰지 않고 중단한다.
+- 산출물: `artifacts/beginner-chants/all-carol-fast-v1/`의 `beginner-01.wav` ~ `beginner-45.wav`, 작품별 JSON, `status.json`. 산출물은 Git에서 제외한다. 상태 파일은 완료된 작품 목록과 실행 상태를 기록한다.
+- `create-playlist.py`로 같은 폴더의 `index.html`을 생성했다. 완성된 곡을 제목별로 듣고 그림책 원문을 볼 수 있다. 브라우저에서 실제 재생과 기기별 음량은 미검증이다.
+- WAV 검사: 48kHz 스테레오, 요청한 길이, 비무음, SHA-256. 입력 가사는 원본에서 직접 구성한다. 이 기술 검사는 음원이 실제로 가사를 정확히 부르는지 증명하지 않는다.
+- 모든 곡은 `draft-unreviewed`이며 사용자 청취, 가사·발음 대조, 음질, 실제 기기 및 저작권·유사성 검토가 남아 있다. 앱 연결이나 배포는 별도다.
+
+## 끝부분 정리 · 2026-10-30
+
+- 사용자가 끝부분 약 4초가 비어 있다고 알려 45편을 측정했다. 4행 작품 20편은 100ms 구간 RMS 0.002 기준으로 마지막 유의미한 소리 뒤 약 3.6~5.5초가 남았고, 6행 작품 25편은 약 0.4~1.0초였다. 이 측정은 사람의 청취를 대신하지 않는다.
+- `trim-trailing-silence.py`로 원본과 분리된 `artifacts/beginner-chants/all-carol-fast-trimmed-v1/`에 45편을 준비했다. 마지막 유의미한 소리 이후 1.5초를 초과하는 20편만 0.8초를 남기고 끝의 0.1초를 페이드 처리했다. 나머지 25편은 바이트 그대로 복사했다. `create-playlist.py --trimmed`로 새 듣기 목록을 생성했다.
+- 작품별 JSON과 `trim-report.json`에 원본·결과 SHA-256, 기준, 감지 길이와 삭제 길이를 기록했다. 45편의 해시·WAV 형식과 마지막 페이드 이전 샘플이 원본과 일치함을 검사했다. 곡 끝 잘림·발음 및 실제 재생에 대한 청취 검수는 아직 필요하다. 원본과 기존 듣기 목록은 보존했다.
+
+## 앱 연결과 정적 음원 준비 · 2026-10-30
+
+- 사용자에게 끝부분 정리 방식의 확인과 앱 적용 요청을 받았다. 이 확인은 45편 전체의 가사·발음·권리 검수를 의미하지 않는다.
+- 웹/PWA·모바일·토스의 초급 그림책에 `챈트 듣기`를 별도 추가했다. 기존 낭독·연속듣기와 챈트는 서로 전환할 때 기존 재생과 대기 요청을 중단한다. 챈트는 1회 듣기며 이동·백그라운드에서도 중지한다.
+- 기본 주소는 `https://crossword-content-audio.minotree0902.workers.dev/beginner-chants/`, 필요 시 `VITE_PICTURE_BOOK_CHANT_BASE_URL`로 공개 HTTPS 경로를 대체한다. 시작할 때 `manifest.json`의 ID·그림책 본문·MP3 해시 파일명을 검증한다. 해당 경로에 파일이 없으면 재생 오류를 표시한다. 음원은 앱 번들에 포함하지 않아 온라인 연결이 필요하다.
+- `scripts/package-beginner-chants.py`는 별도 폴더에 끝부분을 정리한 WAV 45개를 48kHz·스테레오·96kbps MP3로 변환하고, 45개 manifest 항목의 본문·바이트 해시와 디코딩을 검사한다. 기존 `artifacts/crossword-content-audio/public/` 정적 파일을 보존하여 새 음원 디렉터리·MIT 고지와 함께 묶는다. ZIP 내부 바이트와 기존 파일도 검사했다. 인코더의 첫 32kHz 자동 설정 시험은 검증에서 실패하여 폐기하지 않고 `artifacts/crossword-content-audio-with-chants/`에 보존했다. 최종 후보는 `artifacts/crossword-content-audio-with-chants-v2.zip` 및 동명의 `public/`이다.
+- 패키징 당시 ZIP은 `draft-unreviewed` 후보이며 업로드 전이었다. 후속 사용자 직접 배포는 아래 기록한다. 각 곡의 실제 가사·발음·끝부분·음량 및 기존 곡과의 유사성, 모델/생성물 권리·필수 고지는 계속 점검해야 한다. 후속 정적 배포도 기존 파일을 유지하고 45개 파일의 HTTP·해시·CORS와 실제 재생을 별도 확인한다. 사용자 결정에 따라 토스 `.ait` 번들 생성은 사용자가 한다.
+- 검증: 세 앱 `typecheck`·`build`, 토스·웹 `lint`, 토스 전체 테스트 120개와 이후 챈트 전환·본문 불일치 추가 테스트 포함 파일 11개, 모바일 테스트 30개, 웹 `node --test apps/web/scripts/check-build.mjs` 3개 통과. 45개 MP3 ID·원문·파일명·해시 및 ZIP 전체 바이트를 확인했다. 실제 토스·모바일 기기, 브라우저 재생·오디오 포커스, 공개 배포 및 원격 음원 검사는 미실행이다.
+
+### 사용자 직접 배포 확인
+
+2026-10-30 사용자가 Cloudflare 대시보드에서 `crossword-content-audio-with-chants-v2.zip`의 222개 파일을 `crossword-content-audio`에 직접 배포했다. 대시보드의 새 배포 식별자는 `1d3c62a1`이다. `python scripts/check-chant-audio-remote.py`로 공개 파일 221개(`_headers` 제외), MP3 214개(기존 169개 + 챈트 45개)의 HTTP·전체 바이트 SHA-256을 확인하고, MP3 MIME·CORS·immutable과 3개 manifest의 CORS를 검사해 통과했다. 상세 결과는 `artifacts/crossword-content-audio-with-chants-v2/remote-validation.json`에 있다. 실제 브라우저·토스·모바일 기기 재생, 45편 전체의 가사·발음·유사성 청취 검수는 별도로 남는다. 토스 `.ait` 빌드는 사용자가 진행한다.

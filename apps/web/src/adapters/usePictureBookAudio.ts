@@ -72,5 +72,6 @@ export function usePictureBookAudio(id: string, text: string, base: string) {
       await current.play();
     } catch { fail(); }
   };
-  return { status, play, repeatCount, round, configured: !!base };
+  const stopPlayback = () => { stop(); setStatus('idle'); };
+  return { status, play, stopPlayback, repeatCount, round, configured: !!base };
 }

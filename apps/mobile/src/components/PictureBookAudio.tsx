@@ -4,11 +4,16 @@ import { usePictureBookAudio } from '../adapters/usePictureBookAudio.js';
 
 export function PictureBookAudio({ id, text }: { id: string; text: string }) {
   const audio = usePictureBookAudio(id, text, import.meta.env.VITE_PICTURE_BOOK_AUDIO_BASE_URL?.trim() || 'https://crossword-content-audio.minotree0902.workers.dev/picture-book-audio/');
+  const chant = usePictureBookAudio(id, text, import.meta.env.VITE_PICTURE_BOOK_CHANT_BASE_URL?.trim() || 'https://crossword-content-audio.minotree0902.workers.dev/beginner-chants/');
   const [choosing, setChoosing] = useState(false);
   const active = audio.status === 'loading' || audio.status === 'playing' || audio.status === 'gap';
+  const chantActive = chant.status === 'loading' || chant.status === 'playing' || chant.status === 'gap';
   return <div className="mobile-reading-actions" role="group" aria-label="그림책 영어 듣기">
-    <IonButton fill="outline" disabled={!audio.configured} onClick={() => void audio.play()}>{active ? '듣기 중지' : '듣기'}</IonButton>
-    <IonButton fill="outline" onClick={() => { if (active) void audio.play(); else setChoosing(true); }}>{active ? '연속듣기 중지' : '연속듣기'}</IonButton>
+    <IonButton fill="outline" disabled={!audio.configured} onClick={() => { chant.stopPlayback(); void audio.play(); }}>{active ? '듣기 중지' : '듣기'}</IonButton>
+    <IonButton fill="outline" onClick={() => { chant.stopPlayback(); if (active) void audio.play(); else setChoosing(true); }}>{active ? '연속듣기 중지' : '연속듣기'}</IonButton>
+    {/^beginner-\d{2}-01$/.test(id) && <IonButton fill="outline" disabled={!chant.configured} onClick={() => { audio.stopPlayback(); setChoosing(false); void chant.play(); }}>{chantActive ? '챈트 중지' : '챈트 듣기'}</IonButton>}
+    {chant.status === 'loading' && <span role="status">챈트를 불러오는 중</span>}
+    {chant.status === 'error' && <span role="status">챈트를 재생하지 못했어요. 다시 눌러 주세요.</span>}
     <span role="status">{!audio.configured ? '음성 업로드 준비 중' : audio.status === 'loading' ? '음성을 불러오는 중' : audio.status === 'error' ? '음성을 재생하지 못했어요. 다시 눌러 주세요.' : ''}</span>
     {active && <span role="status">{audio.round} / {audio.repeatCount}회</span>}
     <IonModal isOpen={choosing} onDidDismiss={() => setChoosing(false)} aria-label="연속듣기 횟수">
