@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-31T07:07:19.789035+09:00",
+  "pages": 119,
+  "titlePages": 119,
+  "deferredAdvancedPages": 0,
+  "generatorSha256": "7eb6b5257a0eae930d1b85a1270b7df862d3645ecc7823c1595110c6c44d874f",
+  "retainedFiles": 221,
+  "sourceSha256": {
+    "content/beginner-poems/poems.json": "f9dd12d1dab69ecc1544da1ae71b86801b687ae842fff8bfacae15096ff1f910",
+    "content/intermediate-readings/books.json": "a873b203b10e5001e14c0845fe23f6dc03079581a3679b50cf92d06e50e35566",
+    "content/advanced-readings/books.json": "bb01501f4f0ac9e4d1c5e3936c5d487599b815da450465c6b66d592bea77e764"
+  },
+  "previousManifestSha256": "dfee8a12be052d30c65c4ee6ac522f166e127ca9bdbbd30fbf0fea6f06f2fa0a",
+  "validation": "source/title/body hashes, MP3 decode, 500ms pause, retained assets passed",
+  "listeningReview": "pending",
+  "deviceReview": "pending",
+  "deployment": "not-performed",
+  "zipValidation": "all file bytes and CRC passed",
+  "zipSha256": "6e366b4b502ec3bea2e12527426c78517997af118134adbc0624256637fa112e",
+  "zipBytes": 56188719
+}

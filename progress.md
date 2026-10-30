@@ -1,5 +1,16 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## 그림책 제목 낭독 · 전체 배포 및 사용자 청취 확인 (2026-10-31)
+
+- 사용자 요청으로 각 회차를 영어 제목 → 0.5초 쉼 → 기존 본문으로 구성한다. 첫 페이지는 작품 제목과 다른 소제목을 함께 읽고 동일 제목은 중복하지 않는다. 원본 이미지·본문·챈트·앱 코드는 변경하지 않는다. 원격 manifest 갱신으로 웹/PWA·토스·모바일에서 공통 적용할 수 있다.
+- `scripts/prepare-picture-book-title-audio.py`를 추가했다. 초급·중급은 승인된 기존 Qwen 목소리로 제목만 생성하고 기존 본문을 결합한다. 해시 체크포인트·원본 대응·디코딩·무음·기존 배포 파일 보존·ZIP 검사를 수행한다. `.gitignore`에 로컬 제작물 경로를 추가하고 제작 문서와 AGENTS 기준을 반영했다.
+- 최초 고급 Kokoro는 Windows DLL 실행 정책 오류로 실패해 사용자 선택에 따라 초급·중급 81페이지부터 준비했다. 후속 고급 진행 요청으로 CodeIntegrity 로그를 확인하고, 기존 환경과 보안 정책을 유지한 채 별도 `artifacts/kokoro-title-runtime`에서 Thinc 8.3.13·blis 1.3.0으로 복구했다. 기존 Kokoro `af_heart`로 고급 제목 38개를 생성했고 모델/목소리 해시를 검증했다. 설치 출처·버전·해시는 `kokoro-title-runtime.json` 및 `kokoro-title-requirements.txt`에 기록했다.
+- `D:/DEV/qwen3-tts/.venv/Scripts/python.exe -u scripts/prepare-picture-book-title-audio.py --defer-advanced` 통과: 초급 45·중급 36페이지 제목 생성·본문 결합, 전체 119페이지 원본 대응·본문 해시·제목 순서/중복 제거·MP3 디코딩·500ms 무음·기존 221개 파일 보존·ZIP CRC/전체 바이트 해시 검사를 완료했다. 고급 38개 manifest 항목의 기존 기록 완전 일치도 확인했다. `git diff --check` 통과. 앱 코드·설정 변경이 없어 앱 빌드·UI 테스트는 재실행하지 않았다.
+- 후속 전체 명령 `D:/DEV/qwen3-tts/.venv/Scripts/python.exe -u scripts/prepare-picture-book-title-audio.py` 통과: 초급·중급 81개 체크포인트 재사용과 고급 38개 제목 생성 후 전체 119페이지의 원본/제목/본문 해시·500ms 무음·MP3 디코딩·기존 파일 보존·ZIP CRC/바이트 검사를 통과했다. 이전 제목 포함 초급·중급 81개 MP3·manifest 항목이 완전히 동일함도 확인했다. Kokoro import 시험은 통과했다. 새 환경의 `pip check`는 전역 `aider-chat`의 기존 충돌 4건으로 실패했으며 전역 Python에서도 같은 결과다. 관련 없는 전역 환경은 수정하지 않았다.
+- 최종 보관/전달용 `artifacts/picture-book-title-audio.zip`은 56,188,719 bytes, 정적 파일 342개·MP3 333개(기존 214+새 119)다. 이전 81개 제목 ZIP·manifest·보고서는 `artifacts/picture-book-title-audio/snapshots/beginner-intermediate/`에 보존했다. `artifacts/picture-book-title-audio/public/title-preview.html`에서 청취할 수 있다. 최종 manifest·생성/검사 보고서는 `content/picture-book-audio/title-manifest.json`, `title-generation-report.json`에 기록했다. 기존 사용자 변경 `apps/toss/src/styles.css`는 이번 작업에 포함하지 않았다.
+- 사용자의 Cloudflare 화면에서 ZIP이 단일 파일 25MiB 제한에 걸렸고 단일 폴더만 받는 화면임을 확인해 `artifacts/picture-book-title-audio/public` 폴더 하나를 업로드하도록 정정했다. 사용자가 배포 완료를 알렸다. `python scripts/check-picture-book-title-audio-remote.py`는 최초 샌드박스 네트워크 차단 후 승인 실행에서 통과: 공개 341개 파일·333개 MP3의 HTTP/바이트 해시·MIME/CORS/immutable와 manifest CORS, 제목 포함 119페이지 manifest 일치를 확인했다. 결과는 `content/picture-book-audio/title-remote-validation.json`이다. `git diff --check` 통과. 토스 앱 재배포는 하지 않았다.
+- 배포 후 사용자가 “잘 들리네”라고 청취 성공을 확인했다. 토스 앱 갱신 없이 제목 포함 음성이 재생된 사용자 확인으로 기록한다. 확인 작품·기기/OS·전수 검수 범위는 명시되지 않았으므로 119페이지 전체 발음·목소리 연결 검토나 연속듣기·백그라운드 중지, 웹/PWA·Android/iOS별 검증 완료로 확대하지 않는다. 이 항목들은 미검증으로 남긴다. 마무리에서는 기존 통과한 생성·음원·원격 검사를 반복하지 않고 문서·변경 파일·`git diff --check`를 최종 검토한다.
+
 ## 초급 그림책 챈트 45편 및 앱 연결 (2026-10-30)
 
 - 사용자 요청으로 초급 동시 45편을 기존 원문과 반복 가사, 96 BPM 요청, 어린 합성 목소리와 캐럴 분위기의 ACE-Step 로컬 음원으로 제작했다. Good Morning은 사용자가 들은 빠른 시안을 사용한다. 4행 20편은 36초, 6행 25편은 51초로 요청했으며, 사용자가 긴 끝부분을 지적해 20편의 낮은 음량 구간을 잘라 0.8초를 남긴 별도 사본을 만들었다. 사용자는 끝부분 처리 결과가 잘된 것 같다고 확인했다. 45편 전체의 가사·발음·곡 유사성과 권리 청취 검수 승인을 뜻하지 않는다. 작품별 제작·해시·조건은 `content/beginner-chants/README.md` 및 생성 기록을 따른다.

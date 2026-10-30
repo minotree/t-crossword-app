@@ -1,5 +1,52 @@
 # 그림책 영어 낭독
 
+## Cloudflare 수동 업로드 방법 · 2026-10-31
+
+현재 Worker의 대시보드에서 56MB ZIP을 업로드했을 때 ZIP 자체가 단일 파일의 25MiB 제한에 걸리는 것을 사용자 화면으로 확인했다. 이 화면에서는 `artifacts/picture-book-title-audio/public` **폴더 하나를 통째로** 업로드 영역에 넣는다. 폴더 안의 `picture-book-audio/`, `beginner-chants/`, `encouragement-audio/`와 manifest·라이선스·`_headers` 등이 배포 루트에 유지되어야 한다. ZIP을 단일 공개 파일로 올리거나 여러 최상위 항목을 따로 선택하는 안내는 이 화면에 맞지 않는다. ZIP은 보관·전달용으로 유지한다. 사용자는 이 방식으로 배포 완료를 알렸다.
+
+공개 반영은 `python scripts/check-picture-book-title-audio-remote.py`로 확인한다. 사용자 배포 후 현재 통합 폴더의 `_headers`를 제외한 341개 공개 파일·333개 MP3의 HTTP·바이트 해시·MIME/CORS/immutable와 manifest CORS를 전부 확인했고 실패는 0건이다. 원격 그림책 manifest가 제목 포함 119페이지의 로컬 manifest와 바이트 단위로 같음을 확인했다. 결과는 `title-remote-validation.json`에 기록했다. 샌드박스 네트워크 접근은 차단되어 권한 승인 후 검사를 통과했다. 아래 미배포 기록은 묶음 생성 당시의 상태다.
+
+배포 후 사용자가 “잘 들리네”라고 청취 성공을 확인했다. 토스 앱 갱신 없이 원격 음성 변경 후 재생을 확인한 사용자 보고로 기록하며, 청취한 작품·기기/OS·119페이지 전수 발음 검수·연속듣기/백그라운드 동작까지 확인한 것으로 확대하지 않는다. 자동 보고서의 `listeningReview: pending`은 전수 청취 검토가 남았음을 뜻한다. 웹/PWA·Android/iOS별 기기 검증은 별도로 남는다.
+
+## 고급 제목 낭독 및 도구 복구 완료 · 2026-10-31
+
+후속 사용자 요청으로 고급 38페이지도 기존 Kokoro `af_heart` 목소리로 제목을 생성했다. 최종 묶음은 초급 45·중급 36·고급 38페이지 모두 제목 → 0.5초 쉼 → 기존 본문이며, `title-manifest.json`의 119개 항목이 `title-then-body`다. 초급·중급 81개 MP3는 이전 제목 포함 묶음과 바이트 해시가 같으며 다시 합성하지 않았다. 고급도 본문은 기존 MP3를 사용한다. 아래 고급 보류 기록은 최초 단계의 이력이다.
+
+CodeIntegrity 로그의 3033/3077 이벤트로 Thinc 8.3.14 DLL 차단을 확인했다. 기존 `artifacts/tts-venv`를 보존한 채 `artifacts/kokoro-title-runtime`을 별도로 만들었다. spaCy 3.8.16의 요구 범위(`thinc>=8.3.12,<8.4.0`)를 만족하는 [공식 Thinc 8.3.13](https://pypi.org/project/thinc/8.3.13/)을 설치했고, 추가로 차단된 blis 1.3.4는 Thinc 요구 범위 내의 [공식 blis 1.3.0](https://pypi.org/project/blis/1.3.0/)으로 교체해 import·실제 합성에 성공했다. Windows 보안 정책·서명·기존 바이너리는 변경하지 않았다. 모델·목소리 해시는 기존 제작 기록과 대조했다.
+
+복구 버전·wheel 다운로드 URL/해시는 `kokoro-title-runtime.json`, 로컬 환경 패키지 목록은 `kokoro-title-requirements.txt`에 기록한다. 새 가상환경은 기존 전역 PyTorch 등을 재사용하는 `--system-site-packages` 방식이다. 재구성이 필요하면 별도 가상환경에서 요구 목록을 설치하며 원래 환경을 덮어쓰지 않는다. 공식 설치 지침은 [spaCy 문서](https://spacy.io/usage.html)를 참조한다. `pip check`는 상속한 전역 `aider-chat`의 기존 의존성 불일치 4건으로 실패했고 전역 Python에서도 동일함을 확인했다. 음성 도구의 import·38개 실제 합성·최종 음원 검사는 통과했으며 무관한 전역 패키지는 변경하지 않았다.
+
+```powershell
+# 전체 작업: Qwen 81개 체크포인트 재사용 → 고급 제목 생성 → 통합 검사/ZIP
+D:/DEV/qwen3-tts/.venv/Scripts/python.exe -u scripts/prepare-picture-book-title-audio.py
+# 고급 제목만 생성할 경우
+artifacts/kokoro-title-runtime/Scripts/python.exe -u scripts/prepare-picture-book-title-audio.py --engine kokoro
+# 생성된 제목을 전체 119페이지에 결합하고 검사/ZIP만 수행할 경우
+artifacts/tts-venv/Scripts/python.exe -u scripts/prepare-picture-book-title-audio.py --engine package
+```
+
+위 경로는 현재 PC의 기존 환경 예시다. 전체 작업의 Kokoro Python은 `--kokoro-python`으로 지정할 수 있다. 초급·중급만 필요하면 이전 `--defer-advanced` 옵션도 유지한다.
+
+최종 `artifacts/picture-book-title-audio.zip`은 56,188,719 bytes이며 342개 정적 파일·333개 MP3(기존 214+제목 포함 119)를 담는다. 이전 81개 제목 묶음은 `artifacts/picture-book-title-audio/snapshots/beginner-intermediate/`에 ZIP·manifest·보고서로 보존했다. 최종 원본/본문/제목·무음·디코딩·기존 파일 보존·ZIP 검사는 통과했다. 정적 업로드·원격 검사·제목 발음/연결의 청취 검토·실제 기기 검증은 미실행이다. 업로드할 파일 경로와 청취 화면은 아래와 같다.
+
+## 제목 낭독 추가 · 2026-10-31
+
+사용자 요청으로 `듣기`·`연속듣기`의 각 회차를 영어 제목 → 0.5초 쉼 → 기존 영어 본문으로 변경한다. 첫 페이지는 작품 제목과 서로 다른 페이지 소제목을 차례로 읽고, 이후 페이지는 해당 페이지 제목을 읽는다. 동일한 작품 제목·페이지 제목은 한 번만 읽는다. 한글 해석·챈트는 변경하지 않는다.
+
+초급 45페이지·중급 36페이지의 제목은 기존에 승인한 Qwen 합성 기준 목소리와 고정 Base 모델로 생성한다. 기존 본문 MP3를 디코딩해 그대로 뒤에 결합하고 24kHz mono/64kbps MP3로 재인코딩한다. 본문 자체를 다시 합성하지 않는다. 생성 입력·모델 리비전·기준 음성 해시·생성 시각은 제목 체크포인트와 최종 manifest의 `titleGeneration`에 기록한다. 기존 라이선스·모델 출처·권리 검토 한계는 아래 기록을 따른다.
+
+고급 38페이지는 Kokoro 실행 중 `thinc.backends.numpy_ops` DLL이 Windows 실행 정책으로 차단됐고 권한 상승 실행에서도 동일하게 실패했다. 사용자 결정으로 초급·중급부터 준비하고 고급은 도구 복구 후 진행한다. `--defer-advanced`는 고급 manifest 항목·음성 파일을 그대로 유지한다. 정책을 우회하거나 의존성을 재설치하지 않았다.
+
+```powershell
+D:/DEV/qwen3-tts/.venv/Scripts/python.exe -u scripts/prepare-picture-book-title-audio.py --defer-advanced
+```
+
+이 Python 경로는 현재 PC에 설치된 기존 환경의 예시다. 스크립트의 Qwen/Kokoro 개별 단계는 해당 환경의 Python으로 `--engine qwen` / `--engine kokoro`를 실행할 수 있고, 결합·검사는 기존 음성 인코딩 환경에서 `--engine package --defer-advanced`로 실행한다. 체크포인트는 입력 설정·WAV 해시가 일치할 때만 재사용한다. 실패하면 완료 항목을 보존한 채 같은 명령으로 이어서 진행한다. 동시에 중복 실행하지 않는다.
+
+최종 정적 폴더는 `artifacts/picture-book-title-audio/public/`, 업로드 묶음은 `artifacts/picture-book-title-audio.zip`, 청취 화면은 `public/title-preview.html`이다. 기존 Cloudflare 배포본의 그림책·챈트·응원·라이선스 파일을 모두 보존하고 그림책 manifest만 새 해시 파일명으로 연결한다. 기존 앱이 원격 manifest를 재요청하므로 앱 코드 수정·앱 재빌드 없이 정적 업로드 후 반영된다. 다른 `VITE_PICTURE_BOOK_AUDIO_BASE_URL`을 쓰는 환경은 해당 호스트도 별도 갱신해야 한다. 이 스크립트는 업로드하지 않는다.
+
+검사는 원본 119페이지와 기존 본문 파일 해시·제목 대응·MP3 디코딩·결합 사이 500ms 무음·이전 221개 파일 보존·ZIP 바이트 해시를 확인한다. 전체 결과는 `title-generation-report.json`, 최종 119페이지 manifest는 `title-manifest.json`에 기록한다. `--engine package --limit 1 --defer-advanced`는 1페이지 시험 묶음이며 콘텐츠의 최종 manifest를 갱신하지 않는다. 전체 생성·실제 배포·제목 발음·목소리 연결·기기 청취 검증 여부는 보고서와 `progress.md`를 따른다. 아래 본문만 낭독 정책은 이전 제작 이력이다.
+
 ## Cloudflare 정적 음성 배포 확인 · 2026-10-30
 
 사용자가 `crossword-content-audio`에 정적 파일 175개를 직접 업로드했다. 공개 주소는 https://crossword-content-audio.minotree0902.workers.dev/ 이다. 그림책 119개는 `/picture-book-audio/`, 응원 문구 50개는 `/encouragement-audio/`이며 각 디렉터리의 manifest.json을 함께 제공한다.

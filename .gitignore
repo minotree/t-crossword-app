@@ -9,6 +9,7 @@ node_modules/
 .pnpm-store/
 tmp/lint-tools/
 artifacts/tts-venv/
+artifacts/kokoro-title-runtime/
 artifacts/ace-step-local/
 artifacts/chant-tools/
 artifacts/chant-python/
@@ -27,6 +28,8 @@ artifacts/picture-book-voice-preview/
 artifacts/qwen-tts-cache/
 artifacts/picture-book-audio-qwen/
 artifacts/picture-book-audio-qwen.zip
+artifacts/picture-book-title-audio/
+artifacts/picture-book-title-audio.zip
 artifacts/picture-book-layout-backup-20261029/
 artifacts/picture-book-hierarchy-backup-20261030/
 artifacts/hierarchy-v2-review.jpg
