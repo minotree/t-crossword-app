@@ -262,30 +262,36 @@ it('keeps the PWA welcome flow and changes puzzle settings inside the quiz witho
   expect(interstitial.show).not.toHaveBeenCalled();
   expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 10, [], [], []);
   await click('8×8');
-  expect(interstitial.show).toHaveBeenCalledTimes(1);
+  expect(interstitial.show).not.toHaveBeenCalled();
   expect(generatePuzzle).toHaveBeenLastCalledWith('intermediate', 8, [], [], []);
   await click('중급');
   await click('8×8');
-  expect(interstitial.show).toHaveBeenCalledTimes(1);
+  expect(interstitial.show).not.toHaveBeenCalled();
   expect(generatePuzzle).toHaveBeenCalledTimes(3);
   await act(async () => home.click());
   await click('퀴즈 시작');
   expect(generatePuzzle).toHaveBeenCalledTimes(3);
-  expect(interstitial.show).toHaveBeenCalledTimes(1);
+  expect(interstitial.show).not.toHaveBeenCalled();
   expect(container.querySelector('nav [aria-current="page"]')?.textContent).toContain('퀴즈 풀기');
+  await click('새 퍼즐');
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
+  await click('새 퍼즐');
+  expect(interstitial.show).toHaveBeenCalledTimes(1);
   await click('새 퍼즐');
   expect(interstitial.show).toHaveBeenCalledTimes(1);
   await click('새 퍼즐');
   expect(interstitial.show).toHaveBeenCalledTimes(2);
 });
 
-it('does not count failed puzzle generation toward the two-puzzle ad interval', async () => {
+it('does not count failed puzzle generation toward the three-puzzle ad interval', async () => {
   interstitial.show.mockClear();
   const { puzzle } = fixture();
   const generatePuzzle = vi.fn().mockResolvedValue(puzzle);
   await act(async () => root.render(<TDSMobileAITProvider brandPrimaryColor="#3182f6"><App generatePuzzle={generatePuzzle} /></TDSMobileAITProvider>));
   await click('퀴즈 시작');
   generatePuzzle.mockRejectedValueOnce(new Error('generation failed'));
+  await click('새 퍼즐');
+  expect(interstitial.show).not.toHaveBeenCalled();
   await click('새 퍼즐');
   expect(interstitial.show).not.toHaveBeenCalled();
   await click('새 퍼즐');

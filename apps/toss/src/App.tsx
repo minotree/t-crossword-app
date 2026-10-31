@@ -151,7 +151,7 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     const nextPuzzle = await generatePuzzle(nextLevel, nextSize, [...completed], progressRef.current.hintUsedWordIds, progressRef.current.dismissedMistakeWordIds);
     if (showAd) {
       const nextCount = newPuzzleCount.current + 1;
-      if (nextCount % 2 === 0) await interstitialAd.show();
+      if (nextCount % 3 === 0) await interstitialAd.show();
       newPuzzleCount.current = nextCount;
     }
     setPuzzle(nextPuzzle);

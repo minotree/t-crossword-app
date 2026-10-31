@@ -53,9 +53,9 @@ button:focus-visible, input:focus-visible, section:focus-visible { outline: 3px 
 .quiz-page { display: flex; flex-direction: column; flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px 12px; }
 /* Anchor settings below the heading and keep the full quiz scrollable on short screens. */
 .quiz-content { flex: 0 0 auto; width: 100%; margin: 0; padding-bottom: 8px; }
-.quiz-encouragement { flex-shrink: 0; padding: 2px 4px 4px; text-align: center; overflow-wrap: anywhere; }
+.quiz-encouragement { flex-shrink: 0; padding: 8px 4px 4px; text-align: center; overflow-wrap: anywhere; }
 .quiz-encouragement > p[lang="en"] { font-size: 16px; font-weight: 600; line-height: 1.5; }
-.quiz-encouragement > button { margin-top: 2px; min-height: 32px; height: 32px; padding: 0 10px; font-size: 12px; }
+.quiz-encouragement > button { margin-top: 8px; min-height: 32px; height: 32px; padding: 0 10px; font-size: 12px; }
 .quiz-encouragement > button + button { margin-left: 6px; }
 .quiz-encouragement > p[lang="ko"] { margin-top: 4px; font-size: 14px; line-height: 1.6; }
 .quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; flex-shrink: 0; margin-bottom: 8px; }
