@@ -1,5 +1,5 @@
 import { afterEach, expect, it, vi } from 'vitest';
-import { defaultVocabList, generateCrossword } from '@t-crossword/core';
+import { defaultVocabList, generateCrossword, vocabularyForProgress } from '@t-crossword/core';
 import { generateDevicePuzzle } from '../src/adapters/puzzleGeneration.js';
 
 it('passes visible notebook exceptions through the main-thread generation path', async () => {
@@ -12,6 +12,21 @@ it('passes visible notebook exceptions through the main-thread generation path',
 });
 
 afterEach(() => { vi.unstubAllGlobals(); vi.useRealTimers(); });
+
+it('generates in the Worker from supplied vocabulary while preserving notebook eligibility', async () => {
+  const workerScope = { onmessage: undefined as undefined | ((event: { data: unknown }) => void), postMessage: vi.fn() };
+  vi.stubGlobal('self', workerScope);
+  await import('../src/workers/puzzle.worker.js');
+  const word = defaultVocabList.find(word => word.level === 'beginner' && word.word.length <= 8);
+  if (!word) throw new Error('Missing fixture');
+  const completed = defaultVocabList.map(word => word.id);
+  const vocabulary = vocabularyForProgress(defaultVocabList, completed, [word.id]);
+  workerScope.onmessage?.({ data: { level: 'beginner', size: 8, vocabulary } });
+  expect(workerScope.postMessage).toHaveBeenLastCalledWith(generateCrossword(vocabulary, 'beginner', 8));
+  expect(workerScope.postMessage.mock.calls[0][0].words.map((entry: { id: string }) => entry.id)).toEqual([word.id]);
+  workerScope.onmessage?.({ data: { level: 'beginner', size: 8, vocabulary: vocabularyForProgress(defaultVocabList, completed, [word.id], [word.id]) } });
+  expect(workerScope.postMessage.mock.calls[1][0].words).toEqual([]);
+});
 
 function workerFixture() {
   vi.useFakeTimers();
@@ -33,7 +48,7 @@ it('sends generation preferences to a module Worker and releases it after a vali
   const { worker, constructor } = workerFixture();
   const pending = generateDevicePuzzle('beginner', 8, ['completed'], ['mistake'], ['hidden']);
   expect(constructor.mock.calls[0][1]).toEqual({ type: 'module' });
-  expect(worker.postMessage).toHaveBeenCalledWith({ level: 'beginner', size: 8, completedWordIds: ['completed'], mistakeWordIds: ['mistake'], dismissedMistakeWordIds: ['hidden'] });
+  expect(worker.postMessage).toHaveBeenCalledWith({ level: 'beginner', size: 8, vocabulary: vocabularyForProgress(defaultVocabList, ['completed'], ['mistake'], ['hidden']) });
   const puzzle = generateCrossword([], 'beginner', 8);
   worker.onmessage?.({ data: puzzle });
   expect(await pending).toEqual(puzzle);

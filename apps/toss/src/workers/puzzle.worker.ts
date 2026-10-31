@@ -1,6 +1,6 @@
-import { defaultVocabList, generateCrossword, vocabularyForProgress, type DifficultyLevel, type GridSize } from '@t-crossword/core';
+import { generateCrossword, type WordItem, type DifficultyLevel, type GridSize } from '@t-crossword/core';
 
-self.onmessage = (event: MessageEvent<{ level: DifficultyLevel; size: GridSize; completedWordIds: string[]; mistakeWordIds?: string[]; dismissedMistakeWordIds?: string[] }>) => {
-  const { level, size, completedWordIds, mistakeWordIds, dismissedMistakeWordIds } = event.data;
-  self.postMessage(generateCrossword(vocabularyForProgress(defaultVocabList, completedWordIds, mistakeWordIds, dismissedMistakeWordIds), level, size));
+self.onmessage = (event: MessageEvent<{ level: DifficultyLevel; size: GridSize; vocabulary: WordItem[] }>) => {
+  const { level, size, vocabulary } = event.data;
+  self.postMessage(generateCrossword(vocabulary, level, size));
 };

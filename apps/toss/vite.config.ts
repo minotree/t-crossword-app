@@ -10,5 +10,16 @@ export default defineConfig(({ command, mode }) => ({
     },
   })] : [])],
   server: { host: '0.0.0.0', port: 5174, strictPort: true },
-  build: { outDir: 'dist', target: 'es2020' },
+  build: {
+    outDir: 'dist', target: 'es2020',
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Keep UI dependencies stable across app/data changes; use public TDS exports.
+          if (id.includes('node_modules')) return 'vendor';
+          if (id.replaceAll('\\', '/').endsWith('/assets/vocab.json')) return 'vocabulary';
+        },
+      },
+    },
+  },
 }));

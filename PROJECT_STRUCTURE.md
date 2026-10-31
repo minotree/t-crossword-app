@@ -6,6 +6,8 @@ This architecture uses independent UIs for Web/PWA, Ionic/Capacitor Mobile and T
 
 작업 규칙은 [AGENTS.md](AGENTS.md), 제품 요구사항은 [crossword-project-spec.md](crossword-project-spec.md), 실제 구현·검증 현황은 [progress.md](progress.md)를 따른다. 아래 트리에는 향후 목표 디렉터리도 포함되며 모두 구현되었다는 뜻은 아니다.
 
+토스 퍼즐 Worker는 메인에서 선별한 어휘를 메시지로 받아 공통 core 엔진을 실행한다. 어휘 JSON은 메인에만 포함하고 빌드 산출물은 앱·vendor·vocabulary 청크로 분리한다. 재현 가능한 크기 분석은 `node scripts/analyze-toss-bundle.mjs`를 사용한다.
+
 ```text
 project-root/
 ├── AGENTS.md

@@ -18,7 +18,7 @@ export async function generateDevicePuzzle(level: DifficultyLevel, size: GridSiz
     };
     worker.onerror = (event) => { event.preventDefault(); finish(); reject(new Error('퍼즐을 생성하지 못했습니다. 다시 시도해 주세요.')); };
     worker.onmessageerror = () => { finish(); reject(new Error('생성한 퍼즐을 읽지 못했습니다. 다시 시도해 주세요.')); };
-    try { worker.postMessage({ level, size, completedWordIds, mistakeWordIds, dismissedMistakeWordIds }); }
+    try { worker.postMessage({ level, size, vocabulary: vocabularyForProgress(defaultVocabList, completedWordIds, mistakeWordIds, dismissedMistakeWordIds) }); }
     catch { finish(); reject(new Error('퍼즐 생성을 시작하지 못했습니다. 다시 시도해 주세요.')); }
   });
 }
