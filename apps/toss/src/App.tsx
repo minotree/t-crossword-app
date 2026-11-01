@@ -20,7 +20,7 @@ import { WordList } from './components/WordList.js';
 import { createWordAudio } from './adapters/wordAudio.js';
 import { generateDevicePuzzle } from './adapters/puzzleGeneration.js';
 import { version } from '../package.json';
-import { getCurrentLetters } from './puzzlePresentation.js';
+import { getAutomaticallyCompletedWordIds, getCurrentLetters } from './puzzlePresentation.js';
 import encouragements from './data/encouragements.json';
 import { EncouragementAudio } from './components/EncouragementAudio.js';
 const levelNames = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
@@ -184,18 +184,26 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     finally { busy.current = false; setResetPending(false); }
   };
 
+  const completeWords = (wordIds: string[], nextHintedCells = hintedCells) => {
+    if (!puzzle) return;
+    const initiallyCompleted = [...new Set([...solvedIds, ...wordIds])];
+    const automaticallyCompleted = getAutomaticallyCompletedWordIds(puzzle, initiallyCompleted, nextHintedCells);
+    const nextIds = [...new Set([...initiallyCompleted, ...automaticallyCompleted])];
+    if (nextIds.length === solvedIds.length) return;
+    setSolvedIds(nextIds);
+    const latest = progressRef.current;
+    if (latest) saveProgress({ ...latest, completedWordIds: [...new Set([...latest.completedWordIds, ...nextIds])] });
+    setSelected(null);
+    if (nextIds.length === puzzle.words.length) setShowCompletion(true);
+  };
+
   const submitAnswer = async (word: CrosswordWord, answer: string): Promise<boolean> => {
     const current = progressRef.current;
     if (!current || !puzzle || !puzzle.words.some((item) => item.id === word.id) || answer.trim().toUpperCase() !== word.word.toUpperCase()) return false;
     if (busy.current) throw new Error('이전 요청을 처리하고 있습니다. 잠시 후 다시 시도해 주세요.');
     busy.current = true; setIsGameBusy(true);
     try {
-    const nextIds = [...new Set([...solvedIds, word.id])];
-    setSolvedIds(nextIds);
-    const latest = progressRef.current ?? current;
-    saveProgress({ ...latest, completedWordIds: [...new Set([...latest.completedWordIds, word.id])] });
-    setSelected(null);
-    if (nextIds.length === puzzle.words.length) setShowCompletion(true);
+    completeWords([word.id]);
     return true;
     } finally { busy.current = false; setIsGameBusy(false); }
   };
@@ -204,7 +212,9 @@ export function App({ generatePuzzle = generateDevicePuzzle }: { generatePuzzle?
     if (!selected) return;
     const row = selected.startRow + (selected.orientation === 'down' ? index : 0);
     const col = selected.startCol + (selected.orientation === 'across' ? index : 0);
-    setHintedCells(cells => ({ ...cells, [`${row}-${col}`]: selected.word[index].toUpperCase() }));
+    const nextHintedCells = { ...hintedCells, [`${row}-${col}`]: selected.word[index].toUpperCase() };
+    setHintedCells(nextHintedCells);
+    completeWords([], nextHintedCells);
     if (progressRef.current) saveProgress(recordMistake(progressRef.current, selected.id));
   };
 

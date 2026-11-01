@@ -14,7 +14,7 @@ import { navigateBack } from '../adapters/backNavigation.js';
 import { QuizPanel, type QuizPanelHandle } from '../components/QuizPanel.js';
 import { Modal } from '../components/Modal.js';
 import { CompletionConfetti } from '../components/CompletionConfetti.js';
-import { knownWordLetters } from '../adapters/puzzlePresentation.js';
+import { automaticallyCompletedWordIds, knownWordLetters } from '../adapters/puzzlePresentation.js';
 import { createMobileWordAudio, DEFAULT_WORD_AUDIO_BASE_URL } from '../adapters/wordAudio.js';
 import { subscribeWordAudioLifecycle } from '../adapters/wordAudioLifecycle.js';
 import { WordAudioButtons } from '../components/WordAudioButtons.js';
@@ -127,13 +127,25 @@ export function HomePage() {
       });
     } catch { setError('뒤로가기를 처리하지 못했습니다. 다시 시도해 주세요.'); }
   }, () => setError('Android 뒤로가기 연결을 처리하지 못했습니다. 앱을 다시 열어 주세요.')), [page, selected, showCompletion, confirmReset]);
+  const completeWords = (wordIds: string[], nextHintedCells = hintedCells): boolean => {
+    if (!puzzle) return false;
+    const initiallyCompleted = [...new Set([...solved, ...wordIds])];
+    const automaticallyCompleted = automaticallyCompletedWordIds(puzzle, initiallyCompleted, nextHintedCells);
+    const nextSolved = [...new Set([...initiallyCompleted, ...automaticallyCompleted])];
+    if (nextSolved.length === solved.length) return false;
+    const latest = progressRef.current;
+    if (!latest || !save({ ...latest, completed: [...new Set([...latest.completed, ...nextSolved])] })) return false;
+    setSolved(nextSolved);
+    if (nextSolved.length === puzzle.words.length) setShowCompletion(true);
+    dialog.current?.close(); setSelected(null);
+    return true;
+  };
   const submit = async (answer: string) => {
     if (!selected || !progress || answerPending.current) return;
     answerPending.current = true; setAnswerBusy(true); setAnswerError('');
     try {
       if (answer.trim().toUpperCase() !== selected.word.toUpperCase()) { setAnswerError('정답이 아닙니다. 다시 입력해 주세요.'); return; }
-      const latest = progressRef.current ?? progress;
-      if (save({ ...latest, completed: [...new Set([...latest.completed, selected.id])] })) { setSolved(previous => [...new Set([...previous, selected.id])]); if (puzzle && new Set([...solved, selected.id]).size === puzzle.words.length) setShowCompletion(true); dialog.current?.close(); setSelected(null); }
+      completeWords([selected.id]);
     } catch { setAnswerError('정답 확인에 실패했습니다. 다시 제출해 주세요.'); }
     finally { answerPending.current = false; setAnswerBusy(false); }
   };
@@ -143,7 +155,9 @@ export function HomePage() {
     if (!save(recordMistake(latest, selected.id))) return false;
     const row = selected.startRow + (selected.orientation === 'down' ? index : 0);
     const col = selected.startCol + (selected.orientation === 'across' ? index : 0);
-    setHintedCells(cells => ({ ...cells, [`${row}:${col}`]: selected.word[index].toUpperCase() }));
+    const nextHintedCells = { ...hintedCells, [`${row}:${col}`]: selected.word[index].toUpperCase() };
+    setHintedCells(nextHintedCells);
+    completeWords([], nextHintedCells);
     setAnswerError('');
     return true;
   };

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { knownWordLetters, numberChoices, visiblePuzzleCells } from '../src/adapters/puzzlePresentation.ts';
+import { automaticallyCompletedWordIds, knownWordLetters, numberChoices, visiblePuzzleCells } from '../src/adapters/puzzlePresentation.ts';
 
 const across = { id: 'across', orientation: 'across', startRow: 1, startCol: 1 };
 const down = { id: 'down', orientation: 'down', startRow: 1, startCol: 1 };
@@ -26,4 +26,11 @@ test('revealed letters remain available when reopening and in crossing words', (
   assert.deepEqual(knownWordLetters(puzzle, [], vertical, { '1:1': 'B', '1:2': 'E' }), ['B', '', '', '']);
   assert.deepEqual([...visiblePuzzleCells(puzzle, ['across'])], ['1:1', '1:2', '1:3', '1:4']);
   assert.deepEqual(knownWordLetters(puzzle, [], horizontal, {}), ['', '', '', '']);
+});
+
+test('automatically completes an intersecting word when hints reveal its final cells', () => {
+  const horizontal = { id: 'across', word: 'SEA', orientation: 'across', startRow: 0, startCol: 0 };
+  const vertical = { id: 'down', word: 'SUN', orientation: 'down', startRow: 0, startCol: 0 };
+  const puzzle = { words: [horizontal, vertical] };
+  assert.deepEqual(automaticallyCompletedWordIds(puzzle, ['across'], { '1:0': 'U', '2:0': 'N' }), ['down']);
 });

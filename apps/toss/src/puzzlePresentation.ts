@@ -22,3 +22,17 @@ export function getCurrentLetters(puzzle: CrosswordPuzzle, solvedIds: string[], 
     return visible.has(`${row}-${col}`) ? puzzle.grid[row]?.[col]?.letter ?? '' : '';
   });
 }
+
+/** Returns unsolved words whose every cell has become visible through crossings or hints. */
+export function getAutomaticallyCompletedWordIds(puzzle: CrosswordPuzzle, solvedIds: string[], hintedCells: Record<string, string> = {}): string[] {
+  const visible = getRevealedCells(puzzle, solvedIds, hintedCells);
+  const solved = new Set(solvedIds);
+  return puzzle.words.filter((word) => {
+    if (solved.has(word.id)) return false;
+    return Array.from({ length: word.word.length }, (_, index) => {
+      const row = word.startRow + (word.orientation === 'down' ? index : 0);
+      const col = word.startCol + (word.orientation === 'across' ? index : 0);
+      return visible.has(`${row}-${col}`);
+    }).every(Boolean);
+  }).map((word) => word.id);
+}

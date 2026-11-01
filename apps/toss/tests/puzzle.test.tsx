@@ -5,6 +5,7 @@ import { defaultVocabList, generateCrossword } from '@t-crossword/core';
 import { PuzzleBoard } from '../src/components/PuzzleBoard.js';
 import { AnswerModal } from '../src/components/AnswerModal.js';
 import { ClueButton } from '../src/components/ClueButton.js';
+import { getAutomaticallyCompletedWordIds } from '../src/puzzlePresentation.js';
 
 describe('Toss crossword UI', () => {
   it.each(['across', 'down'] as const)('shows synonyms for %s clues and omits empty synonyms', (orientation) => {
@@ -26,6 +27,17 @@ describe('Toss crossword UI', () => {
     const solved = renderToStaticMarkup(<PuzzleBoard puzzle={puzzle} solvedIds={[word.id]} />);
     expect((solved.match(/cell  solved/g) ?? []).length).toBe(word.word.length);
     expect(solved).toContain(`1/${puzzle.words.length}개 완료`);
+  });
+
+  it('automatically completes an intersecting word when its final cells are revealed', () => {
+    const across = { id: 'across', word: 'SEA', meaning: '바다', orientation: 'across' as const, startRow: 0, startCol: 0, number: 1, hintLimit: 1, hintUsedCount: 0 };
+    const down = { id: 'down', word: 'SUN', meaning: '태양', orientation: 'down' as const, startRow: 0, startCol: 0, number: 1, hintLimit: 1, hintUsedCount: 0 };
+    const puzzle = { level: 'beginner' as const, size: 8 as const, words: [across, down], grid: [
+      [{ row: 0, col: 0, letter: 'S', acrossNumber: 1, downNumber: 1 }, { row: 0, col: 1, letter: 'E' }, { row: 0, col: 2, letter: 'A' }],
+      [{ row: 1, col: 0, letter: 'U' }],
+      [{ row: 2, col: 0, letter: 'N' }],
+    ] };
+    expect(getAutomaticallyCompletedWordIds(puzzle, ['across'], { '1-0': 'U', '2-0': 'N' })).toEqual(['down']);
   });
 
   it('masks the answer in the input example', () => {

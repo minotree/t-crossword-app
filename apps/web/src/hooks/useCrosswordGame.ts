@@ -18,6 +18,15 @@ export interface UseCrosswordGameOptions {
   vocabList?: WordItem[];
 }
 
+function automaticallyCompletedWordIds(puzzle: CrosswordPuzzle, grid: string[][], solvedWordIds: string[]): string[] {
+  const solved = new Set(solvedWordIds);
+  return puzzle.words.filter((word) => !solved.has(word.id) && Array.from(word.word, (letter, index) => {
+    const row = word.startRow + (word.orientation === 'down' ? index : 0);
+    const col = word.startCol + (word.orientation === 'across' ? index : 0);
+    return grid[row]?.[col] === letter.toUpperCase();
+  }).every(Boolean)).map((word) => word.id);
+}
+
 export function useCrosswordGame({
   initialLevel = 'beginner',
   initialGridSize = 10,
@@ -71,18 +80,31 @@ export function useCrosswordGame({
     setSelectedWord(null);
   }, []);
 
+  const completeRevealedWords = useCallback((nextGrid: string[][], wordIds: string[]) => {
+    if (!puzzle) return;
+    const initiallyCompleted = [...new Set([...solvedWordIds, ...wordIds])];
+    const automaticallyCompleted = automaticallyCompletedWordIds(puzzle, nextGrid, initiallyCompleted);
+    const nextIds = [...new Set([...initiallyCompleted, ...automaticallyCompleted])];
+    if (nextIds.length === solvedWordIds.length) return;
+    for (const id of nextIds) {
+      wordBank.markWordAsUsed(id);
+      wordProgressStore.markCompleted(id);
+    }
+    setSolvedWordIds(nextIds);
+    if (nextIds.length === puzzle.words.length) setIsCompletionModalOpen(true);
+  }, [puzzle, solvedWordIds, wordBank]);
+
   const revealWordLetter = useCallback((wordId: string, index: number) => {
     const word = puzzle?.words.find(item => item.id === wordId);
     if (!word || !Number.isInteger(index) || index < 0 || index >= word.word.length) return;
     const row = word.startRow + (word.orientation === 'down' ? index : 0);
     const col = word.startCol + (word.orientation === 'across' ? index : 0);
-    setUserGrid(previous => {
-      const next = previous.map(cells => [...cells]);
-      next[row][col] = word.word[index].toUpperCase();
-      return next;
-    });
+    const nextGrid = userGrid.map(cells => [...cells]);
+    nextGrid[row][col] = word.word[index].toUpperCase();
+    setUserGrid(nextGrid);
     wordProgressStore.markHintUsed(wordId);
-  }, [puzzle]);
+    completeRevealedWords(nextGrid, []);
+  }, [puzzle, userGrid, completeRevealedWords]);
 
   const submitWordAnswer = useCallback(
     (wordId: string, answer: string): boolean => {
@@ -95,35 +117,19 @@ export function useCrosswordGame({
       }
 
       const expected = targetWord.word.toUpperCase();
-      wordBank.markWordAsUsed(wordId);
-      wordProgressStore.markCompleted(wordId);
-      setUserGrid((previousGrid) => {
-        const nextGrid = previousGrid.map((row) => [...row]);
-        for (let index = 0; index < expected.length; index++) {
-          const row =
-            targetWord.orientation === 'across'
-              ? targetWord.startRow
-              : targetWord.startRow + index;
-          const col =
-            targetWord.orientation === 'across'
-              ? targetWord.startCol + index
-              : targetWord.startCol;
-          nextGrid[row][col] = expected[index];
-        }
-        return nextGrid;
-      });
-
-      setSolvedWordIds((previousIds) => {
-        if (previousIds.includes(wordId)) return previousIds;
-        const nextIds = [...previousIds, wordId];
-        if (nextIds.length >= puzzle.words.length) setIsCompletionModalOpen(true);
-        return nextIds;
-      });
+      const nextGrid = userGrid.map((row) => [...row]);
+      for (let index = 0; index < expected.length; index++) {
+        const row = targetWord.orientation === 'across' ? targetWord.startRow : targetWord.startRow + index;
+        const col = targetWord.orientation === 'across' ? targetWord.startCol + index : targetWord.startCol;
+        nextGrid[row][col] = expected[index];
+      }
+      setUserGrid(nextGrid);
+      completeRevealedWords(nextGrid, [wordId]);
 
       closeInputModal();
       return true;
     },
-    [puzzle, closeInputModal, wordBank]
+    [puzzle, closeInputModal, userGrid, completeRevealedWords]
   );
 
   const selectedWordCurrentLetters = useMemo(() => {
