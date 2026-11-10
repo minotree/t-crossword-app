@@ -10,7 +10,7 @@ export function WordAudioButtons({ id, word, example, audio, state }: {
       return <button key={String(slow)} type="button" aria-pressed={active}
         aria-label={`${word} ${slow ? '느리게 듣기' : '듣기'}${active ? ' 중지' : ''}`}
         onClick={() => audio.speak(id, word, example, slow)}>{active ? '중지' : slow ? '느리게' : '듣기'}</button>;
-    })}</div>
+    })}<span className="mobile-word-audio-notice">온라인 음성 · AI 생성</span></div>
     {state.wordId === id && state.status === 'loading' && <p role="status">음성을 불러오는 중입니다.</p>}
     {state.wordId === id && state.error && <p role="alert">{state.error}</p>}
   </div>;

@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState, type CSSProperties } from 'react';
 import type { CrosswordPuzzle, CrosswordWord } from '@t-crossword/core';
 import { PuzzleBoard } from './PuzzleBoard.js';
 import { ClueButton } from './ClueButton.js';
@@ -6,8 +6,8 @@ import { Modal } from './Modal.js';
 
 export interface QuizPanelHandle { closeOverlay(): boolean }
 export const QuizPanel = forwardRef<QuizPanelHandle, {
-  puzzle: CrosswordPuzzle; solvedIds: string[]; hintedCells?: Record<string, string>; onSelectWord(word: CrosswordWord): void;
-}>(function QuizPanel({ puzzle, solvedIds, hintedCells = {}, onSelectWord }, ref) {
+  puzzle: CrosswordPuzzle; boardSize?: number; solvedIds: string[]; hintedCells?: Record<string, string>; onSelectWord(word: CrosswordWord): void;
+}>(function QuizPanel({ puzzle, boardSize, solvedIds, hintedCells = {}, onSelectWord }, ref) {
   const [showHints, setShowHints] = useState(false);
   const [choices, setChoices] = useState<CrosswordWord[]>([]);
   const openButton = useRef<HTMLButtonElement>(null);
@@ -24,7 +24,11 @@ export const QuizPanel = forwardRef<QuizPanelHandle, {
     setChoices([]); closeHints(); onSelectWord(word);
   };
   return <div className="mobile-puzzle-layout">
-    <div className="mobile-board-area">
+    <div className="mobile-board-area" style={boardSize ? {
+      width: `${boardSize}px`,
+      '--mobile-cell-font': `${Math.max(10, Math.min(18, ((boardSize - 4 - 2 * (puzzle.size - 1)) / puzzle.size) * 0.45))}px`,
+      '--mobile-number-font': `${Math.max(9, Math.min(11, ((boardSize - 4 - 2 * (puzzle.size - 1)) / puzzle.size) * 0.28))}px`,
+    } as CSSProperties : undefined}>
       <PuzzleBoard puzzle={puzzle} solvedIds={solvedIds} hintedCells={hintedCells} onSelectNumber={words => {
         if (words.length === 1) choose(words[0]);
         else if (words.length > 1) setChoices(words);

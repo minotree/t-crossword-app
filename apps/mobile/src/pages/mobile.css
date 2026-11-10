@@ -32,6 +32,41 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-home-puzzle span { display: grid; place-items: center; height: 36px; border-radius: 4px; background: #3182f6; }
 .mobile-home-puzzle .letter { color: #1b64da; background: white; font-size: 20px; font-weight: 800; }
 .mobile-welcome h1 { font-size: 20px; line-height: 1.5; }
+@media (max-height: 740px) {
+  .mobile-screen-home { padding-block: 12px; }
+  .mobile-screen-home .mobile-welcome { flex: 0 0 auto; min-width: 0; }
+  .mobile-screen-home .mobile-home-title { padding-block: 10px; }
+  .mobile-screen-home .mobile-home-body { margin-block: 0; padding-block: 12px; }
+  .mobile-screen-home .mobile-home-puzzle { width: 144px; height: 144px; margin-bottom: 12px; }
+  .mobile-screen-home .mobile-welcome h1 { margin-block: 0 8px; }
+  .mobile-screen-home .mobile-home-body > p { margin-block: 8px 12px; }
+  .mobile-screen-home .mobile-home-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mobile-screen-home .mobile-home-actions ion-button { min-width: 0; white-space: normal; }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobile-screen-home .mobile-welcome { max-width: 800px; }
+  .mobile-screen-home .mobile-home-body {
+    display: grid;
+    grid-template-columns: clamp(120px, 30vh, 144px) minmax(0, 1fr);
+    column-gap: 16px;
+    align-items: start;
+  }
+  .mobile-screen-home .mobile-home-puzzle {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    margin: 0;
+    align-self: center;
+  }
+  .mobile-screen-home .mobile-home-puzzle > div { grid-template-columns: repeat(3, 32px); }
+  .mobile-screen-home .mobile-home-puzzle span { height: 32px; }
+  .mobile-screen-home .mobile-home-body > h1,
+  .mobile-screen-home .mobile-home-body > p,
+  .mobile-screen-home .mobile-home-actions { grid-column: 2; min-width: 0; }
+  .mobile-screen-home .mobile-home-actions { grid-template-columns: minmax(0, 1fr); }
+}
 .mobile-eyebrow { color: #1b64da; font-weight: bold; }
 .mobile-screen input:not([type=checkbox]), .mobile-screen select, .mobile-answer input { display: block; width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #b0b8c1; border-radius: 10px; background: white; color: #191f28; font: inherit; }
 .mobile-controls { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
@@ -67,6 +102,14 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-nav ion-icon { font-size: 24px; }
 .mobile-nav span { font-size: 11px; white-space: nowrap; }
 .mobile-nav button[aria-current] { color: #1b64da; background: #e8f3ff; font-weight: bold; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .ion-page > ion-header > ion-toolbar { --min-height: 44px; }
+  .ion-page > ion-header > ion-toolbar > ion-title { font-size: 18px; padding-inline: 12px; }
+  .ion-page > ion-header .mobile-learned { padding-right: 12px; white-space: nowrap; flex-shrink: 0; }
+  .mobile-nav { padding-block: 4px; }
+  .mobile-nav button { min-height: 44px; flex-direction: row; gap: 4px; }
+  .mobile-nav ion-icon { font-size: 20px; flex-shrink: 0; }
+}
 /* Reserved layout space only; actual SDK banner sizing must be verified before integration. */
 .mobile-ad-preview { box-sizing: border-box; height: 96px; margin-top: 4px; display: grid; place-items: center; border-top: 1px solid #e5e8eb; background: #f2f4f6; color: #8b95a1; font-size: 12px; }
 .mobile-check { display: flex; align-items: center; gap: 8px; padding-block: 16px; }
@@ -91,8 +134,8 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-word-body .mobile-word-meta { display: block; margin-top: 10px; font-size: 12px; }
 .mobile-word-body .mobile-word-synonym { color: #6d28d9; font-size: 12px; }
 .mobile-word-body .mobile-word-example { color: #6b7684; font-size: 13px; }
-.mobile-audio-guide { margin: 4px 0 8px; color: #6b7684; font-size: 12px; line-height: 1.5; }
-.mobile-word-audio-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.mobile-word-audio-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 10px; }
+.mobile-words .mobile-word-audio-notice { font-size: 11px; color: #6b7684; }
 .mobile-words .mobile-word-audio-actions button { min-height: 44px; padding: 8px 12px; font-size: 13px; }
 .mobile-word-audio-actions button[aria-pressed=true] { background: #3182f6; color: white; }
 .mobile-word-body .mobile-word-audio [role=alert] { color: #b91c1c; }
@@ -122,6 +165,11 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-clues h2 { flex-shrink: 0; font-size: 15px; margin-block: 6px; }
 .mobile-clues section > div { max-height: none; flex: 1; min-height: 0; }
 .mobile-word-page .mobile-words { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobile-screen-words { height: auto; min-height: 100%; }
+  .mobile-screen-words .mobile-word-page { flex: 0 0 auto; }
+  .mobile-screen-words .mobile-word-page .mobile-words { flex: 0 0 auto; overflow: visible; }
+}
 .mobile-screen-books { box-sizing: border-box; height: 100%; display: flex; flex-direction: column; }
 .mobile-book-host:not([hidden]) { display: flex; flex: 1; min-height: 0; flex-direction: column; }
 .mobile-books { display: flex; flex-direction: column; flex: 1; min-height: 0; }
@@ -131,6 +179,13 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-book-heading h1 { font-size: 22px; }
 .mobile-book-heading p { font-size: 12px; color: #6b7684; }
 .mobile-reading-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+@media (orientation: landscape) and (max-height: 500px) {
+  .mobile-screen-books { height: auto; min-height: 100%; }
+  .mobile-screen-books .mobile-book-host:not([hidden]),
+  .mobile-screen-books .mobile-books { flex: 0 0 auto; }
+  .mobile-screen-books .mobile-reading-scroll[aria-label="그림책 목록"] { flex: 0 0 auto; overflow: visible; }
+  .mobile-screen-books .mobile-reading-scroll[aria-label="그림책 본문"] { flex: 0 0 auto; height: 50vh; }
+}
 .mobile-reading-image { width: 100%; max-width: 700px; height: auto; display: block; margin: auto; }
 .mobile-reading-frame { position: relative; width: 100%; max-width: 700px; min-height: 96px; margin-inline: auto; }
 .mobile-reading-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
@@ -143,7 +198,7 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-reading-levels ion-button { flex: 1; margin: 0; --border-radius: 10px; --box-shadow: none; --border-width: 0; --background: #e8f3ff; --color: #1b64da; }
 .mobile-reading-levels ion-button[aria-pressed=true] { --background: #3182f6; --color: white; }
 .mobile-book-list { list-style: none; margin: 0; padding: 0; }
-.mobile-book-list button { width: 100%; min-height: 60px; text-align: center; border: 0; border-radius: 18px; padding: 16px; margin: 0 0 12px; background: #e8f3ff; color: #1b64da; font: inherit; font-size: 18px; }
+.mobile-book-list button { width: 100%; min-height: 56px; text-align: center; border: 0; border-radius: 14px; padding: 10px 12px; margin: 0 0 8px; background: #e8f3ff; color: #1b64da; font: inherit; font-size: 17px; line-height: 1.4; white-space: normal; }
 .mobile-book-list span { display: block; overflow-wrap: anywhere; }
 .mobile-translation { white-space: pre-line; line-height: 1.7; }
 .mobile-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: pre-wrap; }
@@ -155,9 +210,10 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-learning-progress { margin-right: auto; font-size: 12px; font-weight: 700; color: #1b64da; }
 .mobile-quiz-summary-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .mobile-puzzle-layout { display: flex; flex-direction: column; flex: none; width: 100%; gap: 8px; container-type: normal; }
-.mobile-board-area { position: relative; width: 100%; }
-.mobile-board { width: 100%; max-width: none; }
-.mobile-cell { position: relative; min-width: 0; min-height: 0; overflow: hidden; display: grid; place-items: center; background: white; color: #191f28; font-size: clamp(10px, 2.8vw, 18px); line-height: 1; font-weight: 700; }
+.mobile-board-area { position: relative; width: 100%; flex-shrink: 0; margin-inline: auto; }
+.mobile-board { box-sizing: border-box; width: 100%; max-width: none; }
+.mobile-board small { font-size: var(--mobile-number-font, 9px); }
+.mobile-cell { position: relative; min-width: 0; min-height: 0; overflow: hidden; display: grid; place-items: center; background: white; color: #191f28; font-size: var(--mobile-cell-font, clamp(10px, 2.8vw, 18px)); line-height: 1; font-weight: 700; }
 .mobile-cell.blocked { background: #8b95a1; }
 .mobile-cell.solved { background: #e8f3ff; }
 .mobile-cell > span { padding-top: 5px; }
@@ -176,7 +232,7 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-clue-group { min-width: 0; }
 .mobile-clue-button { display: block; width: 100%; min-height: 44px; border: 0; border-radius: 10px; padding: 8px; margin-bottom: 8px; background: #e8f3ff; color: #1b64da; text-align: left; font: inherit; font-size: 14px; }
 .mobile-clue-button:disabled { background: #f2f4f6; color: #6b7684; }
-.mobile-quiz-modal { box-sizing: border-box; width: min(480px, calc(100% - 32px)); max-height: 85dvh; padding: 16px; border: 0; border-radius: 20px; overflow-y: auto; color: #191f28; }
+.mobile-quiz-modal { box-sizing: border-box; width: min(480px, calc(100% - 32px)); max-height: 85vh; max-height: 85dvh; padding: 16px; border: 0; border-radius: 20px; overflow-y: auto; color: #191f28; }
 .mobile-quiz-modal::backdrop { background: #0009; }
 .mobile-direction-choices { display: grid; gap: 12px; }
 .mobile-direction-choices p { margin: 0 0 6px; font-weight: 700; }

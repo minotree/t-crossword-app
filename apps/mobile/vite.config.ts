@@ -6,5 +6,6 @@ export default defineConfig({
   // Capacitor용 빌드 설정
   build: {
     outDir: 'dist',
+    reportCompressedSize: false,
   },
 });

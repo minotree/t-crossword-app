@@ -26,6 +26,10 @@ export function HomePage() {
   const audio = useMemo(() => createMobileWordAudio(import.meta.env.VITE_MOBILE_WORD_AUDIO_BASE_URL ?? DEFAULT_WORD_AUDIO_BASE_URL), []);
   const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const quizPanel = useRef<QuizPanelHandle>(null);
+  const content = useRef<HTMLIonContentElement>(null);
+  const quizScreen = useRef<HTMLDivElement>(null);
+  const [boardSize, setBoardSize] = useState<number>();
+  const boardViewport = useRef<{ width: number; height: number } | undefined>(undefined);
   const [showCompletion, setShowCompletion] = useState(false);
   const [puzzleVersion, setPuzzleVersion] = useState(0);
   const [page, setPage] = useState<Page>('home');
@@ -42,6 +46,66 @@ export function HomePage() {
   const [solved, setSolved] = useState<string[]>([]);
   const [hintedCells, setHintedCells] = useState<Record<string, string>>({});
   const [selected, setSelected] = useState<CrosswordWord | null>(null);
+  useEffect(() => {
+    if (page !== 'quiz' || !puzzle || selected) return;
+    let disposed = false;
+    let frame = 0;
+    let observer: ResizeObserver | undefined;
+    let contentHeight = () => quizScreen.current?.clientHeight ?? 0;
+    const viewport = window.visualViewport;
+    const measure = () => {
+      const screen = quizScreen.current;
+      const layout = screen?.querySelector<HTMLElement>('.mobile-puzzle-layout');
+      const button = layout?.querySelector<HTMLElement>('.mobile-all-hints-button');
+      if (!screen || !layout || !button) return;
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && (active.matches('input, textarea') || active.isContentEditable)) return;
+      const visibleHeight = viewport?.height ?? window.innerHeight;
+      const previousViewport = boardViewport.current;
+      // Keep the last size while the keyboard is dismissing; rotation changes width.
+      if (previousViewport && Math.abs(window.innerWidth - previousViewport.width) < 2 && visibleHeight < previousViewport.height * 0.8) return;
+      const style = getComputedStyle(screen);
+      const width = Math.min(
+        screen.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight),
+        layout.clientWidth,
+      );
+      // Restore the initial content position independently of internal scrolling.
+      const before = layout.getBoundingClientRect().top
+        - screen.getBoundingClientRect().top
+        - screen.clientTop
+        + screen.scrollTop;
+      const height = contentHeight() - before - parseFloat(style.paddingBottom) - button.offsetHeight - 8;
+      if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
+      const cell = { 8: 34, 10: 30, 12: 28 }[puzzle.size];
+      const minimum = cell * puzzle.size + 2 * (puzzle.size - 1) + 4;
+      // Keep the minimum where possible, but never overflow the available width.
+      const next = Math.floor(Math.min(width, Math.max(minimum, Math.min(width, height))));
+      boardViewport.current = { width: window.innerWidth, height: visibleHeight };
+      setBoardSize(previous => previous === next ? previous : next);
+    };
+    const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(measure); };
+    void content.current?.getScrollElement().then(scroll => {
+      if (disposed) return;
+      contentHeight = () => scroll.clientHeight;
+      observer = new ResizeObserver(schedule);
+      observer.observe(scroll);
+      const screen = quizScreen.current;
+      if (screen) {
+        observer.observe(screen);
+        screen.querySelectorAll('.mobile-quiz-options, .mobile-quiz-summary, .mobile-error, .mobile-all-hints-button').forEach(element => observer?.observe(element));
+      }
+      schedule();
+    });
+    window.addEventListener('resize', schedule);
+    viewport?.addEventListener('resize', schedule);
+    return () => {
+      disposed = true;
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+      window.removeEventListener('resize', schedule);
+      viewport?.removeEventListener('resize', schedule);
+    };
+  }, [page, puzzle, selected, error]);
   const [answerError, setAnswerError] = useState('');
   const [query, setQuery] = useState('');
   const [wordFilter, setWordFilter] = useState<'all' | 'bookmarks' | 'completed' | 'mistakes'>('all');
@@ -164,7 +228,7 @@ export function HomePage() {
   const visibleWords = defaultVocabList.filter(word => (wordFilter === 'all' || (wordFilter === 'bookmarks' && progress?.bookmarks.includes(word.id)) || (wordFilter === 'completed' && progress?.completed.includes(word.id)) || (wordFilter === 'mistakes' && progress && isNotebookWord(progress, word.id))) && `${word.word} ${word.meaning}`.toLowerCase().includes(query.toLowerCase()));
   return <IonPage>
     <IonHeader><IonToolbar><IonTitle>영어 낱말</IonTitle><span slot="end" className="mobile-learned">{progress?.completed.length ?? 0}개 학습</span></IonToolbar></IonHeader>
-    <IonContent><div className={`mobile-screen mobile-screen-${page}`}>
+    <IonContent ref={content}><div ref={quizScreen} className={`mobile-screen mobile-screen-${page}`}>
       {error && <div role="alert" className="mobile-error">{error}{!progress && <IonButton onClick={load}>다시 불러오기</IonButton>}</div>}
       {!progress ? <p>학습 기록을 준비하고 있어요.</p> : <>
         {page === 'home' && <section className="mobile-welcome">
@@ -182,21 +246,21 @@ export function HomePage() {
             <div className="mobile-choice-row" role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map(value => <button key={value} disabled={busy} aria-pressed={size === value} onClick={() => { if (value !== size) generate(level, value); }}>{value}×{value}</button>)}</div>
           </div>
           <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate()}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
-          {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} solvedIds={solved} hintedCells={hintedCells} onSelectWord={choose} />}
+          {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} boardSize={boardSize} solvedIds={solved} hintedCells={hintedCells} onSelectWord={choose} />}
 
         </section>}
         {page === 'words' && <section className="mobile-word-page">
           <header className="mobile-word-heading"><h1>나의 단어장</h1><span>{visibleWords.length}개 단어</span></header>
           <div className="mobile-word-filters" role="group" aria-label="단어장 분류">{(['all', 'bookmarks', 'completed', 'mistakes'] as const).map(value => <button key={value} aria-pressed={wordFilter === value} onClick={() => setWordFilter(value)}>{({ all: '전체', bookmarks: '즐겨찾기', completed: '학습완료', mistakes: '오답노트' })[value]}</button>)}</div>
           <label className="mobile-word-search"><span className="mobile-sr-only">단어 또는 뜻 검색</span><input type="search" placeholder="단어 또는 뜻 검색" value={query} onChange={event => setQuery(event.target.value)} /></label>
-          <p className="mobile-audio-guide">단어와 예문을 함께 듣습니다. AI 생성 음성이며 인터넷 연결이 필요합니다.</p>
           {wordFilter === 'mistakes' && <p className="mobile-notebook-guide">틀린 단어를 이 기기에 저장합니다. 삭제하면 목록에서만 숨겨지며, 다시 틀리면 목록에 추가됩니다.</p>}
           <ul className="mobile-words">{visibleWords.slice(0, visibleCount).map(word => <li key={word.id}>
             <div className="mobile-word-body"><strong>{word.word}</strong><span className="mobile-word-meta">{levels[word.level]} · {word.partOfSpeech}{progress.completed.includes(word.id) ? ' · 학습 완료' : ''}</span><p>{word.meaning}</p>{word.synonym?.trim() && <p className="mobile-word-synonym">동의어: {word.synonym}</p>}<p className="mobile-word-example" lang="en">{word.example}</p><p className="mobile-word-example">{word.exampleMeaning}</p><WordAudioButtons id={word.id} word={word.word} example={word.example} audio={audio} state={audioState} /></div>
             <button aria-label={`${word.word} 즐겨찾기`} aria-pressed={progress.bookmarks.includes(word.id)} onClick={() => save({ ...progress, bookmarks: progress.bookmarks.includes(word.id) ? progress.bookmarks.filter(id => id !== word.id) : [...progress.bookmarks, word.id] })}>{progress.bookmarks.includes(word.id) ? '★' : '☆'}</button>
             {wordFilter === 'mistakes' && <button aria-label={`${word.word} 오답노트에서 삭제`} onClick={() => save(hideHintedWord(progress, word.id))}>삭제</button>}
-          </li>)}</ul>
-          {visibleCount < visibleWords.length && <IonButton expand="block" onClick={() => setVisibleCount(value => value + 100)}>더 보기</IonButton>}
+          </li>)}
+            {visibleCount < visibleWords.length && <li><IonButton expand="block" style={{ width: '100%' }} onClick={() => setVisibleCount(value => value + 100)}>더 보기</IonButton></li>}
+          </ul>
           {!visibleWords.length && <p>{wordFilter === 'mistakes' && !query.trim() ? '아직 오답노트에 등록된 단어가 없습니다.' : '표시할 단어가 없습니다.'}</p>}
         </section>}
         <div className="mobile-book-host" hidden={page !== 'books'}><PictureBooks ref={bookNavigation} /></div>
@@ -235,12 +299,13 @@ export function HomePage() {
           </section>
           <section className="mobile-settings-card" aria-labelledby="mobile-settings-notices">
             <h2 id="mobile-settings-notices">콘텐츠 이용 고지</h2>
+            <p>단어장 듣기는 단어와 예문을 함께 재생합니다. AI 생성 음성이며 인터넷 연결이 필요합니다.</p>
             <details><summary>WordNet 3.0 이용 조건</summary><pre lang="en" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', fontSize: 12, lineHeight: 1.6 }}>{wordnetLicense}</pre></details>
           </section>
         </section>}
       </>}
     </div></IonContent>
-    <IonFooter><IonToolbar><nav className="mobile-nav" aria-label="하단 메뉴">{(['home', 'quiz', 'words', 'books', 'settings'] as const).map(value => <button key={value} aria-current={page === value ? 'page' : undefined} onClick={() => { if (value === 'quiz') openQuiz(); else setPage(value); }}><IonIcon aria-hidden="true" icon={({ home: homeOutline, quiz: gameControllerOutline, words: bookOutline, books: imageOutline, settings: settingsOutline })[value]} /><span>{({ home: '홈', quiz: '퀴즈 풀기', words: '단어장', books: '그림책', settings: '설정' })[value]}</span></button>)}</nav><aside className="mobile-ad-preview" aria-label="가상 배너 광고 영역"><span>광고 영역</span></aside></IonToolbar></IonFooter>
+    <IonFooter><IonToolbar><nav className="mobile-nav" aria-label="하단 메뉴">{(['home', 'quiz', 'words', 'books', 'settings'] as const).map(value => <button key={value} aria-current={page === value ? 'page' : undefined} onClick={() => { if (value === 'quiz') openQuiz(); else setPage(value); }}><IonIcon aria-hidden="true" icon={({ home: homeOutline, quiz: gameControllerOutline, words: bookOutline, books: imageOutline, settings: settingsOutline })[value]} /><span>{({ home: '홈', quiz: '퀴즈 풀기', words: '단어장', books: '그림책', settings: '설정' })[value]}</span></button>)}</nav>{page !== 'quiz' && <aside className="mobile-ad-preview" aria-label="가상 배너 광고 영역"><span>광고 영역</span></aside>}</IonToolbar></IonFooter>
     {confirmReset && progress && <Modal title="학습 기록을 초기화할까요?" onClose={() => setConfirmReset(false)}>
       <p>학습완료 기록 {progress.completed.length}개를 초기화하고 진행 중 퍼즐을 종료합니다. 초기화한 단어는 다시 출제됩니다.</p>
       <p>즐겨찾기와 오답노트 기록은 유지됩니다.</p>
