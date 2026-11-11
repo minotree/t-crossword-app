@@ -5,7 +5,7 @@
 .mobile-settings { max-width: 640px; margin: auto; }
 .mobile-settings-card { margin-top: 20px; padding: 20px; border: 1px solid #e5e8eb; border-radius: 16px; background: #fff; }
 .mobile-settings-card h2 { margin: 0 0 12px; font-weight: 700; }
-.mobile-settings-card p, .mobile-settings-card dl { font-size: 14px; color: #4e5968; }
+.mobile-settings-card p, .mobile-settings-card dl { font-size: 14px; color: #4e5968; word-break: keep-all; overflow-wrap: break-word; }
 .mobile-settings-card dl, .mobile-settings-card dd { margin: 0; }
 .mobile-settings-details > div { padding: 12px 0; }
 .mobile-settings-details > div + div { border-top: 1px solid #f2f4f6; }
@@ -24,7 +24,7 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-welcome { flex: 1; width: 100%; max-width: 448px; margin: 0 auto; display: flex; flex-direction: column; text-align: center; }
 .mobile-home-title { background: #3182f6; color: white; padding: 14px 8px; border-radius: 12px; font-size: 18px; font-weight: 700; margin: 0; }
 .mobile-home-body { margin-block: auto; padding-block: 20px; }
-.mobile-home-body > p { color: #6b7684; font-size: 14px; }
+.mobile-home-body > p { color: #6b7684; font-size: 14px; word-break: keep-all; overflow-wrap: break-word; }
 .mobile-home-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .mobile-home-actions ion-button { min-height: 52px; margin-inline: 0; font-size: 15px; --padding-start: 8px; --padding-end: 8px; }
 .mobile-home-puzzle { display: grid; place-items: center; width: 160px; height: 160px; border: 4px solid white; border-radius: 50%; background: #e8f3ff; box-shadow: 0 6px 20px #191f2814; margin: 0 auto 20px; }
@@ -34,9 +34,9 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-welcome h1 { font-size: 20px; line-height: 1.5; }
 @media (max-height: 740px) {
   .mobile-screen-home { padding-block: 12px; }
-  .mobile-screen-home .mobile-welcome { flex: 0 0 auto; min-width: 0; }
+  .mobile-screen-home .mobile-welcome { flex: 1 0 auto; min-width: 0; }
   .mobile-screen-home .mobile-home-title { padding-block: 10px; }
-  .mobile-screen-home .mobile-home-body { margin-block: 0; padding-block: 12px; }
+  .mobile-screen-home .mobile-home-body { margin-block: auto; padding-block: 12px; }
   .mobile-screen-home .mobile-home-puzzle { width: 144px; height: 144px; margin-bottom: 12px; }
   .mobile-screen-home .mobile-welcome h1 { margin-block: 0 8px; }
   .mobile-screen-home .mobile-home-body > p { margin-block: 8px 12px; }
@@ -110,8 +110,6 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
   .mobile-nav button { min-height: 44px; flex-direction: row; gap: 4px; }
   .mobile-nav ion-icon { font-size: 20px; flex-shrink: 0; }
 }
-/* Reserved layout space only; actual SDK banner sizing must be verified before integration. */
-.mobile-ad-preview { box-sizing: border-box; height: 96px; margin-top: 4px; display: grid; place-items: center; border-top: 1px solid #e5e8eb; background: #f2f4f6; color: #8b95a1; font-size: 12px; }
 .mobile-check { display: flex; align-items: center; gap: 8px; padding-block: 16px; }
 .mobile-words { padding: 0; list-style: none; }
 .mobile-words li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #e5e8eb; padding-block: 16px; }
@@ -189,6 +187,9 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-reading-image { width: 100%; max-width: 700px; height: auto; display: block; margin: auto; }
 .mobile-reading-frame { position: relative; width: 100%; max-width: 700px; min-height: 96px; margin-inline: auto; }
 .mobile-reading-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.mobile-reading-actions-no-chant {
+  justify-content: flex-start;
+}
 .mobile-reading-arrows { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding-inline: 4px; pointer-events: none; }
 .mobile-reading-arrows button { pointer-events: auto; width: 44px; height: 48px; padding: 0; border: 1px solid #ffffffb3; border-radius: 24px; background: #ffffffe0; color: #1b64da; font: inherit; font-size: 36px; line-height: 1; box-shadow: 0 2px 8px #191f2833; }
 .mobile-reading-arrows button:disabled { visibility: hidden; pointer-events: none; }
