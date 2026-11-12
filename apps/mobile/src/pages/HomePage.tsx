@@ -1,4 +1,6 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { App } from '@capacitor/app';
+import { Capacitor } from '@capacitor/core';
 import { IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { homeOutline, gameControllerOutline, bookOutline, imageOutline, settingsOutline } from 'ionicons/icons';
 import { defaultVocabList, levelLearningProgress, parseCrosswordPuzzle, wordnetLicense, type CrosswordPuzzle, type CrosswordWord, type DifficultyLevel, type GridSize } from '@t-crossword/core';
@@ -18,11 +20,26 @@ import { automaticallyCompletedWordIds, knownWordLetters } from '../adapters/puz
 import { createMobileWordAudio, DEFAULT_WORD_AUDIO_BASE_URL } from '../adapters/wordAudio.js';
 import { subscribeWordAudioLifecycle } from '../adapters/wordAudioLifecycle.js';
 import { WordAudioButtons } from '../components/WordAudioButtons.js';
+import { androidInterstitial } from '../adapters/androidInterstitial.js';
 
 
 const levels: Record<DifficultyLevel, string> = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
 type Page = 'home' | 'quiz' | 'words' | 'books' | 'settings';
 export function HomePage() {
+  const [appVersion, setAppVersion] = useState(version);
+  useEffect(() => {
+    if (!Capacitor.isNativePlatform()) return;
+    let disposed = false;
+    void App.getInfo().then(info => {
+      if (!disposed && info.version.trim()) setAppVersion(info.version);
+    }).catch(() => {
+      console.warn('Native app version unavailable; using package version.');
+    });
+    return () => { disposed = true; };
+  }, []);
+  const adState = useSyncExternalStore(androidInterstitial.subscribe, androidInterstitial.getSnapshot);
+  const pendingAd = useRef(false);
+  useEffect(() => { void androidInterstitial.start(); }, []);
   const audio = useMemo(() => createMobileWordAudio(import.meta.env.VITE_MOBILE_WORD_AUDIO_BASE_URL ?? DEFAULT_WORD_AUDIO_BASE_URL), []);
   const audioState = useSyncExternalStore(audio.subscribe, audio.getSnapshot);
   const quizPanel = useRef<QuizPanelHandle>(null);
@@ -33,6 +50,21 @@ export function HomePage() {
   const [showCompletion, setShowCompletion] = useState(false);
   const [puzzleVersion, setPuzzleVersion] = useState(0);
   const [page, setPage] = useState<Page>('home');
+  useEffect(() => {
+    if (!pendingAd.current) return;
+    pendingAd.current = false;
+    if (page !== 'quiz') return;
+    let secondFrame = 0;
+    const cancel = () => { cancelAnimationFrame(frame); cancelAnimationFrame(secondFrame); };
+    const frame = requestAnimationFrame(() => {
+      secondFrame = requestAnimationFrame(() => {
+        if (!document.querySelector('dialog[open]')) androidInterstitial.showIfReady();
+      });
+    });
+    document.addEventListener('pointerdown', cancel, { once: true });
+    document.addEventListener('keydown', cancel, { once: true });
+    return () => { cancel(); document.removeEventListener('pointerdown', cancel); document.removeEventListener('keydown', cancel); };
+  }, [puzzleVersion, page]);
   const [progress, setProgress] = useState<LearningProgress | null>(null);
   const progressRef = useRef<LearningProgress | null>(null);
   const [error, setError] = useState('');
@@ -147,7 +179,7 @@ export function HomePage() {
       setResetError('학습 기록을 저장하지 못했습니다. 기존 기록은 유지됩니다. 다시 시도해 주세요.');
     }
   };
-  const generate = (nextLevel: DifficultyLevel = level, nextSize: GridSize = size) => {
+  const generate = (userRequested: boolean, nextLevel: DifficultyLevel = level, nextSize: GridSize = size) => {
     if (!progress || busy || generating.current || answerPending.current) return;
     generating.current = true; setBusy(true); setError('');
     const finish = () => { worker.current?.terminate(); worker.current = null; clearTimeout(timeout.current); generating.current = false; setBusy(false); };
@@ -162,6 +194,7 @@ export function HomePage() {
           if (!next.words.length) throw new Error();
           clearTimeout(timeout.current);
           setPuzzle(next); setLevel(next.level); setSize(next.size); setSolved([]); setHintedCells({}); setSelected(null); setShowCompletion(false); setPuzzleVersion(value => value + 1);
+          pendingAd.current = userRequested && androidInterstitial.recordSuccess();
         } catch { setError('새 문제를 만들지 못했습니다. 난이도나 크기를 바꾸거나 학습 기록을 확인해 주세요.'); }
         finally { finish(); }
       };
@@ -172,7 +205,7 @@ export function HomePage() {
   };
   const openQuiz = () => {
     setPage('quiz');
-    if (!puzzle) generate();
+    if (!puzzle) generate(false);
   };
   const choose = (word: CrosswordWord) => { if (!solved.includes(word.id)) { setAnswerError(''); setSelected(word); } };
   const close = () => { if (!answerPending.current) { dialog.current?.close(); setSelected(null); } };
@@ -242,10 +275,10 @@ export function HomePage() {
         </section>}
         {page === 'quiz' && <section className="mobile-quiz">
           <div className="mobile-quiz-options">
-            <div className="mobile-choice-row" role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map(value => <button key={value} disabled={busy} aria-pressed={level === value} onClick={() => { if (value !== level) generate(value, size); }}>{levels[value]}</button>)}</div>
-            <div className="mobile-choice-row" role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map(value => <button key={value} disabled={busy} aria-pressed={size === value} onClick={() => { if (value !== size) generate(level, value); }}>{value}×{value}</button>)}</div>
+            <div className="mobile-choice-row" role="group" aria-label="난이도">{(['beginner', 'intermediate', 'advanced', 'special'] as const).map(value => <button key={value} disabled={busy} aria-pressed={level === value} onClick={() => { if (value !== level) generate(true, value, size); }}>{levels[value]}</button>)}</div>
+            <div className="mobile-choice-row" role="group" aria-label="퍼즐 크기">{([8, 10, 12] as const).map(value => <button key={value} disabled={busy} aria-pressed={size === value} onClick={() => { if (value !== size) generate(true, level, value); }}>{value}×{value}</button>)}</div>
           </div>
-          <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate()}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
+          <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate(true)}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
           {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} boardSize={boardSize} solvedIds={solved} hintedCells={hintedCells} onSelectWord={choose} />}
 
         </section>}
@@ -265,6 +298,11 @@ export function HomePage() {
         </section>}
         <div className="mobile-book-host" hidden={page !== 'books'}><PictureBooks ref={bookNavigation} /></div>
         {page === 'settings' && <section className="mobile-settings"><h1>설정</h1>
+          {adState.privacyRequired && <section className="mobile-settings-card" aria-labelledby="mobile-ad-privacy">
+            <h2 id="mobile-ad-privacy">광고 개인정보 선택</h2>
+            <IonButton fill="outline" disabled={adState.busy} onClick={() => { void androidInterstitial.openPrivacyOptions(); }}>개인정보 선택 변경</IonButton>
+          </section>}
+          {adState.message && <p role="status">{adState.message}</p>}
           <section className="mobile-settings-card" aria-labelledby="mobile-settings-progress">
             <h2 id="mobile-settings-progress">데이터 관리</h2>
             {settingsMessage && <p role="status">{settingsMessage}</p>}
@@ -280,7 +318,7 @@ export function HomePage() {
             <h2 id="mobile-settings-app">앱 정보</h2>
             <dl className="mobile-settings-details">
               <div><dt>앱 이름</dt><dd>영어 단어 십자낱말 풀이</dd></div>
-              <div><dt>버전</dt><dd>v{version}</dd></div>
+              <div><dt>버전</dt><dd>v{appVersion}</dd></div>
               <div><dt>학습 기록 저장</dt><dd>기록은 현재 기기에 저장됩니다. 앱 데이터 삭제·재설치 시 사라질 수 있습니다.</dd></div>
             </dl>
           </section>
@@ -305,7 +343,7 @@ export function HomePage() {
         </section>}
       </>}
     </div></IonContent>
-    <IonFooter><IonToolbar><nav className="mobile-nav" aria-label="하단 메뉴">{(['home', 'quiz', 'words', 'books', 'settings'] as const).map(value => <button key={value} aria-current={page === value ? 'page' : undefined} onClick={() => { if (value === 'quiz') openQuiz(); else setPage(value); }}><IonIcon aria-hidden="true" icon={({ home: homeOutline, quiz: gameControllerOutline, words: bookOutline, books: imageOutline, settings: settingsOutline })[value]} /><span>{({ home: '홈', quiz: '퀴즈 풀기', words: '단어장', books: '그림책', settings: '설정' })[value]}</span></button>)}</nav>{page !== 'quiz' && <aside className="mobile-ad-preview" aria-label="가상 배너 광고 영역"><span>광고 영역</span></aside>}</IonToolbar></IonFooter>
+    <IonFooter><IonToolbar><nav className="mobile-nav" aria-label="하단 메뉴">{(['home', 'quiz', 'words', 'books', 'settings'] as const).map(value => <button key={value} aria-current={page === value ? 'page' : undefined} onClick={() => { if (value === 'quiz') openQuiz(); else setPage(value); }}><IonIcon aria-hidden="true" icon={({ home: homeOutline, quiz: gameControllerOutline, words: bookOutline, books: imageOutline, settings: settingsOutline })[value]} /><span>{({ home: '홈', quiz: '퀴즈 풀기', words: '단어장', books: '그림책', settings: '설정' })[value]}</span></button>)}</nav></IonToolbar></IonFooter>
     {confirmReset && progress && <Modal title="학습 기록을 초기화할까요?" onClose={() => setConfirmReset(false)}>
       <p>학습완료 기록 {progress.completed.length}개를 초기화하고 진행 중 퍼즐을 종료합니다. 초기화한 단어는 다시 출제됩니다.</p>
       <p>즐겨찾기와 오답노트 기록은 유지됩니다.</p>
@@ -317,7 +355,7 @@ export function HomePage() {
       <div className="mobile-completion-icon" aria-hidden="true">🎉</div>
       <p>{puzzle.words.length}개 단어를 모두 맞혔어요.</p>
       <ul className="mobile-review">{puzzle.words.map(word => <li key={word.id}><strong>{word.word}</strong><span>{word.meaning}</span></li>)}</ul>
-      <IonButton expand="block" disabled={busy} onClick={() => generate()}>다음 퍼즐 풀기</IonButton>
+      <IonButton expand="block" disabled={busy} onClick={() => generate(true)}>다음 퍼즐 풀기</IonButton>
     </Modal>}
     <dialog ref={dialog} className="mobile-answer" onCancel={event => { event.preventDefault(); close(); }}>{selected && puzzle && <AnswerEntry key={selected.id} word={selected} known={knownWordLetters(puzzle, solved, selected, hintedCells)} error={answerError || error} busy={answerBusy} onSubmit={submit} onReveal={revealSelectedLetter} onMistake={(id) => { if (progressRef.current) save(recordMistake(progressRef.current, id)); }} onClose={close} />}</dialog>
   </IonPage>;

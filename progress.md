@@ -1,5 +1,28 @@
 # 십자낱말 영단어 앱 (t-crossword-app) 구현 진행표
 
+## Android 내부 테스트 설정·UI 마무리 (2026-11-13)
+
+- 릴리스 서명은 app/build.gradle의 환경변수 4개(`MNU_ANDROID_KEYSTORE_PATH`, `MNU_ANDROID_KEYSTORE_PASSWORD`, `MNU_ANDROID_KEY_ALIAS`, `MNU_ANDROID_KEY_PASSWORD`)를 사용한다. 릴리스 작업 그래프에서 누락·빈 값과 키 파일 존재를 검증하며 오류에는 변수명만 표시한다. debug와 기존 Capacitor·광고 설정은 유지했다. 키·비밀번호를 코드에 저장하지 않았다.
+- Google Play 내부 테스트 오류 대응으로 minSdk 23→24, targetSdk/compileSdk 35→36, AGP 8.7.2→8.9.1을 적용했다. versionCode는 사용자 요청 순서대로 1→2→3이며 최종 3이다. versionName 1.0, applicationId com.tcrossword.app, Gradle Wrapper 8.11.1은 유지한다. 로컬 SDK 36 android.jar 존재를 읽기 전용 확인했다. 공식 호환성 표에서 API 36 최소 AGP 8.9.1과 AGP 8.9 최소 Gradle 8.11.1을 확인했다(https://developer.android.com/build/releases/about-agp). 실제 Gradle 설정 평가·릴리스 서명·AAB 빌드·Play 재업로드 성공은 이번 에이전트가 검증하지 않았다.
+- 설정 앱 버전은 기존 @capacitor/app 7.1.2의 App.getInfo()로 네이티브 versionName을 표시하며 웹·조회 실패 시 package.json 버전을 사용한다. 그림책 듣기 2개/3개 버튼은 균등 너비·8px 간격·좁은 화면 줄바꿈으로 변경하고 재생/중지 문구·처리는 유지했다. 2026-11-12의 챈트 없는 버튼 왼쪽 정렬을 대체한다.
+- 퀴즈 문제 목록의 상단 제목과 내부 닫기 버튼을 제거하고 하단 버튼을 `문제 전체 보기` / `문제 전체 닫기`로 전환한다. 목록 열림 시 스크롤 영역에 포커스를 주고 닫으면 하단 버튼으로 복귀한다. 가로/세로 제목·진행 JSX/CSS, 카드·스크롤·Escape·Android 뒤로가기·단어 선택·진행 상태 로직을 유지했다. 마지막 요청에서는 상단 제목 JSX 한 줄만 삭제했으며 CSS는 변경하지 않았다.
+- 최종 코드에서 실행·통과: `pnpm.cmd --filter @t-crossword/mobile typecheck`, `pnpm.cmd --filter @t-crossword/mobile build`(타입·그림책 61편/119장·음성 3,839항목 검사 포함), `git diff --check`. Vite 500kB 초과 청크 경고는 남는다. 문서 정리에서 같은 코드 검사는 반복하지 않았다. 변경 전후 해시 비교로 기존 미커밋 파일 보존을 확인했다.
+- 남은 확인: 새 네이티브 빌드/Capacitor sync, 실제 Android 설정 v1.0 표시·조회 실패 대체, 좁은 화면 2개/3개 음성 버튼·긴 재생 문구, 제목 제거 후 목록 배치·스크롤·하단 토글·Escape·뒤로가기·진행 유지. 사용자가 실기기에서 문제를 발견한 사실과 수정본의 실제 기기 검증 완료는 구분한다. 웹/PWA·토스·iOS 검증이나 정책 심사 통과로 확대하지 않는다.
+- 마무리 문서는 AGENTS·이 진행표·모바일 README·관련 제품 요구사항만 갱신했다. 기존 Android/광고/아이콘·문서·package/lockfile 변경과 미추적 APK 백업·Google Play 자료·아이콘 스크립트는 보존하며 무관한 파일을 Git 대상에 포함하지 않는다. 스테이징·커밋·푸시·AAB 빌드·업로드는 실행하지 않았다.
+
+## Android 화면·테스트 전면광고 마무리 (2026-11-12)
+
+- MainActivity를 portrait로 고정하고 홈을 포함한 모든 메뉴의 가상 배너를 제거했다. 하단 5개 메뉴는 유지한다. 홈 높이 740px 이하에서 welcome의 flex를 `1 0 auto`, 본문 margin-block을 auto로 바꿨다. 홈 안내와 설정 카드 p/dl에만 keep-all·break-word를 추가했으며 글자 크기·색상·여백·정렬은 유지했다.
+- 그림책 61편 상세 제목은 목록과 같은 영어 title과 lang=en을 사용한다. 기존 챈트 조건을 재사용해 챈트가 없는 음성 영역에만 왼쪽 정렬을 적용하고 기존 gap 8px·버튼 디자인·줄바꿈·재생·상태 표시를 유지했다. 초급 3개 버튼과 해석/목록 버튼은 유지한다.
+- AdMob 7.2.0 및 Android 네이티브 연결·공식 테스트 앱 ID 설정이 존재한다. androidInterstitial 어댑터에서 UMP 정보 요청·필요한 양식·canRequestAds 확인 후 초기화/로드하며 설정에 필요한 개인정보 선택 재진입을 제공한다. 최초 실행 연령 확인은 추가하지 않았다. 토스 코드와 광고 동작은 이번 작업에서 수정하지 않았다.
+- 사용자 요청 출제 성공 검증 뒤에만 카운터를 늘리고 4회마다 새 판 렌더링 후 준비된 테스트 전면광고를 시도한다. 최초 출제·복귀·출제 실패/시간 초과는 제외하며 메모리 카운터는 저장하지 않는다. 미준비·동의/광고 실패 시 학습을 지연하지 않고 늦은 로드는 소급 표시하지 않는다. 닫힘/표시 실패 후 재준비하고 닫힘 이벤트 누락 시 추가 광고를 차단한다.
+- 로딩 실패는 30→60→120→240→300초(최대 5분) 백오프로 재시도한다. 타이머/네이티브 로드는 하나만 유지하며 비활성 시 타이머 취소, 복귀 시 기존 대기 기한을 적용한다. 동의 불허 시 재시도하지 않고 준비 성공 시 실패 횟수를 초기화한다.
+- 실행·통과: `pnpm.cmd --filter @t-crossword/mobile exec tsc --noEmit`, `pnpm.cmd --filter @t-crossword/mobile test`(31개), 최종 줄바꿈 변경 후 `pnpm.cmd --filter @t-crossword/mobile build`(그림책 61편/119장·음성 3,839항목 검사·타입 검사·Vite 빌드 포함). 500kB 초과 청크 경고는 유지된다. 같은 코드 검사는 마무리에서 반복하지 않았다.
+- 별도 파일을 추가하지 않은 메모리/가상 시간 검사로 StrictMode 중복 초기화 방지·4회 집계·미준비/동의 실패·늦은 로드·닫힘 안전장치 및 백오프 단계/상한·중복 방지·성공 후 초기화·비활성/동의 차단을 확인했다. 저장소에 지속되는 신규 회귀 테스트 파일은 없다. 마지막 빌드 전후 기존 변경 파일과 파생 그림책/음성 JSON의 해시가 유지됨을 확인했다.
+- 미검증: 실제 Android의 홈 여백·한글 줄바꿈·긴 영어 제목·음성 버튼 배치, 실제 UMP 양식/개인정보 수정·광고 표시/닫힘·네트워크 실패/복귀·오디오 포커스. 네이티브 로드 Promise가 끝나지 않으면 중복 요청 방지를 위해 추가 로드를 대기하며, JS는 네이티브 광고를 강제로 닫지 못한다. 초기 UMP 요청 실패는 해당 실행에서 광고 없이 진행한다. 사용자 제공 Debug 빌드 성공 현황과 이번 에이전트 검증은 구분한다.
+- 배포 전 별도 확인: AdMob 개인정보 메시지 구성, 실제 대상 연령과 Google Play 정책·개인정보처리방침·데이터 보안 신고, 운영 광고 전환. 테스트 ID 사용만으로 운영 준비/정책 준수를 완료했다고 보지 않는다.
+- 마무리에서는 관련 지침·사양·진행 기록만 갱신한다. 기존 아이콘/문서/패키지/lockfile 변경과 APK 백업·아이콘 준비 스크립트는 보존하며 별도 변경을 하지 않는다. 스테이징·커밋·푸시·Android 빌드·Capacitor sync·APK 설치·배포는 실행하지 않았다.
+
 ## 토스 번들 중복 제거 및 분리 (2026-10-31)
 
 - Worker의 정적 어휘 import를 제거하고 메인에서 공통 `vocabularyForProgress`로 선별한 어휘를 전달한다. 출제 엔진은 공통 core를 유지하며 Worker 미지원 경로·오류·30초 제한·종료 처리는 유지한다. 실행마다 어휘 복사 비용이 있으며 실제 기기 출제 시간·메모리 개선은 미검증이다.
@@ -1586,8 +1609,8 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - [ ] 모바일 운영 인증 설정·mobile-hints 배포·실제 가입/힌트 차감/완성 +5 검증
 - [ ] 네이티브 저장 보강·세션 상실 정책과 입력/뒤로가기/그림책 최종 기기 검증
 - [ ] iOS 프로젝트 설정·네이티브 통합·기기 검증
-- [ ] AdMob 배너 연결·실제 높이 반영(현재 96px 가상 영역)
-- [ ] AdMob 보상형 동영상 광고 플러그인 연동 (광고 시청 -> 힌트 충전)
+- [x] 가상 배너 제거; 현재 Android는 배너·보상형/힌트 충전 광고를 사용하지 않음(2026-11-12 최신 정책)
+- [x] Android 테스트 전면광고·UMP·로딩 실패 백오프 구현; 실제 기기·운영 정책 검증은 위 최신 기록 참조
 - [ ] 모바일 기기/에뮬레이터 동작 검증
 
 ### 2026-10-21 소설·에세이 해석 문체 개선
@@ -1596,3 +1619,30 @@ Node 경로: `C:\Users\Administrator\AppData\Local\Author Software\nvm\installs\
 - 원본 `books.json`, 웹·토스 파생 JSON, 검수 갤러리와 작품별 번역 검토·승인 해시를 갱신했다. 상세 범위와 한계: `content/translation-review-2026-10-21.md`.
 - 검증 통과: 중급·고급 `build-preview.py`(어휘·이미지·제작 기록 검사 포함), `python scripts/prepare-picture-books.py`, `node scripts/prepare-toss-picture-books.mjs`, `pnpm.cmd --config.verifyDepsBeforeRun=false --filter @t-crossword/web build`, `pnpm.cmd --config.verifyDepsBeforeRun=false --filter @t-crossword/toss build`, `git diff --check`. 두 빌드에 청크 크기 경고가 남아 있다.
 - 원본은 해석만 55장 변경되었음을 HEAD 비교로 확인했다. 실제 브라우저·토스 기기 확인, 배포·업로드는 미실행.
+
+# 교차 단어 자동 완료 (2026-11-01)
+
+- [x] 토스·PWA·Ionic/Android 퀴즈에서 정답 입력 또는 글자 공개 힌트로 미완료 교차 단어의 모든 칸이 공개되면 즉시 완료 처리한다.
+- [x] 자동 완료 단어를 현재 판의 진행 수, 기기 학습완료 기록, 전체 완성 축하 판정에 반영한다.
+- [x] 토스 `puzzle.test.tsx`와 모바일 `puzzlePresentation.test.mjs`에 교차 단어 자동 완료 단위 검사를 추가했다.
+- [x] `pnpm.cmd exec vitest run tests/puzzle.test.tsx` (토스, 5개), `pnpm.cmd --filter @t-crossword/toss typecheck`, `pnpm.cmd --filter @t-crossword/web typecheck`, `pnpm.cmd --filter @t-crossword/web build`, `pnpm.cmd --filter @t-crossword/mobile typecheck`, `node --test tests/puzzlePresentation.test.mjs` (모바일, 5개), `git diff --check`를 통과했다.
+- [x] 사용자 확인으로 실제 PWA 브라우저와 토스 미니앱에서 힌트·교차 자동 완료·완성 축하·뒤로가기를 테스트했다(2026-11-10).
+- [ ] 실제 Android 기기에서 힌트·교차 자동 완료·완성 축하·뒤로가기를 확인한다.
+- [ ] 토스 전체 테스트는 기존 전면광고 노출 주기 불일치로 2개 실패한다. 구현은 4번째 새 퍼즐에 광고를 요청하지만 `hintsApp.test.tsx`의 두 검사는 3번째를 기대한다. 이번 자동 완료 변경과 무관하며, 사용자 결정(3회마다)과 구현·테스트를 별도 정합화해야 한다.
+
+## Android 작은 화면·가로 화면 정리 (2026-11-11)
+
+- [x] Chrome WebView 101 색종이 대응: 이동 거리 dvh→vh, 완성 모달 85vh 대체값 추가. 접근성 동작 줄이기·기존 overflow 유지.
+- [x] A-1안: Ionic 콘텐츠 높이·부모 가용 폭 측정, 내부 스크롤 좌표 보정, 입력 중 크기 고정. 최소 격자 290/322/362px을 유지하되 좁은 가로 폭을 초과하지 않는다. 세로 스크롤 유지.
+- [x] 퀴즈의 가상 광고 자리만 제거. 홈·단어장·그림책·설정은 유지. Android 전면 광고는 미구현이며 새 SDK를 추가하지 않았다. 토스 광고 호출·ID·주기는 변경하지 않았다.
+- [x] 홈 낮은 화면 여백 축소, 낮은 가로 화면 그림/안내 2열 배치. 가로·높이 500px 이하 헤더 최소 44px·메뉴 버튼 44px·패딩 4px·아이콘/글자 가로 배치. 하단 Toolbar 기본 최소 56px은 남는다.
+- [x] 단어장 더 보기를 목록 마지막 li로 이동하고 100개 추가·전체 검색 유지. 음성 고지를 듣기 옆으로 축약하고 상세 설명은 설정에 추가.
+- [x] 그림책 목록 버튼 최소 56px·간격 8px·반경 14px·글씨 17px. 낮은 가로 화면의 단어장·그림책 목록은 Ionic 외부 스크롤 사용. 그림책 본문은 50vh 내부 스크롤과 페이지 이동 시 초기화 유지.
+- [x] Android 일반·원형·적응형 런처 PNG 15개를 토스 밝은 배경 로고로 변환. scripts/prepare-android-icons.ps1 추가, docs/app-icon.md에 기록. 15개 치수 검사·대표 전경 시각 확인 완료.
+- 자동 검사: 최종 홈 2열 CSS 변경 후 `pnpm.cmd --filter @t-crossword/mobile typecheck`, `pnpm.cmd --filter @t-crossword/mobile build`, `pnpm.cmd --filter @t-crossword/mobile test`(31개) 통과. 빌드의 큰 청크 경고 유지. 격자 가로 상한 계산 54개 사례도 이전 검사에서 통과. 이번 마무리는 문서만 추가 갱신해 같은 검사를 반복하지 않는다.
+- 사용자 확인: Mi A1에서 홈 세로 스크롤, 8×8·10×10 정상 및 퀴즈 광고 자리 제거를 확인했다. 이후 12×12 가로 잘림 보정과 최신 가로 레이아웃은 별도 완료 보고가 없어 미검증으로 남긴다.
+- [ ] Mi A1 최신 소스의 색종이, 12×12 전체 열·번호 선택, 가로 홈 2열, 헤더·메뉴 글자/터치·안전 영역, 단어장 목록/더 보기/검색 키보드/회전 확인.
+- [ ] 그림책 가로 목록 끝·난이도 변경 시 위치·책 선택/목록 복귀·본문 내외부 스크롤·이전/다음·번역·음성·세로 복귀, Android 아이콘 마스크/캐시 확인.
+- [ ] 퀴즈 가로 화면은 분석만 수행. 최소 격자로 인한 세로 넘침, 오버레이 내부 스크롤·포커스 이동·뒤로가기·정답/힌트 모달 접근성은 후속 기기 검증과 필요 시 별도 수정 대상이다. 좌우 배치나 최소 크기 추가 변경은 하지 않았다.
+- 작업 중 별도 사용자 변경으로 발견한 apps/mobile/vite.config.ts는 이번 구현·검증 대상에서 제외하고 보존했다. 기존 자동 검사 통과가 이 변경의 검증을 의미하지 않는다. artifacts/android-apk-backups/도 사용자 로컬 자료로 보존하며 Git 대상에서 제외한다.
+- 이번 세션의 동기화·APK 생성/설치·토스 빌드·업로드·배포·스테이징·커밋·푸시는 미실행. 실제 설치본과 최신 소스의 일치 여부는 보장하지 않는다.

@@ -187,9 +187,8 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-reading-image { width: 100%; max-width: 700px; height: auto; display: block; margin: auto; }
 .mobile-reading-frame { position: relative; width: 100%; max-width: 700px; min-height: 96px; margin-inline: auto; }
 .mobile-reading-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.mobile-reading-actions-no-chant {
-  justify-content: flex-start;
-}
+.mobile-reading-actions > ion-button { flex: 1 1 0; min-width: 0; margin: 0; height: auto; min-height: 44px; --padding-start: 4px; --padding-end: 4px; white-space: normal; overflow-wrap: anywhere; }
+.mobile-reading-actions > span { flex-basis: 100%; min-width: 0; overflow-wrap: anywhere; }
 .mobile-reading-arrows { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding-inline: 4px; pointer-events: none; }
 .mobile-reading-arrows button { pointer-events: auto; width: 44px; height: 48px; padding: 0; border: 1px solid #ffffffb3; border-radius: 24px; background: #ffffffe0; color: #1b64da; font: inherit; font-size: 36px; line-height: 1; box-shadow: 0 2px 8px #191f2833; }
 .mobile-reading-arrows button:disabled { visibility: hidden; pointer-events: none; }
@@ -221,7 +220,7 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-board .mobile-cell-number { position: absolute; inset: 0; z-index: 1; display: block; background: transparent; }
 .mobile-cell-number:disabled { cursor: default; }
 .mobile-cell-number:focus-visible { outline: 2px solid #3182f6; outline-offset: -2px; }
-.mobile-all-hints-button, .mobile-hint-overlay-heading > button { min-height: 44px; border: 1px solid #c7ddfa; border-radius: 12px; background: white; color: #1b64da; padding: 8px 12px; font: inherit; font-weight: 700; }
+.mobile-all-hints-button { min-height: 44px; border: 1px solid #c7ddfa; border-radius: 12px; background: white; color: #1b64da; padding: 8px 12px; font: inherit; font-weight: 700; }
 .mobile-hint-overlay-heading { display: flex; flex-shrink: 0; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
 .mobile-hint-overlay-heading h2 { font-size: 16px; margin: 0; }
 .mobile-clues { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; gap: 0; padding: 8px; border: 1px solid #e5e8eb; border-radius: 8px; background: #f9fafb; overflow: hidden; }

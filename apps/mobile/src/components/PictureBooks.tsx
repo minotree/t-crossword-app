@@ -55,7 +55,7 @@ export function PictureBooks({ ref }: { ref?: Ref<PictureBooksNavigation> }) {
   return <section className="mobile-books">
     <header className="mobile-book-heading"><h1>그림책</h1><p>그림과 함께 영어 시·에세이·소설을 읽어 보세요.</p></header>
     {selected && page ? <>
-      <h2>{selected.koreanTitle || selected.title}</h2>
+      <h2 lang="en">{selected.title}</h2>
       <div className="mobile-reading-scroll" ref={reader} tabIndex={0} aria-label="그림책 본문">
         <PictureBookAudio key={`audio-${selected.id}-${pageIndex}`} id={`${selected.id}-${String(pageIndex + 1).padStart(2, '0')}`} text={page.text} />
         <ReadingPage key={`${selected.id}-${pageIndex}`} page={page} number={pageIndex + 1} count={selected.pages.length} onPrevious={() => move(pageIndex - 1)} onNext={() => move(pageIndex + 1)} onBackToList={backToList} />

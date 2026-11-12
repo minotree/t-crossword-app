@@ -8,10 +8,11 @@ export function PictureBookAudio({ id, text }: { id: string; text: string }) {
   const [choosing, setChoosing] = useState(false);
   const active = audio.status === 'loading' || audio.status === 'playing' || audio.status === 'gap';
   const chantActive = chant.status === 'loading' || chant.status === 'playing' || chant.status === 'gap';
-  return <div className="mobile-reading-actions" role="group" aria-label="그림책 영어 듣기">
+  const hasChant = /^beginner-\d{2}-01$/.test(id);
+  return <div className={hasChant ? 'mobile-reading-actions' : 'mobile-reading-actions mobile-reading-actions-no-chant'} role="group" aria-label="그림책 영어 듣기">
     <IonButton fill="outline" disabled={!audio.configured} onClick={() => { chant.stopPlayback(); void audio.play(); }}>{active ? '듣기 중지' : '듣기'}</IonButton>
     <IonButton fill="outline" onClick={() => { chant.stopPlayback(); if (active) void audio.play(); else setChoosing(true); }}>{active ? '연속듣기 중지' : '연속듣기'}</IonButton>
-    {/^beginner-\d{2}-01$/.test(id) && <IonButton fill="outline" disabled={!chant.configured} onClick={() => { audio.stopPlayback(); setChoosing(false); void chant.play(); }}>{chantActive ? '챈트 중지' : '챈트 듣기'}</IonButton>}
+    {hasChant && <IonButton fill="outline" disabled={!chant.configured} onClick={() => { audio.stopPlayback(); setChoosing(false); void chant.play(); }}>{chantActive ? '챈트 중지' : '챈트 듣기'}</IonButton>}
     {chant.status === 'loading' && <span role="status">챈트를 불러오는 중</span>}
     {chant.status === 'error' && <span role="status">챈트를 재생하지 못했어요. 다시 눌러 주세요.</span>}
     <span role="status">{!audio.configured ? '음성 업로드 준비 중' : audio.status === 'loading' ? '음성을 불러오는 중' : audio.status === 'error' ? '음성을 재생하지 못했어요. 다시 눌러 주세요.' : ''}</span>

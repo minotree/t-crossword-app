@@ -1,5 +1,27 @@
 apply plugin: 'com.android.application'
 
+def releaseSigningEnvironment = [
+    'MNU_ANDROID_KEYSTORE_PATH',
+    'MNU_ANDROID_KEYSTORE_PASSWORD',
+    'MNU_ANDROID_KEY_ALIAS',
+    'MNU_ANDROID_KEY_PASSWORD'
+].collectEntries { name -> [(name): System.getenv(name)] }
+
+// Validate only release task graphs so debug builds do not require signing secrets.
+gradle.taskGraph.whenReady { graph ->
+    if (graph.allTasks.any { it.project == project && it.name.contains('Release') }) {
+        def missingVariables = releaseSigningEnvironment.findAll { name, value ->
+            value == null || value.trim().isEmpty()
+        }.keySet()
+        if (!missingVariables.isEmpty()) {
+            throw new GradleException("Release signing requires environment variables: ${missingVariables.join(', ')}")
+        }
+        if (!file(releaseSigningEnvironment['MNU_ANDROID_KEYSTORE_PATH']).isFile()) {
+            throw new GradleException('Release signing keystore file not found. Check MNU_ANDROID_KEYSTORE_PATH.')
+        }
+    }
+}
+
 android {
     namespace "com.tcrossword.app"
     compileSdk rootProject.ext.compileSdkVersion
@@ -7,7 +29,7 @@ android {
         applicationId "com.tcrossword.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        versionCode 3
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -16,8 +38,20 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        release {
+            def keystorePath = releaseSigningEnvironment['MNU_ANDROID_KEYSTORE_PATH']
+            if (keystorePath != null && !keystorePath.trim().isEmpty()) {
+                storeFile file(keystorePath)
+            }
+            storePassword releaseSigningEnvironment['MNU_ANDROID_KEYSTORE_PASSWORD']
+            keyAlias releaseSigningEnvironment['MNU_ANDROID_KEY_ALIAS']
+            keyPassword releaseSigningEnvironment['MNU_ANDROID_KEY_PASSWORD']
+        }
+    }
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

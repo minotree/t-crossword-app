@@ -1,5 +1,13 @@
 # 영어 낱말 · Android / Ionic
 
+## 내부 테스트 빌드 설정·UI 최신 상태 (2026-11-13)
+
+- Android는 minSdk 24, compileSdk/targetSdk 36, AGP 8.9.1, Gradle Wrapper 8.11.1, versionCode 3 / versionName 1.0, applicationId `com.tcrossword.app`을 사용한다. 로컬 SDK 36의 android.jar 존재는 확인했으며 실제 네이티브/AAB 빌드는 이번 작업에서 실행하지 않았다.
+- 릴리스 서명은 `MNU_ANDROID_KEYSTORE_PATH`, `MNU_ANDROID_KEYSTORE_PASSWORD`, `MNU_ANDROID_KEY_ALIAS`, `MNU_ANDROID_KEY_PASSWORD` 환경변수를 사용한다. 키 경로는 app/build.gradle 기준 file()로 해석하므로 외부 키는 절대 경로를 사용할 수 있다. 릴리스 작업 시 누락·빈 환경변수와 키 파일 부재를 오류로 안내하며 비밀번호는 출력하지 않는다. debug에는 이 환경변수가 필요하지 않다. 키와 비밀번호는 커밋하지 않는다.
+- 설정 버전은 네이티브 `App.getInfo()`의 version을 표시한다(Android v1.0). 웹 또는 조회 실패 시 package.json 버전으로 대체한다. 그림책 듣기 버튼은 2개/3개 모두 같은 너비·8px 간격과 좁은 화면 줄바꿈을 사용하며 기존 재생·중지 기능을 유지한다.
+- 퀴즈 목록에는 별도 상단 제목·닫기 버튼이 없다. 가로/세로 제목·진행 수는 고정하고 목록만 스크롤하며 하단 `문제 전체 보기` / `문제 전체 닫기`로 전환한다. Escape·단어 선택·Android 뒤로가기 처리를 유지한다. 웹/PWA·토스 UI는 변경하지 않았다.
+- 최종 모바일 `typecheck`·`build`와 `git diff --check` 통과. 큰 청크 경고는 유지된다. 실제 기기 버전 표시·음성 버튼 배치·목록 토글/뒤로가기·픽셀 배치와 네이티브 릴리스 빌드·Play 업로드는 미검증이다. 상세 실행 기록·남은 작업은 [progress.md](../../progress.md)를 따른다. 아래 과거 SDK·APK·광고 기록은 해당 날짜의 이력이다.
+
 ## Android 작은 화면 대응 (2026-11-11)
 
 - 퀴즈 격자는 실제 Ionic 콘텐츠 영역과 부모 너비로 계산한다. 내부 스크롤 위치를 보정하고 최소 290/322/362px을 가로 가용 폭으로 제한한다. 세로 공간 부족은 스크롤로 처리한다. 입력 중 격자 크기 고정과 기존 퍼즐·기록 로직은 유지한다.
@@ -71,7 +79,7 @@
 - React 19, Ionic 8.8.19, Capacitor core/CLI/Android 7.6.9. TDS와 토스 SDK는 사용하지 않는다.
 - Ionic 라우터의 peer 요구에 맞춰 `react-router` 5.3.4를 명시한다.
 - 앱 표시 이름: 영어 낱말. 기존 앱 ID `com.tcrossword.app` 유지. 스토어 등록 전에 최종 앱 ID를 확정한다.
-- Android 템플릿은 minSdk 23, compileSdk/targetSdk 35, versionCode 1 / versionName 1.0이다. 토스 앱 버전과 별개다. 출시 시점의 Google Play 요구사항은 별도 확인한다.
+- 최초 Android 템플릿은 minSdk 23, compileSdk/targetSdk 35, versionCode 1 / versionName 1.0이었다. 현재 내부 테스트 설정은 위 2026-11-13 항목을 따른다. 토스 앱 버전과 별개다.
 - Android 네이티브 프로젝트는 소스로 관리한다. 복사된 웹 파일·로컬 SDK 경로·빌드 산출물·서명 키는 제외한다. 기본 아이콘은 템플릿 상태다.
 
 ## 실행
@@ -89,7 +97,7 @@ pnpm.cmd --filter @t-crossword/mobile android
 
 `sync:android`는 타입 검사·웹 빌드 후 Android assets와 플러그인을 동기화한다. `android`는 이미 준비된 앱을 연결 기기/에뮬레이터에서 실행한다. 화면 수정 후 먼저 `sync:android`를 실행한다.
 
-Android Studio 2024.2.1 이상, JDK 21, Android SDK Platform 35와 SDK 도구를 준비한다. Android Studio의 SDK Manager와 Gradle JDK 설정을 확인한다. 이 PC에서는 JAVA_HOME/PATH의 Java와 기본 Android SDK·Studio 경로를 확인하지 못했다. 개인 SDK 경로는 저장소에 고정하지 않는다.
+JDK 21, Android SDK Platform 36과 SDK 도구를 준비한다. API 36 기준 Android Studio 최소 버전은 Meerkat 2024.3.1 Patch 1이며 [공식 도구 호환성 표](https://developer.android.com/build/releases/about-agp)를 따른다. Android Studio의 SDK Manager와 Gradle JDK 설정을 확인한다. SDK 36 android.jar 존재는 확인했으며 현재 실행 JDK와 네이티브 빌드는 이번 작업에서 검증하지 않았다. 개인 SDK/JDK 경로는 저장소에 고정하지 않는다.
 
 ```powershell
 cd apps/mobile/android
