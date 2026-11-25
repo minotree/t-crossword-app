@@ -51,13 +51,77 @@ async function click(text: string) {
   if (!button) throw new Error(`Missing button: ${text}`);
   await act(async () => button.click());
 }
-async function type(input: HTMLInputElement, value: string) {
+async function type(input: HTMLInputElement, value: string, isComposing = false) {
   await act(async () => {
     const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
     if (!setter) throw new Error('Missing setter');
-    setter.call(input, value); input.dispatchEvent(new Event('input', { bubbles: true }));
+    setter.call(input, value); input.dispatchEvent(new InputEvent('input', { bubbles: true, isComposing }));
   });
 }
+
+it.each([false, true])('handles English input immediately with native isComposing=%s', async isComposing => {
+  const onSubmit = vi.fn();
+  await act(async () => root.render(<AnswerEntry word={word} known={['', 'E', '', '']}
+    error="" onClose={() => {}} onSubmit={onSubmit} />));
+  await act(async () => vi.advanceTimersByTime(1));
+  const inputs = container.querySelectorAll('input');
+  expect(inputs[0].maxLength).toBe(1);
+  const focusNext = vi.spyOn(inputs[2], 'focus');
+  const selectNext = vi.spyOn(inputs[2], 'select');
+  await type(inputs[0], 'b', isComposing);
+  expect(inputs[0].value).toBe('B');
+  expect(focusNext).toHaveBeenCalledWith({ preventScroll: true });
+  expect(selectNext).toHaveBeenCalled();
+  expect(document.activeElement).toBe(inputs[2]);
+  await type(inputs[2], 'a', isComposing);
+  expect(onSubmit).not.toHaveBeenCalled();
+  await type(inputs[3], 'r', isComposing);
+  expect(onSubmit).toHaveBeenCalledExactlyOnceWith('BEAR');
+  await type(inputs[3], 'r', isComposing);
+  expect(onSubmit).toHaveBeenCalledOnce();
+});
+
+it('selects an existing letter for replacement and still advances when the letter is unchanged', async () => {
+  await act(async () => root.render(<AnswerEntry word={word} known={['', '', '', '']}
+    error="" onClose={() => {}} onSubmit={() => {}} />));
+  await act(async () => vi.advanceTimersByTime(1));
+  const inputs = container.querySelectorAll('input');
+  await type(inputs[0], 'x'); await type(inputs[1], 'e');
+  await act(async () => inputs[0].focus());
+  expect(inputs[0].selectionStart).toBe(0); expect(inputs[0].selectionEnd).toBe(1);
+  await type(inputs[0], 'b');
+  expect(inputs[0].value).toBe('B'); expect(document.activeElement).toBe(inputs[1]);
+  expect(inputs[1].selectionStart).toBe(0); expect(inputs[1].selectionEnd).toBe(1);
+  await act(async () => inputs[0].focus());
+  await type(inputs[0], 'b');
+  expect(document.activeElement).toBe(inputs[1]);
+  await act(async () => { inputs[1].setSelectionRange(1, 1); inputs[1].click(); });
+  expect(inputs[1].selectionStart).toBe(0); expect(inputs[1].selectionEnd).toBe(1);
+});
+
+it('validates only the last character and retains Android deletion and arrow navigation', async () => {
+  const onMistake = vi.fn();
+  await act(async () => root.render(<AnswerEntry word={word} known={['', 'E', '', '']}
+    error="" onClose={() => {}} onSubmit={() => {}} onMistake={onMistake} />));
+  await act(async () => vi.advanceTimersByTime(1));
+  const inputs = container.querySelectorAll('input');
+  await type(inputs[0], 'x');
+  expect(inputs[0].getAttribute('aria-invalid')).toBe('true');
+  await type(inputs[0], 'b\uD55C');
+  expect(inputs[0].value).toBe('X'); expect(onMistake).toHaveBeenCalledOnce();
+  await type(inputs[0], 'xb');
+  expect(inputs[0].value).toBe('B'); expect(inputs[0].getAttribute('aria-invalid')).toBeNull();
+  await act(async () => inputs[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'Backspace', bubbles: true })));
+  expect(document.activeElement).toBe(inputs[0]);
+  expect(inputs[0].value).toBe('B'); // Android moves back without clearing the previous cell.
+  await type(inputs[0], '');
+  expect(inputs[0].value).toBe('');
+  await act(async () => inputs[0].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true })));
+  expect(document.activeElement).toBe(inputs[2]);
+  await act(async () => inputs[2].dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true })));
+  expect(document.activeElement).toBe(inputs[0]);
+});
+
 async function openTarget() {
   await click('퀴즈 시작'); await click('문제 전체 보기');
   const clue = Array.from(container.querySelectorAll<HTMLButtonElement>('.mobile-clue-button')).find(button => button.textContent?.includes(target.meaning));
@@ -139,7 +203,9 @@ it('loads word audio only after a tap and stops on speed, search, page hide and 
   await act(async () => root.render(<HomePage />));
   await click('단어장 보기');
   expect(elements).toHaveLength(0);
-  expect(container.textContent).toContain('인터넷 연결이 필요합니다.');
+  expect(
+    container.querySelector('.mobile-word-audio-notice')?.textContent
+  ).toBe('온라인 음성 · AI 생성');
   await play('YOU 듣기');
   expect(elements[0].src).toMatch(/^https:\/\/crossword-word-audio\.minotree0902\.workers\.dev\/word-audio\/word-2-[a-f0-9]{16}\.mp3$/);
   await act(async () => elements[0].dispatchEvent(new Event('playing')));
@@ -156,6 +222,14 @@ it('loads word audio only after a tap and stops on speed, search, page hide and 
   expect(elements[2].pause).toHaveBeenCalled();
   await play('YOU 듣기'); await click('홈');
   expect(elements[3].pause).toHaveBeenCalled();
+});
+
+it('shows the word audio internet requirement in settings notices', async () => {
+  await act(async () => root.render(<HomePage />));
+  await click('설정');
+  const notices = container.querySelector('[aria-labelledby="mobile-settings-notices"]');
+  expect(notices).not.toBeNull();
+  expect(notices?.textContent).toContain('단어장 듣기는 단어와 예문을 함께 재생합니다. AI 생성 음성이며 인터넷 연결이 필요합니다.');
 });
 
 it('separates long explanations from the title and mobile answer controls', async () => {

@@ -25,13 +25,16 @@ export function AnswerEntry({ word, known, error, onSubmit, onClose, onMistake, 
   const focus = (index: number, direction = 1) => {
     while (index >= 0 && index < known.length && isLocked(index)) index += direction;
     fields.current[index]?.focus({ preventScroll: true });
+    fields.current[index]?.select();
   };
   useEffect(() => { const frame = requestAnimationFrame(() => focus(0)); return () => cancelAnimationFrame(frame); }, []);
   const update = (index: number, value: string) => {
     if (isLocked(index) || busy) return;
-    const letter = value.replace(/[^a-z]/gi, '').slice(-1).toUpperCase();
+    const letter = value.slice(-1).toUpperCase();
+    if (letter && !/^[A-Z]$/.test(letter)) return;
     const next = letters.map((current, position) => position === index ? letter : current);
-    setLetters(next); submitted.current = '';
+    setLetters(next);
+    if (next.join('') !== submitted.current) submitted.current = '';
     const feedback = letterFeedback(letter, word.word[index]);
     if (feedback.highlight) onMistake?.(word.id);
     setWrong(previous => updateIncorrectCells(previous, index, feedback.highlight));
@@ -61,9 +64,10 @@ export function AnswerEntry({ word, known, error, onSubmit, onClose, onMistake, 
     <div className="mobile-answer-controls">
     <div className="mobile-letter-inputs" style={{ gridTemplateColumns: `repeat(${letters.length}, minmax(0, 1fr))`, maxWidth: `${letters.length * 44}px` }}>{letters.map((letter, index) => <input key={index} ref={element => { fields.current[index] = element; }}
       aria-label={`${index + 1}번째 글자`} aria-invalid={wrong.includes(index) || undefined} readOnly={isLocked(index) || busy} tabIndex={isLocked(index) ? -1 : 0}
-      value={letter} autoComplete="off" autoCapitalize="characters" spellCheck={false} inputMode="text"
-      onCompositionEnd={event => update(index, event.currentTarget.value)}
-      onChange={event => { if (!('isComposing' in event.nativeEvent) || !event.nativeEvent.isComposing) update(index, event.target.value); }}
+      type="text" value={letter} maxLength={1} autoComplete="off" autoCapitalize="characters" spellCheck={false} inputMode="text"
+      onFocus={event => { if (!isLocked(index) && !busy) event.currentTarget.select(); }}
+      onClick={event => { if (!isLocked(index) && !busy) event.currentTarget.select(); }}
+      onChange={event => update(index, event.currentTarget.value)}
       onKeyDown={event => {
         if (event.nativeEvent.isComposing) return;
         if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); focus(index + (event.key === 'ArrowLeft' ? -1 : 1), event.key === 'ArrowLeft' ? -1 : 1); }
