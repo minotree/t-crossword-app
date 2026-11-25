@@ -20,35 +20,43 @@
 ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; letter-spacing: 0; }
 .mobile-learned { padding-right: 20px; color: #6b7684; font-size: 13px; }
 .mobile-hint-balance { display: inline-block; margin-left: 6px; padding: 6px 10px; border-radius: 20px; background: #fff8df; color: #8b4c00; white-space: nowrap; }
-.mobile-screen-home { display: flex; flex-direction: column; min-height: 100%; box-sizing: border-box; }
-.mobile-welcome { flex: 1; width: 100%; max-width: 448px; margin: 0 auto; display: flex; flex-direction: column; text-align: center; }
-.mobile-home-title { background: #3182f6; color: white; padding: 14px 8px; border-radius: 12px; font-size: 18px; font-weight: 700; margin: 0; }
-.mobile-home-body { margin-block: auto; padding-block: 20px; }
-.mobile-home-body > p { color: #6b7684; font-size: 14px; word-break: keep-all; overflow-wrap: break-word; }
-.mobile-home-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.mobile-home-actions ion-button { min-height: 52px; margin-inline: 0; font-size: 15px; --padding-start: 8px; --padding-end: 8px; }
-.mobile-home-puzzle { display: grid; place-items: center; width: 160px; height: 160px; border: 4px solid white; border-radius: 50%; background: #e8f3ff; box-shadow: 0 6px 20px #191f2814; margin: 0 auto 20px; }
-.mobile-home-puzzle > div { display: grid; grid-template-columns: repeat(3, 36px); gap: 4px; }
-.mobile-home-puzzle span { display: grid; place-items: center; height: 36px; border-radius: 4px; background: #3182f6; }
-.mobile-home-puzzle .letter { color: #1b64da; background: white; font-size: 20px; font-weight: 800; }
-.mobile-welcome h1 { font-size: 20px; line-height: 1.5; }
-@media (max-height: 740px) {
-  .mobile-screen-home { padding-block: 12px; }
-  .mobile-screen-home .mobile-welcome { flex: 1 0 auto; min-width: 0; }
-  .mobile-screen-home .mobile-home-title { padding-block: 10px; }
-  .mobile-screen-home .mobile-home-body { margin-block: auto; padding-block: 12px; }
-  .mobile-screen-home .mobile-home-puzzle { width: 144px; height: 144px; margin-bottom: 12px; }
-  .mobile-screen-home .mobile-welcome h1 { margin-block: 0 8px; }
-  .mobile-screen-home .mobile-home-body > p { margin-block: 8px 12px; }
-  .mobile-screen-home .mobile-home-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .mobile-screen-home .mobile-home-actions ion-button { min-width: 0; white-space: normal; }
+.mobile-screen-home {
+  --home-puzzle-size: clamp(128px, 23vh, 208px);
+  --home-gap: clamp(8px, 2vh, 24px);
+  --home-padding: clamp(12px, 2.5vh, 28px);
+  display: flex; flex-direction: column; min-height: 100%; box-sizing: border-box;
+  padding-block: var(--home-padding);
 }
+@supports (height: 100dvh) {
+  .mobile-screen-home {
+    --home-puzzle-size: clamp(128px, 23dvh, 208px);
+    --home-gap: clamp(8px, 2dvh, 24px);
+    --home-padding: clamp(12px, 2.5dvh, 28px);
+  }
+}
+.mobile-welcome { flex: 1 0 auto; min-width: 0; width: 100%; max-width: 448px; margin: 0 auto; display: flex; flex-direction: column; text-align: center; }
+.mobile-home-title { background: #3182f6; color: white; padding: clamp(10px, var(--home-gap), 14px) 8px; border-radius: 12px; font-size: 18px; font-weight: 700; margin: 0; }
+/* Let Ionic's content height distribute spare space; intrinsic height still allows scrolling. */
+.mobile-home-body { flex: 1 0 auto; display: flex; flex-direction: column; justify-content: space-evenly; gap: var(--home-gap); margin-block: auto; padding-block: var(--home-padding); }
+.mobile-home-body > p { margin: 0; color: #6b7684; font-size: 14px; word-break: keep-all; overflow-wrap: break-word; }
+.mobile-home-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.mobile-home-actions ion-button { min-width: 0; min-height: 52px; margin: 0; white-space: normal; font-size: 15px; --padding-start: 8px; --padding-end: 8px; }
+.mobile-home-puzzle { display: grid; flex-shrink: 0; place-items: center; width: var(--home-puzzle-size); max-width: 100%; aspect-ratio: 1; box-sizing: border-box; border: 4px solid white; border-radius: 50%; background: #e8f3ff; box-shadow: 0 6px 20px #191f2814; margin: 0 auto; }
+.mobile-home-puzzle > div { display: grid; width: 70%; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.mobile-home-puzzle span { display: grid; place-items: center; aspect-ratio: 1; border-radius: 4px; background: #3182f6; }
+.mobile-home-puzzle .letter { color: #1b64da; background: white; font-size: 20px; font-weight: 800; }
+.mobile-welcome h1 { margin: 0; font-size: 20px; line-height: 1.5; }
 @media (orientation: landscape) and (max-height: 500px) {
+  .mobile-screen-home { padding-block: 12px; }
+  .mobile-screen-home .mobile-home-title { padding-block: 10px; }
   .mobile-screen-home .mobile-welcome { max-width: 800px; }
   .mobile-screen-home .mobile-home-body {
+    flex: 0 0 auto;
     display: grid;
     grid-template-columns: clamp(120px, 30vh, 144px) minmax(0, 1fr);
     column-gap: 16px;
+    row-gap: 0;
+    padding-block: 12px;
     align-items: start;
   }
   .mobile-screen-home .mobile-home-puzzle {
@@ -60,12 +68,14 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
     margin: 0;
     align-self: center;
   }
-  .mobile-screen-home .mobile-home-puzzle > div { grid-template-columns: repeat(3, 32px); }
+  .mobile-screen-home .mobile-home-puzzle > div { width: auto; grid-template-columns: repeat(3, 32px); }
   .mobile-screen-home .mobile-home-puzzle span { height: 32px; }
   .mobile-screen-home .mobile-home-body > h1,
   .mobile-screen-home .mobile-home-body > p,
   .mobile-screen-home .mobile-home-actions { grid-column: 2; min-width: 0; }
   .mobile-screen-home .mobile-home-actions { grid-template-columns: minmax(0, 1fr); }
+  .mobile-screen-home .mobile-home-body > h1 { margin-block: 0 8px; }
+  .mobile-screen-home .mobile-home-body > p { margin-block: 8px 12px; }
 }
 .mobile-eyebrow { color: #1b64da; font-weight: bold; }
 .mobile-screen input:not([type=checkbox]), .mobile-screen select, .mobile-answer input { display: block; width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #b0b8c1; border-radius: 10px; background: white; color: #191f28; font: inherit; }
