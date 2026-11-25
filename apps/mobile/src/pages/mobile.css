@@ -214,6 +214,13 @@ ion-button { --border-radius: 12px; font-weight: 600; text-transform: none; lett
 .mobile-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: pre-wrap; }
 .mobile-screen-quiz { display: block; overflow-y: auto; padding: 12px; }
 .mobile-quiz { min-height: 100%; }
+.mobile-quiz-encouragement { flex-shrink: 0; padding: 8px 4px 4px; text-align: center; overflow-wrap: break-word; }
+.mobile-quiz-encouragement > p { margin: 4px 0; }
+.mobile-quiz-encouragement > p[lang="en"] { font-size: 16px; font-weight: 600; line-height: 1.5; }
+.mobile-quiz-encouragement > p[lang="ko"] { font-size: 14px; line-height: 1.6; }
+.mobile-encouragement-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.mobile-encouragement-actions ion-button { min-height: 44px; margin: 0; font-size: 12px; }
+.mobile-encouragement-actions [role="alert"] { flex-basis: 100%; color: #b42318; }
 .mobile-quiz-summary { display: flex; justify-content: flex-end; align-items: center; gap: 8px; margin: 4px 0 8px; flex-shrink: 0; color: #1b64da; font-weight: 700; }
 .mobile-quiz-summary ion-button { margin: 0; }
 .mobile-quiz-summary { flex-wrap: wrap; }

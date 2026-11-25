@@ -33,7 +33,7 @@ function ReadingPage({ page, number, count, onPrevious, onNext, onBackToList }: 
 }
 
 export interface PictureBooksNavigation { backToList(): boolean }
-export function PictureBooks({ ref }: { ref?: Ref<PictureBooksNavigation> }) {
+export function PictureBooks({ ref, active = true }: { ref?: Ref<PictureBooksNavigation>; active?: boolean }) {
   const [level, setLevel] = useState<Exclude<DifficultyLevel, 'special'>>('beginner');
   const [selected, setSelected] = useState<Book | null>(null);
   const [pageIndex, setPageIndex] = useState(0);
@@ -57,7 +57,7 @@ export function PictureBooks({ ref }: { ref?: Ref<PictureBooksNavigation> }) {
     {selected && page ? <>
       <h2 lang="en">{selected.title}</h2>
       <div className="mobile-reading-scroll" ref={reader} tabIndex={0} aria-label="그림책 본문">
-        <PictureBookAudio key={`audio-${selected.id}-${pageIndex}`} id={`${selected.id}-${String(pageIndex + 1).padStart(2, '0')}`} text={page.text} />
+        <PictureBookAudio key={`audio-${selected.id}-${pageIndex}`} menuActive={active} id={`${selected.id}-${String(pageIndex + 1).padStart(2, '0')}`} text={page.text} />
         <ReadingPage key={`${selected.id}-${pageIndex}`} page={page} number={pageIndex + 1} count={selected.pages.length} onPrevious={() => move(pageIndex - 1)} onNext={() => move(pageIndex + 1)} onBackToList={backToList} />
       </div>
     </> : <>

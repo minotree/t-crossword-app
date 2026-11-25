@@ -21,6 +21,7 @@ import { createMobileWordAudio, DEFAULT_WORD_AUDIO_BASE_URL } from '../adapters/
 import { subscribeWordAudioLifecycle } from '../adapters/wordAudioLifecycle.js';
 import { WordAudioButtons } from '../components/WordAudioButtons.js';
 import { androidInterstitial } from '../adapters/androidInterstitial.js';
+import { QuizEncouragement } from '../components/QuizEncouragement.js';
 
 
 const levels: Record<DifficultyLevel, string> = { beginner: '초급', intermediate: '중급', advanced: '고급', special: '특급' };
@@ -106,7 +107,8 @@ export function HomePage() {
         - screen.getBoundingClientRect().top
         - screen.clientTop
         + screen.scrollTop;
-      const height = contentHeight() - before - parseFloat(style.paddingBottom) - button.offsetHeight - 8;
+      const encouragementHeight = screen.querySelector<HTMLElement>('.mobile-quiz-encouragement')?.offsetHeight ?? 0;
+      const height = contentHeight() - before - parseFloat(style.paddingBottom) - button.offsetHeight - 8 - encouragementHeight;
       if (!Number.isFinite(width) || !Number.isFinite(height) || width <= 0 || height <= 0) return;
       const cell = { 8: 34, 10: 30, 12: 28 }[puzzle.size];
       const minimum = cell * puzzle.size + 2 * (puzzle.size - 1) + 4;
@@ -124,7 +126,7 @@ export function HomePage() {
       const screen = quizScreen.current;
       if (screen) {
         observer.observe(screen);
-        screen.querySelectorAll('.mobile-quiz-options, .mobile-quiz-summary, .mobile-error, .mobile-all-hints-button').forEach(element => observer?.observe(element));
+        screen.querySelectorAll('.mobile-quiz-options, .mobile-quiz-summary, .mobile-error, .mobile-all-hints-button, .mobile-quiz-encouragement').forEach(element => observer?.observe(element));
       }
       schedule();
     });
@@ -280,7 +282,7 @@ export function HomePage() {
           </div>
           <div className="mobile-quiz-summary"><span className="mobile-learning-progress" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span><div className="mobile-quiz-summary-actions"><span aria-live="polite">{solved.length} / {puzzle?.words.length ?? 0}</span><IonButton size="small" disabled={busy} onClick={() => generate(true)}>{busy ? '만드는 중…' : '새 퍼즐'}</IonButton></div></div>
           {puzzle && <QuizPanel key={puzzleVersion} ref={quizPanel} puzzle={puzzle} boardSize={boardSize} solvedIds={solved} hintedCells={hintedCells} onSelectWord={choose} />}
-
+          {!!puzzle?.words.length && <QuizEncouragement key={`encouragement-${puzzleVersion}`} puzzleVersion={puzzleVersion} />}
         </section>}
         {page === 'words' && <section className="mobile-word-page">
           <header className="mobile-word-heading"><h1>나의 단어장</h1><span>{visibleWords.length}개 단어</span></header>
@@ -296,7 +298,7 @@ export function HomePage() {
           </ul>
           {!visibleWords.length && <p>{wordFilter === 'mistakes' && !query.trim() ? '아직 오답노트에 등록된 단어가 없습니다.' : '표시할 단어가 없습니다.'}</p>}
         </section>}
-        <div className="mobile-book-host" hidden={page !== 'books'}><PictureBooks ref={bookNavigation} /></div>
+        <div className="mobile-book-host" hidden={page !== 'books'}><PictureBooks ref={bookNavigation} active={page === 'books'} /></div>
         {page === 'settings' && <section className="mobile-settings"><h1>설정</h1>
           {adState.privacyRequired && <section className="mobile-settings-card" aria-labelledby="mobile-ad-privacy">
             <h2 id="mobile-ad-privacy">광고 개인정보 선택</h2>
