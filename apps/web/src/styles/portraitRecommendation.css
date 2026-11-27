@@ -1,0 +1,26 @@
+.mnu-web-portrait-advice {
+  flex-shrink: 0;
+  margin-bottom: var(--mnu-space-8);
+  padding: var(--mnu-space-12);
+  border-radius: var(--mnu-radius-control);
+  background: var(--mnu-color-soft);
+  color: var(--mnu-color-text);
+  font-family: var(--mnu-font-family);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.mnu-web-portrait-advice > h2 { margin: 0; font-size: var(--mnu-font-title); font-weight: var(--mnu-weight-bold); }
+.mnu-web-portrait-advice > p { margin: var(--mnu-space-8) 0; font-size: var(--mnu-font-description); line-height: var(--mnu-line-description); }
+.mnu-web-portrait-advice > button {
+  min-height: var(--mnu-compact-control-min-height);
+  padding: var(--mnu-space-8) var(--mnu-space-12);
+  border: 0;
+  border-radius: var(--mnu-radius-control);
+  background: var(--mnu-color-primary);
+  color: var(--mnu-color-surface);
+  font: inherit;
+  font-size: var(--mnu-font-action);
+  font-weight: var(--mnu-weight-action);
+  cursor: pointer;
+}
+.mnu-web-portrait-advice > button:focus-visible { outline: 2px solid var(--mnu-color-primary-strong); outline-offset: 2px; }

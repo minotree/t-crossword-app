@@ -58,3 +58,60 @@ test('the generated worker serves cached lazy JavaScript without using the netwo
   }
   assert.equal(networkCalls, 0);
 });
+
+
+test('HTML precache uses the canonical root once and has an explicit format version', () => {
+  assert.ok(precache.includes('/'));
+  assert.ok(!precache.includes('/index.html'));
+  assert.equal(new Set(precache).size, precache.length);
+  assert.match(sw, /const CACHE = "t-crossword-shell-v2-/);
+});
+
+function navigationWorker(cached, network, storageUnavailable = false) {
+  const listeners = new Map();
+  runInNewContext(sw, {
+    self: { location: { origin: 'https://example.test' }, addEventListener: (name, callback) => listeners.set(name, callback) },
+    URL, Response, caches: { open: async () => {
+      if (storageUnavailable) throw Error('Cache Storage unavailable');
+      return { match: async path => cached.get(path) };
+    }, keys: async () => [] }, fetch: network,
+  });
+  return async () => {
+    let result;
+    listeners.get('fetch')({ request: { url: 'https://example.test/quiz', method: 'GET', mode: 'navigate', redirect: 'manual' }, respondWith: promise => { result = promise; } });
+    return result;
+  };
+}
+
+test('redirected same-origin HTML is normalized with body/status/headers intact', async () => {
+  const response = new Response('<html>offline</html>', { headers: { 'content-type': 'text/html; charset=utf-8', 'x-test': 'preserved' } });
+  Object.defineProperties(response, { redirected: { value: true }, url: { value: 'https://example.test/' } });
+  const navigate = navigationWorker(new Map([['/', response]]), () => { throw Error('Should not fetch'); });
+  const result = await navigate();
+  assert.equal(result.redirected, false);
+  assert.equal(result.status, 200);
+  assert.equal(result.headers.get('x-test'), 'preserved');
+  assert.equal(await result.text(), '<html>offline</html>');
+});
+
+test('invalid HTML caches fall back to network without rewriting redirects or errors', async () => {
+  for (const cached of [new Response('bad', { status: 500 }), new Response('json', { headers: { 'content-type': 'application/json' } }), Object.defineProperty(new Response('external', { headers: { 'content-type': 'text/html' } }), 'url', { value: 'https://other.test/' })]) {
+    for (const status of [302, 404, 500]) {
+      const response = new Response(null, { status, headers: status === 302 ? { location: '/elsewhere' } : {} });
+      assert.equal(await navigationWorker(new Map([['/', cached]]), async () => response)(), response);
+    }
+  }
+});
+
+test('network failure can recover an older valid HTML key without network conversion', async () => {
+  const response = new Response('legacy offline', { headers: { 'content-type': 'text/html' } });
+  const result = await navigationWorker(new Map([['/index.html', response]]), async () => { throw Error('Offline'); })();
+  assert.equal(await result.text(), 'legacy offline');
+  await assert.rejects(navigationWorker(new Map(), async () => { throw Error('Offline'); }), /Offline/);
+});
+
+test('Cache Storage failure permits online navigation and preserves the original offline error', async () => {
+  const response = new Response('online');
+  assert.equal(await navigationWorker(new Map(), async () => response, true)(), response);
+  await assert.rejects(navigationWorker(new Map(), async () => { throw Error('Network offline'); }, true), /Network offline/);
+});

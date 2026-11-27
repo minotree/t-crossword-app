@@ -1,0 +1,23 @@
+{
+  "name": "@t-crossword/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens.css": "./src/tokens.css",
+    "./home/home.css": "./src/home/home.css",
+    "./encouragement/encouragement.css": "./src/encouragement/encouragement.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "react": "^18.3.1",
+    "typescript": "catalog:"
+  }
+}

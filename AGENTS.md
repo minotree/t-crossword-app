@@ -7,16 +7,19 @@
 - **Project Name:** t-crossword-app
 - **Service Goal:** 십자낱말풀이
 - **Primary Language for Reports:** Korean (한국어)
-- **Architecture:** pnpm workspace monorepo; independent platform apps; shared domain and business logic; separate UIs.
+- **Architecture:** pnpm workspace monorepo; independent platform apps; shared platform-independent business logic and UI; platform-specific adapters.
 - **Targets:** Web/PWA, Android/iOS via Ionic React + Capacitor, Toss Mini App with TDS; optional Tauri desktop.
 
 ### Non-negotiable principles
 
-1. Share domain models, business rules, validation and reusable data-access mechanisms, **not UI components or app routing**.
-2. Each app owns its screens, components, styling, navigation and platform-specific integration.
-3. Keep shared packages framework-independent whenever possible.
+1. 플랫폼에 종속되지 않는 비즈니스 로직은 실제 공통 코드로 공유한다.
+2. 실제 수정·신규 개발하는 화면에서 필요성이 확인된 플랫폼 비종속 UI/UX, React 컴포넌트, 디자인 토큰, 아이콘, 반응형 CSS는 가능한 범위에서 `packages/ui`의 실제 공통 코드로 공유한다.
+3. PWA, Android, iOS, 토스 미니앱 모두 동일한 원칙을 적용한다. 플랫폼 정책, 필수 디자인 시스템, SDK, 네이티브 기능 등 불가피한 종속 부분만 별도 구현하거나 어댑터로 분리한다. 각 앱은 플랫폼별 라우팅과 통합을 담당한다. `contracts`, `core`, `data`, `utils`의 기존 역할은 유지하며 비즈니스 계층은 프레임워크 비종속으로 유지한다.
 4. Each app must build and deploy independently.
 5. Prefer simple, incremental changes over speculative abstractions.
+6. 공통 UI는 React 18과 19 모두에서 사용할 수 있도록 설계하며 Ionic, Capacitor, React Router, 토스 SDK, TDS에 직접 의존하지 않는다. 공통화를 이유로 기존 프레임워크나 라이브러리 버전을 일괄 변경하지 않는다.
+7. 점진적 공통화(B안)를 적용한다. 기존 핵심 로직·데이터 공통화 구조와 정상 기능·운영 안정성을 유지하며 기존 플랫폼 UI를 일괄 전환하지 않는다. 실제 수정하거나 신규 개발하는 화면부터 필요성이 확인된 플랫폼 비종속 UI/UX만 가능한 범위에서 공통 구현한다. 불필요한 추상화·과도한 컴포넌트 분리·대규모 리팩터링을 지양하고 공통 코드 변경 시 이를 사용하는 플랫폼의 영향을 검토한다.
+8. 현재 `packages/ui`는 `HomeScreen`, `HomeIcon`, `LearningEncouragement`와 디자인 토큰·홈/응원 CSS를 제공한다. PWA 홈 본문은 `HomeScreen`에 연결됐고, 상단바·하단 메뉴는 공통 토큰·아이콘을 사용하는 `apps/web`의 어댑터(`AppLayout.tsx`, `styles/home.css`)로 구현되어 있다. 별도 공통 상단바·하단 메뉴 컴포넌트가 구현된 것은 아니다. PWA 퀴즈는 공통 응원 컴포넌트를 사용하며 퀴즈 배치·판 크기 측정·음성 재생은 웹 전용 구현을 유지한다. Android·토스는 기존 UI를 유지하며 `packages/ui`로 전환하지 않았다. 나머지 화면·플랫폼은 실제 수정 필요성이 생길 때만 공통화하고 향후 iOS에서도 필요한 범위를 재사용한다.
 
 ## 2. Technology Stack
 
@@ -45,6 +48,7 @@ packages/
   core/          # Framework-independent domain and use cases
   data/          # Reusable repositories, Supabase implementations
   utils/         # Pure general-purpose helpers
+  ui/            # Shared home/encouragement components, tokens and CSS; PWA connected
   config/        # Shared build/lint/TypeScript presets
 supabase/
   migrations/
@@ -62,16 +66,16 @@ scripts/
 - `packages/data` implements repository contracts and may depend on `contracts`, `core` types where appropriate, and Supabase SDK; it must not import an app.
 - Do not import from another app, use cross-package relative source paths, introduce circular dependencies or bypass package exports.
 - App-specific composition roots wire repository implementations, authentication providers and platform adapters to core use cases.
-- Do not create `packages/ui` or shared routing without explicit user approval.
+- `packages/ui`를 신규 공통 UI 패키지로 사용한다. 공통 UI는 앱이나 플랫폼 SDK를 import하지 않으며 데이터·동작·플랫폼별 렌더링은 props 또는 어댑터로 전달받는다. 패키지 기반·디자인 토큰·홈 반응형 CSS는 생성되어 있으며 필요한 화면부터 연결한다. 라우팅은 각 앱에서 연결하며 공통 라우팅 도입은 별도 명시적 승인을 따른다.
 
 ## 4. UI and Platform Boundaries
 
 ### Web/PWA
 - 향후 하이브리드 배포를 고려해 Safe Area·작은 화면·가로 회전·키보드 표시 시 콘텐츠와 조작 영역을 확인한다. 토스에서 검증한 메뉴 명칭·사용 흐름은 일관되게 반영하되 광고·네이티브 상단 영역에 따른 치수는 플랫폼에 맞춘다. 웹 UI 개선을 Capacitor 통합이나 Android/iOS 검증 완료로 보고하지 않는다.
-- Owns React/Tailwind components, browser routing, responsive layouts and service-worker behavior.
+- Uses shared platform-independent UI and responsive CSS; owns web-specific presentation, browser routing, adapters and service-worker behavior.
 - Define supported offline operations; do not promise offline behavior for network-only features.
 - Test installation, cache updates and data consistency where PWA features are enabled.
-- 웹/PWA·토스·모바일 퀴즈 그리드는 앱 콘텐츠의 가로 공간을 채우고 아래에 한 줄의 `문제 전체 보기` 버튼을 둔다. 버튼을 누르면 그리드 전체 영역을 덮어 2열 문제 목록을 표시한다. 닫기·Escape·단어 선택으로 닫으며 토스/Android 뒤로가기는 방향 선택·문제 목록을 먼저 닫는다. 낮은 화면에서는 본문 스크롤을 허용한다. 진행 숫자와 새 퍼즐은 오른쪽 정렬한다.
+- PWA 1열 화면과 토스·모바일 퀴즈는 아래 플랫폼별 최신 기준을 적용하며, 기본적으로 그리드 아래의 `문제 전체 보기` 버튼과 그리드 영역의 문제 목록 오버레이를 사용한다. PWA는 너비 1024px 이상·높이 600px 이상·가로 방향에서만 왼쪽 퍼즐판/오른쪽 상시 문제 목록 2열을 사용하고 보기·닫기 버튼을 숨긴다. PWA의 두 방식은 같은 `HintListSection`과 문제 선택 로직을 재사용한다. 오버레이 방식에서는 버튼을 누르면 그리드 전체 영역을 덮어 2열 문제 목록을 표시한다. 닫기·Escape·단어 선택으로 닫으며 토스/Android 뒤로가기는 방향 선택·문제 목록을 먼저 닫는다. 낮은 화면에서는 본문 스크롤을 허용한다. 진행 숫자와 새 퍼즐은 오른쪽 정렬한다.
 - 세 앱의 번호가 있는 칸을 누르면 미완료 시작 단어의 정답 입력창을 연다. 같은 칸에서 가로·세로가 모두 미완료이면 두 방향의 문제를 먼저 표시한다. 한 방향만 남으면 바로 해당 입력창을 열고 모두 완료하면 번호 클릭을 비활성화한다. 완료 문제 목록도 선택할 수 없다. 완성 축하에는 하단 발사 색종이 폭죽과 큰 🎉 아이콘을 표시하며 동작 줄이기 설정과 버튼 조작을 보장한다.
 - 세 앱의 퀴즈 모두 가로/세로 문제 제목과 진행 숫자는 고정하고 아래 2열 문제 목록만 함께 스크롤한다. 가로·세로 화면 모두 적용한다.
 - 오답노트 삭제는 목록 숨김으로 처리하고 기존 단어·힌트 사용 이력·즐겨찾기·학습완료 기록을 보존한다. 2026-10-26 사용자 결정으로 세 앱 모두 틀린 영문 글자가 붉게 표시되는 즉시 해당 단어를 기기 오답노트에 중복 없이 등록한다. 전체 답안 제출은 필요하지 않으며, 숨긴 단어도 다시 틀리면 복귀한다. 정답 수정·학습완료 후에도 오답노트 기록을 유지한다. 글자 공개 힌트의 최신 정책은 아래 2026-10-27 결정을 따른다.
@@ -87,7 +91,7 @@ scripts/
 - Android 광고는 `apps/mobile/src/adapters/androidInterstitial.ts`에서 Capacitor Android 판정 후 처리하며 토스 광고와 공유하지 않는다. 현재 AdMob 7.2.0과 Google 공식 테스트 앱/전면광고 단위 ID만 사용한다. 사용자 요청 새 퍼즐·다음 퍼즐·난이도/크기 변경의 출제 성공 4회마다 새 판 표시 후 준비된 광고만 시도한다. 최초 출제·복귀·실패·시간 초과는 제외하고 카운터는 영속화하지 않는다. UMP 반환값의 `canRequestAds` 확인 전에는 광고를 요청하지 않으며 필요한 개인정보 옵션은 설정에서 다시 열 수 있게 한다. 최초 실행 연령 확인은 추가하지 않는다. 로딩 실패는 30/60/120/240/300초 백오프로 재시도하되 동의 불허·비활성 상태에서는 요청하지 않고 성공 시 초기화한다. 늦은 로드의 소급 표시·중복 요청을 금지하며 광고 때문에 학습 표시·기록 저장을 지연하지 않는다. 운영 전환·실제 동의/광고·데이터 공개 정책 검증은 별도다.
 - 2026-11-11 Android 작은 화면 기준: 격자는 실제 Ionic 콘텐츠 높이와 부모 가용 폭으로 계산하고 내부 scrollTop을 보정한다. 최소 격자 290/322/362px은 가로 폭을 초과하지 않으며 세로 부족은 스크롤을 허용한다. 퀴즈의 가상 광고 자리만 숨기고 다른 화면은 유지한다. 높이 500px 이하 가로 화면에서 헤더·메뉴 축소, 홈 2열, 단어장·그림책 목록의 Ionic 스크롤을 적용한다. 그림책 본문은 50vh 내부 스크롤을 유지한다. Chrome WebView 101 대응은 dvh/cqh에 의존하지 않으며 자동 검사와 실제 기기 검증을 구분한다.
 - 2026-10-27 모바일 단어장에도 기존 Cloudflare MP3의 단어+예문(삽입 쉼 0.5초)을 연결한다. 일반/0.7배속·중지·로딩/오류·검색/메뉴/백그라운드 전환 중지를 모바일 어댑터에서 처리한다. scripts/prepare-mobile-word-audio.mjs로 content 원본과 현재 어휘·예문·해시 파일명을 검사해 모바일 manifest를 준비한다. MP3·생성 모델은 APK에 포함하지 않고 온라인 재생으로 안내하며 실제 기기 음량·오디오 포커스는 별도 검증한다.
-- Owns Ionic React screens, navigation, Capacitor plugins, permissions and lifecycle handling.
+- Uses shared platform-independent UI; owns Ionic-specific presentation and integration, navigation, Capacitor plugins, permissions and lifecycle handling.
 - Isolate native plugin calls behind mobile adapters; provide meaningful unsupported-feature handling.
 - Browser-only testing does not prove Android/iOS compatibility.
 
@@ -107,9 +111,9 @@ scripts/
 - 힌트 제거 후 토스 새 앱은 기기 출제를 바로 사용하며 서버 판 등록을 하지 않는다. `docs/toss-round-idempotency.md`와 `docs/toss-free-hosting.md`의 판 등록·재시도 규칙은 기존 서버/구버전 앱 이력으로 보존한다.
 - 콘솔 업로드 키는 사용자 로컬 `ait token add` 프로필로 등록하고 키 내용은 읽거나 로그·채팅·저장소에 남기지 않는다. 명시적으로 승인된 `ait deploy` 업로드와 공개 검토 요청·출시를 구분한다. CLI 성공·실제 기기 검증도 별도로 기록한다.
 - 토스 출시는 별도 서버 관리 없이 무료 범위를 기준으로 한다. 유료 호스팅·요금제 전환을 기본 전제로 삼지 않는다. Supabase Edge Functions 대체는 실제 mTLS·실행 제한 검증 전 확정하지 않는다. 검토 상태는 `docs/toss-free-hosting.md`를 따른다.
-- Owns TDS-based UI, Toss SDK integration, platform navigation and authentication handshakes.
+- Uses shared platform-independent UI; owns required TDS presentation and adapters, Toss SDK integration, platform navigation and authentication handshakes.
 - **TDS and current Toss platform rules take priority over visual consistency with other apps.**
-- UI 구현은 분리하되 제공하는 기능의 화면 구성·메뉴 명칭·사용 흐름은 Web/PWA를 기준으로 일관되게 유지한다. 플랫폼 제약이나 미구현 범위로 차이가 생기면 구분해 기록한다.
+- 토스 화면을 실제 수정·신규 개발할 때 필요한 플랫폼 비종속 UI를 가능한 범위에서 공통 모듈로 사용하며, 필수 TDS·토스 정책은 별도 구현하거나 어댑터로 연결한다. 기존 토스 UI의 일괄 전환은 요구하지 않는다. 제공하는 기능의 화면 구성·메뉴 명칭·사용 흐름은 Web/PWA를 기준으로 일관되게 유지한다. 플랫폼 제약이나 미구현 범위로 차이가 생기면 구분해 기록한다.
 - Never call Toss-specific APIs from shared core logic or ordinary web/mobile UI.
 - Verify SDK versions, permissions, deployment rules and authentication flows against current official documentation.
 - Test critical behavior inside the actual Toss environment where required.

@@ -22,18 +22,22 @@
 
 ## 2. 변경하지 않는 설계 원칙
 
-1. **도메인·업무 규칙·검증·재사용 가능한 데이터 접근은 공유하고, UI와 라우팅은 플랫폼별로 소유한다.**
-2. 각 앱은 화면·스타일·탐색·플랫폼 SDK·인증 초기화·네이티브 연동을 소유하고 독립 빌드·배포할 수 있어야 한다.
-3. 공유 코드는 가능한 한 React와 플랫폼 SDK에 의존하지 않는 순수 TypeScript로 유지한다.
-4. 작은 일관된 변경을 우선한다. 사전 승인이 없는 공유 UI 패키지·공유 라우터·과도한 추상화를 만들지 않는다.
+1. **핵심 로직·데이터 공유 구조를 유지한다. UI/UX·React 컴포넌트·토큰·아이콘·반응형 CSS는 실제 수정·신규 개발 시 필요성이 확인된 플랫폼 비종속 범위에서 공통 구현한다.**
+2. PWA·Android·iOS·토스에 같은 원칙을 적용한다. 각 앱은 공통 UI를 조합하고 플랫폼 정책·필수 디자인 시스템·탐색·SDK·인증 초기화·네이티브 연동을 담당하며 독립 빌드·배포할 수 있어야 한다.
+3. contracts·core·data·utils의 역할은 유지한다. 비즈니스 계층은 프레임워크 비종속으로, 공통 React UI는 신규 `packages/ui`로 분리한다.
+4. 작은 일관된 변경을 우선한다. 공통 라우터·과도한 추상화를 별도 승인 없이 만들지 않는다. 공통 UI는 React 18/19와 호환되도록 설계하며 Ionic·Capacitor·React Router·토스 SDK·TDS에 직접 의존하지 않는다. 데이터·동작·필수 플랫폼 렌더링은 props 또는 어댑터로 받는다.
 5. 웹 화면이 동작한다는 이유로 Android/iOS·토스 동작까지 검증했다고 보고하지 않는다.
+
+점진적 공통화(B안)를 적용한다. 기존 핵심 로직·데이터 공통화 구조와 정상 기능·운영 안정성을 유지하며 기존 플랫폼 UI를 일괄 전환하지 않는다. 실제 수정하거나 신규 개발하는 화면부터 필요성이 확인된 플랫폼 비종속 UI/UX만 가능한 범위에서 공통 구현한다. 불필요한 추상화·과도한 컴포넌트 분리·대규모 리팩터링을 지양하고 공통 코드 변경 시 이를 사용하는 플랫폼의 영향을 검토한다.
+
+영어 낱말 앱: 현재 `packages/ui`는 `HomeScreen`, `HomeIcon`, `LearningEncouragement`와 디자인 토큰·홈/응원 CSS를 제공한다. PWA 홈 본문은 `HomeScreen`에 연결됐고, 상단바·하단 메뉴는 공통 토큰·아이콘을 사용하는 `apps/web`의 어댑터(`AppLayout.tsx`, `styles/home.css`)로 구현되어 있다. 별도 공통 상단바·하단 메뉴 컴포넌트가 구현된 것은 아니다. PWA 퀴즈는 공통 응원 컴포넌트를 사용하며 퀴즈 배치·판 크기 측정·음성 재생은 웹 전용 구현을 유지한다. Android·토스는 기존 UI를 유지하며 `packages/ui`로 전환하지 않았다. 나머지 화면·플랫폼은 실제 수정 필요성이 생길 때만 공통화하고 향후 iOS에서도 필요한 범위를 재사용한다. 다른 프로젝트에 적용할 때도 현재 상태와 목표를 구분한다. 상단바·메뉴가 공통 토큰을 사용한다는 사실과 별도 공통 컴포넌트 구현 완료를 혼동하지 않는다. PWA 전용 퀴즈 2열/크기 측정·음성 어댑터·SW 복구 정책은 다른 플랫폼으로 자동 확대하지 않고 프로젝트의 `progress.md`에 구현·자동 검증·사용자 확인·운영 배포를 각각 기록한다.
 
 ## 3. 기술 구성과 저장소
 
 - TypeScript `strict: true`, pnpm workspace, 내부 의존성 `workspace:*`.
 - Web/PWA: React·Vite, 앱이 선택한 스타일 체계와 PWA 도구.
 - Hybrid Mobile: Ionic React·Capacitor, Android/iOS 네이티브 프로젝트.
-- Toss: 설치 버전에 맞는 Apps in Toss SDK와 TDS, 토스 전용 React UI.
+- Toss: 설치 버전에 맞는 Apps in Toss SDK와 TDS, 필수 TDS 표현과 공통 React UI 어댑터.
 - Backend: 프로젝트가 선택한 서버·DB·마이그레이션. Supabase/Edge Functions는 선택지이며 필수 전제가 아니다.
 - Test: Vitest·React Testing Library, 필요한 범위의 Playwright·플랫폼 기기 검사.
 
@@ -50,6 +54,7 @@ packages/
   core/                # Framework-independent domain and use cases
   data/                # Repository implementations and reusable access
   utils/               # Pure general-purpose helpers
+  ui/                  # Shared UI; English vocab PWA uses home/encouragement components
   config/              # Shared TypeScript/lint/build presets
 scripts/
 docs/
@@ -71,7 +76,7 @@ docs/
 - 설치 전 `package.json`, workspace 설정, lockfile, engines, Node/pnpm 설치 상태를 확인한다.
 - 앱별 React·React DOM·타입·라우터 버전은 독립적으로 선택한다. 모든 앱을 같은 React 버전으로 맞추지 않는다.
 - TDS·Ionic·라우터의 실제 peer 요구사항을 확인한다. 토스 앱의 React 제약을 PWA·모바일에 전파하지 않는다.
-- React를 사용하는 공유 라이브러리를 승인받아 만들 경우 React 중복 번들·peer 선언을 검토한다. core에 React를 넣어 해결하지 않는다.
+- `packages/ui` 구현 시 React 18/19 호환성·React 중복 번들·peer 선언을 검토한다. core에 React를 넣어 해결하지 않는다. 공통화를 이유로 기존 라이브러리 버전을 일괄 변경하지 않는다.
 - 버전 catalog는 공통 도구에 활용할 수 있으나 플랫폼이 요구하는 버전을 무조건 통일하는 장치로 쓰지 않는다.
 - 의존성 추가 시 기존 사용 여부·번들 영향·라이선스·유지 상태·플랫폼 호환·버전을 확인한다. 확인하지 않은 SDK API를 가정하지 않는다.
 - lockfile의 다른 앱 importer·peer snapshot까지 바뀌면 원인을 검토하고 무관한 변경을 보존/제외한다. 잠금 파일만 통과해도 실제 모듈 연결과 실행은 별도 확인한다.
@@ -79,7 +84,7 @@ docs/
 
 ## 5. Web/PWA
 
-- `apps/web`이 UI·라우팅·브라우저 저장·service worker를 소유한다. PWA 설치는 네이티브 앱 배포와 다르다.
+- `apps/web`은 공통 UI를 사용하고 웹 전용 표현·라우팅·브라우저 저장·service worker를 담당한다. PWA 설치는 네이티브 앱 배포와 다르다.
 - 서비스 목표에 맞는 반응형 UI와 Safe Area·작은 화면·가로 회전·키보드 접근성을 확인한다.
 - 오프라인 지원 작업을 명시한다. API 인증·최초 다운로드·캐시 미적중 기능을 오프라인 가능하다고 안내하지 않는다.
 - 캐시 전략은 자산·인증·데이터별로 정한다. 비밀 정보·개인 API 응답을 무분별하게 캐시하지 않는다.
@@ -88,7 +93,7 @@ docs/
 
 ## 6. Ionic React·Capacitor Hybrid App
 
-- `apps/mobile`이 Ionic 화면·탐색·스타일과 Capacitor 어댑터를 소유한다. Web/PWA URL을 감싼 것만으로 모바일 기능 구현 완료로 보지 않는다.
+- `apps/mobile`은 기존 Ionic UI를 유지하며 필요성이 확인된 범위에서만 공통 UI를 연결한다. 탐색·플랫폼 스타일·Capacitor 어댑터는 모바일이 담당한다. Web/PWA URL을 감싼 것만으로 모바일 기능 구현 완료로 보지 않는다.
 - core의 규칙은 재사용하되 PWA/Toss 화면·Hook·라우팅을 직접 가져오지 않는다. 메뉴 명칭과 서비스 흐름은 일관되게 유지하고 플랫폼 차이를 기록한다.
 - core/CLI/Android/iOS의 호환 버전을 확인한다. 네이티브 플러그인은 모바일 어댑터 뒤에 두고 미지원·권한 거부·취소·오류 처리를 제공한다.
 - 앱 ID·표시 이름·아이콘·딥링크·네이티브 버전을 명시적으로 관리한다. 배포 앱 ID를 임의 변경하지 않는다.
@@ -101,7 +106,7 @@ docs/
 
 ## 7. Toss Mini App
 
-- `apps/toss`가 TDS UI·토스 SDK·상단 탐색·저장·인증/브리지 통합을 소유한다. 토스 정책과 TDS 기준이 다른 앱과의 외형 일치보다 우선한다.
+- `apps/toss`는 공통 UI와 필수 TDS 표현을 연결하고 토스 SDK·상단 탐색·저장·인증/브리지 통합을 담당한다. 토스 정책과 TDS 기준이 다른 앱과의 외형 일치보다 우선한다.
 - SDK·TDS·React·Node 버전과 설정 타입·CLI 명령을 확인한다. 이전 SDK 문서의 파일명·필드를 현재 설정에 임의로 추가하지 않는다.
 - 콘솔 appName·유형·카테고리·사용 연령·앱 정보와 실제 기능을 맞춘다. 새 앱 등록 시 인증서·사용자 식별·광고 그룹·API 설정을 다시 검토한다.
 - **테스트 Origin과 공개 출시 Origin을 둘 다 확인한다.** 설치 SDK의 공식 도메인 규칙을 검증해 정확한 HTTPS Origin만 허용한다. 와일드카드로 해결하지 않는다.
@@ -116,7 +121,7 @@ docs/
 ## 8. 공통 UI·데이터·보안 기준
 
 - 고정 영역과 스크롤 영역을 명시하고 중첩 스크롤을 최소화한다. flex 자식의 `min-height: 0`, 앱 셸 높이, 스크롤 전달, 키보드 열린 상태를 확인한다.
-- 기능이 같아도 플랫폼별 UI를 독립 구현한다. 접근성 이름·포커스·터치 영역·읽기 순서·오류 복구를 유지한다.
+- 실제 수정·신규 개발 시 필요한 플랫폼 비종속 UI만 가능한 범위에서 `packages/ui`로 공유한다. 플랫폼 정책·SDK·네이티브 기능 등 분리가 필요한 부분과 정상 동작 중인 기존 UI는 독립적으로 유지한다. 접근성 이름·포커스·터치 영역·읽기 순서·오류 복구를 유지한다.
 - 로딩·실패·취소·재시도를 처리하고 오류를 조용히 삼키지 않는다. 사용자 메시지는 이해하기 쉽게, 개발 로그는 비밀 정보 없이 남긴다.
 - 네트워크·저장 입력을 경계에서 검증한다. 세션·사용자 소유권·보상·한도·권한은 서버에서 검증한다.
 - 재시도 가능한 쓰기·보상·결제는 요청 ID와 서버 멱등성을 설계한다. 응답 유실을 실패 확정으로 간주해 새 ID로 중복 처리하지 않는다.

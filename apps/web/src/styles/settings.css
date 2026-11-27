@@ -1,0 +1,26 @@
+.mnu-web-settings { min-height: 100%; background: #f8fafc; color: var(--mnu-color-text); }
+.mnu-web-settings-main { width: 100%; max-width: 1232px; margin-inline: auto; padding: 20px 16px 32px; }
+.mnu-web-settings h1 { margin-bottom: 20px; font-size: 24px; font-weight: 700; }
+.mnu-web-settings-columns, .mnu-web-settings-column { display: grid; gap: 16px; align-content: start; min-width: 0; }
+.mnu-web-settings-columns { align-items: start; }
+.mnu-web-settings-card { min-width: 0; padding: 20px; border: 1px solid #e2e8f0; border-radius: 16px; background: var(--mnu-color-surface); font-size: 14px; line-height: 1.7; overflow-wrap: anywhere; word-break: keep-all; }
+.mnu-web-settings-card h2 { margin-bottom: 12px; font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; line-height: 1.5; }
+.mnu-web-settings-card p + p { margin-top: 12px; }
+.mnu-web-settings-details > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; padding-block: 12px; border-bottom: 1px solid #f1f5f9; }
+.mnu-web-settings-details > div:last-child { border-bottom: 0; }
+.mnu-web-settings-details dt { color: var(--mnu-color-secondary); }
+.mnu-web-settings-details dd { margin: 0; font-weight: 500; }
+.mnu-web-settings-links { display: grid; gap: 4px; margin-bottom: 12px; }
+.mnu-web-settings-links a { display: flex; align-items: center; min-height: 44px; padding-block: 8px; color: var(--mnu-color-primary-strong); text-decoration: underline; }
+.mnu-web-settings-install, .mnu-web-settings-reset { width: 100%; min-height: 48px; margin-top: 16px; padding: 12px 16px; border-radius: var(--mnu-radius-control); font-weight: 700; cursor: pointer; }
+.mnu-web-settings-install { background: var(--mnu-color-primary); color: white; }
+.mnu-web-settings-reset { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+.mnu-web-settings-reset:disabled { opacity: .6; cursor: default; }
+.mnu-web-settings button:focus-visible, .mnu-web-settings a:focus-visible { outline: 2px solid var(--mnu-color-primary-strong); outline-offset: 2px; }
+.mnu-web-settings-notices { margin-top: 20px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+.mnu-web-settings summary { min-height: 44px; }
+@media (min-width: 1024px) {
+  .mnu-web-settings-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .mnu-web-settings-column { gap: 20px; }
+  .mnu-web-settings-card { font-size: 16px; }
+}

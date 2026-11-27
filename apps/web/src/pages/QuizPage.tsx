@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import { useQuizBoardSize } from '../hooks/useQuizBoardSize.js';
 import { useCrosswordGame } from '../hooks/useCrosswordGame.js';
 import { wordProgressStore } from '../adapters/wordProgress.js';
 import { CrosswordBoard } from '../components/CrosswordBoard.js';
@@ -6,14 +7,22 @@ import { HintListSection } from '../components/HintListSection.js';
 import { WordInputModal } from '../components/WordInputModal.js';
 import { PuzzleCompletionModal } from '../components/PuzzleCompletionModal.js';
 import type { DifficultyLevel, GridSize } from '@t-crossword/core';
+import { selectLearningEncouragement } from '@t-crossword/core/encouragement';
+import { LearningEncouragement } from '@t-crossword/ui';
+import { EncouragementAudio } from '../components/EncouragementAudio.js';
+import '@t-crossword/ui/encouragement/encouragement.css';
+import { PortraitRecommendation } from '../components/PortraitRecommendation.js';
 
 export function QuizPage() {
   const [showHints, setShowHints] = useState(false);
   const hintsButtonRef = useRef<HTMLButtonElement>(null);
   const closeHintsRef = useRef<HTMLButtonElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const encouragementRef = useRef<HTMLDivElement>(null);
   const closeHints = () => {
     setShowHints(false);
-    hintsButtonRef.current?.focus();
+    if (hintsButtonRef.current?.getClientRects().length) hintsButtonRef.current.focus();
   };
   useEffect(() => {
     if (showHints) closeHintsRef.current?.focus();
@@ -24,6 +33,7 @@ export function QuizPage() {
     level,
     gridSize,
     puzzle,
+    puzzleVersion,
     userGrid,
     solvedWordIds,
     selectedWord,
@@ -37,6 +47,9 @@ export function QuizPage() {
     revealWordLetter,
     closeCompletionModal,
   } = useCrosswordGame({});
+  const encouragement = selectLearningEncouragement(puzzleVersion);
+  const boardSize = useQuizBoardSize({ mainRef, stackRef, hintsButtonRef, encouragementRef,
+    gridSize, puzzleVersion, hasPuzzle: !!puzzle?.words.length, paused: isInputModalOpen });
 
   const handleLevelChange = (newLevel: DifficultyLevel) => {
     setShowHints(false);
@@ -52,7 +65,7 @@ export function QuizPage() {
     <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-slate-50 text-slate-900 pb-2">
       {/* 상단 네비게이션 헤더 */}
       <header className="shrink-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/80">
-        <div className="w-full max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div className="mnu-web-quiz-heading-content w-full max-w-4xl mx-auto flex flex-wrap items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2">
             <span className="text-2xl">🧩</span>
             <div>
@@ -69,7 +82,7 @@ export function QuizPage() {
       </header>
 
       {/* 설정 제어 바 (난이도 & 격자 크기) */}
-      <div className="w-full max-w-4xl mx-auto shrink-0 px-3 sm:px-4 my-2">
+      <div className="mnu-web-quiz-options w-full max-w-4xl mx-auto shrink-0 px-3 sm:px-4 my-2">
         <div className="flex items-center justify-between gap-1 bg-white p-1 rounded-xl border border-slate-200/80 shadow-2xs">
           {/* 난이도 선택 */}
           <div className="flex shrink-0 items-center gap-0.5 sm:gap-1 bg-slate-100 p-1 rounded-xl">
@@ -116,7 +129,7 @@ export function QuizPage() {
         </div>
       </div>
 
-      <div className="mx-auto mb-2 flex w-full max-w-4xl shrink-0 flex-wrap items-center justify-end gap-2 px-3 sm:px-4">
+      <div className="mnu-web-quiz-summary mx-auto mb-2 flex w-full max-w-4xl shrink-0 flex-wrap items-center justify-end gap-2 px-3 sm:px-4">
         <span className="mr-auto text-xs font-bold text-indigo-700" aria-live="polite">학습완료 {learningProgress.completed} / {learningProgress.total}</span>
         <div className="flex shrink-0 items-center gap-2 whitespace-nowrap">
           <span className="text-sm font-bold text-indigo-700" aria-live="polite" aria-label="전체 정답 진행">{solvedWordIds.length} / {puzzle?.words.length ?? 0}</span>
@@ -126,7 +139,8 @@ export function QuizPage() {
       </div>
 
       {/* 메인 콘텐츠 영역 */}
-      <main className="flex min-h-0 flex-1 flex-col w-full mx-auto overflow-y-auto px-3 sm:px-4">
+      <main ref={mainRef} className="flex min-h-0 flex-1 flex-col w-full mx-auto overflow-y-auto px-3 sm:px-4">
+        <PortraitRecommendation />
         {wordProgressError && <p role="alert" className="mb-3 text-sm text-rose-700">{wordProgressError}</p>}
         {puzzle && puzzle.words.length === 0 && (
           <p role="status" className="mb-3 rounded-xl bg-white p-4 text-sm text-slate-600">
@@ -134,8 +148,9 @@ export function QuizPage() {
           </p>
         )}
         {/* 십자낱말 보드 */}
-        <div className="flex w-full shrink-0 flex-col gap-2">
-        <div className="relative min-w-0">
+        <div ref={stackRef} className="mnu-web-quiz-stack flex w-full shrink-0 flex-col gap-2"
+          style={boardSize === undefined ? undefined : { '--mnu-web-board-size': `${boardSize}px` } as CSSProperties}>
+        <div className="mnu-web-quiz-board-frame min-w-0">
         <CrosswordBoard
           puzzle={puzzle}
           userGrid={userGrid}
@@ -143,11 +158,14 @@ export function QuizPage() {
           solvedWordIds={solvedWordIds}
           onSelectWord={selectWord}
         />
-        {showHints && puzzle && (
+
+        </div>
+        <div className="mnu-web-quiz-controls">
+        {puzzle && (
         <section id="puzzle-hints" aria-label="퍼즐 문제" onKeyDown={(event) => {
-          if (event.key === 'Escape') { event.stopPropagation(); closeHints(); }
-        }} className="absolute inset-0 z-10 flex min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm">
-          <div className="mb-2 flex shrink-0 items-center justify-between gap-2">
+          if (event.key === 'Escape' && getComputedStyle(stackRef.current ?? event.currentTarget).display !== 'grid') { event.stopPropagation(); closeHints(); }
+        }} className={`mnu-web-quiz-clues ${showHints ? 'mnu-web-quiz-clues--open' : ''} z-10 min-h-0 flex-col overflow-hidden rounded-lg border border-slate-200 bg-slate-50 p-2 shadow-sm`}>
+          <div className="mnu-web-quiz-clues-toolbar mb-2 flex shrink-0 items-center justify-between gap-2">
             <h2 className="font-bold text-slate-900">문제 전체 보기</h2>
             <button ref={closeHintsRef} type="button" onClick={closeHints}
               className="min-h-11 rounded-lg bg-white px-3 text-sm font-bold text-indigo-700 focus-visible:outline-2 focus-visible:outline-indigo-600">닫기</button>
@@ -162,12 +180,18 @@ export function QuizPage() {
           </div>
         </section>
         )}
-        </div>
         <button ref={hintsButtonRef} type="button" aria-expanded={showHints} aria-controls={showHints ? 'puzzle-hints' : undefined}
           disabled={!puzzle} onClick={() => showHints ? closeHints() : setShowHints(true)}
-          className="min-h-11 w-full shrink-0 rounded-xl border border-indigo-200 bg-white px-3 text-sm font-bold text-indigo-700 hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:opacity-50">
+          className="mnu-web-quiz-hints-button min-h-11 w-full shrink-0 rounded-xl border border-indigo-200 bg-white px-3 text-sm font-bold text-indigo-700 hover:bg-indigo-50 focus-visible:outline-2 focus-visible:outline-indigo-600 disabled:opacity-50">
           문제 전체 보기
         </button>
+        {!!puzzle?.words.length && encouragement && <div className="mnu-web-quiz-encouragement-slot">
+          <div ref={encouragementRef} className="mnu-web-quiz-encouragement-content">
+            <LearningEncouragement key={puzzleVersion} phrase={encouragement}
+              audioControl={<EncouragementAudio url={encouragement.audioUrl} />} />
+          </div>
+        </div>}
+        </div>
         </div>
       </main>
 

@@ -51,6 +51,25 @@ async function closeWord() {
   const button = container.querySelector<HTMLButtonElement>('button[aria-label="닫기"]');
   await act(async () => button?.click());
 }
+
+it('selects and completes a word from the single shared clue list without opening an overlay first', async () => {
+  await act(async () => root.render(<QuizPage />));
+  expect(container.querySelectorAll('#puzzle-hints')).toHaveLength(1);
+  const clue = Array.from(container.querySelectorAll<HTMLButtonElement>('#puzzle-hints [aria-label="문제 목록"] button'))
+    .find(button => button.textContent?.includes('곰'));
+  if (!clue) throw new Error('Shared clue missing');
+  await act(async () => clue.click());
+  const inputs = Array.from(container.querySelectorAll<HTMLInputElement>('[role="dialog"] input'));
+  expect(inputs).toHaveLength(4);
+  for (let index = 0; index < inputs.length; index++) await type(inputs[index], 'BEAR'[index]);
+  await act(async () => vi.advanceTimersByTime(300));
+  expect(wordProgressStore.getSnapshot().completedWordIds).toContain('bear');
+  const completed = Array.from(container.querySelectorAll<HTMLButtonElement>('#puzzle-hints [aria-label="문제 목록"] button'))
+    .find(button => button.textContent?.includes('곰'));
+  expect(completed?.disabled).toBe(true);
+  expect(completed?.textContent).toContain('정답: BEAR');
+  expect(container.querySelectorAll('#puzzle-hints')).toHaveLength(1);
+});
 async function type(input: HTMLInputElement, value: string) {
   await act(async () => {
     const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;

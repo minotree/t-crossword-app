@@ -1,4 +1,129 @@
 @import "tailwindcss";
+
+/* Size start numbers against their own cell, independent of viewport/grid count. */
+.mnu-web-crossword-number { top: 1px; left: 1px; font-size: 8px; }
+@media (min-width: 640px) {
+  .mnu-web-crossword-number { font-size: 10px; }
+}
+@supports (container-type: inline-size) {
+  .mnu-web-crossword-cell { container-type: inline-size; }
+  .mnu-web-crossword-letter { top: 0; font-size: clamp(12px, 45cqw, 40px); }
+  .mnu-web-crossword-number {
+    font-size: clamp(8px, 22cqw, 16px);
+    top: clamp(1px, 2.5cqw, 3px);
+    left: clamp(1px, 2.5cqw, 3px);
+  }
+}
+
+/* Fill spare quiz height without shrinking the board or clipping long text. */
+.mnu-web-quiz-stack { position: relative; flex: 1 0 auto; }
+.mnu-web-quiz-controls { display: contents; }
+.mnu-web-quiz-clues {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, var(--mnu-web-board-size, 600px));
+  aspect-ratio: 1;
+}
+.mnu-web-quiz-clues--open { display: flex; }
+.mnu-web-quiz-board-frame {
+  position: relative;
+  flex: none;
+  width: min(100%, var(--mnu-web-board-size, 600px));
+  aspect-ratio: 1;
+  margin-inline: auto;
+}
+.mnu-web-quiz-hints-button { width: min(100%, var(--mnu-web-board-size, 600px)); align-self: center; }
+.mnu-web-quiz-encouragement-slot {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.mnu-web-quiz-encouragement-content { width: 100%; max-width: 600px; margin-inline: auto; }
+@media (min-width: 1024px) and (min-height: 600px) and (orientation: landscape) {
+  .mnu-web-quiz-stack {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: clamp(24px, 2.5vw, 40px);
+    align-items: start;
+    max-width: 1600px;
+    margin-inline: auto;
+  }
+  .mnu-web-quiz-controls {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    height: var(--mnu-web-quiz-available-height, var(--mnu-web-board-size, 600px));
+    min-height: calc(var(--mnu-web-quiz-encouragement-height, 0px) + 120px + clamp(16px, 2vh, 24px));
+    gap: clamp(16px, 2vh, 24px);
+  }
+  .mnu-web-quiz-controls > .mnu-web-quiz-hints-button,
+  .mnu-web-quiz-clues-toolbar { display: none; }
+  .mnu-web-quiz-controls > .mnu-web-quiz-clues {
+    display: flex;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    aspect-ratio: auto;
+    flex: 1 1 0;
+    min-height: 120px;
+  }
+  .mnu-web-quiz-controls > .mnu-web-quiz-encouragement-slot { flex: 0 0 auto; }
+  .mnu-web-quiz-heading-content,
+  .mnu-web-quiz-options,
+  .mnu-web-quiz-summary { max-width: 1632px; }
+  .mnu-web-quiz-board-frame { width: min(100%, var(--mnu-web-board-size, 800px)); }
+  .mnu-web-quiz-clues {
+    --mnu-web-clue-font: clamp(14px, min(1.15vw, 1.9vh), 20px);
+    padding: clamp(8px, 1vw, 16px);
+  }
+  .mnu-web-quiz-clues .mnu-web-clue-heading { font-size: var(--mnu-web-clue-font); }
+  .mnu-web-quiz-clues .mnu-web-clue-card {
+    padding: clamp(8px, .75vw, 14px);
+    gap: clamp(6px, .6vw, 12px);
+    margin-top: clamp(6px, .6vw, 12px);
+  }
+  .mnu-web-quiz-clues .mnu-web-clue-card:first-child { margin-top: 0; }
+  .mnu-web-quiz-clues .mnu-web-clue-meaning { font-size: var(--mnu-web-clue-font); }
+  .mnu-web-quiz-clues .mnu-web-clue-number {
+    width: 1.8em;
+    height: 1.8em;
+    font-size: clamp(12px, min(1vw, 1.65vh), 18px);
+  }
+  .mnu-web-quiz-clues .mnu-web-clue-length { font-size: clamp(11px, min(.85vw, 1.5vh), 16px); }
+  .mnu-web-quiz-clues .mnu-web-clue-synonym,
+  .mnu-web-quiz-clues .mnu-web-clue-answer { font-size: clamp(12px, min(1vw, 1.65vh), 18px); }
+  .mnu-web-quiz-controls .mnu-web-quiz-encouragement-content { max-width: none; }
+  .mnu-web-quiz-controls .mnu-encouragement > p[lang="en"] { font-size: clamp(16px, min(1.3vw, 2.1vh), 22px); }
+  .mnu-web-quiz-controls .mnu-encouragement > p[lang="ko"] { font-size: clamp(14px, min(1.1vw, 1.8vh), 18px); }
+  .mnu-web-quiz-controls .mnu-encouragement__actions button { font-size: clamp(12px, min(1vw, 1.6vh), 16px); }
+  /* Match the home menu's tablet/desktop sizes without changing other routes. */
+  .mnu-web-quiz-nav {
+    height: auto;
+    max-width: var(--mnu-home-pc-nav-max-width, 1000px);
+    gap: var(--mnu-space-12, 12px);
+    padding: clamp(8px, 1vh, 12px) var(--mnu-space-20, 20px);
+  }
+  .mnu-web-quiz-nav-link {
+    min-width: 0;
+    min-height: clamp(68px, 8vh, 88px);
+    border-radius: var(--mnu-radius-control, 12px);
+    background: var(--mnu-color-nav, #f2f7ff);
+    color: var(--mnu-color-secondary, #6b7684);
+    font-size: clamp(13px, min(1.56vw, 2vh), 16px);
+  }
+  .mnu-web-quiz-nav-link[aria-current] { background: var(--mnu-color-soft, #e8f3ff); color: var(--mnu-color-primary-strong, #1b64da); }
+  .mnu-web-quiz-nav-link > svg {
+    width: clamp(28px, min(3.5vw, 4vh), 36px);
+    height: clamp(28px, min(3.5vw, 4vh), 36px);
+  }
+}
+
 /* 완성 축하: 하단 세 지점에서 발사한 색종이가 위로 퍼졌다가 내려오며 사라진다. */
 .completion-confetti {
   position: fixed;

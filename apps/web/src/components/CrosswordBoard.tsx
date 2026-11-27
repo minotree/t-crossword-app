@@ -105,7 +105,7 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
               <div
                 key={`${row}-${col}`}
                 style={{ gridRow: row + 1, gridColumn: col + 1 }}
-                className={`relative flex min-h-0 min-w-0 items-center justify-center overflow-hidden font-bold text-sm sm:text-lg leading-none border ${
+                className={`mnu-web-crossword-cell relative flex min-h-0 min-w-0 items-center justify-center overflow-hidden font-bold text-sm sm:text-lg leading-none border ${
                   inSelected
                     ? 'bg-amber-100 border-amber-400 text-amber-950'
                     : isSolved
@@ -118,12 +118,12 @@ export const CrosswordBoard: React.FC<CrosswordBoardProps> = ({
                   <button type="button" disabled={remainingWords.length === 0} onClick={() => selectNumber(remainingWords)}
                     aria-label={`${numberToShow}번 ${remainingWords.length === 0 ? '정답 입력 완료' : remainingWords.length > 1 ? '가로·세로 문제 선택' : remainingWords[0].orientation === 'across' ? '가로 정답 입력' : '세로 정답 입력'}`}
                     className="absolute inset-0 z-10 cursor-pointer text-left focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-default">
-                    <span className="absolute top-px left-px text-[8px] sm:text-[10px] font-semibold text-gray-500 leading-none">{numberToShow}</span>
+                    <span className="mnu-web-crossword-number absolute font-semibold text-gray-500 leading-none">{numberToShow}</span>
                   </button>
                 )}
 
                 {/* 입력/공개된 알파벳 글자 */}
-                <span className="relative top-[2px]">{userChar}</span>
+                <span className="mnu-web-crossword-letter relative top-[2px]">{userChar}</span>
               </div>
             );
           })

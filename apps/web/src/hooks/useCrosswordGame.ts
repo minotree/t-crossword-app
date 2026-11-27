@@ -40,6 +40,7 @@ export function useCrosswordGame({
   const [level, setLevel] = useState<DifficultyLevel>(initialLevel);
   const [gridSize, setGridSize] = useState<GridSize>(initialGridSize);
   const [puzzle, setPuzzle] = useState<CrosswordPuzzle | null>(null);
+  const [puzzleVersion, setPuzzleVersion] = useState(0);
   const [userGrid, setUserGrid] = useState<string[][]>(() =>
     Array.from({ length: initialGridSize }, () => Array(initialGridSize).fill(''))
   );
@@ -53,6 +54,7 @@ export function useCrosswordGame({
       const words = vocabularyForProgress(wordBank.getAllWords(), latest.completedWordIds, latest.hintUsedWordIds, latest.dismissedMistakeWordIds);
       const newPuzzle = generateCrossword(words, newLevel, newSize);
       setPuzzle(newPuzzle);
+      if (newPuzzle.words.length > 0) setPuzzleVersion(value => value + 1);
       setLevel(newLevel);
       setGridSize(newSize);
       setUserGrid(Array.from({ length: newSize }, () => Array(newSize).fill('')));
@@ -157,6 +159,7 @@ export function useCrosswordGame({
     level,
     gridSize,
     puzzle,
+    puzzleVersion,
     userGrid,
     solvedWordIds,
     selectedWord,

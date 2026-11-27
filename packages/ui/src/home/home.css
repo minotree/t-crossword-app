@@ -1,0 +1,211 @@
+/* Import tokens.css and place mnu-ui on this element or an ancestor.
+   The consumer owns the scroll container, available height and platform insets. */
+.mnu-home {
+  --mnu-home-puzzle-size: clamp(128px, 23vh, 208px);
+  --mnu-home-gap: clamp(8px, 2vh, 24px);
+  --mnu-home-padding: clamp(12px, 2.5vh, 28px);
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  min-width: 0;
+  min-height: 100%;
+  box-sizing: border-box;
+  padding: var(--mnu-home-padding) var(--mnu-space-20);
+  color: var(--mnu-color-text);
+  font-family: var(--mnu-font-family);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@supports (height: 100dvh) {
+  .mnu-home {
+    --mnu-home-puzzle-size: clamp(128px, 23dvh, 208px);
+    --mnu-home-gap: clamp(8px, 2dvh, 24px);
+    --mnu-home-padding: clamp(12px, 2.5dvh, 28px);
+  }
+}
+.mnu-home__welcome {
+  flex: 1 0 auto;
+  min-width: 0;
+  width: 100%;
+  max-width: var(--mnu-home-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.mnu-home__title {
+  margin: 0;
+  padding: clamp(10px, var(--mnu-home-gap), 14px) var(--mnu-space-8);
+  border-radius: var(--mnu-radius-control);
+  background: var(--mnu-color-primary);
+  color: var(--mnu-color-surface);
+  font-size: var(--mnu-font-title);
+  font-weight: var(--mnu-weight-bold);
+  line-height: var(--mnu-line-description);
+}
+.mnu-home__body {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: var(--mnu-home-gap);
+  margin-block: auto;
+  padding-block: var(--mnu-home-padding);
+}
+.mnu-home__heading {
+  margin: 0;
+  font-size: var(--mnu-font-welcome);
+  font-weight: var(--mnu-weight-heading);
+  line-height: var(--mnu-line-welcome);
+}
+.mnu-home__description {
+  margin: 0;
+  color: var(--mnu-color-secondary);
+  font-size: var(--mnu-font-description);
+  line-height: var(--mnu-line-description);
+}
+.mnu-home__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--mnu-space-8);
+}
+/* Layout/typography contract only: platform adapters own button rendering. */
+.mnu-home__action {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: var(--mnu-home-action-min-height);
+  margin: 0;
+  padding-inline: var(--mnu-space-8);
+  border-radius: var(--mnu-radius-control);
+  font-family: inherit;
+  font-size: var(--mnu-font-action);
+  font-weight: var(--mnu-weight-action);
+  white-space: normal;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.mnu-home__puzzle {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: var(--mnu-home-puzzle-size);
+  max-width: 100%;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  border: var(--mnu-border-puzzle);
+  border-radius: var(--mnu-radius-puzzle);
+  background: var(--mnu-color-soft);
+  box-shadow: var(--mnu-shadow-puzzle);
+  margin: 0 auto;
+}
+.mnu-home__grid {
+  display: grid;
+  width: var(--mnu-home-grid-width);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--mnu-space-4);
+}
+.mnu-home__cell {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: var(--mnu-radius-cell);
+  background: var(--mnu-color-primary);
+}
+.mnu-home__cell--letter {
+  color: var(--mnu-color-primary-strong);
+  background: var(--mnu-color-surface);
+  font-size: var(--mnu-font-letter);
+  font-weight: var(--mnu-weight-letter);
+}
+/* Share the spacious layout; desktop-specific size overrides follow below. */
+@media (min-width: 768px) and (min-height: 600px) and (pointer: coarse),
+       (min-width: 1024px) and (min-height: 600px) and (pointer: fine) and (hover: hover) {
+  .mnu-home {
+    /* About 8% of content height after the home header/menu, without coupling to the shell. */
+    --mnu-home-padding: clamp(24px, 7vh, 96px);
+    --mnu-home-max-width: clamp(640px, 78vw, var(--mnu-home-tablet-max-width));
+    --mnu-home-puzzle-size: clamp(208px, min(35vw, 30vh), var(--mnu-home-tablet-puzzle-max));
+    --mnu-home-gap: clamp(12px, 2vh, 28px);
+    --mnu-font-title: clamp(22px, min(2.72vw, 3vh), var(--mnu-home-tablet-font-title));
+    --mnu-font-welcome: clamp(26px, min(3.125vw, 3.4vh), var(--mnu-home-tablet-font-welcome));
+    --mnu-font-description: clamp(18px, min(2.14vw, 2.4vh), var(--mnu-home-tablet-font-body));
+    --mnu-font-action: var(--mnu-font-description);
+    --mnu-font-letter: clamp(20px, min(3.125vw, 3vh), 32px);
+    --mnu-home-tablet-spacing-transfer: max(0px, calc(var(--mnu-home-gap) - var(--mnu-space-8)));
+    --mnu-home-action-min-height: clamp(64px, min(7.4vw, 8vh), var(--mnu-home-tablet-action-min-height));
+  }
+  @supports (height: 100dvh) {
+    .mnu-home {
+      --mnu-home-padding: clamp(24px, 7dvh, 96px);
+      --mnu-home-puzzle-size: clamp(208px, min(35vw, 30dvh), var(--mnu-home-tablet-puzzle-max));
+      --mnu-home-gap: clamp(12px, 2dvh, 28px);
+      --mnu-font-title: clamp(22px, min(2.72vw, 3dvh), var(--mnu-home-tablet-font-title));
+      --mnu-font-welcome: clamp(26px, min(3.125vw, 3.4dvh), var(--mnu-home-tablet-font-welcome));
+      --mnu-font-description: clamp(18px, min(2.14vw, 2.4dvh), var(--mnu-home-tablet-font-body));
+      --mnu-font-letter: clamp(20px, min(3.125vw, 3dvh), 32px);
+      --mnu-home-action-min-height: clamp(64px, min(7.4vw, 8dvh), var(--mnu-home-tablet-action-min-height));
+    }
+  }
+  /* Equal outer insets; distribute spare height between the intrinsic-size elements. */
+  .mnu-home__welcome { flex: 1 0 auto; margin-block: 0; }
+  .mnu-home__body { flex: 1 0 auto; justify-content: space-between; margin-block: 0; padding-block: calc(var(--mnu-home-gap) + var(--mnu-home-tablet-spacing-transfer)) 0; }
+  /* Transfer space from after the puzzle to before it; preserve total height and later gaps. */
+  .mnu-home__heading { margin-block-start: calc(-1 * var(--mnu-home-tablet-spacing-transfer)); }
+  .mnu-home__cell { line-height: 1; }
+  @media (orientation: landscape) {
+    .mnu-home { --mnu-home-padding: clamp(16px, 4vh, 48px); }
+    @supports (height: 100dvh) {
+      .mnu-home { --mnu-home-padding: clamp(16px, 4dvh, 48px); }
+    }
+  }
+}
+@media (min-width: 1024px) and (min-height: 600px) and (pointer: fine) and (hover: hover) {
+  .mnu-home {
+    --mnu-home-padding: clamp(16px, 4vh, 64px);
+    --mnu-home-puzzle-size: clamp(208px, min(24vw, 30vh), var(--mnu-home-pc-puzzle-max));
+    --mnu-font-letter: clamp(20px, calc(var(--mnu-home-puzzle-size) * .1), 32px);
+    --mnu-font-description: clamp(16px, min(1.56vw, 2.4vh), var(--mnu-home-pc-font-body));
+    --mnu-home-action-min-height: clamp(60px, min(6vw, 7vh), var(--mnu-home-pc-action-min-height));
+  }
+  @supports (height: 100dvh) {
+    .mnu-home {
+      --mnu-home-padding: clamp(16px, 4dvh, 64px);
+      --mnu-home-puzzle-size: clamp(208px, min(24vw, 30dvh), var(--mnu-home-pc-puzzle-max));
+      --mnu-font-description: clamp(16px, min(1.56vw, 2.4dvh), var(--mnu-home-pc-font-body));
+      --mnu-home-action-min-height: clamp(60px, min(6vw, 7dvh), var(--mnu-home-pc-action-min-height));
+    }
+  }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+  .mnu-home { padding-block: var(--mnu-space-12); }
+  .mnu-home__title { padding-block: var(--mnu-space-4); }
+  .mnu-home__welcome { max-width: var(--mnu-home-landscape-max-width); }
+  .mnu-home__body {
+    flex: 0 0 auto;
+    display: grid;
+    grid-template-columns: clamp(120px, 30vh, 144px) minmax(0, 1fr);
+    column-gap: var(--mnu-space-16);
+    row-gap: 0;
+    padding-block: var(--mnu-space-4);
+    align-items: start;
+  }
+  .mnu-home__puzzle {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    align-self: center;
+  }
+  .mnu-home__grid {
+    width: auto;
+    grid-template-columns: repeat(3, var(--mnu-home-landscape-cell));
+  }
+  .mnu-home__cell { height: var(--mnu-home-landscape-cell); }
+  .mnu-home__heading,
+  .mnu-home__description,
+  .mnu-home__actions { grid-column: 2; min-width: 0; }
+  .mnu-home__actions { grid-template-columns: minmax(0, 1fr); }
+  .mnu-home__heading { margin-block: 0 var(--mnu-space-4); }
+  .mnu-home__description { margin-block: var(--mnu-space-4); }
+}

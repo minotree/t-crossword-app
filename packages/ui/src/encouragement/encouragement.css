@@ -1,0 +1,11 @@
+.mnu-encouragement { flex-shrink: 0; padding: 8px 4px 4px; text-align: center; overflow-wrap: break-word; }
+.mnu-encouragement > p { margin: 4px 0; }
+.mnu-encouragement > p[lang="en"] { font-size: 16px; font-weight: 600; line-height: 1.5; }
+.mnu-encouragement > p[lang="ko"] { font-size: 14px; line-height: 1.6; }
+.mnu-encouragement__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
+.mnu-encouragement__actions > button {
+  min-height: 44px; margin: 0; padding: 0 12px; border: 0; border-radius: 12px;
+  background: transparent; color: #3182f6; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.mnu-encouragement__actions > button:focus-visible { outline: 2px solid #1b64da; outline-offset: 2px; }
+.mnu-encouragement__actions [role="alert"] { flex-basis: 100%; color: #b42318; font-size: 14px; }

@@ -197,6 +197,9 @@ importers:
       '@t-crossword/data':
         specifier: workspace:*
         version: link:../../packages/data
+      '@t-crossword/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@t-crossword/utils':
         specifier: workspace:*
         version: link:../../packages/utils
@@ -275,6 +278,18 @@ importers:
         specifier: workspace:*
         version: link:../contracts
     devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.9.3
+
+  packages/ui:
+    devDependencies:
+      '@types/react':
+        specifier: ^18.3.0
+        version: 18.3.31
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
