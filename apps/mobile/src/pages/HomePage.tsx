@@ -32,7 +32,7 @@ export function HomePage() {
     if (!Capacitor.isNativePlatform()) return;
     let disposed = false;
     void App.getInfo().then(info => {
-      if (!disposed && info.version.trim()) setAppVersion(info.version);
+      if (!disposed && info.version.trim()) setAppVersion(`${info.version} (${info.build})`);
     }).catch(() => {
       console.warn('Native app version unavailable; using package version.');
     });
