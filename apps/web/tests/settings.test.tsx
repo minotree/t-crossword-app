@@ -38,8 +38,9 @@ it('shows independent PWA version, vocabulary information and explicitly scoped 
   expect(host.textContent).toContain('오답노트에 표시 중이면 다시 출제됩니다');
   expect(host.textContent).toContain('WordNet 3.0');
   expect(host.querySelector('a[href="mailto:support@mnuappstudio.com"]')).not.toBeNull();
-  const policy = host.querySelector('a[href="https://mnuappstudio.com/privacy/"]');
-  expect(policy?.textContent).toContain('Android'); expect(policy?.getAttribute('rel')).toContain('noopener');
+  const policy = host.querySelector('a[href="https://mnuappstudio.com/privacy/crossword/web/"]');
+  expect(policy?.textContent).toBe('개인정보처리방침'); expect(policy?.getAttribute('rel')).toContain('noopener');
+  expect(host.textContent).not.toContain('Android 앱 대상');
 });
 
 it('confirms before resetting only completed words and updates the actual count', async () => {

@@ -52,11 +52,11 @@ export function SettingsPage() {
           <section aria-labelledby="support-policy" className="mnu-web-settings-card">
             <h2 id="support-policy">고객지원 및 정책</h2>
             <div className="mnu-web-settings-links">
-              <a href="https://mnuappstudio.com/privacy/" target="_blank" rel="noopener noreferrer">개인정보처리방침 (Android 앱)</a>
+              <a href="https://mnuappstudio.com/privacy/crossword/web/" target="_blank" rel="noopener noreferrer">개인정보처리방침</a>
               <a href="mailto:support@mnuappstudio.com">문의하기: support@mnuappstudio.com</a>
               <a href="https://mnuappstudio.com" target="_blank" rel="noopener noreferrer">공식 홈페이지: MNU App Studio</a>
             </div>
-            <p>현재 공개된 개인정보처리방침은 Android 앱 대상입니다. PWA에 적용되는 방침은 추가 확인이 필요합니다.</p>
+            <p>영어 낱말 웹·PWA의 개인정보 처리에 관한 안내를 확인할 수 있습니다.</p>
           </section>
         </div>
         <div className="mnu-web-settings-column">
